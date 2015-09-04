@@ -1,0 +1,604 @@
+<!--
+Automatically generated HTML file from DocOnce source
+(https://github.com/hplgit/doconce/)
+-->
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
+<meta name="description" content="Scaling of Differential Equations">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-pray model,Lotka-Volterra, competing species model">
+
+<title>Scaling of Differential Equations</title>
+
+<!-- Bootstrap style: bootswatch_readable -->
+<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
+<!-- not necessary
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+-->
+
+<style type="text/css">
+/* Let inline verbatim have the same color as the surroundings */
+code { color: inherit; background-color: transparent; }
+</style>
+
+
+</head>
+
+<!-- tocinfo
+{'highest level': 0,
+ 'sections': [('Preface', 0, 'ch:preface', 'ch:preface'),
+              ('Dimensions and units', 0, 'scale:dimunit', 'scale:dimunit'),
+              ('Fundamental concepts', 1, None, '___sec2'),
+              ('Base units and dimensions', 2, None, '___sec3'),
+              ('Dimensions of common physical quantities',
+               2,
+               None,
+               '___sec4'),
+              ('Prefixes for units', 2, None, '___sec5'),
+              ('Unit systems', 2, None, '___sec6'),
+              ('PhysicalQuantity: object for computing with units',
+               2,
+               'scale:PQ',
+               'scale:PQ'),
+              ('Parampool: user interfaces with automatic unit conversion',
+               1,
+               'scale:parampool',
+               'scale:parampool'),
+              ('Example application', 3, None, '___sec9'),
+              ('Pool of parameters', 2, None, '___sec10'),
+              ('Fetching pool data for computing', 2, None, '___sec11'),
+              ('Reading command-line options', 2, None, '___sec12'),
+              ('Setting default values in a file', 2, None, '___sec13'),
+              ('Specifying multiple values of input parameters',
+               2,
+               None,
+               '___sec14'),
+              ('Generating a graphical user interface', 2, None, '___sec15'),
+              ('ODE models', 0, None, '___sec16'),
+              ('Exponential decay problems',
+               1,
+               'sec:scale:decay',
+               'sec:scale:decay'),
+              ('Fundamental ideas', 2, None, '___sec18'),
+              ('The basic model problem', 2, None, '___sec19'),
+              ('Example: Population dynamics', 3, None, '___sec20'),
+              ('Example: Decay of pressure with altitude',
+               3,
+               None,
+               '___sec21'),
+              ('The technical steps of the scaling procedure',
+               2,
+               'sec:scale:decay:steps',
+               'sec:scale:decay:steps'),
+              ('Step 1: Identify independent and dependent variables',
+               3,
+               None,
+               '___sec23'),
+              ('Step 2: Make independent and dependent variables dimensionless',
+               3,
+               None,
+               '___sec24'),
+              ('Step 3: Derive the model involving only dimensionless variables',
+               3,
+               None,
+               '___sec25'),
+              ('Step 4: Make each term dimensionless', 3, None, '___sec26'),
+              ('Step 5: Estimate the scales', 3, None, '___sec27'),
+              ('Making software utilizing the dimensionless model',
+               2,
+               'sec:scale:decay:prog',
+               'sec:scale:decay:prog'),
+              ('Software for the original problem with dimensions',
+               3,
+               None,
+               '___sec29'),
+              ('A plain solution', 3, None, '___sec30'),
+              ('Simplifying the implementation with joblib',
+               3,
+               None,
+               '___sec31'),
+              ('Scaling a generalized problem',
+               2,
+               'sec:scale:decay:body',
+               'sec:scale:decay:body'),
+              ('Exact solution', 3, None, '___sec33'),
+              ('Theory', 3, None, '___sec34'),
+              ('Software', 3, None, '___sec35'),
+              ('Variable coefficients',
+               2,
+               'sec:scale:decay:jump',
+               'sec:scale:decay:jump'),
+              ('Scaling a cooling problem with constant surroundings',
+               2,
+               'scale:decay:cooling:const',
+               'scale:decay:cooling:const'),
+              ('Scaling a cooling problem with time-dependent surroundings',
+               2,
+               'scale:decay:cooling:osc',
+               'scale:decay:cooling:osc'),
+              ('Exact solution', 3, None, '___sec39'),
+              ('Scaling', 3, None, '___sec40'),
+              ('Software', 3, None, '___sec41'),
+              ('Discussion of the time scale', 3, None, '___sec42'),
+              ('Scaling a nonlinear ODE',
+               2,
+               'sec:scale:decay:nonlinear',
+               'sec:scale:decay:nonlinear'),
+              ('ODE systems for spreading of diseases', 2, None, '___sec44'),
+              ('SIR model', 3, None, '___sec45'),
+              ('SIRV model with finite immunity', 3, None, '___sec46'),
+              ('Michaelis-Menten kinetics for biochemical reactions',
+               2,
+               'scale:MMK',
+               'scale:MMK'),
+              ('Classical analysis', 3, None, '___sec48'),
+              ('Dimensionless ODE system', 3, None, '___sec49'),
+              ('Determining scales', 3, None, '___sec50'),
+              ('Analysis of the scaled system', 3, None, '___sec51'),
+              ('Vibration problems', 1, 'sec:scale:vib', 'sec:scale:vib'),
+              ('Undamped vibrations without forcing',
+               2,
+               'sec:scale:vib:undamped',
+               'sec:scale:vib:undamped'),
+              ('The first technical steps of scaling', 3, None, '___sec54'),
+              ('The exact solution', 3, None, '___sec55'),
+              ('Discussion of the displacement scale', 3, None, '___sec56'),
+              ('Discussion of the time scale', 3, None, '___sec57'),
+              ('Alternative displacement scale', 3, None, '___sec58'),
+              ('About frequency and dimensions', 3, None, '___sec59'),
+              ('Undamped vibrations with constant forcing',
+               2,
+               'sec:scale:vib:undamped:mg',
+               'sec:scale:vib:undamped:mg'),
+              ('Undamped vibrations with time-dependent forcing',
+               2,
+               'sec:scale:vib:undamped:F',
+               'sec:scale:vib:undamped:F'),
+              ('Investigating scales via analytical solutions',
+               3,
+               None,
+               '___sec62'),
+              ('The displacement and time scales', 3, None, '___sec63'),
+              ('Finding the displacement scale from the differential equation',
+               3,
+               None,
+               '___sec64'),
+              ('Scaling with free vibrations as time scale',
+               3,
+               None,
+               '___sec65'),
+              ('Software', 3, None, '___sec66'),
+              ('Choice of $u_c$ close to resonance', 3, None, '___sec67'),
+              ('Unit size of all terms in the ODE', 3, None, '___sec68'),
+              ('Choice of $u_c$ when $\\psi\\gg\\omega$',
+               3,
+               None,
+               '___sec69'),
+              ('Displacement scale based on $I$', 3, None, '___sec70'),
+              ('Damped vibrations with forcing',
+               2,
+               'sec:scale:vib:damped:F',
+               'sec:scale:vib:damped:F'),
+              ('The exact solution', 3, None, '___sec72'),
+              ('Choosing scales', 3, None, '___sec73'),
+              ('Choice of $u_c$ at resonance', 3, None, '___sec74'),
+              ('Choice of $u_c$ when $\\omega\\gg\\psi$',
+               3,
+               None,
+               '___sec75'),
+              ('Choice of $u_c$ when $\\omega\\ll\\psi$',
+               3,
+               None,
+               '___sec76'),
+              ('Oscillating electric circuits', 2, None, '___sec77'),
+              ('Basic PDE models', 0, None, '___sec78'),
+              ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
+              ('Simple homogeneous Dirichlet conditions',
+               2,
+               None,
+               '___sec80'),
+              ('Implementation of the scaled wave equation',
+               2,
+               None,
+               '___sec81'),
+              ('Waves on a string', 3, None, '___sec82'),
+              ('Detecting an already computed case', 3, None, '___sec83'),
+              ('Time-dependent Dirichlet condition',
+               2,
+               'scale:wave:pde2',
+               'scale:wave:pde2'),
+              ('Velocity initial condition',
+               2,
+               'scale:wave:pde2:Vcond',
+               'scale:wave:pde2:Vcond'),
+              ('Variable wave velocity and forcing',
+               2,
+               'scale:wave:pde2:cvar',
+               'scale:wave:pde2:cvar'),
+              ('Damped wave equation',
+               2,
+               'scale:wave:pde2:damped',
+               'scale:wave:pde2:damped'),
+              ('A three-dimensional wave equation problem',
+               2,
+               None,
+               '___sec88'),
+              ('The diffusion equation',
+               1,
+               'sec:scale:diffu',
+               'sec:scale:diffu'),
+              ('Homogeneous diffusion equation',
+               2,
+               'sec:scale:diffu:homo1D',
+               'sec:scale:diffu:homo1D'),
+              ('Simplified 1D PDE', 3, None, '___sec91'),
+              ('Generalized PDE', 3, None, '___sec92'),
+              ('Jump boundary condition', 2, None, '___sec93'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec94'),
+              ('Diffusion equation with source term',
+               2,
+               'sec:scale:diffu:source',
+               'sec:scale:diffu:source'),
+              ("Fisher's equation",
+               2,
+               'sec:scale:diffu:Fisher',
+               'sec:scale:diffu:Fisher'),
+              ('The convection-diffusion equation',
+               1,
+               'scale:convdiff',
+               'scale:convdiff'),
+              ('Convection-diffusion without a force term',
+               2,
+               None,
+               '___sec98'),
+              ('Stationary PDE', 2, None, '___sec99'),
+              ('Convection-diffusion with a force term',
+               2,
+               'scale:convdiff',
+               'scale:convdiff'),
+              ('Advanced PDE models', 0, None, '___sec101'),
+              ('The equations of linear elasticity', 1, None, '___sec102'),
+              ('The Navier-Stokes equations',
+               1,
+               'sec:scale:ns',
+               'sec:scale:ns'),
+              ('The momentum equation without body forces',
+               2,
+               None,
+               '___sec104'),
+              ('The most common dimensionless form of the Navier-Stokes equations',
+               2,
+               None,
+               '___sec105'),
+              ('Scaling of time for low Reynolds numbers',
+               2,
+               None,
+               '___sec106'),
+              ('Shear stress as pressure scale', 2, None, '___sec107'),
+              ('Including the gravity force', 2, None, '___sec108'),
+              ('Oscillating boundary conditions', 2, None, '___sec109'),
+              ('The Euler number', 2, None, '___sec110'),
+              ('Free surface conditions', 2, None, '___sec111'),
+              ('Thermal convection', 1, None, '___sec112'),
+              ('Forced convection', 2, None, '___sec113'),
+              ('Free convection',
+               2,
+               'scale:fluid:forced_convection',
+               'scale:fluid:forced_convection'),
+              ('Governing equations', 3, None, '___sec115'),
+              ('Heating by viscous effects', 3, None, '___sec116'),
+              ('Relation between density and temperature',
+               3,
+               None,
+               '___sec117'),
+              ('Comment on the form of the equation of continuity',
+               3,
+               None,
+               '___sec118'),
+              ('The Boussinesq approximation', 3, None, '___sec119'),
+              ('Scaling', 3, None, '___sec120'),
+              ('The Grashof, Prandtl, and Eckert numbers',
+               2,
+               None,
+               '___sec121'),
+              ('Heat transfer at boundaries', 2, None, '___sec122'),
+              ('The bidomain model in electrophysiology',
+               1,
+               'scale:bidomain',
+               'scale:bidomain'),
+              ('Two-phase porous media flow', 1, None, '___sec124'),
+              ('The Euler equations of gas dynamics', 1, None, '___sec125'),
+              ('Exercises', 1, None, '___sec126'),
+              ('Exercise 1: Perform unit conversion',
+               2,
+               'sec:scale:exer:US2SI1',
+               'sec:scale:exer:US2SI1'),
+              ('Problem 2: Scale a simple formula',
+               2,
+               'sec:scale:exer:ball_y',
+               'sec:scale:exer:ball_y'),
+              ('Problem 3: Scale a nonlinear ODE',
+               2,
+               'sec:scale:exer:ball_y_wdrag',
+               'sec:scale:exer:ball_y_wdrag'),
+              ('Exercise 4: Implement a scaled model with jump',
+               2,
+               'sec:scale:exer:decay:jump',
+               'sec:scale:exer:decay:jump'),
+              ('Exercise 5: Implement a scaled model for cooling',
+               2,
+               'sec:scale:exer:decay:cooling',
+               'sec:scale:exer:decay:cooling'),
+              ('Problem 6: Scale variable coefficients',
+               2,
+               'scale:decay:exer:decay:step',
+               'scale:decay:exer:decay:step'),
+              ('Exercise 7: Alternative scalings of a cooling model',
+               2,
+               'scale:decay:exer:cooling:Ts',
+               'scale:decay:exer:cooling:Ts'),
+              ('Exercise 8: Alternative scalings of a cooling model',
+               2,
+               'scale:decay:exer:nonlin:logistic2',
+               'scale:decay:exer:nonlin:logistic2'),
+              ('Exercise 9: Scale projectile motion',
+               2,
+               'scale:vib:exer:projectile',
+               'scale:vib:exer:projectile'),
+              ('Problem 10: Scale a predator-pray model',
+               2,
+               'scale:decay:exer:predpray',
+               'scale:decay:exer:predpray'),
+              ('Problem 11: Scale a model for competing species',
+               2,
+               'scale:decay:exer:competing_species',
+               'scale:decay:exer:competing_species'),
+              ('Problem 12: Find the period of sinusoidal signals',
+               2,
+               'scale:decay:exer:sine',
+               'scale:decay:exer:sine'),
+              ('Remarks', 3, None, '___sec139'),
+              ('Problem 13: Scale the pendulum equation',
+               2,
+               'sec:scale:exer:pendulum',
+               'sec:scale:exer:pendulum'),
+              ("Problem 14: Scale Duffing's equation",
+               2,
+               'scale:vib:exer:Duffing',
+               'scale:vib:exer:Duffing'),
+              ('Problem 15: Scale a stationary Couette flow',
+               2,
+               'scale:vib:exer:stationary_Couette',
+               'scale:vib:exer:stationary_Couette'),
+              ('Remarks', 3, None, '___sec143'),
+              ('Problem 16: Scale a starting Couette flow',
+               2,
+               'scale:vib:exer:starting_Couette',
+               'scale:vib:exer:starting_Couette'),
+              ('Exercise 17: Scale Couette flow with pressure gradient',
+               2,
+               'scale:vib:exer:Couette_wpressure',
+               'scale:vib:exer:Couette_wpressure'),
+              ('Exercise 18: Suggestions...',
+               2,
+               'scale::exer:suggest',
+               'scale::exer:suggest'),
+              ('References', 1, None, '___sec147')]}
+end of tocinfo -->
+
+<body>
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  TeX: {
+     equationNumbers: {  autoNumber: "none"  },
+     extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+  }
+});
+</script>
+<script type="text/javascript"
+ src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+<!-- newcommands_keep.tex -->
+$$
+\newcommand{\half}{\frac{1}{2}}
+\newcommand{\tp}{\thinspace .}
+\newcommand{\uex}{{u_{\small\mbox{e}}}}
+\newcommand{\normalvec}{\boldsymbol{n}}
+\newcommand{\x}{\boldsymbol{x}}
+\renewcommand{\u}{\boldsymbol{u}}
+\renewcommand{\v}{\boldsymbol{v}}
+\newcommand{\f}{\boldsymbol{f}}
+\newcommand{\dfc}{\alpha}  % diffusion coefficient
+\newcommand{\ii}{\boldsymbol{i}}
+\newcommand{\jj}{\boldsymbol{j}}
+\newcommand{\kk}{\boldsymbol{k}}
+$$
+
+
+
+
+    
+<!-- Bootstrap navigation bar -->
+<div class="navbar navbar-default navbar-fixed-top">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="scaling-book.html">Scaling of Differential Equations</a>
+  </div>
+  <div class="navbar-collapse collapse navbar-responsive-collapse">
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
+        <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="#ch:preface" style="font-size: 80%;">Preface</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit" style="font-size: 80%;">Dimensions and units</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec16" style="font-size: 80%;">ODE models</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec78" style="font-size: 80%;">Basic PDE models</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec101" style="font-size: 80%;">Advanced PDE models</a></li>
+
+        </ul>
+      </li>
+    </ul>
+  </div>
+</div>
+</div> <!-- end of navigation bar -->
+
+<div class="container">
+
+<p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p> <!-- add vertical space -->
+
+<a name="part0001"></a>
+<!-- !split -->
+
+<center><h1 id="ch:preface">Preface</h1></center> <!-- chapter heading -->
+
+<p>
+Finding proper values of physical parameters in mathematical models is
+often quite a challenge. While many has gotten away with using just
+the mathematical symbols when doing science and engineering with pen
+and paper, the modern world of numerical computing requires each
+physical parameter to have a numerical value, otherwise one cannot get
+started with the computations.  For example, in the simplest possible
+transient heat conduction simulation, a case relevant for a real
+physical material needs values for the heat capacity, the
+density, and the heat conduction coefficient of the material. In
+addition, relevant values must be chosen for initial and boundary
+temperatures as well as the size of the material.  With a
+dimensionless mathematical model, as explained in  <a href="._scaling-book008.html#sec:scale:diffu">The diffusion equation</a>, <em>no physical quantities</em> need to be assigned
+(!). Not only is this a simplification of great convenience, as one
+simulation is valid for any type of material, but it also actually
+increases the understanding of the physical problem.
+
+<p>
+Scaling of differential equations is basically a simple mathematical
+process, consisting of the chain rule for differentiation and some
+algebra.  The <em>choice of scales</em>, however, is a non-trivial topic,
+which may cause confusion among practitioners without extensive
+experience with scaling.  How to choose scales is unfortunately not
+well treated in the literature. Most of the times, authors just state scales
+without proper motivation. The choice of scales is highly
+problem-dependent and requires knowledge of the characteristic
+features of the solution or the physics of the problem.  The present
+appendix aims at explaining &quot;all nuts and bolts&quot; of the scaling
+technique, including choice of scales, the algebra, the
+interpretation of dimensionless parameters in scaled models,
+and how scaling
+impacts software for solving differential equations.
+
+<p>
+Traditionally, scaling was mainly used to identify small parameters in
+mathematical models, such that perturbation methods based on series
+expansions in terms of the small parameters could be used as an
+approximate solution method for differential equations.  Nowadays, the
+greatest practical benefit of scaling is related to running numerical
+simulations, since scaling greatly simplifies the choice of values for
+the input data and makes the simulations results more widely
+applicable.  The number of parameters in scaled models may be much
+less than the number of physical parameters in the original model. The
+parameters in scaled models are also dimensionless and express
+<em>ratios</em> of physical effects rather than the levels of individual
+effects.  Setting meaningful values of a few dimensionless numbers is
+much easier than determining physically relevant values for the
+original physical parameters.
+
+<p>
+Another great benefit of scaling is the physical insight that follows
+from dimensionless parameters. Since physical effects enter the
+problem through a few dimensionless groups, one can from these
+groups see how different effects compete in their
+impact on the solution. Ideally, a good physical understanding should
+provide the same insight, but it is not always easy to &quot;think right&quot;
+and realize how spatial and temporal scales interact with physical
+parameters.  This interaction becomes clear through the dimensionless
+numbers, and such numbers are therefore a great help, especially for
+students, in developing a correct physical understanding.
+
+<p>
+Since we have a special focus on scaling related to numerical simulations,
+the appendix contains a lot of examples on how to program with
+dimensionless differential equation models. Most numerical models feature
+quantities with dimension, so we show in particular how to utilize such
+existing models to solve the equations in the associated scaled model.
+
+<p>
+Scaling is not a universal mathematical technique as the details
+depend on the problem at hand. We therefore present scaling in a range
+of specific applications, starting with simple ODEs, progressing with
+basic PDEs, before attacking more
+complicated models, especially from fluid mechanics.
+
+<p>
+ <a href="._scaling-book004.html#scale:dimunit">Dimensions and units</a> discusses units and how to make programs
+that can automatically take care of unit conversion (the most frequent
+mathematical mistake in industry and science?).   <a href="._scaling-book005.html#sec:scale:decay">Exponential decay problems</a> introduces the mathematics of scaling and the
+thinking about scales in a simple ODE problems modeling exponential
+decay. The ideas are generalized to nonlinear ODEs and to systems of
+ODEs.  Another ODE example on mechanical vibrations is treated in
+ <a href="._scaling-book006.html#sec:scale:vib">Vibration problems</a>, where we cover many different physical
+contexts and different choices of scales.  Scaling the standard, linear
+wave equation is the topic of  <a href="._scaling-book007.html#sec:scale:wave">The wave equation</a>, with
+discussion of how boundary and initial conditions can influence the
+choice of scales.  Another PDE example, the diffusion equation,
+appears in  <a href="._scaling-book008.html#sec:scale:diffu">The diffusion equation</a>. Here we progress from a
+simple linear diffusion equation in 1D to the impact on scales of an
+oscillating boundary condition and to nonlinear diffusion models.  The
+final sections are devoted to many famous
+PDEs arising from continuum models: elasticity, viscous fluid flow,
+thermal convection, etc.
+
+<p>
+Especially experimental fluid mechanics is full of relations involving
+dimensionless numbers such as the Grashof number and the Prandtl
+number, but none of the textbooks the author has seen explain how
+these numbers actually relate to dimensionless forms of the governing
+equations. Consequently, this non-trivial topic is particularly
+highlighted in our fluid mechanics examples.
+
+<p>
+To conclude, the purpose of this appendix is to demystify the
+technique and thinking about scaling differential equations and
+motivate for always bringing a differential equation model on
+dimensionless form before doing numerical simulations.
+
+<p>
+<p>
+<!-- navigation buttons at the bottom of the page -->
+<ul class="pager">
+  <li class="previous">
+    <a href="._scaling-book000.html">&larr; Prev</a>
+  </li>
+  <li class="next">
+    <a href="._scaling-book002.html">Next &rarr;</a>
+  </li>
+</ul>
+<!-- ------------------- end of main content --------------- -->
+
+</div>  <!-- end container -->
+<!-- include javascript, jQuery *first* -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+<!-- Bootstrap footer
+<footer>
+<a href="http://..."><img width="250" align=right src="http://..."></a>
+</footer>
+-->
+
+
+<center style="font-size:80%">
+<!-- copyright --> &copy; 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+</center>
+
+
+</body>
+</html>
+    
+
