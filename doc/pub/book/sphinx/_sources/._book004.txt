@@ -106,7 +106,7 @@ problem
    :label: scale:decay:model
         
         u'(t) = -au(t),\quad u(0)=I,
-        \
+        
         
 
 where :math:`a,I>0` are prescribed constants and :math:`u(t)` is the unknown function.
@@ -133,7 +133,7 @@ pressure, measured in :math:`\hbox{Nm}^{-2}`; :math:`t` is the hight in meters;
 and :math:`a=M/(R^*T)`, where
 :math:`M` is the molar mass of the Earth's air (0.029 kg/mol),
 :math:`R^*` is the universal
-gas constant (:math:`8.314\,\frac{\hbox{Nm}}{\hbox{mol\, K}}`),
+gas constant (:math:`8.314\,\frac{\hbox{Nm}}{\hbox{mol K}}`),
 and :math:`T` is the temperature in Kelvin (K).
 The temperature depends on the hight so we have :math:`a=a(t)`.
 
@@ -216,7 +216,7 @@ the coefficient in front of the term with the highest time derivative
         
         \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
         {\thinspace .}
-        \
+        
         
 
 Step 5: Estimate the scales
@@ -281,7 +281,7 @@ With :math:`t_c=1/a` and :math:`u_c=I`, we have the final dimensionless model
         
         \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
         {\thinspace .}
-        \
+        
         
 
 This is a remarkable result in the sense that *all physical parameters*
