@@ -19,5 +19,7 @@ the scaling technique for ordinary and partial differential equations
 from physics and biology. How to utilize scaled models in simulation
 software is also addressed.
 
-:Date: Sep 5, 2015
+:Date: Oct 5, 2015
+
+.. Externaldocuments: ../decay-book/book
 

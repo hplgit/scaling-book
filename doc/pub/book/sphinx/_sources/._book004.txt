@@ -157,24 +157,32 @@ Step 2: Make independent and dependent variables dimensionless
 
 We introduce a new dimensionless :math:`t`, called :math:`\bar t`, defined by
 
+.. _Eq:_auto1:
+
 .. math::
+   :label: _auto1
         
         \bar t = \frac{t}{t_c},
+        
         
 
 where :math:`t_c` is a *characteristic value* of :math:`t`. Similarly,
 we introduce a dimensionless :math:`u`, named :math:`\bar u`, according to
 
+.. _Eq:_auto2:
+
 .. math::
+   :label: _auto2
         
         \bar u = \frac{u}{u_c},
+        
         
 
 where :math:`u_c` is a constant *characteristic size* of :math:`u`. When :math:`u` has a specific
 interpretation, say when :eq:`scale:decay:model` models pressure
 in an atmospheric layer, :math:`u_c` would be referred to as characteristic pressure.
 For a decaying population, :math:`u` may be a characteristic number of
-members in the population.
+members in the population, e.g., the initial population :math:`I`.
 
 Step 3: Derive the model involving only dimensionless variables
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -185,7 +193,7 @@ and :math:`u` by :math:`u_c\bar u` in :eq:`scale:decay:model`. The derivative
 with respect to :math:`\bar t` is derived as
 
 .. math::
-         \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}{d\bar t}{dt}
+         \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
         = u_c\frac{d\bar u}{d\bar t}\frac{1}{t_c} =
         \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}{\thinspace .}
         
@@ -207,7 +215,7 @@ Step 4: Make each term dimensionless
 Equation :eq:`scale:decay:model:scaled0` still has terms with
 dimensions. To make each term dimensionless, we usually divide by
 the coefficient in front of the term with the highest time derivative
-(but dividing by any coefficient will do). The result is
+(but dividing by any coefficient in any term will do). The result is
 
 .. _Eq:scale:decay:model:dimless0:
 
@@ -262,15 +270,15 @@ we do not pay attention to such small differences.
 Although :math:`t_c = a^{-1}\ln 2` is a fine time scale to be used in this
 problem, it leads to a scaled differential equation :math:`u'=-(\ln 2) u`,
 which is fine, but an unusual form. People tend to prefer :math:`u'=-u`,
-which arises from :math:`t_c=1/a`. We shall therefore use the latter as
+which arises from :math:`t_c=1/a`. We shall therefore use the latter
 time scale.
 
 Regarding :math:`u_c`, we may look at the initial condition
 and realize that the choice :math:`u_c=I` makes :math:`\bar u(0)=1`. For :math:`\bar t>0`
 we know that :math:`\bar u` is decreasing, so :math:`u_c=I`
-gives us :math:`\bar u\leq 1`, which is always a goal.
-Alternatively, we may look to analytical insight, :math:`u(t)=Ie^{-at}`, to
-see that :math:`u\leq I`, such that :math:`u_c=I` gives :math:`\bar u\leq 1`.
+gives us :math:`\bar u\leq 1`, which is always a goal
+(alternatively, we may look to analytical insight, :math:`u(t)=Ie^{-at}`, to
+see that :math:`u\leq I`, such that :math:`u_c=I` gives :math:`\bar u\leq 1`).
 
 With :math:`t_c=1/a` and :math:`u_c=I`, we have the final dimensionless model
 
@@ -321,8 +329,8 @@ written as
 
 .. _sec:scale:decay:prog:
 
-Making software utilizing the dimensionless model
--------------------------------------------------
+Making software for utilizing the scaled model
+----------------------------------------------
 
 Software for solving :eq:`scale:decay:model` could take advantage
 of the fact that only one simulation of :eq:`scale:decay:model:dimless`
@@ -371,7 +379,7 @@ then
         plot(t, u)
         show()
 
-The module `decay.py <http://tinyurl.com/ofkw6kc/softeng/decay.py>`__ is developed
+The module `decay.py <http://tinyurl.com/o8pb3yy/decay.py>`__ is developed
 and explained in
 
 Section refaux{softeng1:basic:module} in
@@ -384,84 +392,32 @@ To solve the dimensionless problem, just fix :math:`I=1` and :math:`a=1`:
         I, a, T, theta, dt_values = read_command_line_argparse()
         u, t = solver(I=1, a=1, T=T, dt=dt_values[0], theta=theta)
 
-A plain solution
-~~~~~~~~~~~~~~~~
+Avoiding unnecessary computations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A key observation, as mentioned, is that we need to solve the problem
 :eq:`scale:decay:model:dimless` only once. All solutions
 corresponding to different :math:`I` and :math:`a` values in the original physical
 problem can be recovered by scaling this single solution with formula
-:eq:`scale:decay:u:dim`.  We therefore want to make software that
+:eq:`scale:decay:u:dim`.  We may therefore want to make software that
 takes advantage of this fact. When requesting a solution, we see if it
 has already been computed and stored in a file, and if so, the data
 can be retrieved from file, otherwise we have to compute a new
 solution and store it in a file.
 
-The computational recipe goes as follows.
-
-1. A computed solution :math:`\bar u(\bar t)` is stored in a file with name ``u_scaled.dat``.
-
-2. The first line in the file contains :math:`T`, :math:`\Delta t`, and :math:`\theta`
-   used to compute the stored :math:`\bar u(\bar t)`.
-
-3. The :math:`T`, :math:`\Delta t`, and :math:`\theta` parameters are read from the
-   first line in the file and compared with those required by the user.
-
-4. If one of the three parameters changes, the solution in the file
-   must be recomputed.
-
-The actual code may look as follows:
-
-.. code-block:: python
-
-        from decay import solver as solver_unscaled
-        import numpy as np
-        
-        def solver_scaled(T, dt, theta):
-            """
-            Solve u'=-u, u(0)=1 for (0,T] with step dt and theta method.
-            """
-            # Is the scaled problem already solved and dimensionless
-            # curve available from file?
-            # See if u_scaled.dat has the right parameters.
-            already_computed = False
-            datafile = 'u_scaled.dat'
-            if os.path.isfile(datafile):      # does u_scaled.dat exist?
-                infile = open(datafile, 'r')
-                infoline = infile.readline()  # read the first line
-                words = infoline.split()      # split line into words
-                T_, dt_, theta_ = [float(w) for w in words]
-                if T_ == T and dt_ == dt and theta_ == theta:
-                    # The file was computed with the desired data, load
-                    # the solution into arrays
-                    data = np.loadtxt(infile)
-                    u_scaled = data[1,:]
-                    t_scaled = data[0,:]
-                    print 'Read scaled solution from file'
-                    already_computed = True
-                infile.close()
-            if not already_computed:
-                # T, dt or theta is different from u_scaled.dat
-                u_scaled, t_scaled = \ 
-                   solver_unscaled(I=1, a=1, T=T, dt=dt, theta=theta)
-                outfile = open(datafile, 'w')
-                outfile.write('%f %f %.1f\n' % (T, dt, theta))
-                np.savetxt(outfile, np.array([t_scaled, u_scaled]))
-                outfile.close()
-                print 'Computed scaled solution'
-            return u_scaled, t_scaled
-        
-        def unscale(u_scaled, t_scaled, I, a):
-            return I*u_scaled, a*t_scaled
-
+A very plain solution to the problem is found in the file
+`decay_scaled_v1.py <http://tinyurl.com/o8pb3yy/decay_scaled_v1.py>`__.
 The ``np.savetxt`` function saves a two-dimensional arrays ("table") to
 a text file, and the ``np.loadtxt`` function can load the data back
-into the program.
+into the program. A better solution to this problem is obtained
+by using the ``joblib`` package as described next.
 
 .. index:: memoize function
 
-Simplifying the implementation with joblib
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. index:: joblib
+
+Implementation with joblib
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The Python package ``joblib`` has functionality that is very convenient
 for implementing the ``solver_scaled`` function. The first time a
@@ -472,13 +428,19 @@ statements in the function are not executed, but the return value is
 read from file. In computer science, one would say that ``joblib`` in
 this way provides *memorization* functionality for Python functions.
 This functionality is particularly aimed at large-scale computations
-with arrays that one would like to avoid being recomputed.
+with arrays that one would like to avoid being recomputed. We
+illustrate the technique here in a very simple mathematical context.
 
-Utilizing ``joblib``, our ``solver_scaled`` function can be dramatically
-simplified:
+First we make a ``solver_scaled`` function for the scaled
+model that just calls up a ``solver_unscaled`` for the problem with
+dimensions:
 
 .. code-block:: python
 
+        from decay import solver_unscaled
+        import numpy as np
+        import matplotlib.pyplot as plt
+        
         def solver_scaled(T, dt, theta):
             """
             Solve u'=-u, u(0)=1 for (0,T] with step dt and theta method.
@@ -498,7 +460,7 @@ if necessary and otherwise loads data from file:
         disk_memory = joblib.Memory(cachedir='temp')
         solver_scaled = disk_memory.cache(solver_scaled)
 
-The solutions are actually stored in files in the directory ``temp``.
+The solutions are actually stored in files in the cache directory ``temp``.
 
 A typical use case is to read values from the command line,
 solve the unscaled problem (if necessary), scale the solution, and visualize
@@ -506,6 +468,8 @@ the solution with dimension:
 
 .. code-block:: python
 
+        from decay import unscale, read_command_line_argparse
+        
         def main():
             # Read parameters, solve and plot
             I, a, T, theta, dt_values = read_command_line_argparse()
@@ -527,7 +491,16 @@ the solution with dimension:
             plt.show()
 
 The complete code resides in the file
-`decay_scaled.py <http://tinyurl.com/nm5587k/scale/decay_scaled.py>`__.
+`decay_scaled.py <http://tinyurl.com/o8pb3yy/decay_scaled.py>`__.
+A plot of the scaled and unscaled solution appears in Figure
+:ref:`sec:decay:fig:simplest`.
+
+.. _sec:decay:fig:simplest:
+
+.. figure:: decay.png
+   :width: 800
+
+   *Scaled (left) and unscaled (right) exponential decay*
 
 Note that we write a message ``Computing the numerical solution`` inside
 the ``solver_scaled`` function. We can then easily detect when
@@ -560,16 +533,6 @@ without ``joblib``
 used only one file (for one numerical case)
 and will therefore perform many more calls to
 ``solver_unscaled``.
-
-A plot of the scaled and unscaled solution appears in Figure
-:ref:`sec:decay:fig:simplest`.
-
-.. _sec:decay:fig:simplest:
-
-.. figure:: decay.png
-   :width: 800
-
-   *Scaled (left) and unscaled (right) exponential decay*
 
 
 .. admonition:: On the implementation of a simple memoize function
@@ -641,8 +604,8 @@ parameters. The function :math:`u(t)` represents the vertical velocity,
 being positive upwards.
 We shall use this model in the following.
 
-Exact solution  (1)
-~~~~~~~~~~~~~~~~~~~
+Exact solution          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It can be handy to have the exact solution for reference, in case
 of constant :math:`a` and :math:`b`:
@@ -652,78 +615,84 @@ of constant :math:`a` and :math:`b`:
         {\thinspace .}
         
 
-It can be very handy to use a symbolic computation tool such as SymPy
-to aid us in solving differential equations.
-Let us therefore demonstrate how SymPy can be used to find this solution.
-First we define the parameters in the problem as symbols
-and :math:`u(t)` as a function:
 
-.. code-block:: python
+.. admonition:: Solving differential equations in SymPy
 
-        >>> from sympy import *
-        >>> t, a, b, I = symbols('t a b I', real=True, positive=True)
-        >>> u = symbols('u', cls=Function)
+   It can be very useful to use a symbolic computation tool such as SymPy
+   to aid us in solving differential equations.
+   Let us therefore demonstrate how SymPy can be used to find this solution.
+   First we define the parameters in the problem as symbols
+   and :math:`u(t)` as a function:
+   
+   .. code-block:: python
+   
+           >>> from sympy import *
+           >>> t, a, b, I = symbols('t a b I', real=True, positive=True)
+           >>> u = symbols('u', cls=Function)
+   
+   The next task is to define the differential equation, either as
+   a symbolic expression that is to equal zero, or as
+   an equation ``Eq(lhs, rhs)`` with ``lhs`` and ``rhs`` as expressions for
+   the left- and right-hand side):
+   
+   .. code-block:: python
+   
+           >>> # Define differential equation
+           >>> eq = diff(u(t), t) + a*u(t) - b
+           >>> # or
+           >>> eq = Eq(diff(u(t), t), -a*u(t) + b)
+   
+   The differential equation can be solved by the ``dsolve`` function, yielding
+   an equation of the form ``u(t) == expression``. We want to grab the
+   expression on the right-hand side as our solution:
+   
+   .. code-block:: python
+   
+           >>> sol = dsolve(eq, u(t))
+           >>> print sol
+           u(t) == (b + exp(a*(C1 - t)))/a
+           >>> u = sol.rhs                    # grab solution
+           >>> print u
+           (b + exp(a*(C1 - t)))/a
+   
+   The solution contains the unknown integration constant ``C1``, which must
+   be determined by the initial condition. We form the equation arising
+   from the initial condition :math:`u(0)=I`:
+   
+   .. code-block:: python
+   
+           >>> C1 = symbols('C1')
+           >>> eq = Eq(u.subs(t, 0), I)   # substitute t by 0 in u
+           >>> sol = solve(eq, C1)
+           >>> print sol
+           [log(I*a - b)/a]
+   
+   The one solution that was found must then be substituted back in the
+   expression ``u`` to yield the final solution:
+   
+   .. code-block:: python
+   
+           >>> u = u.subs(C1, sol[0])
+           >>> print u
+           (b + exp(a*(-t + log(I*a - b)/a)))/a
+   
+   As in mathematics with pen and paper, we strive to simplify
+   expressions also in symbolic computing software.
+   This frequently requires some trial and error
+   process with SymPy's simplification functions. A very standard
+   first try is to expand everything and run simplification algorithms:
+   
+   .. code-block:: python
+   
+           >>> u = simplify(expand(u))
+           >>> print u
+           (I*a + b*exp(a*t) - b)*exp(-a*t)/a
+   
+   Doing ``latex(u)`` automatically converts the expression to LaTeX syntax
+   for inclusion in reports.
 
-The next task is to define the differential equation, either as
-a symbolic expression that is to equal zero, or as
-an equation ``Eq(lhs, rhs)`` with ``lhs`` and ``rhs`` as expressions for
-the left- and right-hand side):
 
-.. code-block:: python
 
-        >>> # Define differential equation
-        >>> eq = diff(u(t), t) + a*u(t) - b
-        >>> # or
-        >>> eq = Eq(diff(u(t), t), -a*u(t) + b)
-
-The differential equation can be solved by the ``dsolve`` function, yielding
-an equation of the form ``u(t) == expression``. We want to grab the
-expression on the right-hand side as our solution:
-
-.. code-block:: python
-
-        >>> sol = dsolve(eq, u(t))
-        >>> print sol
-        u(t) == (b + exp(a*(C1 - t)))/a
-        >>> u = sol.rhs                    # grab solution
-        >>> print u
-        (b + exp(a*(C1 - t)))/a
-
-The solution contains the unknown integration constant ``C1``, which must
-be determined by the initial condition. We form the equation arising
-from the initial condition :math:`u(0)=I`:
-
-.. code-block:: python
-
-        >>> C1 = symbols('C1')
-        >>> eq = Eq(u.subs(t, 0), I)   # substitute t by 0 in u
-        >>> sol = solve(eq, C1)
-        >>> print sol
-        [log(I*a - b)/a]
-
-The one solution that was found must then be substituted back in the
-expression ``u`` to yield the final solution:
-
-.. code-block:: python
-
-        >>> u = u.subs(C1, sol[0])
-        >>> print u
-        (b + exp(a*(-t + log(I*a - b)/a)))/a
-
-As in mathematics with pen and paper, we strive to simplify
-expressions also in symbolic computing software.
-This frequently requires some trial and error
-process with SymPy's simplification functions. A very standard
-first try is to expand everything and run simplification algorithms:
-
-.. code-block:: python
-
-        >>> u = simplify(expand(u))
-        >>> print u
-        (I*a + b*exp(a*t) - b)*exp(-a*t)/a
-
-Note that doing ``latex(u)`` automatically converts the expression to LaTeX syntax
-for inclusion in reports.
 
 Theory
 ~~~~~~
@@ -734,10 +703,14 @@ as :math:`t\rightarrow\infty`, :math:`u` approaches the constant value :math:`b/
 convenient to let the scaled :math:`\bar u\rightarrow 1` as
 we approach the :math:`d\bar u/d\bar t = 0` state. This idea points to choosing
 
+.. _Eq:_auto3:
+
 .. math::
+   :label: _auto3
         
         u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
         {\thinspace .}
+        
         
 
 
@@ -782,9 +755,13 @@ therefore choose
 
 where :math:`\beta` is a dimensionless number,
 
+.. _Eq:_auto4:
+
 .. math::
+   :label: _auto4
         
         \beta = \frac{I}{u_c} = I\frac{a}{b},
+        
         
 
 reflecting the ratio of the initial velocity and the
@@ -828,9 +805,13 @@ cases by the unscaling procedure. More precisely,
 having computed :math:`\bar u(\bar t)` from :eq:`scale:decay:model:g:dimless`,
 we can use
 
+.. _Eq:_auto5:
+
 .. math::
+   :label: _auto5
         
         u(t) = \frac{b}{a}\bar u(at),
+        
         
 
 to scale us back to the original
@@ -841,13 +822,19 @@ Given some implementation of a solver for :eq:`scale:decay:model:g`,
 say ``solver(I, a, b, T, dt, theta)``,
 the scaled model is run by ``solver(beta, 1, 1, T, dt, theta)``.
 
-Software  (1)
-~~~~~~~~~~~~~
+.. index:: joblib
+
+Software          (1)
+~~~~~~~~~~~~~~~~~~~~~
 
 We may develop a solver for the scaled problem that uses ``joblib``
 to cache solutions with the same :math:`\beta`, :math:`\Delta t`, and :math:`T`.
 For now we fix :math:`\theta=0.5`.
-The module `decay_vc.py <http://tinyurl.com/ofkw6kc/genz/decay_vc.py>`__ has a function
+The module `decay_vc.py <http://tinyurl.com/o8pb3yy/decay_vc.py>`__
+(see ref[the section :ref:`decay:general`][ in [Ref5]_[the
+section `Implementation of the generalized model problem <http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem>`__
+[Ref5]_] for details)
+has a function
 ``solver(I, a, b, T, dt, theta)`` for solving :math:`u'(t)=-a(t)u(t)+b(t)` for
 :math:`t\in (0,T]`, :math:`u(0)=I`, with time step ``dt``.
 We reuse this function and call it with :math:`a=b=1` and :math:`I=\beta` to solve
@@ -944,7 +931,7 @@ The most complicated part of the code is related to plotting, but
 this part can be skipped when trying to understand how we work with
 a scaled model to perform the computations.
 The complete program is found in the file
-`falling_body.py <http://tinyurl.com/nm5587k/scale/falling_body.py>`__.
+`falling_body.py <http://tinyurl.com/o8pb3yy/falling_body.py>`__.
 
 Since :math:`I=0` implies :math:`\beta=0`, we can run different :math:`d` values without
 any need to recompute :math:`\bar u(\bar t)` as long as we assume the particle
@@ -978,7 +965,7 @@ performs a scaling of this :math:`a`,
 .. math::
          \bar a(\bar t) = \frac{a(t) - a_0}{a_c}, 
 
-where the goal is to have the scaled :math:`|\bar a|`
+where the goal is to have the scaled :math:`\bar a`
 of size unity: :math:`|\bar a|\leq 1`.
 This property is obtained by choosing :math:`a_c` as the maximum value
 of :math:`|a(t)-a_0|` for :math:`t\in [0,T]`, which is usually a quantity that
@@ -1075,10 +1062,17 @@ surroundings at :math:`T_s(t)` can be modeled by Newton's law of cooling:
         
 
 where :math:`k` is a prescribed heat transfer coefficient.
+
+Exact solution          (2)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 An analytical solution is always handy to have as a control of the
 choice of scales. Here we have
 the result :math:`T(t) = T_s + (T_0 - T_s)e^{-kt}` when :math:`T_s` is constant,
 which is also the assumption for now.
+
+Scaling          (1)
+~~~~~~~~~~~~~~~~~~~~
 
 Physically, we expect the temperature to start at :math:`T_0` and then
 to move toward the surroundings (:math:`T_s`). We therefore expect
@@ -1135,10 +1129,16 @@ Our scaling implies that :math:`\bar T` starts at
         {\thinspace .}
         
 
+Software          (2)
+~~~~~~~~~~~~~~~~~~~~~
+
 An implementation for :eq:`scale:decay:cooling:model` works for
 :eq:`scale:decay:cooling:Tbar:eq` by setting :math:`k=1`, :math:`T_s=1`, and :math:`T_0=0`.
 
-An alternative scaling is to choose
+Alternative scaling          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An alternative temperature scaling is to choose
 
 .. _Eq:scale:decay:cooling:Tbar2:
 
@@ -1182,8 +1182,8 @@ an oscillating temperature environment according to
         {\thinspace .}
         
 
-Exact solution  (2)
-~~~~~~~~~~~~~~~~~~~
+Exact solution          (3)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 It is possible to solve the differential equation problem analytically,
 and such a solution is a good help to see what scales are.
@@ -1218,8 +1218,8 @@ Reordering the result, we get
 
 .. index:: dimensionless number
 
-Scaling  (1)
-~~~~~~~~~~~~
+Scaling          (2)
+~~~~~~~~~~~~~~~~~~~~
 
 The scaling :eq:`scale:decay:cooling:Tbar` brings in a time-dependent
 characteristic temperature scale :math:`T_s-T_0`. Let us start with a
@@ -1232,7 +1232,9 @@ be :math:`T_m - T_0`:
 We see from the analytical solution, and realize also by physical
 reasoning, that :math:`T` sets out at :math:`T_0`, but with time, it will oscillate
 around :math:`T_m`. The typical average temperature span is therefore
-:math:`|T_m-T_0|`.
+:math:`|T_m-T_0|`, unless :math:`a` is much larger than :math:`|T_m-T_0|` or :math:`T_0` is
+very close to :math:`T_m` (see :ref:`sec:scale:exer:decay:cooling:osc` for
+a discussion of these cases).
 
 We get from the differential equation, with :math:`t_c=1/k` as in the former
 case,
@@ -1260,27 +1262,40 @@ where we have two dimensionless numbers:
 
 The :math:`\alpha` quantity
 measures the ratio of temperatures: amplitude of oscillations versus
-characteristic total temperature variation.
+distance from initial temperature to the average temperature for large times.
 The :math:`\beta` number is the ratio of the two time scales:
 the frequency of the oscillations in :math:`T_s` and the inverse
 e-folding time of the heat transfer. For clear interpretation of :math:`\beta`
 we may introduce the period
 :math:`P=2\pi/w` of the oscillations in :math:`T_s` and the e-folding time :math:`e=1/k`. Then
-:math:`\beta = 2\pi e/P` and measures the period versus the e-folding time.
+:math:`\beta = 2\pi e/P` and measures the e-folding time versus the period.
 
 The original problem features five physical parameters: :math:`k`, :math:`T_0`,
 :math:`T_m`, :math:`a`, and :math:`w`, but only two dimensionless numbers appear in the
-scaled model.
+scaled model :eq:`scale:decay:cooling:model:scaled`.
 
-Software  (2)
-~~~~~~~~~~~~~
+Software          (3)
+~~~~~~~~~~~~~~~~~~~~~
 
-Implementing the unscaled problem :eq:`scale:decay:cooling:model`
+Implementations of the unscaled problem :eq:`scale:decay:cooling:model`
 can be reused for the scaled model by setting :math:`k=1`, :math:`T_0=0`, and
 :math:`T_s(t) = 1 + \alpha\sin (\beta \bar t)` (:math:`T_m=1`, :math:`a=\alpha`, :math:`w=\beta`).
+The file `osc_cooling.py <http://tinyurl.com/o8pb3yy/osc_cooling.py>`__ contains
+solvers for the problem with dimensions and
+for the scaled problem. The figure below
+shows three cases of :math:`\beta` values: small, medium, and large.
 
-Discussion of the time scale  (1)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.. figure:: osc_cooling.png
+   :width: 500
+
+For the small :math:`\beta` value, the oscillations in the surrounding
+temperature are slow enough compared to :math:`k` for the heating and
+cooling process to follow the surrounding temperature, with a small
+time lag. For larger :math:`\beta`, the heating and cooling requires more
+time, and the oscillations get smaller.
+
+Discussion of the time scale          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Looking at the analytical insight we have, :math:`T(t)` has two characteristic
 terms in time: :math:`e^{-kt}` and :math:`\sin(wt)`. The former points to a time
@@ -1365,10 +1380,14 @@ left with
 where :math:`\alpha`, :math:`\beta`, and :math:`\gamma` are dimensionless numbers
 characterizing the relative importance of parameters in the problem:
 
+.. _Eq:_auto6:
+
 .. math::
+   :label: _auto6
         
         \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
         {\thinspace .}
+        
         
 
 We notice that :eq:`scale:decay:cooling:Tbar:eq3`
@@ -1416,9 +1435,12 @@ as the simplest:
         
         
 
-A general choice of :math:`a` might be :math:`a(u)=\varrho(1-u/M)^p` for some exponent :math:`p`.
+A general choice of :math:`a` may be :math:`a(u)=\varrho(1-u/M)^p` for some exponent :math:`p`.
 
 .. index:: dimensionless number
+
+Scaling          (3)
+~~~~~~~~~~~~~~~~~~~~
 
 Let us scale :eq:`sec:scale:decay:nonlinear:model1` with
 :math:`a(u)=\varrho (1-u/M)^p`.
@@ -1467,6 +1489,9 @@ one, we get the dimensionless model
 Here, we have two dimensionless parameters: :math:`\alpha` and :math:`p`. A classical
 logistic model with :math:`p=1` has only one dimensionless variable.
 
+Alternative scaling          (2)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 We could try another scaling of :math:`u` where we also translate :math:`\bar u`:
 
 .. math::
@@ -1492,23 +1517,22 @@ An advantage of :eq:`sec:scale:decay:nonlinear:model1:scaled`
 is that software for the unscaled model can easily be used for the
 scaled model by choosing :math:`I=\alpha`, :math:`M=1`, and :math:`\varrho=1`.
 
-ODE systems for spreading of diseases
--------------------------------------
+SIR ODE system for spreading of diseases
+----------------------------------------
 
-The field of epidemiology frequently applies ODE systems to describe the spreading of diseases, such as smallpox, measles, plague, ordinary flu, swine flu,
-and HIV. Different models include different effects, which are reflected
-in dimensionless numbers. Most of the effects are modeled as exponential
-decay or growth of the dependent variables.
+The field of epidemiology frequently applies ODE systems to describe
+the spreading of diseases, such as smallpox, measles, plague, ordinary
+flu, swine flu, and HIV. Different models include different effects,
+which are reflected in dimensionless numbers. Most of the effects are
+modeled as exponential decay or growth of the dependent variables.
 
-SIR model
-~~~~~~~~~
-
-The model has three categories of people: susceptibles (S) who can get
-the disease, infected (I) who are infected and may infect susceptibles,
-and recovered (R) who have recovered from the disease and gained
-immunity. We introduce :math:`S(t)`, :math:`I(t)`, and :math:`R(t)` as the number of
-people in the categories S, I, and R, respectively.
-The model, naturally known as the SIR model, takes the form a system of ODEs:
+The simplest model has three categories of people: susceptibles (S)
+who can get the disease, infectious (I) who are infected and may
+infect susceptibles, and recovered (R) who have recovered from the
+disease and gained immunity. We introduce :math:`S(t)`, :math:`I(t)`, and :math:`R(t)`
+as the number of people in the categories S, I, and R, respectively.
+The model, naturally known as the SIR model, takes the form a system
+of ODEs:
 
 .. _Eq:scale:SIR:S:
 
@@ -1537,18 +1561,15 @@ The model, naturally known as the SIR model, takes the form a system of ODEs:
         
         
 
-where :math:`\beta` and :math:`nu` are empirical constants. The average time for recovering
+where :math:`\beta` and :math:`\nu` are empirical constants. The average time for recovering
 from the disease can be shown to be :math:`\nu^{-1}`, but :math:`\beta` is much harder
-to estimate, so working with a scaled model where :math:`k` is "scaled away"
-is advantageous. Adding :eq:`scale:SIR:S`-:eq:`scale:SIR:R`
-shows that
+to estimate, so working with a scaled model where :math:`\beta` is "scaled away"
+is advantageous.
 
-.. math::
-         \frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
-        S+I+R=\hbox{const}=N,
+Scaling          (4)
+~~~~~~~~~~~~~~~~~~~~
 
-where :math:`N` is the size of the population. It is natural to scale
-:math:`S`, :math:`I`, and :math:`R` by, e.g., :math:`S(0)`:
+It is natural to scale :math:`S`, :math:`I`, and :math:`R` by, e.g., :math:`S(0)`:
 
 .. math::
          \bar S = \frac{S}{S(0)},\quad \bar I = \frac{I}{S(0)},\quad
@@ -1602,24 +1623,57 @@ to recover from the disease, we end up with the scaled model
 with :math:`\bar S(0)=1`, :math:`\bar I(0)=\alpha`, :math:`\bar R(0)=0`, and :math:`R_0` as
 the dimensionless number
 
+.. _Eq:_auto7:
+
 .. math::
+   :label: _auto7
         
         R_0 = \frac{S(0)\beta}{\nu}{\thinspace .}
+        
         
 
 We see from :eq:`scale:SIR:I2` that to make the disease spreading,
 :math:`d\bar I/d\bar t >0`, and therefore :math:`R_0 S(0) - 1 > 0` or :math:`R_0 > 1`
 since :math:`S(0)=1`.
 Therefore, :math:`R_0` reflects the disease's ability to spread and is
-consequently an important dimensionless quantity, known as the *basic
-reproductive number*.
-[**hpl 1**: Explain interpretation.]
+consequently an important dimensionless quantity, known as the `basic
+reproduction number <https://en.wikipedia.org/wiki/Basic_reproduction_number>`__.
+This number reflects the number of infected people caused by one infectious
+individual during the time period of the disease.
 
 Looking at :eq:`scale:SIR:I`, we see that to increase :math:`I` initially,
 we must have :math:`dI/dt >0` at :math:`t=0`, which implies
 :math:`\beta I(0)S(0) - \nu I(0) >0`, i.e., :math:`R_0 > 1`.
 
-We can also scale :math:`S`, :math:`I`, and :math:`R` by the total population :math:`N=S(0)+I(0)+R(0)`,
+Software          (4)
+~~~~~~~~~~~~~~~~~~~~~
+
+Any implementation of the SIR model with dimensions can be reused for
+the scaled model by setting :math:`\beta = R_0`, :math:`\nu = 1`, :math:`S(0)=1-\alpha`,
+and :math:`I(0)=\alpha`. Below is a plot with two cases: :math:`R_0=2` and :math:`R_0=5`,
+both with :math:`\alpha=0.02`.
+
+| 
+| 
+
+.. figure:: SIR1.png
+   :width: 800
+
+| 
+| 
+
+Alternative scaling          (3)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding :eq:`scale:SIR:S`-:eq:`scale:SIR:R` shows that
+
+.. math::
+         \frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
+        S+I+R=\hbox{const}=N,
+
+where :math:`N` is the size of the population.
+We can therefore scale :math:`S`, :math:`I`, and :math:`R` by the total
+population :math:`N=S(0)+I(0)+R(0)`:
 
 .. math::
          \bar S = \frac{S}{N},\quad \bar I = \frac{I}{N},\quad
@@ -1628,9 +1682,13 @@ We can also scale :math:`S`, :math:`I`, and :math:`R` by the total population :m
 
 With the same time scale, one gets the system :eq:`scale:SIR:S2`-:eq:`scale:SIR:R2`, but with :math:`R_0` replaced by the dimensionless number:
 
+.. _Eq:_auto8:
+
 .. math::
+   :label: _auto8
         
         \tilde R_0 = \frac{N\beta}{\nu}{\thinspace .}
+        
         
 
 The initial conditions become :math:`\bar S(0)=1-\alpha`, :math:`\bar I(0)=\alpha`,
@@ -1656,7 +1714,7 @@ Choosing :math:`t_c` to make the :math:`SI` terms balance the time derivatives,
         
 
 SIRV model with finite immunity
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 A common extension of the SIR model involves finite immunity: after
 some period of time, recovered individuals lose their immunity
@@ -1703,7 +1761,7 @@ vaccinated). The ODE model reads
         
         
 
-Using :math:`t_c=1/\nu` and scaling the unknowns by :math:`S(0)` leads to
+Using :math:`t_c=1/\nu` and scaling the unknowns by :math:`S(0)`, we arrive at
 the dimensionless model
 
 .. _Eq:scale:SIRV:S2:
@@ -1753,6 +1811,21 @@ and :math:`\delta = \nu^{-1}/p^{-1}` gives the interpretation that :math:`\gamma
 is the ratio of the average time to recover and the average time to
 lose immunity, while :math:`\delta` is the ratio of the average time to recover
 and the average time to successfully vaccinate a susceptible.
+
+The plot in Figure :ref:`sec:scale:SIRV:fig` has :math:`\gamma = 0.05`, i.e.,
+loss of immunity takes 20 weeks if it takes one week to recover from
+the disease. The left plot corresponds to no vaccination, while the
+right has :math:`\delta = 0.5` for a vaccination campaign that lasts from
+day 7 to day 15. The value :math:`\delta =0.5` reflects that
+it takes two weeks to successfully
+vaccinate a susceptible, but the effect of vaccination is still dramatic.
+
+.. _sec:scale:SIRV:fig:
+
+.. figure:: SIRV2.png
+   :width: 800
+
+   *Spreading of a disease with loss of immunity (left) and added vaccination (right)*
 
 .. _scale:MMK:
 
@@ -1818,15 +1891,23 @@ Classical analysis
 The typical analysis of the present ODE system is to first observe
 two conservation equations, arising from simply adding the ODEs:
 
+.. _Eq:_auto9:
+
 .. math::
+   :label: _auto9
         
         \frac{d[ES]}{dt} + \frac{d[E]}{dt}  =0,
         
         
+        
+
+.. _Eq:_auto10:
 
 .. math::
+   :label: _auto10
           
         \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} = 0,
+        
         
 
 from which it follows that
@@ -1852,14 +1933,22 @@ from which it follows that
 Using :eq:`scale:MMK:cons1`, we can eliminate :math:`[E]` and obtain a
 system of only two ODEs,
 
+.. _Eq:_auto11:
+
 .. math::
+   :label: _auto11
         
         \frac{d[ES]}{dt} = k_+([ES]-E_0)[S] - (k_v + k_-)[ES],
         
+        
+
+.. _Eq:_auto12:
 
 .. math::
+   :label: _auto12
           
         \frac{d[S]}{dt} = -k_+([ES]-E_0)[S] + k_-[ES]{\thinspace .}
+        
         
 
 A common assumption is that the formation of :math:`[ES]` is very fast and that
@@ -1883,7 +1972,7 @@ equation for :math:`[S]` gives
 .. math::
    :label: scale:MMK:Seq1
         
-        \frac{dS}{dt} = \frac{k_vE_0[S]}{[S] + K}{\thinspace .}
+        \frac{d[S]}{dt} = \frac{k_vE_0[S]}{[S] + K}{\thinspace .}
         
         
 
@@ -1947,7 +2036,7 @@ Choosing the scales is actually a quite complicated matter that requires
 extensive analysis of the equations to determine the characteristics of
 the solutions. Much literature is written about this, but here we shall
 take a simplistic and pragmatic approach.
-Besides the Michaelis constant, there is another important parameter,
+Besides the Michaelis constant :math:`K`, there is another important parameter,
 
 .. math::
          \epsilon = \frac{E_0}{S_0},
@@ -2104,7 +2193,7 @@ mathematical assumption for the simplification is
 
 Is :eq:`scale:MMK:Seq2` consistent with :eq:`scale:MMK:Seq1`? It is
 easy to make algebraic mistakes when deriving scaled equations,
-so it is always wise to carry out such consistency checks.
+so it is always wise to carry out consistency checks.
 Introducing dimensions in :eq:`scale:MMK:Seq2` leads to
 
 .. math::

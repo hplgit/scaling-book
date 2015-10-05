@@ -184,17 +184,17 @@ The temperature depends on the hight so we have <span class="math">\(a=a(t)\)</s
 <div class="section" id="step-2-make-independent-and-dependent-variables-dimensionless">
 <span id="index-5"></span><h4>Step 2: Make independent and dependent variables dimensionless<a class="headerlink" href="#step-2-make-independent-and-dependent-variables-dimensionless" title="Permalink to this headline">¶</a></h4>
 <p>We introduce a new dimensionless <span class="math">\(t\)</span>, called <span class="math">\(\bar t\)</span>, defined by</p>
-<div class="math">
-\[\bar t = \frac{t}{t_c},\]</div>
+<div class="math" id="equation-_auto1">
+<span id="eq-auto1"></span><span class="eqno">(2)</span>\[     \bar t = \frac{t}{t_c},\]</div>
 <p>where <span class="math">\(t_c\)</span> is a <em>characteristic value</em> of <span class="math">\(t\)</span>. Similarly,
 we introduce a dimensionless <span class="math">\(u\)</span>, named <span class="math">\(\bar u\)</span>, according to</p>
-<div class="math">
-\[\bar u = \frac{u}{u_c},\]</div>
+<div class="math" id="equation-_auto2">
+<span id="eq-auto2"></span><span class="eqno">(3)</span>\[     \bar u = \frac{u}{u_c},\]</div>
 <p>where <span class="math">\(u_c\)</span> is a constant <em>characteristic size</em> of <span class="math">\(u\)</span>. When <span class="math">\(u\)</span> has a specific
 interpretation, say when <a href="#equation-scale:decay:model">(1)</a> models pressure
 in an atmospheric layer, <span class="math">\(u_c\)</span> would be referred to as characteristic pressure.
 For a decaying population, <span class="math">\(u\)</span> may be a characteristic number of
-members in the population.</p>
+members in the population, e.g., the initial population <span class="math">\(I\)</span>.</p>
 </div>
 <div class="section" id="step-3-derive-the-model-involving-only-dimensionless-variables">
 <h4>Step 3: Derive the model involving only dimensionless variables<a class="headerlink" href="#step-3-derive-the-model-involving-only-dimensionless-variables" title="Permalink to this headline">¶</a></h4>
@@ -203,21 +203,21 @@ governing mathematical model. That is, we replace <span class="math">\(t\)</span
 and <span class="math">\(u\)</span> by <span class="math">\(u_c\bar u\)</span> in <a href="#equation-scale:decay:model">(1)</a>. The derivative
 with respect to <span class="math">\(\bar t\)</span> is derived as</p>
 <div class="math">
-\[\frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}{d\bar t}{dt}
+\[\frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
 = u_c\frac{d\bar u}{d\bar t}\frac{1}{t_c} =
 \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}{\thinspace .}\]</div>
 <p>The model <a href="#equation-scale:decay:model">(1)</a> now becomes</p>
 <div class="math" id="equation-scale:decay:model:scaled0">
-<span id="eq-scale-decay-model-scaled0"></span><span class="eqno">(2)</span>\[     \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I{\thinspace .}\]</div>
+<span id="eq-scale-decay-model-scaled0"></span><span class="eqno">(4)</span>\[     \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I{\thinspace .}\]</div>
 </div>
 <div class="section" id="step-4-make-each-term-dimensionless">
 <h4>Step 4: Make each term dimensionless<a class="headerlink" href="#step-4-make-each-term-dimensionless" title="Permalink to this headline">¶</a></h4>
-<p>Equation <a href="#equation-scale:decay:model:scaled0">(2)</a> still has terms with
+<p>Equation <a href="#equation-scale:decay:model:scaled0">(4)</a> still has terms with
 dimensions. To make each term dimensionless, we usually divide by
 the coefficient in front of the term with the highest time derivative
-(but dividing by any coefficient will do). The result is</p>
+(but dividing by any coefficient in any term will do). The result is</p>
 <div class="math" id="equation-scale:decay:model:dimless0">
-<span id="eq-scale-decay-model-dimless0"></span><span class="eqno">(3)</span>\[     \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
+<span id="eq-scale-decay-model-dimless0"></span><span class="eqno">(5)</span>\[     \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
      {\thinspace .}\]</div>
 </div>
 <div class="section" id="step-5-estimate-the-scales">
@@ -227,7 +227,7 @@ problem. Estimating such a time scale is certainly
 the most challenging part of the scaling procedure. There are different
 ways to reason. The first is to aim at a size of <span class="math">\(\bar u\)</span> and its derivatives
 that is of order unity. If <span class="math">\(u_c\)</span> is chosen such that <span class="math">\(|\bar u|\)</span> is
-of size unity, we see from <a href="#equation-scale:decay:model:dimless0">(3)</a> that
+of size unity, we see from <a href="#equation-scale:decay:model:dimless0">(5)</a> that
 <span class="math">\(d\bar u/d\bar t\)</span> is of the size of <span class="math">\(\bar u\)</span> (i.e., unity)
 if we choose <span class="math">\(t_c = 1/a\)</span>.</p>
 <p id="index-6">Alternatively, we may look at a special case of the model where we have
@@ -253,17 +253,17 @@ we do not pay attention to such small differences.
 Although <span class="math">\(t_c = a^{-1}\ln 2\)</span> is a fine time scale to be used in this
 problem, it leads to a scaled differential equation <span class="math">\(u'=-(\ln 2) u\)</span>,
 which is fine, but an unusual form. People tend to prefer <span class="math">\(u'=-u\)</span>,
-which arises from <span class="math">\(t_c=1/a\)</span>. We shall therefore use the latter as
+which arises from <span class="math">\(t_c=1/a\)</span>. We shall therefore use the latter
 time scale.</p>
 <p>Regarding <span class="math">\(u_c\)</span>, we may look at the initial condition
 and realize that the choice <span class="math">\(u_c=I\)</span> makes <span class="math">\(\bar u(0)=1\)</span>. For <span class="math">\(\bar t&gt;0\)</span>
 we know that <span class="math">\(\bar u\)</span> is decreasing, so <span class="math">\(u_c=I\)</span>
-gives us <span class="math">\(\bar u\leq 1\)</span>, which is always a goal.
-Alternatively, we may look to analytical insight, <span class="math">\(u(t)=Ie^{-at}\)</span>, to
-see that <span class="math">\(u\leq I\)</span>, such that <span class="math">\(u_c=I\)</span> gives <span class="math">\(\bar u\leq 1\)</span>.</p>
+gives us <span class="math">\(\bar u\leq 1\)</span>, which is always a goal
+(alternatively, we may look to analytical insight, <span class="math">\(u(t)=Ie^{-at}\)</span>, to
+see that <span class="math">\(u\leq I\)</span>, such that <span class="math">\(u_c=I\)</span> gives <span class="math">\(\bar u\leq 1\)</span>).</p>
 <p>With <span class="math">\(t_c=1/a\)</span> and <span class="math">\(u_c=I\)</span>, we have the final dimensionless model</p>
 <div class="math" id="equation-scale:decay:model:dimless">
-<span id="eq-scale-decay-model-dimless"></span><span class="eqno">(4)</span>\[     \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
+<span id="eq-scale-decay-model-dimless"></span><span class="eqno">(6)</span>\[     \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
      {\thinspace .}\]</div>
 <p>This is a remarkable result in the sense that <em>all physical parameters</em>
 (<span class="math">\(a\)</span> and <span class="math">\(I\)</span>)
@@ -272,36 +272,36 @@ parameters to assign
 before using the model. In particular, numerical investigations of the original
 model <a href="#equation-scale:decay:model">(1)</a> would need experiments with different
 <span class="math">\(a\)</span> and <span class="math">\(I\)</span> values, while numerical investigations of
-<a href="#equation-scale:decay:model:dimless">(4)</a> can be limited to <em>a single run</em>! As soon
+<a href="#equation-scale:decay:model:dimless">(6)</a> can be limited to <em>a single run</em>! As soon
 as we have computed the curve <span class="math">\(\bar u(\bar t)\)</span>, we can find the
 solution <span class="math">\(u(t)\)</span> of <a href="#equation-scale:decay:model">(1)</a> by</p>
 <div class="math" id="equation-scale:decay:u:dim">
-<span id="eq-scale-decay-u-dim"></span><span class="eqno">(5)</span>\[     u(t) = u_c\bar u(t/t_c) = I\bar u(at)
+<span id="eq-scale-decay-u-dim"></span><span class="eqno">(7)</span>\[     u(t) = u_c\bar u(t/t_c) = I\bar u(at)
      {\thinspace .}\]</div>
 <p>This particular transformation actually means stretching the <span class="math">\(\bar t\)</span> and
 <span class="math">\(\bar u\)</span> axes in a plot of <span class="math">\(\bar u(\bar t)\)</span> by the factors <span class="math">\(a\)</span> and <span class="math">\(I\)</span>,
 respectively.</p>
 <p>It is very common to drop the bars when the scaled problem has been
-derived and work further with <a href="#equation-scale:decay:model:dimless">(4)</a> simply
+derived and work further with <a href="#equation-scale:decay:model:dimless">(6)</a> simply
 written as</p>
 <div class="math">
 \[\frac{du}{dt} = -u,\quad u(0)=1
 {\thinspace .}\]</div>
 </div>
 </div>
-<div class="section" id="making-software-utilizing-the-dimensionless-model">
-<span id="sec-scale-decay-prog"></span><h3>Making software utilizing the dimensionless model<a class="headerlink" href="#making-software-utilizing-the-dimensionless-model" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="making-software-for-utilizing-the-scaled-model">
+<span id="sec-scale-decay-prog"></span><h3>Making software for utilizing the scaled model<a class="headerlink" href="#making-software-for-utilizing-the-scaled-model" title="Permalink to this headline">¶</a></h3>
 <p>Software for solving <a href="#equation-scale:decay:model">(1)</a> could take advantage
-of the fact that only one simulation of <a href="#equation-scale:decay:model:dimless">(4)</a>
+of the fact that only one simulation of <a href="#equation-scale:decay:model:dimless">(6)</a>
 is necessary. As soon as we have <span class="math">\(\bar u(\bar t)\)</span> accessible,
-a simple scaling <a href="#equation-scale:decay:u:dim">(5)</a> computes the real <span class="math">\(u(t)\)</span>
+a simple scaling <a href="#equation-scale:decay:u:dim">(7)</a> computes the real <span class="math">\(u(t)\)</span>
 for any given input data <span class="math">\(a\)</span> and <span class="math">\(I\)</span>. Although the numerical computation of
 <span class="math">\(u(t)\)</span> from <a href="#equation-scale:decay:model">(1)</a> is very fast in this simple model
-problem, using <a href="#equation-scale:decay:u:dim">(5)</a> is very much faster than
+problem, using <a href="#equation-scale:decay:u:dim">(7)</a> is very much faster than
 computing a full numerical solution in more complicated
 differential equation problems.</p>
-<p>We can compute with the dimensionless model <a href="#equation-scale:decay:model:dimless">(4)</a>
-in two ways, either make a solver for <a href="#equation-scale:decay:model:dimless">(4)</a>
+<p>We can compute with the dimensionless model <a href="#equation-scale:decay:model:dimless">(6)</a>
+in two ways, either make a solver for <a href="#equation-scale:decay:model:dimless">(6)</a>
 or reuse a solver for <a href="#equation-scale:decay:model">(1)</a> with the parameters
 appropriately set (<span class="math">\(I=1\)</span>, <span class="math">\(a=1\)</span>).
 The latter approach has the advantage of giving us
@@ -310,7 +310,7 @@ with dimensions and all the original physical parameters.</p>
 <div class="section" id="software-for-the-original-problem-with-dimensions">
 <h4>Software for the original problem with dimensions<a class="headerlink" href="#software-for-the-original-problem-with-dimensions" title="Permalink to this headline">¶</a></h4>
 <p>We base our solver for
-<a href="#equation-scale:decay:model:dimless">(4)</a> on a solver for <a href="#equation-scale:decay:model">(1)</a>.
+<a href="#equation-scale:decay:model:dimless">(6)</a> on a solver for <a href="#equation-scale:decay:model">(1)</a>.
 Assume that we have some module <code class="docutils literal"><span class="pre">decay.py</span></code> that offers the following
 functions:</p>
 <blockquote>
@@ -334,7 +334,7 @@ then</p>
 <span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>The module <a class="reference external" href="http://tinyurl.com/ofkw6kc/softeng/decay.py">decay.py</a> is developed
+<p>The module <a class="reference external" href="http://tinyurl.com/o8pb3yy/decay.py">decay.py</a> is developed
 and explained in</p>
 <p>Section refaux{softeng1:basic:module} in
 the book <a class="reference external" href="http://tinyurl.com/nclmcng/doc/pub/book">Finite Difference Computing with Exponential Decay Models</a> <a class="reference internal" href="._book010.html#ref5" id="id3">[Ref5]</a>.</p>
@@ -344,75 +344,26 @@ the book <a class="reference external" href="http://tinyurl.com/nclmcng/doc/pub/
 </pre></div>
 </div>
 </div>
-<div class="section" id="a-plain-solution">
-<h4>A plain solution<a class="headerlink" href="#a-plain-solution" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="avoiding-unnecessary-computations">
+<h4>Avoiding unnecessary computations<a class="headerlink" href="#avoiding-unnecessary-computations" title="Permalink to this headline">¶</a></h4>
 <p>A key observation, as mentioned, is that we need to solve the problem
-<a href="#equation-scale:decay:model:dimless">(4)</a> only once. All solutions
+<a href="#equation-scale:decay:model:dimless">(6)</a> only once. All solutions
 corresponding to different <span class="math">\(I\)</span> and <span class="math">\(a\)</span> values in the original physical
 problem can be recovered by scaling this single solution with formula
-<a href="#equation-scale:decay:u:dim">(5)</a>.  We therefore want to make software that
+<a href="#equation-scale:decay:u:dim">(7)</a>.  We may therefore want to make software that
 takes advantage of this fact. When requesting a solution, we see if it
 has already been computed and stored in a file, and if so, the data
 can be retrieved from file, otherwise we have to compute a new
 solution and store it in a file.</p>
-<p>The computational recipe goes as follows.</p>
-<ol class="arabic simple">
-<li>A computed solution <span class="math">\(\bar u(\bar t)\)</span> is stored in a file with name <code class="docutils literal"><span class="pre">u_scaled.dat</span></code>.</li>
-<li>The first line in the file contains <span class="math">\(T\)</span>, <span class="math">\(\Delta t\)</span>, and <span class="math">\(\theta\)</span>
-used to compute the stored <span class="math">\(\bar u(\bar t)\)</span>.</li>
-<li>The <span class="math">\(T\)</span>, <span class="math">\(\Delta t\)</span>, and <span class="math">\(\theta\)</span> parameters are read from the
-first line in the file and compared with those required by the user.</li>
-<li>If one of the three parameters changes, the solution in the file
-must be recomputed.</li>
-</ol>
-<p>The actual code may look as follows:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">decay</span> <span class="kn">import</span> <span class="n">solver</span> <span class="k">as</span> <span class="n">solver_unscaled</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
-
-<span class="k">def</span> <span class="nf">solver_scaled</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Solve u&#39;=-u, u(0)=1 for (0,T] with step dt and theta method.</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="c"># Is the scaled problem already solved and dimensionless</span>
-    <span class="c"># curve available from file?</span>
-    <span class="c"># See if u_scaled.dat has the right parameters.</span>
-    <span class="n">already_computed</span> <span class="o">=</span> <span class="bp">False</span>
-    <span class="n">datafile</span> <span class="o">=</span> <span class="s">&#39;u_scaled.dat&#39;</span>
-    <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isfile</span><span class="p">(</span><span class="n">datafile</span><span class="p">):</span>      <span class="c"># does u_scaled.dat exist?</span>
-        <span class="n">infile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">datafile</span><span class="p">,</span> <span class="s">&#39;r&#39;</span><span class="p">)</span>
-        <span class="n">infoline</span> <span class="o">=</span> <span class="n">infile</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>  <span class="c"># read the first line</span>
-        <span class="n">words</span> <span class="o">=</span> <span class="n">infoline</span><span class="o">.</span><span class="n">split</span><span class="p">()</span>      <span class="c"># split line into words</span>
-        <span class="n">T_</span><span class="p">,</span> <span class="n">dt_</span><span class="p">,</span> <span class="n">theta_</span> <span class="o">=</span> <span class="p">[</span><span class="nb">float</span><span class="p">(</span><span class="n">w</span><span class="p">)</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">words</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">T_</span> <span class="o">==</span> <span class="n">T</span> <span class="ow">and</span> <span class="n">dt_</span> <span class="o">==</span> <span class="n">dt</span> <span class="ow">and</span> <span class="n">theta_</span> <span class="o">==</span> <span class="n">theta</span><span class="p">:</span>
-            <span class="c"># The file was computed with the desired data, load</span>
-            <span class="c"># the solution into arrays</span>
-            <span class="n">data</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">loadtxt</span><span class="p">(</span><span class="n">infile</span><span class="p">)</span>
-            <span class="n">u_scaled</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">1</span><span class="p">,:]</span>
-            <span class="n">t_scaled</span> <span class="o">=</span> <span class="n">data</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span>
-            <span class="k">print</span> <span class="s">&#39;Read scaled solution from file&#39;</span>
-            <span class="n">already_computed</span> <span class="o">=</span> <span class="bp">True</span>
-        <span class="n">infile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">already_computed</span><span class="p">:</span>
-        <span class="c"># T, dt or theta is different from u_scaled.dat</span>
-        <span class="n">u_scaled</span><span class="p">,</span> <span class="n">t_scaled</span> <span class="o">=</span> \
-           <span class="n">solver_unscaled</span><span class="p">(</span><span class="n">I</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="o">=</span><span class="n">theta</span><span class="p">)</span>
-        <span class="n">outfile</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">datafile</span><span class="p">,</span> <span class="s">&#39;w&#39;</span><span class="p">)</span>
-        <span class="n">outfile</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">&#39;</span><span class="si">%f</span><span class="s"> </span><span class="si">%f</span><span class="s"> </span><span class="si">%.1f</span><span class="se">\n</span><span class="s">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">))</span>
-        <span class="n">np</span><span class="o">.</span><span class="n">savetxt</span><span class="p">(</span><span class="n">outfile</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="n">t_scaled</span><span class="p">,</span> <span class="n">u_scaled</span><span class="p">]))</span>
-        <span class="n">outfile</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-        <span class="k">print</span> <span class="s">&#39;Computed scaled solution&#39;</span>
-    <span class="k">return</span> <span class="n">u_scaled</span><span class="p">,</span> <span class="n">t_scaled</span>
-
-<span class="k">def</span> <span class="nf">unscale</span><span class="p">(</span><span class="n">u_scaled</span><span class="p">,</span> <span class="n">t_scaled</span><span class="p">,</span> <span class="n">I</span><span class="p">,</span> <span class="n">a</span><span class="p">):</span>
-    <span class="k">return</span> <span class="n">I</span><span class="o">*</span><span class="n">u_scaled</span><span class="p">,</span> <span class="n">a</span><span class="o">*</span><span class="n">t_scaled</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal"><span class="pre">np.savetxt</span></code> function saves a two-dimensional arrays (&#8220;table&#8221;) to
+<p>A very plain solution to the problem is found in the file
+<a class="reference external" href="http://tinyurl.com/o8pb3yy/decay_scaled_v1.py">decay_scaled_v1.py</a>.
+The <code class="docutils literal"><span class="pre">np.savetxt</span></code> function saves a two-dimensional arrays (&#8220;table&#8221;) to
 a text file, and the <code class="docutils literal"><span class="pre">np.loadtxt</span></code> function can load the data back
-into the program.</p>
-</div>
-<div class="section" id="simplifying-the-implementation-with-joblib">
-<span id="index-7"></span><h4>Simplifying the implementation with joblib<a class="headerlink" href="#simplifying-the-implementation-with-joblib" title="Permalink to this headline">¶</a></h4>
+into the program. A better solution to this problem is obtained
+by using the <code class="docutils literal"><span class="pre">joblib</span></code> package as described next.</p>
+<span class="target" id="index-7"></span></div>
+<div class="section" id="implementation-with-joblib">
+<span id="index-8"></span><h4>Implementation with joblib<a class="headerlink" href="#implementation-with-joblib" title="Permalink to this headline">¶</a></h4>
 <p>The Python package <code class="docutils literal"><span class="pre">joblib</span></code> has functionality that is very convenient
 for implementing the <code class="docutils literal"><span class="pre">solver_scaled</span></code> function. The first time a
 function is called with a set of arguments, the statements in the
@@ -422,10 +373,16 @@ statements in the function are not executed, but the return value is
 read from file. In computer science, one would say that <code class="docutils literal"><span class="pre">joblib</span></code> in
 this way provides <em>memorization</em> functionality for Python functions.
 This functionality is particularly aimed at large-scale computations
-with arrays that one would like to avoid being recomputed.</p>
-<p>Utilizing <code class="docutils literal"><span class="pre">joblib</span></code>, our <code class="docutils literal"><span class="pre">solver_scaled</span></code> function can be dramatically
-simplified:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">solver_scaled</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
+with arrays that one would like to avoid being recomputed. We
+illustrate the technique here in a very simple mathematical context.</p>
+<p>First we make a <code class="docutils literal"><span class="pre">solver_scaled</span></code> function for the scaled
+model that just calls up a <code class="docutils literal"><span class="pre">solver_unscaled</span></code> for the problem with
+dimensions:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">decay</span> <span class="kn">import</span> <span class="n">solver_unscaled</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+
+<span class="k">def</span> <span class="nf">solver_scaled</span><span class="p">(</span><span class="n">T</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">theta</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Solve u&#39;=-u, u(0)=1 for (0,T] with step dt and theta method.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -443,11 +400,13 @@ if necessary and otherwise loads data from file:</p>
 <span class="n">solver_scaled</span> <span class="o">=</span> <span class="n">disk_memory</span><span class="o">.</span><span class="n">cache</span><span class="p">(</span><span class="n">solver_scaled</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>The solutions are actually stored in files in the directory <code class="docutils literal"><span class="pre">temp</span></code>.</p>
+<p>The solutions are actually stored in files in the cache directory <code class="docutils literal"><span class="pre">temp</span></code>.</p>
 <p>A typical use case is to read values from the command line,
 solve the unscaled problem (if necessary), scale the solution, and visualize
 the solution with dimension:</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">decay</span> <span class="kn">import</span> <span class="n">unscale</span><span class="p">,</span> <span class="n">read_command_line_argparse</span>
+
+<span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
     <span class="c"># Read parameters, solve and plot</span>
     <span class="n">I</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">T</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">dt_values</span> <span class="o">=</span> <span class="n">read_command_line_argparse</span><span class="p">()</span>
     <span class="n">dt</span> <span class="o">=</span> <span class="n">dt_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c"># use only the first dt value</span>
@@ -469,7 +428,13 @@ the solution with dimension:</p>
 </pre></div>
 </div>
 <p>The complete code resides in the file
-<a class="reference external" href="http://tinyurl.com/nm5587k/scale/decay_scaled.py">decay_scaled.py</a>.</p>
+<a class="reference external" href="http://tinyurl.com/o8pb3yy/decay_scaled.py">decay_scaled.py</a>.
+A plot of the scaled and unscaled solution appears in Figure
+<a class="reference internal" href="#sec-decay-fig-simplest"><span class="std std-ref">Scaled (left) and unscaled (right) exponential decay</span></a>.</p>
+<div class="figure" id="id5">
+<span id="sec-decay-fig-simplest"></span><a class="reference internal image-reference" href="_images/decay.png"><img alt="_images/decay.png" src="_images/decay.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text"><em>Scaled (left) and unscaled (right) exponential decay</em></span></p>
+</div>
 <p>Note that we write a message <code class="docutils literal"><span class="pre">Computing</span> <span class="pre">the</span> <span class="pre">numerical</span> <span class="pre">solution</span></code> inside
 the <code class="docutils literal"><span class="pre">solver_scaled</span></code> function. We can then easily detect when
 the solution is actually computed and when it is simply read from file.
@@ -499,12 +464,6 @@ without <code class="docutils literal"><span class="pre">joblib</span></code>
 used only one file (for one numerical case)
 and will therefore perform many more calls to
 <code class="docutils literal"><span class="pre">solver_unscaled</span></code>.</p>
-<p>A plot of the scaled and unscaled solution appears in Figure
-<a class="reference internal" href="#sec-decay-fig-simplest"><span class="std std-ref">Scaled (left) and unscaled (right) exponential decay</span></a>.</p>
-<div class="figure" id="id4">
-<span id="sec-decay-fig-simplest"></span><a class="reference internal image-reference" href="_images/decay.png"><img alt="_images/decay.png" src="_images/decay.png" style="width: 800px;" /></a>
-<p class="caption"><span class="caption-text"><em>Scaled (left) and unscaled (right) exponential decay</em></span></p>
-</div>
 <div class="admonition-on-the-implementation-of-a-simple-memoize-function admonition">
 <p class="first admonition-title">On the implementation of a simple memoize function</p>
 <p>A memoized function recalls
@@ -541,23 +500,25 @@ immutable).</p>
 <p>Now we consider an extension of the exponential decay ODE to the
 form</p>
 <div class="math" id="equation-scale:decay:model:g">
-<span id="eq-scale-decay-model-g"></span><span class="eqno">(6)</span>\[     u'(t) = -au(t) + b,\quad u(0)=I\]\[     {\thinspace .}\]</div>
+<span id="eq-scale-decay-model-g"></span><span class="eqno">(8)</span>\[     u'(t) = -au(t) + b,\quad u(0)=I\]\[     {\thinspace .}\]</div>
 <p>One particular model, with constant <span class="math">\(a\)</span> and <span class="math">\(b\)</span>,
 is a spherical micro-organism falling in air,</p>
 <div class="math" id="equation-scale:decay:model:g:spec">
-<span id="eq-scale-decay-model-g-spec"></span><span class="eqno">(7)</span>\[     u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),\]</div>
+<span id="eq-scale-decay-model-g-spec"></span><span class="eqno">(9)</span>\[     u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),\]</div>
 <p>where <span class="math">\(d\)</span>, <span class="math">\(\mu\)</span>, <span class="math">\(\varrho_b\)</span>, <span class="math">\(\varrho\)</span>, <span class="math">\(V\)</span>, and <span class="math">\(g\)</span> are physical
 parameters. The function <span class="math">\(u(t)\)</span> represents the vertical velocity,
 being positive upwards.
 We shall use this model in the following.</p>
 <div class="section" id="exact-solution-1">
-<h4>Exact solution  (1)<a class="headerlink" href="#exact-solution-1" title="Permalink to this headline">¶</a></h4>
+<h4>Exact solution<a class="headerlink" href="#exact-solution-1" title="Permalink to this headline">¶</a></h4>
 <p>It can be handy to have the exact solution for reference, in case
 of constant <span class="math">\(a\)</span> and <span class="math">\(b\)</span>:</p>
 <div class="math">
 \[{u_{\small\mbox{e}}}(t) = \frac{e^{-at}}{a}\left( b(e^{at}-1) + aI\right)
 {\thinspace .}\]</div>
-<p>It can be very handy to use a symbolic computation tool such as SymPy
+<div class="admonition-solving-differential-equations-in-sympy admonition">
+<p class="first admonition-title">Solving differential equations in SymPy</p>
+<p>It can be very useful to use a symbolic computation tool such as SymPy
 to aid us in solving differential equations.
 Let us therefore demonstrate how SymPy can be used to find this solution.
 First we define the parameters in the problem as symbols
@@ -615,19 +576,20 @@ first try is to expand everything and run simplification algorithms:</p>
 <span class="go">(I*a + b*exp(a*t) - b)*exp(-a*t)/a</span>
 </pre></div>
 </div>
-<p>Note that doing <code class="docutils literal"><span class="pre">latex(u)</span></code> automatically converts the expression to LaTeX syntax
+<p class="last">Doing <code class="docutils literal"><span class="pre">latex(u)</span></code> automatically converts the expression to LaTeX syntax
 for inclusion in reports.</p>
+</div>
 </div>
 <div class="section" id="theory">
 <h4>Theory<a class="headerlink" href="#theory" title="Permalink to this headline">¶</a></h4>
 <p>The challenges in our scaling is to find the right <span class="math">\(u_c\)</span> and <span class="math">\(t_c\)</span>
-scales. From <a href="#equation-scale:decay:model:g">(6)</a> we see that if <span class="math">\(u'\rightarrow 0\)</span>
+scales. From <a href="#equation-scale:decay:model:g">(8)</a> we see that if <span class="math">\(u'\rightarrow 0\)</span>
 as <span class="math">\(t\rightarrow\infty\)</span>, <span class="math">\(u\)</span> approaches the constant value <span class="math">\(b/a\)</span>. It can be
 convenient to let the scaled <span class="math">\(\bar u\rightarrow 1\)</span> as
 we approach the <span class="math">\(d\bar u/d\bar t = 0\)</span> state. This idea points to choosing</p>
-<div class="math">
-\[u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
-{\thinspace .}\]</div>
+<div class="math" id="equation-_auto3">
+<span id="eq-auto3"></span><span class="eqno">(10)</span>\[     u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
+     {\thinspace .}\]</div>
 <div class="admonition-on-the-sign-of-the-scaled-velocity admonition">
 <p class="first admonition-title">On the sign of the scaled velocity</p>
 <p class="last">A little note on the sign of <span class="math">\(u_c\)</span> is necessary here.
@@ -637,8 +599,8 @@ the terminal velocity <span class="math">\(u_c &gt; 0\)</span>. When <span class
 a motion downwards, and <span class="math">\(u_c &lt; 0\)</span>. The corresponding <span class="math">\(u\)</span> is then also
 negative, but the scaled velocity <span class="math">\(u/u_c\)</span>, becomes positive.</p>
 </div>
-<p id="index-8">Inserting <span class="math">\(u = u_c\bar u = b\bar u/a\)</span> and <span class="math">\(t=t_c\bar t\)</span> in
-<a href="#equation-scale:decay:model:g">(6)</a> leads to</p>
+<p id="index-9">Inserting <span class="math">\(u = u_c\bar u = b\bar u/a\)</span> and <span class="math">\(t=t_c\bar t\)</span> in
+<a href="#equation-scale:decay:model:g">(8)</a> leads to</p>
 <div class="math">
 \[\frac{d\bar u}{d\bar t} = -t_c a\bar u + \frac{t_c}{u_c}b,
 \quad \bar u(0) = I\frac{a}{b}
@@ -649,10 +611,10 @@ To balance the size of <span class="math">\(\bar u\)</span> and <span class="mat
 therefore choose
 <span class="math">\(t_c = 1/a\)</span>, resulting in the scaled ODE problem</p>
 <div class="math" id="equation-scale:decay:model:g:dimless">
-<span id="eq-scale-decay-model-g-dimless"></span><span class="eqno">(8)</span>\[     \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,\]</div>
+<span id="eq-scale-decay-model-g-dimless"></span><span class="eqno">(11)</span>\[     \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,\]</div>
 <p>where <span class="math">\(\beta\)</span> is a dimensionless number,</p>
-<div class="math">
-\[\beta = \frac{I}{u_c} = I\frac{a}{b},\]</div>
+<div class="math" id="equation-_auto4">
+<span id="eq-auto4"></span><span class="eqno">(12)</span>\[     \beta = \frac{I}{u_c} = I\frac{a}{b},\]</div>
 <p>reflecting the ratio of the initial velocity and the
 terminal (<span class="math">\(t\rightarrow \infty\)</span>) velocity <span class="math">\(b/a\)</span>.
 Scaling normally ends up with one or more dimensionless parameters,
@@ -660,13 +622,13 @@ such as <span class="math">\(\beta\)</span> here, containing ratios of physical 
 the model. Many more examples on dimensionless parameters will appear
 in later sections.</p>
 <p>The analytical solution of the scaled model
-<a href="#equation-scale:decay:model:g:dimless">(8)</a> reads</p>
+<a href="#equation-scale:decay:model:g:dimless">(11)</a> reads</p>
 <div class="math" id="equation-scale:decay:model:g:exact_scaled">
-<span id="eq-scale-decay-model-g-exact-scaled"></span><span class="eqno">(9)</span>\[     \bar{u_{\small\mbox{e}}}(t) =
+<span id="eq-scale-decay-model-g-exact-scaled"></span><span class="eqno">(13)</span>\[     \bar{u_{\small\mbox{e}}}(t) =
      e^{-t}\left( e^{t}-1 + \beta\right) = 1 + (\beta -1)e^{-t}{\thinspace .}\]</div>
-<p>The result <a href="#equation-scale:decay:model:g:dimless">(8)</a> with the
-solution <a href="#equation-scale:decay:model:g:exact_scaled">(9)</a> is actually
-astonishing if <span class="math">\(a\)</span> and <span class="math">\(b\)</span> are as in <a href="#equation-scale:decay:model:g:spec">(7)</a>:
+<p>The result <a href="#equation-scale:decay:model:g:dimless">(11)</a> with the
+solution <a href="#equation-scale:decay:model:g:exact_scaled">(13)</a> is actually
+astonishing if <span class="math">\(a\)</span> and <span class="math">\(b\)</span> are as in <a href="#equation-scale:decay:model:g:spec">(9)</a>:
 the six parameters <span class="math">\(d\)</span>, <span class="math">\(\mu\)</span>, <span class="math">\(\varrho_b\)</span>, <span class="math">\(\varrho\)</span>, <span class="math">\(V\)</span>, and <span class="math">\(g\)</span>
 are conjured to one:</p>
 <div class="math">
@@ -679,24 +641,28 @@ In particular, if the motion starts from rest, <span class="math">\(\beta=0\)</s
 there are no physical parameters in the scaled model!
 We can then perform a single simulation and recover all physical
 cases by the unscaling procedure. More precisely,
-having computed <span class="math">\(\bar u(\bar t)\)</span> from <a href="#equation-scale:decay:model:g:dimless">(8)</a>,
+having computed <span class="math">\(\bar u(\bar t)\)</span> from <a href="#equation-scale:decay:model:g:dimless">(11)</a>,
 we can use</p>
-<div class="math">
-\[u(t) = \frac{b}{a}\bar u(at),\]</div>
+<div class="math" id="equation-_auto5">
+<span id="eq-auto5"></span><span class="eqno">(14)</span>\[     u(t) = \frac{b}{a}\bar u(at),\]</div>
 <p>to scale us back to the original
 problem again.
-We observe that <a href="#equation-scale:decay:model:g:dimless">(8)</a> can utilize a solver
-for <a href="#equation-scale:decay:model:g">(6)</a> by setting <span class="math">\(a=1\)</span>, <span class="math">\(b=1\)</span>, and <span class="math">\(I=\beta\)</span>.
-Given some implementation of a solver for <a href="#equation-scale:decay:model:g">(6)</a>,
+We observe that <a href="#equation-scale:decay:model:g:dimless">(11)</a> can utilize a solver
+for <a href="#equation-scale:decay:model:g">(8)</a> by setting <span class="math">\(a=1\)</span>, <span class="math">\(b=1\)</span>, and <span class="math">\(I=\beta\)</span>.
+Given some implementation of a solver for <a href="#equation-scale:decay:model:g">(8)</a>,
 say <code class="docutils literal"><span class="pre">solver(I,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">T,</span> <span class="pre">dt,</span> <span class="pre">theta)</span></code>,
 the scaled model is run by <code class="docutils literal"><span class="pre">solver(beta,</span> <span class="pre">1,</span> <span class="pre">1,</span> <span class="pre">T,</span> <span class="pre">dt,</span> <span class="pre">theta)</span></code>.</p>
 </div>
 <div class="section" id="software-1">
-<h4>Software  (1)<a class="headerlink" href="#software-1" title="Permalink to this headline">¶</a></h4>
+<span id="index-10"></span><h4>Software<a class="headerlink" href="#software-1" title="Permalink to this headline">¶</a></h4>
 <p>We may develop a solver for the scaled problem that uses <code class="docutils literal"><span class="pre">joblib</span></code>
 to cache solutions with the same <span class="math">\(\beta\)</span>, <span class="math">\(\Delta t\)</span>, and <span class="math">\(T\)</span>.
 For now we fix <span class="math">\(\theta=0.5\)</span>.
-The module <a class="reference external" href="http://tinyurl.com/ofkw6kc/genz/decay_vc.py">decay_vc.py</a> has a function
+The module <a class="reference external" href="http://tinyurl.com/o8pb3yy/decay_vc.py">decay_vc.py</a>
+(see ref[the section <span class="xref std std-ref">decay:general</span>][ in [Ref5]_[the
+section <a class="reference external" href="http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem">Implementation of the generalized model problem</a>
+<a class="reference internal" href="._book010.html#ref5" id="id4">[Ref5]</a>] for details)
+has a function
 <code class="docutils literal"><span class="pre">solver(I,</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">T,</span> <span class="pre">dt,</span> <span class="pre">theta)</span></code> for solving <span class="math">\(u'(t)=-a(t)u(t)+b(t)\)</span> for
 <span class="math">\(t\in (0,T]\)</span>, <span class="math">\(u(0)=I\)</span>, with time step <code class="docutils literal"><span class="pre">dt</span></code>.
 We reuse this function and call it with <span class="math">\(a=b=1\)</span> and <span class="math">\(I=\beta\)</span> to solve
@@ -787,7 +753,7 @@ if it is necessary), and finally plots the scaled curve
 this part can be skipped when trying to understand how we work with
 a scaled model to perform the computations.
 The complete program is found in the file
-<a class="reference external" href="http://tinyurl.com/nm5587k/scale/falling_body.py">falling_body.py</a>.</p>
+<a class="reference external" href="http://tinyurl.com/o8pb3yy/falling_body.py">falling_body.py</a>.</p>
 <p>Since <span class="math">\(I=0\)</span> implies <span class="math">\(\beta=0\)</span>, we can run different <span class="math">\(d\)</span> values without
 any need to recompute <span class="math">\(\bar u(\bar t)\)</span> as long as we assume the particle
 starts from rest.</p>
@@ -799,7 +765,7 @@ has an example with <span class="math">\(d=1,2,3\)</span> mm, where we clearly s
 time and velocity scales in the figure with unscaled variables.
 Note that the scaled velocity is positive because of the sign of <span class="math">\(u_c\)</span>
 (see the box above).</p>
-<div class="figure" id="id5">
+<div class="figure" id="id6">
 <span id="sec-scale-decay-body-fig"></span><a class="reference internal image-reference" href="_images/falling_body.png"><img alt="_images/falling_body.png" src="_images/falling_body.png" style="width: 800px;" /></a>
 <p class="caption"><span class="caption-text"><em>Velocity of falling body: scaled (left) and with dimensions (right)</em></span></p>
 </div>
@@ -812,7 +778,7 @@ varies with time one usually also
 performs a scaling of this <span class="math">\(a\)</span>,</p>
 <div class="math">
 \[\bar a(\bar t) = \frac{a(t) - a_0}{a_c},\]</div>
-<p>where the goal is to have the scaled <span class="math">\(|\bar a|\)</span>
+<p>where the goal is to have the scaled <span class="math">\(\bar a\)</span>
 of size unity: <span class="math">\(|\bar a|\leq 1\)</span>.
 This property is obtained by choosing <span class="math">\(a_c\)</span> as the maximum value
 of <span class="math">\(|a(t)-a_0|\)</span> for <span class="math">\(t\in [0,T]\)</span>, which is usually a quantity that
@@ -831,7 +797,7 @@ change the environment such that the death rate increases: <span class="math">\(
 1, &amp; \bar t &lt; t_1/t_c\\
 5, &amp; \bar t \geq t_1/t_c
 \end{array}\right.\end{split}\]</div>
-<p id="index-9">The scaled equation becomes</p>
+<p id="index-11">The scaled equation becomes</p>
 <div class="math">
 \[\frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = a_c\bar a(\bar t) u_c\bar u,\quad
 u_c\bar u(0) = I{\thinspace .}\]</div>
@@ -839,7 +805,7 @@ u_c\bar u(0) = I{\thinspace .}\]</div>
 taken as <span class="math">\(t_c=t_1\)</span> or <span class="math">\(t_c=1/d\)</span>. The natural choice of <span class="math">\(u_c\)</span> is <span class="math">\(I\)</span>.
 With <span class="math">\(t_c=1/d\)</span> we get</p>
 <div class="math" id="equation-sec:scale:decay:jump:eq1">
-<span id="eq-sec-scale-decay-jump-eq1"></span><span class="eqno">(10)</span>\[\begin{split}     \bar u'(\bar t)=-\bar a\bar u,\quad \bar u(0)=1,\quad
+<span id="eq-sec-scale-decay-jump-eq1"></span><span class="eqno">(15)</span>\[\begin{split}     \bar u'(\bar t)=-\bar a\bar u,\quad \bar u(0)=1,\quad
      \bar a = \left\lbrace\begin{array}{ll}
      1, &amp; \bar t &lt; \gamma\\
      5, &amp; \bar t \geq \gamma
@@ -858,10 +824,10 @@ With <span class="math">\(t_c=1/d\)</span> we get</p>
 the definition of <span class="math">\(\bar a\)</span>. Both problems involve <span class="math">\(\gamma\)</span>, which
 is the ratio between the time when the environmental change happens
 and the typical time for the decay (<span class="math">\(1/d\)</span>).</p>
-<p>A computation with the scaled model <a href="#equation-sec:scale:decay:jump:eq1">(10)</a>
+<p>A computation with the scaled model <a href="#equation-sec:scale:decay:jump:eq1">(15)</a>
 and the original model with dimensions appears in
 Figure <a class="reference internal" href="#sec-scale-decay-jump-fig"><span class="std std-ref">Exponential decay with jump: scaled model (left) and unscaled model (right)</span></a>.</p>
-<div class="figure" id="id6">
+<div class="figure" id="id7">
 <span id="sec-scale-decay-jump-fig"></span><a class="reference internal image-reference" href="_images/decay_jump.png"><img alt="_images/decay_jump.png" src="_images/decay_jump.png" style="width: 800px;" /></a>
 <p class="caption"><span class="caption-text"><em>Exponential decay with jump: scaled model (left) and unscaled model (right)</em></span></p>
 </div>
@@ -871,55 +837,67 @@ Figure <a class="reference internal" href="#sec-scale-decay-jump-fig"><span clas
 <p>The heat exchange between a body at temperature <span class="math">\(T(t)\)</span> and the
 surroundings at <span class="math">\(T_s(t)\)</span> can be modeled by Newton&#8217;s law of cooling:</p>
 <div class="math" id="equation-scale:decay:cooling:model">
-<span id="eq-scale-decay-cooling-model"></span><span class="eqno">(11)</span>\[     T'(t) = -k(T-T_s(t)),\quad T(0)=T_0,\]</div>
-<p>where <span class="math">\(k\)</span> is a prescribed heat transfer coefficient.
-An analytical solution is always handy to have as a control of the
+<span id="eq-scale-decay-cooling-model"></span><span class="eqno">(16)</span>\[     T'(t) = -k(T-T_s(t)),\quad T(0)=T_0,\]</div>
+<p>where <span class="math">\(k\)</span> is a prescribed heat transfer coefficient.</p>
+<div class="section" id="exact-solution-2">
+<h4>Exact solution<a class="headerlink" href="#exact-solution-2" title="Permalink to this headline">¶</a></h4>
+<p>An analytical solution is always handy to have as a control of the
 choice of scales. Here we have
 the result <span class="math">\(T(t) = T_s + (T_0 - T_s)e^{-kt}\)</span> when <span class="math">\(T_s\)</span> is constant,
 which is also the assumption for now.</p>
+</div>
+<div class="section" id="scaling-1">
+<h4>Scaling<a class="headerlink" href="#scaling-1" title="Permalink to this headline">¶</a></h4>
 <p>Physically, we expect the temperature to start at <span class="math">\(T_0\)</span> and then
 to move toward the surroundings (<span class="math">\(T_s\)</span>). We therefore expect
 that <span class="math">\(T\)</span> lies between <span class="math">\(T_0\)</span> and <span class="math">\(T_s\)</span>. This is mathematically
 demonstrated by the analytical solution as well. A proper scaling
 is therefore to scale and translate <span class="math">\(T\)</span> according to</p>
 <div class="math" id="equation-scale:decay:cooling:Tbar">
-<span id="eq-scale-decay-cooling-tbar"></span><span class="eqno">(12)</span>\[     \bar T = \frac{T-T_0}{T_s-T_0}\]\[     {\thinspace .}\]</div>
+<span id="eq-scale-decay-cooling-tbar"></span><span class="eqno">(17)</span>\[     \bar T = \frac{T-T_0}{T_s-T_0}\]\[     {\thinspace .}\]</div>
 <p>Now, <span class="math">\(0\leq \bar T\leq 1\)</span>.</p>
 <p>Scaling time by <span class="math">\(\bar t = t/t_c\)</span> and inserting
 <span class="math">\(T= T_0 + (T_s-T_0)\bar T\)</span> and <span class="math">\(t=t_c\bar t\)</span> in the
-problem <a href="#equation-scale:decay:cooling:model">(11)</a> gives</p>
+problem <a href="#equation-scale:decay:cooling:model">(16)</a> gives</p>
 <div class="math">
 \[\frac{d\bar T}{d\bar t} = - t_ck(\bar T - 1),\quad \bar T(0) = 0
 {\thinspace .}\]</div>
 <p>A natural choice, as argued in other exponential decay problems,
 is to choose <span class="math">\(t_ck=1\)</span>, which leaves us with the scaled problem</p>
 <div class="math" id="equation-scale:decay:cooling:Tbar:eq">
-<span id="eq-scale-decay-cooling-tbar-eq"></span><span class="eqno">(13)</span>\[     \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0\]\[     {\thinspace .}\]</div>
+<span id="eq-scale-decay-cooling-tbar-eq"></span><span class="eqno">(18)</span>\[     \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0\]\[     {\thinspace .}\]</div>
 <p>No physical parameter enters this problem!
 Our scaling implies that <span class="math">\(\bar T\)</span> starts at
 0 and approaches 1 as <span class="math">\(\bar t\rightarrow\infty\)</span>, also in the case
 <span class="math">\(T_s &lt; T_0\)</span>. The physical temperature is always recovered as</p>
 <div class="math" id="equation-scale:decay:cooling:T">
-<span id="eq-scale-decay-cooling-t"></span><span class="eqno">(14)</span>\[     T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)\]\[     {\thinspace .}\]</div>
-<p>An implementation for <a href="#equation-scale:decay:cooling:model">(11)</a> works for
-<a href="#equation-scale:decay:cooling:Tbar:eq">(13)</a> by setting <span class="math">\(k=1\)</span>, <span class="math">\(T_s=1\)</span>, and <span class="math">\(T_0=0\)</span>.</p>
-<p>An alternative scaling is to choose</p>
+<span id="eq-scale-decay-cooling-t"></span><span class="eqno">(19)</span>\[     T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)\]\[     {\thinspace .}\]</div>
+</div>
+<div class="section" id="software-2">
+<h4>Software<a class="headerlink" href="#software-2" title="Permalink to this headline">¶</a></h4>
+<p>An implementation for <a href="#equation-scale:decay:cooling:model">(16)</a> works for
+<a href="#equation-scale:decay:cooling:Tbar:eq">(18)</a> by setting <span class="math">\(k=1\)</span>, <span class="math">\(T_s=1\)</span>, and <span class="math">\(T_0=0\)</span>.</p>
+</div>
+<div class="section" id="alternative-scaling-1">
+<h4>Alternative scaling<a class="headerlink" href="#alternative-scaling-1" title="Permalink to this headline">¶</a></h4>
+<p>An alternative temperature scaling is to choose</p>
 <div class="math" id="equation-scale:decay:cooling:Tbar2">
-<span id="eq-scale-decay-cooling-tbar2"></span><span class="eqno">(15)</span>\[     \bar T = \frac{T-T_s}{T_0-T_s}\]\[     {\thinspace .}\]</div>
+<span id="eq-scale-decay-cooling-tbar2"></span><span class="eqno">(20)</span>\[     \bar T = \frac{T-T_s}{T_0-T_s}\]\[     {\thinspace .}\]</div>
 <p>Now <span class="math">\(\bar T=1\)</span> initially and approaches zero as <span class="math">\(t\rightarrow\infty\)</span>.
 The resulting scaled ODE problem then becomes</p>
 <div class="math" id="equation-scale:decay:cooling:Tbar:eq2">
-<span id="eq-scale-decay-cooling-tbar-eq2"></span><span class="eqno">(16)</span>\[     \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1\]\[     {\thinspace .}\]</div>
+<span id="eq-scale-decay-cooling-tbar-eq2"></span><span class="eqno">(21)</span>\[     \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1\]\[     {\thinspace .}\]</div>
+</div>
 </div>
 <div class="section" id="scaling-a-cooling-problem-with-time-dependent-surroundings">
 <span id="scale-decay-cooling-osc"></span><h3>Scaling a cooling problem with time-dependent surroundings<a class="headerlink" href="#scaling-a-cooling-problem-with-time-dependent-surroundings" title="Permalink to this headline">¶</a></h3>
-<p>Let us apply the model <a href="#equation-scale:decay:cooling:model">(11)</a> in
+<p>Let us apply the model <a href="#equation-scale:decay:cooling:model">(16)</a> in
 case the surrounding temperature varies in time. Say we have
 an oscillating temperature environment according to</p>
 <div class="math" id="equation-scale:decay:cooling:Tst">
-<span id="eq-scale-decay-cooling-tst"></span><span class="eqno">(17)</span>\[     T_s(t) = T_m + a\sin(\omega t)\]\[     {\thinspace .}\]</div>
-<div class="section" id="exact-solution-2">
-<h4>Exact solution  (2)<a class="headerlink" href="#exact-solution-2" title="Permalink to this headline">¶</a></h4>
+<span id="eq-scale-decay-cooling-tst"></span><span class="eqno">(22)</span>\[     T_s(t) = T_m + a\sin(\omega t)\]\[     {\thinspace .}\]</div>
+<div class="section" id="exact-solution-3">
+<h4>Exact solution<a class="headerlink" href="#exact-solution-3" title="Permalink to this headline">¶</a></h4>
 <p>It is possible to solve the differential equation problem analytically,
 and such a solution is a good help to see what scales are.
 In general, using the method of integrating factors for the
@@ -946,9 +924,9 @@ integrations:</p>
 \[T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + w^2)^{-1}(akw e^{-kt}
 + ak\sin (wt) - akw\cos(wt)){\thinspace .}\]</div>
 </div>
-<div class="section" id="scaling-1">
-<span id="index-10"></span><h4>Scaling  (1)<a class="headerlink" href="#scaling-1" title="Permalink to this headline">¶</a></h4>
-<p>The scaling <a href="#equation-scale:decay:cooling:Tbar">(12)</a> brings in a time-dependent
+<div class="section" id="scaling-2">
+<span id="index-12"></span><h4>Scaling<a class="headerlink" href="#scaling-2" title="Permalink to this headline">¶</a></h4>
+<p>The scaling <a href="#equation-scale:decay:cooling:Tbar">(17)</a> brings in a time-dependent
 characteristic temperature scale <span class="math">\(T_s-T_0\)</span>. Let us start with a
 fixed scale, where we take the characteristic temperature variation to
 be <span class="math">\(T_m - T_0\)</span>:</p>
@@ -957,7 +935,9 @@ be <span class="math">\(T_m - T_0\)</span>:</p>
 <p>We see from the analytical solution, and realize also by physical
 reasoning, that <span class="math">\(T\)</span> sets out at <span class="math">\(T_0\)</span>, but with time, it will oscillate
 around <span class="math">\(T_m\)</span>. The typical average temperature span is therefore
-<span class="math">\(|T_m-T_0|\)</span>.</p>
+<span class="math">\(|T_m-T_0|\)</span>, unless <span class="math">\(a\)</span> is much larger than <span class="math">\(|T_m-T_0|\)</span> or <span class="math">\(T_0\)</span> is
+very close to <span class="math">\(T_m\)</span> (see <a class="reference internal" href="._book009.html#sec-scale-exer-decay-cooling-osc"><span class="std std-ref">Exercise 3: Perform alternative scalings</span></a> for
+a discussion of these cases).</p>
 <p>We get from the differential equation, with <span class="math">\(t_c=1/k\)</span> as in the former
 case,</p>
 <div class="math">
@@ -965,32 +945,44 @@ case,</p>
 \sin(wt),\]</div>
 <p>resulting in</p>
 <div class="math" id="equation-scale:decay:cooling:model:scaled">
-<span id="eq-scale-decay-cooling-model-scaled"></span><span class="eqno">(18)</span>\[     \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
+<span id="eq-scale-decay-cooling-model-scaled"></span><span class="eqno">(23)</span>\[     \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
      \bar T(0)=0,\]</div>
 <p>where we have two dimensionless numbers:</p>
 <div class="math">
 \[\alpha = \frac{a}{T_m-T_0},\quad \beta = \frac{w}{k}{\thinspace .}\]</div>
 <p>The <span class="math">\(\alpha\)</span> quantity
 measures the ratio of temperatures: amplitude of oscillations versus
-characteristic total temperature variation.
+distance from initial temperature to the average temperature for large times.
 The <span class="math">\(\beta\)</span> number is the ratio of the two time scales:
 the frequency of the oscillations in <span class="math">\(T_s\)</span> and the inverse
 e-folding time of the heat transfer. For clear interpretation of <span class="math">\(\beta\)</span>
 we may introduce the period
 <span class="math">\(P=2\pi/w\)</span> of the oscillations in <span class="math">\(T_s\)</span> and the e-folding time <span class="math">\(e=1/k\)</span>. Then
-<span class="math">\(\beta = 2\pi e/P\)</span> and measures the period versus the e-folding time.</p>
+<span class="math">\(\beta = 2\pi e/P\)</span> and measures the e-folding time versus the period.</p>
 <p>The original problem features five physical parameters: <span class="math">\(k\)</span>, <span class="math">\(T_0\)</span>,
 <span class="math">\(T_m\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(w\)</span>, but only two dimensionless numbers appear in the
-scaled model.</p>
+scaled model <a href="#equation-scale:decay:cooling:model:scaled">(23)</a>.</p>
 </div>
-<div class="section" id="software-2">
-<h4>Software  (2)<a class="headerlink" href="#software-2" title="Permalink to this headline">¶</a></h4>
-<p>Implementing the unscaled problem <a href="#equation-scale:decay:cooling:model">(11)</a>
+<div class="section" id="software-3">
+<h4>Software<a class="headerlink" href="#software-3" title="Permalink to this headline">¶</a></h4>
+<p>Implementations of the unscaled problem <a href="#equation-scale:decay:cooling:model">(16)</a>
 can be reused for the scaled model by setting <span class="math">\(k=1\)</span>, <span class="math">\(T_0=0\)</span>, and
-<span class="math">\(T_s(t) = 1 + \alpha\sin (\beta \bar t)\)</span> (<span class="math">\(T_m=1\)</span>, <span class="math">\(a=\alpha\)</span>, <span class="math">\(w=\beta\)</span>).</p>
+<span class="math">\(T_s(t) = 1 + \alpha\sin (\beta \bar t)\)</span> (<span class="math">\(T_m=1\)</span>, <span class="math">\(a=\alpha\)</span>, <span class="math">\(w=\beta\)</span>).
+The file <a class="reference external" href="http://tinyurl.com/o8pb3yy/osc_cooling.py">osc_cooling.py</a> contains
+solvers for the problem with dimensions and
+for the scaled problem. The figure below
+shows three cases of <span class="math">\(\beta\)</span> values: small, medium, and large.</p>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/osc_cooling.png"><img alt="_images/osc_cooling.png" src="_images/osc_cooling.png" style="width: 500px;" /></a>
+</div>
+<p>For the small <span class="math">\(\beta\)</span> value, the oscillations in the surrounding
+temperature are slow enough compared to <span class="math">\(k\)</span> for the heating and
+cooling process to follow the surrounding temperature, with a small
+time lag. For larger <span class="math">\(\beta\)</span>, the heating and cooling requires more
+time, and the oscillations get smaller.</p>
 </div>
 <div class="section" id="discussion-of-the-time-scale-1">
-<h4>Discussion of the time scale  (1)<a class="headerlink" href="#discussion-of-the-time-scale-1" title="Permalink to this headline">¶</a></h4>
+<h4>Discussion of the time scale<a class="headerlink" href="#discussion-of-the-time-scale-1" title="Permalink to this headline">¶</a></h4>
 <p>Looking at the analytical insight we have, <span class="math">\(T(t)\)</span> has two characteristic
 terms in time: <span class="math">\(e^{-kt}\)</span> and <span class="math">\(\sin(wt)\)</span>. The former points to a time
 scale <span class="math">\(t_c=1/k\)</span>, while the latter to <span class="math">\(t_c=1/w\)</span>.
@@ -1002,11 +994,11 @@ the body&#8217;s temperature just responds to the oscillations and the
 <span class="math">\(t_c=1/w\)</span> is the appropriate time scale. Choosing <span class="math">\(t_c=1/w\)</span>
 results in</p>
 <div class="math" id="equation-scale:decay:cooling:model:scaled2">
-<span id="eq-scale-decay-cooling-model-scaled2"></span><span class="eqno">(19)</span>\[     \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
+<span id="eq-scale-decay-cooling-model-scaled2"></span><span class="eqno">(24)</span>\[     \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
      \bar T(0)=0{\thinspace .}\]</div>
 <p>Let us illustrate another, less effective, scaling.
 The temperature scale in
-<a href="#equation-scale:decay:cooling:Tbar">(12)</a> looks natural, so we apply this
+<a href="#equation-scale:decay:cooling:Tbar">(17)</a> looks natural, so we apply this
 choice of scale. The characteristic temperature <span class="math">\(T_0-T_s\)</span>
 now involves
 a time-dependent term <span class="math">\(T_s(t)\)</span>. The mathematical steps become a bit
@@ -1036,17 +1028,17 @@ out dimensionless numbers. To this end, we scale <span class="math">\(T_s\)</spa
 which means to factor out <span class="math">\(T_m\)</span> in the denominator. We are then
 left with</p>
 <div class="math" id="equation-scale:decay:cooling:Tbar:eq3">
-<span id="eq-scale-decay-cooling-tbar-eq3"></span><span class="eqno">(20)</span>\[     \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
+<span id="eq-scale-decay-cooling-tbar-eq3"></span><span class="eqno">(25)</span>\[     \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
      \alpha\beta \frac{\cos(\beta \bar t)}{1 + \alpha\sin(\beta\bar t) - \gamma}
      \bar T,\]</div>
 <p>where <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span>, and <span class="math">\(\gamma\)</span> are dimensionless numbers
 characterizing the relative importance of parameters in the problem:</p>
-<div class="math">
-\[\alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
-{\thinspace .}\]</div>
-<p>We notice that <a href="#equation-scale:decay:cooling:Tbar:eq3">(20)</a>
+<div class="math" id="equation-_auto6">
+<span id="eq-auto6"></span><span class="eqno">(26)</span>\[     \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
+     {\thinspace .}\]</div>
+<p>We notice that <a href="#equation-scale:decay:cooling:Tbar:eq3">(25)</a>
 is not a special case of the original problem
-<a href="#equation-scale:decay:cooling:model">(11)</a>. Furthermore, the original five
+<a href="#equation-scale:decay:cooling:model">(16)</a>. Furthermore, the original five
 parameters <span class="math">\(k\)</span>, <span class="math">\(T_m\)</span>, <span class="math">\(a\)</span>, <span class="math">\(\omega\)</span>, and
 <span class="math">\(T_0\)</span> are reduced to three dimensionless parameters.
 We conclude that this scaling is inferior, because
@@ -1057,20 +1049,22 @@ in the scaled model.</p>
 </div>
 <div class="section" id="scaling-a-nonlinear-ode">
 <span id="sec-scale-decay-nonlinear"></span><h3>Scaling a nonlinear ODE<a class="headerlink" href="#scaling-a-nonlinear-ode" title="Permalink to this headline">¶</a></h3>
-<p id="index-11">Exponential growth models, <span class="math">\(u'=au\)</span>, are not realistic in environments
+<p id="index-13">Exponential growth models, <span class="math">\(u'=au\)</span>, are not realistic in environments
 with limited resources. The idea is then to assume that
 the growth rate <span class="math">\(a\)</span> decreases with <span class="math">\(u\)</span> and vanishes when we reach the maximum
 value <span class="math">\(M\)</span> of <span class="math">\(u\)</span> the environment can sustain. The initial growth rate
 is set to <span class="math">\(r\)</span>: <span class="math">\(a(0)=\varrho\)</span>.
 In general, this reasoning gives rise to models</p>
 <div class="math" id="equation-sec:scale:decay:nonlinear:model1">
-<span id="eq-sec-scale-decay-nonlinear-model1"></span><span class="eqno">(21)</span>\[     u' = a(u)u,\quad u(0)=I,\]</div>
+<span id="eq-sec-scale-decay-nonlinear-model1"></span><span class="eqno">(27)</span>\[     u' = a(u)u,\quad u(0)=I,\]</div>
 <p>with the logistic model, corresponding to <span class="math">\(a(u)=\varrho(1-u/M)\)</span>,
 as the simplest:</p>
 <div class="math" id="equation-sec:scale:decay:nonlinear:model2">
-<span id="eq-sec-scale-decay-nonlinear-model2"></span><span class="eqno">(22)</span>\[     u' = \varrho u(1-u/M),\quad u(0)=I{\thinspace .}\]</div>
-<p>A general choice of <span class="math">\(a\)</span> might be <span class="math">\(a(u)=\varrho(1-u/M)^p\)</span> for some exponent <span class="math">\(p\)</span>.</p>
-<p id="index-12">Let us scale <a href="#equation-sec:scale:decay:nonlinear:model1">(21)</a> with
+<span id="eq-sec-scale-decay-nonlinear-model2"></span><span class="eqno">(28)</span>\[     u' = \varrho u(1-u/M),\quad u(0)=I{\thinspace .}\]</div>
+<p>A general choice of <span class="math">\(a\)</span> may be <span class="math">\(a(u)=\varrho(1-u/M)^p\)</span> for some exponent <span class="math">\(p\)</span>.</p>
+<div class="section" id="scaling-3">
+<span id="index-14"></span><h4>Scaling<a class="headerlink" href="#scaling-3" title="Permalink to this headline">¶</a></h4>
+<p>Let us scale <a href="#equation-sec:scale:decay:nonlinear:model1">(27)</a> with
 <span class="math">\(a(u)=\varrho (1-u/M)^p\)</span>.
 The natural scale for <span class="math">\(u\)</span> is <span class="math">\(M\)</span> (<span class="math">\(u_c=M\)</span>), since we know that
 <span class="math">\(0 &lt; u\leq M\)</span>, and this makes the dimensionless <span class="math">\(\bar u = u/M \in (0,1]\)</span>.
@@ -1080,7 +1074,7 @@ typically varying between 0 and <span class="math">\(\varrho\)</span>, so it can
 \[\bar a(\bar u) = \frac{a(u)}{\varrho} = (1 - \frac{u}{M})^p =
 (1 - \bar u)^p{\thinspace .}\]</div>
 <p>Time is scaled as <span class="math">\(\bar t = t/t_c\)</span> for some suitable characteristic time <span class="math">\(t_c\)</span>.
-Inserted in <a href="#equation-sec:scale:decay:nonlinear:model1">(21)</a>, we get</p>
+Inserted in <a href="#equation-sec:scale:decay:nonlinear:model1">(27)</a>, we get</p>
 <div class="math">
 \[\frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = \varrho\bar a u_c\bar u,\quad u_c\bar u(0)=I,\]</div>
 <p>resulting in</p>
@@ -1096,55 +1090,56 @@ Introducing the dimensionless parameter</p>
 <p>measuring the fraction of the initial population compared to the maximum
 one, we get the dimensionless model</p>
 <div class="math" id="equation-sec:scale:decay:nonlinear:model1:scaled">
-<span id="eq-sec-scale-decay-nonlinear-model1-scaled"></span><span class="eqno">(23)</span>\[     \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
+<span id="eq-sec-scale-decay-nonlinear-model1-scaled"></span><span class="eqno">(29)</span>\[     \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
      \bar u(0) =\alpha{\thinspace .}\]</div>
 <p>Here, we have two dimensionless parameters: <span class="math">\(\alpha\)</span> and <span class="math">\(p\)</span>. A classical
 logistic model with <span class="math">\(p=1\)</span> has only one dimensionless variable.</p>
+</div>
+<div class="section" id="alternative-scaling-2">
+<h4>Alternative scaling<a class="headerlink" href="#alternative-scaling-2" title="Permalink to this headline">¶</a></h4>
 <p>We could try another scaling of <span class="math">\(u\)</span> where we also translate <span class="math">\(\bar u\)</span>:</p>
 <div class="math">
 \[\bar u = \frac{u-I}{M}{\thinspace .}\]</div>
 <p>This choice of <span class="math">\(\bar u\)</span> results in</p>
 <div class="math" id="equation-sec:scale:decay:nonlinear:model1:scaled2">
-<span id="eq-sec-scale-decay-nonlinear-model1-scaled2"></span><span class="eqno">(24)</span>\[     \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
+<span id="eq-sec-scale-decay-nonlinear-model1-scaled2"></span><span class="eqno">(30)</span>\[     \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
      \bar u(0) =0{\thinspace .}\]</div>
-<p>The essential difference between <a href="#equation-sec:scale:decay:nonlinear:model1:scaled">(23)</a>
-and <a href="#equation-sec:scale:decay:nonlinear:model1:scaled2">(24)</a> is that
+<p>The essential difference between <a href="#equation-sec:scale:decay:nonlinear:model1:scaled">(29)</a>
+and <a href="#equation-sec:scale:decay:nonlinear:model1:scaled2">(30)</a> is that
 <span class="math">\(\bar u\in [\alpha, 1]\)</span> in the former and <span class="math">\(\bar u \in [0, 1-\alpha]\)</span> in
 the latter. Both models involve the dimensionless numbers <span class="math">\(\alpha\)</span> and <span class="math">\(p\)</span>.
-An advantage of <a href="#equation-sec:scale:decay:nonlinear:model1:scaled">(23)</a>
+An advantage of <a href="#equation-sec:scale:decay:nonlinear:model1:scaled">(29)</a>
 is that software for the unscaled model can easily be used for the
 scaled model by choosing <span class="math">\(I=\alpha\)</span>, <span class="math">\(M=1\)</span>, and <span class="math">\(\varrho=1\)</span>.</p>
 </div>
-<div class="section" id="ode-systems-for-spreading-of-diseases">
-<h3>ODE systems for spreading of diseases<a class="headerlink" href="#ode-systems-for-spreading-of-diseases" title="Permalink to this headline">¶</a></h3>
-<p>The field of epidemiology frequently applies ODE systems to describe the spreading of diseases, such as smallpox, measles, plague, ordinary flu, swine flu,
-and HIV. Different models include different effects, which are reflected
-in dimensionless numbers. Most of the effects are modeled as exponential
-decay or growth of the dependent variables.</p>
-<div class="section" id="sir-model">
-<h4>SIR model<a class="headerlink" href="#sir-model" title="Permalink to this headline">¶</a></h4>
-<p>The model has three categories of people: susceptibles (S) who can get
-the disease, infected (I) who are infected and may infect susceptibles,
-and recovered (R) who have recovered from the disease and gained
-immunity. We introduce <span class="math">\(S(t)\)</span>, <span class="math">\(I(t)\)</span>, and <span class="math">\(R(t)\)</span> as the number of
-people in the categories S, I, and R, respectively.
-The model, naturally known as the SIR model, takes the form a system of ODEs:</p>
+</div>
+<div class="section" id="sir-ode-system-for-spreading-of-diseases">
+<h3>SIR ODE system for spreading of diseases<a class="headerlink" href="#sir-ode-system-for-spreading-of-diseases" title="Permalink to this headline">¶</a></h3>
+<p>The field of epidemiology frequently applies ODE systems to describe
+the spreading of diseases, such as smallpox, measles, plague, ordinary
+flu, swine flu, and HIV. Different models include different effects,
+which are reflected in dimensionless numbers. Most of the effects are
+modeled as exponential decay or growth of the dependent variables.</p>
+<p>The simplest model has three categories of people: susceptibles (S)
+who can get the disease, infectious (I) who are infected and may
+infect susceptibles, and recovered (R) who have recovered from the
+disease and gained immunity. We introduce <span class="math">\(S(t)\)</span>, <span class="math">\(I(t)\)</span>, and <span class="math">\(R(t)\)</span>
+as the number of people in the categories S, I, and R, respectively.
+The model, naturally known as the SIR model, takes the form a system
+of ODEs:</p>
 <div class="math" id="equation-scale:SIR:S">
-<span id="eq-scale-sir-s"></span><span class="eqno">(25)</span>\[     \frac{dS}{dt} = - \beta SI,\]</div>
+<span id="eq-scale-sir-s"></span><span class="eqno">(31)</span>\[     \frac{dS}{dt} = - \beta SI,\]</div>
 <div class="math" id="equation-scale:SIR:I">
-<span id="eq-scale-sir-i"></span><span class="eqno">(26)</span>\[     \frac{dI}{dt} = \beta SI - \nu I,\]</div>
+<span id="eq-scale-sir-i"></span><span class="eqno">(32)</span>\[     \frac{dI}{dt} = \beta SI - \nu I,\]</div>
 <div class="math" id="equation-scale:SIR:R">
-<span id="eq-scale-sir-r"></span><span class="eqno">(27)</span>\[     \frac{dR}{dt} = \nu I,\]</div>
-<p>where <span class="math">\(\beta\)</span> and <span class="math">\(nu\)</span> are empirical constants. The average time for recovering
+<span id="eq-scale-sir-r"></span><span class="eqno">(33)</span>\[     \frac{dR}{dt} = \nu I,\]</div>
+<p>where <span class="math">\(\beta\)</span> and <span class="math">\(\nu\)</span> are empirical constants. The average time for recovering
 from the disease can be shown to be <span class="math">\(\nu^{-1}\)</span>, but <span class="math">\(\beta\)</span> is much harder
-to estimate, so working with a scaled model where <span class="math">\(k\)</span> is &#8220;scaled away&#8221;
-is advantageous. Adding <a href="#equation-scale:SIR:S">(25)</a>-<a href="#equation-scale:SIR:R">(27)</a>
-shows that</p>
-<div class="math">
-\[\frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
-S+I+R=\hbox{const}=N,\]</div>
-<p>where <span class="math">\(N\)</span> is the size of the population. It is natural to scale
-<span class="math">\(S\)</span>, <span class="math">\(I\)</span>, and <span class="math">\(R\)</span> by, e.g., <span class="math">\(S(0)\)</span>:</p>
+to estimate, so working with a scaled model where <span class="math">\(\beta\)</span> is &#8220;scaled away&#8221;
+is advantageous.</p>
+<div class="section" id="scaling-4">
+<h4>Scaling<a class="headerlink" href="#scaling-4" title="Permalink to this headline">¶</a></h4>
+<p>It is natural to scale <span class="math">\(S\)</span>, <span class="math">\(I\)</span>, and <span class="math">\(R\)</span> by, e.g., <span class="math">\(S(0)\)</span>:</p>
 <div class="math">
 \[\bar S = \frac{S}{S(0)},\quad \bar I = \frac{I}{S(0)},\quad
 \bar R = \frac{R}{S(0)}{\thinspace .}\]</div>
@@ -1160,32 +1155,60 @@ S+I+R=\hbox{const}=N,\]</div>
 <p>Taking <span class="math">\(t_c=1/\nu\)</span>, corresponding to a time unit equal to the time it takes
 to recover from the disease, we end up with the scaled model</p>
 <div class="math" id="equation-scale:SIR:S2">
-<span id="eq-scale-sir-s2"></span><span class="eqno">(28)</span>\[     \frac{d\bar S}{d\bar t} = - R_0\bar S\bar I,\]</div>
+<span id="eq-scale-sir-s2"></span><span class="eqno">(34)</span>\[     \frac{d\bar S}{d\bar t} = - R_0\bar S\bar I,\]</div>
 <div class="math" id="equation-scale:SIR:I2">
-<span id="eq-scale-sir-i2"></span><span class="eqno">(29)</span>\[     \frac{d\bar I}{d\bar t} = R_0 \bar S\bar I - \bar I,\]</div>
+<span id="eq-scale-sir-i2"></span><span class="eqno">(35)</span>\[     \frac{d\bar I}{d\bar t} = R_0 \bar S\bar I - \bar I,\]</div>
 <div class="math" id="equation-scale:SIR:R2">
-<span id="eq-scale-sir-r2"></span><span class="eqno">(30)</span>\[     \frac{d\bar R}{d\bar t} = I,\]</div>
+<span id="eq-scale-sir-r2"></span><span class="eqno">(36)</span>\[     \frac{d\bar R}{d\bar t} = I,\]</div>
 <p>with <span class="math">\(\bar S(0)=1\)</span>, <span class="math">\(\bar I(0)=\alpha\)</span>, <span class="math">\(\bar R(0)=0\)</span>, and <span class="math">\(R_0\)</span> as
 the dimensionless number</p>
-<div class="math">
-\[R_0 = \frac{S(0)\beta}{\nu}{\thinspace .}\]</div>
-<p>We see from <a href="#equation-scale:SIR:I2">(29)</a> that to make the disease spreading,
+<div class="math" id="equation-_auto7">
+<span id="eq-auto7"></span><span class="eqno">(37)</span>\[     R_0 = \frac{S(0)\beta}{\nu}{\thinspace .}\]</div>
+<p>We see from <a href="#equation-scale:SIR:I2">(35)</a> that to make the disease spreading,
 <span class="math">\(d\bar I/d\bar t &gt;0\)</span>, and therefore <span class="math">\(R_0 S(0) - 1 &gt; 0\)</span> or <span class="math">\(R_0 &gt; 1\)</span>
 since <span class="math">\(S(0)=1\)</span>.
 Therefore, <span class="math">\(R_0\)</span> reflects the disease&#8217;s ability to spread and is
-consequently an important dimensionless quantity, known as the <em>basic
-reproductive number</em>.
-[<strong>hpl 1</strong>: Explain interpretation.]</p>
-<p>Looking at <a href="#equation-scale:SIR:I">(26)</a>, we see that to increase <span class="math">\(I\)</span> initially,
+consequently an important dimensionless quantity, known as the <a class="reference external" href="https://en.wikipedia.org/wiki/Basic_reproduction_number">basic
+reproduction number</a>.
+This number reflects the number of infected people caused by one infectious
+individual during the time period of the disease.</p>
+<p>Looking at <a href="#equation-scale:SIR:I">(32)</a>, we see that to increase <span class="math">\(I\)</span> initially,
 we must have <span class="math">\(dI/dt &gt;0\)</span> at <span class="math">\(t=0\)</span>, which implies
 <span class="math">\(\beta I(0)S(0) - \nu I(0) &gt;0\)</span>, i.e., <span class="math">\(R_0 &gt; 1\)</span>.</p>
-<p>We can also scale <span class="math">\(S\)</span>, <span class="math">\(I\)</span>, and <span class="math">\(R\)</span> by the total population <span class="math">\(N=S(0)+I(0)+R(0)\)</span>,</p>
+</div>
+<div class="section" id="software-4">
+<h4>Software<a class="headerlink" href="#software-4" title="Permalink to this headline">¶</a></h4>
+<p>Any implementation of the SIR model with dimensions can be reused for
+the scaled model by setting <span class="math">\(\beta = R_0\)</span>, <span class="math">\(\nu = 1\)</span>, <span class="math">\(S(0)=1-\alpha\)</span>,
+and <span class="math">\(I(0)=\alpha\)</span>. Below is a plot with two cases: <span class="math">\(R_0=2\)</span> and <span class="math">\(R_0=5\)</span>,
+both with <span class="math">\(\alpha=0.02\)</span>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/SIR1.png"><img alt="_images/SIR1.png" src="_images/SIR1.png" style="width: 800px;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="alternative-scaling-3">
+<h4>Alternative scaling<a class="headerlink" href="#alternative-scaling-3" title="Permalink to this headline">¶</a></h4>
+<p>Adding <a href="#equation-scale:SIR:S">(31)</a>-<a href="#equation-scale:SIR:R">(33)</a> shows that</p>
+<div class="math">
+\[\frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
+S+I+R=\hbox{const}=N,\]</div>
+<p>where <span class="math">\(N\)</span> is the size of the population.
+We can therefore scale <span class="math">\(S\)</span>, <span class="math">\(I\)</span>, and <span class="math">\(R\)</span> by the total
+population <span class="math">\(N=S(0)+I(0)+R(0)\)</span>:</p>
 <div class="math">
 \[\bar S = \frac{S}{N},\quad \bar I = \frac{I}{N},\quad
 \bar R = \frac{R}{N)}{\thinspace .}\]</div>
-<p>With the same time scale, one gets the system <a href="#equation-scale:SIR:S2">(28)</a>-<a href="#equation-scale:SIR:R2">(30)</a>, but with <span class="math">\(R_0\)</span> replaced by the dimensionless number:</p>
-<div class="math">
-\[\tilde R_0 = \frac{N\beta}{\nu}{\thinspace .}\]</div>
+<p>With the same time scale, one gets the system <a href="#equation-scale:SIR:S2">(34)</a>-<a href="#equation-scale:SIR:R2">(36)</a>, but with <span class="math">\(R_0\)</span> replaced by the dimensionless number:</p>
+<div class="math" id="equation-_auto8">
+<span id="eq-auto8"></span><span class="eqno">(38)</span>\[     \tilde R_0 = \frac{N\beta}{\nu}{\thinspace .}\]</div>
 <p>The initial conditions become <span class="math">\(\bar S(0)=1-\alpha\)</span>, <span class="math">\(\bar I(0)=\alpha\)</span>,
 and <span class="math">\(\bar R(0)=0\)</span>.</p>
 <p>For the disease to spread at <span class="math">\(t=0\)</span>, we must have <span class="math">\(\tilde R_0 \bar S(0) &gt; 1\)</span>,
@@ -1203,8 +1226,9 @@ instead of <span class="math">\(\tilde R_0\)</span>.</p>
 \\
 \frac{d\bar R}{d\bar t} &amp;= \tilde R_0^{-1} I{\thinspace .}\end{split}\]</div>
 </div>
+</div>
 <div class="section" id="sirv-model-with-finite-immunity">
-<h4>SIRV model with finite immunity<a class="headerlink" href="#sirv-model-with-finite-immunity" title="Permalink to this headline">¶</a></h4>
+<h3>SIRV model with finite immunity<a class="headerlink" href="#sirv-model-with-finite-immunity" title="Permalink to this headline">¶</a></h3>
 <p>A common extension of the SIR model involves finite immunity: after
 some period of time, recovered individuals lose their immunity
 and become susceptibles again. This is modeled as
@@ -1214,23 +1238,23 @@ Vaccination is another extension: a fraction <span class="math">\(pS\)</span> is
 S category by successful vaccination and brought to a new category V (the
 vaccinated). The ODE model reads</p>
 <div class="math" id="equation-scale:SIRV:S">
-<span id="eq-scale-sirv-s"></span><span class="eqno">(31)</span>\[     \frac{dS}{dt} = - \beta SI - pS + \mu R,\]</div>
+<span id="eq-scale-sirv-s"></span><span class="eqno">(39)</span>\[     \frac{dS}{dt} = - \beta SI - pS + \mu R,\]</div>
 <div class="math" id="equation-scale:SIRV:I">
-<span id="eq-scale-sirv-i"></span><span class="eqno">(32)</span>\[     \frac{dI}{dt} = \beta SI - \nu I,\]</div>
+<span id="eq-scale-sirv-i"></span><span class="eqno">(40)</span>\[     \frac{dI}{dt} = \beta SI - \nu I,\]</div>
 <div class="math" id="equation-scale:SIRV:R">
-<span id="eq-scale-sirv-r"></span><span class="eqno">(33)</span>\[     \frac{dR}{dt} = \nu I -\mu R,\]</div>
+<span id="eq-scale-sirv-r"></span><span class="eqno">(41)</span>\[     \frac{dR}{dt} = \nu I -\mu R,\]</div>
 <div class="math" id="equation-scale:SIRV:V">
-<span id="eq-scale-sirv-v"></span><span class="eqno">(34)</span>\[     \frac{dV}{dt} = p S{\thinspace .}\]</div>
-<p>Using <span class="math">\(t_c=1/\nu\)</span> and scaling the unknowns by <span class="math">\(S(0)\)</span> leads to
+<span id="eq-scale-sirv-v"></span><span class="eqno">(42)</span>\[     \frac{dV}{dt} = p S{\thinspace .}\]</div>
+<p>Using <span class="math">\(t_c=1/\nu\)</span> and scaling the unknowns by <span class="math">\(S(0)\)</span>, we arrive at
 the dimensionless model</p>
 <div class="math" id="equation-scale:SIRV:S2">
-<span id="eq-scale-sirv-s2"></span><span class="eqno">(35)</span>\[     \frac{d\bar S}{d\bar t} = - R_0 \bar S \bar I - \delta S + \gamma \bar R,\]</div>
+<span id="eq-scale-sirv-s2"></span><span class="eqno">(43)</span>\[     \frac{d\bar S}{d\bar t} = - R_0 \bar S \bar I - \delta S + \gamma \bar R,\]</div>
 <div class="math" id="equation-scale:SIRV:I2">
-<span id="eq-scale-sirv-i2"></span><span class="eqno">(36)</span>\[     \frac{d\bar I}{d\bar t} = R_0 \bar S \bar I - \bar I,\]</div>
+<span id="eq-scale-sirv-i2"></span><span class="eqno">(44)</span>\[     \frac{d\bar I}{d\bar t} = R_0 \bar S \bar I - \bar I,\]</div>
 <div class="math" id="equation-scale:SIRV:R2">
-<span id="eq-scale-sirv-r2"></span><span class="eqno">(37)</span>\[     \frac{d\bar R}{d\bar t} = \bar I -\gamma \bar R,\]</div>
+<span id="eq-scale-sirv-r2"></span><span class="eqno">(45)</span>\[     \frac{d\bar R}{d\bar t} = \bar I -\gamma \bar R,\]</div>
 <div class="math" id="equation-scale:SIRV:V2">
-<span id="eq-scale-sirv-v2"></span><span class="eqno">(38)</span>\[     \frac{d\bar V}{d\bar t} = \delta \bar S,\]</div>
+<span id="eq-scale-sirv-v2"></span><span class="eqno">(46)</span>\[     \frac{d\bar V}{d\bar t} = \delta \bar S,\]</div>
 <p>with two new dimensionless parameters:</p>
 <div class="math">
 \[\gamma = \frac{\mu}{\nu},\quad \delta = \frac{p}{\nu}{\thinspace .}\]</div>
@@ -1240,6 +1264,16 @@ and <span class="math">\(\delta = \nu^{-1}/p^{-1}\)</span> gives the interpretat
 is the ratio of the average time to recover and the average time to
 lose immunity, while <span class="math">\(\delta\)</span> is the ratio of the average time to recover
 and the average time to successfully vaccinate a susceptible.</p>
+<p>The plot in Figure <a class="reference internal" href="#sec-scale-sirv-fig"><span class="std std-ref">Spreading of a disease with loss of immunity (left) and added vaccination (right)</span></a> has <span class="math">\(\gamma = 0.05\)</span>, i.e.,
+loss of immunity takes 20 weeks if it takes one week to recover from
+the disease. The left plot corresponds to no vaccination, while the
+right has <span class="math">\(\delta = 0.5\)</span> for a vaccination campaign that lasts from
+day 7 to day 15. The value <span class="math">\(\delta =0.5\)</span> reflects that
+it takes two weeks to successfully
+vaccinate a susceptible, but the effect of vaccination is still dramatic.</p>
+<div class="figure" id="id8">
+<span id="sec-scale-sirv-fig"></span><a class="reference internal image-reference" href="_images/SIRV2.png"><img alt="_images/SIRV2.png" src="_images/SIRV2.png" style="width: 800px;" /></a>
+<p class="caption"><span class="caption-text"><em>Spreading of a disease with loss of immunity (left) and added vaccination (right)</em></span></p>
 </div>
 </div>
 <div class="section" id="michaelis-menten-kinetics-for-biochemical-reactions">
@@ -1251,13 +1285,13 @@ In the second stage, ES is turned into E and P.
 Introducing the amount of S, E, ES, and P by <span class="math">\([S]\)</span>, <span class="math">\([E]\)</span>, <span class="math">\([ES]\)</span>, and
 <span class="math">\([P]\)</span>, the mathematical model can be written as</p>
 <div class="math" id="equation-scale:MMK:ES1">
-<span id="eq-scale-mmk-es1"></span><span class="eqno">(39)</span>\[     \frac{d[ES]}{dt} = k_+[E][S] - k_v[ES] - k_-[ES],\]</div>
+<span id="eq-scale-mmk-es1"></span><span class="eqno">(47)</span>\[     \frac{d[ES]}{dt} = k_+[E][S] - k_v[ES] - k_-[ES],\]</div>
 <div class="math" id="equation-scale:MMK:P1">
-<span id="eq-scale-mmk-p1"></span><span class="eqno">(40)</span>\[     \frac{d[P]}{dt} = k_v[ES],\]</div>
+<span id="eq-scale-mmk-p1"></span><span class="eqno">(48)</span>\[     \frac{d[P]}{dt} = k_v[ES],\]</div>
 <div class="math" id="equation-scale:MMK:S1">
-<span id="eq-scale-mmk-s1"></span><span class="eqno">(41)</span>\[     \frac{d[S]}{dt} = -k_+[E][S] + k_-[ES],\]</div>
+<span id="eq-scale-mmk-s1"></span><span class="eqno">(49)</span>\[     \frac{d[S]}{dt} = -k_+[E][S] + k_-[ES],\]</div>
 <div class="math" id="equation-scale:MMK:E1">
-<span id="eq-scale-mmk-e1"></span><span class="eqno">(42)</span>\[     \frac{d[E]}{dt} = -k_+[E][S] + k_-[ES] + k_v[ES]{\thinspace .}\]</div>
+<span id="eq-scale-mmk-e1"></span><span class="eqno">(50)</span>\[     \frac{d[E]}{dt} = -k_+[E][S] + k_-[ES] + k_v[ES]{\thinspace .}\]</div>
 <p>The initial conditions are <span class="math">\([ES](0)=[P](0)=0\)</span>, and <span class="math">\([S]=S_0\)</span>, <span class="math">\([E]=E_0\)</span>.
 Three rate constants are involved: <span class="math">\(k_+\)</span>, <span class="math">\(k_-\)</span>, and <span class="math">\(k_v\)</span>.</p>
 <p>The amount of substance is measured in the unit <a class="reference external" href="https://en.wikipedia.org/wiki/Mole_(unit)">mole</a> (mol). From the equations we can see that
@@ -1270,21 +1304,21 @@ specific values are needed.</p>
 <h4>Classical analysis<a class="headerlink" href="#classical-analysis" title="Permalink to this headline">¶</a></h4>
 <p>The typical analysis of the present ODE system is to first observe
 two conservation equations, arising from simply adding the ODEs:</p>
-<div class="math">
-\[\frac{d[ES]}{dt} + \frac{d[E]}{dt}  =0,\]</div>
-<div class="math">
-\[\frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} = 0,\]</div>
+<div class="math" id="equation-_auto9">
+<span id="eq-auto9"></span><span class="eqno">(51)</span>\[     \frac{d[ES]}{dt} + \frac{d[E]}{dt}  =0,\]</div>
+<div class="math" id="equation-_auto10">
+<span id="eq-auto10"></span><span class="eqno">(52)</span>\[     \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} = 0,\]</div>
 <p>from which it follows that</p>
 <div class="math" id="equation-scale:MMK:cons1">
-<span id="eq-scale-mmk-cons1"></span><span class="eqno">(43)</span>\[     [ES] + [E] = E_0,\]</div>
+<span id="eq-scale-mmk-cons1"></span><span class="eqno">(53)</span>\[     [ES] + [E] = E_0,\]</div>
 <div class="math" id="equation-scale:MMK:cons2">
-<span id="eq-scale-mmk-cons2"></span><span class="eqno">(44)</span>\[     [ES] + [S] + [P] = S_0{\thinspace .}\]</div>
-<p>Using <a href="#equation-scale:MMK:cons1">(43)</a>, we can eliminate <span class="math">\([E]\)</span> and obtain a
+<span id="eq-scale-mmk-cons2"></span><span class="eqno">(54)</span>\[     [ES] + [S] + [P] = S_0{\thinspace .}\]</div>
+<p>Using <a href="#equation-scale:MMK:cons1">(53)</a>, we can eliminate <span class="math">\([E]\)</span> and obtain a
 system of only two ODEs,</p>
-<div class="math">
-\[\frac{d[ES]}{dt} = k_+([ES]-E_0)[S] - (k_v + k_-)[ES],\]</div>
-<div class="math">
-\[\frac{d[S]}{dt} = -k_+([ES]-E_0)[S] + k_-[ES]{\thinspace .}\]</div>
+<div class="math" id="equation-_auto11">
+<span id="eq-auto11"></span><span class="eqno">(55)</span>\[     \frac{d[ES]}{dt} = k_+([ES]-E_0)[S] - (k_v + k_-)[ES],\]</div>
+<div class="math" id="equation-_auto12">
+<span id="eq-auto12"></span><span class="eqno">(56)</span>\[     \frac{d[S]}{dt} = -k_+([ES]-E_0)[S] + k_-[ES]{\thinspace .}\]</div>
 <p>A common assumption is that the formation of <span class="math">\([ES]\)</span> is very fast and that
 it reaches an equilibrium state, <span class="math">\([ES]^{\prime}=0\)</span>. This implies</p>
 <div class="math">
@@ -1296,7 +1330,7 @@ it reaches an equilibrium state, <span class="math">\([ES]^{\prime}=0\)</span>. 
 <p>is the Michaelis constant. Using the expression for <span class="math">\([ES]\)</span> in the
 equation for <span class="math">\([S]\)</span> gives</p>
 <div class="math" id="equation-scale:MMK:Seq1">
-<span id="eq-scale-mmk-seq1"></span><span class="eqno">(45)</span>\[     \frac{dS}{dt} = \frac{k_vE_0[S]}{[S] + K}{\thinspace .}\]</div>
+<span id="eq-scale-mmk-seq1"></span><span class="eqno">(57)</span>\[     \frac{d[S]}{dt} = \frac{k_vE_0[S]}{[S] + K}{\thinspace .}\]</div>
 <p>We see that the parameter <span class="math">\(K\)</span> is central.</p>
 </div>
 <div class="section" id="dimensionless-ode-system">
@@ -1328,7 +1362,7 @@ later:</p>
 extensive analysis of the equations to determine the characteristics of
 the solutions. Much literature is written about this, but here we shall
 take a simplistic and pragmatic approach.
-Besides the Michaelis constant, there is another important parameter,</p>
+Besides the Michaelis constant <span class="math">\(K\)</span>, there is another important parameter,</p>
 <div class="math">
 \[\epsilon = \frac{E_0}{S_0},\]</div>
 <p>because most applications will involve a small <span class="math">\(\epsilon\)</span>.
@@ -1375,15 +1409,15 @@ With these assumptions one gets</p>
 <p>where we see that <span class="math">\(\alpha = \beta + \gamma\)</span>, so <span class="math">\(\gamma\)</span> can be eliminated,
 leading to the final set of equations:</p>
 <div class="math" id="equation-scale:MMK:Q2">
-<span id="eq-scale-mmk-q2"></span><span class="eqno">(46)</span>\[     \frac{d\bar Q}{d\bar t} = \alpha (\bar E\bar S
+<span id="eq-scale-mmk-q2"></span><span class="eqno">(58)</span>\[     \frac{d\bar Q}{d\bar t} = \alpha (\bar E\bar S
      - \bar Q),\]</div>
 <div class="math" id="equation-scale:MMK:P2">
-<span id="eq-scale-mmk-p2"></span><span class="eqno">(47)</span>\[     \frac{d\bar P}{d\bar t} = \beta\bar Q,\]</div>
+<span id="eq-scale-mmk-p2"></span><span class="eqno">(59)</span>\[     \frac{d\bar P}{d\bar t} = \beta\bar Q,\]</div>
 <div class="math" id="equation-scale:MMK:S2">
-<span id="eq-scale-mmk-s2"></span><span class="eqno">(48)</span>\[     \frac{d\bar S}{d\bar t} = -\bar E\bar S
+<span id="eq-scale-mmk-s2"></span><span class="eqno">(60)</span>\[     \frac{d\bar S}{d\bar t} = -\bar E\bar S
      + (1 - \beta\alpha^{-1})\bar Q,\]</div>
 <div class="math" id="equation-scale:MMK:E2">
-<span id="eq-scale-mmk-e2"></span><span class="eqno">(49)</span>\[     \epsilon\frac{d\bar E}{d\bar t} = -\bar E\bar S + \bar Q{\thinspace .}\]</div>
+<span id="eq-scale-mmk-e2"></span><span class="eqno">(61)</span>\[     \epsilon\frac{d\bar E}{d\bar t} = -\bar E\bar S + \bar Q{\thinspace .}\]</div>
 <p>The five initial parameters (<span class="math">\(S_0\)</span>, <span class="math">\(E_0\)</span>, <span class="math">\(k_+\)</span>, <span class="math">\(k_-\)</span>, and <span class="math">\(k_v\)</span>)
 are reduced to three dimensionless constants:</p>
 <blockquote>
@@ -1397,14 +1431,14 @@ versus production of the complex (<span class="math">\(k_+\)</span>), made dimen
 </ul>
 </div></blockquote>
 <p>Observe that software developed for
-solving <a href="#equation-scale:MMK:ES1">(39)</a>-<a href="#equation-scale:MMK:E1">(42)</a> cannot be reused
-for solving <a href="#equation-scale:MMK:Q2">(46)</a>-<a href="#equation-scale:MMK:E2">(49)</a> since the latter
+solving <a href="#equation-scale:MMK:ES1">(47)</a>-<a href="#equation-scale:MMK:E1">(50)</a> cannot be reused
+for solving <a href="#equation-scale:MMK:Q2">(58)</a>-<a href="#equation-scale:MMK:E2">(61)</a> since the latter
 system has a slightly different structure.</p>
 </div>
 <div class="section" id="analysis-of-the-scaled-system">
 <h4>Analysis of the scaled system<a class="headerlink" href="#analysis-of-the-scaled-system" title="Permalink to this headline">¶</a></h4>
 <p>In the scaled system, we may assume <span class="math">\(\epsilon\)</span> small, which from
-<a href="#equation-scale:MMK:E2">(49)</a> gives rise to the simplification
+<a href="#equation-scale:MMK:E2">(61)</a> gives rise to the simplification
 <span class="math">\(\epsilon\bar E^{\prime}=0\)</span>, and thereby the relation <span class="math">\(\bar Q = \bar E\bar S\)</span>.
 The conservation equation <span class="math">\([ES] + [E]= E_0\)</span> reads <span class="math">\(Q_c\bar Q + E_0\bar E =
 E_0\)</span> such that <span class="math">\(\bar E = 1 - Q_c\bar Q/E_0=1- \bar Q S_0/K = 1 - \epsilon^{-1}\alpha^{-1}\bar Q\)</span>. The relation <span class="math">\(\bar Q=\bar E\bar S\)</span> then becomes</p>
@@ -1413,18 +1447,18 @@ E_0\)</span> such that <span class="math">\(\bar E = 1 - Q_c\bar Q/E_0=1- \bar Q
 <p>which can be solved for <span class="math">\(\bar Q\)</span>:</p>
 <div class="math">
 \[\bar Q = \frac{\bar S}{1 + \epsilon^{-1}\alpha^{-1}\bar S}{\thinspace .}\]</div>
-<p>The equation <a href="#equation-scale:MMK:S2">(48)</a> for <span class="math">\(\bar S\)</span> becomes</p>
+<p>The equation <a href="#equation-scale:MMK:S2">(60)</a> for <span class="math">\(\bar S\)</span> becomes</p>
 <div class="math" id="equation-scale:MMK:Seq2">
-<span id="eq-scale-mmk-seq2"></span><span class="eqno">(50)</span>\[     \frac{d\bar S}{d\bar t} = -\beta\alpha^{-1}\bar Q =
+<span id="eq-scale-mmk-seq2"></span><span class="eqno">(62)</span>\[     \frac{d\bar S}{d\bar t} = -\beta\alpha^{-1}\bar Q =
      -\frac{\beta\bar S}{\alpha + \epsilon^{-1}\bar S}{\thinspace .}\]</div>
 <p>This is a more precise analysis than the one leading to
-<a href="#equation-scale:MMK:Seq1">(45)</a> since we now realize that the
+<a href="#equation-scale:MMK:Seq1">(57)</a> since we now realize that the
 mathematical assumption for the simplification is
 <span class="math">\(\epsilon\rightarrow 0\)</span>.</p>
-<p>Is <a href="#equation-scale:MMK:Seq2">(50)</a> consistent with <a href="#equation-scale:MMK:Seq1">(45)</a>? It is
+<p>Is <a href="#equation-scale:MMK:Seq2">(62)</a> consistent with <a href="#equation-scale:MMK:Seq1">(57)</a>? It is
 easy to make algebraic mistakes when deriving scaled equations,
-so it is always wise to carry out such consistency checks.
-Introducing dimensions in <a href="#equation-scale:MMK:Seq2">(50)</a> leads to</p>
+so it is always wise to carry out consistency checks.
+Introducing dimensions in <a href="#equation-scale:MMK:Seq2">(62)</a> leads to</p>
 <div class="math">
 \[\frac{t_c}{S_0}\frac{d S}{dt} =
 \frac{d\bar S}{d\bar t}  =
@@ -1434,13 +1468,13 @@ Introducing dimensions in <a href="#equation-scale:MMK:Seq2">(50)</a> leads to</
 <p>and hence with <span class="math">\(t_c^{-1}=k_+E_0\)</span>,</p>
 <div class="math">
 \[\frac{dS}{dt} = \frac{k_vE_0 S}{K + S},\]</div>
-<p>which is <a href="#equation-scale:MMK:Seq1">(45)</a>.</p>
+<p>which is <a href="#equation-scale:MMK:Seq1">(57)</a>.</p>
 <p>Figure <a class="reference internal" href="#scale-mmk-fig"><span class="std std-ref">Simulation of a biochemical process</span></a> shows the impact of <span class="math">\(\epsilon\)</span>: with a small
 value (0.1) we see that <span class="math">\(\bar Q\approx 0\)</span>, which justifies the
 simplifications performed above. We also observe that all the unknowns
 vary between 0 and about 1, indicating that the scaling is successful
 for the chosen dimensionless numbers.</p>
-<div class="figure" id="id7">
+<div class="figure" id="id9">
 <span id="scale-mmk-fig"></span><a class="reference internal image-reference" href="_images/biochem.png"><img alt="_images/biochem.png" src="_images/biochem.png" style="width: 700px;" /></a>
 <p class="caption"><span class="caption-text"><em>Simulation of a biochemical process</em></span></p>
 </div>
@@ -1478,33 +1512,45 @@ for the chosen dimensionless numbers.</p>
 <li><a class="reference internal" href="#step-5-estimate-the-scales">Step 5: Estimate the scales</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#making-software-utilizing-the-dimensionless-model">Making software utilizing the dimensionless model</a><ul>
+<li><a class="reference internal" href="#making-software-for-utilizing-the-scaled-model">Making software for utilizing the scaled model</a><ul>
 <li><a class="reference internal" href="#software-for-the-original-problem-with-dimensions">Software for the original problem with dimensions</a></li>
-<li><a class="reference internal" href="#a-plain-solution">A plain solution</a></li>
-<li><a class="reference internal" href="#simplifying-the-implementation-with-joblib">Simplifying the implementation with joblib</a></li>
+<li><a class="reference internal" href="#avoiding-unnecessary-computations">Avoiding unnecessary computations</a></li>
+<li><a class="reference internal" href="#implementation-with-joblib">Implementation with joblib</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#scaling-a-generalized-problem">Scaling a generalized problem</a><ul>
-<li><a class="reference internal" href="#exact-solution-1">Exact solution  (1)</a></li>
+<li><a class="reference internal" href="#exact-solution-1">Exact solution</a></li>
 <li><a class="reference internal" href="#theory">Theory</a></li>
-<li><a class="reference internal" href="#software-1">Software  (1)</a></li>
+<li><a class="reference internal" href="#software-1">Software</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#variable-coefficients">Variable coefficients</a></li>
-<li><a class="reference internal" href="#scaling-a-cooling-problem-with-constant-surroundings">Scaling a cooling problem with constant surroundings</a></li>
+<li><a class="reference internal" href="#scaling-a-cooling-problem-with-constant-surroundings">Scaling a cooling problem with constant surroundings</a><ul>
+<li><a class="reference internal" href="#exact-solution-2">Exact solution</a></li>
+<li><a class="reference internal" href="#scaling-1">Scaling</a></li>
+<li><a class="reference internal" href="#software-2">Software</a></li>
+<li><a class="reference internal" href="#alternative-scaling-1">Alternative scaling</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#scaling-a-cooling-problem-with-time-dependent-surroundings">Scaling a cooling problem with time-dependent surroundings</a><ul>
-<li><a class="reference internal" href="#exact-solution-2">Exact solution  (2)</a></li>
-<li><a class="reference internal" href="#scaling-1">Scaling  (1)</a></li>
-<li><a class="reference internal" href="#software-2">Software  (2)</a></li>
-<li><a class="reference internal" href="#discussion-of-the-time-scale-1">Discussion of the time scale  (1)</a></li>
+<li><a class="reference internal" href="#exact-solution-3">Exact solution</a></li>
+<li><a class="reference internal" href="#scaling-2">Scaling</a></li>
+<li><a class="reference internal" href="#software-3">Software</a></li>
+<li><a class="reference internal" href="#discussion-of-the-time-scale-1">Discussion of the time scale</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#scaling-a-nonlinear-ode">Scaling a nonlinear ODE</a></li>
-<li><a class="reference internal" href="#ode-systems-for-spreading-of-diseases">ODE systems for spreading of diseases</a><ul>
-<li><a class="reference internal" href="#sir-model">SIR model</a></li>
+<li><a class="reference internal" href="#scaling-a-nonlinear-ode">Scaling a nonlinear ODE</a><ul>
+<li><a class="reference internal" href="#scaling-3">Scaling</a></li>
+<li><a class="reference internal" href="#alternative-scaling-2">Alternative scaling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#sir-ode-system-for-spreading-of-diseases">SIR ODE system for spreading of diseases</a><ul>
+<li><a class="reference internal" href="#scaling-4">Scaling</a></li>
+<li><a class="reference internal" href="#software-4">Software</a></li>
+<li><a class="reference internal" href="#alternative-scaling-3">Alternative scaling</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#sirv-model-with-finite-immunity">SIRV model with finite immunity</a></li>
-</ul>
-</li>
 <li><a class="reference internal" href="#michaelis-menten-kinetics-for-biochemical-reactions">Michaelis-Menten kinetics for biochemical reactions</a><ul>
 <li><a class="reference internal" href="#classical-analysis">Classical analysis</a></li>
 <li><a class="reference internal" href="#dimensionless-ode-system">Dimensionless ODE system</a></li>

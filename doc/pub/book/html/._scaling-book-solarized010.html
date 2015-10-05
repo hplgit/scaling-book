@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-pray model,Lotka-Volterra, competing species model">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-pray model,Lotka-Volterra, competing species model">
 
 <title>Scaling of Differential Equations</title>
 
@@ -67,10 +67,11 @@ div { text-align: justify; text-justify: inter-word; }
               ('Base units and dimensions', 2, None, '___sec3'),
               ('Dimensions of common physical quantities',
                2,
-               None,
-               '___sec4'),
-              ('Prefixes for units', 2, None, '___sec5'),
-              ('Unit systems', 2, None, '___sec6'),
+               'scale:dimunit:tables',
+               'scale:dimunit:tables'),
+              ('Prefixes for units', 3, None, '___sec5'),
+              ('Errors and units', 2, None, '___sec6'),
+              ('Unit systems', 2, None, '___sec7'),
               ('PhysicalQuantity: object for computing with units',
                2,
                'scale:PQ',
@@ -79,28 +80,28 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:parampool',
                'scale:parampool'),
-              ('Example application', 3, None, '___sec9'),
-              ('Pool of parameters', 2, None, '___sec10'),
-              ('Fetching pool data for computing', 2, None, '___sec11'),
-              ('Reading command-line options', 2, None, '___sec12'),
-              ('Setting default values in a file', 2, None, '___sec13'),
+              ('Example application', 3, None, '___sec10'),
+              ('Pool of parameters', 2, None, '___sec11'),
+              ('Fetching pool data for computing', 2, None, '___sec12'),
+              ('Reading command-line options', 2, None, '___sec13'),
+              ('Setting default values in a file', 2, None, '___sec14'),
               ('Specifying multiple values of input parameters',
                2,
                None,
-               '___sec14'),
-              ('Generating a graphical user interface', 2, None, '___sec15'),
-              ('ODE models', 0, None, '___sec16'),
+               '___sec15'),
+              ('Generating a graphical user interface', 2, None, '___sec16'),
+              ('ODE models', 0, None, '___sec17'),
               ('Exponential decay problems',
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec18'),
-              ('The basic model problem', 2, None, '___sec19'),
-              ('Example: Population dynamics', 3, None, '___sec20'),
+              ('Fundamental ideas', 2, None, '___sec19'),
+              ('The basic model problem', 2, None, '___sec20'),
+              ('Example: Population dynamics', 3, None, '___sec21'),
               ('Example: Decay of pressure with altitude',
                3,
                None,
-               '___sec21'),
+               '___sec22'),
               ('The technical steps of the scaling procedure',
                2,
                'sec:scale:decay:steps',
@@ -108,37 +109,34 @@ div { text-align: justify; text-justify: inter-word; }
               ('Step 1: Identify independent and dependent variables',
                3,
                None,
-               '___sec23'),
+               '___sec24'),
               ('Step 2: Make independent and dependent variables dimensionless',
                3,
                None,
-               '___sec24'),
+               '___sec25'),
               ('Step 3: Derive the model involving only dimensionless variables',
                3,
                None,
-               '___sec25'),
-              ('Step 4: Make each term dimensionless', 3, None, '___sec26'),
-              ('Step 5: Estimate the scales', 3, None, '___sec27'),
-              ('Making software utilizing the dimensionless model',
+               '___sec26'),
+              ('Step 4: Make each term dimensionless', 3, None, '___sec27'),
+              ('Step 5: Estimate the scales', 3, None, '___sec28'),
+              ('Making software for utilizing the scaled model',
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
               ('Software for the original problem with dimensions',
                3,
                None,
-               '___sec29'),
-              ('A plain solution', 3, None, '___sec30'),
-              ('Simplifying the implementation with joblib',
-               3,
-               None,
-               '___sec31'),
+               '___sec30'),
+              ('Avoiding unnecessary computations', 3, None, '___sec31'),
+              ('Implementation with joblib', 3, None, '___sec32'),
               ('Scaling a generalized problem',
                2,
                'sec:scale:decay:body',
                'sec:scale:decay:body'),
-              ('Exact solution', 3, None, '___sec33'),
-              ('Theory', 3, None, '___sec34'),
-              ('Software', 3, None, '___sec35'),
+              ('Exact solution', 3, None, '___sec34'),
+              ('Theory', 3, None, '___sec35'),
+              ('Software', 3, None, '___sec36'),
               ('Variable coefficients',
                2,
                'sec:scale:decay:jump',
@@ -147,40 +145,52 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
+              ('Exact solution', 3, None, '___sec39'),
+              ('Scaling', 3, None, '___sec40'),
+              ('Software', 3, None, '___sec41'),
+              ('Alternative scaling', 3, None, '___sec42'),
               ('Scaling a cooling problem with time-dependent surroundings',
                2,
                'scale:decay:cooling:osc',
                'scale:decay:cooling:osc'),
-              ('Exact solution', 3, None, '___sec39'),
-              ('Scaling', 3, None, '___sec40'),
-              ('Software', 3, None, '___sec41'),
-              ('Discussion of the time scale', 3, None, '___sec42'),
+              ('Exact solution', 3, None, '___sec44'),
+              ('Scaling', 3, None, '___sec45'),
+              ('Software', 3, None, '___sec46'),
+              ('Discussion of the time scale', 3, None, '___sec47'),
               ('Scaling a nonlinear ODE',
                2,
                'sec:scale:decay:nonlinear',
                'sec:scale:decay:nonlinear'),
-              ('ODE systems for spreading of diseases', 2, None, '___sec44'),
-              ('SIR model', 3, None, '___sec45'),
-              ('SIRV model with finite immunity', 3, None, '___sec46'),
+              ('Scaling', 3, None, '___sec49'),
+              ('Alternative scaling', 3, None, '___sec50'),
+              ('SIR ODE system for spreading of diseases',
+               2,
+               None,
+               '___sec51'),
+              ('Scaling', 3, None, '___sec52'),
+              ('Software', 3, None, '___sec53'),
+              ('Alternative scaling', 3, None, '___sec54'),
+              ('SIRV model with finite immunity', 2, None, '___sec55'),
               ('Michaelis-Menten kinetics for biochemical reactions',
                2,
                'scale:MMK',
                'scale:MMK'),
-              ('Classical analysis', 3, None, '___sec48'),
-              ('Dimensionless ODE system', 3, None, '___sec49'),
-              ('Determining scales', 3, None, '___sec50'),
-              ('Analysis of the scaled system', 3, None, '___sec51'),
+              ('Classical analysis', 3, None, '___sec57'),
+              ('Dimensionless ODE system', 3, None, '___sec58'),
+              ('Determining scales', 3, None, '___sec59'),
+              ('Analysis of the scaled system', 3, None, '___sec60'),
               ('Vibration problems', 1, 'sec:scale:vib', 'sec:scale:vib'),
               ('Undamped vibrations without forcing',
                2,
                'sec:scale:vib:undamped',
                'sec:scale:vib:undamped'),
-              ('The first technical steps of scaling', 3, None, '___sec54'),
-              ('The exact solution', 3, None, '___sec55'),
-              ('Discussion of the displacement scale', 3, None, '___sec56'),
-              ('Discussion of the time scale', 3, None, '___sec57'),
-              ('Alternative displacement scale', 3, None, '___sec58'),
-              ('About frequency and dimensions', 3, None, '___sec59'),
+              ('The first technical steps of scaling', 3, None, '___sec63'),
+              ('The exact solution', 3, None, '___sec64'),
+              ('Discussion of the displacement scale', 3, None, '___sec65'),
+              ('Discussion of the time scale', 3, None, '___sec66'),
+              ('The dimensionless solution', 3, None, '___sec67'),
+              ('Alternative displacement scale', 3, None, '___sec68'),
+              ('About frequency and dimensions', 3, None, '___sec69'),
               ('Undamped vibrations with constant forcing',
                2,
                'sec:scale:vib:undamped:mg',
@@ -192,64 +202,77 @@ div { text-align: justify; text-justify: inter-word; }
               ('Investigating scales via analytical solutions',
                3,
                None,
-               '___sec62'),
-              ('The displacement and time scales', 3, None, '___sec63'),
+               '___sec72'),
+              ('The displacement and time scales', 3, None, '___sec73'),
               ('Finding the displacement scale from the differential equation',
                3,
                None,
-               '___sec64'),
+               '___sec74'),
               ('Scaling with free vibrations as time scale',
                3,
                None,
-               '___sec65'),
-              ('Software', 3, None, '___sec66'),
-              ('Choice of $u_c$ close to resonance', 3, None, '___sec67'),
-              ('Unit size of all terms in the ODE', 3, None, '___sec68'),
+               '___sec75'),
+              ('Software', 3, None, '___sec76'),
+              ('Choice of $u_c$ close to resonance', 3, None, '___sec77'),
+              ('Unit size of all terms in the ODE', 3, None, '___sec78'),
               ('Choice of $u_c$ when $\\psi\\gg\\omega$',
                3,
                None,
-               '___sec69'),
-              ('Displacement scale based on $I$', 3, None, '___sec70'),
+               '___sec79'),
+              ('Displacement scale based on $I$', 3, None, '___sec80'),
               ('Damped vibrations with forcing',
                2,
                'sec:scale:vib:damped:F',
                'sec:scale:vib:damped:F'),
-              ('The exact solution', 3, None, '___sec72'),
-              ('Choosing scales', 3, None, '___sec73'),
-              ('Choice of $u_c$ at resonance', 3, None, '___sec74'),
+              ('The exact solution', 3, None, '___sec82'),
+              ('Choosing scales', 3, None, '___sec83'),
+              ('Choice of $u_c$ at resonance', 3, None, '___sec84'),
               ('Choice of $u_c$ when $\\omega\\gg\\psi$',
                3,
                None,
-               '___sec75'),
+               '___sec85'),
               ('Choice of $u_c$ when $\\omega\\ll\\psi$',
                3,
                None,
-               '___sec76'),
-              ('Oscillating electric circuits', 2, None, '___sec77'),
-              ('Basic PDE models', 0, None, '___sec78'),
+               '___sec86'),
+              ('Oscillating electric circuits', 2, None, '___sec87'),
+              ('Basic PDE models', 0, None, '___sec88'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec80'),
+               '___sec90'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec81'),
-              ('Waves on a string', 3, None, '___sec82'),
-              ('Detecting an already computed case', 3, None, '___sec83'),
+               '___sec91'),
+              ('Waves on a string', 3, None, '___sec92'),
+              ('Detecting an already computed case', 3, None, '___sec93'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
+              ('Scaling', 3, None, '___sec95'),
+              ('Software', 3, None, '___sec96'),
+              ('Specific case', 3, None, '___sec97'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
+              ('Analytical insight', 3, None, '___sec99'),
+              ('Scaling', 3, None, '___sec100'),
+              ('Nonzero initial shape', 3, None, '___sec101'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
+              ('Non-dimensionalization', 3, None, '___sec103'),
+              ('Choosing the time scale', 3, None, '___sec104'),
+              ('Choosing the spatial scale', 3, None, '___sec105'),
+              ('Scaling the velocity initial condition',
+               3,
+               None,
+               '___sec106'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -257,23 +280,19 @@ div { text-align: justify; text-justify: inter-word; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec88'),
+               '___sec108'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
                'sec:scale:diffu'),
-              ('Homogeneous diffusion equation',
+              ('Homogeneous 1D diffusion equation',
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Simplified 1D PDE', 3, None, '___sec91'),
-              ('Generalized PDE', 3, None, '___sec92'),
-              ('Jump boundary condition', 2, None, '___sec93'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec94'),
-              ('Diffusion equation with source term',
-               2,
-               'sec:scale:diffu:source',
-               'sec:scale:diffu:source'),
+              ('Generalized diffusion PDE', 2, None, '___sec111'),
+              ('Jump boundary condition', 2, None, '___sec112'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec113'),
+              ('Scaling', 3, None, '___sec114'),
               ("Fisher's equation",
                2,
                'sec:scale:diffu:Fisher',
@@ -285,14 +304,32 @@ div { text-align: justify; text-justify: inter-word; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec98'),
-              ('Stationary PDE', 2, None, '___sec99'),
+               '___sec117'),
+              ('Stationary PDE', 2, None, '___sec118'),
               ('Convection-diffusion with a force term',
                2,
                'scale:convdiff',
                'scale:convdiff'),
-              ('Advanced PDE models', 0, None, '___sec101'),
-              ('The equations of linear elasticity', 1, None, '___sec102'),
+              ('Advanced PDE models', 0, None, '___sec120'),
+              ('The equations of linear elasticity',
+               1,
+               'scale:elasticity',
+               'scale:elasticity'),
+              ('The general time-dependent elasticity problem',
+               2,
+               None,
+               '___sec122'),
+              ('Software', 3, None, '___sec123'),
+              ('Dimensionless stress tensor', 2, None, '___sec124'),
+              ('When can the acceleration term be neglected?',
+               2,
+               'scale:elasticity:waves',
+               'scale:elasticity:waves'),
+              ('S waves', 3, None, '___sec126'),
+              ('P waves', 3, None, '___sec127'),
+              ('Time-varying load', 3, None, '___sec128'),
+              ('The stationary elasticity problem', 2, None, '___sec129'),
+              ('Quasi-static thermo-elasticity', 2, None, '___sec130'),
               ('The Navier-Stokes equations',
                1,
                'sec:scale:ns',
@@ -300,50 +337,50 @@ div { text-align: justify; text-justify: inter-word; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec104'),
+               '___sec132'),
               ('The most common dimensionless form of the Navier-Stokes equations',
                2,
                None,
-               '___sec105'),
+               '___sec133'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec106'),
-              ('Shear stress as pressure scale', 2, None, '___sec107'),
-              ('Including the gravity force', 2, None, '___sec108'),
-              ('Oscillating boundary conditions', 2, None, '___sec109'),
-              ('The Euler number', 2, None, '___sec110'),
-              ('Free surface conditions', 2, None, '___sec111'),
-              ('Thermal convection', 1, None, '___sec112'),
-              ('Forced convection', 2, None, '___sec113'),
+               '___sec134'),
+              ('Shear stress as pressure scale', 2, None, '___sec135'),
+              ('Including the gravity force', 2, None, '___sec136'),
+              ('Oscillating boundary conditions', 2, None, '___sec137'),
+              ('The Euler number', 2, None, '___sec138'),
+              ('Free surface conditions', 2, None, '___sec139'),
+              ('Thermal convection', 1, None, '___sec140'),
+              ('Forced convection', 2, None, '___sec141'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec115'),
-              ('Heating by viscous effects', 3, None, '___sec116'),
+              ('Governing equations', 3, None, '___sec143'),
+              ('Heating by viscous effects', 3, None, '___sec144'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec117'),
+               '___sec145'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec118'),
-              ('The Boussinesq approximation', 3, None, '___sec119'),
-              ('Scaling', 3, None, '___sec120'),
+               '___sec146'),
+              ('The Boussinesq approximation', 3, None, '___sec147'),
+              ('Scaling', 3, None, '___sec148'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec121'),
-              ('Heat transfer at boundaries', 2, None, '___sec122'),
+               '___sec149'),
+              ('Heat transfer at boundaries', 2, None, '___sec150'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec124'),
-              ('The Euler equations of gas dynamics', 1, None, '___sec125'),
-              ('Exercises', 1, None, '___sec126'),
+              ('Two-phase porous media flow', 1, None, '___sec152'),
+              ('The Euler equations of gas dynamics', 1, None, '___sec153'),
+              ('Exercises', 1, None, '___sec154'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -352,73 +389,77 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:exer:ball_y',
                'sec:scale:exer:ball_y'),
-              ('Problem 3: Scale a nonlinear ODE',
+              ('Exercise 3: Perform alternative scalings',
+               2,
+               'sec:scale:exer:decay:cooling:osc',
+               'sec:scale:exer:decay:cooling:osc'),
+              ('Problem 4: Scale a nonlinear ODE',
                2,
                'sec:scale:exer:ball_y_wdrag',
                'sec:scale:exer:ball_y_wdrag'),
-              ('Exercise 4: Implement a scaled model with jump',
+              ('Exercise 5: Implement a scaled model with jump',
                2,
                'sec:scale:exer:decay:jump',
                'sec:scale:exer:decay:jump'),
-              ('Exercise 5: Implement a scaled model for cooling',
+              ('Exercise 6: Implement a scaled model for cooling',
                2,
                'sec:scale:exer:decay:cooling',
                'sec:scale:exer:decay:cooling'),
-              ('Problem 6: Scale variable coefficients',
+              ('Problem 7: Scale variable coefficients',
                2,
                'scale:decay:exer:decay:step',
                'scale:decay:exer:decay:step'),
-              ('Exercise 7: Alternative scalings of a cooling model',
+              ('Exercise 8: Alternative scalings of a cooling model',
                2,
                'scale:decay:exer:cooling:Ts',
                'scale:decay:exer:cooling:Ts'),
-              ('Exercise 8: Alternative scalings of a cooling model',
+              ('Exercise 9: Alternative scalings of a cooling model',
                2,
                'scale:decay:exer:nonlin:logistic2',
                'scale:decay:exer:nonlin:logistic2'),
-              ('Exercise 9: Scale projectile motion',
+              ('Exercise 10: Scale projectile motion',
                2,
                'scale:vib:exer:projectile',
                'scale:vib:exer:projectile'),
-              ('Problem 10: Scale a predator-pray model',
+              ('Problem 11: Scale a predator-pray model',
                2,
                'scale:decay:exer:predpray',
                'scale:decay:exer:predpray'),
-              ('Problem 11: Scale a model for competing species',
+              ('Problem 12: Scale a model for competing species',
                2,
                'scale:decay:exer:competing_species',
                'scale:decay:exer:competing_species'),
-              ('Problem 12: Find the period of sinusoidal signals',
+              ('Problem 13: Find the period of sinusoidal signals',
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec139'),
-              ('Problem 13: Scale the pendulum equation',
+              ('Remarks', 3, None, '___sec168'),
+              ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
                'sec:scale:exer:pendulum'),
-              ("Problem 14: Scale Duffing's equation",
+              ("Problem 15: Scale Duffing's equation",
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
-              ('Problem 15: Scale a stationary Couette flow',
+              ('Problem 16: Scale a stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec143'),
-              ('Problem 16: Scale a starting Couette flow',
+              ('Remarks', 3, None, '___sec172'),
+              ('Problem 17: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 17: Scale Couette flow with pressure gradient',
+              ('Exercise 18: Scale Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 18: Suggestions...',
+              ('Exercise 19: Suggestions...',
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec147')]}
+              ('References', 1, None, '___sec176')]}
 end of tocinfo -->
 
 <body>
@@ -447,6 +488,8 @@ $$
 \renewcommand{\u}{\boldsymbol{u}}
 \renewcommand{\v}{\boldsymbol{v}}
 \newcommand{\f}{\boldsymbol{f}}
+\newcommand{\stress}{\boldsymbol{\sigma}}
+\newcommand{\I}{\boldsymbol{I}}
 \newcommand{\dfc}{\alpha}  % diffusion coefficient
 \newcommand{\ii}{\boldsymbol{i}}
 \newcommand{\jj}{\boldsymbol{j}}
@@ -471,7 +514,7 @@ $$
 <p>
 <!-- !split -->
 
-<center><h1 id="___sec101">Advanced PDE models </h1></center> <hr>
+<center><h1 id="___sec120">Advanced PDE models </h1></center> <hr>
 
 <p>
 This final chapter addresses more complicated PDE models, including
@@ -479,56 +522,339 @@ linear elasticity, viscous flow, heat transfer, porous media flow,
 gas dynamics, and electrophysiology. A range of
 classical dimensionless numbers are discussed in terms of the scaling.
 
-<h1 id="___sec102">The equations of linear elasticity </h1>
+<h1 id="scale:elasticity">The equations of linear elasticity</h1>
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 9</b>: Do thermo-elasticity? The chapter could then be named PDE system models. Can do stationary thermo-elasticity, but single time-dependent model.)</font>
+<font color="red">(<b>hpl 16</b>: It seems that the equations of elasticity and thermo-elasticity are never (?) non-dimensionalized in the literature.)</font>
 <!-- end inline comment -->
 
+<h2 id="___sec122">The general time-dependent elasticity problem </h2>
+
 <p>
-Sketch:
+The following vector PDE governs deformation and stress in purely elastic
+materials, under the assumption of small displacement gradients:
 
 $$
 \begin{equation}
 \varrho\frac{\partial^2\u}{\partial t^2} =
 \nabla ((\lambda + \mu)\nabla\cdot\u) + \nabla\cdot(\mu\nabla\u) +
-\varrho\boldsymbol{f}\tp
+\varrho\f\tp
+\tag{163}
 \end{equation}
 $$
 
+Here, \( \u \) is the displacement vector,
+\( \varrho \) is the density of the material, \( \lambda \) and \( \mu \) are
+the Lame elasticity parameters, and \( \f \) is a body force (gravity,
+centrifugal force, or similar).
+
+<p>
+We introduce dimensionless variables:
+
+$$ \bar\u = u_c^{-1}\u,\quad \bar x = \frac{x}{L},\quad \bar t = \frac{f}{t_c},$$
+
+where \( L \) is some length scale we used to scale \( y \) and \( z \) as well.
+Also the elasticity parameters and the density can be scaled, if they
+are not constants,
+
+$$ \bar\lambda = \frac{\lambda}{\lambda_c},\quad
+\bar\mu = \frac{\mu}{\mu_c},\quad
+\bar\varrho = \frac{\varrho}{\varrho_c},$$
+
+where the characteristic quantities are typically spatial maximum values of
+the functions:
+
+$$ \lambda_c = \max_{x,y,z}\lambda,\quad
+\mu_c = \max_{x,y,z}\mu,\quad
+\varrho_c = \max_{x,y,z}\varrho\tp$$
+
+Finally, we scale \( \f \) too (if not constant):
+
+$$ \bar\f = f_c^{-1}\f,\quad f_c = \max_{x,y,z,t}||\f||\tp$$
+
+<p>
+Inserting the dimensionless quantities in the governing vector PDE results in
+
+$$
+\frac{\varrho_c u_c}{t_c^2}
+\frac{\partial^2\bar \u}{\partial \bar t^2} =
+L^{-2}u_c\bar \nabla ((\lambda_c\bar\lambda +
+\mu_c\bar\mu)\bar \nabla\cdot\bar \u) +
+L^{-2}u_c\mu_c\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\varrho_cf_c\bar\varrho\bar\f\tp
+$$
+
+Making the terms non-dimensional gives the equation
 
 $$
 \begin{equation}
-\varrho\frac{\partial^2\bar \u}{\partial \bar t^2} =
-\bar \nabla ((\frac{t_c^2\lambda_c}{\varrho L^2}\bar\lambda +
-\frac{t_c^2\mu_c}{\varrho L^2}\mu)\bar \nabla\cdot\bar \u) +
-\frac{t_c^2\mu_c}{\varrho L^2}\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\frac{t_c^2f_c}{u_c}\bar\f\tp
+\bar\varrho\frac{\partial^2\bar \u}{\partial \bar t^2} =
+\frac{t_c^2\lambda_c}{L^2\varrho_c}
+\bar \nabla (\bar\lambda\bar\nabla\cdot\bar u) +
+\frac{t_c^2\mu_c}{L^2\varrho_c}
+\bar\nabla(\bar\mu \bar\nabla\cdot\bar \u) +
+\frac{t_c^2\mu_c}{L^2\varrho_c}\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\frac{t_c^2f_c}{u_c}\bar\varrho\bar\f\tp
+\tag{164}
 \end{equation}
 $$
 
+We may choose \( t_c \) to make the coefficient in front of any of the spatial
+derivative terms equal unity. Here we choose the \( \mu \) term, which implies
 
-$$ t_c = L\sqrt{\frac{\varrho}{\mu_c}}$$
+$$ t_c = L\sqrt{\frac{\varrho_c}{\mu_c}}\tp$$
+
+The scale for \( \u \) can be chosen from an initial displacement or by
+making the coefficient in front of the \( \bar\f \) term unity. The latter
+means
+
+$$ u_c = \mu_c^{-1}f_cL^2\varrho_c\tp$$
+
+The resulting dimensionless PDE becomes
+
+$$
+\begin{equation}
+\bar\varrho\frac{\partial^2\bar \u}{\partial \bar t^2} =
+\bar \nabla ((\beta\bar\lambda + \bar\mu)\bar\nabla\cdot\bar u) +
+\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\bar\varrho\bar\f\tp
+\tag{165}
+\end{equation}
+$$
+
+The only dimensionless parameter is
+
+$$ \beta = \frac{\lambda_c}{\mu_c}\tp$$
+
+If the source term is absent, we must use the initial condition or
+a known boundary displacement to
+determine \( u_c \).
+
+<h3 id="___sec123">Software </h3>
+
+<p>
+Given software for <a href="#mjx-eqn-163">(163)</a>,
+we can simulate the dimensionless problem by setting \( \varrho =\bar\varrho \),
+\( \lambda =\beta\bar\lambda \), and \( \mu = \bar\mu \).
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 10</b>: Relate this to elastic waves.)</font>
+<font color="red">(<b>hpl 17</b>: What about setting boundary conditions?)</font>
 <!-- end inline comment -->
 
+<h2 id="___sec124">Dimensionless stress tensor </h2>
 
-$$ u_c = \frac{\varrho L^2f_c}{\mu_c}$$
+<p>
+The stress tensor \( \stress \) is a key quantity in elasticity and is given by
 
+$$ \stress = \lambda\nabla\cdot\u\I + \mu(\nabla\u + (\nabla\u)^T)\tp$$
+
+Inserting dimensionless variables on the right-hand side gives
+
+$$
+\begin{align*}
+\stress &= \lambda_cu_cL^{-2}\bar\lambda\bar\nabla\cdot\bar\u
++ \mu_cu_cL^{-1}\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\\ 
+&= \mu_c u_cL^{-1}\left(\beta\bar\lambda\bar\nabla\cdot\bar\u +
+\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\right)\tp
+\end{align*}
+$$
+
+The coefficient on the right-hand side, \( \mu_c u_cL^{-1} \), has dimension
+of stress, since (according to the second table in
+the section <a href="._scaling-book-solarized004.html#scale:dimunit:tables">Dimensions of common physical quantities</a>) \( [\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1})(\hbox{L})(\hbox{L}^{-1})]
+=[\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \), which is the dimension of stress.
+The quantity \( \mu_c u_cL^{-1} \) is therefore the natural scale of the
+stress tensor:
+
+$$ \bar\stress = \frac{\stress}{\sigma_c},\quad \sigma_c = \mu_c u_c L^{-1},$$
+
+and we have the dimensionless stress-displacement relation
 
 $$
 \begin{equation}
-\varrho\frac{\partial^2\bar \u}{\partial \bar t^2} =
-\bar \nabla ((\alpha\bar\lambda +
+\bar\stress =
+\beta\bar\lambda\bar\nabla\cdot\bar\u +
+\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\tp
+\tag{166}
+\end{equation}
+$$
+
+<h2 id="scale:elasticity:waves">When can the acceleration term be neglected?</h2>
+
+<p>
+A lot of applications of the elasticity equation involves static or
+quasi-static deformations where the acceleration term
+\( \varrho\u_{tt} \) is neglected. Now we shall see under which conditions
+the quasi-static approximation holds.
+
+<p>
+The further discussion will need to look into the time scales
+of elastic waves, because it turns out that
+the chosen \( t_c \) above is closely linked to properties of
+elastic waves in a homogeneous body without body forces.
+That is, we have constant \( \varrho \), \( \lambda \), and \( \mu \),
+and no force term:
+
+$$
+\begin{equation}
+\varrho\frac{\partial^2\u}{\partial t^2} =
+(\lambda + \mu)\nabla \nabla\cdot\u + \mu\nabla^2\u\tp
+\tag{167}
+\end{equation}
+$$
+
+<h3 id="___sec126">S waves </h3>
+
+<p>
+Let us take the curl of this PDE and notice
+that the curl of a  gradient vanishes. The result is
+
+$$\frac{\partial^2}{\partial t^2}\nabla\times\u = c_S^2\nabla^2\nabla\times\u,$$
+
+i.e., a wave equation for \( \nabla\times\u \). The wave velocity is
+
+$$ c_S = \sqrt{\frac{\mu}{\varrho}}\tp$$
+
+The corresponding waves are called
+<a href="https://en.wikipedia.org/wiki/S-wave" target="_self">S waves</a>. The curl of a
+displacement field is closely related to rotation of continuum elements.
+
+<p>
+The divergence of a displacement field can be interpreted as the
+volume change of continuum elements. Suppose this volume change vanishes,
+\( \nabla\cdot\u = 0 \), which means that the material is incompressible.
+The elasticity equation then simplifies to
+
+$$\frac{\partial^2 \u}{\partial t^2} = c_S^2\nabla^2\u,$$
+
+so each components of
+the displacement field in this case also propagates as a wave
+with speed \( c_S^2 \).
+The time it takes for such a wave to travel one characteristic length
+\( L \) is \( L/c_S \), i.e., \( L\sqrt{\varrho/\mu} \), which is nothing but
+our characteristic time \( t_c \).
+
+<h3 id="___sec127">P waves </h3>
+
+<p>
+We may take the divergence of the PDE instead and notice that \( \nabla\cdot\nabla
+=\nabla^2 \) so
+
+$$\frac{\partial^2}{\partial t^2}\nabla\dot\u = c_P^2\nabla^2\nabla\dot\u,$$
+
+with wave velocity
+
+$$ c_P = \sqrt{\frac{\lambda +2\mu}{\varrho}}\tp$$
+
+That is, the volume change propagates as a wave with speed \( c_P \).
+These type of waves are called <a href="https://en.wikipedia.org/wiki/P-wave" target="_self">P waves</a>.
+
+<p>
+Suppose now that \( \nabla\times\u =0 \), i.e., there is no rotation (&quot;shear&quot;) of
+continuum elements. Mathematically this condition implies that
+\( \nabla^2\u = \nabla(\nabla\cdot\u) \) (see any book on vector calculus
+or <a href="https://en.wikipedia.org/wiki/Vector_calculus_identities" target="_self">Wikipedia</a>).
+Our model equation <a href="#mjx-eqn-167">(167)</a> then reduces to
+
+$$ \frac{\partial^2\u}{\partial t^2} = c_P^2\nabla^2\u,$$
+
+which is nothing but a wave equation for each component of the
+displacement field.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 18</b>: Think about the suitability of &quot;no shear&quot; as characteristic for curl-free \( \u \).)</font>
+<!-- end inline comment -->
+
+<h3 id="___sec128">Time-varying load </h3>
+
+<p>
+Suppose we have some time-varying boundary condition on \( \u \) or the
+stress vector (traction) that has time scale \( \omega \) (some
+oscillating movement that goes like \( \sin\omega t \) is an example). We
+choose \( t_c=1/\omega \).  The scaling now leads to
+
+$$
+\gamma
+\frac{\partial^2\bar \u}{\partial \bar t^2} =
+\bar \nabla ((\beta\bar\lambda +
 \bar\mu)\bar \nabla\cdot\bar \u) +
 \bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\f\tp
+\frac{\varrho_cL^2 f_c}{u_c\mu_c}\bar\varrho\bar\f\tp
+$$
+
+where
+
+$$ u_c = \mu_c^{-1}f_cL^2\varrho_c,$$
+
+as before, and \( \gamma \) is a new dimensionless number,
+
+$$ \gamma = \frac{\varrho_cL^2 \omega^2}{\mu_c} =
+\left(\frac{L\sqrt{\varrho_c/\mu_c}}{1/\omega}\right)^2\tp$$
+
+The last rewrite shows that \( \sqrt{\gamma} \) is the ratio of
+the time scale for S waves and the time scale for the forced
+movement on the boundary. The acceleration term can therefore
+be neglected when \( \gamma\ll 1 \), i.e., when the time scale
+for movement on the boundary is much larger than the time it
+takes for the S waves to travel through the domain.
+Since the velocity of S waves in solids is very large and
+the time scale correspondingly small, \( \gamma\ll 1 \)
+is very often the case in applications.
+
+<h2 id="___sec129">The stationary elasticity problem </h2>
+
+<p>
+We now look at the stationary version of
+<a href="#mjx-eqn-163">(163)</a> where the \( \varrho\u_{tt} \) term is
+removed. The first step in the scaling is
+
+$$
+0 =
+L^{-2}u_c\bar \nabla ((\lambda_c\bar\lambda +
+\mu_c\bar\mu)\bar \nabla\cdot\bar \u) +
+L^{-2}u_c\mu_c\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\varrho_cf_c\bar\varrho\bar\f\tp
+$$
+
+Dividing by \( L^2u_c\mu_c \) gives
+
+$$
+0 =
+\bar \nabla ((\beta\bar\lambda +
+\bar\mu)\bar \nabla\cdot\bar \u) +
+\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\frac{L^2\varrho_cf_c}{u_c\mu_c}\bar\varrho\bar\f\tp
+$$
+
+Choosing \( u_c = \varrho L^2f_c/\mu_c \) as before leads to
+
+$$
+\begin{equation}
+\bar \nabla ((\beta\bar\lambda +
+\bar\mu)\bar \nabla\cdot\bar \u) +
+\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\bar\varrho\bar\f = 0\tp
+\tag{168}
+\end{equation}
+$$
+
+<p>
+A homogeneous material with constant \( \lambda \) and \( \mu \)
+is an interesting case (this corresponds to \( \mu_c=\mu \), \( \lambda_c=\lambda \),
+\( \bar\lambda=\bar\mu=1 \)):
+
+$$
+\begin{equation}
+(1+\beta)\bar \nabla(\bar \nabla\cdot\bar \u) +
+\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
+\bar\varrho\bar\f = 0\tp
+\tag{169}
 \end{equation}
 $$
 
@@ -538,18 +864,36 @@ $$ \alpha = \frac{\lambda_c}{\mu_c}\tp$$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 11</b>: The homogeneous case without body force is common. Scale displacement from boundary condition. Maybe scale traction first and determine characteristic displacement from it?)</font>
+<font color="red">(<b>hpl 19</b>: The homogeneous case without body force is common. Scale displacement from boundary condition. Maybe scale traction first and determine characteristic displacement from it?)</font>
 <!-- end inline comment -->
+
+<h2 id="___sec130">Quasi-static thermo-elasticity </h2>
 
 <p>
+Heating solids give rise to expansion, i.e., strains, which may cause
+stress if displacements are constrained. The time scale of temperature
+changes are usually much larger than the time scales of elastic waves,
+so the stationary equations of elasticity can be used, but a term
+depends on the temperature, so the equations must be coupled to
+a PDE for heat transfer in solids. The resulting system of PDE is
+known as the equations of <em>thermo-elasticity</em> and reads
 
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 12</b>: The homogeneous case should be written up, then \( \mu_c=\mu \) and \( \bar\mu = 1 \), etc.)</font>
-<!-- end inline comment -->
+$$
+\begin{align}
+\nabla((\lambda + \mu)\nabla\cdot\u) + \nabla\cdot(\mu\nabla\u) &= \alpha\nabla T -\varrho\f,
+\tag{170}\\ 
+\varrho c \frac{\partial T}{\partial t} &= \nabla\cdot(\kappa\nabla T) + \varrho \f_T,
+\tag{171}
+\end{align}
+$$
+
+where \( T \) is the temperature, \( \alpha \) is a coefficient of thermal expansion,
+\( c \) is a heat capacity, \( \kappa \) is the heat conduction coefficient,
+and \( \f_T \) is some heat source.
 
 <h1 id="sec:scale:ns">The Navier-Stokes equations</h1>
 
-<h2 id="___sec104">The momentum equation without body forces </h2>
+<h2 id="___sec132">The momentum equation without body forces </h2>
 
 <p>
 The Navier-Stokes equations for incompressible viscous fluid flow
@@ -559,14 +903,14 @@ $$
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u,
-\tag{128}\\ 
+\tag{172}\\ 
 \nabla\cdot\u & = 0\tp
-\tag{129}
+\tag{173}
 \end{align}
 $$
 
 The primary unknowns are the
-\( \u \) is the velocity of the fluid and \( p \) is the pressure, while
+velocity \( \u \) and the pressure \( p \). Moreover,
 \( \varrho \) is the fluid density, and \( \mu \) is the dynamic viscosity.
 
 <p>
@@ -578,16 +922,16 @@ $$ \bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad
 
 where \( L \) is some characteristic distance,
 \( t_c \) is some characteristic time, \( u_c \) is a characteristic
-velocity, and \( p_c \) is characteristic pressure.
+velocity, and \( p_c \) is a characteristic pressure.
 Inserted in the equations,
 
 $$
 \begin{align}
 \varrho\left(\frac{u_c}{t_c}\frac{\partial \bar\u}{\partial \bar t} + \frac{u_c^2}{L}\bar\u\cdot\bar\nabla\bar\u\right)
 &= -\frac{p_c}{L}\bar\nabla\bar p + \frac{u_c}{L^2}\mu\bar \nabla^2\bar\u,
-\tag{130}\\ 
+\tag{174}\\ 
 \frac{u_c}{L}\bar\nabla\cdot\bar\u & = 0\tp
-\tag{131}
+\tag{175}
 \end{align}
 $$
 
@@ -595,7 +939,7 @@ For the velocity it is common to just introduce some \( U \) for
 \( u_c \). This \( U \) is normally implied by the problem description.
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 13</b>: Show examples of confined and unconfined flow and what \( U \) is.)</font>
+<font color="red">(<b>hpl 20</b>: Show examples of confined and unconfined flow and what \( U \) is.)</font>
 <!-- end inline comment -->
 
 For example, \( U \) is often chosen as a characteristic inlet velocity
@@ -609,19 +953,21 @@ $$ \frac{p_c}{\varrho U^2}\bar\nabla\bar p\tp$$
 
 The coefficient suggest a choice \( p_c=\varrho U^2 \) if the pressure
 gradient term is to have the same size as the acceleration terms.
+This \( p_c \) is also a very common pressure scale in fluid mechanics.
 
-<h2 id="___sec105">The most common dimensionless form of the Navier-Stokes equations </h2>
+<h2 id="___sec133">The most common dimensionless form of the Navier-Stokes equations </h2>
 
 <p>
 The discussions so far results in the following dimensionless form of
-<a href="#mjx-eqn-128">(128)</a> and <a href="#mjx-eqn-129">(129)</a>:
+<a href="#mjx-eqn-172">(172)</a> and <a href="#mjx-eqn-173">(173)</a>:
 $$
 \begin{align}
 \frac{\partial \bar\u}{\partial \bar t} +
 \bar\u\cdot\bar\nabla\bar\u
-&= -\bar\nabla p + \hbox{Re}^{-1}\nabla^2\u,
-\tag{132}\\ 
+&= -\bar\nabla\bar p + \hbox{Re}^{-1}\nabla^2\u,
+\tag{176}\\ 
 \bar\nabla\cdot \bar\u &= 0,
+\tag{177}
 \end{align}
 $$
 
@@ -643,7 +989,7 @@ $$ \hbox{Re} = \frac{\hbox{convection}}{\hbox{viscosity}} =
 (We have here used that \( \nabla\u \) goes like \( U/L \) and \( \nabla^2\u \)
 goes like \( U/L^2 \).)
 
-<h2 id="___sec106">Scaling of time for low Reynolds numbers </h2>
+<h2 id="___sec134">Scaling of time for low Reynolds numbers </h2>
 
 <p>
 As we discussed in the section <a href="._scaling-book-solarized009.html#scale:convdiff">Convection-diffusion with a force term</a> for the convection-diffusion
@@ -668,13 +1014,14 @@ $$
 \frac{\partial \bar\u}{\partial \bar t} +
 \hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u
 &= -\bar\nabla p + \nabla^2\u,
-\tag{133}\\ 
+\tag{178}\\ 
 \bar\nabla\cdot\bar\u &= 0\tp
+\tag{179}
 \end{align}
 $$
 
-As stated in the box in the section <a href="._scaling-book-solarized009.html#scale:convdiff">Convection-diffusion with a force term</a>, <a href="#mjx-eqn-133">(133)</a> is the appropriate PDE for very low Reynolds number flow and
-suggest neglecting the convection term.
+As stated in the box in the section <a href="._scaling-book-solarized009.html#scale:convdiff">Convection-diffusion with a force term</a>, <a href="#mjx-eqn-178">(178)</a> is the appropriate PDE for very low Reynolds number flow and
+suggests neglecting the convection term.
 If the flow is also steady, the time derivative term can be neglected,
 and we end up with the so-called <em>Stokes problem</em> for steady, slow, viscous
 flow:
@@ -682,19 +1029,20 @@ flow:
 $$
 \begin{align}
 -\bar\nabla p + \nabla^2\u &= 0,
-\tag{134}\\ 
+\tag{180}\\ 
 \bar\nabla\cdot\bar\u &= 0\tp
+\tag{181}
 \end{align}
 $$
 
 This flow regime is also known as <em>Stokes' flow</em> or <em>creeping flow</em>.
 
-<h2 id="___sec107">Shear stress as pressure scale </h2>
+<h2 id="___sec135">Shear stress as pressure scale </h2>
 
 <p>
 Instead of using the kinetic energy \( \varrho U^2 \) as pressure scale,
 one can use the shear stress \( \mu U/L \) (\( U/L \) reflects the spatial
-derivative of the velocity, as in the shear stress expression
+derivative of the velocity, which enters the shear stress expression
 \( \mu\partial u/\partial y \)). Using \( U \) as velocity scale, \( L/U \) as
 time scale, and \( \mu U/L \) as pressure scale, results in
 
@@ -703,20 +1051,21 @@ $$
 \hbox{Re}\left(\frac{\partial \bar\u}{\partial \bar t} +
 \bar\u\cdot\bar\nabla\bar\u\right)
 = -\bar\nabla\bar p + \nabla^2\bar\u\tp
+\tag{182}
 \end{equation}
 $$
 
-<h2 id="___sec108">Including the gravity force </h2>
+<h2 id="___sec136">Including the gravity force </h2>
 
 <p>
 We now add a gravity force to the momentum equation
-<a href="#mjx-eqn-128">(128)</a>:
+<a href="#mjx-eqn-172">(172)</a>:
 
 $$
 \begin{equation}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 = -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\tag{135}
+\tag{183}
 \end{equation}
 $$
 
@@ -727,15 +1076,15 @@ takes the following form after non-dimensionalization:
 $$ \frac{t_c}{\varrho  u_c}\varrho g \kk =  \frac{Lg}{U^2}\kk
 = \hbox{Fr}^{-2}\kk,$$
 
-where Fr is the Froude number,
+where Fr is the dimensionless Froude number,
 
 $$ \hbox{Fr} = \frac{U}{\sqrt{Lg}}\tp$$
 
-<h2 id="___sec109">Oscillating boundary conditions </h2>
+<h2 id="___sec137">Oscillating boundary conditions </h2>
 
 <p>
-Many flows has an oscillating nature, often arising from some
-oscillating boundary conditions. Suppose such a condition at some
+Many flows have an oscillating nature, often arising from some
+oscillating boundary condition. Suppose such a condition at some
 boundary \( x=\hbox{const} \) takes the specific form
 
 $$ \u = U\sin(\omega t)\ii\tp$$
@@ -750,6 +1099,7 @@ written
 $$
 \begin{equation}
 \bar\u = \sin(\hbox{St}\,\bar t),
+\tag{184}
 \end{equation}
 $$
 
@@ -758,6 +1108,7 @@ where St is the <em>Strouhal number</em>,
 $$
 \begin{equation}
 \hbox{St} = \frac{\omega L}{U}\tp
+\tag{185}
 \end{equation}
 $$
 
@@ -782,10 +1133,10 @@ bridge</a>
 in 1940, when wind-induced vortex shedding caused resonance
 with the free torsional vibrations of the bridge.
 
-<h2 id="___sec110">The Euler number </h2>
+<h2 id="___sec138">The Euler number </h2>
 
 <p>
-The dimensionless pressure in <a href="#mjx-eqn-132">(132)</a>
+The dimensionless pressure in <a href="#mjx-eqn-176">(176)</a>
 made use of the pressure scale \( p_c=\varrho U^2 \). This is an
 appropriate scale if the pressure level is not of importance, which
 is very often the case since only the pressure <em>gradient</em> enters
@@ -807,6 +1158,7 @@ denominator, and the corresponding dimensionless number,
 $$
 \begin{equation}
 \hbox{Eu} = \frac{p_{\infty} - p_v}{\frac{1}{2}\varrho U^2},
+\tag{186}
 \end{equation}
 $$
 
@@ -815,18 +1167,19 @@ is called the <em>Euler number</em>. The pressure gradient term now reads
 expresses the ratio of pressure differences and the kinetic
 energy of the flow.
 
-<h2 id="___sec111">Free surface conditions </h2>
+<h2 id="___sec139">Free surface conditions </h2>
 
 <p>
 At a free surface, \( z=\eta(x,y,t) \), the boundary conditions are
 
 $$
 \begin{align}
-w &= \frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta,\\ 
+w &= \frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta,
+\tag{187}\\ 
 p - p_0 &=  - \sigma\left(R_x^{-1} + R_y^{-1}\right)\approx
 -\sigma\left(\frac{\partial^2\eta}{\partial x^2} +
 \frac{\partial^2\eta}{\partial y^2}\right),
-\tag{136}
+\tag{188}
 \end{align}
 $$
 
@@ -838,7 +1191,8 @@ which for small surface deformations can be approximated by second-order
 derivatives of \( \eta \) as indicated.
 
 <p>
-The dimensionless form of these conditions starts with
+The dimensionless form of these conditions starts with inserting the
+dimensionless quantities in the equations:
 
 $$
 \begin{align*}
@@ -859,11 +1213,12 @@ Using \( u_c=U \), \( t_c=L/U \), and \( p_c = \varrho U^2 \), results in
 $$
 \begin{align}
 \bar w &= \frac{\partial\bar\eta}{\partial\bar t} +
-\bar\u\cdot\bar\nabla\bar\eta,\\ 
+\bar\u\cdot\bar\nabla\bar\eta,
+\tag{189}\\ 
 \bar p &\approx
 - \hbox{We}^{-1}\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
 \frac{\partial^2\bar\eta}{\partial \bar y^2}\right),
-\tag{137}
+\tag{190}
 \end{align}
 $$
 
@@ -876,12 +1231,12 @@ $$
 \end{equation}
 $$
 
-The weber number measures the importance of surface tension effects and
+The Weber number measures the importance of surface tension effects and
 is the ratio of the pressure scale \( \varrho U^2 \) and the surface
 tension force per area, typically \( \sigma/R_x \) in a 2D problem, which
 has size \( \sigma/L \).
 
-<h1 id="___sec112">Thermal convection </h1>
+<h1 id="___sec140">Thermal convection </h1>
 
 <p>
 Temperature differences in fluid flow cause density differences, and since
@@ -892,7 +1247,7 @@ feedback from the temperature field to the motion, i.e., temperature
 differences do not create motion, and the temperature distribution
 is only dependent on a given velocity field.
 
-<h2 id="___sec113">Forced convection </h2>
+<h2 id="___sec141">Forced convection </h2>
 
 <p>
 The model governing forced convection consists of the Navier-Stokes
@@ -902,12 +1257,13 @@ $$
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\tag{138}\\ 
+\tag{191}\\ 
 \nabla\cdot\u & = 0,
-\tag{139}\\ 
+\tag{192}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T\tp
-\tag{140}\\ 
+\tag{193}\\ 
+\tag{194}
 \end{align}
 $$
 
@@ -962,14 +1318,14 @@ $$
 \frac{\partial \bar\u}{\partial \bar t} +
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u,
-\tag{141}\\ 
+\tag{195}\\ 
 \bar\nabla\cdot\bar\u & = 0,
-\tag{142}\\ 
+\tag{196}\\ 
 \frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}
 \bar \nabla^2 \bar T\tp
-\tag{143}
+\tag{197}
 \end{align}
 $$
 
@@ -992,10 +1348,10 @@ relation to the Peclet number defined in the section <a href="._scaling-book-sol
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 14</b>: Do the general model and simplified models, e.g., free convection near a wall.)</font>
+<font color="red">(<b>hpl 21</b>: Do the general model <em>and</em> simplified models, e.g., free convection near a wall.)</font>
 <!-- end inline comment -->
 
-<h3 id="___sec115">Governing equations </h3>
+<h3 id="___sec143">Governing equations </h3>
 
 <p>
 The mathematical model for free thermal convection
@@ -1006,12 +1362,13 @@ $$
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\tag{144}\\ 
+\tag{198}\\ 
 \nabla\cdot\u & = 0,
-\tag{145}\\ 
+\tag{199}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
-\tag{146}\\ 
+\tag{200}\\ 
+\tag{201}
 \end{align}
 $$
 
@@ -1021,7 +1378,7 @@ the gravity term \( -g\kk \) is essential since the flow is driven
 by temperature differences and the fact that hot fluid rises while
 cold fluid falls.
 
-<h3 id="___sec116">Heating by viscous effects </h3>
+<h3 id="___sec144">Heating by viscous effects </h3>
 
 <p>
 We have also included heating of the fluid due to viscous forces
@@ -1043,11 +1400,11 @@ forging and extrusion of metals. By making the temperature equation
 dimensionless, we will get a precise measure when the term can be
 neglected.
 
-<h3 id="___sec117">Relation between density and temperature </h3>
+<h3 id="___sec145">Relation between density and temperature </h3>
 
 <p>
-The equations <a href="#mjx-eqn-144">(144)</a> and
-<a href="#mjx-eqn-145">(145)</a> has already been made dimensionless
+The equations <a href="#mjx-eqn-198">(198)</a> and
+<a href="#mjx-eqn-199">(199)</a> has already been made dimensionless
 in the previous section. The major difference is now that \( \varrho \)
 is no longer a constant, but a function of \( T \).
 The relationship between \( \varrho \) and \( T \) is often taken as
@@ -1061,9 +1418,9 @@ $$ \beta = -\frac{1}{\varrho}\left(\frac{\partial\varrho}{\partial t}
 \right)_p,$$
 
 is known as the thermal expansion coefficient of the fluid,
-and \( \varrho_0 \) a reference density when the temperature is at \( T_0 \).
+and \( \varrho_0 \) is a reference density when the temperature is at \( T_0 \).
 
-<h3 id="___sec118">Comment on the form of the equation of continuity </h3>
+<h3 id="___sec146">Comment on the form of the equation of continuity </h3>
 
 <p>
 It might look strange that the equation of continuity (from the mass
@@ -1080,33 +1437,34 @@ it follows that if \( \varrho \) is constant for a particle,
 the material derivative \( D\varrho/dt = \varrho_{t} + \v\cdot\nabla\varrho = 0 \),
 and the equation reduces to \( \nabla\cdot\u = 0 \).
 
-<h3 id="___sec119">The Boussinesq approximation </h3>
+<h3 id="___sec147">The Boussinesq approximation </h3>
 
 <p>
 A very common approximation, called the <em>Boussinesq approximation</em>, is
 to neglect the density variations in all terms except the gravity term.
 This is a good approximation unless the change is \( \varrho \) is large.
 With the linear \( \varrho(T) \) formula and the Boussinesq approximation,
-<a href="#mjx-eqn-144">(144)</a>-<a href="#mjx-eqn-146">(146)</a>
+<a href="#mjx-eqn-198">(198)</a>-<a href="#mjx-eqn-200">(200)</a>
 take the form
 
 $$
 \begin{align}
 \varrho_0\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - (\varrho_0 - \varrho_0\beta(T-T_0))g\kk,
-\tag{147}\\ 
+\tag{202}\\ 
 \nabla\cdot\u & = 0,
-\tag{148}\\ 
+\tag{203}\\ 
 \varrho_0 c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
-\tag{149}\\ 
+\tag{204}\\ 
+\tag{205}
 \end{align}
 $$
 
 A good justification of the Boussinesq approximation is provided
 by Tritton <a href="._scaling-book-solarized011.html#Tritton">[8]</a> (Ch. 13).
 
-<h3 id="___sec120">Scaling </h3>
+<h3 id="___sec148">Scaling </h3>
 
 <p>
 Dimensionless variables are introduced as
@@ -1153,14 +1511,14 @@ $$
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u
 - \hbox{Fr}^{-2}\kk  + \gamma \bar T\kk,
-\tag{150}\\ 
+\tag{206}\\ 
 \bar\nabla\cdot\bar\u & = 0,
-\tag{151}\\ 
+\tag{207}\\ 
 \frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
-\tag{152}
+\tag{208}
 \end{align}
 $$
 
@@ -1194,7 +1552,7 @@ $$ \delta = \frac{\mu U^2/L^2}{\varrho_0 c U \Delta T/L} =
 = \frac{\mu U}{L\varrho_0 c \Delta T}\tp
 $$
 
-<h2 id="___sec121">The Grashof, Prandtl, and Eckert numbers </h2>
+<h2 id="___sec149">The Grashof, Prandtl, and Eckert numbers </h2>
 
 <p>
 The problem with the above dimensionless numbers is that they involve
@@ -1278,15 +1636,15 @@ $$
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \u
 - \hbox{Fr}^{-2}\kk  + \bar T \kk,
-\tag{153}\\ 
+\tag{209}\\ 
 \bar\nabla\cdot\bar\u & = 0,
-\tag{154}\\ 
+\tag{210}\\ 
 \hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T\right)
 &= \hbox{Pr}^{-1}
 \bar \nabla^2 \bar T + 2\hbox{Ec}\hbox{Re}_T^{-1}
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
-\tag{155}
+\tag{211}
 \end{align}
 $$
 
@@ -1325,13 +1683,13 @@ viscous forces dominate.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 15</b>: Normally, convection dominates in free convection!)</font>
+<font color="red">(<b>hpl 22</b>: Normally, convection dominates in free convection!)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 16</b>: Is it not so that Ra is interesting primarily in horizontal layers? Could appear naturally when scaling simplified equations?)</font>
+<font color="red">(<b>hpl 23</b>: Is it not so that Ra is interesting primarily in horizontal layers? Could appear naturally when scaling simplified equations?)</font>
 <!-- end inline comment -->
 
 <p>
@@ -1353,10 +1711,10 @@ $$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 17</b>: Need an example using Ra.)</font>
+<font color="red">(<b>hpl 24</b>: Need an example using Ra.)</font>
 <!-- end inline comment -->
 
-<h2 id="___sec122">Heat transfer at boundaries </h2>
+<h2 id="___sec150">Heat transfer at boundaries </h2>
 
 <p>
 A common boundary condition, modeling heat transfer to/from the
@@ -1365,14 +1723,14 @@ surroundings is
 $$
 \begin{equation}
 -\kappa\frac{\partial T}{\partial n} = h_T(T - T_s),
-\tag{156}
+\tag{212}
 \end{equation}
 $$
 
 where \( \partial/\partial n \) means derivative in the normal direction
 (\( \normalvec\cdot\nabla \)), \( h_T \) is an experimentally determined
 heat transfer coefficient, and \( T_s \) is the temperature of
-the surroundings. Scaling <a href="#mjx-eqn-156">(156)</a>
+the surroundings. Scaling <a href="#mjx-eqn-212">(212)</a>
 leads to
 
 $$ -\frac{\kappa\Delta t}{L}\frac{\partial \bar T}{\partial \bar n} = h_T(\Delta T \bar T + T_0 - T_s),$$
@@ -1411,9 +1769,9 @@ $$
 \chi C_m\frac{\partial v}{\partial t} &=
 \nabla\cdot( M_i\nabla v) + \nabla\cdot (M_i\nabla u_e) - \chi I_{\rm{ion}}
 - \chi I_{\rm{app}},
-\tag{157}\\ 
+\tag{213}\\ 
 0 &= \nabla\cdot( M_i\nabla v) + \nabla\cdot ((M_i + M_e)\nabla u_e)\tp
-\tag{158}
+\tag{214}
 \end{align}
 $$
 
@@ -1442,18 +1800,18 @@ model:
 $$
 \begin{align}
 C_m\frac{dv}{dt} & = - I_{\rm{ion}} - I_{\rm{app}},
-\tag{159}\\ 
+\tag{215}\\ 
 I_{\rm{ion}} &= A(v-v_r)(v - v_m)(v - v_p) + Bw,
-\tag{160}\\ 
+\tag{216}\\ 
 \frac{dw}{dt} &= -c_1w + c_2v + c_3,
-\tag{161}
+\tag{217}
 \end{align}
 $$
 
 where \( A \), \( v_m \), \( B \), \( c_1 \), \( c_2 \), and \( c_3 \) are specified constants.
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 18</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
+<font color="red">(<b>hpl 25</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
 <!-- end inline comment -->
 
 More complicated ODE systems for the cell dynamics may have up to a
@@ -1560,7 +1918,7 @@ scale to choose for \( t_c \) depends on whether one is interested in
 fast time scales for some components in the ODE system or in the
 (anticipated) slower diffusion scale of the PDEs. For now we choose
 the time scale based on diffusion. From previous examples in
-the section <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D">Homogeneous diffusion equation</a>, we therefore
+the section <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>, we therefore
 set the coefficient in front of the diffusion term to unity, here
 
 $$ \frac{t_cM_c}{\chi C_mL^2} = 1\quad\Rightarrow\quad t_c = \frac{\chi C_mL^2}{M_c}\tp$$
@@ -1581,23 +1939,26 @@ $$
 \begin{align}
 \frac{\partial \bar v}{\partial \bar t} &=
 \nabla\cdot( \bar M_i\bar\nabla\bar v) +
-\alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -\\ 
+\alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -
+\tag{218}\\ 
 &\quad
 \beta
 \bar v
 (J_1 +  \bar v)
 (\bar v - 1) - \gamma\bar w - \delta,
-\\ 
+\tag{219}\\ 
 0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
-\alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\\ 
+\alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),
+\tag{220}\\ 
 \frac{d\bar v}{d\bar t} & = -
 \beta
 \bar v
 (J_1 +  \bar v)
 (\bar v -1)- \gamma\bar w - \delta,
-\\ 
+\tag{221}\\ 
 \frac{d\bar w}{d\bar t} &= -K_1\bar w +
 K_2\bar v + K_3\tp
+\tag{222}
 \end{align}
 $$
 
@@ -1605,15 +1966,24 @@ There are eight dimensionless variables in the above equations:
 
 $$
 \begin{align}
-\alpha &= \frac{u_c}{\Delta v},\\ 
-\beta & = \frac{\chi AL^2\Delta v^2}{M_c},\\ 
-\gamma &= \frac{Bw_cL^2}{M_c\Delta v },\\ 
-\delta &= \frac{\chi L^2 I_{\rm{app}}}{M_c\Delta v },\\ 
-J_1 &= \frac{v_r-v_m}{\Delta v},\\ 
-J_2 &= \frac{v_r}{\Delta v},\\ 
-K_1 &= \frac{\chi C_m L^2c_1}{M_c},\\ 
-K_2 & = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},\\ 
+\alpha &= \frac{u_c}{\Delta v},
+\tag{223}\\ 
+\beta & = \frac{\chi AL^2\Delta v^2}{M_c},
+\tag{224}\\ 
+\gamma &= \frac{Bw_cL^2}{M_c\Delta v },
+\tag{225}\\ 
+\delta &= \frac{\chi L^2 I_{\rm{app}}}{M_c\Delta v },
+\tag{226}\\ 
+J_1 &= \frac{v_r-v_m}{\Delta v},
+\tag{227}\\ 
+J_2 &= \frac{v_r}{\Delta v},
+\tag{228}\\ 
+K_1 &= \frac{\chi C_m L^2c_1}{M_c},
+\tag{229}\\ 
+K_2 & = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
+\tag{230}\\ 
 K_3 &= \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}\tp
+\tag{231}
 \end{align}
 $$
 
@@ -1636,17 +2006,17 @@ other known physical parameters.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 19</b>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.)</font>
+<font color="red">(<b>hpl 26</b>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.)</font>
 <!-- end inline comment -->
 
-<h1 id="___sec124">Two-phase porous media flow </h1>
+<h1 id="___sec152">Two-phase porous media flow </h1>
 
 <p>
 Exercises: single-phase flow, with and without thermal effects.
 
-<h1 id="___sec125">The Euler equations of gas dynamics </h1>
+<h1 id="___sec153">The Euler equations of gas dynamics </h1>
 
-<h1 id="___sec126">Exercises </h1>
+<h1 id="___sec154">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
@@ -1690,7 +2060,46 @@ maximum \( y \) value and the time it takes to return to \( y=0 \).
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:ball_y_wdrag">Problem 3: Scale a nonlinear ODE</h2>
+<h2 id="sec:scale:exer:decay:cooling:osc">Exercise 3: Perform alternative scalings</h2>
+
+<p>
+The problem in the section <a href="._scaling-book-solarized005.html#scale:decay:cooling:osc">Scaling a cooling problem with time-dependent surroundings</a> applies a
+temperature scaling
+
+$$ \bar T = \frac{T-T_0}{T_m-T_0},$$
+
+which is not always suitable.
+
+<p>
+<b>a)</b>
+Consider the case \( T_0=T_m \) and the fact that \( |T_m-T_0| \) does not
+represent the characteristic temperature scale since it
+collapses to zero. Formulate a suitable
+scaling in this case. The figure below corresponds to \( T_m=25 \) C,
+\( T_0=24.9 \) C, and \( a=2.5 \) C. We clearly see that \( \bar T \) is
+not of size unity.
+
+<p>
+<center><p><img src="fig-scaling/osc_cooling_wrong_scale.png" align="bottom" width=500></p></center>
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+<b>b)</b>
+Consider the case where \( a \) is much larger than \( |T_m-T_0| \).
+What is an appropriate scaling of the temperature?
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="sec:scale:exer:ball_y_wdrag">Problem 4: Scale a nonlinear ODE</h2>
 
 <p>
 The velocity \( v(t) \)
@@ -1714,7 +2123,7 @@ and \( V \) is the volume of the body. Scale this ODE.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:jump">Exercise 4: Implement a scaled model with jump</h2>
+<h2 id="sec:scale:exer:decay:jump">Exercise 5: Implement a scaled model with jump</h2>
 
 <p>
 Make software for the problem in the section <a href="._scaling-book-solarized005.html#sec:scale:decay:jump">Variable coefficients</a>
@@ -1726,9 +2135,9 @@ so that you can produce Figure <a href="._scaling-book-solarized005.html#sec:sca
 <p>
 <b>Hint.</b>
 Follow the ideas for software in the section <a href="._scaling-book-solarized005.html#sec:scale:decay:body">Scaling a generalized problem</a>: use the
-<a href="http://tinyurl.com/ofkw6kc/genz/decay_vc.py" target="_self"><tt>decay_vc.py</tt></a> module as computational
+<a href="http://tinyurl.com/o8pb3yy/decay_vc.py" target="_self"><tt>decay_vc.py</tt></a> module as computational
 engine and modify the
-<a href="http://tinyurl.com/nm5587k/scale/falling_body.py" target="_self"><tt>falling_body.py</tt></a> code.
+<a href="http://tinyurl.com/o8pb3yy/falling_body.py" target="_self"><tt>falling_body.py</tt></a> code.
 
 <p>
 <!-- --- end hint in exercise --- -->
@@ -1740,20 +2149,20 @@ Filename: <code>decay_jump</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:cooling">Exercise 5: Implement a scaled model for cooling</h2>
+<h2 id="sec:scale:exer:decay:cooling">Exercise 6: Implement a scaled model for cooling</h2>
 
 <p>
-Make software for the unscaled problem <a href="._scaling-book-solarized005.html#mjx-eqn-12">(12)</a>
+Make software for the unscaled problem <a href="._scaling-book-solarized005.html#mjx-eqn-17">(17)</a>
 where \( T_s \) can be a function of time.
 Use this implementation to compute the solution of the
-scaled problem <a href="._scaling-book-solarized005.html#mjx-eqn-19">(19)</a>.
+scaled problem <a href="._scaling-book-solarized005.html#mjx-eqn-24">(24)</a>.
 
 <p>
 <!-- --- begin hint in exercise --- -->
 
 <p>
 <b>Hint.</b>
-You may use the general software <a href="http://tinyurl.com/ofkw6kc/genz/decay_vc.py" target="_self"><tt>decay_vc.py</tt></a>
+You may use the general software <a href="http://tinyurl.com/o8pb3yy/decay_vc.py" target="_self"><tt>decay_vc.py</tt></a>
 for computing with the cooling model.
 See the section <a href="._scaling-book-solarized005.html#sec:scale:decay:body">Scaling a generalized problem</a> for more ideas.
 
@@ -1767,7 +2176,7 @@ Filename: <code>decay_cooling1</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:decay:step">Problem 6: Scale variable coefficients</h2>
+<h2 id="scale:decay:exer:decay:step">Problem 7: Scale variable coefficients</h2>
 
 <p>
 The goal of this exercise is to scale the problem
@@ -1791,12 +2200,12 @@ Filename: <code>decay_varcoeff</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:cooling:Ts">Exercise 7: Alternative scalings of a cooling model</h2>
+<h2 id="scale:decay:exer:cooling:Ts">Exercise 8: Alternative scalings of a cooling model</h2>
 
 <p>
-Scale the model <a href="._scaling-book-solarized005.html#mjx-eqn-12">(12)</a>, with \( T_s \)
-given as in <a href="._scaling-book-solarized005.html#mjx-eqn-18">(18)</a>, using two alternative
-scalings of \( T \): <a href="._scaling-book-solarized005.html#mjx-eqn-16">(16)</a> and
+Scale the model <a href="._scaling-book-solarized005.html#mjx-eqn-17">(17)</a>, with \( T_s \)
+given as in <a href="._scaling-book-solarized005.html#mjx-eqn-23">(23)</a>, using two alternative
+scalings of \( T \): <a href="._scaling-book-solarized005.html#mjx-eqn-21">(21)</a> and
 the simpler \( \bar T = T/T_0 \). Does the type of scaling impact how
 many dimensionless parameters we end up with?
 Filename: <code>decay_cooling2</code>.
@@ -1807,10 +2216,10 @@ Filename: <code>decay_cooling2</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:nonlin:logistic2">Exercise 8: Alternative scalings of a cooling model</h2>
+<h2 id="scale:decay:exer:nonlin:logistic2">Exercise 9: Alternative scalings of a cooling model</h2>
 
 <p>
-Implement the scaled model <a href="._scaling-book-solarized005.html#mjx-eqn-24">(24)</a>
+Implement the scaled model <a href="._scaling-book-solarized005.html#mjx-eqn-30">(30)</a>
 and produce a plot with curves corresponding to various values of
 \( \alpha \) and \( p \) to summarize how \( \bar u(\bar t) \) look like.
 
@@ -1820,7 +2229,7 @@ and produce a plot with curves corresponding to various values of
 <p>
 <b>Hint.</b>
 A centered Crank-Nicolson-style
-scheme for <a href="._scaling-book-solarized005.html#mjx-eqn-24">(24)</a>
+scheme for <a href="._scaling-book-solarized005.html#mjx-eqn-30">(30)</a>
 can use an old time value for the nonlinear coefficient:
 
 $$ \frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
@@ -1836,7 +2245,7 @@ Filename: <code>growth</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:projectile">Exercise 9: Scale projectile motion</h2>
+<h2 id="scale:vib:exer:projectile">Exercise 10: Scale projectile motion</h2>
 
 <p>
 We have the following mathematical model for the motion of a projectile
@@ -1903,7 +2312,7 @@ Filename: <code>projectile</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:predpray">Problem 10: Scale a predator-pray model</h2>
+<h2 id="scale:decay:exer:predpray">Problem 11: Scale a predator-pray model</h2>
 
 <p>
 The evolution of animal populations with a predator and a pray (e.g.,
@@ -1913,11 +2322,13 @@ Lotka-Volterra ODE system
 $$
 \begin{align}
 H^{\prime} &= H(a - bL),
-\tag{162}\\ 
+\tag{232}\\ 
 L^{\prime} &= L(dH - c),
-\tag{163}\\ 
-H(0)&=H_0,\\ 
+\tag{233}\\ 
+H(0)&=H_0,
+\tag{234}\\ 
 L(0)&=L_0\tp
+\tag{235}
 \end{align}
 $$
 
@@ -1953,13 +2364,13 @@ in the ODE problem we arrive at
 $$
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\tag{165}\\ 
+\tag{237}\\ 
 \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-\tag{165}\\ 
+\tag{237}\\ 
 H_c\bar H(0) &= H_0,
-\tag{166}\\ 
+\tag{238}\\ 
 L_c\bar H(0) &= L_0\tp
-\tag{167}
+\tag{239}
 \end{align}
 $$
 
@@ -2004,18 +2415,20 @@ Filename: <code>predator_pray</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:competing_species">Problem 11: Scale a model for competing species</h2>
+<h2 id="scale:decay:exer:competing_species">Problem 12: Scale a model for competing species</h2>
 
 <p>
 Let \( N_1(t) \) and \( N_2(t) \) be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-pray like
-interaction (cf.&nbsp;<a href="#scale:decay:exer:predpray">Problem 10: Scale a predator-pray model</a>):
+interaction (cf.&nbsp;<a href="#scale:decay:exer:predpray">Problem 11: Scale a predator-pray model</a>):
 
 $$
 \begin{align}
-\frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\ 
+\frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
+\tag{240}\\ 
 \frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
+\tag{241}
 \end{align}
 $$
 
@@ -2033,7 +2446,7 @@ Find suitable scales and derive a dimensionless ODE problem.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:sine">Problem 12: Find the period of sinusoidal signals</h2>
+<h2 id="scale:decay:exer:sine">Problem 13: Find the period of sinusoidal signals</h2>
 
 <p>
 <b>a)</b>
@@ -2093,7 +2506,7 @@ Filename: <code>sine_period</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec139">Remarks </h3>
+<h3 id="___sec168">Remarks </h3>
 
 <p>
 The <em>frequency</em> is the number of up and down cycles in one unit time.
@@ -2107,7 +2520,7 @@ The <em>angular frequency</em> \( \omega \) is then \( \omega = 2\pi/P = 2\pi f 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:pendulum">Problem 13: Scale the pendulum equation</h2>
+<h2 id="sec:scale:exer:pendulum">Problem 14: Scale the pendulum equation</h2>
 
 <p>
 The equation for a so-called simple pendulum with a mass \( m \) at the end is
@@ -2115,6 +2528,7 @@ The equation for a so-called simple pendulum with a mass \( m \) at the end is
 $$
 \begin{equation}
 mL\ddot\theta + mg\sin\theta = 0,
+\tag{242}
 \end{equation}
 $$
 
@@ -2128,6 +2542,7 @@ a similar equation,
 $$
 \begin{equation}
 I\ddot\theta + mgL\sin\theta = 0\tp
+\tag{243}
 \end{equation}
 $$
 
@@ -2148,7 +2563,7 @@ and scale both differential equations.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Duffing">Problem 14: Scale Duffing's equation</h2>
+<h2 id="scale:vib:exer:Duffing">Problem 15: Scale Duffing's equation</h2>
 
 <p>
 Duffing's equation is a vibration equation with linear and cubic
@@ -2168,7 +2583,7 @@ Scale this problem.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:stationary_Couette">Problem 15: Scale a stationary Couette flow</h2>
+<h2 id="scale:vib:exer:stationary_Couette">Problem 16: Scale a stationary Couette flow</h2>
 
 <p>
 A fluid flows between two flat plates, with one plate at rest while
@@ -2209,7 +2624,7 @@ Filename: <code>stationary_Couette</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec143">Remarks </h3>
+<h3 id="___sec172">Remarks </h3>
 
 <p>
 The problem for \( u \) is a classical two-point boundary-value problem
@@ -2230,7 +2645,7 @@ fluid or heat.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:starting_Couette">Problem 16: Scale a starting Couette flow</h2>
+<h2 id="scale:vib:exer:starting_Couette">Problem 17: Scale a starting Couette flow</h2>
 
 <p>
 A fluid is confined in a channel with two planar walls \( z=0 \) and \( z=H \).
@@ -2296,7 +2711,7 @@ Filename: <code>starting_Couette</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Couette_wpressure">Exercise 17: Scale Couette flow with pressure gradient</h2>
+<h2 id="scale:vib:exer:Couette_wpressure">Exercise 18: Scale Couette flow with pressure gradient</h2>
 
 <p>
 Viscous fluid flow between two infinite flat plates \( z=0 \) and \( z=H \)
@@ -2304,9 +2719,12 @@ is governed by
 
 $$
 \begin{align}
-\mu u''(z) &= -\beta\\ 
-u(0) &= 0,\\ 
+\mu u''(z) &= -\beta
+\tag{244}\\ 
+u(0) &= 0,
+\tag{245}\\ 
 u(H) &= U_0\tp
+\tag{246}
 \end{align}
 $$
 
@@ -2334,7 +2752,7 @@ Scale the problem.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 23</b>: Could extend to time-dependent case, but this will involve three time scales...)</font>
+<font color="red">(<b>hpl 30</b>: Could extend to time-dependent case, but this will involve three time scales...)</font>
 <!-- end inline comment -->
 
 <p>
@@ -2346,7 +2764,7 @@ Filename: <code>Couette_wpressure</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale::exer:suggest">Exercise 18: Suggestions...</h2>
+<h2 id="scale::exer:suggest">Exercise 19: Suggestions...</h2>
 
 <p>
 Projects:
@@ -2383,7 +2801,7 @@ Projects:
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+<!-- copyright only on the titlepage -->
 </center>
 
 

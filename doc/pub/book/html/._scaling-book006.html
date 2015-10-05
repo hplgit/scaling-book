@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-pray model,Lotka-Volterra, competing species model">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-pray model,Lotka-Volterra, competing species model">
 
 <title>Scaling of Differential Equations</title>
 
@@ -33,10 +33,11 @@ code { color: inherit; background-color: transparent; }
               ('Base units and dimensions', 2, None, '___sec3'),
               ('Dimensions of common physical quantities',
                2,
-               None,
-               '___sec4'),
-              ('Prefixes for units', 2, None, '___sec5'),
-              ('Unit systems', 2, None, '___sec6'),
+               'scale:dimunit:tables',
+               'scale:dimunit:tables'),
+              ('Prefixes for units', 3, None, '___sec5'),
+              ('Errors and units', 2, None, '___sec6'),
+              ('Unit systems', 2, None, '___sec7'),
               ('PhysicalQuantity: object for computing with units',
                2,
                'scale:PQ',
@@ -45,28 +46,28 @@ code { color: inherit; background-color: transparent; }
                1,
                'scale:parampool',
                'scale:parampool'),
-              ('Example application', 3, None, '___sec9'),
-              ('Pool of parameters', 2, None, '___sec10'),
-              ('Fetching pool data for computing', 2, None, '___sec11'),
-              ('Reading command-line options', 2, None, '___sec12'),
-              ('Setting default values in a file', 2, None, '___sec13'),
+              ('Example application', 3, None, '___sec10'),
+              ('Pool of parameters', 2, None, '___sec11'),
+              ('Fetching pool data for computing', 2, None, '___sec12'),
+              ('Reading command-line options', 2, None, '___sec13'),
+              ('Setting default values in a file', 2, None, '___sec14'),
               ('Specifying multiple values of input parameters',
                2,
                None,
-               '___sec14'),
-              ('Generating a graphical user interface', 2, None, '___sec15'),
-              ('ODE models', 0, None, '___sec16'),
+               '___sec15'),
+              ('Generating a graphical user interface', 2, None, '___sec16'),
+              ('ODE models', 0, None, '___sec17'),
               ('Exponential decay problems',
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec18'),
-              ('The basic model problem', 2, None, '___sec19'),
-              ('Example: Population dynamics', 3, None, '___sec20'),
+              ('Fundamental ideas', 2, None, '___sec19'),
+              ('The basic model problem', 2, None, '___sec20'),
+              ('Example: Population dynamics', 3, None, '___sec21'),
               ('Example: Decay of pressure with altitude',
                3,
                None,
-               '___sec21'),
+               '___sec22'),
               ('The technical steps of the scaling procedure',
                2,
                'sec:scale:decay:steps',
@@ -74,37 +75,34 @@ code { color: inherit; background-color: transparent; }
               ('Step 1: Identify independent and dependent variables',
                3,
                None,
-               '___sec23'),
+               '___sec24'),
               ('Step 2: Make independent and dependent variables dimensionless',
                3,
                None,
-               '___sec24'),
+               '___sec25'),
               ('Step 3: Derive the model involving only dimensionless variables',
                3,
                None,
-               '___sec25'),
-              ('Step 4: Make each term dimensionless', 3, None, '___sec26'),
-              ('Step 5: Estimate the scales', 3, None, '___sec27'),
-              ('Making software utilizing the dimensionless model',
+               '___sec26'),
+              ('Step 4: Make each term dimensionless', 3, None, '___sec27'),
+              ('Step 5: Estimate the scales', 3, None, '___sec28'),
+              ('Making software for utilizing the scaled model',
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
               ('Software for the original problem with dimensions',
                3,
                None,
-               '___sec29'),
-              ('A plain solution', 3, None, '___sec30'),
-              ('Simplifying the implementation with joblib',
-               3,
-               None,
-               '___sec31'),
+               '___sec30'),
+              ('Avoiding unnecessary computations', 3, None, '___sec31'),
+              ('Implementation with joblib', 3, None, '___sec32'),
               ('Scaling a generalized problem',
                2,
                'sec:scale:decay:body',
                'sec:scale:decay:body'),
-              ('Exact solution', 3, None, '___sec33'),
-              ('Theory', 3, None, '___sec34'),
-              ('Software', 3, None, '___sec35'),
+              ('Exact solution', 3, None, '___sec34'),
+              ('Theory', 3, None, '___sec35'),
+              ('Software', 3, None, '___sec36'),
               ('Variable coefficients',
                2,
                'sec:scale:decay:jump',
@@ -113,40 +111,52 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
+              ('Exact solution', 3, None, '___sec39'),
+              ('Scaling', 3, None, '___sec40'),
+              ('Software', 3, None, '___sec41'),
+              ('Alternative scaling', 3, None, '___sec42'),
               ('Scaling a cooling problem with time-dependent surroundings',
                2,
                'scale:decay:cooling:osc',
                'scale:decay:cooling:osc'),
-              ('Exact solution', 3, None, '___sec39'),
-              ('Scaling', 3, None, '___sec40'),
-              ('Software', 3, None, '___sec41'),
-              ('Discussion of the time scale', 3, None, '___sec42'),
+              ('Exact solution', 3, None, '___sec44'),
+              ('Scaling', 3, None, '___sec45'),
+              ('Software', 3, None, '___sec46'),
+              ('Discussion of the time scale', 3, None, '___sec47'),
               ('Scaling a nonlinear ODE',
                2,
                'sec:scale:decay:nonlinear',
                'sec:scale:decay:nonlinear'),
-              ('ODE systems for spreading of diseases', 2, None, '___sec44'),
-              ('SIR model', 3, None, '___sec45'),
-              ('SIRV model with finite immunity', 3, None, '___sec46'),
+              ('Scaling', 3, None, '___sec49'),
+              ('Alternative scaling', 3, None, '___sec50'),
+              ('SIR ODE system for spreading of diseases',
+               2,
+               None,
+               '___sec51'),
+              ('Scaling', 3, None, '___sec52'),
+              ('Software', 3, None, '___sec53'),
+              ('Alternative scaling', 3, None, '___sec54'),
+              ('SIRV model with finite immunity', 2, None, '___sec55'),
               ('Michaelis-Menten kinetics for biochemical reactions',
                2,
                'scale:MMK',
                'scale:MMK'),
-              ('Classical analysis', 3, None, '___sec48'),
-              ('Dimensionless ODE system', 3, None, '___sec49'),
-              ('Determining scales', 3, None, '___sec50'),
-              ('Analysis of the scaled system', 3, None, '___sec51'),
+              ('Classical analysis', 3, None, '___sec57'),
+              ('Dimensionless ODE system', 3, None, '___sec58'),
+              ('Determining scales', 3, None, '___sec59'),
+              ('Analysis of the scaled system', 3, None, '___sec60'),
               ('Vibration problems', 1, 'sec:scale:vib', 'sec:scale:vib'),
               ('Undamped vibrations without forcing',
                2,
                'sec:scale:vib:undamped',
                'sec:scale:vib:undamped'),
-              ('The first technical steps of scaling', 3, None, '___sec54'),
-              ('The exact solution', 3, None, '___sec55'),
-              ('Discussion of the displacement scale', 3, None, '___sec56'),
-              ('Discussion of the time scale', 3, None, '___sec57'),
-              ('Alternative displacement scale', 3, None, '___sec58'),
-              ('About frequency and dimensions', 3, None, '___sec59'),
+              ('The first technical steps of scaling', 3, None, '___sec63'),
+              ('The exact solution', 3, None, '___sec64'),
+              ('Discussion of the displacement scale', 3, None, '___sec65'),
+              ('Discussion of the time scale', 3, None, '___sec66'),
+              ('The dimensionless solution', 3, None, '___sec67'),
+              ('Alternative displacement scale', 3, None, '___sec68'),
+              ('About frequency and dimensions', 3, None, '___sec69'),
               ('Undamped vibrations with constant forcing',
                2,
                'sec:scale:vib:undamped:mg',
@@ -158,64 +168,77 @@ code { color: inherit; background-color: transparent; }
               ('Investigating scales via analytical solutions',
                3,
                None,
-               '___sec62'),
-              ('The displacement and time scales', 3, None, '___sec63'),
+               '___sec72'),
+              ('The displacement and time scales', 3, None, '___sec73'),
               ('Finding the displacement scale from the differential equation',
                3,
                None,
-               '___sec64'),
+               '___sec74'),
               ('Scaling with free vibrations as time scale',
                3,
                None,
-               '___sec65'),
-              ('Software', 3, None, '___sec66'),
-              ('Choice of $u_c$ close to resonance', 3, None, '___sec67'),
-              ('Unit size of all terms in the ODE', 3, None, '___sec68'),
+               '___sec75'),
+              ('Software', 3, None, '___sec76'),
+              ('Choice of $u_c$ close to resonance', 3, None, '___sec77'),
+              ('Unit size of all terms in the ODE', 3, None, '___sec78'),
               ('Choice of $u_c$ when $\\psi\\gg\\omega$',
                3,
                None,
-               '___sec69'),
-              ('Displacement scale based on $I$', 3, None, '___sec70'),
+               '___sec79'),
+              ('Displacement scale based on $I$', 3, None, '___sec80'),
               ('Damped vibrations with forcing',
                2,
                'sec:scale:vib:damped:F',
                'sec:scale:vib:damped:F'),
-              ('The exact solution', 3, None, '___sec72'),
-              ('Choosing scales', 3, None, '___sec73'),
-              ('Choice of $u_c$ at resonance', 3, None, '___sec74'),
+              ('The exact solution', 3, None, '___sec82'),
+              ('Choosing scales', 3, None, '___sec83'),
+              ('Choice of $u_c$ at resonance', 3, None, '___sec84'),
               ('Choice of $u_c$ when $\\omega\\gg\\psi$',
                3,
                None,
-               '___sec75'),
+               '___sec85'),
               ('Choice of $u_c$ when $\\omega\\ll\\psi$',
                3,
                None,
-               '___sec76'),
-              ('Oscillating electric circuits', 2, None, '___sec77'),
-              ('Basic PDE models', 0, None, '___sec78'),
+               '___sec86'),
+              ('Oscillating electric circuits', 2, None, '___sec87'),
+              ('Basic PDE models', 0, None, '___sec88'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec80'),
+               '___sec90'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec81'),
-              ('Waves on a string', 3, None, '___sec82'),
-              ('Detecting an already computed case', 3, None, '___sec83'),
+               '___sec91'),
+              ('Waves on a string', 3, None, '___sec92'),
+              ('Detecting an already computed case', 3, None, '___sec93'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
+              ('Scaling', 3, None, '___sec95'),
+              ('Software', 3, None, '___sec96'),
+              ('Specific case', 3, None, '___sec97'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
+              ('Analytical insight', 3, None, '___sec99'),
+              ('Scaling', 3, None, '___sec100'),
+              ('Nonzero initial shape', 3, None, '___sec101'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
+              ('Non-dimensionalization', 3, None, '___sec103'),
+              ('Choosing the time scale', 3, None, '___sec104'),
+              ('Choosing the spatial scale', 3, None, '___sec105'),
+              ('Scaling the velocity initial condition',
+               3,
+               None,
+               '___sec106'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -223,23 +246,19 @@ code { color: inherit; background-color: transparent; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec88'),
+               '___sec108'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
                'sec:scale:diffu'),
-              ('Homogeneous diffusion equation',
+              ('Homogeneous 1D diffusion equation',
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Simplified 1D PDE', 3, None, '___sec91'),
-              ('Generalized PDE', 3, None, '___sec92'),
-              ('Jump boundary condition', 2, None, '___sec93'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec94'),
-              ('Diffusion equation with source term',
-               2,
-               'sec:scale:diffu:source',
-               'sec:scale:diffu:source'),
+              ('Generalized diffusion PDE', 2, None, '___sec111'),
+              ('Jump boundary condition', 2, None, '___sec112'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec113'),
+              ('Scaling', 3, None, '___sec114'),
               ("Fisher's equation",
                2,
                'sec:scale:diffu:Fisher',
@@ -251,14 +270,32 @@ code { color: inherit; background-color: transparent; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec98'),
-              ('Stationary PDE', 2, None, '___sec99'),
+               '___sec117'),
+              ('Stationary PDE', 2, None, '___sec118'),
               ('Convection-diffusion with a force term',
                2,
                'scale:convdiff',
                'scale:convdiff'),
-              ('Advanced PDE models', 0, None, '___sec101'),
-              ('The equations of linear elasticity', 1, None, '___sec102'),
+              ('Advanced PDE models', 0, None, '___sec120'),
+              ('The equations of linear elasticity',
+               1,
+               'scale:elasticity',
+               'scale:elasticity'),
+              ('The general time-dependent elasticity problem',
+               2,
+               None,
+               '___sec122'),
+              ('Software', 3, None, '___sec123'),
+              ('Dimensionless stress tensor', 2, None, '___sec124'),
+              ('When can the acceleration term be neglected?',
+               2,
+               'scale:elasticity:waves',
+               'scale:elasticity:waves'),
+              ('S waves', 3, None, '___sec126'),
+              ('P waves', 3, None, '___sec127'),
+              ('Time-varying load', 3, None, '___sec128'),
+              ('The stationary elasticity problem', 2, None, '___sec129'),
+              ('Quasi-static thermo-elasticity', 2, None, '___sec130'),
               ('The Navier-Stokes equations',
                1,
                'sec:scale:ns',
@@ -266,50 +303,50 @@ code { color: inherit; background-color: transparent; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec104'),
+               '___sec132'),
               ('The most common dimensionless form of the Navier-Stokes equations',
                2,
                None,
-               '___sec105'),
+               '___sec133'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec106'),
-              ('Shear stress as pressure scale', 2, None, '___sec107'),
-              ('Including the gravity force', 2, None, '___sec108'),
-              ('Oscillating boundary conditions', 2, None, '___sec109'),
-              ('The Euler number', 2, None, '___sec110'),
-              ('Free surface conditions', 2, None, '___sec111'),
-              ('Thermal convection', 1, None, '___sec112'),
-              ('Forced convection', 2, None, '___sec113'),
+               '___sec134'),
+              ('Shear stress as pressure scale', 2, None, '___sec135'),
+              ('Including the gravity force', 2, None, '___sec136'),
+              ('Oscillating boundary conditions', 2, None, '___sec137'),
+              ('The Euler number', 2, None, '___sec138'),
+              ('Free surface conditions', 2, None, '___sec139'),
+              ('Thermal convection', 1, None, '___sec140'),
+              ('Forced convection', 2, None, '___sec141'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec115'),
-              ('Heating by viscous effects', 3, None, '___sec116'),
+              ('Governing equations', 3, None, '___sec143'),
+              ('Heating by viscous effects', 3, None, '___sec144'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec117'),
+               '___sec145'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec118'),
-              ('The Boussinesq approximation', 3, None, '___sec119'),
-              ('Scaling', 3, None, '___sec120'),
+               '___sec146'),
+              ('The Boussinesq approximation', 3, None, '___sec147'),
+              ('Scaling', 3, None, '___sec148'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec121'),
-              ('Heat transfer at boundaries', 2, None, '___sec122'),
+               '___sec149'),
+              ('Heat transfer at boundaries', 2, None, '___sec150'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec124'),
-              ('The Euler equations of gas dynamics', 1, None, '___sec125'),
-              ('Exercises', 1, None, '___sec126'),
+              ('Two-phase porous media flow', 1, None, '___sec152'),
+              ('The Euler equations of gas dynamics', 1, None, '___sec153'),
+              ('Exercises', 1, None, '___sec154'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -318,73 +355,77 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:exer:ball_y',
                'sec:scale:exer:ball_y'),
-              ('Problem 3: Scale a nonlinear ODE',
+              ('Exercise 3: Perform alternative scalings',
+               2,
+               'sec:scale:exer:decay:cooling:osc',
+               'sec:scale:exer:decay:cooling:osc'),
+              ('Problem 4: Scale a nonlinear ODE',
                2,
                'sec:scale:exer:ball_y_wdrag',
                'sec:scale:exer:ball_y_wdrag'),
-              ('Exercise 4: Implement a scaled model with jump',
+              ('Exercise 5: Implement a scaled model with jump',
                2,
                'sec:scale:exer:decay:jump',
                'sec:scale:exer:decay:jump'),
-              ('Exercise 5: Implement a scaled model for cooling',
+              ('Exercise 6: Implement a scaled model for cooling',
                2,
                'sec:scale:exer:decay:cooling',
                'sec:scale:exer:decay:cooling'),
-              ('Problem 6: Scale variable coefficients',
+              ('Problem 7: Scale variable coefficients',
                2,
                'scale:decay:exer:decay:step',
                'scale:decay:exer:decay:step'),
-              ('Exercise 7: Alternative scalings of a cooling model',
+              ('Exercise 8: Alternative scalings of a cooling model',
                2,
                'scale:decay:exer:cooling:Ts',
                'scale:decay:exer:cooling:Ts'),
-              ('Exercise 8: Alternative scalings of a cooling model',
+              ('Exercise 9: Alternative scalings of a cooling model',
                2,
                'scale:decay:exer:nonlin:logistic2',
                'scale:decay:exer:nonlin:logistic2'),
-              ('Exercise 9: Scale projectile motion',
+              ('Exercise 10: Scale projectile motion',
                2,
                'scale:vib:exer:projectile',
                'scale:vib:exer:projectile'),
-              ('Problem 10: Scale a predator-pray model',
+              ('Problem 11: Scale a predator-pray model',
                2,
                'scale:decay:exer:predpray',
                'scale:decay:exer:predpray'),
-              ('Problem 11: Scale a model for competing species',
+              ('Problem 12: Scale a model for competing species',
                2,
                'scale:decay:exer:competing_species',
                'scale:decay:exer:competing_species'),
-              ('Problem 12: Find the period of sinusoidal signals',
+              ('Problem 13: Find the period of sinusoidal signals',
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec139'),
-              ('Problem 13: Scale the pendulum equation',
+              ('Remarks', 3, None, '___sec168'),
+              ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
                'sec:scale:exer:pendulum'),
-              ("Problem 14: Scale Duffing's equation",
+              ("Problem 15: Scale Duffing's equation",
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
-              ('Problem 15: Scale a stationary Couette flow',
+              ('Problem 16: Scale a stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec143'),
-              ('Problem 16: Scale a starting Couette flow',
+              ('Remarks', 3, None, '___sec172'),
+              ('Problem 17: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 17: Scale Couette flow with pressure gradient',
+              ('Exercise 18: Scale Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 18: Suggestions...',
+              ('Exercise 19: Suggestions...',
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec147')]}
+              ('References', 1, None, '___sec176')]}
 end of tocinfo -->
 
 <body>
@@ -413,6 +454,8 @@ $$
 \renewcommand{\u}{\boldsymbol{u}}
 \renewcommand{\v}{\boldsymbol{v}}
 \newcommand{\f}{\boldsymbol{f}}
+\newcommand{\stress}{\boldsymbol{\sigma}}
+\newcommand{\I}{\boldsymbol{I}}
 \newcommand{\dfc}{\alpha}  % diffusion coefficient
 \newcommand{\ii}{\boldsymbol{i}}
 \newcommand{\jj}{\boldsymbol{j}}
@@ -440,9 +483,9 @@ $$
         <ul class="dropdown-menu">
      <!-- navigation toc: --> <li><a href="._scaling-book001.html#ch:preface" style="font-size: 80%;">Preface</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit" style="font-size: 80%;">Dimensions and units</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec16" style="font-size: 80%;">ODE models</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec78" style="font-size: 80%;">Basic PDE models</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec101" style="font-size: 80%;">Advanced PDE models</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec17" style="font-size: 80%;">ODE models</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec88" style="font-size: 80%;">Basic PDE models</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec120" style="font-size: 80%;">Advanced PDE models</a></li>
 
         </ul>
       </li>
@@ -461,14 +504,15 @@ $$
 <h1 id="sec:scale:vib">Vibration problems</h1>
 
 <p>
-We shall address a range of different second-order ODEs for mechanical
+We shall in this section
+address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 2</b>: Include more figures.)</font>
+<font color="red">(<b>hpl 4</b>: Include more figures.)</font>
 <!-- end inline comment -->
 
 <h2 id="sec:scale:vib:undamped">Undamped vibrations without forcing</h2>
@@ -480,25 +524,35 @@ reads
 $$
 \begin{equation}
 mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V\tp
-\tag{52}
+\tag{64}
 \end{equation}
 $$
 
 This is a common model for a vibrating body  with mass \( m \) attached
 to a linear spring with spring constant \( k \) (and force \( -ku \)).
 The quantity \( u(t) \) measures the displacement of the body.
-
-<h3 id="___sec54">The first technical steps of scaling </h3>
+Figure <a href="#sec:scale:vib:undamped:sketch">7</a> shows a typical mechanical
+sketch of such a system: some mass can move horizontally without friction
+and is connected to a spring that exerts a force \( -ku \) on the body.
 
 <p>
-The problem <a href="#mjx-eqn-52">(52)</a> has one independent
+<center> <!-- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 7:  Oscillating body attached to a spring. <div id="sec:scale:vib:undamped:sketch"></div> </p></center>
+<p><img src="fig-scaling/oscillator_spring.png" align="bottom" width=500></p>
+</center>
+
+<h3 id="___sec63">The first technical steps of scaling </h3>
+
+<p>
+The problem <a href="#mjx-eqn-64">(64)</a> has one independent
 variable \( t \) and one dependent variable \( u \). We introduce dimensionless
 versions of these variables:
 
 $$ \bar u =\frac{u}{u_c},\quad\bar t = \frac{t}{t_c},$$
 
 where \( u_c \) and \( t_c \) are characteristic values of \( u \) and \( t \).
-Inserted in <a href="#mjx-eqn-52">(52)</a>, we get
+Inserted in <a href="#mjx-eqn-64">(64)</a>, we get
 
 $$ m\frac{u_c}{t_c^2}\frac{d^2\bar u}{d\bar t^2} + ku_c\bar u = 0,
 \quad u_c\bar u(0)=I,\quad \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}(0)=V,$$
@@ -509,18 +563,29 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u = 0,
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{53}
+\tag{65}
 \end{equation}
 $$
 
-<h3 id="___sec55">The exact solution </h3>
-
 <p>
 What is an appropriate displacement scale \( u_c \)? The initial condition
-\( u(0)=I \) is a candidate, i.e., \( u_c=I \). We also have analytical insight
-into this problem, because the exact solution of
-<a href="#mjx-eqn-52">(52)</a> is quite straightforward to compute.
-Let us demonstrate the steps in a SymPy session:
+\( u(0)=I \) is a candidate, i.e., \( u_c=I \). But how to choose the time scale?
+Making the coefficient in front of the \( \bar u \) unity, such that
+both terms balance and are of size unity, is a candidate.
+
+<h3 id="___sec64">The exact solution </h3>
+
+<p>
+To better see what the proper scales of \( u \) and \( t \) are, we can look
+into the analytical solution of this problem.
+Although the exact solution of
+<a href="#mjx-eqn-64">(64)</a> is quite straightforward to calculate
+by hand, we take the opportunity to make use of SymPy to
+find \( u(t) \). The use of SymPy can later be generalized to vibration
+ODEs that are harder to solve by hand.
+
+<p>
+SymPy need all mathematical symbols to be explicitly created:
 
 <p>
 
@@ -529,32 +594,75 @@ Let us demonstrate the steps in a SymPy session:
 u <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;u&#39;</span>, cls<span style="color: #666666">=</span>Function)
 w <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;w&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 I, V, C1, C2 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;I V C1 C2&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>)
-<span style="color: #408080; font-style: italic"># Define differential equation: u&#39;&#39; + w**2*u = 0</span>
+</pre></div>
+<p>
+To specify the ODE to be solved, we can make a Python function returning
+all the terms in the ODE:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Define differential equation: u&#39;&#39; + w**2*u = 0</span>
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">ode</span>(u):
     <span style="color: #008000; font-weight: bold">return</span> diff(u, t, t) <span style="color: #666666">+</span> w<span style="color: #666666">**2*</span>u
 
 diffeq <span style="color: #666666">=</span> ode(u(t))
-<span style="color: #408080; font-style: italic"># Solve differential equation with dsolve</span>
-s <span style="color: #666666">=</span> dsolve(diffeq, u(t))
+</pre></div>
+<p>
+The <code>diffeq</code> variable, defining the ODE, can be passed to a SymPy
+function <code>dsolve</code> to find the symbolic solution of the ODE:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">s <span style="color: #666666">=</span> dsolve(diffeq, u(t))
 <span style="color: #408080; font-style: italic"># s is an u(t) == expression (Eq obj.), s.rhs grabs the expression</span>
 u_sol <span style="color: #666666">=</span> s<span style="color: #666666">.</span>rhs
-<span style="color: #408080; font-style: italic"># The solution contains integration constants C1 and C2</span>
+<span style="color: #008000; font-weight: bold">print</span> u_sol
+</pre></div>
+<p>
+The solution that gets printed is <code>C1*sin(t*w) + C2*cos(t*w)</code>, indicating
+that there are two integration constants <code>C1</code> and <code>C2</code> to be determined
+by the initial conditions. The result of applying these conditions is
+a \( 2\times 2 \) linear system of algebraic equations that SymPy can solve
+by the <code>solve</code> function. The code goes as follows:
+
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># The solution u_sol contains integration constants C1 and C2</span>
 <span style="color: #408080; font-style: italic"># but these are not symbols, substitute them by symbols</span>
 u_sol <span style="color: #666666">=</span> u_sol<span style="color: #666666">.</span>subs(<span style="color: #BA2121">&#39;C1&#39;</span>, C1)<span style="color: #666666">.</span>subs(<span style="color: #BA2121">&#39;C2&#39;</span>, C2)
+
 <span style="color: #408080; font-style: italic"># Determine C1 and C2 from the initial conditions</span>
 ic <span style="color: #666666">=</span> [u_sol<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> I, u_sol<span style="color: #666666">.</span>diff(t)<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> V]
-<span style="color: #008000; font-weight: bold">print</span> ic
+<span style="color: #008000; font-weight: bold">print</span> ic   <span style="color: #408080; font-style: italic"># 2x2 algebraic system for C1 and C2</span>
 s <span style="color: #666666">=</span> solve(ic, [C1, C2])
-<span style="color: #408080; font-style: italic"># s is now a dictionary, substitute solution back in u_sol</span>
+<span style="color: #408080; font-style: italic"># s is now a dictionary: {C2: I, C1: V/w}</span>
+<span style="color: #408080; font-style: italic"># substitute solution back in u_sol</span>
 u_sol <span style="color: #666666">=</span> u_sol<span style="color: #666666">.</span>subs(C1, s[C1])<span style="color: #666666">.</span>subs(C2, s[C2])
 <span style="color: #008000; font-weight: bold">print</span> u_sol
+</pre></div>
+<p>
+The <code>u_sol</code> variable is now <code>I*cos(t*w) + V*sin(t*w)/w</code>.
+Since symbolic software is far from bug-free and can give wrong results,
+we should always check the answer. Here, we insert the solution in the ODE
+to see if the result is zero, and we insert the solution in the initial
+conditions to see that these are fulfilled:
 
-<span style="color: #408080; font-style: italic"># Check that the solution fulfills the ODE and init.cond.</span>
+<p>
+
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Check that the solution fulfills the ODE and init.cond.</span>
 <span style="color: #008000; font-weight: bold">print</span> simplify(ode(u_sol)),
 <span style="color: #008000; font-weight: bold">print</span> u_sol<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> I, diff(u_sol, t)<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> V
 </pre></div>
 <p>
-The output is <code>I*cos(t*w) + V*sin(t*w)/w</code>, so we have found that
+There will be many more examples on using SymPy to find exact solutions
+of differential equation problems.
+
+<p>
+The solution of the ODE in mathematical notation is
 
 $$ u(t) = I\cos(\omega t) + \frac{V}{\omega}\sin(\omega t),\quad \omega = \sqrt{\frac{k}{m}}\tp$$
 
@@ -568,7 +676,7 @@ $$
 Now we see that the \( u \) corresponds to cosine oscillations with a
 phase shift \( \phi \) and amplitude \( \sqrt{I^2 + (V/\omega)^2} \).
 
-<h3 id="___sec56">Discussion of the displacement scale </h3>
+<h3 id="___sec65">Discussion of the displacement scale </h3>
 
 <p>
 The amplitude of \( u \) is \( \sqrt{I^2 + V^2/\omega^2} \), and this
@@ -578,17 +686,19 @@ than the square root expression (but potentially a factor 1.4 wrong
 compared to the exact amplitude).  It is not very important to have
 \( |u|\leq 1 \), the point is to avoid \( |u| \) very small or large.
 
-<h3 id="___sec57">Discussion of the time scale </h3>
+<h3 id="___sec66">Discussion of the time scale </h3>
 
 <p>
 What is an appropriate time scale? Looking at
-<a href="#mjx-eqn-53">(53)</a> and arguing that
+<a href="#mjx-eqn-65">(65)</a> and arguing that
 \( \bar u'' \) and \( \bar u \) both should be around unity in size, the
 coefficient \( t_c^2k/m \) must equal unity, implying that \( t_c=\sqrt{m/k} \).
-Also from the analytical solution we see that it goes like
+Also from the analytical solution we see that the solution goes like the
 sine or cosine of \( \omega t \) so \( 1/\omega = \sqrt{m/k} \) can be a characteristic
 time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \) can
 be the characteristic time, leading to \( t_c=2\pi/\omega \).
+
+<h3 id="___sec67">The dimensionless solution </h3>
 
 <p>
 With \( u_c=I \) and \( t_c=\sqrt{m/k} \) we get the scaled model
@@ -597,7 +707,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + \bar u = 0,
 \quad \bar u(0)=1,\ \bar u'(0)=\alpha,
-\tag{54}
+\tag{66}
 \end{equation}
 $$
 
@@ -615,13 +725,14 @@ The unscaled solution is recovered as
 $$
 \begin{equation}
 u(t) = I\bar u(\sqrt{k/m}\bar t)\tp
+\tag{67}
 \end{equation}
 $$
 
 This expressions shows that the scaling is simply a matter of
 <em>stretching or shrinking the axes</em>.
 
-<h3 id="___sec58">Alternative displacement scale </h3>
+<h3 id="___sec68">Alternative displacement scale </h3>
 
 <p>
 Using \( u_c = V/\omega \), the equation
@@ -638,7 +749,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + 4\pi^2 \bar u = 0,
 \quad \bar u(0)=\alpha^{-1},\ \bar u'(0)=2\pi\tp
-\tag{55}
+\tag{68}
 \end{equation}
 $$
 
@@ -647,10 +758,11 @@ The unscaled solution is in this case recovered by
 $$
 \begin{equation}
 u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t)\tp
+\tag{69}
 \end{equation}
 $$
 
-<h3 id="___sec59">About frequency and dimensions </h3>
+<h3 id="___sec69">About frequency and dimensions </h3>
 
 <p>
 The solution goes like \( \cos\omega t \), where \( \omega =\sqrt{m/k} \)
@@ -669,8 +781,12 @@ the unit for counts per unit time.
 
 <p>
 For vertical vibrations in the gravity field, the model
-<a href="#mjx-eqn-52">(52)</a> must also take the gravity force
-\( -mg \) into account: \( mu'' + ku = -mg \). How does this term influence
+<a href="#mjx-eqn-64">(64)</a> must also take the gravity force
+\( -mg \) into account:
+
+$$ mu'' + ku = -mg\tp$$
+
+How does the new term \( -mg \) influence
 the scaling? We observe that if there is no movement of the body,
 \( u''=0 \), and the spring elongation matches the gravity force:
 \( ku = -mg \), leading to a steady displacement \( u=-mg/k \). We can then
@@ -681,7 +797,7 @@ $$ \bar u = \frac{u - (-mg/k)}{u_c}=\frac{uk + mg}{ku_c}\tp$$
 
 <!-- u = - mg/k + u_c\bar u -->
 The scaled differential equation with the same time scale as before
-(gravity does not influence the oscillations) reads
+reads
 
 $$ \frac{d^2\bar u}{d\bar t^2} + \bar u - \frac{t_c^2}{u_c}g
 = -\frac{t_c^2}{u_c}g,$$
@@ -690,16 +806,24 @@ leading to
 
 $$ \frac{d^2\bar u}{d\bar t^2} + \bar u = 0\tp$$
 
+The initial conditions \( u(0)=I \) and \( u'(0)=V \) become, with \( u_c=I \),
+
+$$ \bar u(0) = 1 + \frac{mg}{kI},\quad \frac{d\bar u}{d\bar t}(0)=\sqrt{\frac{m}{k}}\frac{V}{I}\tp$$
+
+We see that the oscillations around the equilibrium point in the
+gravity field are identical to the horizontal oscillations without
+gravity, except for an offset \( mg/(kI) \) in the displacement.
+
 <h2 id="sec:scale:vib:undamped:F">Undamped vibrations with time-dependent forcing</h2>
 
 <p>
 Now we add a transient forcing term \( F(t) \) to the model
-<a href="#mjx-eqn-52">(52)</a>:
+<a href="#mjx-eqn-64">(64)</a>:
 
 $$
 \begin{equation}
 mu'' + ku = F(t),\quad u(0)=I,\ u'(0)=V\tp
-\tag{56}
+\tag{70}
 \end{equation}
 $$
 
@@ -714,7 +838,7 @@ $$
 \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u =
 \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{57}
+\tag{71}
 \end{equation}
 $$
 
@@ -724,7 +848,7 @@ three parameters (\( I \), \( V \), and \( A \)) that influence the magnitude of
 Moreover, there are two time scales, one for the free vibrations of
 the systems and one for the forced vibrations \( F(t) \).
 
-<h3 id="___sec62">Investigating scales via analytical solutions </h3>
+<h3 id="___sec72">Investigating scales via analytical solutions </h3>
 
 <p>
 We may look into the exact solution to see what the scales are.  We
@@ -773,7 +897,7 @@ The output from the last line is
 (A/m + I*psi**2 - I*w**2)*cos(t*w)/(psi**2 - w**2)
 </pre></div>
 <p>
-With a bit of rewrite this expressions means
+With a bit of rewrite this expression becomes
 
 <p>
 <!-- Note that the solution becomes a bit simpler of F is cos rather than sin -->
@@ -811,23 +935,29 @@ $$
 u(t) = \frac{A}{m(\omega^2 - \psi^2)} 2
 \sin\left(\frac{\psi - \omega}{2}t\right)
 \sin\left(\frac{\psi + \omega}{2}t\right),
-\tag{58}
+\tag{72}
 \end{equation}
 $$
 
 showing that there is a signal with frequency \( (\psi + \omega)/2 \)
 whose amplitude has a (much) slower frequency
-\( (\psi - \omega)/2 \). Figure <a href="#sec:scale:vib:fig:envelope">6</a> shows
+\( (\psi - \omega)/2 \). Figure <a href="#sec:scale:vib:fig:envelope">8</a> shows
 an example how such a signal might look like.
 
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 6:  Signal with frequency 3.1 and envelope frequency 0.2. <div id="sec:scale:vib:fig:envelope"></div> </p></center>
-<p><img src="fig-scale/envelope.png" align="bottom" width=600></p>
+<center><p class="caption">Figure 8:  Signal with frequency 3.1 and envelope frequency 0.2. <div id="sec:scale:vib:fig:envelope"></div> </p></center>
+<p><img src="fig-scaling/envelope.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec63">The displacement and time scales </h3>
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 5</b>: Read chapter 2 so far...)</font>
+<!-- end inline comment -->
+
+<h3 id="___sec73">The displacement and time scales </h3>
 
 <p>
 A characteristic displacement can in the latter special case
@@ -849,10 +979,10 @@ of frequency \( \psi \) or \( \omega \) when these are close and the largest
 of them when they are distant. In any case, we might choose
 \( t_c=1/\max(\psi,\omega) \).
 
-<h3 id="___sec64">Finding the displacement scale from the differential equation </h3>
+<h3 id="___sec74">Finding the displacement scale from the differential equation </h3>
 
 <p>
-Going back to <a href="#mjx-eqn-57">(57)</a>, we
+Going back to <a href="#mjx-eqn-71">(71)</a>, we
 may demand that all the three terms in the differential equation
 are of size unity. This leads to \( t_c=\sqrt{m/k} \)
 and \( u_c=At_c^2/m = A/k \). The formula for \( u_c \) is a kind of measure
@@ -861,18 +991,18 @@ forcing and the spring force (the dimensionless number
 \( A/(ku_c) \) would be this ratio).
 
 <p>
-Looking at <a href="#mjx-eqn-58">(58)</a>, we see
+Looking at <a href="#mjx-eqn-72">(72)</a>, we see
 that if \( \psi\ll\omega \), the amplitude can be approximated
 by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
 relevant for small excitation frequency \( \psi \) compared to
 the free vibration frequency \( \omega \).
 
-<h3 id="___sec65">Scaling with free vibrations as time scale </h3>
+<h3 id="___sec75">Scaling with free vibrations as time scale </h3>
 
 <p>
 We first choose the time scale based on the free oscillations
 with frequency \( \omega \), i.e., \( t_c=1/\omega \). Inserting the expression in
-<a href="#mjx-eqn-57">(57)</a> results in
+<a href="#mjx-eqn-71">(71)</a> results in
 
 $$
 \begin{equation}
@@ -880,7 +1010,7 @@ $$
 \gamma
 \cos(\delta\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta\tp
-\tag{59}
+\tag{73}
 \end{equation}
 $$
 
@@ -888,10 +1018,14 @@ Here we have four dimensionless variables
 
 $$
 \begin{align}
-\alpha &= \frac{I}{u_c},\\ 
-\beta  &= \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},\\ 
-\gamma &= \frac{t_c^2 A}{mu_c} = frac{A}{ku_c},\\ 
+\alpha &= \frac{I}{u_c},
+\tag{74}\\ 
+\beta  &= \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},
+\tag{75}\\ 
+\gamma &= \frac{t_c^2 A}{mu_c} = frac{A}{ku_c},
+\tag{76}\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
+\tag{77}
 \end{align}
 $$
 
@@ -910,11 +1044,11 @@ physical effects:
    frequencies or the time scales of the forcing and the free vibrations.</li>
 </ul>
 
-<h3 id="___sec66">Software </h3>
+<h3 id="___sec76">Software </h3>
 
 <p>
-Any solver for <a href="#mjx-eqn-57">(57)</a>
-can be used for <a href="#mjx-eqn-59">(59)</a>.
+Any solver for <a href="#mjx-eqn-71">(71)</a>
+can be used for <a href="#mjx-eqn-73">(73)</a>.
 In particular, we may use the <code>solver</code> function in the
 file <a href="http://tinyurl.com/nm5587k/vib/vib.py" target="_self"><tt>vib.py</tt></a>:
 
@@ -946,10 +1080,10 @@ of periods to be simulated.
 
 <p>
 We way wrap this call in a <code>solver_scaled</code> function as we did in
-the section <a href="._scaling-book005.html#sec:scale:decay:prog">Making software utilizing the dimensionless model</a>, but this is done in
+the section <a href="._scaling-book005.html#sec:scale:decay:prog">Making software for utilizing the scaled model</a>, but this is done in
 the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
-<h3 id="___sec67">Choice of \( u_c \) close to resonance </h3>
+<h3 id="___sec77">Choice of \( u_c \) close to resonance </h3>
 
 <p>
 We have chosen not to specify \( u_c \) in the formulas above. Now we shall
@@ -979,9 +1113,9 @@ $$
 This is a problem with a very small initial condition and a very small
 forcing, but the state close to resonance brings the amplitude up to
 about unity, see the result of numerical simulations with \( \delta=0.99 \) in
-Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">7</a>.
+Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 Neglecting \( \alpha \),
-the solution is given by <a href="#mjx-eqn-58">(58)</a>,
+the solution is given by <a href="#mjx-eqn-72">(72)</a>,
 which here means \( A=1-\delta^2 \), \( m=1 \), \( \omega=1 \), \( \psi=\delta \):
 
 $$ \bar u(\bar t) = 2\sin(-0.005\bar t)\sin(0.995\bar t)\tp $$
@@ -990,20 +1124,20 @@ Note that this is a problem which demands very high accuracy in the
 numerical calculations. Using 20 time steps per period gives a
 significant phase error and an amplitude of about 1.4. We used
 160 steps per period for the results in
-Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">7</a>.
+Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 7:  Forced undamped vibrations close to resonance. <div id="sec:scale:vib:fig:Fcos_b0:1"></div> </p></center>
-<p><img src="fig-scale/vib_delta099_b0_Fcos.png" align="bottom" width=600></p>
+<center><p class="caption">Figure 9:  Forced undamped vibrations close to resonance. <div id="sec:scale:vib:fig:Fcos_b0:1"></div> </p></center>
+<p><img src="fig-scaling/vib_delta099_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec68">Unit size of all terms in the ODE </h3>
+<h3 id="___sec78">Unit size of all terms in the ODE </h3>
 
 <p>
 Using the displacement scale \( u_c=A/k \) leads to
-<a href="#mjx-eqn-59">(59)</a> with
+<a href="#mjx-eqn-73">(73)</a> with
 
 $$
 \begin{align*}
@@ -1015,10 +1149,10 @@ $$
 $$
 
 Simulating a case with \( \delta=0.5 \), \( \alpha=1 \), and \( \beta=0 \) gives
-the oscillations in Figure <a href="#sec:scale:vib:fig:Fcos_b0:2">8</a>, which is
+the oscillations in Figure <a href="#sec:scale:vib:fig:Fcos_b0:2">10</a>, which is
 a case away from resonance, and the amplitude is about unity. However,
 choosing \( \delta =0.99 \) (close to resonance) results in a figure
-similar to Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">7</a>, except that the
+similar to Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>, except that the
 amplitude is about \( 10^2 \) because of the moderate size of \( u_c \).
 The present scaling is therefore most suitable away from resonance,
 and when the terms containing \( \cos\omega t \) and \( \sin\omega t \)
@@ -1027,11 +1161,11 @@ are important (e.g., \( \omega\gg\psi \)).
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 8:  Forced undamped vibrations away from resonance. <div id="sec:scale:vib:fig:Fcos_b0:2"></div> </p></center>
-<p><img src="fig-scale/vib_delta05_b0_Fcos.png" align="bottom" width=600></p>
+<center><p class="caption">Figure 10:  Forced undamped vibrations away from resonance. <div id="sec:scale:vib:fig:Fcos_b0:2"></div> </p></center>
+<p><img src="fig-scaling/vib_delta05_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec69">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
+<h3 id="___sec79">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
 
 <p>
 Finally, we may look at the case where \( \psi\gg\omega \) such that
@@ -1047,7 +1181,7 @@ $$
 \gamma
 \cos(\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
-\tag{60}
+\tag{78}
 \end{equation}
 $$
 
@@ -1068,7 +1202,7 @@ However, if \( \alpha \) and/or \( \beta \) is large,
 the initial condition dominates over the forcing, and will also dominate
 the amplitude of \( u \), thereby making the scaling of \( u \) inappropriate.
 In case \( I=V=0 \) so that \( \alpha=\beta= \),
-<a href="#mjx-eqn-58">(58)</a> predicts
+<a href="#mjx-eqn-72">(72)</a> predicts
 (\( A=m=1 \), \( \omega=\delta^{-1} \), \( \psi=1 \))
 
 $$ \bar u(\bar t) = (\delta^{-2}-1)^{-1}2
@@ -1077,30 +1211,30 @@ $$ \bar u(\bar t) = (\delta^{-2}-1)^{-1}2
 $$
 
 which has an amplitude about \( 2 \) for \( \delta\gg 1 \), i.e.,
-very small amplitude. Figure <a href="#sec:scale:vib:fig:Fcos_b0:3">9</a> shows
+very small amplitude. Figure <a href="#sec:scale:vib:fig:Fcos_b0:3">11</a> shows
 numerical simulations with 160 time steps per period of \( F(t) \).
 
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 9:  Forced undamped vibrations with rapid forcing. <div id="sec:scale:vib:fig:Fcos_b0:3"></div> </p></center>
-<p><img src="fig-scale/vib_delta10_b0_Fcos.png" align="bottom" width=600></p>
+<center><p class="caption">Figure 11:  Forced undamped vibrations with rapid forcing. <div id="sec:scale:vib:fig:Fcos_b0:3"></div> </p></center>
+<p><img src="fig-scaling/vib_delta10_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
 <p>
 With \( \alpha=0.05\delta^2=5 \), we get a significant contribution from
 the free vibrations (the homogeneous solution of the ODE) as
-shown in Figure <a href="#sec:scale:vib:fig:Fcos_b0:4">10</a>. For larger \( \alpha \)
+shown in Figure <a href="#sec:scale:vib:fig:Fcos_b0:4">12</a>. For larger \( \alpha \)
 values, one must base
 
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 10:  Forced undamped vibrations with rapid forcing and initial displacement of 5. <div id="sec:scale:vib:fig:Fcos_b0:4"></div> </p></center>
-<p><img src="fig-scale/vib_delta10_b0_a5_Fcos.png" align="bottom" width=600></p>
+<center><p class="caption">Figure 12:  Forced undamped vibrations with rapid forcing and initial displacement of 5. <div id="sec:scale:vib:fig:Fcos_b0:4"></div> </p></center>
+<p><img src="fig-scaling/vib_delta10_b0_a5_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec70">Displacement scale based on \( I \) </h3>
+<h3 id="___sec80">Displacement scale based on \( I \) </h3>
 
 <p>
 Choosing \( u_c=I \) gives
@@ -1110,7 +1244,7 @@ $$
 \frac{d^2\bar u}{d\bar t^2} + \bar u =
 \gamma\cos(\delta\bar t),
 \quad \bar u(0)=1,\ \bar u'(0)=\beta,
-\tag{61}
+\tag{79}
 \end{equation}
 $$
 
@@ -1120,6 +1254,7 @@ $$
 \begin{align}
 \beta  &= \frac{V}{I}\sqrt\frac{{m}{k}} = \frac{Vt_c}{u_c},
 \gamma & = \frac{A}{kI} = \frac{tc^2A}{mu_c} = \frac{A}{ku_c}\tp
+\tag{80}
 \end{align}
 $$
 
@@ -1133,7 +1268,7 @@ We now introduce a linear damping force \( bu'(t) \) in the equation of motion:
 $$
 \begin{equation}
 mu'' + bu' + ku = A\cos(\psi t),\quad u(0)=I,\ u'(0)=V\tp
-\tag{62}
+\tag{81}
 \end{equation}
 $$
 
@@ -1145,17 +1280,17 @@ $$
 + \frac{t_c^2 k}{m}\bar u =
 \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{63}
+\tag{82}
 \end{equation}
 $$
 
-<h3 id="___sec72">The exact solution </h3>
+<h3 id="___sec82">The exact solution </h3>
 
 <p>
 To choose scales, it is a great advantage to look into exact solutions.
-Using SymPy to solve <a href="#mjx-eqn-62">(62)</a> turns out
+Using SymPy to solve <a href="#mjx-eqn-81">(81)</a> turns out
 to be difficult, because with damping, we have three solutions
-of <a href="#mjx-eqn-62">(62)</a>, and for vibrations we are
+of <a href="#mjx-eqn-81">(81)</a>, and for vibrations we are
 only interested in one of them, the one with damped oscillations.
 So we have to drop <code>dsolve</code> and perform manual steps, either by
 hand or with the aid of SymPy. The solution is composed of a homogeneous
@@ -1320,7 +1455,7 @@ u &= \frac{Am^{-1}}{4 B^{2} \psi^{2} +
 \nonumber\\ 
 & = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
 \frac{1}{2}}\cos(\psi t + \phi),
-\tag{64}
+\tag{83}
 \end{align}
 $$
 
@@ -1335,7 +1470,7 @@ $$ \phi = \tan^{-1}\left(-\frac{2B}{\omega^2 - \psi^2}\right)
 
 \( Q \) is commonly called <em>quality factor</em> and \( \phi \) is the
 <em>phase shift</em>. Dividing
-<a href="#mjx-eqn-64">(64)</a> by \( A/k \), which is a common
+<a href="#mjx-eqn-83">(83)</a> by \( A/k \), which is a common
 scale for \( u \), gives the dimensionless relation
 
 $$
@@ -1343,11 +1478,11 @@ $$
 \frac{u}{A/k} = \frac{Q}{\delta} R(Q,\delta)^{\frac{1}{2}}\cos(\psi t + \phi),
 \quad
 R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}\tp
-\tag{65}
+\tag{84}
 \end{equation}
 $$
 
-<h3 id="___sec73">Choosing scales </h3>
+<h3 id="___sec83">Choosing scales </h3>
 
 <p>
 Much of the discussion about scales in the previous sections are
@@ -1356,7 +1491,7 @@ Although the oscillations with frequency \( \sqrt{\omega^2-B^2} \)
 die out for \( t\gg B^{-1} \), we start with using this frequency for
 the time scale.
 A highly relevant assumption for engineering applications of
-<a href="#mjx-eqn-62">(62)</a> is that the damping is small.
+<a href="#mjx-eqn-81">(81)</a> is that the damping is small.
 Therefore, \( \sqrt{\omega^2-B^2} \) is close to \( \omega \) and we
 simply apply \( t_c=1/\omega \) as before.
 
@@ -1365,7 +1500,7 @@ The coefficient in front of the \( \bar u' \) term then becomes
 
 $$ \frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}\tp$$
 
-<h3 id="___sec74">Choice of \( u_c \) at resonance </h3>
+<h3 id="___sec84">Choice of \( u_c \) at resonance </h3>
 
 <p>
 The relevant scale for \( u_c \) at or nearby resonance (\( \psi = \omega \))
@@ -1400,7 +1535,7 @@ $$
 \gamma
 \cos(\delta\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
-\tag{66}
+\tag{85}
 \end{equation}
 $$
 
@@ -1411,14 +1546,18 @@ with
 
 $$
 \begin{align}
-\alpha &= \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},\\ 
-\beta  &= \frac{Vt_c}{u_c} = \frac{Vb}{A},\\ 
-\gamma &= \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},\\ 
+\alpha &= \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},
+\tag{86}\\ 
+\beta  &= \frac{Vt_c}{u_c} = \frac{Vb}{A},
+\tag{87}\\ 
+\gamma &= \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},
+\tag{88}\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1\tp
+\tag{89}
 \end{align}
 $$
 
-<h3 id="___sec75">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
+<h3 id="___sec85">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
 
 <p>
 In the limit \( \omega\gg\psi \) and \( t\gg 1/B \),
@@ -1430,13 +1569,13 @@ showing that \( u_c=A/k \) is an appropriate displacement scale.
 The dimensionless numbers \( \alpha \), \( \beta \), and \( \delta \) are as
 for the forced vibrations without damping.
 
-<h3 id="___sec76">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
+<h3 id="___sec86">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
 
 <p>
 In the limit \( \omega\ll\psi \), we should base \( t_c \) on the rapid
 variations in the excitation, \( t_c=1/\psi \).
 
-<h2 id="___sec77">Oscillating electric circuits </h2>
+<h2 id="___sec87">Oscillating electric circuits </h2>
 
 <p>
 The differential equation for an oscillating electric circuit is
@@ -1450,6 +1589,7 @@ capacitance \( C \), and overall resistance \( R \), obeys the equation
 $$
 \begin{equation}
 \ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I = \dot V(t),
+\tag{90}
 \end{equation}
 $$
 
@@ -1482,6 +1622,7 @@ $$
 \begin{equation}
 \frac{d^2\bar I}{d\bar t^2} + 2\alpha\frac{d\bar I}{d\bar t}
 + \bar I = \bar V(t)\tp
+\tag{91}
 \end{equation}
 $$
 
@@ -1514,7 +1655,7 @@ conditions for \( I \).
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+<!-- copyright only on the titlepage -->
 </center>
 
 

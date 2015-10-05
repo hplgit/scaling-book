@@ -20,14 +20,16 @@ equation to obtain the well-known convection-diffusion equation:
         
         \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
         {\alpha}\nabla^2 u,
-        \quad  \bar x,\bar y,\bar z\in \bar\Omega,\ t\in (0, T]{\thinspace .}
+        \quad  x,y, z\in \Omega,\ t\in (0, T]{\thinspace .}
         
         
 
 The velocity field :math:`\boldsymbol{v}` is prescribed, and its characteristic size :math:`V`
 is normally clear from the problem description.
 
-[**hpl 7**: Show a couple of cases, can be the same as Navier-Stokes, where different :math:`V` is obvious.]
+[**hpl 14**: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]
+
+[**hpl 15**: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different :math:`V` is obvious.]
 
 Inserting
 
@@ -52,16 +54,18 @@ from an initial condition. It is not critical here since it vanishes
 from the scaled equation anyway as long as there is no source term
 present.
 With some velocity measure :math:`V` and length measure :math:`L`, it is
-tempting to just let :math:`t_c = L/V`. The alternative is to use the
+tempting to just let :math:`t_c = L/V`. This is the characteristic time it takes to
+transport a signal by convection through the domain.
+The alternative is to use the
 diffusion length scale :math:`t_c=L^2/{\alpha}`. Very often in these kind of
 problems, the convection term :math:`\boldsymbol{v}\cdot\nabla u` dominates over the
 diffusion term :math:`{\alpha}\nabla^2 u`, so the time scale for convection,
-which is typically :math:`L/V` (the time it takes for the convection velocity
-to propagate a signal through the characteristic length),
+which is :math:`L/V`,
 is most appropriate of the two. Only when
 the diffusion term is very much larger than the convection
 term (corresponding to very small Peclet numbers, see below)
 we would apply :math:`t_c=L^2/{\alpha}`.
+
 The non-dimensional form of the PDE with :math:`t_c=L/V` becomes
 
 .. _Eq:scale:convdiff:pde1:d:
@@ -133,7 +137,7 @@ In case we use the diffusion time scale
    For small Peclet numbers, :math:`\hbox{Pe}^{-1}\bar\nabla^2\bar u` becomes
    very large and can only be balanced by two terms that are supposed to
    be unity of size.  The time-derivative and/or the convection term must
-   be much larger than unity, but that means that we use wrong scales,
+   be much larger than unity, but that means we use wrong scales,
    since right scales imply that :math:`\partial\bar u/\partial\bar t` and
    :math:`\bar v\cdot\bar\nabla\bar u` of order unity. Switching to a time
    scale based on diffusion as the dominating physical effect gives
@@ -189,12 +193,13 @@ from unity.
 
 Consider the following 1D example to illustrate the point: :math:`\boldsymbol{v} = v\boldsymbol{i}`,
 :math:`v>0` constant, a domain :math:`[0,L]`, with boundary conditions :math:`u(0)=0` and
-:math:`u(L)=U_L`,
+:math:`u(L)=U_L`. (The vector :math:`\boldsymbol{i}` is a unit vector in :math:`x` direction.)
+The problem with dimensions is now
 
 .. math::
          vu^{\prime} = {\alpha} u^{\prime\prime},\quad u(0)=0,\ u(L)=U_L{\thinspace .}
 
-The scaled problem reads
+Scaling results in
 
 .. math::
          \frac{d\bar u}{d\bar x} = \hbox{Pe}^{-1}\frac{d^2\bar u}{d\bar x^2},\quad
@@ -206,8 +211,8 @@ if we choose :math:`U=U_L`. The solution of the scaled problem is
          \bar u(\bar x) = \frac{1 - e^{\bar x\hbox{Pe}}}{1 - e^{\hbox{Pe}}}{\thinspace .}
 
 Figure :ref:`scale:convdiff:fig:scaled` indicates how :math:`\bar u` depends on
-Pe: small Pe values gives approximately a straight line while large Pe
-values leads to a *boundary layer* close to :math:`x=1`, where the solution
+Pe: small Pe values give approximately a straight line while large Pe
+values lead to a *boundary layer* close to :math:`x=1`, where the solution
 changes very rapidly.
 
 .. _scale:convdiff:fig:scaled:
@@ -215,7 +220,7 @@ changes very rapidly.
 .. figure:: boundary_layer1D.png
    :width: 600
 
-   *Solution of scaled problem where the length scale depends on the Peclet number*
+   *Solution of scaled problem for 1D convection-diffusion*
 
 We realize that for large Pe,
 
@@ -276,11 +281,12 @@ but for small Peclet numbers :math:`d\bar u/d\bar x \sim \hbox{Pe}^{-1}`.
    *Solution of scaled problem where the length scale depends on the Peclet number*
 
 The conclusion is that for small Peclet numbers, :math:`x_c=L` is an
-appropriate length scale and leads to scaled derivatives in :math:`[0,1]`.
-The scaled equation :math:`\hbox{Pe}\bar u' = \bar u''` indicates that :math:`\bar
+appropriate length scale.
+The scaled equation :math:`\hbox{Pe}\,\bar u' = \bar u''` indicates that :math:`\bar
 u''\approx 0`, and the solution is close to a straight line.  For
 large Pe values, :math:`x_c={\alpha}/V` is an appropriate length scale, and the
-scaled equation expresses that the terms :math:`\bar u'` and :math:`\bar u''` are
+scaled equation :math:`\bar u' = \bar u''`
+expresses that the terms :math:`\bar u'` and :math:`\bar u''` are
 equal and of size around unity.
 
 .. index:: dimensionless number
@@ -308,7 +314,7 @@ The scaled version reads
 
 .. math::
         
-        \frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\boldsymbol{v}\cdot\bar nabla \bar u =
+        \frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\boldsymbol{v}\cdot\bar\nabla \bar u =
         \frac{t_c{\alpha}}{L^2}\bar\nabla^2 \bar u + \frac{t_cf_c}{u_c}\bar f{\thinspace .}
         
 
@@ -339,7 +345,7 @@ The corresponding PDE reads
 so for small Peclet numbers, which we have, the convective term can
 be neglected and we get a pure diffusion equation with a source term.
 
-So, what if the problem is stationary?
+What if the problem is stationary?
 Then there is no time scale and we get
 
 .. math::
@@ -358,6 +364,6 @@ or
 
 Again, choosing :math:`u_c` such that the source term coefficient is unity leads
 to :math:`u_c= f_c L/V`.
-
-[**hpl 8**: Suppose :math:`V` is small. This suggests removing the convection *and* the source term.]
+Alternatively, :math:`u_c` can be based on the initial condition, with similar
+results as found in the sections on the wave and diffusion PDEs.
 

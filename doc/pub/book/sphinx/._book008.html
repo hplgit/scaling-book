@@ -87,10 +87,11 @@ equation to obtain the well-known convection-diffusion equation:</p>
 <div class="math" id="equation-scale:convdiff:pde1">
 <span id="eq-scale-convdiff-pde1"></span><span class="eqno">(1)</span>\[     \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
      {\alpha}\nabla^2 u,
-     \quad  \bar x,\bar y,\bar z\in \bar\Omega,\ t\in (0, T]{\thinspace .}\]</div>
+     \quad  x,y, z\in \Omega,\ t\in (0, T]{\thinspace .}\]</div>
 <p>The velocity field <span class="math">\(\boldsymbol{v}\)</span> is prescribed, and its characteristic size <span class="math">\(V\)</span>
 is normally clear from the problem description.</p>
-<p>[<strong>hpl 7</strong>: Show a couple of cases, can be the same as Navier-Stokes, where different <span class="math">\(V\)</span> is obvious.]</p>
+<p>[<strong>hpl 14</strong>: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]</p>
+<p>[<strong>hpl 15</strong>: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different <span class="math">\(V\)</span> is obvious.]</p>
 <p>Inserting</p>
 <div class="math">
 \[\bar x = \frac{x}{x_c},\ \bar y = \frac{y}{y_c},\ \bar z = \frac{z}{z_c},
@@ -108,17 +109,18 @@ from an initial condition. It is not critical here since it vanishes
 from the scaled equation anyway as long as there is no source term
 present.
 With some velocity measure <span class="math">\(V\)</span> and length measure <span class="math">\(L\)</span>, it is
-tempting to just let <span class="math">\(t_c = L/V\)</span>. The alternative is to use the
+tempting to just let <span class="math">\(t_c = L/V\)</span>. This is the characteristic time it takes to
+transport a signal by convection through the domain.
+The alternative is to use the
 diffusion length scale <span class="math">\(t_c=L^2/{\alpha}\)</span>. Very often in these kind of
 problems, the convection term <span class="math">\(\boldsymbol{v}\cdot\nabla u\)</span> dominates over the
 diffusion term <span class="math">\({\alpha}\nabla^2 u\)</span>, so the time scale for convection,
-which is typically <span class="math">\(L/V\)</span> (the time it takes for the convection velocity
-to propagate a signal through the characteristic length),
+which is <span class="math">\(L/V\)</span>,
 is most appropriate of the two. Only when
 the diffusion term is very much larger than the convection
 term (corresponding to very small Peclet numbers, see below)
-we would apply <span class="math">\(t_c=L^2/{\alpha}\)</span>.
-The non-dimensional form of the PDE with <span class="math">\(t_c=L/V\)</span> becomes</p>
+we would apply <span class="math">\(t_c=L^2/{\alpha}\)</span>.</p>
+<p>The non-dimensional form of the PDE with <span class="math">\(t_c=L/V\)</span> becomes</p>
 <div class="math" id="equation-scale:convdiff:pde1:d">
 <span id="eq-scale-convdiff-pde1-d"></span><span class="eqno">(2)</span>\[     \frac{\partial \bar u}{\partial \bar t} +
      \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
@@ -163,7 +165,7 @@ and work with a pure convection (or advection) equation</p>
 <p>For small Peclet numbers, <span class="math">\(\hbox{Pe}^{-1}\bar\nabla^2\bar u\)</span> becomes
 very large and can only be balanced by two terms that are supposed to
 be unity of size.  The time-derivative and/or the convection term must
-be much larger than unity, but that means that we use wrong scales,
+be much larger than unity, but that means we use wrong scales,
 since right scales imply that <span class="math">\(\partial\bar u/\partial\bar t\)</span> and
 <span class="math">\(\bar v\cdot\bar\nabla\bar u\)</span> of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
@@ -199,23 +201,24 @@ or the diffusion term <span class="math">\(\bar\nabla^2\bar u\)</span> must devi
 from unity.</p>
 <p>Consider the following 1D example to illustrate the point: <span class="math">\(\boldsymbol{v} = v\boldsymbol{i}\)</span>,
 <span class="math">\(v&gt;0\)</span> constant, a domain <span class="math">\([0,L]\)</span>, with boundary conditions <span class="math">\(u(0)=0\)</span> and
-<span class="math">\(u(L)=U_L\)</span>,</p>
+<span class="math">\(u(L)=U_L\)</span>. (The vector <span class="math">\(\boldsymbol{i}\)</span> is a unit vector in <span class="math">\(x\)</span> direction.)
+The problem with dimensions is now</p>
 <div class="math">
 \[vu^{\prime} = {\alpha} u^{\prime\prime},\quad u(0)=0,\ u(L)=U_L{\thinspace .}\]</div>
-<p>The scaled problem reads</p>
+<p>Scaling results in</p>
 <div class="math">
 \[\frac{d\bar u}{d\bar x} = \hbox{Pe}^{-1}\frac{d^2\bar u}{d\bar x^2},\quad
 \bar x\in (0,1),\quad \bar u(0)=0,\ \bar u(1) = 1,\]</div>
 <p>if we choose <span class="math">\(U=U_L\)</span>. The solution of the scaled problem is</p>
 <div class="math">
 \[\bar u(\bar x) = \frac{1 - e^{\bar x\hbox{Pe}}}{1 - e^{\hbox{Pe}}}{\thinspace .}\]</div>
-<p>Figure <a class="reference internal" href="#scale-convdiff-fig-scaled"><span class="std std-ref">Solution of scaled problem where the length scale depends on the Peclet number</span></a> indicates how <span class="math">\(\bar u\)</span> depends on
-Pe: small Pe values gives approximately a straight line while large Pe
-values leads to a <em>boundary layer</em> close to <span class="math">\(x=1\)</span>, where the solution
+<p>Figure <a class="reference internal" href="#scale-convdiff-fig-scaled"><span class="std std-ref">Solution of scaled problem for 1D convection-diffusion</span></a> indicates how <span class="math">\(\bar u\)</span> depends on
+Pe: small Pe values give approximately a straight line while large Pe
+values lead to a <em>boundary layer</em> close to <span class="math">\(x=1\)</span>, where the solution
 changes very rapidly.</p>
 <div class="figure" id="id2">
 <span id="scale-convdiff-fig-scaled"></span><a class="reference internal image-reference" href="_images/boundary_layer1D.png"><img alt="_images/boundary_layer1D.png" src="_images/boundary_layer1D.png" style="width: 600px;" /></a>
-<p class="caption"><span class="caption-text"><em>Solution of scaled problem where the length scale depends on the Peclet number</em></span></p>
+<p class="caption"><span class="caption-text"><em>Solution of scaled problem for 1D convection-diffusion</em></span></p>
 </div>
 <p>We realize that for large Pe,</p>
 <div class="math">
@@ -261,11 +264,12 @@ but for small Peclet numbers <span class="math">\(d\bar u/d\bar x \sim \hbox{Pe}
 <p class="caption"><span class="caption-text"><em>Solution of scaled problem where the length scale depends on the Peclet number</em></span></p>
 </div>
 <p>The conclusion is that for small Peclet numbers, <span class="math">\(x_c=L\)</span> is an
-appropriate length scale and leads to scaled derivatives in <span class="math">\([0,1]\)</span>.
-The scaled equation <span class="math">\(\hbox{Pe}\bar u' = \bar u''\)</span> indicates that <span class="math">\(\bar
+appropriate length scale.
+The scaled equation <span class="math">\(\hbox{Pe}\,\bar u' = \bar u''\)</span> indicates that <span class="math">\(\bar
 u''\approx 0\)</span>, and the solution is close to a straight line.  For
 large Pe values, <span class="math">\(x_c={\alpha}/V\)</span> is an appropriate length scale, and the
-scaled equation expresses that the terms <span class="math">\(\bar u'\)</span> and <span class="math">\(\bar u''\)</span> are
+scaled equation <span class="math">\(\bar u' = \bar u''\)</span>
+expresses that the terms <span class="math">\(\bar u'\)</span> and <span class="math">\(\bar u''\)</span> are
 equal and of size around unity.</p>
 <span class="target" id="index-1"></span></div>
 <div class="section" id="convection-diffusion-with-a-force-term">
@@ -276,7 +280,7 @@ equal and of size around unity.</p>
      {\alpha}\nabla^2 u + f{\thinspace .}\]</div>
 <p>The scaled version reads</p>
 <div class="math">
-\[\frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\boldsymbol{v}\cdot\bar nabla \bar u =
+\[\frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\boldsymbol{v}\cdot\bar\nabla \bar u =
 \frac{t_c{\alpha}}{L^2}\bar\nabla^2 \bar u + \frac{t_cf_c}{u_c}\bar f{\thinspace .}\]</div>
 <p>We can base <span class="math">\(t_c\)</span> on convective transport: <span class="math">\(t_c = L/V\)</span>. Now,
 <span class="math">\(u_c\)</span> could be chosen to make the coefficient in the source term unity:
@@ -296,7 +300,7 @@ determines <span class="math">\(u_c\)</span> according to</p>
 \bar\nabla^2 \bar u + \bar f,\]</div>
 <p>so for small Peclet numbers, which we have, the convective term can
 be neglected and we get a pure diffusion equation with a source term.</p>
-<p>So, what if the problem is stationary?
+<p>What if the problem is stationary?
 Then there is no time scale and we get</p>
 <div class="math">
 \[\frac{V u_c}{L}\bar\boldsymbol{v}\cdot\bar \nabla \bar u =
@@ -306,8 +310,9 @@ Then there is no time scale and we get</p>
 \[\bar\boldsymbol{v}\cdot\bar \nabla \bar u =
 \hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f,\]</div>
 <p>Again, choosing <span class="math">\(u_c\)</span> such that the source term coefficient is unity leads
-to <span class="math">\(u_c= f_c L/V\)</span>.</p>
-<p>[<strong>hpl 8</strong>: Suppose <span class="math">\(V\)</span> is small. This suggests removing the convection <em>and</em> the source term.]</p>
+to <span class="math">\(u_c= f_c L/V\)</span>.
+Alternatively, <span class="math">\(u_c\)</span> can be based on the initial condition, with similar
+results as found in the sections on the wave and diffusion PDEs.</p>
 </div>
 </div>
 

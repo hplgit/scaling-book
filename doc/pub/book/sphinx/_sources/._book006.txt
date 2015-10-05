@@ -46,8 +46,8 @@ In multi dimensions in heterogeneous media we have the generalization
         
 
 How to scale time depends on the PDE, the spatial scale depends on
-the domain, and the scale of :math:`u` usually depends on the type of
-boundary and initial condition.
+the domain, and the scale of :math:`u` usually depends on :math:`f` or the
+boundary or initial condition.
 
 Simple homogeneous Dirichlet conditions
 ---------------------------------------
@@ -127,9 +127,10 @@ Inserting the :math:`x=x_c\bar x`, etc., in :eq:`scale:wave:pde1` and
 
 The key question is how to define the scales.
 A natural choice is :math:`x_c=L` since this makes :math:`\bar x\in [0,1]`.
-For the problem governed by
+For the spatial scale and the problem governed by
 :eq:`scale:wave:pde1` we
-have some analytical insight, namely that the solution behaves like
+have some analytical insight that can help.
+The solution behaves like
 
 .. _Eq:scale:wave:pde:sol:general:
 
@@ -153,7 +154,10 @@ and consequently
 which tells that the initial condition splits in two, half of it moves
 to the left and half to the right.
 This means in particular that we can choose :math:`u_c=\max_x |I(x)|`
-and get :math:`|\bar u|\leq 1`, which is a goal.
+and get :math:`|\bar u|\leq 1`, which is a goal. It must be added that
+boundary conditions may result in reflected waves and a more
+complicated solution that indicated above with the two left- and
+right-going parts of the initial condition.
 
 Regarding the time scale, we may look at the two terms in the scaled
 PDE and argue that if :math:`|u|` and its derivatives are to be of order unity,
@@ -228,13 +232,21 @@ such that it is less than or equal to 1.
 The physical solution with dimension is recovered from :math:`\bar u(\bar x,\bar t)`
 through
 
+.. _Eq:_auto28:
+
 .. math::
+   :label: _auto28
         
         u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
+        
         
 
 Implementation of the scaled wave equation
 ------------------------------------------
+
+[**hpl 6**: This must be rewritten and placed in an appendix - or dropped. The basic code from ``wave1D_u0.py`` must be shown, otherwise the discussion of avoiding recomputation does not make much sense.]
+
+[**hpl 7**: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.]
 
 How do we implement :eq:`scale:wave:pde1:d`-:eq:`scale:wave:pde1:bc:L:d`?
 As for the simpler mathematical models, I suggest to implement the model
@@ -318,11 +330,6 @@ mentioned ``wave1D_u0.py`` file.
 
 .. code-block:: python
 
-        # Enable loading modules in the wave eq solver and softeng2 dirs
-        sys.path.insert(0, os.path.join(
-            os.pardir, os.pardir, 'wave', 'src-wave', 'wave1D'))
-        sys.path.insert(0, os.path.join(
-            os.pardir, os.pardir, 'softeng2', 'src-softeng2'))
         from wave1D_u0 import solver as solver_unscaled
         from Storage import Storage
         
@@ -334,9 +341,12 @@ mentioned ``wave1D_u0.py`` file.
             import inspect, hashlib
             data = inspect.getsource(I) + '_' + str(dt) + '_' + \ 
                    str(C) + '_' + str(T)
-            # Not fool proof: if x0 changes value, I source is the same...
+            # Not fool proof: if x0 changes value, the source code of I
+            # is still the same, and no recomputation takes place...
             hashed_input = hashlib.sha1(data).hexdigest()
         
+            # Use joblib-based tool (class Storage) to store already
+            # computed solutions in files
             cachedir = 'tmp_%s' % hashed_input
             is_computed = os.path.isdir(cachedir)
             print 'cachedir:', cachedir, is_computed
@@ -369,6 +379,11 @@ solution for this set of input data is already computed, and we can just
 return the ``storage`` object from which one can retrieve the space and time
 mesh as well as all the solutions ``u0``, ``u1``, and so on.
 
+Although the partial differential equation model has no physical
+parameters (assuming :math:`x_0` fixed), the corresponding numerical model
+depends on the Courant number :math:`C=c\Delta t/\Delta x` and the length
+:math:`T` of the simulations.
+
 A specific application of this simple solver is the vibrations of a guitar
 string. The scaled version depends only on :math:`C` (if we say :math:`T` is fixed
 and :math:`N_x` is fixed through :math:`\Delta t`). The string vibrations can be
@@ -399,11 +414,6 @@ simulated by the following function:
                 plot(x, u, 'r-', label='t=%.2f' % t[n],
                      axis=[x[0], x[-1], -1.2, 1.2])
             return storage
-
-Although the partial differential equation model has no physical
-parameters (assuming :math:`x_0` fixed), the corresponding numerical model
-depends on the Courant number :math:`C=c\Delta t/\Delta x` and the length
-:math:`T` of the simulations.
 
 To solve an unscaled problem, we need some unscale functions:
 
@@ -458,8 +468,6 @@ other cases with different ``I_max`` parameter. Running such a program again
 will avoid all computations and show movies solely based on
 precomputed file data.
 
-[**hpl 3**: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Nevertheless, it probably does not hurt to document the idea? Need views on this.]
-
 .. _scale:wave:pde2:
 
 Time-dependent Dirichlet condition
@@ -482,6 +490,9 @@ is the condition at :math:`x=0`, which now reads
 
 in scaled form.
 
+Scaling          (5)
+~~~~~~~~~~~~~~~~~~~~
+
 Regarding the characteristic time scale, it is natural to base this scale on
 the wave propagation velocity and not on the time scale of :math:`U_L(t)`, because
 the time scale of :math:`U_L` basically determines whether
@@ -496,7 +507,7 @@ feeding of waves at :math:`x=0`. This gives us three choices of :math:`u_c`:
 relevant if the size of :math:`I` and :math:`U_L` are about the same, but then
 we can choose either :math:`\max_x |I|` or :math:`\max_t |U_L|` as characteristic size
 of :math:`u` since a factor of 2 is not important. If :math:`I` is much less than
-:math:`U_L`, :math:`u_c=\max_t |u_L|` is relevant, while :math:`u_c=\max_xI` is the choice
+:math:`U_L`, :math:`u_c=\max_t |u_L|` is relevant, while :math:`u_c=\max_x|I|` is the choice
 when :math:`I` has much bigger impact than :math:`U_L` on :math:`u`.
 
 With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
@@ -555,10 +566,16 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 Also this problem is free of physical parameters like :math:`c` and :math:`L`.
 The input is completely specified by the shape of :math:`I(x)` and :math:`U_L(t)`.
 
+Software          (6)
+~~~~~~~~~~~~~~~~~~~~~
+
 Software for the original problem with dimensions can be reused for
 :eq:`scale:wave:pde2:d`-:eq:`scale:wave:pde2:bc:L:d` by
 setting :math:`L=1`, :math:`c=1`, and scaling :math:`U_L(t)` and :math:`I(x)` by
 :math:`\max_t |U_L(t)|`.
+
+Specific case
+~~~~~~~~~~~~~
 
 As an example, consider
 
@@ -582,9 +599,10 @@ Since :math:`\max_t |U_L|=a` we get
         \bar u(0,\bar t) &= \sin(\bar t\omega L/c){\thinspace .}
         
 
-Here, :math:`U_L` models an incoming wave :math:`a\sin(k(x-ct)`, with :math:`k` specified
-(makes waves of length :math:`\lambda = 2\pi/k`), we have :math:`\omega =kc`,
-and :math:`\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)`.
+Here, :math:`U_L` models an incoming wave :math:`a\sin(k(x-ct)`, with :math:`k` specified.
+The result is incoming
+waves of length :math:`\lambda = 2\pi/k`. Since :math:`\omega =kc`,
+:math:`\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)`.
 (This formula demonstrates the previous assertion that the time scale
 of :math:`U_L`, i.e., :math:`1/\omega`, determines the wave length :math:`1/\omega = \lambda/(2\pi)` in space.)
 We realize from the formulas for :math:`\bar u(\bar x, 0)` and
@@ -606,7 +624,7 @@ initial and boundary conditions as
 
 The dimensionless parameters have the following interpretations:
 
- * :math:`\alpha`: ratio of initial condition peak and amplitude of incoming wave
+ * :math:`\alpha`: ratio of initial condition amplitude and amplitude of incoming wave
    at :math:`x=0`
 
  * :math:`\beta`: ratio of length of domain and width of initial condition
@@ -614,7 +632,7 @@ The dimensionless parameters have the following interpretations:
  * :math:`\gamma`: ratio of length of domain and wave length of incoming wave
 
 Again, these dimensionless parameters tell a lot about the interplay of
-the physical effects in the problem: only some ratios count.
+the physical effects in the problem. And only some ratios count!
 
 We can simulate two special cases: :math:`\alpha=10` (large) where the
 incoming wave is small and the solution is dominated by the two waves
@@ -622,46 +640,24 @@ arising from :math:`I(x)`, and :math:`\alpha=0.1` (small) where the incoming wav
 dominate and the has the initial condition as a small perturbation of
 the wave shape. We may choose a peak-shaped initial condition: :math:`\beta = 10`,
 and also a relatively short incoming wave compared to the domain size:
-:math:`\gamma 6\pi` (i.e., wave length of incoming wave is :math:`L/6`).
-The function below applies the general unscaled
-solver in `wave1D_dn.py <http://tinyurl.com/nm5587k/wave/wave1D/wave1D_dn.py>`__
+:math:`\gamma = 6\pi` (i.e., wave length of incoming wave is :math:`L/6`).
+A function ``simulate_Gaussian_and_incoming_wave`` in
+the file `session.py <http://tinyurl.com/o8pb3yy/session.py>`__
+applies the general unscaled
+solver in `wave1D_dn.py <http://tinyurl.com/o8pb3yy/wave1D_dn.py>`__
 for solving the wave equation with constant :math:`c`
 and any time-dependent function or :math:`\partial u/\partial x=0` at the
-end points.
+end points. This solver is trivially adapted to the present case.
 
-.. code-block:: python
-
-        def simulate_Gaussian_and_incoming_wave():
-            from wave1D_dn import solver, viz
-            from math import pi
-            alpha = 0.1
-            beta = 10
-            gamma = 2*pi*3
-        
-            def I(x):
-                return alpha*exp(-beta**2*(x - 0.5)**2)
-        
-            def U_0(t):
-                return sin(gamma*t) if t <= 2*pi/gamma else 0
-        
-            L = 1
-            c = 1
-            Nx = 80; dx = L/float(Nx); dt = dx/1
-            #solver(I=I, V=0, f=0, U_0=U_0, U_L=None, L=1, dt=dt, C=1, T=4,
-            #       user_action=myplotter)
-            viz(I=I, V=0, f=0, c=1, U_0=U_0, U_L=None, L=1, dt=dt, C=1,
-                T=4, umin=-(alpha+1), umax=(alpha+1),
-                version='vectorized', animate=True)
-
-The function is found in the file `session.py <http://tinyurl.com/nm5587k/scale/session.py>`__.
+.. @@@CODE src-scaling/session.py fromto: def simulate_Gaussian_and@import odespy
 
 .. raw:: html
         
         <div>
         <video  loop controls width='640' height='365' preload='none'>
-            <source src='mov-scale/gaussian_plus_incoming/alpha10.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
-            <source src='mov-scale/gaussian_plus_incoming/alpha10.webm' type='video/webm; codecs="vp8, vorbis"'>
-            <source src='mov-scale/gaussian_plus_incoming/alpha10.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+            <source src='mov-scaling/gaussian_plus_incoming/alpha10.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+            <source src='mov-scaling/gaussian_plus_incoming/alpha10.webm' type='video/webm; codecs="vp8, vorbis"'>
+            <source src='mov-scaling/gaussian_plus_incoming/alpha10.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
         </video>
         </div>
         <p><em>:math:`\alpha=10`</em></p>
@@ -670,12 +666,14 @@ The function is found in the file `session.py <http://tinyurl.com/nm5587k/scale/
         
         <div>
         <video  loop controls width='640' height='365' preload='none'>
-            <source src='mov-scale/gaussian_plus_incoming/alpha01.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
-            <source src='mov-scale/gaussian_plus_incoming/alpha01.webm' type='video/webm; codecs="vp8, vorbis"'>
-            <source src='mov-scale/gaussian_plus_incoming/alpha01.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+            <source src='mov-scaling/gaussian_plus_incoming/alpha01.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+            <source src='mov-scaling/gaussian_plus_incoming/alpha01.webm' type='video/webm; codecs="vp8, vorbis"'>
+            <source src='mov-scaling/gaussian_plus_incoming/alpha01.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
         </video>
         </div>
         <p><em>:math:`\alpha=0.1`</em></p>
+
+[**hpl 8**: The HTML version features movies here. Link to them in the LaTeX PDF version as well?]
 
 .. _scale:wave:pde2:Vcond:
 
@@ -684,17 +682,35 @@ Velocity initial condition
 
 Now we change the initial condition from :math:`u=I` and :math:`\partial u/\partial t = 0` to
 
+.. _Eq:_auto29:
+
 .. math::
+   :label: _auto29
         
         u(x,0) = 0,
         
+        
+
+.. _Eq:_auto30:
 
 .. math::
+   :label: _auto30
           
         \frac{\partial}{\partial t} u(x,0) = V(x){\thinspace .}
         
+        
 
 Impact problems are often of this kind.
+The scaled version of :math:`u_t(x,0)=V(x)` becomes
+
+.. math::
+         \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
+        \frac{t_c}{u_c}V(\bar x x_c){\thinspace .}
+        
+
+Analytical insight
+~~~~~~~~~~~~~~~~~~
+
 From :eq:`scale:wave:pde:sol:general` we now get :math:`f_L + f_R =0` and
 :math:`cf_L' - cf_R' = V`. Introducing :math:`W(x)` such that :math:`W'(x)=V(x)`, a solution
 is :math:`-f_L=\frac{1}{2}W` and :math:`f_R=\frac{1}{2}W`. Hence,
@@ -702,12 +718,8 @@ is :math:`-f_L=\frac{1}{2}W` and :math:`f_R=\frac{1}{2}W`. Hence,
 .. math::
          u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} v(\xi) d\xi{\thinspace .}
 
-The scaled version of :math:`u_t(x,0)=V(x)` becomes
-
-.. math::
-         \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
-        \frac{t_c}{u_c}V(\bar x x_c){\thinspace .}
-        
+Scaling          (6)
+~~~~~~~~~~~~~~~~~~~~
 
 Since :math:`V` is the time-derivative of :math:`u`, the characteristic size of
 :math:`V` is typically :math:`u_c/t_c`, meaning that
@@ -723,18 +735,28 @@ on the wave speed: :math:`t_c = L/c`. We end up with
         \frac{V(\bar x x_c)}{\max_x |V(x)|},
         
 
-which also looks like a natural scaling of a function :math:`V`.
+which by itself looks like a natural scaling of a function :math:`V`.
+
+Nonzero initial shape
+~~~~~~~~~~~~~~~~~~~~~
 
 Suppose we change the initial condition :math:`u(x,0)=0` to :math:`u(x,0)=I(x)`.
-The scaled version of this condition with the present :math:`u_c` becomes
+The scaled version of this condition with the above :math:`u_c`
+based on :math:`V` becomes
+
+.. _Eq:scale:wave:pde2:Vcond:eq:
 
 .. math::
-         \bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}{\thinspace .}
+   :label: scale:wave:pde2:Vcond:eq
+        
+        \bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}{\thinspace .}
+        
+        
 
 
 .. admonition:: Check that dimensionless numbers are dimensionless
 
-   Is the fraction on the right-hand side dimensionless?
+   Is a dimensionless number really dimensionless?
    It is easy to make errors when scaling equations, so checking that
    such fractions are dimensionless is wise.
    The dimension of :math:`I` is the same as :math:`u`, here taken to be displacement:
@@ -742,7 +764,7 @@ The scaled version of this condition with the present :math:`u_c` becomes
    Since :math:`V` is :math:`\partial u/\partial t`, its dimension is
    :math:`[\hbox{LT}^{-1}]`. The dimensions of :math:`c` and :math:`L` are
    :math:`[\hbox{LT}^{-1}]` and :math:`[\hbox{L}]`. The dimension of the right-hand side
-   is then
+   of :eq:`scale:wave:pde2:Vcond:eq` is then
    
    .. math::
             \frac{[\hbox{LT}^{-1}][L]}{[L][L\hbox{T}^{-1}]}
@@ -783,9 +805,9 @@ regardless of other parameters.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.
 
-[**hpl 4**: Do experiments. Make exercise or insert here.]
+[**hpl 9**: Do experiments. Make exercise or insert here.]
 
-[**hpl 5**: Could make paradox: small :math:`I`, big :math:`V`, but still significant impact of :math:`I` in a simulation. Why? Bug? The answer is above. Best as exercise.]
+[**hpl 10**: Could make paradox: small :math:`I`, big :math:`V`, but still significant impact of :math:`I` in a simulation. Why? Bug? The answer is above. Best as exercise.]
 
 .. _scale:wave:pde2:cvar:
 
@@ -793,13 +815,15 @@ Variable wave velocity and forcing
 ----------------------------------
 
 The next problem generalization regards wave propagation in
-a non-homogeneous where the wave velocity :math:`c` depends on the
+a non-homogeneous medium where the wave velocity :math:`c` depends on the
 spatial position: :math:`c=c(x)`. To simplify the notation we introduce
 :math:`\lambda (x) = c^2(x)`. We introduce homogeneous Neumann conditions
 at :math:`x=0` and :math:`x=L`. In addition, we add a force term :math:`f(x,t)`
 to the PDE, modeling wave generation in the interior of
 the domain. For example, a moving slide at the bottom of a fjord
-will generate surface waves and is modeled by such an :math:`f(x,t)` term.
+will generate surface waves and is modeled by such an :math:`f(x,t)` term
+(provided the length of the waves is much larger than the depth so
+that a simple wave equation like :eq:`scale:wave:pde3` applies).
 The initial-boundary value problem
 can be then expressed as
 
@@ -855,11 +879,18 @@ can be then expressed as
         
         
 
+Non-dimensionalization
+~~~~~~~~~~~~~~~~~~~~~~
+
 We make the coefficient :math:`\lambda` non-dimensional by
 
+.. _Eq:_auto31:
+
 .. math::
+   :label: _auto31
         
         \bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},
+        
         
 
 where one normally chooses the characteristic size of :math:`\lambda`, :math:`\lambda_c`,
@@ -873,7 +904,7 @@ Similarly, :math:`f` has a scaled version
 .. math::
          \bar f(\bar x,\bar t) = \frac{f(\bar x x_c, \bar t t_c)}{f_c},
 
-where normally
+where normally we choose
 
 .. math::
          f_c=\max_{x,t}|f(x,t)|{\thinspace .}
@@ -936,6 +967,9 @@ non-dimensional counterparts yields
 
 with :math:`\bar T = Tc/L`.
 
+Choosing the time scale
+~~~~~~~~~~~~~~~~~~~~~~~
+
 The time scale is, as before, chosen as :math:`t_c
 =L/\sqrt{\lambda_c}`. Note that the previous (constant) wave velocity
 :math:`c` now corresponds to :math:`\sqrt{\lambda (x)}`.  Therefore,
@@ -948,7 +982,10 @@ signal speed in the medium, i.e., by :math:`\sqrt{\lambda_c}` here and not
 by the time scale of the excitation :math:`f` which dictates the
 length of the generated waves and not their propagation speed.
 
-Furthermore, we may choose :math:`u_c` as :math:`\max_x |I(x)|`, as before,
+Choosing the spatial scale
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We may choose :math:`u_c` as :math:`\max_x |I(x)|`, as before,
 or we may fit :math:`u_c` such that the coefficient in the source term
 is unity, i.e., all terms balance each other.
 This latter idea leads to
@@ -978,7 +1015,7 @@ where
          \beta = \frac{L^2}{\lambda_c}\frac{\max_{x,t} |f(x,t)|}{\max_x|I(x)|}{\thinspace .}
 
 In the case :math:`u_c=\max_x|I(x)|`, :math:`\bar u(\bar x,0)=\bar I(\bar x)` and
-the :math:`\beta` parameter appears in the PDE,
+the :math:`\beta` parameter appears in the PDE instead:
 
 .. math::
         
@@ -991,6 +1028,9 @@ the :math:`\beta` parameter appears in the PDE,
 With :math:`V=0`, and :math:`u=0` or :math:`u_x=0` on the boundaries :math:`x=0,L`, this scaling gives
 :math:`|\bar u|\leq 1`, since initially :math:`|I|\leq 1`, and no boundary condition
 can increase the amplitude.
+
+Scaling the velocity initial condition
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The initial condition :math:`u_t(x,0)=V(x)` has its dimensionless variant as
 
@@ -1036,13 +1076,18 @@ Damped wave equation
 
 A linear damping term :math:`b\,\partial u/\partial t` is often added to
 the wave equation to model energy dissipation and amplitude reduction.
+Our PDE now reads
+
+.. _Eq:_auto32:
 
 .. math::
+   :label: _auto32
         
         \frac{\partial^2 u}{\partial t^2}
         + b\frac{\partial u}{\partial t} =
         \frac{\partial}{\partial x}\left(
         \lambda(x) {\partial u\over\partial x}\right) + f(x,t){\thinspace .}
+        
         
 
 The scaled equation becomes
@@ -1062,7 +1107,10 @@ The damping term is usually much smaller than the two other terms involving
 we have two choices of :math:`u_c`: :math:`u_c=\max_x|I|` or :math:`u_c=t_c^2f_c`.
 The former choice of :math:`u_c` gives a PDE with two dimensionless numbers,
 
+.. _Eq:_auto33:
+
 .. math::
+   :label: _auto33
         
         \frac{\partial^2 \bar u}{\partial \bar t^2}
         + \gamma\frac{\partial \bar u}{\partial \bar t} =
@@ -1070,16 +1118,21 @@ The former choice of :math:`u_c` gives a PDE with two dimensionless numbers,
         \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
         \beta\bar f(\bar x,\bar t),
         
+        
 
 where
 
 .. math::
          \gamma = \frac{bL}{\sqrt{\lambda_c}}, 
 
-measures the size of the damping.
+measures the size of the damping, and :math:`\beta` is as given
+in the section :ref:`scale:wave:pde2:cvar`.
 With :math:`u_c=t_c^2f_c` we get a PDE where only :math:`\gamma` enters,
 
+.. _Eq:_auto34:
+
 .. math::
+   :label: _auto34
         
         \frac{\partial^2 \bar u}{\partial \bar t^2}
         + \gamma\frac{\partial \bar u}{\partial \bar t} =
@@ -1087,9 +1140,11 @@ With :math:`u_c=t_c^2f_c` we get a PDE where only :math:`\gamma` enters,
         \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
         \bar f(\bar x,\bar t){\thinspace .}
         
+        
 
 The scaled initial conditions are as in
-the section :ref:`scale:wave:pde2:cvar`.
+the section :ref:`scale:wave:pde2:cvar`, so in this latter case
+:math:`\beta` appears in the initial condition for :math:`u`.
 
 To summarize, the effects of :math:`V`, :math:`f`, and damping are reflected in
 the dimensionless numbers :math:`\alpha`, :math:`\beta`, and :math:`\gamma`,
@@ -1101,12 +1156,16 @@ A three-dimensional wave equation problem
 To demonstrate how the scaling extends to and looks like in
 three-dimensions, we consider
 
+.. _Eq:_auto35:
+
 .. math::
+   :label: _auto35
         
         \frac{\partial^2 \bar u}{\partial \bar t^2} =
         \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
         \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
         \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right){\thinspace .}
+        
         
 
 We introduce
@@ -1132,12 +1191,16 @@ size of the domain.
 As before, :math:`t_c = L/\sqrt{\lambda_c}`, and these choices lead to a
 dimensionless wave equation without physical parameters:
 
+.. _Eq:_auto36:
+
 .. math::
+   :label: _auto36
         
         \frac{\partial^2 \bar u}{\partial \bar t^2} =
         \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
         \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
         \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right){\thinspace .}
+        
         
 
 The initial conditions remain the same as in the previous one-dimensional

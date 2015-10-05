@@ -102,8 +102,8 @@ used later.</p>
 <span id="eq-scale-wave-pde1-3d"></span><span class="eqno">(2)</span>\[     \frac{\partial^2 u}{\partial t^2} =
      \nabla\cdot\left(c^2 \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]{\thinspace .}\]</div>
 <p>How to scale time depends on the PDE, the spatial scale depends on
-the domain, and the scale of <span class="math">\(u\)</span> usually depends on the type of
-boundary and initial condition.</p>
+the domain, and the scale of <span class="math">\(u\)</span> usually depends on <span class="math">\(f\)</span> or the
+boundary or initial condition.</p>
 <div class="section" id="simple-homogeneous-dirichlet-conditions">
 <h3>Simple homogeneous Dirichlet conditions<a class="headerlink" href="#simple-homogeneous-dirichlet-conditions" title="Permalink to this headline">¶</a></h3>
 <p>Let us first start with homogeneous Dirichlet conditions in space and
@@ -143,9 +143,10 @@ dependent variables:</p>
 \quad &amp;\bar t\in (0,T/t_c].\end{split}\]</div>
 <p>The key question is how to define the scales.
 A natural choice is <span class="math">\(x_c=L\)</span> since this makes <span class="math">\(\bar x\in [0,1]\)</span>.
-For the problem governed by
+For the spatial scale and the problem governed by
 <a href="#equation-scale:wave:pde1">(1)</a> we
-have some analytical insight, namely that the solution behaves like</p>
+have some analytical insight that can help.
+The solution behaves like</p>
 <div class="math" id="equation-scale:wave:pde:sol:general">
 <span id="eq-scale-wave-pde-sol-general"></span><span class="eqno">(7)</span>\[     u(x,t) = f_R(x-ct) + f_R(x+ct),\]</div>
 <p>i.e., a right- and left-going wave with velocity <span class="math">\(c\)</span>. The initial
@@ -157,7 +158,10 @@ and consequently</p>
 <p>which tells that the initial condition splits in two, half of it moves
 to the left and half to the right.
 This means in particular that we can choose <span class="math">\(u_c=\max_x |I(x)|\)</span>
-and get <span class="math">\(|\bar u|\leq 1\)</span>, which is a goal.</p>
+and get <span class="math">\(|\bar u|\leq 1\)</span>, which is a goal. It must be added that
+boundary conditions may result in reflected waves and a more
+complicated solution that indicated above with the two left- and
+right-going parts of the initial condition.</p>
 <p>Regarding the time scale, we may look at the two terms in the scaled
 PDE and argue that if <span class="math">\(|u|\)</span> and its derivatives are to be of order unity,
 then the size of the second-order derivatives should be the same, and
@@ -191,11 +195,13 @@ to specify is the shape of the initial condition and then scale it
 such that it is less than or equal to 1.</p>
 <p>The physical solution with dimension is recovered from <span class="math">\(\bar u(\bar x,\bar t)\)</span>
 through</p>
-<div class="math">
-\[u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)\]</div>
+<div class="math" id="equation-_auto28">
+<span id="eq-auto28"></span><span class="eqno">(13)</span>\[     u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)\]</div>
 </div>
 <div class="section" id="implementation-of-the-scaled-wave-equation">
 <h3>Implementation of the scaled wave equation<a class="headerlink" href="#implementation-of-the-scaled-wave-equation" title="Permalink to this headline">¶</a></h3>
+<p>[<strong>hpl 6</strong>: This must be rewritten and placed in an appendix - or dropped. The basic code from <code class="docutils literal"><span class="pre">wave1D_u0.py</span></code> must be shown, otherwise the discussion of avoiding recomputation does not make much sense.]</p>
+<p>[<strong>hpl 7</strong>: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.]</p>
 <p>How do we implement <a href="#equation-scale:wave:pde1:d">(8)</a>-<a href="#equation-scale:wave:pde1:bc:L:d">(12)</a>?
 As for the simpler mathematical models, I suggest to implement the model
 with dimensions and observe how to set parameters to obtain the scaled
@@ -240,7 +246,7 @@ a triangular shape.</p>
 </div>
 <div class="section" id="detecting-an-already-computed-case">
 <h4>Detecting an already computed case<a class="headerlink" href="#detecting-an-already-computed-case" title="Permalink to this headline">¶</a></h4>
-<p>In the section <a class="reference internal" href="._book004.html#sec-scale-decay-prog"><span class="std std-ref">Making software utilizing the dimensionless model</span></a> we demonstrated the use of <code class="docutils literal"><span class="pre">joblib</span></code>
+<p>In the section <a class="reference internal" href="._book004.html#sec-scale-decay-prog"><span class="std std-ref">Making software for utilizing the scaled model</span></a> we demonstrated the use of <code class="docutils literal"><span class="pre">joblib</span></code>
 for making a function that detects if a case has already been run and
 in that case the previous solution can be returned from a database.
 It turns out that <code class="docutils literal"><span class="pre">joblib</span></code> cannot handle functions with function arguments,
@@ -264,12 +270,7 @@ code that implements the idea.</p>
 focus to the simple constant-coefficient wave equation with <span class="math">\(u_t(x,0)=0\)</span>.
 The solver for the unscaled problem is taken from the previously
 mentioned <code class="docutils literal"><span class="pre">wave1D_u0.py</span></code> file.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="c"># Enable loading modules in the wave eq solver and softeng2 dirs</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">,</span> <span class="s">&#39;wave&#39;</span><span class="p">,</span> <span class="s">&#39;src-wave&#39;</span><span class="p">,</span> <span class="s">&#39;wave1D&#39;</span><span class="p">))</span>
-<span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">pardir</span><span class="p">,</span> <span class="s">&#39;softeng2&#39;</span><span class="p">,</span> <span class="s">&#39;src-softeng2&#39;</span><span class="p">))</span>
-<span class="kn">from</span> <span class="nn">wave1D_u0</span> <span class="kn">import</span> <span class="n">solver</span> <span class="k">as</span> <span class="n">solver_unscaled</span>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">wave1D_u0</span> <span class="kn">import</span> <span class="n">solver</span> <span class="k">as</span> <span class="n">solver_unscaled</span>
 <span class="kn">from</span> <span class="nn">Storage</span> <span class="kn">import</span> <span class="n">Storage</span>
 
 <span class="k">def</span> <span class="nf">solver_scaled</span><span class="p">(</span><span class="n">I</span><span class="p">,</span> <span class="n">dt</span><span class="p">,</span> <span class="n">C</span><span class="p">,</span> <span class="n">T</span><span class="p">):</span>
@@ -280,9 +281,12 @@ mentioned <code class="docutils literal"><span class="pre">wave1D_u0.py</span></
     <span class="kn">import</span> <span class="nn">inspect</span><span class="o">,</span> <span class="nn">hashlib</span>
     <span class="n">data</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">getsource</span><span class="p">(</span><span class="n">I</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">dt</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> \
            <span class="nb">str</span><span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;_&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">T</span><span class="p">)</span>
-    <span class="c"># Not fool proof: if x0 changes value, I source is the same...</span>
+    <span class="c"># Not fool proof: if x0 changes value, the source code of I</span>
+    <span class="c"># is still the same, and no recomputation takes place...</span>
     <span class="n">hashed_input</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">sha1</span><span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
 
+    <span class="c"># Use joblib-based tool (class Storage) to store already</span>
+    <span class="c"># computed solutions in files</span>
     <span class="n">cachedir</span> <span class="o">=</span> <span class="s">&#39;tmp_</span><span class="si">%s</span><span class="s">&#39;</span> <span class="o">%</span> <span class="n">hashed_input</span>
     <span class="n">is_computed</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">cachedir</span><span class="p">)</span>
     <span class="k">print</span> <span class="s">&#39;cachedir:&#39;</span><span class="p">,</span> <span class="n">cachedir</span><span class="p">,</span> <span class="n">is_computed</span>
@@ -315,6 +319,10 @@ directory whose name contains the hash. If that directory exists, the
 solution for this set of input data is already computed, and we can just
 return the <code class="docutils literal"><span class="pre">storage</span></code> object from which one can retrieve the space and time
 mesh as well as all the solutions <code class="docutils literal"><span class="pre">u0</span></code>, <code class="docutils literal"><span class="pre">u1</span></code>, and so on.</p>
+<p>Although the partial differential equation model has no physical
+parameters (assuming <span class="math">\(x_0\)</span> fixed), the corresponding numerical model
+depends on the Courant number <span class="math">\(C=c\Delta t/\Delta x\)</span> and the length
+<span class="math">\(T\)</span> of the simulations.</p>
 <p>A specific application of this simple solver is the vibrations of a guitar
 string. The scaled version depends only on <span class="math">\(C\)</span> (if we say <span class="math">\(T\)</span> is fixed
 and <span class="math">\(N_x\)</span> is fixed through <span class="math">\(\Delta t\)</span>). The string vibrations can be
@@ -344,10 +352,6 @@ simulated by the following function:</p>
     <span class="k">return</span> <span class="n">storage</span>
 </pre></div>
 </div>
-<p>Although the partial differential equation model has no physical
-parameters (assuming <span class="math">\(x_0\)</span> fixed), the corresponding numerical model
-depends on the Courant number <span class="math">\(C=c\Delta t/\Delta x\)</span> and the length
-<span class="math">\(T\)</span> of the simulations.</p>
 <p>To solve an unscaled problem, we need some unscale functions:</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">unscale_u</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="n">I_max</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">L</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">I_max</span><span class="o">*</span><span class="n">u</span>
@@ -393,7 +397,6 @@ No need to compute the numerical solution
 other cases with different <code class="docutils literal"><span class="pre">I_max</span></code> parameter. Running such a program again
 will avoid all computations and show movies solely based on
 precomputed file data.</p>
-<p>[<strong>hpl 3</strong>: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Nevertheless, it probably does not hurt to document the idea? Need views on this.]</p>
 </div>
 </div>
 <div class="section" id="time-dependent-dirichlet-condition">
@@ -411,6 +414,8 @@ is the condition at <span class="math">\(x=0\)</span>, which now reads</p>
 <div class="math">
 \[\bar u(0,\bar t) = \frac{U_L(\bar t t_c)}{u_c}\]</div>
 <p>in scaled form.</p>
+<div class="section" id="scaling-5">
+<h4>Scaling<a class="headerlink" href="#scaling-5" title="Permalink to this headline">¶</a></h4>
 <p>Regarding the characteristic time scale, it is natural to base this scale on
 the wave propagation velocity and not on the time scale of <span class="math">\(U_L(t)\)</span>, because
 the time scale of <span class="math">\(U_L\)</span> basically determines whether
@@ -424,31 +429,37 @@ feeding of waves at <span class="math">\(x=0\)</span>. This gives us three choic
 relevant if the size of <span class="math">\(I\)</span> and <span class="math">\(U_L\)</span> are about the same, but then
 we can choose either <span class="math">\(\max_x |I|\)</span> or <span class="math">\(\max_t |U_L|\)</span> as characteristic size
 of <span class="math">\(u\)</span> since a factor of 2 is not important. If <span class="math">\(I\)</span> is much less than
-<span class="math">\(U_L\)</span>, <span class="math">\(u_c=\max_t |u_L|\)</span> is relevant, while <span class="math">\(u_c=\max_xI\)</span> is the choice
+<span class="math">\(U_L\)</span>, <span class="math">\(u_c=\max_t |u_L|\)</span> is relevant, while <span class="math">\(u_c=\max_x|I|\)</span> is the choice
 when <span class="math">\(I\)</span> has much bigger impact than <span class="math">\(U_L\)</span> on <span class="math">\(u\)</span>.</p>
 <p>With <span class="math">\(u_c=\max_t |U_L(t)|\)</span>, we get the scaled problem</p>
 <div class="math" id="equation-scale:wave:pde2:d">
-<span id="eq-scale-wave-pde2-d"></span><span class="eqno">(13)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2} =
+<span id="eq-scale-wave-pde2-d"></span><span class="eqno">(14)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2} =
      {\partial^2 \bar u\over\partial \bar x^2},
      \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],\]</div>
 <div class="math" id="equation-scale:wave:pde2:ic:u:d">
-<span id="eq-scale-wave-pde2-ic-u-d"></span><span class="eqno">(14)</span>\[     \bar u(\bar x,0) = \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
+<span id="eq-scale-wave-pde2-ic-u-d"></span><span class="eqno">(15)</span>\[     \bar u(\bar x,0) = \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
      \quad \bar x\in [0,1],\]</div>
 <div class="math" id="equation-scale:wave:pde2:ic:ut:d">
-<span id="eq-scale-wave-pde2-ic-ut-d"></span><span class="eqno">(15)</span>\[     {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+<span id="eq-scale-wave-pde2-ic-ut-d"></span><span class="eqno">(16)</span>\[     {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
      \quad  \bar x\in [0,1],\]</div>
 <div class="math" id="equation-scale:wave:pde2:bc:0:d">
-<span id="eq-scale-wave-pde2-bc-0-d"></span><span class="eqno">(16)</span>\[     \bar u(0,\bar t)  = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
+<span id="eq-scale-wave-pde2-bc-0-d"></span><span class="eqno">(17)</span>\[     \bar u(0,\bar t)  = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
      \quad  \bar t\in (0,\bar T],\]</div>
 <div class="math" id="equation-scale:wave:pde2:bc:L:d">
-<span id="eq-scale-wave-pde2-bc-l-d"></span><span class="eqno">(17)</span>\[     \bar u(1,\bar t)  = 0,
+<span id="eq-scale-wave-pde2-bc-l-d"></span><span class="eqno">(18)</span>\[     \bar u(1,\bar t)  = 0,
      \quad \bar t\in (0,\bar T].\]</div>
 <p>Also this problem is free of physical parameters like <span class="math">\(c\)</span> and <span class="math">\(L\)</span>.
 The input is completely specified by the shape of <span class="math">\(I(x)\)</span> and <span class="math">\(U_L(t)\)</span>.</p>
+</div>
+<div class="section" id="software-6">
+<h4>Software<a class="headerlink" href="#software-6" title="Permalink to this headline">¶</a></h4>
 <p>Software for the original problem with dimensions can be reused for
-<a href="#equation-scale:wave:pde2:d">(13)</a>-<a href="#equation-scale:wave:pde2:bc:L:d">(17)</a> by
+<a href="#equation-scale:wave:pde2:d">(14)</a>-<a href="#equation-scale:wave:pde2:bc:L:d">(18)</a> by
 setting <span class="math">\(L=1\)</span>, <span class="math">\(c=1\)</span>, and scaling <span class="math">\(U_L(t)\)</span> and <span class="math">\(I(x)\)</span> by
 <span class="math">\(\max_t |U_L(t)|\)</span>.</p>
+</div>
+<div class="section" id="specific-case">
+<h4>Specific case<a class="headerlink" href="#specific-case" title="Permalink to this headline">¶</a></h4>
 <p>As an example, consider</p>
 <div class="math">
 \[\begin{split}U_L(t) &amp;= a\sin(\omega t)\hbox{ for } 0\leq t\leq 2\frac{\omega}{2\pi},
@@ -462,9 +473,10 @@ condition, plus the wave fed in from the left.</p>
 <div class="math">
 \[\begin{split}\bar u(\bar x,0) &amp;= \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},\\
 \bar u(0,\bar t) &amp;= \sin(\bar t\omega L/c){\thinspace .}\end{split}\]</div>
-<p>Here, <span class="math">\(U_L\)</span> models an incoming wave <span class="math">\(a\sin(k(x-ct)\)</span>, with <span class="math">\(k\)</span> specified
-(makes waves of length <span class="math">\(\lambda = 2\pi/k\)</span>), we have <span class="math">\(\omega =kc\)</span>,
-and <span class="math">\(\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)\)</span>.
+<p>Here, <span class="math">\(U_L\)</span> models an incoming wave <span class="math">\(a\sin(k(x-ct)\)</span>, with <span class="math">\(k\)</span> specified.
+The result is incoming
+waves of length <span class="math">\(\lambda = 2\pi/k\)</span>. Since <span class="math">\(\omega =kc\)</span>,
+<span class="math">\(\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)\)</span>.
 (This formula demonstrates the previous assertion that the time scale
 of <span class="math">\(U_L\)</span>, i.e., <span class="math">\(1/\omega\)</span>, determines the wave length <span class="math">\(1/\omega = \lambda/(2\pi)\)</span> in space.)
 We realize from the formulas for <span class="math">\(\bar u(\bar x, 0)\)</span> and
@@ -481,82 +493,67 @@ initial and boundary conditions as</p>
 <p>The dimensionless parameters have the following interpretations:</p>
 <blockquote>
 <div><ul class="simple">
-<li><span class="math">\(\alpha\)</span>: ratio of initial condition peak and amplitude of incoming wave
+<li><span class="math">\(\alpha\)</span>: ratio of initial condition amplitude and amplitude of incoming wave
 at <span class="math">\(x=0\)</span></li>
 <li><span class="math">\(\beta\)</span>: ratio of length of domain and width of initial condition</li>
 <li><span class="math">\(\gamma\)</span>: ratio of length of domain and wave length of incoming wave</li>
 </ul>
 </div></blockquote>
 <p>Again, these dimensionless parameters tell a lot about the interplay of
-the physical effects in the problem: only some ratios count.</p>
+the physical effects in the problem. And only some ratios count!</p>
 <p>We can simulate two special cases: <span class="math">\(\alpha=10\)</span> (large) where the
 incoming wave is small and the solution is dominated by the two waves
 arising from <span class="math">\(I(x)\)</span>, and <span class="math">\(\alpha=0.1\)</span> (small) where the incoming waves
 dominate and the has the initial condition as a small perturbation of
 the wave shape. We may choose a peak-shaped initial condition: <span class="math">\(\beta = 10\)</span>,
 and also a relatively short incoming wave compared to the domain size:
-<span class="math">\(\gamma 6\pi\)</span> (i.e., wave length of incoming wave is <span class="math">\(L/6\)</span>).
-The function below applies the general unscaled
-solver in <a class="reference external" href="http://tinyurl.com/nm5587k/wave/wave1D/wave1D_dn.py">wave1D_dn.py</a>
+<span class="math">\(\gamma = 6\pi\)</span> (i.e., wave length of incoming wave is <span class="math">\(L/6\)</span>).
+A function <code class="docutils literal"><span class="pre">simulate_Gaussian_and_incoming_wave</span></code> in
+the file <a class="reference external" href="http://tinyurl.com/o8pb3yy/session.py">session.py</a>
+applies the general unscaled
+solver in <a class="reference external" href="http://tinyurl.com/o8pb3yy/wave1D_dn.py">wave1D_dn.py</a>
 for solving the wave equation with constant <span class="math">\(c\)</span>
 and any time-dependent function or <span class="math">\(\partial u/\partial x=0\)</span> at the
-end points.</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">simulate_Gaussian_and_incoming_wave</span><span class="p">():</span>
-    <span class="kn">from</span> <span class="nn">wave1D_dn</span> <span class="kn">import</span> <span class="n">solver</span><span class="p">,</span> <span class="n">viz</span>
-    <span class="kn">from</span> <span class="nn">math</span> <span class="kn">import</span> <span class="n">pi</span>
-    <span class="n">alpha</span> <span class="o">=</span> <span class="mf">0.1</span>
-    <span class="n">beta</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">gamma</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">*</span><span class="mi">3</span>
-
-    <span class="k">def</span> <span class="nf">I</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">alpha</span><span class="o">*</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">beta</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="p">(</span><span class="n">x</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">U_0</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
-        <span class="k">return</span> <span class="n">sin</span><span class="p">(</span><span class="n">gamma</span><span class="o">*</span><span class="n">t</span><span class="p">)</span> <span class="k">if</span> <span class="n">t</span> <span class="o">&lt;=</span> <span class="mi">2</span><span class="o">*</span><span class="n">pi</span><span class="o">/</span><span class="n">gamma</span> <span class="k">else</span> <span class="mi">0</span>
-
-    <span class="n">L</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="n">Nx</span> <span class="o">=</span> <span class="mi">80</span><span class="p">;</span> <span class="n">dx</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="nb">float</span><span class="p">(</span><span class="n">Nx</span><span class="p">);</span> <span class="n">dt</span> <span class="o">=</span> <span class="n">dx</span><span class="o">/</span><span class="mi">1</span>
-    <span class="c">#solver(I=I, V=0, f=0, U_0=U_0, U_L=None, L=1, dt=dt, C=1, T=4,</span>
-    <span class="c">#       user_action=myplotter)</span>
-    <span class="n">viz</span><span class="p">(</span><span class="n">I</span><span class="o">=</span><span class="n">I</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">f</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">U_0</span><span class="o">=</span><span class="n">U_0</span><span class="p">,</span> <span class="n">U_L</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dt</span><span class="o">=</span><span class="n">dt</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
-        <span class="n">T</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">umin</span><span class="o">=-</span><span class="p">(</span><span class="n">alpha</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span> <span class="n">umax</span><span class="o">=</span><span class="p">(</span><span class="n">alpha</span><span class="o">+</span><span class="mi">1</span><span class="p">),</span>
-        <span class="n">version</span><span class="o">=</span><span class="s">&#39;vectorized&#39;</span><span class="p">,</span> <span class="n">animate</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>The function is found in the file <a class="reference external" href="http://tinyurl.com/nm5587k/scale/session.py">session.py</a>.</p>
+end points. This solver is trivially adapted to the present case.</p>
 <div>
 <video  loop controls width='640' height='365' preload='none'>
-    <source src="_static/mov-scale/gaussian_plus_incoming/alpha10.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
-    <source src="_static/mov-scale/gaussian_plus_incoming/alpha10.webm" type='video/webm; codecs="vp8, vorbis"'>
-    <source src="_static/mov-scale/gaussian_plus_incoming/alpha10.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha10.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha10.webm" type='video/webm; codecs="vp8, vorbis"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha10.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
 </video>
 </div>
 <p><em> \( \alpha=10 \) </em></p><div>
 <video  loop controls width='640' height='365' preload='none'>
-    <source src="_static/mov-scale/gaussian_plus_incoming/alpha01.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
-    <source src="_static/mov-scale/gaussian_plus_incoming/alpha01.webm" type='video/webm; codecs="vp8, vorbis"'>
-    <source src="_static/mov-scale/gaussian_plus_incoming/alpha01.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha01.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha01.webm" type='video/webm; codecs="vp8, vorbis"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha01.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
 </video>
 </div>
-<p><em> \( \alpha=0.1 \) </em></p></div>
+<p><em> \( \alpha=0.1 \) </em></p><p>[<strong>hpl 8</strong>: The HTML version features movies here. Link to them in the LaTeX PDF version as well?]</p>
+</div>
+</div>
 <div class="section" id="velocity-initial-condition">
 <span id="scale-wave-pde2-vcond"></span><h3>Velocity initial condition<a class="headerlink" href="#velocity-initial-condition" title="Permalink to this headline">¶</a></h3>
 <p>Now we change the initial condition from <span class="math">\(u=I\)</span> and <span class="math">\(\partial u/\partial t = 0\)</span> to</p>
-<div class="math">
-\[u(x,0) = 0,\]</div>
-<div class="math">
-\[\frac{\partial}{\partial t} u(x,0) = V(x){\thinspace .}\]</div>
+<div class="math" id="equation-_auto29">
+<span id="eq-auto29"></span><span class="eqno">(19)</span>\[     u(x,0) = 0,\]</div>
+<div class="math" id="equation-_auto30">
+<span id="eq-auto30"></span><span class="eqno">(20)</span>\[     \frac{\partial}{\partial t} u(x,0) = V(x){\thinspace .}\]</div>
 <p>Impact problems are often of this kind.
-From <a href="#equation-scale:wave:pde:sol:general">(7)</a> we now get <span class="math">\(f_L + f_R =0\)</span> and
+The scaled version of <span class="math">\(u_t(x,0)=V(x)\)</span> becomes</p>
+<div class="math">
+\[\frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
+\frac{t_c}{u_c}V(\bar x x_c){\thinspace .}\]</div>
+<div class="section" id="analytical-insight">
+<h4>Analytical insight<a class="headerlink" href="#analytical-insight" title="Permalink to this headline">¶</a></h4>
+<p>From <a href="#equation-scale:wave:pde:sol:general">(7)</a> we now get <span class="math">\(f_L + f_R =0\)</span> and
 <span class="math">\(cf_L' - cf_R' = V\)</span>. Introducing <span class="math">\(W(x)\)</span> such that <span class="math">\(W'(x)=V(x)\)</span>, a solution
 is <span class="math">\(-f_L=\frac{1}{2}W\)</span> and <span class="math">\(f_R=\frac{1}{2}W\)</span>. Hence,</p>
 <div class="math">
 \[u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} v(\xi) d\xi{\thinspace .}\]</div>
-<p>The scaled version of <span class="math">\(u_t(x,0)=V(x)\)</span> becomes</p>
-<div class="math">
-\[\frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
-\frac{t_c}{u_c}V(\bar x x_c){\thinspace .}\]</div>
+</div>
+<div class="section" id="scaling-6">
+<h4>Scaling<a class="headerlink" href="#scaling-6" title="Permalink to this headline">¶</a></h4>
 <p>Since <span class="math">\(V\)</span> is the time-derivative of <span class="math">\(u\)</span>, the characteristic size of
 <span class="math">\(V\)</span> is typically <span class="math">\(u_c/t_c\)</span>, meaning that</p>
 <div class="math">
@@ -566,14 +563,18 @@ on the wave speed: <span class="math">\(t_c = L/c\)</span>. We end up with</p>
 <div class="math">
 \[\frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
 \frac{V(\bar x x_c)}{\max_x |V(x)|},\]</div>
-<p>which also looks like a natural scaling of a function <span class="math">\(V\)</span>.</p>
+<p>which by itself looks like a natural scaling of a function <span class="math">\(V\)</span>.</p>
+</div>
+<div class="section" id="nonzero-initial-shape">
+<h4>Nonzero initial shape<a class="headerlink" href="#nonzero-initial-shape" title="Permalink to this headline">¶</a></h4>
 <p>Suppose we change the initial condition <span class="math">\(u(x,0)=0\)</span> to <span class="math">\(u(x,0)=I(x)\)</span>.
-The scaled version of this condition with the present <span class="math">\(u_c\)</span> becomes</p>
-<div class="math">
-\[\bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}{\thinspace .}\]</div>
+The scaled version of this condition with the above <span class="math">\(u_c\)</span>
+based on <span class="math">\(V\)</span> becomes</p>
+<div class="math" id="equation-scale:wave:pde2:Vcond:eq">
+<span id="eq-scale-wave-pde2-vcond-eq"></span><span class="eqno">(21)</span>\[     \bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}{\thinspace .}\]</div>
 <div class="admonition-check-that-dimensionless-numbers-are-dimensionless admonition">
 <p class="first admonition-title">Check that dimensionless numbers are dimensionless</p>
-<p>Is the fraction on the right-hand side dimensionless?
+<p>Is a dimensionless number really dimensionless?
 It is easy to make errors when scaling equations, so checking that
 such fractions are dimensionless is wise.
 The dimension of <span class="math">\(I\)</span> is the same as <span class="math">\(u\)</span>, here taken to be displacement:
@@ -581,7 +582,7 @@ The dimension of <span class="math">\(I\)</span> is the same as <span class="mat
 Since <span class="math">\(V\)</span> is <span class="math">\(\partial u/\partial t\)</span>, its dimension is
 <span class="math">\([\hbox{LT}^{-1}]\)</span>. The dimensions of <span class="math">\(c\)</span> and <span class="math">\(L\)</span> are
 <span class="math">\([\hbox{LT}^{-1}]\)</span> and <span class="math">\([\hbox{L}]\)</span>. The dimension of the right-hand side
-is then</p>
+of <a href="#equation-scale:wave:pde2:Vcond:eq">(21)</a> is then</p>
 <div class="math">
 \[\frac{[\hbox{LT}^{-1}][L]}{[L][L\hbox{T}^{-1}]}
 = 1,\]</div>
@@ -610,41 +611,46 @@ visible. Recall that the dimensionless initial velocity is about unity
 regardless of other parameters.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.</p>
-<p>[<strong>hpl 4</strong>: Do experiments. Make exercise or insert here.]</p>
-<p>[<strong>hpl 5</strong>: Could make paradox: small <span class="math">\(I\)</span>, big <span class="math">\(V\)</span>, but still significant impact of <span class="math">\(I\)</span> in a simulation. Why? Bug? The answer is above. Best as exercise.]</p>
+<p>[<strong>hpl 9</strong>: Do experiments. Make exercise or insert here.]</p>
+<p>[<strong>hpl 10</strong>: Could make paradox: small <span class="math">\(I\)</span>, big <span class="math">\(V\)</span>, but still significant impact of <span class="math">\(I\)</span> in a simulation. Why? Bug? The answer is above. Best as exercise.]</p>
+</div>
 </div>
 <div class="section" id="variable-wave-velocity-and-forcing">
 <span id="scale-wave-pde2-cvar"></span><h3>Variable wave velocity and forcing<a class="headerlink" href="#variable-wave-velocity-and-forcing" title="Permalink to this headline">¶</a></h3>
 <p>The next problem generalization regards wave propagation in
-a non-homogeneous where the wave velocity <span class="math">\(c\)</span> depends on the
+a non-homogeneous medium where the wave velocity <span class="math">\(c\)</span> depends on the
 spatial position: <span class="math">\(c=c(x)\)</span>. To simplify the notation we introduce
 <span class="math">\(\lambda (x) = c^2(x)\)</span>. We introduce homogeneous Neumann conditions
 at <span class="math">\(x=0\)</span> and <span class="math">\(x=L\)</span>. In addition, we add a force term <span class="math">\(f(x,t)\)</span>
 to the PDE, modeling wave generation in the interior of
 the domain. For example, a moving slide at the bottom of a fjord
-will generate surface waves and is modeled by such an <span class="math">\(f(x,t)\)</span> term.
+will generate surface waves and is modeled by such an <span class="math">\(f(x,t)\)</span> term
+(provided the length of the waves is much larger than the depth so
+that a simple wave equation like <a href="#equation-scale:wave:pde3">(22)</a> applies).
 The initial-boundary value problem
 can be then expressed as</p>
 <div class="math" id="equation-scale:wave:pde3">
-<span id="eq-scale-wave-pde3"></span><span class="eqno">(18)</span>\[     \frac{\partial^2 u}{\partial t^2} =
+<span id="eq-scale-wave-pde3"></span><span class="eqno">(22)</span>\[     \frac{\partial^2 u}{\partial t^2} =
      \frac{\partial}{\partial x}\left(
      \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
      \quad  x\in (0,L),\ t\in (0,T],\]</div>
 <div class="math" id="equation-scale:wave:pde3:ic:u">
-<span id="eq-scale-wave-pde3-ic-u"></span><span class="eqno">(19)</span>\[     u(x,0) = I(x),
+<span id="eq-scale-wave-pde3-ic-u"></span><span class="eqno">(23)</span>\[     u(x,0) = I(x),
      \quad x\in [0,L],\]</div>
 <div class="math" id="equation-scale:wave:pde3:ic:ut">
-<span id="eq-scale-wave-pde3-ic-ut"></span><span class="eqno">(20)</span>\[     {\partial\over\partial t}u(x,0) = 0,
+<span id="eq-scale-wave-pde3-ic-ut"></span><span class="eqno">(24)</span>\[     {\partial\over\partial t}u(x,0) = 0,
      \quad  x\in [0,L],\]</div>
 <div class="math" id="equation-scale:wave:pde3:bc:0">
-<span id="eq-scale-wave-pde3-bc-0"></span><span class="eqno">(21)</span>\[     \frac{\partial}{\partial x}u(0,t)  = 0,
+<span id="eq-scale-wave-pde3-bc-0"></span><span class="eqno">(25)</span>\[     \frac{\partial}{\partial x}u(0,t)  = 0,
      \quad  t\in (0,T],\]</div>
 <div class="math" id="equation-scale:wave:pde3:bc:L">
-<span id="eq-scale-wave-pde3-bc-l"></span><span class="eqno">(22)</span>\[     \frac{\partial}{\partial x}u(L,t)  = 0,
+<span id="eq-scale-wave-pde3-bc-l"></span><span class="eqno">(26)</span>\[     \frac{\partial}{\partial x}u(L,t)  = 0,
      \quad  t\in (0,T].\]</div>
+<div class="section" id="non-dimensionalization">
+<h4>Non-dimensionalization<a class="headerlink" href="#non-dimensionalization" title="Permalink to this headline">¶</a></h4>
 <p>We make the coefficient <span class="math">\(\lambda\)</span> non-dimensional by</p>
-<div class="math">
-\[\bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},\]</div>
+<div class="math" id="equation-_auto31">
+<span id="eq-auto31"></span><span class="eqno">(27)</span>\[     \bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},\]</div>
 <p>where one normally chooses the characteristic size of <span class="math">\(\lambda\)</span>, <span class="math">\(\lambda_c\)</span>,
 to be the maximum value such that <span class="math">\(|\lambda|\leq 1\)</span>:</p>
 <div class="math">
@@ -652,30 +658,33 @@ to be the maximum value such that <span class="math">\(|\lambda|\leq 1\)</span>:
 <p>Similarly, <span class="math">\(f\)</span> has a scaled version</p>
 <div class="math">
 \[\bar f(\bar x,\bar t) = \frac{f(\bar x x_c, \bar t t_c)}{f_c},\]</div>
-<p>where normally</p>
+<p>where normally we choose</p>
 <div class="math">
 \[f_c=\max_{x,t}|f(x,t)|{\thinspace .}\]</div>
 <p>Inserting dependent and independent variables expressed by their
 non-dimensional counterparts yields</p>
 <div class="math" id="equation-scale:wave:pde3:d">
-<span id="eq-scale-wave-pde3-d"></span><span class="eqno">(23)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2} =
+<span id="eq-scale-wave-pde3-d"></span><span class="eqno">(28)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2} =
      \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
      \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
      + \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
      \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],\]</div>
 <div class="math" id="equation-scale:wave:pde3:ic:u:d">
-<span id="eq-scale-wave-pde3-ic-u-d"></span><span class="eqno">(24)</span>\[     \bar u(\bar x,0) = \frac{I(x)}{u_c},
+<span id="eq-scale-wave-pde3-ic-u-d"></span><span class="eqno">(29)</span>\[     \bar u(\bar x,0) = \frac{I(x)}{u_c},
      \quad \bar x\in [0,1],\]</div>
 <div class="math" id="equation-scale:wave:pde3:ic:ut:d">
-<span id="eq-scale-wave-pde3-ic-ut-d"></span><span class="eqno">(25)</span>\[     {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+<span id="eq-scale-wave-pde3-ic-ut-d"></span><span class="eqno">(30)</span>\[     {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
      \quad  \bar x\in [0,1],\]</div>
 <div class="math" id="equation-scale:wave:pde3:bc:0:d">
-<span id="eq-scale-wave-pde3-bc-0-d"></span><span class="eqno">(26)</span>\[     \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t)  = 0,
+<span id="eq-scale-wave-pde3-bc-0-d"></span><span class="eqno">(31)</span>\[     \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t)  = 0,
      \quad  \bar t\in (0,\bar T],\]</div>
 <div class="math" id="equation-scale:wave:pde3:bc:L:d">
-<span id="eq-scale-wave-pde3-bc-l-d"></span><span class="eqno">(27)</span>\[     \frac{\partial}{\partial \bar x}\bar u(1,\bar t)  = 0,
+<span id="eq-scale-wave-pde3-bc-l-d"></span><span class="eqno">(32)</span>\[     \frac{\partial}{\partial \bar x}\bar u(1,\bar t)  = 0,
      \quad  \bar t\in (0,\bar T],\]</div>
 <p>with <span class="math">\(\bar T = Tc/L\)</span>.</p>
+</div>
+<div class="section" id="choosing-the-time-scale">
+<h4>Choosing the time scale<a class="headerlink" href="#choosing-the-time-scale" title="Permalink to this headline">¶</a></h4>
 <p>The time scale is, as before, chosen as <span class="math">\(t_c
 =L/\sqrt{\lambda_c}\)</span>. Note that the previous (constant) wave velocity
 <span class="math">\(c\)</span> now corresponds to <span class="math">\(\sqrt{\lambda (x)}\)</span>.  Therefore,
@@ -686,7 +695,10 @@ should influence <span class="math">\(t_c\)</span>, but as we reasoned for the b
 signal speed in the medium, i.e., by <span class="math">\(\sqrt{\lambda_c}\)</span> here and not
 by the time scale of the excitation <span class="math">\(f\)</span> which dictates the
 length of the generated waves and not their propagation speed.</p>
-<p>Furthermore, we may choose <span class="math">\(u_c\)</span> as <span class="math">\(\max_x |I(x)|\)</span>, as before,
+</div>
+<div class="section" id="choosing-the-spatial-scale">
+<h4>Choosing the spatial scale<a class="headerlink" href="#choosing-the-spatial-scale" title="Permalink to this headline">¶</a></h4>
+<p>We may choose <span class="math">\(u_c\)</span> as <span class="math">\(\max_x |I(x)|\)</span>, as before,
 or we may fit <span class="math">\(u_c\)</span> such that the coefficient in the source term
 is unity, i.e., all terms balance each other.
 This latter idea leads to</p>
@@ -706,7 +718,7 @@ This latter idea leads to</p>
 <div class="math">
 \[\beta = \frac{L^2}{\lambda_c}\frac{\max_{x,t} |f(x,t)|}{\max_x|I(x)|}{\thinspace .}\]</div>
 <p>In the case <span class="math">\(u_c=\max_x|I(x)|\)</span>, <span class="math">\(\bar u(\bar x,0)=\bar I(\bar x)\)</span> and
-the <span class="math">\(\beta\)</span> parameter appears in the PDE,</p>
+the <span class="math">\(\beta\)</span> parameter appears in the PDE instead:</p>
 <div class="math">
 \[\frac{\partial^2 \bar u}{\partial \bar t^2} =
 \frac{\partial}{\partial \bar x}\left(
@@ -715,6 +727,9 @@ the <span class="math">\(\beta\)</span> parameter appears in the PDE,</p>
 <p>With <span class="math">\(V=0\)</span>, and <span class="math">\(u=0\)</span> or <span class="math">\(u_x=0\)</span> on the boundaries <span class="math">\(x=0,L\)</span>, this scaling gives
 <span class="math">\(|\bar u|\leq 1\)</span>, since initially <span class="math">\(|I|\leq 1\)</span>, and no boundary condition
 can increase the amplitude.</p>
+</div>
+<div class="section" id="scaling-the-velocity-initial-condition">
+<h4>Scaling the velocity initial condition<a class="headerlink" href="#scaling-the-velocity-initial-condition" title="Permalink to this headline">¶</a></h4>
 <p>The initial condition <span class="math">\(u_t(x,0)=V(x)\)</span> has its dimensionless variant as</p>
 <div class="math">
 \[\bar V(\bar x) = \frac{t_c}{u_c}\frac{V(L\bar x)}{\max_x|V(x)|},\]</div>
@@ -740,15 +755,17 @@ can increase the amplitude.</p>
 \alpha^{-1}\beta^{-1}\bar V(\bar x), &amp; u_c=t_c^2f_c
 \end{array}\right.\end{split}\]</div>
 </div>
+</div>
 <div class="section" id="damped-wave-equation">
 <span id="scale-wave-pde2-damped"></span><h3>Damped wave equation<a class="headerlink" href="#damped-wave-equation" title="Permalink to this headline">¶</a></h3>
 <p>A linear damping term <span class="math">\(b\,\partial u/\partial t\)</span> is often added to
-the wave equation to model energy dissipation and amplitude reduction.</p>
-<div class="math">
-\[\frac{\partial^2 u}{\partial t^2}
-+ b\frac{\partial u}{\partial t} =
-\frac{\partial}{\partial x}\left(
-\lambda(x) {\partial u\over\partial x}\right) + f(x,t){\thinspace .}\]</div>
+the wave equation to model energy dissipation and amplitude reduction.
+Our PDE now reads</p>
+<div class="math" id="equation-_auto32">
+<span id="eq-auto32"></span><span class="eqno">(33)</span>\[     \frac{\partial^2 u}{\partial t^2}
+     + b\frac{\partial u}{\partial t} =
+     \frac{\partial}{\partial x}\left(
+     \lambda(x) {\partial u\over\partial x}\right) + f(x,t){\thinspace .}\]</div>
 <p>The scaled equation becomes</p>
 <div class="math">
 \[\frac{\partial^2 \bar u}{\partial \bar t^2}
@@ -761,25 +778,27 @@ the wave equation to model energy dissipation and amplitude reduction.</p>
 <span class="math">\(t_c=L/\sqrt{\lambda_c}\)</span>. As in the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>,
 we have two choices of <span class="math">\(u_c\)</span>: <span class="math">\(u_c=\max_x|I|\)</span> or <span class="math">\(u_c=t_c^2f_c\)</span>.
 The former choice of <span class="math">\(u_c\)</span> gives a PDE with two dimensionless numbers,</p>
-<div class="math">
-\[\frac{\partial^2 \bar u}{\partial \bar t^2}
-+ \gamma\frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial}{\partial \bar x}\left(
-\bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
-\beta\bar f(\bar x,\bar t),\]</div>
+<div class="math" id="equation-_auto33">
+<span id="eq-auto33"></span><span class="eqno">(34)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2}
+     + \gamma\frac{\partial \bar u}{\partial \bar t} =
+     \frac{\partial}{\partial \bar x}\left(
+     \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
+     \beta\bar f(\bar x,\bar t),\]</div>
 <p>where</p>
 <div class="math">
 \[\gamma = \frac{bL}{\sqrt{\lambda_c}},\]</div>
-<p>measures the size of the damping.
+<p>measures the size of the damping, and <span class="math">\(\beta\)</span> is as given
+in the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>.
 With <span class="math">\(u_c=t_c^2f_c\)</span> we get a PDE where only <span class="math">\(\gamma\)</span> enters,</p>
-<div class="math">
-\[\frac{\partial^2 \bar u}{\partial \bar t^2}
-+ \gamma\frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial}{\partial \bar x}\left(
-\bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
-\bar f(\bar x,\bar t){\thinspace .}\]</div>
+<div class="math" id="equation-_auto34">
+<span id="eq-auto34"></span><span class="eqno">(35)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2}
+     + \gamma\frac{\partial \bar u}{\partial \bar t} =
+     \frac{\partial}{\partial \bar x}\left(
+     \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
+     \bar f(\bar x,\bar t){\thinspace .}\]</div>
 <p>The scaled initial conditions are as in
-the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>.</p>
+the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>, so in this latter case
+<span class="math">\(\beta\)</span> appears in the initial condition for <span class="math">\(u\)</span>.</p>
 <p>To summarize, the effects of <span class="math">\(V\)</span>, <span class="math">\(f\)</span>, and damping are reflected in
 the dimensionless numbers <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span>, and <span class="math">\(\gamma\)</span>,
 respectively.</p>
@@ -788,11 +807,11 @@ respectively.</p>
 <h3>A three-dimensional wave equation problem<a class="headerlink" href="#a-three-dimensional-wave-equation-problem" title="Permalink to this headline">¶</a></h3>
 <p>To demonstrate how the scaling extends to and looks like in
 three-dimensions, we consider</p>
-<div class="math">
-\[\frac{\partial^2 \bar u}{\partial \bar t^2} =
-\frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
-\frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
-\frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right){\thinspace .}\]</div>
+<div class="math" id="equation-_auto35">
+<span id="eq-auto35"></span><span class="eqno">(36)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2} =
+     \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
+     \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
+     \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right){\thinspace .}\]</div>
 <p>We introduce</p>
 <div class="math">
 \[\bar x = \frac{x}{x_c},\quad \bar y = \frac{y}{y_c},
@@ -809,11 +828,11 @@ we get</p>
 size of the domain.
 As before, <span class="math">\(t_c = L/\sqrt{\lambda_c}\)</span>, and these choices lead to a
 dimensionless wave equation without physical parameters:</p>
-<div class="math">
-\[\frac{\partial^2 \bar u}{\partial \bar t^2} =
-\frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
-\frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
-\frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right){\thinspace .}\]</div>
+<div class="math" id="equation-_auto36">
+<span id="eq-auto36"></span><span class="eqno">(37)</span>\[     \frac{\partial^2 \bar u}{\partial \bar t^2} =
+     \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
+     \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
+     \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right){\thinspace .}\]</div>
 <p>The initial conditions remain the same as in the previous one-dimensional
 examples.</p>
 </div>
@@ -841,9 +860,25 @@ examples.</p>
 <li><a class="reference internal" href="#detecting-an-already-computed-case">Detecting an already computed case</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#time-dependent-dirichlet-condition">Time-dependent Dirichlet condition</a></li>
-<li><a class="reference internal" href="#velocity-initial-condition">Velocity initial condition</a></li>
-<li><a class="reference internal" href="#variable-wave-velocity-and-forcing">Variable wave velocity and forcing</a></li>
+<li><a class="reference internal" href="#time-dependent-dirichlet-condition">Time-dependent Dirichlet condition</a><ul>
+<li><a class="reference internal" href="#scaling-5">Scaling</a></li>
+<li><a class="reference internal" href="#software-6">Software</a></li>
+<li><a class="reference internal" href="#specific-case">Specific case</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#velocity-initial-condition">Velocity initial condition</a><ul>
+<li><a class="reference internal" href="#analytical-insight">Analytical insight</a></li>
+<li><a class="reference internal" href="#scaling-6">Scaling</a></li>
+<li><a class="reference internal" href="#nonzero-initial-shape">Nonzero initial shape</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variable-wave-velocity-and-forcing">Variable wave velocity and forcing</a><ul>
+<li><a class="reference internal" href="#non-dimensionalization">Non-dimensionalization</a></li>
+<li><a class="reference internal" href="#choosing-the-time-scale">Choosing the time scale</a></li>
+<li><a class="reference internal" href="#choosing-the-spatial-scale">Choosing the spatial scale</a></li>
+<li><a class="reference internal" href="#scaling-the-velocity-initial-condition">Scaling the velocity initial condition</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#damped-wave-equation">Damped wave equation</a></li>
 <li><a class="reference internal" href="#a-three-dimensional-wave-equation-problem">A three-dimensional wave equation problem</a></li>
 </ul>
