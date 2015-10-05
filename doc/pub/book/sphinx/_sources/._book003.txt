@@ -28,7 +28,7 @@ The different physical quantities, such as :math:`m`, :math:`u(t)`, :math:`b`, a
 have all different *dimensions*, measured in different *units*,
 but :math:`mu''`, :math:`bu'`, and :math:`ku` must all have the same dimension, otherwise
 it would not make sense to add them (you will get the same problem
-as when trying to a banana, an apple, and an orange).
+as when trying to add one banana, one apple, and one orange).
 
 Fundamental concepts
 ====================
