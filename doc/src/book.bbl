@@ -1,0 +1,49 @@
+\begin{thebibliography}{1}
+
+\bibitem{Douglas_et_al_1979}
+J.~F. Douglas, J.~M. Gasiorek, and J.~A. Swaffield.
+\newblock {\em Fluid Mechanics}.
+\newblock Pitman, 1979.
+
+\bibitem{Drazin_Reid}
+P.~G. Drazin and W.~H. Reid.
+\newblock {\em Hydrodynamic Stability}.
+\newblock Cambridge, 1982.
+
+\bibitem{Langtangen_deqbook_wave}
+H.~P. Langtangen.
+\newblock Finite difference methods for wave motion.
+\newblock \url{http://tinyurl.com/k3sdbuv/pub/wave}.
+
+\bibitem{Langtangen_deqbook_softeng2}
+H.~P. Langtangen.
+\newblock Scientific software engineering; wave equation case.
+\newblock \url{http://tinyurl.com/k3sdbuv/pub/softeng2}.
+
+\bibitem{Langtangen_decay}
+H.~P. Langtangen.
+\newblock {\em Finite Difference Computing with Exponential Decay Models}.
+\newblock 2015.
+\newblock \url{http://tinyurl.com/nclmcng/web}.
+
+\bibitem{parampool}
+H.~P. Langtangen and A.~E. Johansen.
+\newblock The {Parampool} tutorial.
+\newblock \url{http://hplgit.github.io/parampool/doc/web/index.html}.
+
+\bibitem{web4sciapps}
+H.~P. Langtangen and A.~E. Johansen.
+\newblock Using web frameworks for scientific applications.
+\newblock \url{http://hplgit.github.io/web4sciapps/doc/web/index.html}.
+
+\bibitem{Logan_1987}
+J.~D. Logan.
+\newblock {\em Applied Mathematics: A Contemporary Approach}.
+\newblock Wiley, 1987.
+
+\bibitem{Tritton}
+D.~J. Tritton.
+\newblock {\em Physical Fluid Dynamics}.
+\newblock Van Nostrand Reinhold, 1977.
+
+\end{thebibliography}

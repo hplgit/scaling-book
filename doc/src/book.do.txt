@@ -1,0 +1,51 @@
+<%
+if FORMAT == 'pdflatex':
+    # copyright does not look good with svmonodo.cls...
+    copyright_ = ''
+else:
+    copyright_ = '{copyright|CC BY}'
+%>
+
+TITLE:  Scaling of Differential Equations
+AUTHOR: Hans Petter Langtangen ${copyright_} at Center for Biomedical Computing, Simula Research Laboratory & Department of Informatics, University of Oslo
+
+__Preface.__
+This book explains the mathematical details of making differential
+equation models dimensionless. A key feature of the text is the reasoning
+about the right choice
+of scales. A large number of worked examples demonstrate
+the scaling technique for ordinary and partial differential equations
+from physics and biology. How to utilize scaled models in simulation
+software is also addressed.
+
+DATE: today
+
+## Handy mako variables and functions for the preprocessing step
+## Need wave from chapters, rest from decay
+# #include "mako_code.txt"
+<%
+src_scaling = 'https://github.com/hplgit/scaling-book/tree/master/src/scaling'
+src_scaling = 'http://tinyurl.com/o8pb3yy'
+
+doc_scale = 'http://hplgit.github.io/scaling-book/doc'
+doc_scale = 'http://tinyurl.com/qfjgxmf'
+%>
+
+# Externaldocuments: /home/hpl/vc/decay-book/doc/src/book/book, /home/hpl/vc/deqbook/doc/src/chapters/wave/main_wave
+
+!split
+========= Preface  =========
+label{ch:preface}
+
+# #include "preface.do.txt"
+
+!split
+TOC: on
+
+!split
+# #include "scaling.do.txt"
+
+!split
+======= References =======
+
+BIBFILE: papers.pub
