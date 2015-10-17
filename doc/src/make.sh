@@ -124,7 +124,7 @@ src_wave=/home/hpl/vc/deqbook/doc/src/chapters/wave/src-wave/wave1D
 cp ${src_wave}/wave1D_u0.py .
 cp ${src_wave}/wave1D_dn.py .
 src_vib=/home/hpl/vc/deqbook/doc/src/chapters/vib/src-vib
-cp ${src_wave}/vib.py .
+cp ${src_vib}/vib.py .
 
 if [ -f clean.sh ]; then
 sh clean.sh
