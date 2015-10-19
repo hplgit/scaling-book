@@ -5793,6 +5793,7 @@ which we simply have $\bar\stress\cdot\normalvec = 0$.
 
 
 ===== Quasi-static thermo-elasticity =====
+label{scale:elasticity:thermo}
 
 idx{thermo-elasticity}
 
@@ -8795,6 +8796,46 @@ for elastic waves in a three-dimensional body.
 !esol
 !esubex
 
+===== Exercise: Scale the equations of quasi-static poro-elasticity =====
+label{scale:exer:poroelasticity}
+file=poroelasticity
+
+Flow through a porous elastic medium may induce stress and deformation.
+This process is known as poro-elasticity and is governed by the
+following equations for a homogeneous medium:
+
+!bt
+\begin{align}
+(\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -alpha\nabla p -
+\varrho\f,\\
+S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p
+\alpha \frac{\partial}{\partial t}\nabla\cdot\u,
+\end{align}
+!et
+where $\u(\x,t)$ is the displacement field, $\lambda$ and $\mu$ are
+Lame's elasticity parameters, $\alpha\in [0,1]$, $\f$ is the body
+force, here assumed constant (usually gravity, $\f = -g\kk$,
+$S$ is a so-called storage coefficient, $p(\x,t)$ is the fluid pressure,
+$K$ is the medium's permeability, $\mu_f$ is the dynamic viscosity of
+the fluid, and $\varrho$ is the density of the fluid-solid mixture:
+
+!bt
+\[ \varrho = (1-\phi) \varrho_s + \phi\varrho_f, \]
+!et
+with $\varrho_f$ being the density of the fluid, $\varrho_s$ the density
+of the solid, and $\phi$ the porosity of the elastic medium.
+The equations are known as Biot's equations of poro-elasticity and written
+here in a quasi-static form where elastic waves are neglected.
+
+Scale this partial differential equation model, assuming that
+$\lambda$, $\mu$, $\alpha$, $\f$, $\varrho$, $\phi$, $\varrho_s$,
+$\varrho_f$, $S$, $\mu_f$, and $K$ are all constants.
+
+!bhint
+The model is very similar to the equations of thermo-elasticity in
+Section ref{scale:elasticity:thermo}.
+!ehint
+
 ===== Exercise: Suggestions... =====
 label{scale::exer:suggest}
 
@@ -8806,9 +8847,5 @@ Projects:
  * Helmholtz
  * two metal pieces in contact
  * boundary layer fluid flow problem, with/without thermal effects
- * channel viscous flow: with and without Reynolds number (bad to
-   have an extra parameter!)
- * Starting Couette flow and rod with fixed end temperatures
- * Fisher's equation
  * Vertical motion in the gravity field, two time scales, discuss
  * sliding box, see `vib` exercise
