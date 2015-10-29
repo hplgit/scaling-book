@@ -7170,12 +7170,244 @@ dimensionless. As far as I can see, each term has dimension V/m.
 
 ======= Two-phase porous media flow =======
 
-Exercises: single-phase flow, with and without thermal effects.
+We consider the flow of two incompressible, immiscible fluids in
+a porous medium with porosity $\phi (\x)$. The two fluids are referred to
+as the "wetting": "https://en.wikipedia.org/wiki/Wetting" and
+non-wetting fluid. In an oil-water mixture, water is usually the
+wetting fluid. The fraction of the pore volume occupied by the
+wetting fluid is denoted by $S(\x,t)$. The non-wetting fluid then occupies
+$1-S$ of the pore volume (or $(1-S)\phi$ of the total volume).
+The variable $P(\x,t)$ represents the pressure in the non-wetting fluid.
+It is related to the pressure $P_n$ in the non-wetting fluid through
+the capillary pressure $p_c=P_n-P$, which is an empirically determined
+function of $S$.
+
+From mass conservation of the two fluids and from Darcy's law for
+each fluid, one can derive the following system of PDEs and
+algebraic relations that govern the two primary unknowns $S$ and $P$:
+
+!bt
+\begin{align}
+\nabla\cdot\v_t &= -(Q_n + Q_w),
+label{scale:twoph:Peq}\\
+\v_t &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
++ \lambda_n\varrho_n)g\kk,
+label{scale:twoph:v_teq}\\
+\phi\frac{\partial S}{\partial t} + f_w'(S)\v_t\cdot\nabla S &=
+\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\
+&\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
+label{scale:twoph:Seq}\\
+Q_w &= \frac{q_w}{\varrho_w},
+label{scale:twoph:Q_w}\\
+Q_n &= \frac{q_n}{\varrho_n},
+label{scale:twoph:Q_n}\\
+\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
+label{scale:twoph:lambda_w}\\
+\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
+label{scale:twoph:lambda_n}\\
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
+label{scale:twoph:lambda_t}\\
+k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
+label{scale:twoph:k_rw}\\
+k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
+label{scale:twoph:k_rn}\\
+f_w(S) &= \frac{\lambda_w}{\lambda_t},
+label{scale:twoph:f_w}\\
+G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
+label{scale:twoph:G_w}\\
+h_w(S) &= -\lambda_n(S)f_w(S),
+label{scale:twoph:h_w}\tp
+\end{align}
+!et
+
+The permeability of the porous medium is $K$
+(usually a tensor, but here taken as a
+scalar for simplicity); $\mu_w$ and $\mu_n$ are the dynamic viscosities
+of the wetting and non-wetting fluid, respectively;
+$\varrho_w$ and $\varrho_n$ are the densities
+of the wetting and non-wetting fluid, respectively;
+$q_w$ and $q_n$ are the injection rates of the wetting and non-wetting
+fluid through wells, respectively;
+$S_{wr}$ is the irreducible saturation of
+the wetting fluid (i.e., $S\geq S_{wr}$); $S_{nr}$ is the corresponding
+irreducible saturation of the non-wetting fluid (i.e., $(1-S)\geq S_{nr}$),
+$K_{wn}$ and $K_{nr}$ are the maximum values of the
+relative permeabilities $k_{rw}$ and $k_{rn}$, respectively, and
+$a$ and $b$ are given (Corey) exponents in the expressions for the
+relative permeabilities.
+
+The two PDEs are of elliptic and hyperbolic/parabolic nature:
+(ref{scale:twoph:Peq}) is elliptic since it is the divergence of a
+vector field, while (ref{scale:twoph:Seq}) is parabolic ($h_w\geq 0$
+because $p_c'(S)\geq 0$ and $\lambda_n$ as well as $f_w$ are positive
+since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
+(ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
+steep gradients that become shocks in the limit $p_c'\rightarrow 0$
+and (ref{scale:twoph:Seq}) is purely hyperbolic.
+A popular solution technique is based on operator splitting:
+(ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
+(ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
+
+The saturation $S$ is a non-dimensional quantity, and so are $\phi$,
+$k_{rw}$, $k_{rn}$, $K_{wm}$, $K_{nm}$, $f_w$, and $f_w'$.
+The quantity $\v_t$ is the total filtration velocity, i.e., the
+sum of the velocities of the wetting and non-wetting fluid.
+An associated velocity scale $v_c$ is convenient to define.
+It is also convenient to introduce dimensionless fractions of
+wetting and non-wetting fluid properties:
+
+!bt
+\begin{align*}
+\varrho &\equiv \varrho_w,\\
+\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\
+\mu &\equiv\mu_w,\\
+\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\
+Q &\equiv Q_w = \frac{q_w}{\varrho},\\
+Q_n &= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}\tp
+\end{align*}
+!et
+We will benefit from making $\lambda_w$, $\lambda_n$, and $\lambda_t$
+dimensionless:
+
+!bt
+\begin{align*}
+\lambda_w(S) &= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
+\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\
+\lambda_n(S) &= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
+\quad\bar\lambda_n = k_{rn},\\
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
+\bar\lambda_t = \bar \lambda_w +
+\beta^{-1}\bar\lambda_n\tp
+\end{align*}
+!et
+As we see, $\lambda_c$ is the characteristic size of any ``lambda''
+quantity, and a bar indicates as always a dimensionless variable.
+The above formulas imply
+
+!bt
+\[ h_w(S) = -\lambda_c\beta^{-1}\bar\lambda_n(S)f_w(S),\quad
+G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
+!et
+Furthermore, we introduce dimensionless quantities by
+
+!bt
+\[ \bar\x = \frac{\x}{L},\quad \bar\v_t = \frac{\v_t}{v_c},\quad
+\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
+!et
+Inserting the above scaled quantities in the governing PDEs results in
+
+!bt
+\begin{align}
+\bar\nabla\cdot\bar\v_t &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
+label{scale:twoph:Peq:s0}\\
+\bar\v_t &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
+\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\
+&\quad\quad\frac{g\lambda_c\varrho}{v_c}
+(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+label{scale:twoph:v_teq:s0}\\
+\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v_t\cdot
+\bar\nabla S &=
+\frac{t_c P_c\lambda_c}{L^2}
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\
+&\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
+label{scale:twoph:Seq:s0}
+\end{align}
+!et
+As usual, $L$ is taken as the characteristic length of the spatial domain.
+Since $v_c$ is a velocity scale, a natural time scale is the time it
+takes to transport a signal with velocity $v_c$ through the domain:
+$t_c = L/v_c$. The diffusion term in the equation
+(ref{scale:twoph:Seq:s}) then gets
+a dimensionless fraction
+
+!bt
+\[ \frac{L P_c\lambda_c}{v_c L^2}\tp\]
+!et
+Forcing this fraction to be unity gives
+
+!bt
+\[ v_c = \lambda_c\frac{P_c}{L}\tp\]
+!et
+We realize that this is indeed a natural velocity scale if the
+velocity is given by the pressure term in Darcy's law. This term
+is $K/\mu$ times the pressure gradient:
+
+!bt
+\[ \frac{K}{\mu}|\nabla P| \sim \frac{K}{\mu}\frac{P_c}{L} =
+\lambda_c\frac{P_c}{L} = v_c\tp\]
+!et
+We have here dropped the impact of the
+relative permeabilities $\bar\lambda_w$ or
+$\bar\lambda_n$ since these are quantities that are less than or equal
+to unity.
+
+The other term in Darcy's law is the gravity term that goes like
+$\lambda_c \varrho g$ (again dropping relative permeabilities).
+The ratio of the gravity term and the pressure gradient term in Darcy's
+law is an interesting dimensionless number:
+
+!bt
+\[ \delta = \frac{\lambda_c \varrho g}{\lambda_c P_c/L} =
+\frac{L\varrho g}{P_c}\tp\]
+!et
+This number naturally arises when we discuss
+the term
+
+!bt
+\[ \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} =
+-(\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z}
+\]
+!et
+Introducing another dimensionless variable,
+
+!bt
+\[ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},\]
+!et
+we can write (ref{scale:twoph:Peq:s0})-(ref{scale:twoph:Seq:s0}) in the
+final dimensionless form as
+
+!bt
+\begin{align}
+\bar\nabla\cdot\bar\v_t &= -\epsilon(1 + \alpha^{-1}\gamma),
+label{scale:twoph:Peq:s}\\
+\bar\v_t &= -\bar\lambda_t\bar\nabla\bar P +
+\bar\lambda_w \bar p_c'(S)\bar\nabla S +
+\delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+label{scale:twoph:v_teq:s}\\
+\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v_t\cdot
+\bar\nabla S &= -
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
+\nonumber\\
+&\quad\quad (\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z} +\nonumber\\
+&\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
+\epsilon\tp
+label{scale:twoph:Seq:s}
+\end{align}
+!et
+
+The eight input parameters $L$, $q_w$, $q_n$, $\mu_w$, $\mu_n$,
+$\varrho_w$, $\varrho_n$, and $K$ are reduced to five dimensionless
+parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
+There are six remaining dimensionless numbers to be set: $K_{wm}$,
+$K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
+
+[hpl: Boundary conditions?]
+
+[hpl: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.]
+
+[hpl: Exercises: single-phase flow, with and without thermal effects.]
 
 ======= The Euler equations of gas dynamics =======
 label{scale:Euler_eqs}
 
-# http://www.theoretical-physics.net/dev/fluid-dynamics/euler.html
+## Taken from
+## http://www.theoretical-physics.net/dev/fluid-dynamics/euler.html
+
+## http://farside.ph.utexas.edu/teaching/336L/Fluidhtml/node22.html
 
 !bt
 \begin{align}
@@ -7762,27 +7994,27 @@ ODE with Odespy.]
 !esol
 !esubex
 
-===== Problem: Scale a predator-pray model =====
+===== Problem: Scale a predator-prey model =====
 label{scale:decay:exer:predpray}
-file=predator_pray
+file=predator_prey
 
-idx{Lotka-Volterra, predator-pray model}
+idx{Lotka-Volterra, predator-prey model}
 
-The evolution of animal populations with a predator and a pray (e.g.,
+The evolution of animal populations with a predator and a prey (e.g.,
 lynx and hares, or foxes and rabbits) can be described by the
 Lotka-Volterra ODE system
 
 !bt
 \begin{align}
 H^{\prime} &= H(a - bL),
-label{scale:decay:exer:predpray:eqH}\\
+label{scale:decay:exer:predprey:eqH}\\
 L^{\prime} &= L(dH - c),
-label{scale:decay:exer:predpray:eqL}\\
+label{scale:decay:exer:predprey:eqL}\\
 H(0)&=H_0,\\
 L(0)&=L_0\tp
 \end{align}
 !et
-Here, $H$ is the number of animals of the pray (say hares)
+Here, $H$ is the number of animals of the prey (say hares)
 and $L$ is the corresponding measure of the predator population (say lynx).
 There are six parameters: $a$, $b$, $c$, $d$, $H_0$, and $L_0$.
 
@@ -7791,9 +8023,9 @@ The terms has the following meanings:
  * $aH$ is the exponential
    population growth of $H$ due to births and deaths and is governed by
    the access to nutrition,
- * $-bHL$ is the loss of prays because they are eaten by predators,
- * $dHL$ is the increase of prays because they eat predators (but only
-   a fraction of the eaten prays, $bHL$, contribute to population growth
+ * $-bHL$ is the loss of preys because they are eaten by predators,
+ * $dHL$ is the increase of preys because they eat predators (but only
+   a fraction of the eaten preys, $bHL$, contribute to population growth
    of the predator and therefore $d < b$),
  * $-cL$ is the exponential decay in the predator population because of
    deaths (the increase is modeled by $dHL$).
@@ -7812,13 +8044,13 @@ in the ODE problem we arrive at
 !bt
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-label{scale:decay:exer:predpray:eqH:s}\\
+label{scale:decay:exer:predprey:eqH:s}\\
 \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-label{scale:decay:exer:predpray:eqL:s}\\
+label{scale:decay:exer:predprey:eqL:s}\\
 H_c\bar H(0) &= H_0,
-label{scale:decay:exer:predpray:eqH0:s}\\
+label{scale:decay:exer:predprey:eqH0:s}\\
 L_c\bar H(0) &= L_0\tp
-label{scale:decay:exer:predpray:eqL0:s}
+label{scale:decay:exer:predprey:eqL0:s}
 \end{align}
 !et
 
@@ -7831,7 +8063,7 @@ dimensionless parameters in the scaled ODE problem.
 
 !bsol
 With $H_c=L_c=H_0$ in
-(ref{scale:decay:exer:predpray:eqH:s})-(ref{scale:decay:exer:predpray:eqL0:s})
+(ref{scale:decay:exer:predprey:eqH:s})-(ref{scale:decay:exer:predprey:eqL0:s})
 we get
 
 !bt
@@ -7861,14 +8093,14 @@ we can write the dimensionless problem as
 \end{align*}
 !et
 
-The quantity $bH_0$ is the number of eaten prays per predator.
+The quantity $bH_0$ is the number of eaten preys per predator.
 Then $\alpha$ measures the ratio of natural population growth of
-the pray, due to nutrition, and the number of eaten prays per predator.
-The $\beta$ parameter measures the fraction of the eaten prays and
+the prey, due to nutrition, and the number of eaten preys per predator.
+The $\beta$ parameter measures the fraction of the eaten preys and
 the amount of this that actually
 leads to population growth of the predator.
 The number $\gamma$ reflects the ratio of
-predator deaths and the eaten prays per predator, and $\delta$ is
+predator deaths and the eaten preys per predator, and $\delta$ is
 the initial fraction of preys and predators.
 !esol
 !esubex
@@ -7880,8 +8112,8 @@ parameters as possible. Compare with the scaling in a).
 
 !bsol
 Dividing by $H_c$ and $L_c$ in
-(ref{scale:decay:exer:predpray:eqH:s}) and
-(ref{scale:decay:exer:predpray:eqL0:s}),
+(ref{scale:decay:exer:predprey:eqH:s}) and
+(ref{scale:decay:exer:predprey:eqL0:s}),
 respectively,
 and multiply by $t_c$:
 
@@ -7924,7 +8156,7 @@ The unknowns $\bar H$ and $\bar L$ now has less intuitive scalings,
 \[ \bar H = \frac{Hd}{c},\quad \bar L = \frac{Lb}{a},\]
 !et
 while time is measured in the units based on the exponential growth
-due to births and deaths of prays ($a$). The number of dimensionless parameters
+due to births and deaths of preys ($a$). The number of dimensionless parameters
 is one less since we have one more scale (for $L_c$) at our
 disposal. Simplicity in one initial conditions in a) is
 exchanged with more simplicity in the ODEs, which now have
@@ -7965,8 +8197,8 @@ idx{Lotka-Volterra, competing species model}
 
 Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
 competing species. A generalized Lotka-Volterra model
-is based on a logistic growth of each specie and a predator-pray like
-interaction (cf.~Problem ref{scale:decay:exer:predpray}):
+is based on a logistic growth of each specie and a predator-prey like
+interaction (cf.~Problem ref{scale:decay:exer:predprey}):
 
 !bt
 \begin{align}
@@ -8196,6 +8428,88 @@ The dimensionless equations become equal in this case:
 !et
 !esol
 
+===== Exercise: Scale the ODEs for a binary star =====
+label{sec:scale:exer:binary_star}
+file=binary_star
+
+The equations for a "binary star": "https://en.wikipedia.org/wiki/Binary_star",
+or a planet and a moon, are
+
+!bt
+\begin{align}
+m_A\ddot\x_A &= \F,\\
+m_B\ddot\x_B &= -F,
+\end{align}
+!et
+where $\x_A$ is the position of object (star) A, and $\x_B$ is the position
+object B. The corresponding masses are $m_A$ and $m_B$.
+The only force is the gravity force
+
+!bt
+\[ \F = \frac{Gm_Am_B}{||\rpos||^3}\rpos,\]
+!et
+where
+
+!bt
+\[ \rpos(t) = \x_A(t) - \x_B(t),\]
+!et
+and $G$ is the gravitational constant: $G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2$. A problem with these equations is that the parameters are very large
+($m_A$, $m_B$, $||\rpos||$) or very small ($G$). The rotation time
+for binary starts can be very small or large as well.
+
+!bsol
+A natural length scale could be the initial distance between the objects:
+$L=\rpos(0)$. We write the dimensionless quantities as
+
+!bt
+\[ \bar\x_A = \frac{\x_A}{L},\quad\bar\x_B = \frac{\x_B}{L},\quad
+\bar t = \frac{t}{t_c}\tp\]
+!et
+The gravity force is transformed to
+
+!bt
+\[ \F = \frac{Gm_Am_B}{L^2||\bar\rpos||^3}\bar\rpos,\quad \bar\rpos = \bar\x_A - \bar\x_B,\]
+!et
+so the first ODE for $\x_A$ becomes
+
+!bt
+\[ \frac{d^2 \bar\x_A}{d\bar t^2} =
+\frac{Gm_Bt_c^2}{L^3}\frac{\bar\rpos}{||\bar\rpos||^3}\tp\]
+!et
+Assuming that quantities with a bar and their derivatives are around unity
+in size, it is natural to choose $t_c$ such that the fraction $Gm_Bt_c/L^2=1$:
+
+!bt
+\[ t_c = \sqrt{\frac{L^3}{Gm_B}}\tp\]
+!et
+From the other equation for $\x_B$ we get another candidate for $t_c$ with
+$m_A$ instead of $m_B$. Which mass we choose play a role if $m_A\ll m_B$ or
+$m_B\ll m_A$. One solution is to use the sum of the masses:
+
+!bt
+\[ t_c = \sqrt{\frac{L^3}{G(m_A+m_B)}}\tp\]
+!et
+Taking a look at "Kepler's laws": "https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" of planetary motion, the orbital period for a planet around the star is given by the $t_c$ above, except for a missing factor of $2\pi$.
+Our characteristic time $t_c$ is therefore highly relevant.
+
+!bt
+\begin{align}
+\frac{d^2 \bar\x_A}{d\bar t^2} &=
+\frac{m_B}{m_A+m_B}\frac{\bar\rpos}{||\bar\rpos||^3},\\
+\frac{d^2 \bar\x_B}{d\bar t^2} &=
+\frac{m_A}{m_A+m_B}\frac{\bar\rpos}{||\bar\rpos||^3}\tp
+\end{align}
+!et
+
+In the limit $m_A\ll m_B$, object B stands still, say $\bar\x_B=0$, and object
+A orbits according to
+
+!bt
+\[ \frac{d^2 \bar\x_A}{d\bar t^2} = \frac{\bar\x_A}{||\bar \x_A||^3}\tp\]
+!et
+Switch to polar coordinates?
+
+!esol
 
 ===== Problem: Scale Duffing's equation =====
 label{scale:vib:exer:Duffing}
@@ -8806,9 +9120,9 @@ following equations for a homogeneous medium:
 
 !bt
 \begin{align}
-(\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -alpha\nabla p -
+(\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -\alpha\nabla p -
 \varrho\f,\\
-S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p
+S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p +
 \alpha \frac{\partial}{\partial t}\nabla\cdot\u,
 \end{align}
 !et

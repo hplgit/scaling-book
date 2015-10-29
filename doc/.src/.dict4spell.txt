@@ -1,4 +1,5 @@
 Bernoulli's
+Biot's
 Boussinesq
 Couette
 Courant
@@ -71,6 +72,7 @@ domining
 electrophysiology
 errorprone
 giga
+immiscible
 intracellular
 joblib
 memoize
@@ -81,7 +83,9 @@ neuroscience
 nonhomogeneous
 pascal
 pdfLaTeX
+permeabilities
 pipeflow
+poro
 pulsatile
 rad
 recomputations
