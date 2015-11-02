@@ -71,8 +71,15 @@ existing models to solve the equations in the associated scaled model.
 Scaling is not a universal mathematical technique as the details
 depend on the problem at hand. We therefore present scaling in a range
 of specific applications, starting with simple ODEs, progressing with
-basic PDEs, before attacking more
-complicated models, especially from fluid mechanics.
+basic PDEs, before attacking more complicated models, especially from
+fluid mechanics. The mathematics in the first two chapters is very
+gentle and requires no more background than basic one-variable
+calculus and preferably some knowledge of differential equation
+models. The next chapter involves PDEs and assumes familiarity with
+basic models for wave phenomena, diffusion, and combined
+convection-diffusion. The final chapter is meant for readers with
+knowledge of continuum mechanical models. The mathematical level
+of the text rises quickly after the first two chapters.
 
 The section :ref:`scale:dimunit` discusses units and how to make programs
 that can automatically take care of unit conversion (the most frequent
@@ -111,5 +118,5 @@ depends on the problem at hand.
 
 [**hpl 2**: In the simpler model problems, the domains for the independent variables are explicitly listed in most places. As the complexity of models grows, the domains are dropped. It makes sense to drop domains that are not intervals, since these are named as some "Omega" anyway, while intervals will explicitly reflect spatial and temporal scales. First problem where this is evident: convection-diffusion multi-dimensional PDE.]
 
-[**hpl 3**: The book applies Springer's svmono style, but the math fonts look ugly, especially greek symbols and italic boldface symbols. Switch to different font?]
+[**hpl 3**: The book applies Springer's svmono style, required now for all Springer books, but the math fonts look ugly, especially greek symbols and italic boldface symbols. Switch to different font?]
 

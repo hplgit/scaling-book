@@ -82,8 +82,9 @@
 <span id="scale-dimunit"></span><h1>Dimensions and units<a class="headerlink" href="#dimensions-and-units" title="Permalink to this headline">¶</a></h1>
 <p id="index-0">A mechanical system undergoing one-dimensional damped vibrations can be
 modeled by the equation</p>
-<div class="math" id="equation-scale:dimunit:eq:u">
-<span id="eq-scale-dimunit-eq-u"></span><span class="eqno">(1)</span>\[     mu'' + bu' + ku = 0,\]</div>
+<div class="math" id="eq-scale-dimunit-eq-u">
+\[\tag{1}
+mu'' + bu' + ku = 0,\]</div>
 <p>where <span class="math">\(m\)</span> is the mass of the system, <span class="math">\(b\)</span> is some damping coefficient,
 <span class="math">\(k\)</span> is a spring constant, and <span class="math">\(u(t)\)</span> is the displacement of the system.
 This is an equation expressing
@@ -101,8 +102,9 @@ as when trying to add one banana, one apple, and one orange).</p>
 <span class="target" id="index-1"></span><span class="target" id="index-2"></span><span class="target" id="index-3"></span><p id="index-4">There are seven fundamental <em>base units</em>: length, mass, time, electric
 current, thermodynamic temperature, amount of substance, and luminous
 intensity.  The base units for length, mass, and time, which we are
-mostly occupied with in this book, are measured by the SI units
+mostly occupied with in this book, are the SI units
 meter (m), kilogram (kg), and seconds (s), respectively.</p>
+<p>[<strong>hpl 4</strong>: Geir, current measured in ampere is a base unit (charge is a derived unit). See <a class="reference external" href="http://physics.nist.gov/cuu/Units/units.html">http://physics.nist.gov/cuu/Units/units.html</a> or <a class="reference external" href="https://en.wikipedia.org/wiki/SI_base_unit">wikipedia</a>.]</p>
 <p>The dimension of length is written as [L], the dimension of mass is
 [M], the dimension of time is [T], and the dimension of temperature is
 <span class="math">\([\Theta]\)</span> (the dimensions of the other base units are omitted in
@@ -111,14 +113,14 @@ distance (length) divided by time, then becomes <span class="math">\([\hbox{LT}^
 The dimension of force, another derived unit, is the same as the
 dimension of mass times acceleration, and hence the dimension of force is
 <span class="math">\([\hbox{MLT}^{-2}]\)</span>.</p>
-<p>Let us find the dimensions of the terms in <a href="#equation-scale:dimunit:eq:u">(1)</a>.
+<p>Let us find the dimensions of the terms in <a class="reference internal" href="#eq-scale-dimunit-eq-u"><span class="std std-ref">(1)</span></a>.
 A displacement <span class="math">\(u(t)\)</span> has dimension [L]. The derivative <span class="math">\(u'(t)\)</span> is
 change of displacement, which has dimension [L], divided by a time
 interval, which has dimension [T], implying that the dimension of <span class="math">\(u'\)</span>
 is <span class="math">\(\hbox{LT}^{-1}\)</span>. This results coincides with the interpretation of
 <span class="math">\(u'\)</span> as velocity and the fact that velocity is defined as distance
 ([L]) per time ([T]).</p>
-<p>Looking at <a href="#equation-scale:dimunit:eq:u">(1)</a>, and interpreting <span class="math">\(u(t)\)</span>
+<p>Looking at <a class="reference internal" href="#eq-scale-dimunit-eq-u"><span class="std std-ref">(1)</span></a>, and interpreting <span class="math">\(u(t)\)</span>
 as displacement, we realize that the term <span class="math">\(mu''\)</span>
 (mass times acceleration) has dimension <span class="math">\([\hbox{MLT}^{-2}]\)</span>.  The term
 <span class="math">\(bu'\)</span> must have the same dimension, and since <span class="math">\(u'\)</span> has dimension
@@ -129,7 +131,7 @@ is a parameter with dimension <span class="math">\([\hbox{MT}^{-2}]\)</span>.</p
 For example, since velocity has dimension <span class="math">\(\hbox{LT}^{-1}\)</span> and length
 is measured in m while time is measured in s, the unit for velocity
 becomes m/s. Similarly, force has dimension <span class="math">\([\hbox{MLT}^{-2}]\)</span> and
-unit <span class="math">\(\hbox{kg\, m/s}^2\)</span>. The <span class="math">\(k\)</span> parameter in <a href="#equation-scale:dimunit:eq:u">(1)</a>
+unit <span class="math">\(\hbox{kg\, m/s}^2\)</span>. The <span class="math">\(k\)</span> parameter in <a class="reference internal" href="#eq-scale-dimunit-eq-u"><span class="std std-ref">(1)</span></a>
 is measured in <span class="math">\(\hbox{kg\,s}^{-2}\)</span>.</p>
 <div class="admonition-dimension-of-derivatives admonition">
 <p class="first admonition-title">Dimension of derivatives</p>
@@ -201,12 +203,13 @@ i.e., force per area. The unit of Pa then equals <span class="math">\(\hbox{N/m}
 </tbody>
 </table>
 <p>Some common physical quantities and their dimensions are listed next.</p>
+<p>[<strong>hpl 5</strong>: TODO: Check the tables.]</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="30%" />
-<col width="19%" />
-<col width="23%" />
-<col width="28%" />
+<col width="27%" />
+<col width="29%" />
+<col width="20%" />
+<col width="25%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Quantity</th>
@@ -252,7 +255,7 @@ i.e., force per area. The unit of Pa then equals <span class="math">\(\hbox{N/m}
 <td><span class="math">\(\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]\)</span></td>
 </tr>
 <tr class="row-odd"><td>moment (of a force)</td>
-<td>force <span class="math">\(\times\)</span> distance</td>
+<td>distance <span class="math">\(\times\)</span> force</td>
 <td>Nm</td>
 <td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
 </tr>
@@ -262,66 +265,71 @@ i.e., force per area. The unit of Pa then equals <span class="math">\(\hbox{N/m}
 <td><span class="math">\([\hbox{MLT}^{-1}]\)</span></td>
 </tr>
 <tr class="row-odd"><td>linear momentum</td>
-<td>force <span class="math">\(\times\)</span> velocity</td>
-<td>Nm/s</td>
-<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-3}]\)</span></td>
+<td>mass <span class="math">\(\times\)</span> velocity</td>
+<td><span class="math">\(\hbox{kg m/s}\)</span></td>
+<td><span class="math">\([\hbox{ML}\hbox{T}^{-1}]\)</span></td>
 </tr>
-<tr class="row-even"><td>work</td>
+<tr class="row-even"><td>angular momentum</td>
+<td>distance <span class="math">\(\times\)</span> mass <span class="math">\(\times\)</span> velocity</td>
+<td><span class="math">\(\hbox{kg m}^2/\hbox{s}\)</span></td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>work</td>
 <td>force <span class="math">\(\times\)</span> distance</td>
 <td><span class="math">\(\hbox{Nm} = \hbox{J}\)</span></td>
 <td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
 </tr>
-<tr class="row-odd"><td>energy</td>
+<tr class="row-even"><td>energy</td>
 <td>work</td>
 <td><span class="math">\(\hbox{Nm} = \hbox{J}\)</span></td>
 <td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
 </tr>
-<tr class="row-even"><td>power</td>
+<tr class="row-odd"><td>power</td>
 <td>work/time</td>
 <td><span class="math">\(\hbox{Nm/s} = \hbox{W}\)</span></td>
 <td><span class="math">\([\hbox{ML}^2\hbox{T}^{-3}]\)</span></td>
 </tr>
-<tr class="row-odd"><td>heat</td>
+<tr class="row-even"><td>heat</td>
 <td>work</td>
 <td>J</td>
 <td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
 </tr>
-<tr class="row-even"><td>heat flux</td>
+<tr class="row-odd"><td>heat flux</td>
 <td>heat rate/area</td>
 <td><span class="math">\(\hbox{Wm}^{-2}\)</span></td>
 <td><span class="math">\([\hbox{MT}^{-3}]\)</span></td>
 </tr>
-<tr class="row-odd"><td>temperature</td>
+<tr class="row-even"><td>temperature</td>
 <td>base unit</td>
 <td>K</td>
 <td><span class="math">\([\Theta]\)</span></td>
 </tr>
-<tr class="row-even"><td>heat capacity</td>
+<tr class="row-odd"><td>heat capacity</td>
 <td>heat change/temperature change</td>
 <td>J/K</td>
 <td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}\Theta^{-1}]\)</span></td>
 </tr>
-<tr class="row-odd"><td>specific heat capacity</td>
+<tr class="row-even"><td>specific heat capacity</td>
 <td>heat capacity/unit mass</td>
 <td><span class="math">\(\hbox{JK}^{-1}\hbox{kg}^{-1}\)</span></td>
 <td><span class="math">\([\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}]\)</span></td>
 </tr>
-<tr class="row-even"><td>thermal conductivity</td>
+<tr class="row-odd"><td>thermal conductivity</td>
 <td>heat flux/temperature gradient</td>
 <td><span class="math">\(\hbox{Wm}^{-1}\hbox{K}^{-1}\)</span></td>
 <td><span class="math">\([\hbox{MLT}^{-3}\Theta^{-1}]\)</span></td>
 </tr>
-<tr class="row-odd"><td>dynamic viscosity</td>
+<tr class="row-even"><td>dynamic viscosity</td>
 <td>shear stress/velocity gradient</td>
 <td><span class="math">\(\hbox{kgm}^{-1}\hbox{s}^{-1}\)</span></td>
 <td><span class="math">\([\hbox{ML}^{-1}T^{-1}]\)</span></td>
 </tr>
-<tr class="row-even"><td>kinematic viscosity</td>
+<tr class="row-odd"><td>kinematic viscosity</td>
 <td>dynamic viscosity/density</td>
 <td><span class="math">\([\hbox{m}^2/\hbox{s}\)</span></td>
 <td><span class="math">\(\hbox{L}^2\hbox{T}^{-1}]\)</span></td>
 </tr>
-<tr class="row-odd"><td>surface tension</td>
+<tr class="row-even"><td>surface tension</td>
 <td>energy/area</td>
 <td><span class="math">\([\hbox{J/m}^2\)</span></td>
 <td><span class="math">\(\hbox{MT}^{-2}]\)</span></td>
@@ -335,8 +343,8 @@ For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or <span class="math">\(10^9\)</span> Pa.</p>
 </div>
 </div>
-<div class="section" id="errors-and-units">
-<h3>Errors and units<a class="headerlink" href="#errors-and-units" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="absolute-errors-relative-errors-and-units">
+<h3>Absolute errors, relative errors, and units<a class="headerlink" href="#absolute-errors-relative-errors-and-units" title="Permalink to this headline">¶</a></h3>
 <p>Mathematically, it does not matter what units we use for a physical
 quantity. However, when we deal with approximations and errors,
 units are important. Suppose we work with a geophysical problem where
@@ -354,14 +362,27 @@ better to scale the problem such that the quantities entering the
 computations are of unit size (or at least moderate) instead of being very
 large or very small. The techniques of this appendix show how this
 can be done.</p>
-<span class="target" id="index-6"></span></div>
+</div>
+<div class="section" id="units-and-computers">
+<h3>Units and computers<a class="headerlink" href="#units-and-computers" title="Permalink to this headline">¶</a></h3>
+<p>Traditional numerical computing involves numbers only and therefore
+require dimensionless mathematical expressions. Usually, an implicit
+trivial scaling is used. One can, for example, just scale all length
+quantities by 1 m, all time quantities by 1 s, and all mass quantities
+by 1 kg, to obtain the dimensionless numbers needed for calculations.
+This is the most common approach, although it is very seldom explicitly
+stated.</p>
+<p>Symbolic computing packages, such as Mathematica and Maple, allow
+computations with quantities that have dimension. This is also possible
+in popular computer languages used for numerical computing (the section <a class="reference internal" href="#scale-pq"><span class="std std-ref">PhysicalQuantity: object for computing with units</span></a> provides a specific example in Python).</p>
+</div>
 <div class="section" id="unit-systems">
-<span id="index-7"></span><h3>Unit systems<a class="headerlink" href="#unit-systems" title="Permalink to this headline">¶</a></h3>
-<p>Confusion arises quickly when some physical quantities are expressed
+<h3>Unit systems<a class="headerlink" href="#unit-systems" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-6"></span><p id="index-7">Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see <a class="reference internal" href="._book009.html#sec-scale-exer-us2si1"><span class="std std-ref">Exercise 1: Perform unit conversion</span></a> for how to safely convert to a standard
-unit like <span class="math">\(\hbox{kg\,m}^{-3}\)</span>).  Although unit conversion is a
-mathematical topic much trained in school, errors in conversions
+unit like <span class="math">\(\hbox{kg\,m}^{-3}\)</span>).  Although unit conversion tables
+are frequently met in school, errors in unit conversions
 between units probably rank highest among all errors committed by
 scientists and engineers (and when a unit conversion error make an
 <a class="reference external" href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html">airplane&#8217;s fuel run out</a>,
@@ -370,6 +391,7 @@ conversion is therefore paramount, and this topic is treated next.
 Readers who are primarily interested in the mathematical scaling
 technique may safely jump over the sections <a class="reference internal" href="#scale-pq"><span class="std std-ref">PhysicalQuantity: object for computing with units</span></a> and
 <a class="reference internal" href="#scale-parampool"><span class="std std-ref">Parampool: user interfaces with automatic unit conversion</span></a> and continue with the section <a class="reference internal" href="._book004.html#sec-scale-decay"><span class="std std-ref">Exponential decay problems</span></a>.</p>
+<p>[<strong>hpl 6</strong>: Geir, here goes an example on difficulties with data in and out of various components in a tsunami model.]</p>
 </div>
 <div class="section" id="physicalquantity-object-for-computing-with-units">
 <span id="scale-pq"></span><h3>PhysicalQuantity: object for computing with units<a class="headerlink" href="#physicalquantity-object-for-computing-with-units" title="Permalink to this headline">¶</a></h3>
@@ -383,6 +405,13 @@ fast in popularity and acts as a replacement for more specialized tools
 like MATLAB, R, and IDL.
 The coding examples in this book requires only familiarity with basic
 procedural programming in Python.</p>
+<p>Readers without knowledge of Python variables, functions, if tests,
+and module import should consult, e.g., a <a class="reference external" href="http://hplgit.github.io/bumpy/doc/web/index.html">brief tutorial on scientific
+Python</a>,
+the <a class="reference external" href="http://scipy-lectures.github.com/">Python Scientific Lecture Notes</a>,
+or a full textbook <a class="reference internal" href="._book010.html#ref01" id="id1">[Ref01]</a> in parallel with reading about
+Python code in the present book.</p>
+<p>[<strong>hpl 7</strong>: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?]</p>
 <p>Computations with units in Python are well supported by the
 <code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> object from the <a class="reference external" href="https://bitbucket.org/khinsen/scientificpython">ScientificPython package</a> by Konrad
 Hinsen. Unfortunately, ScientificPython does not, at the time of this
@@ -703,7 +732,7 @@ simple content</p>
 </pre></div>
 </div>
 <p>Running <code class="docutils literal"><span class="pre">generate_distance_GUI.py</span></code> creates a Flask-based web
-interface <a class="footnote-reference" href="#flask" id="id1">[1]</a>
+interface <a class="footnote-reference" href="#flask" id="id2">[1]</a>
 to our <code class="docutils literal"><span class="pre">distance_unit</span></code> function, see Figure <a class="reference internal" href="#scale-dimunit-fig-gui"><span class="std std-ref">Web GUI where parameters can be specified with units</span></a>.
 The text fields in this GUI allow specification of parameters with
 numbers and units, e.g., acceleration with unit yards per minute squared,
@@ -713,12 +742,12 @@ of that parameter.</p>
 <table class="docutils footnote" frame="void" id="flask" rules="none">
 <colgroup><col class="label" /><col /></colgroup>
 <tbody valign="top">
-<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>You need to have Flask and additional packages installed.
+<tr><td class="label"><a class="fn-backref" href="#id2">[1]</a></td><td>You need to have Flask and additional packages installed.
 This is easy to do with a few <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></code> commands,
-see <a class="reference internal" href="._book010.html#ref1" id="id2">[Ref1]</a> or <a class="reference internal" href="._book010.html#ref2" id="id3">[Ref2]</a>.</td></tr>
+see <a class="reference internal" href="._book010.html#ref02" id="id3">[Ref02]</a> or <a class="reference internal" href="._book010.html#ref03" id="id4">[Ref03]</a>.</td></tr>
 </tbody>
 </table>
-<div class="figure" id="id4">
+<div class="figure" id="id5">
 <span id="scale-dimunit-fig-gui"></span><a class="reference internal image-reference" href="_images/distance_GUI.png"><img alt="_images/distance_GUI.png" src="_images/distance_GUI.png" style="width: 400px;" /></a>
 <p class="caption"><span class="caption-text"><em>Web GUI where parameters can be specified with units</em></span></p>
 </div>
@@ -752,7 +781,8 @@ and avoid unit conversion so there will be no more use of
 <li><a class="reference internal" href="#prefixes-for-units">Prefixes for units</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#errors-and-units">Errors and units</a></li>
+<li><a class="reference internal" href="#absolute-errors-relative-errors-and-units">Absolute errors, relative errors, and units</a></li>
+<li><a class="reference internal" href="#units-and-computers">Units and computers</a></li>
 <li><a class="reference internal" href="#unit-systems">Unit systems</a></li>
 <li><a class="reference internal" href="#physicalquantity-object-for-computing-with-units">PhysicalQuantity: object for computing with units</a></li>
 </ul>
@@ -820,7 +850,7 @@ and avoid unit conversion so there will be no more use of
     <a href="http://cbc.simula.no"><img src="_static/cbc_banner.png" width="100%"><a>
     <br />
     <br />
-      &copy;2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license.
+      &copy;2015, Geir K. Pedersen, Hans Petter Langtangen. Released under CC Attribution 4.0 license.
   </div>
 </div>
 

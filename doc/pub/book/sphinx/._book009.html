@@ -86,15 +86,16 @@ gas dynamics, and electrophysiology. A range of
 classical dimensionless numbers are discussed in terms of the scaling.</p>
 <div class="section" id="the-equations-of-linear-elasticity">
 <span id="scale-elasticity"></span><h2>The equations of linear elasticity<a class="headerlink" href="#the-equations-of-linear-elasticity" title="Permalink to this headline">¶</a></h2>
-<p>[<strong>hpl 16</strong>: It seems that the equations of elasticity and thermo-elasticity are never (?) non-dimensionalized in the literature.]</p>
+<p>[<strong>hpl 22</strong>: It seems that the equations of elasticity and thermo-elasticity are never (?) non-dimensionalized in the literature.]</p>
 <div class="section" id="the-general-time-dependent-elasticity-problem">
-<h3>The general time-dependent elasticity problem<a class="headerlink" href="#the-general-time-dependent-elasticity-problem" title="Permalink to this headline">¶</a></h3>
+<span id="scale-elasticity-timedep"></span><h3>The general time-dependent elasticity problem<a class="headerlink" href="#the-general-time-dependent-elasticity-problem" title="Permalink to this headline">¶</a></h3>
 <p>The following vector PDE governs deformation and stress in purely elastic
 materials, under the assumption of small displacement gradients:</p>
-<div class="math" id="equation-scale:elasticity:PDE1">
-<span id="eq-scale-elasticity-pde1"></span><span class="eqno">(1)</span>\[     \varrho\frac{\partial^2\boldsymbol{u}}{\partial t^2} =
-     \nabla ((\lambda + \mu)\nabla\cdot\boldsymbol{u}) + \nabla\cdot(\mu\nabla\boldsymbol{u}) +
-     \varrho\boldsymbol{f}{\thinspace .}\]</div>
+<div class="math" id="eq-scale-elasticity-pde1">
+\[\tag{170}
+\varrho\frac{\partial^2\boldsymbol{u}}{\partial t^2} =
+    \nabla ((\lambda + \mu)\nabla\cdot\boldsymbol{u}) + \nabla\cdot(\mu\nabla\boldsymbol{u}) +
+    \varrho\boldsymbol{f}{\thinspace .}\]</div>
 <p>Here, <span class="math">\(\boldsymbol{u}\)</span> is the displacement vector,
 <span class="math">\(\varrho\)</span> is the density of the material, <span class="math">\(\lambda\)</span> and <span class="math">\(\mu\)</span> are
 the Lame elasticity parameters, and <span class="math">\(\boldsymbol{f}\)</span> is a body force (gravity,
@@ -127,14 +128,15 @@ L^{-2}u_c\bar \nabla ((\lambda_c\bar\lambda +
 L^{-2}u_c\mu_c\bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
 \varrho_cf_c\bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
 <p>Making the terms non-dimensional gives the equation</p>
-<div class="math" id="equation-_auto40">
-<span id="eq-auto40"></span><span class="eqno">(2)</span>\[     \bar\varrho\frac{\partial^2\bar \boldsymbol{u}}{\partial \bar t^2} =
-     \frac{t_c^2\lambda_c}{L^2\varrho_c}
-     \bar \nabla (\bar\lambda\bar\nabla\cdot\bar u) +
-     \frac{t_c^2\mu_c}{L^2\varrho_c}
-     \bar\nabla(\bar\mu \bar\nabla\cdot\bar \boldsymbol{u}) +
-     \frac{t_c^2\mu_c}{L^2\varrho_c}\bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
-     \frac{t_c^2f_c}{u_c}\bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
+<div class="math" id="eq-auto43">
+\[\tag{171}
+\bar\varrho\frac{\partial^2\bar \boldsymbol{u}}{\partial \bar t^2} =
+    \frac{t_c^2\lambda_c}{L^2\varrho_c}
+    \bar \nabla (\bar\lambda\bar\nabla\cdot\bar u) +
+    \frac{t_c^2\mu_c}{L^2\varrho_c}
+    \bar\nabla(\bar\mu \bar\nabla\cdot\bar \boldsymbol{u}) +
+    \frac{t_c^2\mu_c}{L^2\varrho_c}\bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
+    \frac{t_c^2f_c}{u_c}\bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
 <p>We may choose <span class="math">\(t_c\)</span> to make the coefficient in front of any of the spatial
 derivative terms equal unity. Here we choose the <span class="math">\(\mu\)</span> term, which implies</p>
 <div class="math">
@@ -145,27 +147,28 @@ means</p>
 <div class="math">
 \[u_c = \mu_c^{-1}f_cL^2\varrho_c{\thinspace .}\]</div>
 <p>The resulting dimensionless PDE becomes</p>
-<div class="math" id="equation-_auto41">
-<span id="eq-auto41"></span><span class="eqno">(3)</span>\[     \bar\varrho\frac{\partial^2\bar \boldsymbol{u}}{\partial \bar t^2} =
-     \bar \nabla ((\beta\bar\lambda + \bar\mu)\bar\nabla\cdot\bar u) +
-     \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
-     \bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
+<div class="math" id="eq-auto44">
+\[\tag{172}
+\bar\varrho\frac{\partial^2\bar \boldsymbol{u}}{\partial \bar t^2} =
+    \bar \nabla ((\beta\bar\lambda + \bar\mu)\bar\nabla\cdot\bar u) +
+    \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
+    \bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
 <p>The only dimensionless parameter is</p>
 <div class="math">
 \[\beta = \frac{\lambda_c}{\mu_c}{\thinspace .}\]</div>
 <p>If the source term is absent, we must use the initial condition or
 a known boundary displacement to
 determine <span class="math">\(u_c\)</span>.</p>
-<div class="section" id="software-7">
-<h4>Software<a class="headerlink" href="#software-7" title="Permalink to this headline">¶</a></h4>
-<p>Given software for <a href="#equation-scale:elasticity:PDE1">(1)</a>,
+<div class="section" id="software-8">
+<h4>Software<a class="headerlink" href="#software-8" title="Permalink to this headline">¶</a></h4>
+<p>Given software for <a class="reference internal" href="#eq-scale-elasticity-pde1"><span class="std std-ref">(170)</span></a>,
 we can simulate the dimensionless problem by setting <span class="math">\(\varrho =\bar\varrho\)</span>,
 <span class="math">\(\lambda =\beta\bar\lambda\)</span>, and <span class="math">\(\mu = \bar\mu\)</span>.</p>
-<p>[<strong>hpl 17</strong>: What about setting boundary conditions?]</p>
+<p>[<strong>hpl 23</strong>: What about setting boundary conditions?]</p>
 </div>
 </div>
 <div class="section" id="dimensionless-stress-tensor">
-<h3>Dimensionless stress tensor<a class="headerlink" href="#dimensionless-stress-tensor" title="Permalink to this headline">¶</a></h3>
+<span id="scale-elasticity-pde1-stress"></span><h3>Dimensionless stress tensor<a class="headerlink" href="#dimensionless-stress-tensor" title="Permalink to this headline">¶</a></h3>
 <p>The stress tensor <span class="math">\(\boldsymbol{\sigma}\)</span> is a key quantity in elasticity and is given by</p>
 <div class="math">
 \[\boldsymbol{\sigma} = \lambda\nabla\cdot\boldsymbol{u}\boldsymbol{I} + \mu(\nabla\boldsymbol{u} + (\nabla\boldsymbol{u})^T){\thinspace .}\]</div>
@@ -184,10 +187,11 @@ stress tensor:</p>
 <div class="math">
 \[\bar\boldsymbol{\sigma} = \frac{\boldsymbol{\sigma}}{\sigma_c},\quad \sigma_c = \mu_c u_c L^{-1},\]</div>
 <p>and we have the dimensionless stress-displacement relation</p>
-<div class="math" id="equation-_auto42">
-<span id="eq-auto42"></span><span class="eqno">(4)</span>\[     \bar\boldsymbol{\sigma} =
-     \beta\bar\lambda\bar\nabla\cdot\bar\boldsymbol{u} +
-     \bar\mu(\bar\nabla\bar\boldsymbol{u} + (\bar\nabla\bar\boldsymbol{u})^T){\thinspace .}\]</div>
+<div class="math" id="eq-auto45">
+\[\tag{173}
+\bar\boldsymbol{\sigma} =
+    \beta\bar\lambda\bar\nabla\cdot\bar\boldsymbol{u} +
+    \bar\mu(\bar\nabla\bar\boldsymbol{u} + (\bar\nabla\bar\boldsymbol{u})^T){\thinspace .}\]</div>
 </div>
 <div class="section" id="when-can-the-acceleration-term-be-neglected">
 <span id="scale-elasticity-waves"></span><h3>When can the acceleration term be neglected?<a class="headerlink" href="#when-can-the-acceleration-term-be-neglected" title="Permalink to this headline">¶</a></h3>
@@ -195,15 +199,16 @@ stress tensor:</p>
 quasi-static deformations where the acceleration term
 <span class="math">\(\varrho\boldsymbol{u}_{tt}\)</span> is neglected. Now we shall see under which conditions
 the quasi-static approximation holds.</p>
-<p>The further discussion will need to look into the time scales
-of elastic waves, because it turns out that
-the chosen <span class="math">\(t_c\)</span> above is closely linked to properties of
-elastic waves in a homogeneous body without body forces.
-That is, we have constant <span class="math">\(\varrho\)</span>, <span class="math">\(\lambda\)</span>, and <span class="math">\(\mu\)</span>,
-and no force term:</p>
-<div class="math" id="equation-scale:elasticity:waves:eq">
-<span id="eq-scale-elasticity-waves-eq"></span><span class="eqno">(5)</span>\[     \varrho\frac{\partial^2\boldsymbol{u}}{\partial t^2} =
-     (\lambda + \mu)\nabla \nabla\cdot\boldsymbol{u} + \mu\nabla^2\boldsymbol{u}{\thinspace .}\]</div>
+<p>The further discussion will need to look into the time scales of
+elastic waves, because it turns out that the chosen <span class="math">\(t_c\)</span> above is
+closely linked to the propagation speed of elastic waves in a
+homogeneous body without body forces.  A relevant model for
+such waves has constant
+<span class="math">\(\varrho\)</span>, <span class="math">\(\lambda\)</span>, and <span class="math">\(\mu\)</span>, and no force term:</p>
+<div class="math" id="eq-scale-elasticity-waves-eq">
+\[\tag{174}
+\varrho\frac{\partial^2\boldsymbol{u}}{\partial t^2} =
+    (\lambda + \mu)\nabla \nabla\cdot\boldsymbol{u} + \mu\nabla^2\boldsymbol{u}{\thinspace .}\]</div>
 <div class="section" id="s-waves">
 <h4>S waves<a class="headerlink" href="#s-waves" title="Permalink to this headline">¶</a></h4>
 <p>Let us take the curl of this PDE and notice
@@ -222,7 +227,7 @@ volume change of continuum elements. Suppose this volume change vanishes,
 The elasticity equation then simplifies to</p>
 <div class="math">
 \[\frac{\partial^2 \boldsymbol{u}}{\partial t^2} = c_S^2\nabla^2\boldsymbol{u},\]</div>
-<p>so each components of
+<p>so each component of
 the displacement field in this case also propagates as a wave
 with speed <span class="math">\(c_S^2\)</span>.
 The time it takes for such a wave to travel one characteristic length
@@ -234,7 +239,7 @@ our characteristic time <span class="math">\(t_c\)</span>.</p>
 <p>We may take the divergence of the PDE instead and notice that <span class="math">\(\nabla\cdot\nabla
 =\nabla^2\)</span> so</p>
 <div class="math">
-\[\frac{\partial^2}{\partial t^2}\nabla\dot\boldsymbol{u} = c_P^2\nabla^2\nabla\dot\boldsymbol{u},\]</div>
+\[\frac{\partial^2}{\partial t^2}\nabla\cdot\boldsymbol{u} = c_P^2\nabla^2\nabla\cdot\boldsymbol{u},\]</div>
 <p>with wave velocity</p>
 <div class="math">
 \[c_P = \sqrt{\frac{\lambda +2\mu}{\varrho}}{\thinspace .}\]</div>
@@ -244,12 +249,12 @@ These type of waves are called <a class="reference external" href="https://en.wi
 continuum elements. Mathematically this condition implies that
 <span class="math">\(\nabla^2\boldsymbol{u} = \nabla(\nabla\cdot\boldsymbol{u})\)</span> (see any book on vector calculus
 or <a class="reference external" href="https://en.wikipedia.org/wiki/Vector_calculus_identities">Wikipedia</a>).
-Our model equation <a href="#equation-scale:elasticity:waves:eq">(5)</a> then reduces to</p>
+Our model equation <a class="reference internal" href="#eq-scale-elasticity-waves-eq"><span class="std std-ref">(174)</span></a> then reduces to</p>
 <div class="math">
 \[\frac{\partial^2\boldsymbol{u}}{\partial t^2} = c_P^2\nabla^2\boldsymbol{u},\]</div>
 <p>which is nothing but a wave equation for each component of the
 displacement field.</p>
-<p>[<strong>hpl 18</strong>: Think about the suitability of &#8220;no shear&#8221; as characteristic for curl-free <span class="math">\(\boldsymbol{u}\)</span>.]</p>
+<p>[<strong>hpl 24</strong>: Think about the suitability of &#8220;no shear&#8221; as characteristic for curl-free <span class="math">\(\boldsymbol{u}\)</span>.]</p>
 </div>
 <div class="section" id="time-varying-load">
 <h4>Time-varying load<a class="headerlink" href="#time-varying-load" title="Permalink to this headline">¶</a></h4>
@@ -263,8 +268,8 @@ choose <span class="math">\(t_c=1/\omega\)</span>.  The scaling now leads to</p>
 \bar \nabla ((\beta\bar\lambda +
 \bar\mu)\bar \nabla\cdot\bar \boldsymbol{u}) +
 \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
-\frac{\varrho_cL^2 f_c}{u_c\mu_c}\bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
-<p>where</p>
+\bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
+<p>where we have set</p>
 <div class="math">
 \[u_c = \mu_c^{-1}f_cL^2\varrho_c,\]</div>
 <p>as before, and <span class="math">\(\gamma\)</span> is a new dimensionless number,</p>
@@ -279,14 +284,20 @@ for movement on the boundary is much larger than the time it
 takes for the S waves to travel through the domain.
 Since the velocity of S waves in solids is very large and
 the time scale correspondingly small, <span class="math">\(\gamma\ll 1\)</span>
-is very often the case in applications.</p>
+is very often the case in applications involving structural analysis.
+<a class="reference internal" href="#scale-exer-elasticity-vibmodels"><span class="std std-ref">Exercise 22: Comparison of vibration models for elastic structures</span></a> explores related
+models and asks for comparisons of time scales for waves and
+mechanical vibrations in structures.</p>
 </div>
 </div>
 <div class="section" id="the-stationary-elasticity-problem">
 <h3>The stationary elasticity problem<a class="headerlink" href="#the-stationary-elasticity-problem" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="scaling-of-the-pde">
+<h4>Scaling of the PDE<a class="headerlink" href="#scaling-of-the-pde" title="Permalink to this headline">¶</a></h4>
 <p>We now look at the stationary version of
-<a href="#equation-scale:elasticity:PDE1">(1)</a> where the <span class="math">\(\varrho\boldsymbol{u}_{tt}\)</span> term is
-removed. The first step in the scaling is</p>
+<a class="reference internal" href="#eq-scale-elasticity-pde1"><span class="std std-ref">(170)</span></a> where the <span class="math">\(\varrho\boldsymbol{u}_{tt}\)</span> term is
+removed. The first step in the scaling is just inserting the
+dimensionless variables:</p>
 <div class="math">
 \[0 =
 L^{-2}u_c\bar \nabla ((\lambda_c\bar\lambda +
@@ -301,24 +312,64 @@ L^{-2}u_c\mu_c\bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
 \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
 \frac{L^2\varrho_cf_c}{u_c\mu_c}\bar\varrho\bar\boldsymbol{f}{\thinspace .}\]</div>
 <p>Choosing <span class="math">\(u_c = \varrho L^2f_c/\mu_c\)</span> as before leads to</p>
-<div class="math" id="equation-_auto43">
-<span id="eq-auto43"></span><span class="eqno">(6)</span>\[     \bar \nabla ((\beta\bar\lambda +
-     \bar\mu)\bar \nabla\cdot\bar \boldsymbol{u}) +
-     \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
-     \bar\varrho\bar\boldsymbol{f} = 0{\thinspace .}\]</div>
-<p>A homogeneous material with constant <span class="math">\(\lambda\)</span> and <span class="math">\(\mu\)</span>
+<div class="math" id="eq-auto46">
+\[\tag{175}
+\bar \nabla ((\beta\bar\lambda +
+    \bar\mu)\bar \nabla\cdot\bar \boldsymbol{u}) +
+    \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
+    \bar\varrho\bar\boldsymbol{f} = 0{\thinspace .}\]</div>
+<p>A homogeneous material with constant <span class="math">\(\lambda\)</span>, <span class="math">\(\mu\)</span>, and <span class="math">\(\varrho\)</span>
 is an interesting case (this corresponds to <span class="math">\(\mu_c=\mu\)</span>, <span class="math">\(\lambda_c=\lambda\)</span>,
-<span class="math">\(\bar\lambda=\bar\mu=1\)</span>):</p>
-<div class="math" id="equation-_auto44">
-<span id="eq-auto44"></span><span class="eqno">(7)</span>\[     (1+\beta)\bar \nabla(\bar \nabla\cdot\bar \boldsymbol{u}) +
-     \bar \nabla\cdot(\bar \mu\bar \nabla\bar \boldsymbol{u}) +
-     \bar\varrho\bar\boldsymbol{f} = 0{\thinspace .}\]</div>
+<span class="math">\(\varrho_c=\varrho\)</span>, <span class="math">\(\bar\varrho=\bar\lambda=\bar\mu=1\)</span>):</p>
+<div class="math" id="eq-auto47">
+\[\tag{176}
+(1+\beta)\bar \nabla(\bar \nabla\cdot\bar \boldsymbol{u}) +
+    \bar \nabla^2\bar \boldsymbol{u}) +
+    \bar\boldsymbol{f} = 0{\thinspace .}\]</div>
+<p>Now <span class="math">\(\beta\)</span> is defined as</p>
 <div class="math">
-\[\alpha = \frac{\lambda_c}{\mu_c}{\thinspace .}\]</div>
-<p>[<strong>hpl 19</strong>: The homogeneous case without body force is common. Scale displacement from boundary condition. Maybe scale traction first and determine characteristic displacement from it?]</p>
+\[\beta = \frac{\lambda}{\mu}{\thinspace .}\]</div>
+<p>It shows that in standard, stationary elasticity, <span class="math">\(\lambda/\mu\)</span> is the
+only significant physical parameter.</p>
+</div>
+<div class="section" id="scaling-of-displacement-boundary-conditions">
+<h4>Scaling of displacement boundary conditions<a class="headerlink" href="#scaling-of-displacement-boundary-conditions" title="Permalink to this headline">¶</a></h4>
+<p>A typical boundary condition on a part of the boundary is a prescribed
+displacement. For simplicity we set <span class="math">\(\boldsymbol{u} = \boldsymbol{U}_0\)</span> for a constant vector
+<span class="math">\(\boldsymbol{U}_0\)</span> as boundary condition. With <span class="math">\(u_c=\varrho L^2f_c/\mu\)</span>, we get
+the dimensionless condition</p>
+<div class="math">
+\[\bar\boldsymbol{u} = \frac{\boldsymbol{U}_0}{u_c} = \frac{\mu \boldsymbol{U}_0}{\varrho L^2f_c}{\thinspace .}\]</div>
+<p>In the absence of body forces, the expression for <span class="math">\(u_c\)</span> has no
+meaning (<span class="math">\(f_c=0\)</span>), so then <span class="math">\(u_c = |\boldsymbol{U}_0|\)</span> is a better choice.
+This gives the dimensionless boundary condition</p>
+<div class="math">
+\[\bar u = \frac{\boldsymbol{U}_0}{|\boldsymbol{U}_0|},\]</div>
+<p>which is the unit vector in the direction of <span class="math">\(\boldsymbol{U}_0\)</span>. The new <span class="math">\(u_c\)</span>
+changes the coefficient in front of the body force term, if that term
+is present, to the dimensionless number</p>
+<div class="math">
+\[\delta = \frac{L^2\varrho f_c}{\mu |\boldsymbol{U}_0|}{\thinspace .}\]</div>
+</div>
+<div class="section" id="scaling-of-traction-boundary-conditions">
+<h4>Scaling of traction boundary conditions<a class="headerlink" href="#scaling-of-traction-boundary-conditions" title="Permalink to this headline">¶</a></h4>
+<p>The other type of common boundary condition in elasticity is a
+prescribed traction (stress vector) on a part of the boundary:</p>
+<div class="math">
+\[\boldsymbol{\sigma}\cdot\boldsymbol{n} = \boldsymbol{T}_0,\]</div>
+<p>where for simplicity we take <span class="math">\(\boldsymbol{T}_0\)</span> as a constant vector.
+From the section <a class="reference internal" href="#scale-elasticity-pde1-stress"><span class="std std-ref">Dimensionless stress tensor</span></a> we have a stress scale
+<span class="math">\(\sigma_c = \mu u_c/L\)</span>, but we may alternatively use <span class="math">\(|\boldsymbol{T}_0|\)</span>
+as stress scale. In that case,</p>
+<div class="math">
+\[\bar\boldsymbol{\sigma}\cdot\boldsymbol{n} = \frac{\boldsymbol{T}_0}{|\boldsymbol{T}_0|},\]</div>
+<p>which is a unit vector in the direction of <span class="math">\(\boldsymbol{T}_0\)</span>.
+Many applications involve large traction free areas on the boundary, on
+which we simply have <span class="math">\(\bar\boldsymbol{\sigma}\cdot\boldsymbol{n} = 0\)</span>.</p>
+</div>
 </div>
 <div class="section" id="quasi-static-thermo-elasticity">
-<h3>Quasi-static thermo-elasticity<a class="headerlink" href="#quasi-static-thermo-elasticity" title="Permalink to this headline">¶</a></h3>
+<span id="scale-elasticity-thermo"></span><h3>Quasi-static thermo-elasticity<a class="headerlink" href="#quasi-static-thermo-elasticity" title="Permalink to this headline">¶</a></h3>
 <p id="index-0">Heating solids give rise to expansion, i.e., strains, which may cause
 stress if displacements are constrained. The time scale of temperature
 changes are usually much larger than the time scales of elastic waves,
@@ -326,29 +377,80 @@ so the stationary equations of elasticity can be used, but a term
 depends on the temperature, so the equations must be coupled to
 a PDE for heat transfer in solids. The resulting system of PDE is
 known as the equations of <em>thermo-elasticity</em> and reads</p>
-<div class="math" id="equation-_auto45">
-<span id="eq-auto45"></span><span class="eqno">(8)</span>\[     \nabla((\lambda + \mu)\nabla\cdot\boldsymbol{u}) + \nabla\cdot(\mu\nabla\boldsymbol{u}) = \alpha\nabla T -\varrho\boldsymbol{f},\]</div>
-<div class="math" id="equation-_auto46">
-<span id="eq-auto46"></span><span class="eqno">(9)</span>\[     \varrho c \frac{\partial T}{\partial t} = \nabla\cdot(\kappa\nabla T) + \varrho \boldsymbol{f}_T,\]</div>
+<div class="math" id="eq-auto48">
+\[\tag{177}
+\nabla((\lambda + \mu)\nabla\cdot\boldsymbol{u}) + \nabla\cdot(\mu\nabla\boldsymbol{u}) = \alpha\nabla T -\varrho\boldsymbol{f},\]</div>
+<div class="math" id="eq-auto49">
+\[\tag{178}
+\varrho c \frac{\partial T}{\partial t} = \nabla\cdot(\kappa\nabla T) + \varrho \boldsymbol{f}_T,\]</div>
 <p>where <span class="math">\(T\)</span> is the temperature, <span class="math">\(\alpha\)</span> is a coefficient of thermal expansion,
 <span class="math">\(c\)</span> is a heat capacity, <span class="math">\(\kappa\)</span> is the heat conduction coefficient,
-and <span class="math">\(\boldsymbol{f}_T\)</span> is some heat source.</p>
+and <span class="math">\(\boldsymbol{f}_T\)</span> is some heat source. Most thermo-elasticity applications have
+<span class="math">\(\boldsymbol{f}_T=0\)</span> so we drop this term. Most applications also involve some heating
+from a temperature level <span class="math">\(T_0\)</span> to some level <span class="math">\(T_0 +\Delta T\)</span>.
+A suitable scaling for <span class="math">\(T\)</span> is therefore</p>
+<div class="math">
+\[\bar T = \frac{T-T_0}{\Delta T},\]</div>
+<p>so that <span class="math">\(\bar T\in [0,1]\)</span>. The elasticity equation has already been scaled
+and so has the diffusion equation for <span class="math">\(T\)</span>. We base the time scale on
+the diffusion, i.e., the thermal conduction process:</p>
+<div class="math">
+\[t_c = \varrho c L^2/\kappa_c{\thinspace .}\]</div>
+<p>We imagine that <span class="math">\(\kappa\)</span> is scaled as <span class="math">\(\bar\kappa = \kappa/\kappa_c\)</span>.
+The dimensionless PDE system then becomes</p>
+<div class="math" id="eq-auto50">
+\[\tag{179}
+\bar \nabla((1+\beta)\bar\mu\bar\nabla\cdot\bar\boldsymbol{u}) + \bar\nabla\cdot(\bar\mu\bar\nabla\bar\boldsymbol{u}) = \bar\nabla\bar T
+    -\epsilon\bar\varrho\bar\boldsymbol{f},\]</div>
+<div class="math" id="eq-auto51">
+\[\tag{180}
+\frac{\partial \bar T}{\partial \bar t} = \bar \nabla\cdot(\bar\kappa\bar\nabla\bar T){\thinspace .}\]</div>
+<p>Here we have chosen <span class="math">\(u_c\)</span> such that
+the &#8220;heating source term&#8221; has a unit coefficient, acknowledging that
+this thermal expansion balances the stress terms with <span class="math">\(\bar\boldsymbol{u}\)</span>. The
+corresponding displacement scale is</p>
+<div class="math">
+\[u_c = \frac{\alpha L\Delta T}{\mu_c}{\thinspace .}\]</div>
+<p>The dimensionless number in the body force term is therefore</p>
+<div class="math">
+\[\epsilon = \frac{L\varrho_c f_c}{\alpha \Delta T},\]</div>
+<p>which measures the ratio of the body force term and the &#8220;heating source
+term&#8221;.</p>
+<p>A homogeneous body with constant <span class="math">\(\varrho\)</span>, <span class="math">\(\lambda\)</span>, <span class="math">\(\mu\)</span>, <span class="math">\(c\)</span>, and <span class="math">\(\kappa\)</span>
+is common. The PDE system reduces in this case to</p>
+<div class="math" id="eq-auto52">
+\[\tag{181}
+\bar \nabla((1+\beta)\bar\nabla\cdot\bar\boldsymbol{u}) + \bar\nabla^2\bar\boldsymbol{u}) = \bar\nabla\bar T -\epsilon\bar\boldsymbol{f},\]</div>
+<div class="math" id="eq-auto53">
+\[\tag{182}
+\frac{\partial \bar T}{\partial \bar t} = \bar \nabla^2\bar T{\thinspace .}\]</div>
+<p>In the absence of body forces, <span class="math">\(\beta\)</span> is again the key parameter.</p>
+<p>[<strong>hpl 25</strong>: Any need to mention boundary conditions?]</p>
 </div>
 </div>
 <div class="section" id="the-navier-stokes-equations">
 <span id="sec-scale-ns"></span><h2>The Navier-Stokes equations<a class="headerlink" href="#the-navier-stokes-equations" title="Permalink to this headline">¶</a></h2>
+<p id="index-1">This section presents scalings of various versions of the
+equations governing incompressible viscous fluid flow. We start
+with the plain Navier-Stokes equations without body forces and
+progress with adding the gravity force and a free surface. We
+also look at scaling low Reynolds number flow and oscillating flows.</p>
 <div class="section" id="the-momentum-equation-without-body-forces">
-<span id="index-1"></span><h3>The momentum equation without body forces<a class="headerlink" href="#the-momentum-equation-without-body-forces" title="Permalink to this headline">¶</a></h3>
+<h3>The momentum equation without body forces<a class="headerlink" href="#the-momentum-equation-without-body-forces" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="index-2"></span><p id="index-3">The Navier-Stokes equations for incompressible viscous fluid flow
-take the form</p>
-<div class="math" id="equation-scale:fluid:NS:eq:momentum">
-<span id="eq-scale-fluid-ns-eq-momentum"></span><span class="eqno">(10)</span>\[     \varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
-     = -\nabla p + \mu\nabla^2\boldsymbol{u},\]</div>
-<div class="math" id="equation-scale:fluid:NS:eq:cont">
-<span id="eq-scale-fluid-ns-eq-cont"></span><span class="eqno">(11)</span>\[     \nabla\cdot\boldsymbol{u}  = 0{\thinspace .}\]</div>
+without body forces take the form</p>
+<div class="math" id="eq-scale-fluid-ns-eq-momentum">
+\[\tag{183}
+\varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
+    = -\nabla p + \mu\nabla^2\boldsymbol{u},\]</div>
+<div class="math" id="eq-scale-fluid-ns-eq-cont">
+\[\tag{184}
+\nabla\cdot\boldsymbol{u}  = 0{\thinspace .}\]</div>
 <p>The primary unknowns are the
 velocity <span class="math">\(\boldsymbol{u}\)</span> and the pressure <span class="math">\(p\)</span>. Moreover,
 <span class="math">\(\varrho\)</span> is the fluid density, and <span class="math">\(\mu\)</span> is the dynamic viscosity.</p>
+<div class="section" id="scaling-8">
+<h4>Scaling<a class="headerlink" href="#scaling-8" title="Permalink to this headline">¶</a></h4>
 <p>We introduce as usual dimensionless independent and dependent variables:</p>
 <div class="math">
 \[\bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad
@@ -358,17 +460,40 @@ velocity <span class="math">\(\boldsymbol{u}\)</span> and the pressure <span cla
 <span class="math">\(t_c\)</span> is some characteristic time, <span class="math">\(u_c\)</span> is a characteristic
 velocity, and <span class="math">\(p_c\)</span> is a characteristic pressure.
 Inserted in the equations,</p>
-<div class="math" id="equation-scale:fluid:NS:eq:momentum_d0">
-<span id="eq-scale-fluid-ns-eq-momentum-d0"></span><span class="eqno">(12)</span>\[     \varrho\left(\frac{u_c}{t_c}\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} + \frac{u_c^2}{L}\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}\right)
-     = -\frac{p_c}{L}\bar\nabla\bar p + \frac{u_c}{L^2}\mu\bar \nabla^2\bar\boldsymbol{u},\]</div>
-<div class="math" id="equation-scale:fluid:NS:eq:cont_d0">
-<span id="eq-scale-fluid-ns-eq-cont-d0"></span><span class="eqno">(13)</span>\[     \frac{u_c}{L}\bar\nabla\cdot\bar\boldsymbol{u}  = 0{\thinspace .}\]</div>
+<div class="math" id="eq-scale-fluid-ns-eq-momentum-d0">
+\[\tag{185}
+\varrho\left(\frac{u_c}{t_c}\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} + \frac{u_c^2}{L}\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}\right)
+    = -\frac{p_c}{L}\bar\nabla\bar p + \frac{u_c}{L^2}\mu\bar \nabla^2\bar\boldsymbol{u},\]</div>
+<div class="math" id="eq-scale-fluid-ns-eq-cont-d0">
+\[\tag{186}
+\frac{u_c}{L}\bar\nabla\cdot\bar\boldsymbol{u}  = 0{\thinspace .}\]</div>
 <p>For the velocity it is common to just introduce some <span class="math">\(U\)</span> for
 <span class="math">\(u_c\)</span>. This <span class="math">\(U\)</span> is normally implied by the problem description.
-[<strong>hpl 20</strong>: Show examples of confined and unconfined flow and what <span class="math">\(U\)</span> is.]
-For example, <span class="math">\(U\)</span> is often chosen as a characteristic inlet velocity
-in the flow problem.
-Having a characteristic distance <span class="math">\(L\)</span> and velocity <span class="math">\(U\)</span>, an obvious
+For example, in the flow configuration below, with flow over a bump,
+we have some incoming
+flow with a profile <span class="math">\(v(y)\)</span> and <span class="math">\(U\)</span> can typically be chosen as
+<span class="math">\(U=\max_y v(y)\)</span>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/flow_over_gaussian.png"><img alt="_images/flow_over_gaussian.png" src="_images/flow_over_gaussian.png" style="width: 500px;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>For flow in a channel or tube, we also have some inlet profile, e.g.,
+<span class="math">\(v(r)\)</span> in a tube, where <span class="math">\(r\)</span> is the radial coordinate, and a natural
+choice of characteristic velocity is <span class="math">\(U=v(0)\)</span> or the average flow</p>
+<div class="math">
+\[U = \frac{1}{R}\int_0^R v(r)dr,\]</div>
+<p>if <span class="math">\(R\)</span> is the radius of the tube. Other examples may be flow around
+a body, where there is some distant constant inlet flow <span class="math">\(\boldsymbol{u} = U_0\boldsymbol{i}\)</span>,
+for instance, and <span class="math">\(U=U_0\)</span> is an obvious choice. We therefore
+assume that the flow problem comes with a natural candidate for <span class="math">\(U\)</span>.</p>
+<p>Having a characteristic distance <span class="math">\(L\)</span> and velocity <span class="math">\(U\)</span>, an obvious
 time measure is <span class="math">\(L/U\)</span> so we set <span class="math">\(t_c=L/U\)</span>. Dividing by the
 coefficient in front of the time derivative term, creates a pressure
 term</p>
@@ -376,18 +501,20 @@ term</p>
 \[\frac{p_c}{\varrho U^2}\bar\nabla\bar p{\thinspace .}\]</div>
 <p>The coefficient suggest a choice <span class="math">\(p_c=\varrho U^2\)</span> if the pressure
 gradient term is to have the same size as the acceleration terms.
-This <span class="math">\(p_c\)</span> is also a very common pressure scale in fluid mechanics.</p>
+This <span class="math">\(p_c\)</span> is a very common pressure scale in fluid mechanics.</p>
 </div>
-<div class="section" id="the-most-common-dimensionless-form-of-the-navier-stokes-equations">
-<span id="index-4"></span><h3>The most common dimensionless form of the Navier-Stokes equations<a class="headerlink" href="#the-most-common-dimensionless-form-of-the-navier-stokes-equations" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="dimensonless-pdes-and-the-reynolds-number">
+<span id="index-4"></span><h4>Dimensonless PDEs and the Reynolds number<a class="headerlink" href="#dimensonless-pdes-and-the-reynolds-number" title="Permalink to this headline">¶</a></h4>
 <p>The discussions so far results in the following dimensionless form of
-<a href="#equation-scale:fluid:NS:eq:momentum">(10)</a> and <a href="#equation-scale:fluid:NS:eq:cont">(11)</a>:</p>
-<div class="math" id="equation-scale:fluid:NS:eq:momentum_d1">
-<span id="eq-scale-fluid-ns-eq-momentum-d1"></span><span class="eqno">(14)</span>\[     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-     \bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
-     = -\bar\nabla\bar p + \hbox{Re}^{-1}\nabla^2\boldsymbol{u},\]</div>
-<div class="math" id="equation-_auto47">
-<span id="eq-auto47"></span><span class="eqno">(15)</span>\[     \bar\nabla\cdot \bar\boldsymbol{u} = 0,\]</div>
+<a class="reference internal" href="#eq-scale-fluid-ns-eq-momentum"><span class="std std-ref">(183)</span></a> and <a class="reference internal" href="#eq-scale-fluid-ns-eq-cont"><span class="std std-ref">(184)</span></a>:</p>
+<div class="math" id="eq-scale-fluid-ns-eq-momentum-d1">
+\[\tag{187}
+\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+    \bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
+    = -\bar\nabla\bar p + \hbox{Re}^{-1}\nabla^2\boldsymbol{u},\]</div>
+<div class="math" id="eq-auto54">
+\[\tag{188}
+\bar\nabla\cdot \bar\boldsymbol{u} = 0,\]</div>
 <p>where Re is the famous <em>Reynolds number</em>,</p>
 <div class="math">
 \[\hbox{Re}= \frac{\varrho UL}{\mu} = \frac{UL}{\nu}{\thinspace .}\]</div>
@@ -397,14 +524,17 @@ dimensionless number, Re.</p>
 <p>The Reynolds number can be interpreted as the ratio of convection and
 viscosity:</p>
 <div class="math">
-\[\hbox{Re} = \frac{\hbox{convection}}{\hbox{viscosity}} =
-\frac{\varrho U^2/L}{\mu U/L^2} = \frac{UL}{\nu}{\thinspace .}\]</div>
+\[\frac{\hbox{convection}}{\hbox{viscosity}} =
+\frac{|\varrho\boldsymbol{u}\cdot\nabla\boldsymbol{u}|}{|\mu\nabla^2\boldsymbol{u}|}\sim
+\frac{\varrho U^2/L}{\mu U/L^2} =
+\frac{UL}{\nu} = \hbox{Re}{\thinspace .}\]</div>
 <p>(We have here used that <span class="math">\(\nabla\boldsymbol{u}\)</span> goes like <span class="math">\(U/L\)</span> and <span class="math">\(\nabla^2\boldsymbol{u}\)</span>
 goes like <span class="math">\(U/L^2\)</span>.)</p>
 <span class="target" id="index-5"></span></div>
+</div>
 <div class="section" id="scaling-of-time-for-low-reynolds-numbers">
 <span id="index-6"></span><h3>Scaling of time for low Reynolds numbers<a class="headerlink" href="#scaling-of-time-for-low-reynolds-numbers" title="Permalink to this headline">¶</a></h3>
-<p>As we discussed in the section <span class="xref std std-ref">scale:convdiff</span> for the convection-diffusion
+<p>As we discussed in the section <a class="reference internal" href="._book008.html#scale-convdiff"><span class="std std-ref">The convection-diffusion equation</span></a> for the convection-diffusion
 equation, there is not just one scaling that fits all problems.
 Above, we used <span class="math">\(t_c=L/U\)</span>, which is appropriate if convection is
 a dominating physical effect. In case the convection term
@@ -414,27 +544,31 @@ than the viscosity term <span class="math">\(\mu\nabla^2\boldsymbol{u}\)</span>,
 is small, the viscosity term is dominating. However,
 if the scaling is suitable, the other terms are of order unity, and
 <span class="math">\(\hbox{Re}^{-1}\nabla^2\bar\boldsymbol{u}\)</span> must then also be of unit size,
-implying that <span class="math">\(\nabla^2\bar\boldsymbol{u}\)</span> is very small, but then the scaling is
+implying that <span class="math">\(\nabla^2\bar\boldsymbol{u}\)</span> is small, but then the scaling is
 not suitable. In the low-Reynolds number regime, the diffusion effect
 of <span class="math">\(\nabla^2\bar\boldsymbol{u}\)</span> is dominating, and we should use a time scale
 based on diffusion rather than convection. Such a time scale is
 <span class="math">\(t_c = L^2/(\mu/\varrho) = L^2/\nu\)</span>.
-With this time scale, the Navier-Stokes equation looks like</p>
-<div class="math" id="equation-scale:fluid:NS:eq:momentum_d2">
-<span id="eq-scale-fluid-ns-eq-momentum-d2"></span><span class="eqno">(16)</span>\[     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-     \hbox{Re}\,\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
-     = -\bar\nabla p + \nabla^2\boldsymbol{u},\]</div>
-<div class="math" id="equation-_auto48">
-<span id="eq-auto48"></span><span class="eqno">(17)</span>\[     \bar\nabla\cdot\bar\boldsymbol{u} = 0{\thinspace .}\]</div>
-<p>As stated in the box in the section <span class="xref std std-ref">scale:convdiff</span>, <a href="#equation-scale:fluid:NS:eq:momentum_d2">(16)</a> is the appropriate PDE for very low Reynolds number flow and
+With this time scale, the dimensionless Navier-Stokes equations look like</p>
+<div class="math" id="eq-scale-fluid-ns-eq-momentum-d2">
+\[\tag{189}
+\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+    \hbox{Re}\,\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
+    = -\bar\nabla p + \nabla^2\boldsymbol{u},\]</div>
+<div class="math" id="eq-auto55">
+\[\tag{190}
+\bar\nabla\cdot\bar\boldsymbol{u} = 0{\thinspace .}\]</div>
+<p>As stated in the box in the section <a class="reference internal" href="._book008.html#scale-convdiff"><span class="std std-ref">The convection-diffusion equation</span></a>, <a class="reference internal" href="#eq-scale-fluid-ns-eq-momentum-d2"><span class="std std-ref">(189)</span></a> is the appropriate PDE for very low Reynolds number flow and
 suggests neglecting the convection term.
 If the flow is also steady, the time derivative term can be neglected,
 and we end up with the so-called <em>Stokes problem</em> for steady, slow, viscous
 flow:</p>
-<div class="math" id="equation-scale:fluid:NS:eq:momentum_d3">
-<span id="eq-scale-fluid-ns-eq-momentum-d3"></span><span class="eqno">(18)</span>\[     -\bar\nabla p + \nabla^2\boldsymbol{u} = 0,\]</div>
-<div class="math" id="equation-_auto49">
-<span id="eq-auto49"></span><span class="eqno">(19)</span>\[     \bar\nabla\cdot\bar\boldsymbol{u} = 0{\thinspace .}\]</div>
+<div class="math" id="eq-scale-fluid-ns-eq-momentum-d3">
+\[\tag{191}
+-\bar\nabla p + \nabla^2\boldsymbol{u} = 0,\]</div>
+<div class="math" id="eq-auto56">
+\[\tag{192}
+\bar\nabla\cdot\bar\boldsymbol{u} = 0{\thinspace .}\]</div>
 <p>This flow regime is also known as <em>Stokes&#8217; flow</em> or <em>creeping flow</em>.</p>
 <span class="target" id="index-7"></span><span class="target" id="index-8"></span></div>
 <div class="section" id="shear-stress-as-pressure-scale">
@@ -444,18 +578,21 @@ one can use the shear stress <span class="math">\(\mu U/L\)</span> (<span class=
 derivative of the velocity, which enters the shear stress expression
 <span class="math">\(\mu\partial u/\partial y\)</span>). Using <span class="math">\(U\)</span> as velocity scale, <span class="math">\(L/U\)</span> as
 time scale, and <span class="math">\(\mu U/L\)</span> as pressure scale, results in</p>
-<div class="math" id="equation-_auto50">
-<span id="eq-auto50"></span><span class="eqno">(20)</span>\[     \hbox{Re}\left(\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-     \bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}\right)
-     = -\bar\nabla\bar p + \nabla^2\bar\boldsymbol{u}{\thinspace .}\]</div>
+<div class="math" id="eq-auto57">
+\[\tag{193}
+\hbox{Re}\left(\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+    \bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}\right)
+    = -\bar\nabla\bar p + \nabla^2\bar\boldsymbol{u}{\thinspace .}\]</div>
+<p>Low Reynolds number flow now suggests neglecting both acceleration terms.</p>
 </div>
-<div class="section" id="including-the-gravity-force">
-<h3>Including the gravity force<a class="headerlink" href="#including-the-gravity-force" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="gravity-force-and-the-froude-number">
+<h3>Gravity force and the Froude number<a class="headerlink" href="#gravity-force-and-the-froude-number" title="Permalink to this headline">¶</a></h3>
 <p>We now add a gravity force to the momentum equation
-<a href="#equation-scale:fluid:NS:eq:momentum">(10)</a>:</p>
-<div class="math" id="equation-scale:fluid:NS:eq:momentum_g">
-<span id="eq-scale-fluid-ns-eq-momentum-g"></span><span class="eqno">(21)</span>\[     \varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
-     = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},\]</div>
+<a class="reference internal" href="#eq-scale-fluid-ns-eq-momentum"><span class="std std-ref">(183)</span></a>:</p>
+<div class="math" id="eq-scale-fluid-ns-eq-momentum-g">
+\[\tag{194}
+\varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
+    = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},\]</div>
 <p>where <span class="math">\(g\)</span> is the acceleration of gravity, and <span class="math">\(\boldsymbol{k}\)</span> is a unit
 vector in the opposite direction of gravity. The new term
 takes the following form after non-dimensionalization:</p>
@@ -466,23 +603,25 @@ takes the following form after non-dimensionalization:</p>
 <div class="math">
 \[\hbox{Fr} = \frac{U}{\sqrt{Lg}}{\thinspace .}\]</div>
 </div>
-<div class="section" id="oscillating-boundary-conditions">
-<span id="index-10"></span><h3>Oscillating boundary conditions<a class="headerlink" href="#oscillating-boundary-conditions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="oscillating-boundary-conditions-and-the-strouhal-number">
+<span id="index-10"></span><h3>Oscillating boundary conditions and the Strouhal number<a class="headerlink" href="#oscillating-boundary-conditions-and-the-strouhal-number" title="Permalink to this headline">¶</a></h3>
 <p>Many flows have an oscillating nature, often arising from some
 oscillating boundary condition. Suppose such a condition at some
 boundary <span class="math">\(x=\hbox{const}\)</span> takes the specific form</p>
 <div class="math">
 \[\boldsymbol{u} = U\sin(\omega t)\boldsymbol{i}{\thinspace .}\]</div>
-<p>The dimensionless form becomes</p>
+<p>The dimensionless counterpart becomes</p>
 <div class="math">
 \[U\bar\boldsymbol{u} = U\sin(\omega \frac{L}{U}\bar t)\boldsymbol{i},\]</div>
 <p>if <span class="math">\(t_c=L/U\)</span> is the appropriate time scale. This condition can be
 written</p>
-<div class="math" id="equation-_auto51">
-<span id="eq-auto51"></span><span class="eqno">(22)</span>\[     \bar\boldsymbol{u} = \sin(\hbox{St}\,\bar t),\]</div>
+<div class="math" id="eq-auto58">
+\[\tag{195}
+\bar\boldsymbol{u} = \sin(\hbox{St}\,\bar t),\]</div>
 <p>where St is the <em>Strouhal number</em>,</p>
-<div class="math" id="equation-_auto52">
-<span id="eq-auto52"></span><span class="eqno">(23)</span>\[     \hbox{St} = \frac{\omega L}{U}{\thinspace .}\]</div>
+<div class="math" id="eq-auto59">
+\[\tag{196}
+\hbox{St} = \frac{\omega L}{U}{\thinspace .}\]</div>
 <p>The two important dimensionless parameters in oscillating flows are
 then the Reynolds and Strouhal numbers.</p>
 <p id="index-11">Even if the boundary conditions
@@ -502,9 +641,9 @@ bridge</a>
 in 1940, when wind-induced vortex shedding caused resonance
 with the free torsional vibrations of the bridge.</p>
 </div>
-<div class="section" id="the-euler-number">
-<span id="index-12"></span><h3>The Euler number<a class="headerlink" href="#the-euler-number" title="Permalink to this headline">¶</a></h3>
-<p>The dimensionless pressure in <a href="#equation-scale:fluid:NS:eq:momentum_d1">(14)</a>
+<div class="section" id="cavitation-and-the-euler-number">
+<span id="index-12"></span><h3>Cavitation and the Euler number<a class="headerlink" href="#cavitation-and-the-euler-number" title="Permalink to this headline">¶</a></h3>
+<p>The dimensionless pressure in <a class="reference internal" href="#eq-scale-fluid-ns-eq-momentum-d1"><span class="std std-ref">(187)</span></a>
 made use of the pressure scale <span class="math">\(p_c=\varrho U^2\)</span>. This is an
 appropriate scale if the pressure level is not of importance, which
 is very often the case since only the pressure <em>gradient</em> enters
@@ -521,22 +660,25 @@ The coefficient in front of the dimensionless pressure gradient is then</p>
 <p>Inspired by Bernoulli&#8217;s equation <span class="math">\(p + \frac{1}{2}\varrho U^2 = \hbox{const}\)</span>
 in fluid mechanics, a factor <span class="math">\(\frac{1}{2}\)</span> is often inserted in the
 denominator, and the corresponding dimensionless number,</p>
-<div class="math" id="equation-_auto53">
-<span id="eq-auto53"></span><span class="eqno">(24)</span>\[     \hbox{Eu} = \frac{p_{\infty} - p_v}{\frac{1}{2}\varrho U^2},\]</div>
+<div class="math" id="eq-auto60">
+\[\tag{197}
+\hbox{Eu} = \frac{p_{\infty} - p_v}{\frac{1}{2}\varrho U^2},\]</div>
 <p>is called the <em>Euler number</em>. The pressure gradient term now reads
 <span class="math">\(\frac{1}{2}\hbox{Eu}\,\bar\nabla\bar p\)</span>. The Euler number
 expresses the ratio of pressure differences and the kinetic
 energy of the flow.</p>
 </div>
-<div class="section" id="free-surface-conditions">
-<h3>Free surface conditions<a class="headerlink" href="#free-surface-conditions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="free-surface-conditions-and-the-weber-number">
+<h3>Free surface conditions and the Weber number<a class="headerlink" href="#free-surface-conditions-and-the-weber-number" title="Permalink to this headline">¶</a></h3>
 <p>At a free surface, <span class="math">\(z=\eta(x,y,t)\)</span>, the boundary conditions are</p>
-<div class="math" id="equation-_auto54">
-<span id="eq-auto54"></span><span class="eqno">(25)</span>\[     w = \frac{\partial\eta}{\partial t} + \boldsymbol{u}\cdot\nabla\eta,\]</div>
-<div class="math" id="equation-scale:fluid:NS:surface_tension">
-<span id="eq-scale-fluid-ns-surface-tension"></span><span class="eqno">(26)</span>\[     p - p_0 =  - \sigma\left(R_x^{-1} + R_y^{-1}\right)\approx
-     -\sigma\left(\frac{\partial^2\eta}{\partial x^2} +
-     \frac{\partial^2\eta}{\partial y^2}\right),\]</div>
+<div class="math" id="eq-auto61">
+\[\tag{198}
+w = \frac{\partial\eta}{\partial t} + \boldsymbol{u}\cdot\nabla\eta,\]</div>
+<div class="math" id="eq-scale-fluid-ns-surface-tension">
+\[\tag{199}
+p - p_0 =  - \sigma\left(R_x^{-1} + R_y^{-1}\right)\approx
+    -\sigma\left(\frac{\partial^2\eta}{\partial x^2} +
+    \frac{\partial^2\eta}{\partial y^2}\right),\]</div>
 <p>where <span class="math">\(w\)</span> is the velocity component in the <span class="math">\(z\)</span> direction,
 <span class="math">\(p_0\)</span> is the atmospheric air pressure at the surface,
 <span class="math">\(\sigma\)</span> represents the surface tension,
@@ -556,13 +698,15 @@ p_c \bar p &amp;\approx
 when the surface is flat. We have used
 <span class="math">\(\bar p = (p - p_0)/p_c\)</span> for making the pressure dimensionless.
 Using <span class="math">\(u_c=U\)</span>, <span class="math">\(t_c=L/U\)</span>, and <span class="math">\(p_c = \varrho U^2\)</span>, results in</p>
-<div class="math" id="equation-_auto55">
-<span id="eq-auto55"></span><span class="eqno">(27)</span>\[     \bar w = \frac{\partial\bar\eta}{\partial\bar t} +
-     \bar\boldsymbol{u}\cdot\bar\nabla\bar\eta,\]</div>
-<div class="math" id="equation-scale:fluid:NS:surface_tension2">
-<span id="eq-scale-fluid-ns-surface-tension2"></span><span class="eqno">(28)</span>\[     \bar p \approx
-     - \hbox{We}^{-1}\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
-     \frac{\partial^2\bar\eta}{\partial \bar y^2}\right),\]</div>
+<div class="math" id="eq-auto62">
+\[\tag{200}
+\bar w = \frac{\partial\bar\eta}{\partial\bar t} +
+    \bar\boldsymbol{u}\cdot\bar\nabla\bar\eta,\]</div>
+<div class="math" id="eq-scale-fluid-ns-surface-tension2">
+\[\tag{201}
+\bar p \approx
+    - \hbox{We}^{-1}\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
+    \frac{\partial^2\bar\eta}{\partial \bar y^2}\right),\]</div>
 <p>where We is the <em>Weber number</em>,</p>
 <div class="math">
 \[\hbox{We} = \frac{\varrho U^2L}{\sigma}{\thinspace .}
@@ -586,21 +730,28 @@ is only dependent on a given velocity field.</p>
 <h3>Forced convection<a class="headerlink" href="#forced-convection" title="Permalink to this headline">¶</a></h3>
 <span class="target" id="index-14"></span><span class="target" id="index-15"></span><p id="index-16">The model governing forced convection consists of the Navier-Stokes
 equation and the energy equation for the temperature:</p>
-<div class="math" id="equation-scale:fluid:forced_convection:eq:momentum_T_forced">
-<span id="eq-scale-fluid-forced-convection-eq-momentum-t-forced"></span><span class="eqno">(29)</span>\[     \varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
-     = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},\]</div>
-<div class="math" id="equation-scale:fluid:forced_convection:eq:cont_T_forced">
-<span id="eq-scale-fluid-forced-convection-eq-cont-t-forced"></span><span class="eqno">(30)</span>\[     \nabla\cdot\boldsymbol{u}  = 0,\]</div>
-<div class="math" id="equation-scale:fluid:forced_convection:eq:energy_T_forced">
-<span id="eq-scale-fluid-forced-convection-eq-energy-t-forced"></span><span class="eqno">(31)</span>\[     \varrho c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
-     = \kappa\nabla^2 T{\thinspace .}\]</div>
-<div class="math" id="equation-_auto56">
-<span id="eq-auto56"></span></div>
-<p>The symbol <span class="math">\(T\)</span> is the temperature, <span class="math">\(c\)</span> is a heat capacity, and <span class="math">\(\kappa\)</span>
-is the heat conduction coefficient for the fluid.</p>
+<div class="math" id="eq-scale-fluid-forced-convection-eq-momentum-t-forced">
+\[\tag{202}
+\varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
+    = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},\]</div>
+<div class="math" id="eq-scale-fluid-forced-convection-eq-cont-t-forced">
+\[\tag{203}
+\nabla\cdot\boldsymbol{u}  = 0,\]</div>
+<div class="math" id="eq-scale-fluid-forced-convection-eq-energy-t-forced">
+\[\tag{204}
+\varrho c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
+    = \kappa\nabla^2 T - p\nabla\cdot\boldsymbol{u}{\thinspace .}\]</div>
+<div class="math" id="eq-auto63">
+\[\tag{205}
+The symbol  \( T \)  is the temperature,  \( c \)  is a heat capacity, and  \( \kappa \) \]</div>
+<p>is the heat conduction coefficient for the fluid. The term
+<span class="math">\(p\nabla\cdot\boldsymbol{u}\)</span> in <a class="reference internal" href="#eq-scale-fluid-forced-convection-eq-energy-t-forced"><span class="std std-ref">(204)</span></a>
+is usually neglected for liquids, but can be important for gases. We
+shall omit it here.</p>
 <p>Despite the fact that <span class="math">\(\varrho\)</span> depends on <span class="math">\(T\)</span>, we treat <span class="math">\(\varrho\)</span>
-as a constant. The major effect of this dependence is through the
-buoyancy effect caused by the gravity term <span class="math">\(-g\boldsymbol{k}\)</span>. We drop this
+as a constant <span class="math">\(\varrho_0\)</span>. The major effect of the <span class="math">\(\varrho(T)\)</span>
+dependence is through the
+buoyancy effect caused by the gravity term <span class="math">\(-\varrho(T)g\boldsymbol{k}\)</span>. We drop this
 term, and assume the momentum and continuity equations to be
 independent of the temperature. The flow is driven by boundary
 conditions, from which we can find a characteristic velocity <span class="math">\(U\)</span>.</p>
@@ -608,7 +759,7 @@ conditions, from which we can find a characteristic velocity <span class="math">
 <div class="math">
 \[\bar x = \frac{x}{L},
 \ t_c = \frac{L}{U},\
-\bar\boldsymbol{u} = \frac{\boldsymbol{u}}{U},\ \bar p = \frac{p}{\varrho U^2},\
+\bar\boldsymbol{u} = \frac{\boldsymbol{u}}{U},\ \bar p = \frac{p}{\varrho_0 U^2},\
 \bar T = \frac{T-T_0}{T_c}{\thinspace .}\]</div>
 <p>Other coordinates are also scaled by <span class="math">\(L\)</span>.
 The characteristic temperature <span class="math">\(T_c\)</span> is chosen as some range <span class="math">\(\Delta T\)</span>,
@@ -618,9 +769,9 @@ boundary conditions. The reference temperature <span class="math">\(T_0\)</span>
 implied by prescribed conditions.
 Inserted in the equations, we get</p>
 <div class="math">
-\[\begin{split}\varrho\frac{U^2}{L}\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-\varrho\frac{U^2}{L}\bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
-&amp;= -{1}{L}\bar\nabla \bar p + \frac{\mu U}{L^2}
+\[\begin{split}\varrho_0\frac{U^2}{L}\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+\varrho_0\frac{U^2}{L}\bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
+&amp;= -\frac{\varrho_0 U^2}{L}\bar\nabla \bar p + \frac{\mu U}{L^2}
 \bar \nabla^2\bar \boldsymbol{u},
 \\
 \frac{U}{L}\bar\nabla\cdot\bar\boldsymbol{u} &amp; = 0,
@@ -631,56 +782,64 @@ Inserted in the equations, we get</p>
 &amp;= \frac{\kappa T_c}{L^2}
 \bar \nabla^2 \bar T {\thinspace .}\end{split}\]</div>
 <p>Making each term in each equation dimensionless reduces the system to</p>
-<div class="math" id="equation-scale:fluid:forced_convection:eq:momentum_TB0">
-<span id="eq-scale-fluid-forced-convection-eq-momentum-tb0"></span><span class="eqno">(33)</span>\[     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-     \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
-     = -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \boldsymbol{u},\]</div>
-<div class="math" id="equation-scale:fluid:forced_convection:eq:cont_TB0">
-<span id="eq-scale-fluid-forced-convection-eq-cont-tb0"></span><span class="eqno">(34)</span>\[     \bar\nabla\cdot\bar\boldsymbol{u}  = 0,\]</div>
-<div class="math" id="equation-scale:fluid:forced_convection:eq:energy_TB0">
-<span id="eq-scale-fluid-forced-convection-eq-energy-tb0"></span><span class="eqno">(35)</span>\[     \frac{\partial \bar T}{\partial \bar t} +
-     \bar\boldsymbol{u}\cdot\bar\nabla \bar T
-     = \hbox{Pe}^{-1}
-     \bar \nabla^2 \bar T{\thinspace .}\]</div>
+<div class="math" id="eq-scale-fluid-forced-convection-eq-momentum-tb0">
+\[\tag{206}
+\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+    \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
+    = -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \boldsymbol{u},\]</div>
+<div class="math" id="eq-scale-fluid-forced-convection-eq-cont-tb0">
+\[\tag{207}
+\bar\nabla\cdot\bar\boldsymbol{u}  = 0,\]</div>
+<div class="math" id="eq-scale-fluid-forced-convection-eq-energy-tb0">
+\[\tag{208}
+\frac{\partial \bar T}{\partial \bar t} +
+    \bar\boldsymbol{u}\cdot\bar\nabla \bar T
+    = \hbox{Pe}^{-1}
+    \bar \nabla^2 \bar T{\thinspace .}\]</div>
 <p>The two dimensionless numbers in this system are given by</p>
 <div class="math">
 \[\hbox{Pe} = \frac{\varrho_0 c UL}{\kappa },\quad
-\hbox{Re} = \frac{UL}{\nu}{\thinspace .}\]</div>
+\hbox{Re} = \frac{UL}{\nu}\quad (\nu = \frac{\mu}{\varrho_0}){\thinspace .}\]</div>
 <p>The Peclet number is here defined as the ratio of the
 convection term for heat <span class="math">\(\varrho_0 c U\Delta T/L\)</span> and the
 heat conduction term <span class="math">\(\kappa U/L^2\)</span>. The fraction
 <span class="math">\(\kappa/(\varrho_0 c)\)</span> is known as the thermal diffusivity,
 and if this quantity is given a symbol <span class="math">\({\alpha}\)</span>, we realize the
-relation to the Peclet number defined in the section <span class="xref std std-ref">scale:convdiff</span>.</p>
+relation to the Peclet number defined in the section <a class="reference internal" href="._book008.html#scale-convdiff"><span class="std std-ref">The convection-diffusion equation</span></a>.</p>
 </div>
 <div class="section" id="free-convection">
 <span id="scale-fluid-forced-convection"></span><h3>Free convection<a class="headerlink" href="#free-convection" title="Permalink to this headline">¶</a></h3>
-<p>[<strong>hpl 21</strong>: Do the general model <em>and</em> simplified models, e.g., free convection near a wall.]</p>
 <div class="section" id="governing-equations">
 <span id="index-17"></span><h4>Governing equations<a class="headerlink" href="#governing-equations" title="Permalink to this headline">¶</a></h4>
 <p>The mathematical model for free thermal convection
 consists of the Navier-Stokes equations
 coupled to an energy equation governing the temperature:</p>
-<div class="math" id="equation-scale:fluid:free_convection:eq:momentum_T">
-<span id="eq-scale-fluid-free-convection-eq-momentum-t"></span><span class="eqno">(36)</span>\[     \varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
-     = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:cont_T">
-<span id="eq-scale-fluid-free-convection-eq-cont-t"></span><span class="eqno">(37)</span>\[     \nabla\cdot\boldsymbol{u}  = 0,\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:energy_T">
-<span id="eq-scale-fluid-free-convection-eq-energy-t"></span><span class="eqno">(38)</span>\[     \varrho c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
-     = \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}{\thinspace .}\]</div>
-<div class="math" id="equation-_auto57">
-<span id="eq-auto57"></span></div>
-<p>The symbol <span class="math">\(T\)</span> is the temperature, <span class="math">\(c\)</span> is a heat capacity, <span class="math">\(\kappa\)</span>
-is the heat conduction coefficient for the fluid. In free convection,
-the gravity term <span class="math">\(-g\boldsymbol{k}\)</span> is essential since the flow is driven
+<div class="math" id="eq-scale-fluid-free-convection-eq-momentum-t">
+\[\tag{209}
+\varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
+    = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-cont-t">
+\[\tag{210}
+\nabla\cdot\boldsymbol{u}  = 0,\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-energy-t">
+\[\tag{211}
+\varrho c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
+    = \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij} -p\nabla\cdot\boldsymbol{u}{\thinspace .}\]</div>
+<div class="math" id="eq-auto64">
+\[\tag{212}
+The symbol  \( T \)  is the temperature,  \( c \)  is a heat capacity,  \( \kappa \) \]</div>
+<p>is the heat conduction coefficient for the fluid. In free convection,
+the gravity term <span class="math">\(-\varrho(T) g\boldsymbol{k}\)</span> is essential since the flow is driven
 by temperature differences and the fact that hot fluid rises while
 cold fluid falls.</p>
+<p>The term <span class="math">\(p\nabla\cdot\boldsymbol{u}\)</span> in <a class="reference internal" href="#eq-scale-fluid-free-convection-eq-energy-t"><span class="std std-ref">(211)</span></a>
+will be left out for simplicity, although it may be significant for
+free convection in gases.</p>
 </div>
 <div class="section" id="heating-by-viscous-effects">
 <h4>Heating by viscous effects<a class="headerlink" href="#heating-by-viscous-effects" title="Permalink to this headline">¶</a></h4>
-<p>We have also included heating of the fluid due to viscous forces
-through the term <span class="math">\(2\mu\varepsilon_{ij}\varepsilon_{ij}\)</span>, where
+<p>We have also included heating of the fluid due to the work of viscous forces,
+represented by the term <span class="math">\(2\mu\varepsilon_{ij}\varepsilon_{ij}\)</span>, where
 <span class="math">\(\varepsilon_{ij}\)</span> is the strain-rate tensor in the flow, defined by</p>
 <div class="math">
 \[\varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}
@@ -689,18 +848,22 @@ through the term <span class="math">\(2\mu\varepsilon_{ij}\varepsilon_{ij}\)</sp
 space directions). The term <span class="math">\(2\mu\varepsilon_{ij}\varepsilon_{ij}\)</span>
 is written with Einstein&#8217;s summation convention in mind such that
 there is an implicit sum over <span class="math">\(i\)</span> and <span class="math">\(j\)</span>.
-This term is also relevant
+This term is actually much more relevant
 for forced convection, but was left out in the section <a class="reference internal" href="#scale-fluid-forced-convection"><span class="std std-ref">Free convection</span></a> for mathematical simplicity.
-However, heating by the work of is often a very
+Heating by the work of viscous forces is often a very
 small effect and can be neglected, although it plays a major role in
-forging and extrusion of metals. By making the temperature equation
-dimensionless, we will get a precise measure when the term can be
-neglected.</p>
+forging and extrusion of metals where the viscosity is very large,
+and those processes requires large external forces to drive the flow.
+The reason to include the work by viscous forces under the heading of
+free convection is more that we want to scale a more complete, general
+mathematical model for mixed force and free convection, and arrive
+at dimensionless numbers that can tell with this extra term is
+important and not.</p>
 </div>
 <div class="section" id="relation-between-density-and-temperature">
 <h4>Relation between density and temperature<a class="headerlink" href="#relation-between-density-and-temperature" title="Permalink to this headline">¶</a></h4>
-<p>The equations <a href="#equation-scale:fluid:free_convection:eq:momentum_T">(36)</a> and
-<a href="#equation-scale:fluid:free_convection:eq:cont_T">(37)</a> has already been made dimensionless
+<p>The equations <a class="reference internal" href="#eq-scale-fluid-free-convection-eq-momentum-t"><span class="std std-ref">(209)</span></a> and
+<a class="reference internal" href="#eq-scale-fluid-free-convection-eq-cont-t"><span class="std std-ref">(210)</span></a> has already been made dimensionless
 in the previous section. The major difference is now that <span class="math">\(\varrho\)</span>
 is no longer a constant, but a function of <span class="math">\(T\)</span>.
 The relationship between <span class="math">\(\varrho\)</span> and <span class="math">\(T\)</span> is often taken as
@@ -735,23 +898,26 @@ and the equation reduces to <span class="math">\(\nabla\cdot\boldsymbol{u} = 0\)
 to neglect the density variations in all terms except the gravity term.
 This is a good approximation unless the change is <span class="math">\(\varrho\)</span> is large.
 With the linear <span class="math">\(\varrho(T)\)</span> formula and the Boussinesq approximation,
-<a href="#equation-scale:fluid:free_convection:eq:momentum_T">(36)</a>-<a href="#equation-scale:fluid:free_convection:eq:energy_T">(38)</a>
+<a class="reference internal" href="#eq-scale-fluid-free-convection-eq-momentum-t"><span class="std std-ref">(209)</span></a>-<a class="reference internal" href="#eq-scale-fluid-free-convection-eq-energy-t"><span class="std std-ref">(211)</span></a>
 take the form</p>
-<div class="math" id="equation-scale:fluid:free_convection:eq:momentum_TB">
-<span id="eq-scale-fluid-free-convection-eq-momentum-tb"></span><span class="eqno">(40)</span>\[     \varrho_0\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
-     = -\nabla p + \mu\nabla^2\boldsymbol{u} - (\varrho_0 - \varrho_0\beta(T-T_0))g\boldsymbol{k},\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:cont_TB">
-<span id="eq-scale-fluid-free-convection-eq-cont-tb"></span><span class="eqno">(41)</span>\[     \nabla\cdot\boldsymbol{u}  = 0,\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:energy_TB">
-<span id="eq-scale-fluid-free-convection-eq-energy-tb"></span><span class="eqno">(42)</span>\[     \varrho_0 c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
-     = \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}{\thinspace .}\]</div>
-<div class="math" id="equation-_auto58">
-<span id="eq-auto58"></span></div>
-<p>A good justification of the Boussinesq approximation is provided
-by Tritton <a class="reference internal" href="._book010.html#ref8" id="id1">[Ref8]</a> (Ch. 13).</p>
+<div class="math" id="eq-scale-fluid-free-convection-eq-momentum-tb">
+\[\tag{213}
+\varrho_0\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
+    = -\nabla p + \mu\nabla^2\boldsymbol{u} - (\varrho_0 - \varrho_0\beta(T-T_0))g\boldsymbol{k},\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-cont-tb">
+\[\tag{214}
+\nabla\cdot\boldsymbol{u}  = 0,\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-energy-tb">
+\[\tag{215}
+\varrho_0 c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
+    = \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}{\thinspace .}\]</div>
+<div class="math" id="eq-auto65">
+\[\tag{216}
+A good justification of the Boussinesq approximation is provided\]</div>
+<p>by Tritton <a class="reference internal" href="._book010.html#ref09" id="id1">[Ref09]</a> (Ch. 13).</p>
 </div>
-<div class="section" id="scaling-8">
-<h4>Scaling<a class="headerlink" href="#scaling-8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="scaling-9">
+<h4>Scaling<a class="headerlink" href="#scaling-9" title="Permalink to this headline">¶</a></h4>
 <p>Dimensionless variables are introduced as</p>
 <div class="math">
 \[\bar x = \frac{x}{L},\ \ t_c = \frac{L}{U},\
@@ -759,7 +925,7 @@ by Tritton <a class="reference internal" href="._book010.html#ref8" id="id1">[Re
 \bar T = \frac{T-T_0}{\Delta T}{\thinspace .}\]</div>
 <p>The dimensionless <span class="math">\(y\)</span> and <span class="math">\(z\)</span> coordinates also make use of <span class="math">\(L\)</span> as scale.
 As in forced convection, we assume the characteristic temperature
-level <span class="math">\(T_0\)</span> and the scale <span class="math">\(\Delta T\)</span> is given by thermal boundary and/or
+level <span class="math">\(T_0\)</span> and the scale <span class="math">\(\Delta T\)</span> are given by thermal boundary and/or
 initial conditions.
 Contrary to the sections <a class="reference internal" href="#sec-scale-ns"><span class="std std-ref">The Navier-Stokes equations</span></a> and <a class="reference internal" href="#scale-fluid-forced-convection"><span class="std std-ref">Free convection</span></a>,
 <span class="math">\(U\)</span> is now not given by the problem description, but implied by
@@ -781,19 +947,22 @@ results in</p>
 \bar \nabla^2 \bar T + 2\frac{\mu U}{L}
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}{\thinspace .}\end{split}\]</div>
 <p>These equations reduce to</p>
-<div class="math" id="equation-scale:fluid:free_convection:eq:momentum_TB0">
-<span id="eq-scale-fluid-free-convection-eq-momentum-tb0"></span><span class="eqno">(44)</span>\[     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-     \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
-     = -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \boldsymbol{u}
-     - \hbox{Fr}^{-2}\boldsymbol{k}  + \gamma \bar T\boldsymbol{k},\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:cont_TB0">
-<span id="eq-scale-fluid-free-convection-eq-cont-tb0"></span><span class="eqno">(45)</span>\[     \bar\nabla\cdot\bar\boldsymbol{u}  = 0,\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:energy_TB0">
-<span id="eq-scale-fluid-free-convection-eq-energy-tb0"></span><span class="eqno">(46)</span>\[     \frac{\partial \bar T}{\partial \bar t} +
-     \bar\boldsymbol{u}\cdot\bar\nabla \bar T
-     = \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
-     \bar\varepsilon_{ij}\bar\varepsilon_{ij}{\thinspace .}\]</div>
-<p>The dimensionless numbers are given by</p>
+<div class="math" id="eq-scale-fluid-free-convection-eq-momentum-tb0">
+\[\tag{217}
+\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+    \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
+    = -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \boldsymbol{u}
+    - \hbox{Fr}^{-2}\boldsymbol{k}  + \gamma \bar T\boldsymbol{k},\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-cont-tb0">
+\[\tag{218}
+\bar\nabla\cdot\bar\boldsymbol{u}  = 0,\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-energy-tb0">
+\[\tag{219}
+\frac{\partial \bar T}{\partial \bar t} +
+    \bar\boldsymbol{u}\cdot\bar\nabla \bar T
+    = \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
+    \bar\varepsilon_{ij}\bar\varepsilon_{ij}{\thinspace .}\]</div>
+<p>The dimensionless numbers, in addition to Re and Fr, are</p>
 <div class="math">
 \[\gamma = \frac{g\beta L\Delta T }{U^2},\quad
 \hbox{Pe}^{-1} = \frac{\kappa }{\varrho_0 c UL},\quad
@@ -809,13 +978,15 @@ the convection term:</p>
 <p>The Pe parameter is the fraction of the convection term
 and the thermal diffusion term:</p>
 <div class="math">
-\[\frac{\varrho_0 c U \Delta T L^{-1}}{\kappa L^{-2}\Delta T}
+\[\frac{|\varrho_0\boldsymbol{u}\cdot\nabla T|}{|\kappa\nabla^2 T|}\sim
+\frac{\varrho_0 c U \Delta T L^{-1}}{\kappa L^{-2}\Delta T}
 = \frac{\varrho c UL}{\kappa } = \hbox{Pe}{\thinspace .}\]</div>
 <p>The <span class="math">\(\delta\)</span> parameter is the ratio of the viscous dissipation term
 and the convection term:</p>
 <div class="math">
-\[\delta = \frac{\mu U^2/L^2}{\varrho_0 c U \Delta T/L} =
-= \frac{\mu U}{L\varrho_0 c \Delta T}{\thinspace .}\]</div>
+\[\frac{|\mu\nabla^2\boldsymbol{u}|}{|\varrho_0c\boldsymbol{u}\cdot\nabla T|}\sim
+\frac{\mu U^2/L^2}{\varrho_0 c U \Delta T/L} =
+\frac{\mu U}{L\varrho_0 c \Delta T} = \delta{\thinspace .}\]</div>
 </div>
 </div>
 <div class="section" id="the-grashof-prandtl-and-eckert-numbers">
@@ -852,42 +1023,50 @@ choice of <span class="math">\(U\)</span> in terms of <span class="math">\(\Delt
 <div class="math">
 \[\hbox{Pe}= \frac{\varrho c UL}{\kappa } = \frac{\mu c}{\kappa}
 \frac{\varrho UL}{\mu}
-= \hbox{Pr}\hbox{Re}^{-1} = \hbox{Pr}\hbox{Re}_T,\]</div>
+= \hbox{Pr}\hbox{Re}^{-1} = \hbox{Pr}\hbox{Re}_T^{-1},\]</div>
 <p>where Pr is the Prandtl number, defined as</p>
 <div class="math">
 \[\hbox{Pr} = \frac{\mu c}{\kappa}{\thinspace .}\]</div>
-<p>The Prandtl number is the ratio of the momentum diffusivity (kinematic viscosity) and the thermal diffusivity. Actually, analysis show that Pr reflects the ratio of the thickness of the thermal and velocity boundary layers: when <span class="math">\(\hbox{Pr}=1\)</span>, these layers
-coincide, while <span class="math">\(\hbox{Pr}\ll 1\)</span> implies that the thermal layer is much
-thicker than the velocity boundary layer, and vice versa for <span class="math">\(\hbox{Pe}\gg 1\)</span>.</p>
+<p>The Prandtl number is the ratio of the momentum diffusivity (kinematic
+viscosity) and the thermal diffusivity. Actually, more detailed
+analysis shows that Pr reflects the ratio of the thickness of the
+thermal and velocity boundary layers: when <span class="math">\(\hbox{Pr}=1\)</span>, these layers
+coincide, while <span class="math">\(\hbox{Pr}\ll 1\)</span> implies that the thermal layer is
+much thicker than the velocity boundary layer, and vice versa for
+<span class="math">\(\hbox{Pr}\gg 1\)</span>.</p>
 <p id="index-21">The <span class="math">\(\delta\)</span> parameter is in free convection replaced by a combination
 of the Eckert number (Ec) and the Reynolds number. We have that</p>
 <div class="math">
 \[\hbox{Ec} = \frac{U^2}{c\Delta T} = \delta\hbox{Re}_T,\]</div>
 <p>and consequently</p>
 <div class="math">
-\[\delta = \hbox{Ec}\hbox{Re}_T^{-1}{\thinspace .}\]</div>
+\[\delta = \hbox{Ec}\hbox{Re}_T^{-1} = \hbox{Ec}\hbox{Gr}^{-1/2}{\thinspace .}\]</div>
 <p>Writing</p>
 <div class="math">
 \[\hbox{Ec} = \frac{\varrho_0U^2}{\varrho_0c\Delta T},\]</div>
 <p>shows that the Eckert number can be interpreted as the ratio of
 the kinetic energy of the flow and the thermal energy.</p>
-<p>We use Ga instead of Re in the momentum equations and also instead of
-Pe in the energy equation (recall that <span class="math">\(\hbox{Pe} = \hbox{Pr}\hbox{Re}
-= \hbox{Pr}\hbox{Re}_T=\hbox{Pr}\hbox{Gr}^{-1/2}\)</span>). The resulting
-scaled system becomes</p>
-<div class="math" id="equation-scale:fluid:free_convection:eq:momentum_TB1">
-<span id="eq-scale-fluid-free-convection-eq-momentum-tb1"></span><span class="eqno">(47)</span>\[     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
-     \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
-     = -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \boldsymbol{u}
-     - \hbox{Fr}^{-2}\boldsymbol{k}  + \bar T \boldsymbol{k},\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:cont_TB1">
-<span id="eq-scale-fluid-free-convection-eq-cont-tb1"></span><span class="eqno">(48)</span>\[     \bar\nabla\cdot\bar\boldsymbol{u}  = 0,\]</div>
-<div class="math" id="equation-scale:fluid:free_convection:eq:energy_TB1">
-<span id="eq-scale-fluid-free-convection-eq-energy-tb1"></span><span class="eqno">(49)</span>\[     \hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
-     \bar\boldsymbol{u}\cdot\bar\nabla \bar T\right)
-     = \hbox{Pr}^{-1}
-     \bar \nabla^2 \bar T + 2\hbox{Ec}\hbox{Re}_T^{-1}
-     \bar\varepsilon_{ij}\bar\varepsilon_{ij}{\thinspace .}\]</div>
+<p>We use Ga instead of <span class="math">\(\hbox{Re}_T\)</span> in the momentum equations and also
+instead of Pe in the energy equation (recall that <span class="math">\(\hbox{Pe} =
+\hbox{Pr}\hbox{Re} =
+\hbox{Pr}\hbox{Re}_T=\hbox{Pr}\hbox{Gr}^{-1/2}\)</span>). The resulting scaled
+system becomes</p>
+<div class="math" id="eq-scale-fluid-free-convection-eq-momentum-tb1">
+\[\tag{220}
+\frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
+    \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
+    = -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \boldsymbol{u}
+    - \hbox{Fr}^{-2}\boldsymbol{k}  + \bar T \boldsymbol{k},\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-cont-tb1">
+\[\tag{221}
+\bar\nabla\cdot\bar\boldsymbol{u}  = 0,\]</div>
+<div class="math" id="eq-scale-fluid-free-convection-eq-energy-tb1">
+\[\tag{222}
+\hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
+    \bar\boldsymbol{u}\cdot\bar\nabla \bar T\right)
+    = \hbox{Pr}^{-1}
+    \bar \nabla^2 \bar T + 2\hbox{Ec}\hbox{Gr}^{-1/2}
+    \bar\varepsilon_{ij}\bar\varepsilon_{ij}{\thinspace .}\]</div>
 <p>We realize that in free convection, the Grashof number plays the same
 role as the Reynolds number in the momentum equation. In particular,
 it turns out that Gr governs the transition between laminar and
@@ -895,6 +1074,8 @@ turbulent flow.  For example, the transition to turbulence occurs in
 the range <span class="math">\(10^8 &lt; \hbox{Gr} &lt; 10^9\)</span> for free convection from vertical
 flat plates.  Gr is normally interpreted as a dimensionless number
 expressing the ratio of buoyancy forces and viscous forces.</p>
+<div class="section" id="interpretations-of-the-grashof-number">
+<h4>Interpretations of the Grashof number<a class="headerlink" href="#interpretations-of-the-grashof-number" title="Permalink to this headline">¶</a></h4>
 <p>Recall that the scaling leading to the Grashof number is based on an
 estimate of <span class="math">\(U\)</span> from a balance of the convective and the buoyancy
 terms. When the viscous term dominates over convection, we need a
@@ -908,13 +1089,11 @@ balances the buoyancy force:</p>
 \[U = \frac{g\beta L^2 \Delta T}{\nu}{\thinspace .}\]</div>
 <p>Now,</p>
 <div class="math">
-\[\frac{|\varrho_0\boldsymbol{u}\cdot\nabla\boldsymbol{u}|}{|\mu\nabla^2\boldsymbol{u}|} = \frac{UL}{\nu}
+\[\frac{|\varrho_0\boldsymbol{u}\cdot\nabla\boldsymbol{u}|}{|\mu\nabla^2\boldsymbol{u}|} \sim \frac{UL}{\nu}
 = \frac{g\beta L^3 \Delta T}{\nu} = \hbox{Gr}{\thinspace .}\]</div>
 <p>The result means that <span class="math">\(\hbox{Gr}^{1/2}\)</span> measures the ratio of convection and
 viscous forces when convection dominates, but Gr measures this ratio when
 viscous forces dominate.</p>
-<p>[<strong>hpl 22</strong>: Normally, convection dominates in free convection!]</p>
-<p>[<strong>hpl 23</strong>: Is it not so that Ra is interesting primarily in horizontal layers? Could appear naturally when scaling simplified equations?]</p>
 <p>The product of Gr and Pr is the Rayleigh number,</p>
 <div class="math">
 \[\hbox{Ra} = \frac{g\beta L^3\Delta T\varrho_0 c}{\nu\kappa},\]</div>
@@ -924,25 +1103,29 @@ viscous forces dominate.</p>
 \frac{g\beta L^3 \Delta T}{\nu^2}\frac{\mu c}{\kappa} =
 \frac{g\beta L^3 \Delta T\varrho_0 c}{\nu\kappa} =
 \hbox{Ra}{\thinspace .}\]</div>
-<p>[<strong>hpl 24</strong>: Need an example using Ra.]</p>
+<p>The Rayleigh number is the preferred dimensionless number when studying
+free convection in horizontal layers <a class="reference internal" href="._book010.html#ref10" id="id2">[Ref10]</a> <a class="reference internal" href="._book010.html#ref09" id="id3">[Ref09]</a>. Otherwise,
+Gr and Pr are dominate.</p>
 </div>
-<div class="section" id="heat-transfer-at-boundaries">
-<h3>Heat transfer at boundaries<a class="headerlink" href="#heat-transfer-at-boundaries" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="heat-transfer-at-boundaries-and-the-nusselt-number">
+<h3>Heat transfer at boundaries and the Nusselt number<a class="headerlink" href="#heat-transfer-at-boundaries-and-the-nusselt-number" title="Permalink to this headline">¶</a></h3>
 <p id="index-22">A common boundary condition, modeling heat transfer to/from the
 surroundings is</p>
-<div class="math" id="equation-scale:fluid:free_convection:fluxcond">
-<span id="eq-scale-fluid-free-convection-fluxcond"></span><span class="eqno">(50)</span>\[     -\kappa\frac{\partial T}{\partial n} = h_T(T - T_s),\]</div>
-<p>where <span class="math">\(\partial/\partial n\)</span> means derivative in the normal direction
+<div class="math" id="eq-scale-fluid-free-convection-fluxcond">
+\[\tag{223}
+-\kappa\frac{\partial T}{\partial n} = h_T(T - T_s),\]</div>
+<p>where <span class="math">\(\partial/\partial n\)</span> means the derivative in the normal direction
 (<span class="math">\(\boldsymbol{n}\cdot\nabla\)</span>), <span class="math">\(h_T\)</span> is an experimentally determined
 heat transfer coefficient, and <span class="math">\(T_s\)</span> is the temperature of
-the surroundings. Scaling <a href="#equation-scale:fluid:free_convection:fluxcond">(50)</a>
+the surroundings. Scaling <a class="reference internal" href="#eq-scale-fluid-free-convection-fluxcond"><span class="std std-ref">(223)</span></a>
 leads to</p>
 <div class="math">
 \[-\frac{\kappa\Delta t}{L}\frac{\partial \bar T}{\partial \bar n} = h_T(\Delta T \bar T + T_0 - T_s),\]</div>
 <p>and further to</p>
 <div class="math">
 \[\frac{\partial \bar T}{\partial \bar n} =
-\frac{h_TL}{\kappa}(\bar T + \frac{T_s - T_0)}{\Delta T}
+\frac{h_TL}{\kappa}(\bar T + \frac{T_s - T_0}{\Delta T})
 = \hbox{Nu}(\bar T - \bar T_s),\]</div>
 <p>where the Nusselt number is defined by</p>
 <div class="math">
@@ -962,12 +1145,14 @@ such as Gr, Pr, and Nu.</p>
 correct electric signal propagation through the heart tissue.
 A widely used mathematical
 model for the electric signal propagation is the bidomain equations:</p>
-<div class="math" id="equation-scale:bidomain:eqv">
-<span id="eq-scale-bidomain-eqv"></span><span class="eqno">(51)</span>\[     \chi C_m\frac{\partial v}{\partial t} =
-     \nabla\cdot( M_i\nabla v) + \nabla\cdot (M_i\nabla u_e) - \chi I_{\rm{ion}}
-     - \chi I_{\rm{app}},\]</div>
-<div class="math" id="equation-scale:bidomain:equ_e">
-<span id="eq-scale-bidomain-equ-e"></span><span class="eqno">(52)</span>\[     0 = \nabla\cdot( M_i\nabla v) + \nabla\cdot ((M_i + M_e)\nabla u_e){\thinspace .}\]</div>
+<div class="math" id="eq-scale-bidomain-eqv">
+\[\tag{224}
+\chi C_m\frac{\partial v}{\partial t} =
+    \nabla\cdot( M_i\nabla v) + \nabla\cdot (M_i\nabla u_e) - \chi I_{\rm{ion}}
+    - \chi I_{\rm{app}},\]</div>
+<div class="math" id="eq-scale-bidomain-equ-e">
+\[\tag{225}
+0 = \nabla\cdot( M_i\nabla v) + \nabla\cdot ((M_i + M_e)\nabla u_e){\thinspace .}\]</div>
 <p>These PDEs are posed in a spatial domain <span class="math">\(H\)</span> for <span class="math">\(t\in (0, T]\)</span>. The boundary
 conditions are of Neumann type, and we drop these from the discussion.
 The initial condition is typically <span class="math">\(u_e=v=0\)</span>.</p>
@@ -985,14 +1170,18 @@ and intracellular potential),
 for these source terms consist of a system of ODEs at each point
 in the domain. The simplest relevant ODE system is the FitzHugh-Nagumo
 model:</p>
-<div class="math" id="equation-scale:bidomain:eqFHN_v">
-<span id="eq-scale-bidomain-eqfhn-v"></span><span class="eqno">(53)</span>\[     C_m\frac{dv}{dt}  = - I_{\rm{ion}} - I_{\rm{app}},\]</div>
-<div class="math" id="equation-scale:bidomain:eqFHN_Iion">
-<span id="eq-scale-bidomain-eqfhn-iion"></span><span class="eqno">(54)</span>\[     I_{\rm{ion}} = A(v-v_r)(v - v_m)(v - v_p) + Bw,\]</div>
-<div class="math" id="equation-scale:bidomain:eqFHN_w">
-<span id="eq-scale-bidomain-eqfhn-w"></span><span class="eqno">(55)</span>\[     \frac{dw}{dt} = -c_1w + c_2v + c_3,\]</div>
-<p>where <span class="math">\(A\)</span>, <span class="math">\(v_m\)</span>, <span class="math">\(B\)</span>, <span class="math">\(c_1\)</span>, <span class="math">\(c_2\)</span>, and <span class="math">\(c_3\)</span> are specified constants.
-[<strong>hpl 25</strong>: Keyner and Sneyd have a constant in the equation for <span class="math">\(w\)</span>, in both the unscaled and scaled versions, while The Bible has not.]
+<div class="math" id="eq-scale-bidomain-eqfhn-v">
+\[\tag{226}
+C_m\frac{dv}{dt}  = - I_{\rm{ion}} - I_{\rm{app}},\]</div>
+<div class="math" id="eq-scale-bidomain-eqfhn-iion">
+\[\tag{227}
+I_{\rm{ion}} = A(v-v_r)(v - v_m)(v - v_p) + Bw,\]</div>
+<div class="math" id="eq-scale-bidomain-eqfhn-w">
+\[\tag{228}
+\frac{dw}{dt} = -c_1w + c_2v + c_3,\]</div>
+<p>where <span class="math">\(A\)</span>, <span class="math">\(v_m\)</span>, <span class="math">\(v_r\)</span>, <span class="math">\(v_p\)</span>,
+<span class="math">\(B\)</span>, <span class="math">\(c_1\)</span>, <span class="math">\(c_2\)</span>, and <span class="math">\(c_3\)</span> are specified constants.
+[<strong>hpl 26</strong>: Keyner and Sneyd have a constant in the equation for <span class="math">\(w\)</span>, in both the unscaled and scaled versions, while The Bible has not.]
 More complicated ODE systems for the cell dynamics may have up to a
 hundred unknowns
 and a correspondingly large collection of parameters.</p>
@@ -1018,9 +1207,10 @@ coordinates and are also scaled:</p>
 <div class="math">
 \[\bar M_i = \frac{M_i}{M_c},\quad \bar M_e = \frac{M_e}{M_c}{\thinspace .}\]</div>
 <p>For simplicity, we have chosen a common scale <span class="math">\(M_c\)</span>, but the two tensors
-might employ difference scales. We may typically choose <span class="math">\(M_c\)</span> as a norm of
+may employ difference scales. One typically chooses <span class="math">\(M_c\)</span> as a norm of
 <span class="math">\(M_i + M_e\)</span>, e.g., the maximum value.</p>
-<p>Inserting the dimensionless variables in the equations, we achieve the system</p>
+<p>Inserting the dimensionless variables in the equations, the system
+of governing equations becomes</p>
 <div class="math">
 \[\begin{split}\frac{\Delta v}{t_c}\chi C_m\frac{\partial \bar v}{\partial \bar t} &amp;=
 \frac{M_c\Delta v }{L^2}\nabla\cdot( \bar M_i\bar\nabla\bar v) +
@@ -1068,8 +1258,11 @@ dimensionless terms only:</p>
 \\
 \frac{d\bar w}{d\bar t} &amp;= -t_cc_1\bar w +
 \frac{t_cc_2}{w_c}(v_r + \Delta v \bar v) + \frac{t_cc_3}{w_c}{\thinspace .}\end{split}\]</div>
-<p>The length scale is given as the size of the domain, in this case the
-diameter of the heart. The time scale is less obvious to choose.
+<p>A natural length scale could the size of the domain, in this case the
+diameter of the heart, but we could also base the length and time scales on
+equal balance of the time-derivative term, the diffusion terms, and the
+reaction term in the PDE. For now we let <span class="math">\(L\)</span> be the length scale.</p>
+<p>The time scale is not so obvious to choose.
 The PDEs are of diffusion nature, and the relevant time scale is related
 to the time it takes to diffuse the signal. On the other hand, the ODE
 system, in general, may feature many different time scales. Which time
@@ -1089,67 +1282,403 @@ term:</p>
 variable, but we include the freedom to have <span class="math">\(u_c\)</span> as
 some specified characteristic size of <span class="math">\(u_e\)</span>.</p>
 <p>The final dimensionless system becomes</p>
-<div class="math" id="equation-_auto59">
-<span id="eq-auto59"></span><span class="eqno">(56)</span>\[     \frac{\partial \bar v}{\partial \bar t} =
-     \nabla\cdot( \bar M_i\bar\nabla\bar v) +
-     \alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -\]</div>
-<div class="math" id="equation-_auto60">
-<span id="eq-auto60"></span><span class="eqno">(57)</span>\[     \quad
-     \beta
-     \bar v
-     (J_1 +  \bar v)
-     (\bar v - 1) - \gamma\bar w - \delta,\]</div>
-<div class="math" id="equation-_auto61">
-<span id="eq-auto61"></span><span class="eqno">(58)</span>\[     0 = \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
-     \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\]</div>
-<div class="math" id="equation-_auto62">
-<span id="eq-auto62"></span><span class="eqno">(59)</span>\[     \frac{d\bar v}{d\bar t}  = -
-     \beta
-     \bar v
-     (J_1 +  \bar v)
-     (\bar v -1)- \gamma\bar w - \delta,\]</div>
-<div class="math" id="equation-_auto63">
-<span id="eq-auto63"></span><span class="eqno">(60)</span>\[     \frac{d\bar w}{d\bar t} = -K_1\bar w +
-     K_2\bar v + K_3{\thinspace .}\]</div>
+<div class="math" id="eq-auto66">
+\[\tag{229}
+\frac{\partial \bar v}{\partial \bar t} =
+    \nabla\cdot( \bar M_i\bar\nabla\bar v) +
+    \alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -\]</div>
+<div class="math" id="eq-auto67">
+\[\tag{230}
+\quad
+    \beta
+    \bar v
+    (J_1 +  \bar v)
+    (\bar v - 1) - \gamma\bar w - \delta,\]</div>
+<div class="math" id="eq-auto68">
+\[\tag{231}
+0 = \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
+    \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\]</div>
+<div class="math" id="eq-auto69">
+\[\tag{232}
+\frac{d\bar v}{d\bar t}  = -
+    \beta
+    \bar v
+    (J_1 +  \bar v)
+    (\bar v -1)- \gamma\bar w - \delta,\]</div>
+<div class="math" id="eq-auto70">
+\[\tag{233}
+\frac{d\bar w}{d\bar t} = -K_1\bar w +
+    K_2\bar v + K_3{\thinspace .}\]</div>
 <p>There are eight dimensionless variables in the above equations:</p>
-<div class="math" id="equation-_auto64">
-<span id="eq-auto64"></span><span class="eqno">(61)</span>\[     \alpha = \frac{u_c}{\Delta v},\]</div>
-<div class="math" id="equation-_auto65">
-<span id="eq-auto65"></span><span class="eqno">(62)</span>\[     \beta  = \frac{\chi AL^2\Delta v^2}{M_c},\]</div>
-<div class="math" id="equation-_auto66">
-<span id="eq-auto66"></span><span class="eqno">(63)</span>\[     \gamma = \frac{Bw_cL^2}{M_c\Delta v },\]</div>
-<div class="math" id="equation-_auto67">
-<span id="eq-auto67"></span><span class="eqno">(64)</span>\[     \delta = \frac{\chi L^2 I_{\rm{app}}}{M_c\Delta v },\]</div>
-<div class="math" id="equation-_auto68">
-<span id="eq-auto68"></span><span class="eqno">(65)</span>\[     J_1 = \frac{v_r-v_m}{\Delta v},\]</div>
-<div class="math" id="equation-_auto69">
-<span id="eq-auto69"></span><span class="eqno">(66)</span>\[     J_2 = \frac{v_r}{\Delta v},\]</div>
-<div class="math" id="equation-_auto70">
-<span id="eq-auto70"></span><span class="eqno">(67)</span>\[     K_1 = \frac{\chi C_m L^2c_1}{M_c},\]</div>
-<div class="math" id="equation-_auto71">
-<span id="eq-auto71"></span><span class="eqno">(68)</span>\[     K_2  = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},\]</div>
-<div class="math" id="equation-_auto72">
-<span id="eq-auto72"></span><span class="eqno">(69)</span>\[     K_3 = \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}{\thinspace .}\]</div>
+<div class="math" id="eq-auto71">
+\[\tag{234}
+\alpha = \frac{u_c}{\Delta v},\]</div>
+<div class="math" id="eq-auto72">
+\[\tag{235}
+\beta  = \frac{\chi AL^2\Delta v^2}{M_c},\]</div>
+<div class="math" id="eq-auto73">
+\[\tag{236}
+\gamma = \frac{Bw_cL^2}{M_c\Delta v },\]</div>
+<div class="math" id="eq-auto74">
+\[\tag{237}
+\delta = \frac{\chi L^2 I_{\rm{app}}}{M_c\Delta v },\]</div>
+<div class="math" id="eq-auto75">
+\[\tag{238}
+J_1 = \frac{v_r-v_m}{\Delta v},\]</div>
+<div class="math" id="eq-auto76">
+\[\tag{239}
+J_2 = \frac{v_r}{\Delta v},\]</div>
+<div class="math" id="eq-auto77">
+\[\tag{240}
+K_1 = \frac{\chi C_m L^2c_1}{M_c},\]</div>
+<div class="math" id="eq-auto78">
+\[\tag{241}
+K_2  = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},\]</div>
+<div class="math" id="eq-auto79">
+\[\tag{242}
+K_3 = \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}{\thinspace .}\]</div>
+<p>[<strong>hpl 27</strong>: Compute the size of <span class="math">\(\beta\)</span>. Inspired by scaling of the cable equation, it could happen that <span class="math">\(\beta\)</span> is very large if <span class="math">\(L\)</span> is the diameter of the heart, and in that case we can demand <span class="math">\(\beta =1\)</span> to set <span class="math">\(L\)</span>. Then there is equal balance between the three main terms in the PDE.]</p>
 <p>Since <span class="math">\(w\)</span> is just a help variable without any physiological interpretation,
 we can choose its scale <span class="math">\(w_c\)</span> freely to simplify the expressions.
 For example, we can fit <span class="math">\(w_c\)</span> to make <span class="math">\(K_2=1\)</span>, <span class="math">\(K_3=1\)</span>, or <span class="math">\(\gamma=1\)</span>.</p>
-<p>Some of these dimensionless numbers have straightforward interpretations:
-<span class="math">\(\alpha\)</span> is the ratio of the span in the two electric potentials;
-<span class="math">\(\delta\)</span> is ratio of the source term and the time-derivative term of <span class="math">\(v\)</span>,
-or the source term and the diffusion term in <span class="math">\(v\)</span>.
-The rest have fixed values:
-<span class="math">\(J_1\)</span> and <span class="math">\(J_2\)</span> have well-established values from measurements,
-while <span class="math">\(\beta\)</span>, <span class="math">\(\gamma\)</span>, <span class="math">\(K_1\)</span>, <span class="math">\(K_2\)</span>, and <span class="math">\(K_3\)</span> contain empirically
-fitted constants with known values, combined with known scales and
-other known physical parameters.</p>
-<p>[<strong>hpl 26</strong>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.]</p>
+<p>Some of these dimensionless numbers have straightforward
+interpretations: <span class="math">\(\alpha\)</span> is the ratio of the span in the two electric
+potentials; <span class="math">\(\delta\)</span> is ratio of the source term and the
+time-derivative term of <span class="math">\(v\)</span>, or the source term and the diffusion term
+in <span class="math">\(v\)</span>.  The rest have fixed values: <span class="math">\(J_1\)</span> and <span class="math">\(J_2\)</span> have
+well-established values from measurements, while <span class="math">\(\beta\)</span>, <span class="math">\(\gamma\)</span>,
+<span class="math">\(K_1\)</span>, <span class="math">\(K_2\)</span>, and <span class="math">\(K_3\)</span> contain empirically fitted constants with
+known values, combined with known scales and other known physical
+parameters.</p>
+<p>[<strong>hpl 28</strong>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.]</p>
+<p>[<strong>hpl 29</strong>: Here is a comment on the scaling above versus Keener and Sneyd&#8217;s scaling of the cable equation. Not meant to be part of the text, just some thoughts while we are working on the proper scaling of the bidomain equations.]</p>
+<p>The cable equation from Keener and Sneyd is</p>
+<div class="math">
+\[pC_m\frac{\partial V}{\partial t} + pI_{\rm ion}(V) = \frac{1}{r_i+r_e}
+\frac{\partial^2 V}{\partial x^2},\]</div>
+<p>see (8.11). The standard way of scaling this equation is to introduce
+a time scale <span class="math">\(t_c\)</span>, a length scale <span class="math">\(x_c\)</span>, a <span class="math">\(V\)</span> scale <span class="math">\(v_c\)</span>, and
+a scale <span class="math">\(I_c\)</span> for <span class="math">\(I_{\rm ion}\)</span> (typically <span class="math">\(I_c = \max |I_{\rm ion}|\)</span>):</p>
+<div class="math">
+\[\frac{\partial \bar V}{\partial\bar t} +
+\frac{t_c I_c}{C_m v_c}\bar I_{\rm ion}(v_c\bar V) =
+\frac{t_c}{pC_m(r_i+r_e)x_c^2} \frac{\partial^2 \bar V}{\partial \bar x^2}{\thinspace .}\]</div>
+<p>Balance of the time derivative and the diffusion term determines the
+time scale:</p>
+<div class="math">
+\[t_c = pC_m(r_i+r_e)x_c^2{\thinspace .}\]</div>
+<p>We need to have a look at units. In the derivation of the cable equation,
+<span class="math">\(I_{\rm ion}\)</span> is current per unit length, i.e., it has dimension A/m,
+and all terms have this dimension. The <span class="math">\(r_i\)</span> and <span class="math">\(r_e\)</span> quantities
+have unit V/(Am) (V is volt, A is ampere).
+[<strong>hpl 30</strong>: Keener and Sneyd say <span class="math">\(r_i\)</span> is Ohm per length, and since Ohm is V/A, it is the same.]
+The <span class="math">\(p\)</span> parameter is a perimeter
+and measured in m.
+The term <span class="math">\(pC_m\partial V/\partial t\)</span> must have
+the unit of A/m, so <span class="math">\(C_m\)</span> is measured in <span class="math">\(\hbox{As}\hbox{V}^{-1}\hbox{m}^{-2}\)</span>.
+Since <span class="math">\(x_c^2\)</span> has unit <span class="math">\(\hbox{m}^2\)</span>, <span class="math">\(t_c\)</span> gets the right unit s.</p>
+<p>Normally,
+<span class="math">\(x_c\)</span> is based on domain length, but here we have the freedom to
+choose it to have other values. Demanding that the coefficient in
+the source term is unity determines <span class="math">\(v_c\)</span>:</p>
+<div class="math">
+\[v_c = \frac{t_cI_c}{C_m} = I_Cp(r_i+r_e)x_c^2{\thinspace .}\]</div>
+<p>The resulting dimensionless equation is</p>
+<div class="math">
+\[\frac{\partial \bar V}{\partial\bar t} +
+\bar I_{\rm ion}(v_c\bar V) =
+\frac{\partial^2 \bar V}{\partial \bar x^2}{\thinspace .}\]</div>
+<p>It remains to find a proper length scale <span class="math">\(x_c\)</span> if not the domain length
+is chosen.</p>
+<p>Keener and Sneyd do things differently. First, they introduce
+<span class="math">\(1/R_m = dI_{rm ion}/dV\)</span> without motivation and multiply the
+cable equation by <span class="math">\(R_m\)</span> and divide by <span class="math">\(p\)</span>:</p>
+<div class="math">
+\[R_mC_m\frac{\partial V}{\partial t} + R_mI_{\rm ion}(V) = \frac{R_m}{p(r_i+r_e)}\frac{\partial^2 V}{\partial x^2}{\thinspace .}\]</div>
+<p>The <span class="math">\(R_m\)</span> quantity is, according to the definition, measured in
+Vm/A. Then Keener and Sneyd introduce a length scale</p>
+<div class="math">
+\[\lambda_m = \sqrt{\frac{R_m}{p(r_i+r_2)}},\]</div>
+<p>but this has dimension <span class="math">\(\hbox{m}^{\frac{1}{2}}\)</span>, not m. They introduce the
+time scale</p>
+<div class="math">
+\[\tau_m = R_mC_m,\]</div>
+<p>which gets the dimension s/m, not s. Furthermore, they do not scale
+<span class="math">\(V\)</span> at all, it remains in volt. The resulting equation is not
+dimensionless. As far as I can see, each term has dimension V/m.</p>
 </div>
 <div class="section" id="two-phase-porous-media-flow">
 <h2>Two-phase porous media flow<a class="headerlink" href="#two-phase-porous-media-flow" title="Permalink to this headline">¶</a></h2>
-<p>Exercises: single-phase flow, with and without thermal effects.</p>
+<p>We consider the flow of two incompressible, immiscible fluids in
+a porous medium with porosity <span class="math">\(\phi (\boldsymbol{x})\)</span>. The two fluids are referred to
+as the <a class="reference external" href="https://en.wikipedia.org/wiki/Wetting">wetting</a> and
+non-wetting fluid. In an oil-water mixture, water is usually the
+wetting fluid. The fraction of the pore volume occupied by the
+wetting fluid is denoted by <span class="math">\(S(\boldsymbol{x},t)\)</span>. The non-wetting fluid then occupies
+<span class="math">\(1-S\)</span> of the pore volume (or <span class="math">\((1-S)\phi\)</span> of the total volume).
+The variable <span class="math">\(P(\boldsymbol{x},t)\)</span> represents the pressure in the non-wetting fluid.
+It is related to the pressure <span class="math">\(P_n\)</span> in the non-wetting fluid through
+the capillary pressure <span class="math">\(p_c=P_n-P\)</span>, which is an empirically determined
+function of <span class="math">\(S\)</span>.</p>
+<p>From mass conservation of the two fluids and from Darcy&#8217;s law for
+each fluid, one can derive the following system of PDEs and
+algebraic relations that govern the two primary unknowns <span class="math">\(S\)</span> and <span class="math">\(P\)</span>:</p>
+<div class="math" id="eq-scale-twoph-peq">
+\[\tag{243}
+\nabla\cdot\boldsymbol{v}_t = -(Q_n + Q_w),\]</div>
+<div class="math" id="eq-scale-twoph-v-teq">
+\[\tag{244}
+\boldsymbol{v}_t = -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
+    + \lambda_n\varrho_n)g\boldsymbol{k},\]</div>
+<div class="math">
+\[\phi\frac{\partial S}{\partial t} + f_w'(S)\boldsymbol{v}_t\cdot\nabla S =
+\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\]</div>
+<div class="math" id="eq-scale-twoph-seq">
+\[\tag{245}
+\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,\]</div>
+<div class="math" id="eq-scale-twoph-q-w">
+\[\tag{246}
+Q_w = \frac{q_w}{\varrho_w},\]</div>
+<div class="math" id="eq-scale-twoph-q-n">
+\[\tag{247}
+Q_n = \frac{q_n}{\varrho_n},\]</div>
+<div class="math" id="eq-scale-twoph-lambda-w">
+\[\tag{248}
+\lambda_w(S) = \frac{K}{\mu_w}k_{rw}(S),\]</div>
+<div class="math" id="eq-scale-twoph-lambda-n">
+\[\tag{249}
+\lambda_n(S) = \frac{K}{\mu_n}k_{rn}(S),\]</div>
+<div class="math" id="eq-scale-twoph-lambda-t">
+\[\tag{250}
+\lambda_t(S) = \lambda_w(S) + \lambda_n(S),\]</div>
+<div class="math" id="eq-scale-twoph-k-rw">
+\[\tag{251}
+k_{rw}(S) = K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,\]</div>
+<div class="math" id="eq-scale-twoph-k-rn">
+\[\tag{252}
+k_{rn}(S) = K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,\]</div>
+<div class="math" id="eq-scale-twoph-f-w">
+\[\tag{253}
+f_w(S) = \frac{\lambda_w}{\lambda_t},\]</div>
+<div class="math" id="eq-scale-twoph-g-w">
+\[\tag{254}
+G_w(S) = h_w(S)(\varrho_n - \varrho_w),\]</div>
+<div class="math" id="eq-scale-twoph-h-w">
+\[\tag{255}
+h_w(S) = -\lambda_n(S)f_w(S),
+    {\thinspace .}\]</div>
+<p>The permeability of the porous medium is <span class="math">\(K\)</span>
+(usually a tensor, but here taken as a
+scalar for simplicity); <span class="math">\(\mu_w\)</span> and <span class="math">\(\mu_n\)</span> are the dynamic viscosities
+of the wetting and non-wetting fluid, respectively;
+<span class="math">\(\varrho_w\)</span> and <span class="math">\(\varrho_n\)</span> are the densities
+of the wetting and non-wetting fluid, respectively;
+<span class="math">\(q_w\)</span> and <span class="math">\(q_n\)</span> are the injection rates of the wetting and non-wetting
+fluid through wells, respectively;
+<span class="math">\(S_{wr}\)</span> is the irreducible saturation of
+the wetting fluid (i.e., <span class="math">\(S\geq S_{wr}\)</span>); <span class="math">\(S_{nr}\)</span> is the corresponding
+irreducible saturation of the non-wetting fluid (i.e., <span class="math">\((1-S)\geq S_{nr}\)</span>),
+<span class="math">\(K_{wn}\)</span> and <span class="math">\(K_{nr}\)</span> are the maximum values of the
+relative permeabilities <span class="math">\(k_{rw}\)</span> and <span class="math">\(k_{rn}\)</span>, respectively, and
+<span class="math">\(a\)</span> and <span class="math">\(b\)</span> are given (Corey) exponents in the expressions for the
+relative permeabilities.</p>
+<p>The two PDEs are of elliptic and hyperbolic/parabolic nature:
+<a class="reference internal" href="#eq-scale-twoph-peq"><span class="std std-ref">(243)</span></a> is elliptic since it is the divergence of a
+vector field, while <a class="reference internal" href="#eq-scale-twoph-seq"><span class="std std-ref">(245)</span></a> is parabolic (<span class="math">\(h_w\geq 0\)</span>
+because <span class="math">\(p_c'(S)\geq 0\)</span> and <span class="math">\(\lambda_n\)</span> as well as <span class="math">\(f_w\)</span> are positive
+since <span class="math">\(k_{rn}&gt;0\)</span> and <span class="math">\(k_{rw}&gt;0\)</span>). Very often, <span class="math">\(p_c'\)</span> is small so
+<a class="reference internal" href="#eq-scale-twoph-seq"><span class="std std-ref">(245)</span></a> is of hyperbolic nature, and <span class="math">\(S\)</span> features very
+steep gradients that become shocks in the limit <span class="math">\(p_c'\rightarrow 0\)</span>
+and <a class="reference internal" href="#eq-scale-twoph-seq"><span class="std std-ref">(245)</span></a> is purely hyperbolic.
+A popular solution technique is based on operator splitting:
+<a class="reference internal" href="#eq-scale-twoph-peq"><span class="std std-ref">(243)</span></a> is solved with respect to <span class="math">\(P\)</span>, given <span class="math">\(S\)</span>, and
+<a class="reference internal" href="#eq-scale-twoph-seq"><span class="std std-ref">(245)</span></a> is solved with respect to <span class="math">\(S\)</span>, given <span class="math">\(P\)</span>.</p>
+<p>The saturation <span class="math">\(S\)</span> is a non-dimensional quantity, and so are <span class="math">\(\phi\)</span>,
+<span class="math">\(k_{rw}\)</span>, <span class="math">\(k_{rn}\)</span>, <span class="math">\(K_{wm}\)</span>, <span class="math">\(K_{nm}\)</span>, <span class="math">\(f_w\)</span>, and <span class="math">\(f_w'\)</span>.
+The quantity <span class="math">\(\boldsymbol{v}_t\)</span> is the total filtration velocity, i.e., the
+sum of the velocities of the wetting and non-wetting fluid.
+An associated velocity scale <span class="math">\(v_c\)</span> is convenient to define.
+It is also convenient to introduce dimensionless fractions of
+wetting and non-wetting fluid properties:</p>
+<div class="math">
+\[\begin{split}\varrho &amp;\equiv \varrho_w,\\
+\varrho_n &amp;= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\
+\mu &amp;\equiv\mu_w,\\
+\mu_n &amp;= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\
+Q &amp;\equiv Q_w = \frac{q_w}{\varrho},\\
+Q_n &amp;= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}{\thinspace .}\end{split}\]</div>
+<p>We will benefit from making <span class="math">\(\lambda_w\)</span>, <span class="math">\(\lambda_n\)</span>, and <span class="math">\(\lambda_t\)</span>
+dimensionless:</p>
+<div class="math">
+\[\begin{split}\lambda_w(S) &amp;= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
+\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\
+\lambda_n(S) &amp;= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
+\quad\bar\lambda_n = k_{rn},\\
+\lambda_t(S) &amp;= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
+\bar\lambda_t = \bar \lambda_w +
+\beta^{-1}\bar\lambda_n{\thinspace .}\end{split}\]</div>
+<p>As we see, <span class="math">\(\lambda_c\)</span> is the characteristic size of any &#8220;lambda&#8221;
+quantity, and a bar indicates as always a dimensionless variable.
+The above formulas imply</p>
+<div class="math">
+\[h_w(S) = -\lambda_c\beta^{-1}\bar\lambda_n(S)f_w(S),\quad
+G_w(S) = h_w(S)\varrho(\alpha - 1){\thinspace .}\]</div>
+<p>Furthermore, we introduce dimensionless quantities by</p>
+<div class="math">
+\[\bar\boldsymbol{x} = \frac{\boldsymbol{x}}{L},\quad \bar\boldsymbol{v}_t = \frac{\boldsymbol{v}_t}{v_c},\quad
+\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}{\thinspace .}\]</div>
+<p>Inserting the above scaled quantities in the governing PDEs results in</p>
+<div class="math" id="eq-scale-twoph-peq-s0">
+\[\tag{256}
+\bar\nabla\cdot\bar\boldsymbol{v}_t = -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),\]</div>
+<div class="math">
+\[\bar\boldsymbol{v}_t = -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
+\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\]</div>
+<div class="math" id="eq-scale-twoph-v-teq-s0">
+\[\tag{257}
+\quad\quad\frac{g\lambda_c\varrho}{v_c}
+    (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\boldsymbol{k},\]</div>
+<div class="math">
+\[\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\boldsymbol{v}_t\cdot
+\bar\nabla S =
+\frac{t_c P_c\lambda_c}{L^2}
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\]</div>
+<div class="math" id="eq-scale-twoph-seq-s0">
+\[\tag{258}
+\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ{\thinspace .}\]</div>
+<p>As usual, <span class="math">\(L\)</span> is taken as the characteristic length of the spatial domain.
+Since <span class="math">\(v_c\)</span> is a velocity scale, a natural time scale is the time it
+takes to transport a signal with velocity <span class="math">\(v_c\)</span> through the domain:
+<span class="math">\(t_c = L/v_c\)</span>. The diffusion term in the equation
+<a class="reference internal" href="#eq-scale-twoph-seq-s"><span class="std std-ref">(261)</span></a> then gets
+a dimensionless fraction</p>
+<div class="math">
+\[\frac{L P_c\lambda_c}{v_c L^2}{\thinspace .}\]</div>
+<p>Forcing this fraction to be unity gives</p>
+<div class="math">
+\[v_c = \lambda_c\frac{P_c}{L}{\thinspace .}\]</div>
+<p>We realize that this is indeed a natural velocity scale if the
+velocity is given by the pressure term in Darcy&#8217;s law. This term
+is <span class="math">\(K/\mu\)</span> times the pressure gradient:</p>
+<div class="math">
+\[\frac{K}{\mu}|\nabla P| \sim \frac{K}{\mu}\frac{P_c}{L} =
+\lambda_c\frac{P_c}{L} = v_c{\thinspace .}\]</div>
+<p>We have here dropped the impact of the
+relative permeabilities <span class="math">\(\bar\lambda_w\)</span> or
+<span class="math">\(\bar\lambda_n\)</span> since these are quantities that are less than or equal
+to unity.</p>
+<p>The other term in Darcy&#8217;s law is the gravity term that goes like
+<span class="math">\(\lambda_c \varrho g\)</span> (again dropping relative permeabilities).
+The ratio of the gravity term and the pressure gradient term in Darcy&#8217;s
+law is an interesting dimensionless number:</p>
+<div class="math">
+\[\delta = \frac{\lambda_c \varrho g}{\lambda_c P_c/L} =
+\frac{L\varrho g}{P_c}{\thinspace .}\]</div>
+<p>This number naturally arises when we discuss
+the term</p>
+<div class="math">
+\[\frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} =
+-(\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z}\]</div>
+<p>Introducing another dimensionless variable,</p>
+<div class="math">
+\[\epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},\]</div>
+<p>we can write <a class="reference internal" href="#eq-scale-twoph-peq-s0"><span class="std std-ref">(256)</span></a>-<a class="reference internal" href="#eq-scale-twoph-seq-s0"><span class="std std-ref">(258)</span></a> in the
+final dimensionless form as</p>
+<div class="math" id="eq-scale-twoph-peq-s">
+\[\tag{259}
+\bar\nabla\cdot\bar\boldsymbol{v}_t = -\epsilon(1 + \alpha^{-1}\gamma),\]</div>
+<div class="math" id="eq-scale-twoph-v-teq-s">
+\[\tag{260}
+\bar\boldsymbol{v}_t = -\bar\lambda_t\bar\nabla\bar P +
+    \bar\lambda_w \bar p_c'(S)\bar\nabla S +
+    \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\boldsymbol{k},\]</div>
+<div class="math">
+\[\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\boldsymbol{v}_t\cdot
+\bar\nabla S = -
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
+\nonumber\]</div>
+<div class="math">
+\[\quad\quad (\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z} +\nonumber\]</div>
+<div class="math" id="eq-scale-twoph-seq-s">
+\[\tag{261}
+\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
+    \epsilon{\thinspace .}\]</div>
+<p>The eight input parameters <span class="math">\(L\)</span>, <span class="math">\(q_w\)</span>, <span class="math">\(q_n\)</span>, <span class="math">\(\mu_w\)</span>, <span class="math">\(\mu_n\)</span>,
+<span class="math">\(\varrho_w\)</span>, <span class="math">\(\varrho_n\)</span>, and <span class="math">\(K\)</span> are reduced to five dimensionless
+parameters <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span>, <span class="math">\(\gamma\)</span>, <span class="math">\(\delta\)</span>, and <span class="math">\(\epsilon\)</span>.
+There are six remaining dimensionless numbers to be set: <span class="math">\(K_{wm}\)</span>,
+<span class="math">\(K_{nm}\)</span>, <span class="math">\(S_{wr}\)</span>, <span class="math">\(S_{nr}\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(b\)</span>.</p>
+<p>[<strong>hpl 31</strong>: Boundary conditions?]</p>
+<p>[<strong>hpl 32</strong>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.]</p>
+<p>[<strong>hpl 33</strong>: Exercises: single-phase flow, with and without thermal effects.]</p>
 </div>
 <div class="section" id="the-euler-equations-of-gas-dynamics">
-<h2>The Euler equations of gas dynamics<a class="headerlink" href="#the-euler-equations-of-gas-dynamics" title="Permalink to this headline">¶</a></h2>
+<span id="scale-euler-eqs"></span><h2>The Euler equations of gas dynamics<a class="headerlink" href="#the-euler-equations-of-gas-dynamics" title="Permalink to this headline">¶</a></h2>
+<div class="math" id="eq-auto80">
+\[\tag{262}
+\frac{\partial\varrho}{\partial t} + \nabla\cdot(\varrho\boldsymbol{u}) = 0,\]</div>
+<div class="math" id="eq-auto81">
+\[\tag{263}
+\frac{\partial(\varrho\boldsymbol{u})}{\partial t} + \nabla\cdot(\varrho\boldsymbol{u}\boldsymbol{u}^T) = -\nabla p + \varrho \boldsymbol{f},\]</div>
+<div class="math" id="eq-auto82">
+\[\tag{264}
+\frac{\partial E}{\partial t} + \nabla\cdot(\boldsymbol{u}(E+p)) = 0,\]</div>
+<p>where</p>
+<div class="math" id="eq-auto83">
+\[\tag{265}
+E = \varrho e + \frac{1}{2}\varrho\boldsymbol{u}\cdot\boldsymbol{u}{\thinspace .}\]</div>
+<p>In these equations, <span class="math">\(\boldsymbol{u}\)</span> is the fluid velocity, <span class="math">\(\varrho\)</span> is the density,
+<span class="math">\(p\)</span> is the pressure, <span class="math">\(E\)</span> is the total energy per unit volume, composed
+of the kinetic energy per unit volume, <span class="math">\(\frac{1}{2}\varrho \boldsymbol{u}\cdot\boldsymbol{u}\)</span>, and the
+internal energy per unit volume, <span class="math">\(\varrho e\)</span>.</p>
+<p>Assuming the fluid to be an ideal gas implies the following additional
+relations:</p>
+<div class="math" id="eq-auto84">
+\[\tag{266}
+e = c_v T,\]</div>
+<div class="math" id="eq-auto85">
+\[\tag{267}
+p = \varrho RT = \frac{R}{c_v}(E-\frac{1}{2}\varrho \boldsymbol{u}\cdot\boldsymbol{u}),\]</div>
+<p>where <span class="math">\(c_v\)</span> is the specific heat capacity at constant volume (for dry air
+<span class="math">\(c_v = 717.5 \hbox{J}\hbox{kg}^{-1}\hbox{K}^{-1}\)</span>),
+<span class="math">\(R\)</span> is the specific ideal gas constant
+(<span class="math">\(R=287.14 \hbox{J}\hbox{kg}^{-1}\hbox{K}^{-1}\)</span>), and <span class="math">\(T\)</span> is the temperature.
+The speed of sound is then</p>
+<div class="math" id="eq-auto86">
+\[\tag{268}
+c = \sqrt{\left(1 + \frac{R}{c_v}\right)\frac{p}{\varrho}}{\thinspace .}\]</div>
+<p>[<strong>hpl 34</strong>: Tell how the equations are solved and closed.]</p>
+<p>We introduce dimensionless independent variables,</p>
+<div class="math">
+\[\bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad \bar z = \frac{z}{L},
+\quad \bar t = \frac{t}{t_c},\]</div>
+<p>and dimensionless dependent variables,</p>
+<div class="math">
+\[\bar\boldsymbol{u} = \frac{\boldsymbol{u}}{U},\quad\bar\varrho = \frac{\varrho}{\varrho_c},
+\quad\bar p = \frac{p}{p_c},\quad \bar E= \frac{E}{E_c}{\thinspace .}\]</div>
+<p>Inserting these expressions in the governing equations gives</p>
+<div class="math">
+\[\begin{split}\frac{\partial\bar\varrho}{\partial\bar t} + \frac{t_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}) &amp;= 0,\\
+\frac{\partial(\bar\varrho\bar\boldsymbol{u})}{\partial\bar t} + \frac{t_cU}{L}\bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}\bar\boldsymbol{u}^T) &amp;= -\frac{t_cp_c}{UL\varrho_c}\nabla\bar p + \frac{t_c f_c}{U}\bar\varrho \bar\boldsymbol{f},\\
+\frac{\partial\bar E}{\partial\bar t} + \frac{t_c U}{LE_c }\bar\nabla\cdot(\bar\boldsymbol{u}(E_c\bar E+p_c\bar p)) &amp;= 0,\\
+\bar E &amp; = \frac{\varrho_c}{E_c}c_v T_c\bar T + \frac{\varrho_c U^2}{E_c}\frac{1}{2}\bar\varrho\bar u\cdot\bar u{\thinspace .}\end{split}\]</div>
+<p>A natural choice of time scale is <span class="math">\(t_c=L/U\)</span>. A common choice of
+pressure scale is <span class="math">\(p_c=\varrho_c U^2\)</span>. The energy equation simplifies if
+we choose <span class="math">\(E_c=p_c=\varrho_c U^2\)</span>. With these scales we get</p>
+<div class="math">
+\[\begin{split}\frac{\partial\bar\varrho}{\partial\bar t} +
+\bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}) &amp;= 0,\\
+\frac{\partial(\bar\varrho\bar\boldsymbol{u})}{\partial\bar t} +
+\bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}\bar\boldsymbol{u}^T) &amp;=
+-\nabla\bar p + \frac{Lf_c}{U^2}\bar\varrho \bar\boldsymbol{f},\\
+\frac{\partial\bar E}{\partial\bar t} +
+\bar\nabla\cdot(\bar\boldsymbol{u}(\bar E+ \bar p)) &amp;= 0,\\
+\bar E &amp; = \frac{1}{U^2}c_v T_c\bar T +
+\frac{1}{2}\bar\varrho\bar u\cdot\bar u{\thinspace .}\end{split}\]</div>
 </div>
 <div class="section" id="exercises">
 <h2>Exercises<a class="headerlink" href="#exercises" title="Permalink to this headline">¶</a></h2>
@@ -1218,10 +1747,10 @@ engine and modify the
 </div>
 <div class="section" id="exercise-6-implement-a-scaled-model-for-cooling">
 <span id="sec-scale-exer-decay-cooling"></span><h3>Exercise 6: Implement a scaled model for cooling<a class="headerlink" href="#exercise-6-implement-a-scaled-model-for-cooling" title="Permalink to this headline">¶</a></h3>
-<p>Make software for the unscaled problem <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-model"><span class="std std-ref">(5.16)</span></a>
+<p>Make software for the unscaled problem <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-model"><span class="std std-ref">(17)</span></a>
 where <span class="math">\(T_s\)</span> can be a function of time.
 Use this implementation to compute the solution of the
-scaled problem <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-model-scaled"><span class="std std-ref">(5.23)</span></a>.</p>
+scaled problem <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-model-scaled"><span class="std std-ref">(24)</span></a>.</p>
 <p><strong>Hint.</strong>
 You may use the general software <a class="reference external" href="http://tinyurl.com/o8pb3yy/decay_vc.py">decay_vc.py</a>
 for computing with the cooling model.
@@ -1244,21 +1773,21 @@ Filename: <code class="docutils literal"><span class="pre">decay_varcoeff</span>
 </div>
 <div class="section" id="exercise-8-alternative-scalings-of-a-cooling-model">
 <span id="scale-decay-exer-cooling-ts"></span><h3>Exercise 8: Alternative scalings of a cooling model<a class="headerlink" href="#exercise-8-alternative-scalings-of-a-cooling-model" title="Permalink to this headline">¶</a></h3>
-<p>Scale the model <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-model"><span class="std std-ref">(5.16)</span></a>, with <span class="math">\(T_s\)</span>
-given as in <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-tst"><span class="std std-ref">(5.22)</span></a>, using two alternative
-scalings of <span class="math">\(T\)</span>: <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-tbar2"><span class="std std-ref">(5.20)</span></a> and
+<p>Scale the model <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-model"><span class="std std-ref">(17)</span></a>, with <span class="math">\(T_s\)</span>
+given as in <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-tst"><span class="std std-ref">(23)</span></a>, using two alternative
+scalings of <span class="math">\(T\)</span>: <a class="reference internal" href="._book004.html#eq-scale-decay-cooling-tbar2"><span class="std std-ref">(21)</span></a> and
 the simpler <span class="math">\(\bar T = T/T_0\)</span>. Does the type of scaling impact how
 many dimensionless parameters we end up with?
 Filename: <code class="docutils literal"><span class="pre">decay_cooling2</span></code>.</p>
 </div>
 <div class="section" id="exercise-9-alternative-scalings-of-a-cooling-model">
 <span id="scale-decay-exer-nonlin-logistic2"></span><h3>Exercise 9: Alternative scalings of a cooling model<a class="headerlink" href="#exercise-9-alternative-scalings-of-a-cooling-model" title="Permalink to this headline">¶</a></h3>
-<p>Implement the scaled model <a class="reference internal" href="._book004.html#eq-sec-scale-decay-nonlinear-model1-scaled"><span class="std std-ref">(5.29)</span></a>
+<p>Implement the scaled model <a class="reference internal" href="._book004.html#eq-sec-scale-decay-nonlinear-model1-scaled"><span class="std std-ref">(30)</span></a>
 and produce a plot with curves corresponding to various values of
 <span class="math">\(\alpha\)</span> and <span class="math">\(p\)</span> to summarize how <span class="math">\(\bar u(\bar t)\)</span> look like.</p>
 <p><strong>Hint.</strong>
 A centered Crank-Nicolson-style
-scheme for <a class="reference internal" href="._book004.html#eq-sec-scale-decay-nonlinear-model1-scaled"><span class="std std-ref">(5.29)</span></a>
+scheme for <a class="reference internal" href="._book004.html#eq-sec-scale-decay-nonlinear-model1-scaled"><span class="std std-ref">(30)</span></a>
 can use an old time value for the nonlinear coefficient:</p>
 <div class="math">
 \[\frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
@@ -1302,20 +1831,24 @@ differential equation for these values and plot the trajectory (<span class="mat
 <span class="math">\(x\)</span>) for the two cases.</p>
 <p>Filename: <code class="docutils literal"><span class="pre">projectile</span></code>.</p>
 </div>
-<div class="section" id="problem-11-scale-a-predator-pray-model">
-<span id="scale-decay-exer-predpray"></span><h3>Problem 11: Scale a predator-pray model<a class="headerlink" href="#problem-11-scale-a-predator-pray-model" title="Permalink to this headline">¶</a></h3>
-<p id="index-23">The evolution of animal populations with a predator and a pray (e.g.,
+<div class="section" id="problem-11-scale-a-predator-prey-model">
+<span id="scale-decay-exer-predpray"></span><h3>Problem 11: Scale a predator-prey model<a class="headerlink" href="#problem-11-scale-a-predator-prey-model" title="Permalink to this headline">¶</a></h3>
+<p id="index-23">The evolution of animal populations with a predator and a prey (e.g.,
 lynx and hares, or foxes and rabbits) can be described by the
 Lotka-Volterra ODE system</p>
-<div class="math" id="equation-scale:decay:exer:predpray:eqH">
-<span id="eq-scale-decay-exer-predpray-eqh"></span><span class="eqno">(70)</span>\[     H^{\prime} = H(a - bL),\]</div>
-<div class="math" id="equation-scale:decay:exer:predpray:eqL">
-<span id="eq-scale-decay-exer-predpray-eql"></span><span class="eqno">(71)</span>\[     L^{\prime} = L(dH - c),\]</div>
-<div class="math" id="equation-_auto73">
-<span id="eq-auto73"></span><span class="eqno">(72)</span>\[     H(0)=H_0,\]</div>
-<div class="math" id="equation-_auto74">
-<span id="eq-auto74"></span><span class="eqno">(73)</span>\[     L(0)=L_0{\thinspace .}\]</div>
-<p>Here, <span class="math">\(H\)</span> is the number of animals of the pray (say hares)
+<div class="math" id="eq-scale-decay-exer-predprey-eqh">
+\[\tag{269}
+H^{\prime} = H(a - bL),\]</div>
+<div class="math" id="eq-scale-decay-exer-predprey-eql">
+\[\tag{270}
+L^{\prime} = L(dH - c),\]</div>
+<div class="math" id="eq-auto87">
+\[\tag{271}
+H(0)=H_0,\]</div>
+<div class="math" id="eq-auto88">
+\[\tag{272}
+L(0)=L_0{\thinspace .}\]</div>
+<p>Here, <span class="math">\(H\)</span> is the number of animals of the prey (say hares)
 and <span class="math">\(L\)</span> is the corresponding measure of the predator population (say lynx).
 There are six parameters: <span class="math">\(a\)</span>, <span class="math">\(b\)</span>, <span class="math">\(c\)</span>, <span class="math">\(d\)</span>, <span class="math">\(H_0\)</span>, and <span class="math">\(L_0\)</span>.</p>
 <p>The terms has the following meanings:</p>
@@ -1324,9 +1857,9 @@ There are six parameters: <span class="math">\(a\)</span>, <span class="math">\(
 <li><span class="math">\(aH\)</span> is the exponential
 population growth of <span class="math">\(H\)</span> due to births and deaths and is governed by
 the access to nutrition,</li>
-<li><span class="math">\(-bHL\)</span> is the loss of prays because they are eaten by predators,</li>
-<li><span class="math">\(dHL\)</span> is the increase of prays because they eat predators (but only
-a fraction of the eaten prays, <span class="math">\(bHL\)</span>, contribute to population growth
+<li><span class="math">\(-bHL\)</span> is the loss of preys because they are eaten by predators,</li>
+<li><span class="math">\(dHL\)</span> is the increase of preys because they eat predators (but only
+a fraction of the eaten preys, <span class="math">\(bHL\)</span>, contribute to population growth
 of the predator and therefore <span class="math">\(d &lt; b\)</span>),</li>
 <li><span class="math">\(-cL\)</span> is the exponential decay in the predator population because of
 deaths (the increase is modeled by <span class="math">\(dHL\)</span>).</li>
@@ -1339,14 +1872,18 @@ by</p>
 \bar H = \frac{H}{H_c},\quad \bar L = \frac{L}{L_c},\]</div>
 <p>where <span class="math">\(t_c\)</span>, <span class="math">\(H_c\)</span>, and <span class="math">\(L_c\)</span> are scales to be determined. Inserted
 in the ODE problem we arrive at</p>
-<div class="math" id="equation-scale:decay:exer:predpray:eqH:s">
-<span id="id2"></span><span class="eqno">(74)</span>\[     \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} = H_0\bar H(a - bH_0\bar L),\]</div>
-<div class="math" id="equation-scale:decay:exer:predpray:eqH:s">
-<span id="id4"></span><span class="eqno">(75)</span>\[     \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} = H_0\bar L(dH_0\bar H - c),\]</div>
-<div class="math" id="equation-scale:decay:exer:predpray:eqH0:s">
-<span id="eq-scale-decay-exer-predpray-eqh0-s"></span><span class="eqno">(76)</span>\[     H_c\bar H(0) = H_0,\]</div>
-<div class="math" id="equation-scale:decay:exer:predpray:eqL0:s">
-<span id="eq-scale-decay-exer-predpray-eql0-s"></span><span class="eqno">(77)</span>\[     L_c\bar H(0) = L_0{\thinspace .}\]</div>
+<div class="math" id="eq-scale-decay-exer-predprey-eqh-s">
+\[\tag{273}
+\frac{H_0}{t_c}\frac{d\bar H}{d\bar t} = H_0\bar H(a - bH_0\bar L),\]</div>
+<div class="math" id="eq-scale-decay-exer-predprey-eql-s">
+\[\tag{274}
+\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} = H_0\bar L(dH_0\bar H - c),\]</div>
+<div class="math" id="eq-scale-decay-exer-predprey-eqh0-s">
+\[\tag{275}
+H_c\bar H(0) = H_0,\]</div>
+<div class="math" id="eq-scale-decay-exer-predprey-eql0-s">
+\[\tag{276}
+L_c\bar H(0) = L_0{\thinspace .}\]</div>
 <p><strong>a)</strong>
 Consider first a simple, intuitive scaling of <span class="math">\(H\)</span> and <span class="math">\(L\)</span> based on
 initial conditions <span class="math">\(H_c=H_0\)</span>
@@ -1364,18 +1901,20 @@ where <span class="math">\(H^{\prime}=L^{\prime}=0\)</span>, and use such points
 sizes of the dependent variables. Show that <span class="math">\(H^{\prime}=L^{\prime}=0\)</span>
 implies <span class="math">\(H=L=0\)</span> or <span class="math">\(L=a/b\)</span> and <span class="math">\(H=c/d\)</span>. Use <span class="math">\(H_c=a/b\)</span>, <span class="math">\(L_c=c/d\)</span>,
 and find a time scale. Compare with the result in b).</p>
-<p>Filename: <code class="docutils literal"><span class="pre">predator_pray</span></code>.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">predator_prey</span></code>.</p>
 </div>
 <div class="section" id="problem-12-scale-a-model-for-competing-species">
 <span id="scale-decay-exer-competing-species"></span><h3>Problem 12: Scale a model for competing species<a class="headerlink" href="#problem-12-scale-a-model-for-competing-species" title="Permalink to this headline">¶</a></h3>
 <p id="index-24">Let <span class="math">\(N_1(t)\)</span> and <span class="math">\(N_2(t)\)</span> be the number of animals in two
 competing species. A generalized Lotka-Volterra model
-is based on a logistic growth of each specie and a predator-pray like
-interaction (cf.&nbsp;<a class="reference internal" href="#scale-decay-exer-predpray"><span class="std std-ref">Problem 11: Scale a predator-pray model</span></a>):</p>
-<div class="math" id="equation-_auto79">
-<span id="eq-auto79"></span><span class="eqno">(78)</span>\[     \frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\]</div>
-<div class="math" id="equation-_auto80">
-<span id="eq-auto80"></span><span class="eqno">(79)</span>\[     \frac{dN_2}{dt} = r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),\]</div>
+is based on a logistic growth of each specie and a predator-prey like
+interaction (cf.&nbsp;<span class="xref std std-ref">scale:decay:exer:predprey</span>):</p>
+<div class="math" id="eq-auto93">
+\[\tag{277}
+\frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\]</div>
+<div class="math" id="eq-auto94">
+\[\tag{278}
+\frac{dN_2}{dt} = r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),\]</div>
 <p>where <span class="math">\(r_1\)</span>, <span class="math">\(r_2\)</span>, <span class="math">\(M_1\)</span>, <span class="math">\(M_2\)</span>, <span class="math">\(s_{12}\)</span>, and <span class="math">\(s_{21}\)</span> are given constants.
 The initial conditions specify <span class="math">\(N_1\)</span> and <span class="math">\(N_2\)</span> at <span class="math">\(t=0\)</span>.
 Find suitable scales and derive a dimensionless ODE problem.</p>
@@ -1417,22 +1956,47 @@ The <em>angular frequency</em> <span class="math">\(\omega\)</span> is then <spa
 <div class="section" id="problem-14-scale-the-pendulum-equation">
 <span id="sec-scale-exer-pendulum"></span><h3>Problem 14: Scale the pendulum equation<a class="headerlink" href="#problem-14-scale-the-pendulum-equation" title="Permalink to this headline">¶</a></h3>
 <p>The equation for a so-called simple pendulum with a mass <span class="math">\(m\)</span> at the end is</p>
-<div class="math" id="equation-_auto81">
-<span id="eq-auto81"></span><span class="eqno">(80)</span>\[     mL\ddot\theta + mg\sin\theta = 0,\]</div>
+<div class="math" id="eq-auto95">
+\[\tag{279}
+mL\ddot\theta + mg\sin\theta = 0,\]</div>
 <p>where <span class="math">\(\theta(t)\)</span> is the angle with the vertical, <span class="math">\(L\)</span> is the length of
 the pendulum, and <span class="math">\(g\)</span> is the acceleration of gravity.</p>
 <p>A physical pendulum with moment of inertia <span class="math">\(I\)</span> is governed by
 a similar equation,</p>
-<div class="math" id="equation-_auto82">
-<span id="eq-auto82"></span><span class="eqno">(81)</span>\[     I\ddot\theta + mgL\sin\theta = 0{\thinspace .}\]</div>
+<div class="math" id="eq-auto96">
+\[\tag{280}
+I\ddot\theta + mgL\sin\theta = 0{\thinspace .}\]</div>
 <p>Both equations have the initial conditions <span class="math">\(\theta(0)=\Theta\)</span> and
 <span class="math">\(\theta'(0)=0\)</span> (start at rest).</p>
 <p>Use <span class="math">\(\theta\)</span> as dimensionless unknown, find a proper time scale,
 and scale both differential equations.</p>
 <p>Filename: <code class="docutils literal"><span class="pre">pendulum</span></code>.</p>
 </div>
-<div class="section" id="problem-15-scale-duffing-s-equation">
-<span id="scale-vib-exer-duffing"></span><h3>Problem 15: Scale Duffing&#8217;s equation<a class="headerlink" href="#problem-15-scale-duffing-s-equation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-15-scale-the-odes-for-a-binary-star">
+<span id="sec-scale-exer-binary-star"></span><h3>Exercise 15: Scale the ODEs for a binary star<a class="headerlink" href="#exercise-15-scale-the-odes-for-a-binary-star" title="Permalink to this headline">¶</a></h3>
+<p>The equations for a <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_star">binary star</a>,
+or a planet and a moon, are</p>
+<div class="math" id="eq-auto97">
+\[\tag{281}
+m_A\ddot\boldsymbol{x}_A = \boldsymbol{F},\]</div>
+<div class="math" id="eq-auto98">
+\[\tag{282}
+m_B\ddot\boldsymbol{x}_B = -F,\]</div>
+<p>where <span class="math">\(\boldsymbol{x}_A\)</span> is the position of object (star) A, and <span class="math">\(\boldsymbol{x}_B\)</span> is the position
+object B. The corresponding masses are <span class="math">\(m_A\)</span> and <span class="math">\(m_B\)</span>.
+The only force is the gravity force</p>
+<div class="math">
+\[\boldsymbol{F} = \frac{Gm_Am_B}{||\boldsymbol{r}||^3}\boldsymbol{r},\]</div>
+<p>where</p>
+<div class="math">
+\[\boldsymbol{r}(t) = \boldsymbol{x}_A(t) - \boldsymbol{x}_B(t),\]</div>
+<p>and <span class="math">\(G\)</span> is the gravitational constant: <span class="math">\(G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2\)</span>. A problem with these equations is that the parameters are very large
+(<span class="math">\(m_A\)</span>, <span class="math">\(m_B\)</span>, <span class="math">\(||\boldsymbol{r}||\)</span>) or very small (<span class="math">\(G\)</span>). The rotation time
+for binary starts can be very small or large as well.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">binary_star</span></code>.</p>
+</div>
+<div class="section" id="problem-16-scale-duffing-s-equation">
+<span id="scale-vib-exer-duffing"></span><h3>Problem 16: Scale Duffing&#8217;s equation<a class="headerlink" href="#problem-16-scale-duffing-s-equation" title="Permalink to this headline">¶</a></h3>
 <p>Duffing&#8217;s equation is a vibration equation with linear and cubic
 spring terms:</p>
 <div class="math">
@@ -1440,8 +2004,8 @@ spring terms:</p>
 <p>Scale this problem.</p>
 <p>Filename: <code class="docutils literal"><span class="pre">Duffing_eq</span></code>.</p>
 </div>
-<div class="section" id="problem-16-scale-a-stationary-couette-flow">
-<span id="scale-vib-exer-stationary-couette"></span><h3>Problem 16: Scale a stationary Couette flow<a class="headerlink" href="#problem-16-scale-a-stationary-couette-flow" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="problem-17-scale-a-stationary-couette-flow">
+<span id="scale-vib-exer-stationary-couette"></span><h3>Problem 17: Scale a stationary Couette flow<a class="headerlink" href="#problem-17-scale-a-stationary-couette-flow" title="Permalink to this headline">¶</a></h3>
 <p>A fluid flows between two flat plates, with one plate at rest while
 the other moves with velocity <span class="math">\(U_0\)</span>. This classical flow case is known as
 stationary Couette flow.</p>
@@ -1482,8 +2046,8 @@ The scaled problem is of course the same whether we have flow of
 fluid or heat.</p>
 </div>
 </div>
-<div class="section" id="problem-17-scale-a-starting-couette-flow">
-<span id="scale-vib-exer-starting-couette"></span><h3>Problem 17: Scale a starting Couette flow<a class="headerlink" href="#problem-17-scale-a-starting-couette-flow" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="problem-18-scale-a-starting-couette-flow">
+<span id="scale-vib-exer-starting-couette"></span><h3>Problem 18: Scale a starting Couette flow<a class="headerlink" href="#problem-18-scale-a-starting-couette-flow" title="Permalink to this headline">¶</a></h3>
 <p>A fluid is confined in a channel with two planar walls <span class="math">\(z=0\)</span> and <span class="math">\(z=H\)</span>.
 The fluid is at rest. At time <span class="math">\(t=0\)</span> the upper wall is suddenly set in
 motion with a velocity <span class="math">\(U\boldsymbol{i}\)</span>. We assume that the velocity is
@@ -1515,16 +2079,19 @@ u(0,t) &amp; =U_0(t),\\
 u(L,t) &amp; =U_L(t){\thinspace .}\end{split}\]</div>
 <p>Filename: <code class="docutils literal"><span class="pre">starting_Couette</span></code>.</p>
 </div>
-<div class="section" id="exercise-18-scale-couette-flow-with-pressure-gradient">
-<span id="scale-vib-exer-couette-wpressure"></span><h3>Exercise 18: Scale Couette flow with pressure gradient<a class="headerlink" href="#exercise-18-scale-couette-flow-with-pressure-gradient" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-19-scale-couette-flow-with-pressure-gradient">
+<span id="scale-vib-exer-couette-wpressure"></span><h3>Exercise 19: Scale Couette flow with pressure gradient<a class="headerlink" href="#exercise-19-scale-couette-flow-with-pressure-gradient" title="Permalink to this headline">¶</a></h3>
 <p>Viscous fluid flow between two infinite flat plates <span class="math">\(z=0\)</span> and <span class="math">\(z=H\)</span>
 is governed by</p>
-<div class="math" id="equation-_auto83">
-<span id="eq-auto83"></span><span class="eqno">(82)</span>\[     \mu u''(z) = -\beta\]</div>
-<div class="math" id="equation-_auto84">
-<span id="eq-auto84"></span><span class="eqno">(83)</span>\[     u(0) = 0,\]</div>
-<div class="math" id="equation-_auto85">
-<span id="eq-auto85"></span><span class="eqno">(84)</span>\[     u(H) = U_0{\thinspace .}\]</div>
+<div class="math" id="eq-auto101">
+\[\tag{283}
+\mu u''(z) = -\beta\]</div>
+<div class="math" id="eq-auto102">
+\[\tag{284}
+u(0) = 0,\]</div>
+<div class="math" id="eq-auto103">
+\[\tag{285}
+u(H) = U_0{\thinspace .}\]</div>
 <p>Here, <span class="math">\(u(z)\)</span> is the fluid velocity in <span class="math">\(x\)</span> direction (perpendicular to the
 <span class="math">\(z\)</span> axis), <span class="math">\(\mu\)</span> is the dynamic viscosity of the fluid, <span class="math">\(\beta\)</span> is
 a positive constant pressure gradient, and <span class="math">\(U_0\)</span> is the
@@ -1535,11 +2102,116 @@ Find the exact solution <span class="math">\(u(z)\)</span>. Point out how <span 
 influence the magnitude of <span class="math">\(u\)</span>.</p>
 <p><strong>b)</strong>
 Scale the problem.</p>
-<p>[<strong>hpl 30</strong>: Could extend to time-dependent case, but this will involve three time scales...]</p>
+<p>[<strong>hpl 38</strong>: Could extend to time-dependent case, but this will involve three time scales...]</p>
 <p>Filename: <code class="docutils literal"><span class="pre">Couette_wpressure</span></code>.</p>
 </div>
-<div class="section" id="exercise-19-suggestions">
-<span id="scale-exer-suggest"></span><h3>Exercise 19: Suggestions...<a class="headerlink" href="#exercise-19-suggestions" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="exercise-20-scale-pulsatile-pipeflow">
+<span id="scale-exer-pipeflow-pulsatile"></span><h3>Exercise 20: Scale pulsatile pipeflow<a class="headerlink" href="#exercise-20-scale-pulsatile-pipeflow" title="Permalink to this headline">¶</a></h3>
+<p>The flow of a viscous fluid in a straight pipe with circular
+cross section with radius <span class="math">\(R\)</span> is governed by</p>
+<div class="math" id="eq-auto110">
+\[\tag{286}
+\varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
+    \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],\]</div>
+<div class="math" id="eq-auto111">
+\[\tag{287}
+\frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],\]</div>
+<div class="math" id="eq-auto112">
+\[\tag{288}
+u(R,t) = 0,  t\in (0,T],\]</div>
+<div class="math" id="eq-auto113">
+\[\tag{289}
+u(r,0) = 0,  r\in [0,R].\]</div>
+<p>The quantity <span class="math">\(u(r,t)\)</span> is the fluid velocity, <span class="math">\(P(t)\)</span> is a given
+pressure gradient, <span class="math">\(\varrho\)</span> is the fluid density, and <span class="math">\(\mu\)</span> is the
+dynamic viscosity.</p>
+<p>Assume <span class="math">\(P(t) = A\cos\omega t\)</span>. Scale the problem and identify
+appropriate dimensionless numbers. The assume <span class="math">\(P(t)\)</span> is a more
+complicated function, but still period with period <span class="math">\(p\)</span>.
+Discuss how the scaling can be extended to this case.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">pipeflow</span></code>.</p>
+</div>
+<div class="section" id="exercise-21-scale-the-linear-cable-equation">
+<span id="scale-exer-cable-eq"></span><h3>Exercise 21: Scale the linear cable equation<a class="headerlink" href="#exercise-21-scale-the-linear-cable-equation" title="Permalink to this headline">¶</a></h3>
+<p>A key PDE in neuroscience is the <a class="reference external" href="https://en.wikipedia.org/wiki/Cable_theory">cable equation</a>, here given in its simplest linear form:</p>
+<div class="math" id="eq-scale-exer-cable-eq-pde">
+\[\tag{290}
+\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
+    -u{\thinspace .}\]</div>
+<p>The unknown <span class="math">\(u\)</span> is the voltage (measured in volt) associated with
+an electric current along one-dimensional dendrites (&#8220;cables&#8221;)
+in neural networks, while <span class="math">\(\tau\)</span> and <span class="math">\(\lambda\)</span> are given parameters.</p>
+<p>Scale <span class="xref std std-ref">scale:exer:cable_eq:PDE</span> in three ways: 1) let all terms in
+the scaled equation have unit coefficients, 2) use the domain size
+<span class="math">\(L\)</span> as spatial scale and base the time scale on diffusion, 3) use the
+domain size <span class="math">\(L\)</span> as spatial scale and base the time scale on
+reaction, i.e., the <span class="math">\(-u\)</span> term.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">cable_eq</span></code>.</p>
+</div>
+<div class="section" id="exercise-22-comparison-of-vibration-models-for-elastic-structures">
+<span id="scale-exer-elasticity-vibmodels"></span><h3>Exercise 22: Comparison of vibration models for elastic structures<a class="headerlink" href="#exercise-22-comparison-of-vibration-models-for-elastic-structures" title="Permalink to this headline">¶</a></h3>
+<p>The time scale for displacement in elastic structures is,
+according to the section <a class="reference internal" href="#scale-elasticity-timedep"><span class="std std-ref">The general time-dependent elasticity problem</span></a>, <span class="math">\(t_c=L\sqrt{\varrho/\mu}\)</span>
+if we assume constant density <span class="math">\(\varrho\)</span> and constant shear modulus
+<span class="math">\(\mu\)</span> for the structure. The purpose of this exercise is to compare
+this time scale with the time scales of related models.</p>
+<p><strong>a)</strong>
+Longitudinal waves in a bar can be modeled approximately by the PDE</p>
+<div class="math">
+\[\varrho\frac{\partial^2 u}{\partial t^2} + E\frac{\partial^2 u}{\partial x^2} = 0,\]</div>
+<p>where <span class="math">\(u(x,t)\)</span> is the displacement along the bar, and <span class="math">\(E\)</span> is Young&#8217;s modulus,
+related to the shear modulus <span class="math">\(\mu\)</span> through</p>
+<div class="math">
+\[E = 2\mu (1+\nu),\]</div>
+<p>where <span class="math">\(\nu\in (0,0.5]\)</span> is Poisson&#8217;s ratio.
+Find the time scale for the longitudinal waves and compare with the <span class="math">\(t_c\)</span>
+for displacements in a three-dimensional body.</p>
+<p><strong>b)</strong>
+Vertical vibrations of a beam are governed by the PDE</p>
+<div class="math">
+\[\rho\frac{\partial^2 u}{\partial t^2} + EI\frac{\partial^4 u}{\partial x^4} = 0,\]</div>
+<p>where <span class="math">\(u(x,t)\)</span> is the vertical displacement along the beam,
+<span class="math">\(\rho\)</span> is the mass per length of the beam,
+<span class="math">\(E\)</span> is Young&#8217;s modulus, and <span class="math">\(I\)</span> is the moment of inertia. For a
+rectangular cross section of with <span class="math">\(b\)</span> and height <span class="math">\(h\)</span>, <span class="math">\(I=\frac{1}{12}bh^3\)</span>.
+Compare the time scale for these vibrations with the time scale <span class="math">\(t_c\)</span>
+for three-dimensional elasticity.</p>
+</div>
+<div class="section" id="exercise-23-scale-the-equations-of-quasi-static-poro-elasticity">
+<span id="scale-exer-poroelasticity"></span><h3>Exercise 23: Scale the equations of quasi-static poro-elasticity<a class="headerlink" href="#exercise-23-scale-the-equations-of-quasi-static-poro-elasticity" title="Permalink to this headline">¶</a></h3>
+<p>Flow through a porous elastic medium may induce stress and deformation.
+This process is known as poro-elasticity and is governed by the
+following equations for a homogeneous medium:</p>
+<div class="math" id="eq-auto114">
+\[\tag{291}
+(\lambda + \mu)\nabla (\nabla\cdot\boldsymbol{u}) + \mu\nabla^2\boldsymbol{u} = -\alpha\nabla p -
+    \varrho\boldsymbol{f},\]</div>
+<div class="math" id="eq-auto115">
+\[\tag{292}
+S\frac{\partial p}{\partial t} = \frac{K}{\mu_f}\nabla^2 p +
+    \alpha \frac{\partial}{\partial t}\nabla\cdot\boldsymbol{u},\]</div>
+<p>where <span class="math">\(\boldsymbol{u}(\boldsymbol{x},t)\)</span> is the displacement field, <span class="math">\(\lambda\)</span> and <span class="math">\(\mu\)</span> are
+Lame&#8217;s elasticity parameters, <span class="math">\(\alpha\in [0,1]\)</span>, <span class="math">\(\boldsymbol{f}\)</span> is the body
+force, here assumed constant (usually gravity, <span class="math">\(\boldsymbol{f} = -g\boldsymbol{k}\)</span>,
+<span class="math">\(S\)</span> is a so-called storage coefficient, <span class="math">\(p(\boldsymbol{x},t)\)</span> is the fluid pressure,
+<span class="math">\(K\)</span> is the medium&#8217;s permeability, <span class="math">\(\mu_f\)</span> is the dynamic viscosity of
+the fluid, and <span class="math">\(\varrho\)</span> is the density of the fluid-solid mixture:</p>
+<div class="math">
+\[\varrho = (1-\phi) \varrho_s + \phi\varrho_f,\]</div>
+<p>with <span class="math">\(\varrho_f\)</span> being the density of the fluid, <span class="math">\(\varrho_s\)</span> the density
+of the solid, and <span class="math">\(\phi\)</span> the porosity of the elastic medium.
+The equations are known as Biot&#8217;s equations of poro-elasticity and written
+here in a quasi-static form where elastic waves are neglected.</p>
+<p>Scale this partial differential equation model, assuming that
+<span class="math">\(\lambda\)</span>, <span class="math">\(\mu\)</span>, <span class="math">\(\alpha\)</span>, <span class="math">\(\boldsymbol{f}\)</span>, <span class="math">\(\varrho\)</span>, <span class="math">\(\phi\)</span>, <span class="math">\(\varrho_s\)</span>,
+<span class="math">\(\varrho_f\)</span>, <span class="math">\(S\)</span>, <span class="math">\(\mu_f\)</span>, and <span class="math">\(K\)</span> are all constants.</p>
+<p><strong>Hint.</strong>
+The model is very similar to the equations of thermo-elasticity in
+the section <a class="reference internal" href="#scale-elasticity-thermo"><span class="std std-ref">Quasi-static thermo-elasticity</span></a>.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">poroelasticity</span></code>.</p>
+</div>
+<div class="section" id="exercise-24-suggestions">
+<span id="scale-exer-suggest"></span><h3>Exercise 24: Suggestions...<a class="headerlink" href="#exercise-24-suggestions" title="Permalink to this headline">¶</a></h3>
 <p>Projects:</p>
 <blockquote>
 <div><ul class="simple">
@@ -1549,10 +2221,6 @@ oscillating pressure in tube (channel first)</li>
 <li>Helmholtz</li>
 <li>two metal pieces in contact</li>
 <li>boundary layer fluid flow problem, with/without thermal effects</li>
-<li>channel viscous flow: with and without Reynolds number (bad to
-have an extra parameter!)</li>
-<li>Starting Couette flow and rod with fixed end temperatures</li>
-<li>Fisher&#8217;s equation</li>
 <li>Vertical motion in the gravity field, two time scales, discuss</li>
 <li>sliding box, see <code class="docutils literal"><span class="pre">vib</span></code> exercise</li>
 </ul>
@@ -1577,7 +2245,7 @@ have an extra parameter!)</li>
 <li><a class="reference internal" href="#">Advanced PDE models</a><ul>
 <li><a class="reference internal" href="#the-equations-of-linear-elasticity">The equations of linear elasticity</a><ul>
 <li><a class="reference internal" href="#the-general-time-dependent-elasticity-problem">The general time-dependent elasticity problem</a><ul>
-<li><a class="reference internal" href="#software-7">Software</a></li>
+<li><a class="reference internal" href="#software-8">Software</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#dimensionless-stress-tensor">Dimensionless stress tensor</a></li>
@@ -1587,19 +2255,27 @@ have an extra parameter!)</li>
 <li><a class="reference internal" href="#time-varying-load">Time-varying load</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-stationary-elasticity-problem">The stationary elasticity problem</a></li>
+<li><a class="reference internal" href="#the-stationary-elasticity-problem">The stationary elasticity problem</a><ul>
+<li><a class="reference internal" href="#scaling-of-the-pde">Scaling of the PDE</a></li>
+<li><a class="reference internal" href="#scaling-of-displacement-boundary-conditions">Scaling of displacement boundary conditions</a></li>
+<li><a class="reference internal" href="#scaling-of-traction-boundary-conditions">Scaling of traction boundary conditions</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#quasi-static-thermo-elasticity">Quasi-static thermo-elasticity</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-navier-stokes-equations">The Navier-Stokes equations</a><ul>
-<li><a class="reference internal" href="#the-momentum-equation-without-body-forces">The momentum equation without body forces</a></li>
-<li><a class="reference internal" href="#the-most-common-dimensionless-form-of-the-navier-stokes-equations">The most common dimensionless form of the Navier-Stokes equations</a></li>
+<li><a class="reference internal" href="#the-momentum-equation-without-body-forces">The momentum equation without body forces</a><ul>
+<li><a class="reference internal" href="#scaling-8">Scaling</a></li>
+<li><a class="reference internal" href="#dimensonless-pdes-and-the-reynolds-number">Dimensonless PDEs and the Reynolds number</a></li>
+</ul>
+</li>
 <li><a class="reference internal" href="#scaling-of-time-for-low-reynolds-numbers">Scaling of time for low Reynolds numbers</a></li>
 <li><a class="reference internal" href="#shear-stress-as-pressure-scale">Shear stress as pressure scale</a></li>
-<li><a class="reference internal" href="#including-the-gravity-force">Including the gravity force</a></li>
-<li><a class="reference internal" href="#oscillating-boundary-conditions">Oscillating boundary conditions</a></li>
-<li><a class="reference internal" href="#the-euler-number">The Euler number</a></li>
-<li><a class="reference internal" href="#free-surface-conditions">Free surface conditions</a></li>
+<li><a class="reference internal" href="#gravity-force-and-the-froude-number">Gravity force and the Froude number</a></li>
+<li><a class="reference internal" href="#oscillating-boundary-conditions-and-the-strouhal-number">Oscillating boundary conditions and the Strouhal number</a></li>
+<li><a class="reference internal" href="#cavitation-and-the-euler-number">Cavitation and the Euler number</a></li>
+<li><a class="reference internal" href="#free-surface-conditions-and-the-weber-number">Free surface conditions and the Weber number</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#thermal-convection">Thermal convection</a><ul>
@@ -1610,11 +2286,14 @@ have an extra parameter!)</li>
 <li><a class="reference internal" href="#relation-between-density-and-temperature">Relation between density and temperature</a></li>
 <li><a class="reference internal" href="#comment-on-the-form-of-the-equation-of-continuity">Comment on the form of the equation of continuity</a></li>
 <li><a class="reference internal" href="#the-boussinesq-approximation">The Boussinesq approximation</a></li>
-<li><a class="reference internal" href="#scaling-8">Scaling</a></li>
+<li><a class="reference internal" href="#scaling-9">Scaling</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#the-grashof-prandtl-and-eckert-numbers">The Grashof, Prandtl, and Eckert numbers</a></li>
-<li><a class="reference internal" href="#heat-transfer-at-boundaries">Heat transfer at boundaries</a></li>
+<li><a class="reference internal" href="#the-grashof-prandtl-and-eckert-numbers">The Grashof, Prandtl, and Eckert numbers</a><ul>
+<li><a class="reference internal" href="#interpretations-of-the-grashof-number">Interpretations of the Grashof number</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#heat-transfer-at-boundaries-and-the-nusselt-number">Heat transfer at boundaries and the Nusselt number</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#the-bidomain-model-in-electrophysiology">The bidomain model in electrophysiology</a></li>
@@ -1631,21 +2310,26 @@ have an extra parameter!)</li>
 <li><a class="reference internal" href="#exercise-8-alternative-scalings-of-a-cooling-model">Exercise 8: Alternative scalings of a cooling model</a></li>
 <li><a class="reference internal" href="#exercise-9-alternative-scalings-of-a-cooling-model">Exercise 9: Alternative scalings of a cooling model</a></li>
 <li><a class="reference internal" href="#exercise-10-scale-projectile-motion">Exercise 10: Scale projectile motion</a></li>
-<li><a class="reference internal" href="#problem-11-scale-a-predator-pray-model">Problem 11: Scale a predator-pray model</a></li>
+<li><a class="reference internal" href="#problem-11-scale-a-predator-prey-model">Problem 11: Scale a predator-prey model</a></li>
 <li><a class="reference internal" href="#problem-12-scale-a-model-for-competing-species">Problem 12: Scale a model for competing species</a></li>
 <li><a class="reference internal" href="#problem-13-find-the-period-of-sinusoidal-signals">Problem 13: Find the period of sinusoidal signals</a><ul>
 <li><a class="reference internal" href="#remarks-1">Remarks</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#problem-14-scale-the-pendulum-equation">Problem 14: Scale the pendulum equation</a></li>
-<li><a class="reference internal" href="#problem-15-scale-duffing-s-equation">Problem 15: Scale Duffing&#8217;s equation</a></li>
-<li><a class="reference internal" href="#problem-16-scale-a-stationary-couette-flow">Problem 16: Scale a stationary Couette flow</a><ul>
+<li><a class="reference internal" href="#exercise-15-scale-the-odes-for-a-binary-star">Exercise 15: Scale the ODEs for a binary star</a></li>
+<li><a class="reference internal" href="#problem-16-scale-duffing-s-equation">Problem 16: Scale Duffing&#8217;s equation</a></li>
+<li><a class="reference internal" href="#problem-17-scale-a-stationary-couette-flow">Problem 17: Scale a stationary Couette flow</a><ul>
 <li><a class="reference internal" href="#remarks-2">Remarks</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#problem-17-scale-a-starting-couette-flow">Problem 17: Scale a starting Couette flow</a></li>
-<li><a class="reference internal" href="#exercise-18-scale-couette-flow-with-pressure-gradient">Exercise 18: Scale Couette flow with pressure gradient</a></li>
-<li><a class="reference internal" href="#exercise-19-suggestions">Exercise 19: Suggestions...</a></li>
+<li><a class="reference internal" href="#problem-18-scale-a-starting-couette-flow">Problem 18: Scale a starting Couette flow</a></li>
+<li><a class="reference internal" href="#exercise-19-scale-couette-flow-with-pressure-gradient">Exercise 19: Scale Couette flow with pressure gradient</a></li>
+<li><a class="reference internal" href="#exercise-20-scale-pulsatile-pipeflow">Exercise 20: Scale pulsatile pipeflow</a></li>
+<li><a class="reference internal" href="#exercise-21-scale-the-linear-cable-equation">Exercise 21: Scale the linear cable equation</a></li>
+<li><a class="reference internal" href="#exercise-22-comparison-of-vibration-models-for-elastic-structures">Exercise 22: Comparison of vibration models for elastic structures</a></li>
+<li><a class="reference internal" href="#exercise-23-scale-the-equations-of-quasi-static-poro-elasticity">Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
+<li><a class="reference internal" href="#exercise-24-suggestions">Exercise 24: Suggestions...</a></li>
 </ul>
 </li>
 </ul>
@@ -1702,7 +2386,7 @@ have an extra parameter!)</li>
     <a href="http://cbc.simula.no"><img src="_static/cbc_banner.png" width="100%"><a>
     <br />
     <br />
-      &copy;2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license.
+      &copy;2015, Geir K. Pedersen, Hans Petter Langtangen. Released under CC Attribution 4.0 license.
   </div>
 </div>
 

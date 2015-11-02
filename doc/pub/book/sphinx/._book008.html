@@ -84,20 +84,21 @@
 <h2>Convection-diffusion without a force term<a class="headerlink" href="#convection-diffusion-without-a-force-term" title="Permalink to this headline">¶</a></h2>
 <p id="index-0">We now add a convection term <span class="math">\(\boldsymbol{v}\cdot\nabla u\)</span> to the diffusion
 equation to obtain the well-known convection-diffusion equation:</p>
-<div class="math" id="equation-scale:convdiff:pde1">
-<span id="eq-scale-convdiff-pde1"></span><span class="eqno">(1)</span>\[     \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
-     {\alpha}\nabla^2 u,
-     \quad  x,y, z\in \Omega,\ t\in (0, T]{\thinspace .}\]</div>
+<div class="math" id="eq-scale-convdiff-pde1">
+\[\tag{165}
+\frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
+    {\alpha}\nabla^2 u,
+    \quad  x,y, z\in \Omega,\ t\in (0, T]{\thinspace .}\]</div>
 <p>The velocity field <span class="math">\(\boldsymbol{v}\)</span> is prescribed, and its characteristic size <span class="math">\(V\)</span>
 is normally clear from the problem description.</p>
-<p>[<strong>hpl 14</strong>: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]</p>
-<p>[<strong>hpl 15</strong>: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different <span class="math">\(V\)</span> is obvious.]</p>
+<p>[<strong>hpl 20</strong>: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]</p>
+<p>[<strong>hpl 21</strong>: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different <span class="math">\(V\)</span> is obvious.]</p>
 <p>Inserting</p>
 <div class="math">
 \[\bar x = \frac{x}{x_c},\ \bar y = \frac{y}{y_c},\ \bar z = \frac{z}{z_c},
 \ \bar t = \frac{t}{t_c}, \ \bar\boldsymbol{v} = \frac{\boldsymbol{v}}{V},
 \ \bar u =\frac{u}{u_c}\]</div>
-<p>in <a href="#equation-scale:convdiff:pde1">(1)</a> yields</p>
+<p>in <a class="reference internal" href="#eq-scale-convdiff-pde1"><span class="std std-ref">(165)</span></a> yields</p>
 <div class="math">
 \[\frac{u_c}{t_c}
 \frac{\partial \bar u}{\partial \bar t} +
@@ -121,11 +122,12 @@ the diffusion term is very much larger than the convection
 term (corresponding to very small Peclet numbers, see below)
 we would apply <span class="math">\(t_c=L^2/{\alpha}\)</span>.</p>
 <p>The non-dimensional form of the PDE with <span class="math">\(t_c=L/V\)</span> becomes</p>
-<div class="math" id="equation-scale:convdiff:pde1:d">
-<span id="eq-scale-convdiff-pde1-d"></span><span class="eqno">(2)</span>\[     \frac{\partial \bar u}{\partial \bar t} +
-     \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
-     \hbox{Pe}^{-1}\bar\nabla^2\bar u,
-     \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-convdiff-pde1-d">
+\[\tag{166}
+\frac{\partial \bar u}{\partial \bar t} +
+    \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+    \hbox{Pe}^{-1}\bar\nabla^2\bar u,
+    \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T],\]</div>
 <p>where Pe is the <em>Peclet number</em>,</p>
 <div class="math">
 \[\hbox{Pe} = \frac{LV}{{\alpha}}{\thinspace .}\]</div>
@@ -138,19 +140,20 @@ and the diffusion terms:</p>
 \frac{VU/L}{{\alpha} U/L^2}= \frac{LV}{{\alpha}}{\thinspace .}\]</div>
 <p>In case we use the diffusion time scale
 <span class="math">\(t_c=L^2/{\alpha}\)</span>, we get the non-dimensional PDE</p>
-<div class="math" id="equation-scale:convdiff:pde1:d2">
-<span id="eq-scale-convdiff-pde1-d2"></span><span class="eqno">(3)</span>\[     \frac{\partial \bar u}{\partial \bar t} +
-     \hbox{Pe}\,\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
-     \bar\nabla^2\bar u,
-     \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]{\thinspace .}\]</div>
+<div class="math" id="eq-scale-convdiff-pde1-d2">
+\[\tag{167}
+\frac{\partial \bar u}{\partial \bar t} +
+    \hbox{Pe}\,\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+    \bar\nabla^2\bar u,
+    \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]{\thinspace .}\]</div>
 <div class="admonition-discussion-of-scales-and-balance-of-terms-in-the-pde admonition">
 <p class="first admonition-title">Discussion of scales and balance of terms in the PDE</p>
-<p>We see that <a href="#equation-scale:convdiff:pde1:d">(2)</a> and <a href="#equation-scale:convdiff:pde1:d2">(3)</a>
+<p>We see that <a class="reference internal" href="#eq-scale-convdiff-pde1-d"><span class="std std-ref">(166)</span></a> and <a class="reference internal" href="#eq-scale-convdiff-pde1-d2"><span class="std std-ref">(167)</span></a>
 are not equivalent, and they are based on two different time scales.
 For moderate Peclet numbers around 1, all terms have the same size
-in <a href="#equation-scale:convdiff:pde1:d">(2)</a>, i.e., a size around unity.
+in <a class="reference internal" href="#eq-scale-convdiff-pde1-d"><span class="std std-ref">(166)</span></a>, i.e., a size around unity.
 For large Peclet numbers,
-<a href="#equation-scale:convdiff:pde1:d">(2)</a> expresses a balance
+<a class="reference internal" href="#eq-scale-convdiff-pde1-d"><span class="std std-ref">(166)</span></a> expresses a balance
 between the time derivative term and the convection term, both of size
 unity, and then there is a very small term
 <span class="math">\(\hbox{Pe}^{-1}\bar\nabla^2\bar u\)</span> term because Pe is large and
@@ -169,7 +172,7 @@ be much larger than unity, but that means we use wrong scales,
 since right scales imply that <span class="math">\(\partial\bar u/\partial\bar t\)</span> and
 <span class="math">\(\bar v\cdot\bar\nabla\bar u\)</span> of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
-<a href="#equation-scale:convdiff:pde1:d2">(3)</a>.  For very small Peclet numbers this
+<a class="reference internal" href="#eq-scale-convdiff-pde1-d2"><span class="std std-ref">(167)</span></a>.  For very small Peclet numbers this
 equation tells that the time-derivative balances the diffusion, while
 the convection <span class="math">\(\bar\boldsymbol{v}\cdot\bar\nabla\bar\boldsymbol{u}\)</span> is around
 unity, but multiplied by a very small coefficient Pe, so this term is
@@ -192,9 +195,10 @@ scaled? We get</p>
 \[\frac{VU}{L}\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
 \frac{{\alpha} U}{L^2}\bar\nabla^2\bar u,\]</div>
 <p>or</p>
-<div class="math" id="equation-scale:convdiff:pde1:d3">
-<span id="eq-scale-convdiff-pde1-d3"></span><span class="eqno">(4)</span>\[     \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
-     \hbox{Pe}^{-1}\bar\nabla^2\bar u{\thinspace .}\]</div>
+<div class="math" id="eq-scale-convdiff-pde1-d3">
+\[\tag{168}
+\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+    \hbox{Pe}^{-1}\bar\nabla^2\bar u{\thinspace .}\]</div>
 <p>This scaling only &#8220;works&#8221; for moderate Peclet numbers. For very small or
 very large Pe, either the convection term <span class="math">\(\bar\boldsymbol{v}\cdot\bar\nabla\bar u\)</span>
 or the diffusion term <span class="math">\(\bar\nabla^2\bar u\)</span> must deviate significantly
@@ -216,7 +220,7 @@ The problem with dimensions is now</p>
 Pe: small Pe values give approximately a straight line while large Pe
 values lead to a <em>boundary layer</em> close to <span class="math">\(x=1\)</span>, where the solution
 changes very rapidly.</p>
-<div class="figure" id="id2">
+<div class="figure" id="id1">
 <span id="scale-convdiff-fig-scaled"></span><a class="reference internal image-reference" href="_images/boundary_layer1D.png"><img alt="_images/boundary_layer1D.png" src="_images/boundary_layer1D.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text"><em>Solution of scaled problem for 1D convection-diffusion</em></span></p>
 </div>
@@ -259,7 +263,7 @@ Peclet numbers, and we see that the shape of the graphs are the same
 with this scaling. For large Peclet numbers we realize that <span class="math">\(\bar u\)</span>
 and its derivatives are around unity (<span class="math">\(1-e^{\hbox{Pe}}\approx -e^{\hbox{Pe}}\)</span>),
 but for small Peclet numbers <span class="math">\(d\bar u/d\bar x \sim \hbox{Pe}^{-1}\)</span>.</p>
-<div class="figure" id="id3">
+<div class="figure" id="id2">
 <span id="scale-convdiff-fig-rescaled"></span><a class="reference internal image-reference" href="_images/boundary_layer1D_scale2.png"><img alt="_images/boundary_layer1D_scale2.png" src="_images/boundary_layer1D_scale2.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text"><em>Solution of scaled problem where the length scale depends on the Peclet number</em></span></p>
 </div>
@@ -273,11 +277,12 @@ expresses that the terms <span class="math">\(\bar u'\)</span> and <span class="
 equal and of size around unity.</p>
 <span class="target" id="index-1"></span></div>
 <div class="section" id="convection-diffusion-with-a-force-term">
-<span id="id1"></span><h2>Convection-diffusion with a force term<a class="headerlink" href="#convection-diffusion-with-a-force-term" title="Permalink to this headline">¶</a></h2>
+<span id="scale-convdiff-f"></span><span id="index-2"></span><h2>Convection-diffusion with a force term<a class="headerlink" href="#convection-diffusion-with-a-force-term" title="Permalink to this headline">¶</a></h2>
 <p>Let us add a force term <span class="math">\(f(\boldsymbol{x},t)\)</span> to the convection-diffusion equation :</p>
-<div class="math" id="equation-scale:convdiff:pde2">
-<span id="eq-scale-convdiff-pde2"></span><span class="eqno">(5)</span>\[     \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
-     {\alpha}\nabla^2 u + f{\thinspace .}\]</div>
+<div class="math" id="eq-scale-convdiff-pde2">
+\[\tag{169}
+\frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
+    {\alpha}\nabla^2 u + f{\thinspace .}\]</div>
 <p>The scaled version reads</p>
 <div class="math">
 \[\frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\boldsymbol{v}\cdot\bar\nabla \bar u =
@@ -387,7 +392,7 @@ results as found in the sections on the wave and diffusion PDEs.</p>
     <a href="http://cbc.simula.no"><img src="_static/cbc_banner.png" width="100%"><a>
     <br />
     <br />
-      &copy;2015, Hans Petter Langtangen. Released under CC Attribution 4.0 license.
+      &copy;2015, Geir K. Pedersen, Hans Petter Langtangen. Released under CC Attribution 4.0 license.
   </div>
 </div>
 

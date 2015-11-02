@@ -10,7 +10,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-[**hpl 4**: Include more figures.]
+[**hpl 10**: Include more figures.]
 
 .. _sec:scale:vib:undamped:
 
@@ -23,9 +23,9 @@ reads
 .. _Eq:sec:scale:vib:undamped:model:
 
 .. math::
-   :label: sec:scale:vib:undamped:model
-        
-        mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V{\thinspace .}
+
+    \tag{64}
+    mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V{\thinspace .}
         
         
 
@@ -46,7 +46,7 @@ and is connected to a spring that exerts a force :math:`-ku` on the body.
 The first technical steps of scaling
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The problem :eq:`sec:scale:vib:undamped:model` has one independent
+The problem :ref:`(64) <Eq:sec:scale:vib:undamped:model>` has one independent
 variable :math:`t` and one dependent variable :math:`u`. We introduce dimensionless
 versions of these variables:
 
@@ -54,7 +54,7 @@ versions of these variables:
          \bar u =\frac{u}{u_c},\quad\bar t = \frac{t}{t_c},
 
 where :math:`u_c` and :math:`t_c` are characteristic values of :math:`u` and :math:`t`.
-Inserted in :eq:`sec:scale:vib:undamped:model`, we get
+Inserted in :ref:`(64) <Eq:sec:scale:vib:undamped:model>`, we get
 
 .. math::
          m\frac{u_c}{t_c^2}\frac{d^2\bar u}{d\bar t^2} + ku_c\bar u = 0,
@@ -65,9 +65,9 @@ resulting in
 .. _Eq:sec:scale:vib:undamped:model:scaled0:
 
 .. math::
-   :label: sec:scale:vib:undamped:model:scaled0
-        
-        \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u = 0,
+
+    \tag{65}
+    \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u = 0,
         \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}{\thinspace .}
         
         
@@ -83,7 +83,7 @@ The exact solution          (1)
 To better see what the proper scales of :math:`u` and :math:`t` are, we can look
 into the analytical solution of this problem.
 Although the exact solution of
-:eq:`sec:scale:vib:undamped:model` is quite straightforward to calculate
+:ref:`(64) <Eq:sec:scale:vib:undamped:model>` is quite straightforward to calculate
 by hand, we take the opportunity to make use of SymPy to
 find :math:`u(t)`. The use of SymPy can later be generalized to vibration
 ODEs that are harder to solve by hand.
@@ -184,7 +184,7 @@ Discussion of the time scale          (2)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 What is an appropriate time scale? Looking at
-:eq:`sec:scale:vib:undamped:model:scaled0` and arguing that
+:ref:`(65) <Eq:sec:scale:vib:undamped:model:scaled0>` and arguing that
 :math:`\bar u''` and :math:`\bar u` both should be around unity in size, the
 coefficient :math:`t_c^2k/m` must equal unity, implying that :math:`t_c=\sqrt{m/k}`.
 Also from the analytical solution we see that the solution goes like the
@@ -200,9 +200,9 @@ With :math:`u_c=I` and :math:`t_c=\sqrt{m/k}` we get the scaled model
 .. _Eq:sec:scale:vib:undamped:model:scaled1:
 
 .. math::
-   :label: sec:scale:vib:undamped:model:scaled1
-        
-        \frac{d^2\bar u}{d\bar t^2} + \bar u = 0,
+
+    \tag{66}
+    \frac{d^2\bar u}{d\bar t^2} + \bar u = 0,
         \quad \bar u(0)=1,\ \bar u'(0)=\alpha,
         
         
@@ -221,9 +221,9 @@ The unscaled solution is recovered as
 .. _Eq:_auto13:
 
 .. math::
-   :label: _auto13
-        
-        u(t) = I\bar u(\sqrt{k/m}\bar t){\thinspace .}
+
+    \tag{67}
+    u(t) = I\bar u(\sqrt{k/m}\bar t){\thinspace .}
         
         
 
@@ -246,9 +246,9 @@ we get the alternative model
 .. _Eq:sec:scale:vib:undamped:model:scaled2:
 
 .. math::
-   :label: sec:scale:vib:undamped:model:scaled2
-        
-        \frac{d^2\bar u}{d\bar t^2} + 4\pi^2 \bar u = 0,
+
+    \tag{68}
+    \frac{d^2\bar u}{d\bar t^2} + 4\pi^2 \bar u = 0,
         \quad \bar u(0)=\alpha^{-1},\ \bar u'(0)=2\pi{\thinspace .}
         
         
@@ -258,9 +258,9 @@ The unscaled solution is in this case recovered by
 .. _Eq:_auto14:
 
 .. math::
-   :label: _auto14
-        
-        u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t){\thinspace .}
+
+    \tag{69}
+    u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t){\thinspace .}
         
         
 
@@ -296,7 +296,7 @@ Undamped vibrations with constant forcing
 -----------------------------------------
 
 For vertical vibrations in the gravity field, the model
-:eq:`sec:scale:vib:undamped:model` must also take the gravity force
+:ref:`(64) <Eq:sec:scale:vib:undamped:model>` must also take the gravity force
 :math:`-mg` into account:
 
 .. math::
@@ -341,30 +341,31 @@ Undamped vibrations with time-dependent forcing
 -----------------------------------------------
 
 Now we add a transient forcing term :math:`F(t)` to the model
-:eq:`sec:scale:vib:undamped:model`:
+:ref:`(64) <Eq:sec:scale:vib:undamped:model>`:
 
 .. _Eq:sec:scale:vib:undamped:F:model:
 
 .. math::
-   :label: sec:scale:vib:undamped:F:model
-        
-        mu'' + ku = F(t),\quad u(0)=I,\ u'(0)=V{\thinspace .}
+
+    \tag{70}
+    mu'' + ku = F(t),\quad u(0)=I,\ u'(0)=V{\thinspace .}
         
         
 
-Take the forcing to be oscillating
+Take the forcing to be oscillating:
 
 .. math::
          F(t) = A\cos(\psi t){\thinspace .}
 
-The technical steps of the scaling are still the same,
+The technical steps of the scaling are still the same, with the
+intermediate result
 
 .. _Eq:sec:scale:vib:undamped:F:model:scaled0:
 
 .. math::
-   :label: sec:scale:vib:undamped:F:model:scaled0
-        
-        \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u =
+
+    \tag{71}
+    \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u =
         \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
         \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}{\thinspace .}
         
@@ -381,7 +382,9 @@ Investigating scales via analytical solutions
 
 We may look into the exact solution to see what the scales are.  We
 continue the SymPy session from the previous section and perform much
-of the same steps. Note that we use ``w`` for :math:`\omega = \sqrt{k/m}`.
+of the same steps. Note that we use ``w`` for :math:`\omega = \sqrt{k/m}`
+in the computer code (to obtain a more direct visual counterpart to
+:math:`\omega`).
 SymPy may get confused when coefficients in differential equations
 contain several symbols. We therefore rewrite the equation with
 at most one symbol in each coefficient.
@@ -455,9 +458,9 @@ the difference in frequency :math:`(\psi - \omega)/2`:
 .. _Eq:sec:scale:vib:undamped:F:model:sinsin:
 
 .. math::
-   :label: sec:scale:vib:undamped:F:model:sinsin
-        
-        u(t) = \frac{A}{m(\omega^2 - \psi^2)} 2
+
+    \tag{72}
+    u(t) = \frac{A}{m(\omega^2 - \psi^2)} 2
         \sin\left(\frac{\psi - \omega}{2}t\right)
         \sin\left(\frac{\psi + \omega}{2}t\right),
         
@@ -466,7 +469,7 @@ the difference in frequency :math:`(\psi - \omega)/2`:
 showing that there is a signal with frequency :math:`(\psi + \omega)/2`
 whose amplitude has a (much) slower frequency
 :math:`(\psi - \omega)/2`. Figure :ref:`sec:scale:vib:fig:envelope` shows
-an example how such a signal might look like.
+an example on such a signal.
 
 .. _sec:scale:vib:fig:envelope:
 
@@ -475,33 +478,32 @@ an example how such a signal might look like.
 
    *Signal with frequency 3.1 and envelope frequency 0.2*
 
-[**hpl 5**: Read chapter 2 so far...]
-
 The displacement and time scales
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A characteristic displacement can in the latter special case
 be taken as :math:`u_c= A/(m(\omega^2 - \psi^2))`. This is also a relevant choice
 in the more general case :math:`I\neq0, V\neq 0`, unless :math:`I` or :math:`V`
-is so large that it dominates the amplitude
+is so large that it dominates over the amplitude
 caused by the forcing. With :math:`u_c= A/(m(\omega^2 - \psi^2))` we also
 have three special cases: :math:`\omega \ll \psi`, :math:`\omega \gg\psi`, and
 :math:`\psi \sim \omega`. In the latter case we need
 :math:`u_c= A/(m(\omega^2 - \psi^2))` if we want :math:`|u|\leq 1`. When
 :math:`\omega` and :math:`\psi` are significantly different, we may choose one
-of them, say :math:`\omega`, and :math:`u_c=A/k`. This is also the relevant scale
+of them and neglect the smaller. Choosing :math:`\omega` means :math:`u_c=A/k`,
+which is the relevant scale
 if :math:`\omega\gg\psi`. In the opposite case, :math:`\omega\ll\psi`,
 :math:`u_c=A/(m\psi^2)`.
 
 The time scale is dominated by the fastest oscillations, which are
 of frequency :math:`\psi` or :math:`\omega` when these are close and the largest
-of them when they are distant. In any case, we might choose
+of them when they are distant. In any case, we set
 :math:`t_c=1/\max(\psi,\omega)`.
 
 Finding the displacement scale from the differential equation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Going back to :eq:`sec:scale:vib:undamped:F:model:scaled0`, we
+Going back to :ref:`(71) <Eq:sec:scale:vib:undamped:F:model:scaled0>`, we
 may demand that all the three terms in the differential equation
 are of size unity. This leads to :math:`t_c=\sqrt{m/k}`
 and :math:`u_c=At_c^2/m = A/k`. The formula for :math:`u_c` is a kind of measure
@@ -509,7 +511,7 @@ of the ratio of the
 forcing and the spring force (the dimensionless number
 :math:`A/(ku_c)` would be this ratio).
 
-Looking at :eq:`sec:scale:vib:undamped:F:model:sinsin`, we see
+Looking at :ref:`(72) <Eq:sec:scale:vib:undamped:F:model:sinsin>`, we see
 that if :math:`\psi\ll\omega`, the amplitude can be approximated
 by :math:`A/(m\omega^2)=A/k`, showing that the scale :math:`u_c=A/k` is
 relevant for small excitation frequency :math:`\psi` compared to
@@ -518,16 +520,17 @@ the free vibration frequency :math:`\omega`.
 Scaling with free vibrations as time scale
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-We first choose the time scale based on the free oscillations
+The next step is to work out the dimensionless ODE for the chosen scales.
+We first select the time scale based on the free oscillations
 with frequency :math:`\omega`, i.e., :math:`t_c=1/\omega`. Inserting the expression in
-:eq:`sec:scale:vib:undamped:F:model:scaled0` results in
+:ref:`(71) <Eq:sec:scale:vib:undamped:F:model:scaled0>` results in
 
 .. _Eq:sec:scale:vib:undamped:F:model:scaled2:
 
 .. math::
-   :label: sec:scale:vib:undamped:F:model:scaled2
-        
-        \frac{d^2\bar u}{d\bar t^2} + \bar u =
+
+    \tag{73}
+    \frac{d^2\bar u}{d\bar t^2} + \bar u =
         \gamma
         \cos(\delta\bar t),
         \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta{\thinspace .}
@@ -539,36 +542,36 @@ Here we have four dimensionless variables
 .. _Eq:_auto15:
 
 .. math::
-   :label: _auto15
-        
-        \alpha = \frac{I}{u_c},
+
+    \tag{74}
+    \alpha = \frac{I}{u_c},
         
         
 
 .. _Eq:_auto16:
 
 .. math::
-   :label: _auto16
-          
-        \beta  = \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},
+
+    \tag{75}
+    \beta  = \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},
         
         
 
 .. _Eq:_auto17:
 
 .. math::
-   :label: _auto17
-          
-        \gamma = \frac{t_c^2 A}{mu_c} = frac{A}{ku_c},
+
+    \tag{76}
+    \gamma = \frac{t_c^2 A}{mu_c} = \frac{A}{ku_c},
         
         
 
 .. _Eq:_auto18:
 
 .. math::
-   :label: _auto18
-          
-        \delta = \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}{\thinspace .}
+
+    \tag{77}
+    \delta = \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}{\thinspace .}
         
         
 
@@ -591,36 +594,9 @@ physical effects:
 Software          (5)
 ~~~~~~~~~~~~~~~~~~~~~
 
-Any solver for :eq:`sec:scale:vib:undamped:F:model:scaled0`
-can be used for :eq:`sec:scale:vib:undamped:F:model:scaled2`.
-In particular, we may use the ``solver`` function in the
-file `vib.py <http://tinyurl.com/nm5587k/vib/vib.py>`__:
-
-.. code-block:: python
-
-        def solver(I, V, m, b, s, F, dt, T, damping='linear'):
-
-for solving
-
-.. math::
-         mu'' + f(u') + s(u) = F(t),\quad u(0)=I,\ u'(0)=V,\ t\in (0,T],
-
-with time steps ``dt``. For ``damping='linear'``, we have :math:`f(u')=bu'`. The
-other value is ``'quadratic'``, meaning :math:`f(u')=b|u'|u'`.
-Given :math:`\alpha`, :math:`\beta`, :math:`\gamma`, and :math:`\delta`,
-and appropriate call is
-
-.. code-block:: python
-
-        u, t = solver(I=alpha, V=beta, m=1, b=0,
-                      s=lambda u: u, F=lambda t: gamma*cos(delta*t),
-        	      dt=2*pi/n, T=2*pi*P)
-
-where ``n`` is the number intervals per period and ``P`` is the number
-of periods to be simulated.
-
-We way wrap this call in a ``solver_scaled`` function as we did in
-the section :ref:`sec:scale:decay:prog`, but this is done in
+Any solver for :ref:`(71) <Eq:sec:scale:vib:undamped:F:model:scaled0>`
+can be used for :ref:`(73) <Eq:sec:scale:vib:undamped:F:model:scaled2>`.
+More details are provided at the end of
 the section :ref:`sec:scale:vib:damped:F`.
 
 Choice of :math:`u_c` close to resonance
@@ -655,7 +631,7 @@ forcing, but the state close to resonance brings the amplitude up to
 about unity, see the result of numerical simulations with :math:`\delta=0.99` in
 Figure :ref:`sec:scale:vib:fig:Fcos_b0:1`.
 Neglecting :math:`\alpha`,
-the solution is given by :eq:`sec:scale:vib:undamped:F:model:sinsin`,
+the solution is given by :ref:`(72) <Eq:sec:scale:vib:undamped:F:model:sinsin>`,
 which here means :math:`A=1-\delta^2`, :math:`m=1`, :math:`\omega=1`, :math:`\psi=\delta`:
 
 .. math::
@@ -663,7 +639,7 @@ which here means :math:`A=1-\delta^2`, :math:`m=1`, :math:`\omega=1`, :math:`\ps
 
 Note that this is a problem which demands very high accuracy in the
 numerical calculations. Using 20 time steps per period gives a
-significant phase error and an amplitude of about 1.4. We used
+significant angular frequency error and an amplitude of about 1.4. We used
 160 steps per period for the results in
 Figure :ref:`sec:scale:vib:fig:Fcos_b0:1`.
 
@@ -678,7 +654,7 @@ Unit size of all terms in the ODE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Using the displacement scale :math:`u_c=A/k` leads to
-:eq:`sec:scale:vib:undamped:F:model:scaled2` with
+:ref:`(73) <Eq:sec:scale:vib:undamped:F:model:scaled2>` with
 
 .. math::
         
@@ -711,16 +687,16 @@ Choice of :math:`u_c` when :math:`\psi\gg\omega`
 Finally, we may look at the case where :math:`\psi\gg\omega` such that
 :math:`u_c=A/(m\psi^2)` is a relevant scale (i.e., omitting :math:`\omega^2` compared to
 :math:`\psi^2` in the denominator), but in this case we should
-use :math:`t_c=1/\psi` since the variations in the force are much greater
-than in the free vibrations of the system.
+use :math:`t_c=1/\psi` since the force varies much faster than the
+free vibrations of the system.
 This choice of :math:`t_c` changes the scaled ODE to
 
 .. _Eq:sec:scale:vib:undamped:F:model:scaled6:
 
 .. math::
-   :label: sec:scale:vib:undamped:F:model:scaled6
-        
-        \frac{d^2\bar u}{d\bar t^2} + \delta^{-2}\bar u =
+
+    \tag{78}
+    \frac{d^2\bar u}{d\bar t^2} + \delta^{-2}\bar u =
         \gamma
         \cos(\bar t),
         \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
@@ -742,8 +718,8 @@ In the regime :math:`\psi\gg\omega`, :math:`\delta\gg 1`, thus making :math:`\al
 However, if :math:`\alpha` and/or :math:`\beta` is large,
 the initial condition dominates over the forcing, and will also dominate
 the amplitude of :math:`u`, thereby making the scaling of :math:`u` inappropriate.
-In case :math:`I=V=0` so that :math:`\alpha=\beta=`,
-:eq:`sec:scale:vib:undamped:F:model:sinsin` predicts
+In case :math:`I=V=0` so that :math:`\alpha=\beta=0`,
+:ref:`(72) <Eq:sec:scale:vib:undamped:F:model:sinsin>` predicts
 (:math:`A=m=1`, :math:`\omega=\delta^{-1}`, :math:`\psi=1`)
 
 .. math::
@@ -752,8 +728,8 @@ In case :math:`I=V=0` so that :math:`\alpha=\beta=`,
         \sin\left(\frac{1}{2}(1 +\delta^{-1})\bar t\right),
         
 
-which has an amplitude about :math:`2` for :math:`\delta\gg 1`, i.e.,
-very small amplitude. Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` shows
+which has an amplitude about :math:`2` for :math:`\delta\gg 1`.
+Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` shows
 numerical simulations with 160 time steps per period of :math:`F(t)`.
 
 .. _sec:scale:vib:fig:Fcos_b0:3:
@@ -766,7 +742,7 @@ numerical simulations with 160 time steps per period of :math:`F(t)`.
 With :math:`\alpha=0.05\delta^2=5`, we get a significant contribution from
 the free vibrations (the homogeneous solution of the ODE) as
 shown in Figure :ref:`sec:scale:vib:fig:Fcos_b0:4`. For larger :math:`\alpha`
-values, one must base
+values, one must base :math:`u_c` on :math:`I` instead.
 
 .. _sec:scale:vib:fig:Fcos_b0:4:
 
@@ -783,9 +759,9 @@ Choosing :math:`u_c=I` gives
 .. _Eq:sec:scale:vib:undamped:F:model:scaled5:
 
 .. math::
-   :label: sec:scale:vib:undamped:F:model:scaled5
-        
-        \frac{d^2\bar u}{d\bar t^2} + \bar u =
+
+    \tag{79}
+    \frac{d^2\bar u}{d\bar t^2} + \bar u =
         \gamma\cos(\delta\bar t),
         \quad \bar u(0)=1,\ \bar u'(0)=\beta,
         
@@ -796,10 +772,18 @@ with
 .. _Eq:_auto19:
 
 .. math::
-   :label: _auto19
+
+    \tag{80}
+    \beta  = \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt\frac{{m}{k}},
         
-        \beta  = \frac{V}{I}\sqrt\frac{{m}{k}} = \frac{Vt_c}{u_c},
-        \gamma  = \frac{A}{kI} = \frac{tc^2A}{mu_c} = \frac{A}{ku_c}{\thinspace .}
+        
+
+.. _Eq:_auto20:
+
+.. math::
+
+    \tag{81}
+    \gamma  = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} {\thinspace .}
         
         
 
@@ -815,20 +799,31 @@ We now introduce a linear damping force :math:`bu'(t)` in the equation of motion
 .. _Eq:sec:scale:vib:damped:F:model:
 
 .. math::
-   :label: sec:scale:vib:damped:F:model
-        
-        mu'' + bu' + ku = A\cos(\psi t),\quad u(0)=I,\ u'(0)=V{\thinspace .}
+
+    \tag{82}
+    mu'' + bu' + ku = A\cos(\psi t),\quad u(0)=I,\ u'(0)=V{\thinspace .}
         
         
 
-Scaling results in
+Figure :ref:`sec:scale:vib:damped:sketch` shows a typical
+one-degree-of-freedom mechanical system with a linear dashpot, representing
+the damper (:math:`bu'`), a linear spring (:math:`ku`), and an external force (:math:`F`).
+
+.. _sec:scale:vib:damped:sketch:
+
+.. figure:: oscillator.png
+   :width: 500
+
+   *Oscillating body with external force, attached to a spring and damper*
+
+The standard scaling procedure results in
 
 .. _Eq:sec:scale:vib:damped:F:model:scaled0:
 
 .. math::
-   :label: sec:scale:vib:damped:F:model:scaled0
-        
-        \frac{d^2\bar u}{d\bar t^2} + \frac{t_c b}{m}\frac{d\bar u}{d\bar t}
+
+    \tag{83}
+    \frac{d^2\bar u}{d\bar t^2} + \frac{t_c b}{m}\frac{d\bar u}{d\bar t}
         + \frac{t_c^2 k}{m}\bar u =
         \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
         \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}{\thinspace .}
@@ -838,10 +833,11 @@ Scaling results in
 The exact solution          (2)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-To choose scales, it is a great advantage to look into exact solutions.
-Using SymPy to solve :eq:`sec:scale:vib:damped:F:model` turns out
+To choose scales, it is (as always)
+a great advantage to look into exact solutions.
+Using SymPy to solve :ref:`(82) <Eq:sec:scale:vib:damped:F:model>` turns out
 to be difficult, because with damping, we have three solutions
-of :eq:`sec:scale:vib:damped:F:model`, and for vibrations we are
+of :ref:`(82) <Eq:sec:scale:vib:damped:F:model>`, and for vibrations we are
 only interested in one of them, the one with damped oscillations.
 So we have to drop ``dsolve`` and perform manual steps, either by
 hand or with the aid of SymPy. The solution is composed of a homogeneous
@@ -852,8 +848,8 @@ damped oscillations (requiring :math:`b < 2\sqrt{mk}`) can be
 found by the following code. We have divided the differential equation
 by :math:`m` and introduced :math:`B=\frac{1}{2}b/m` and let ``A1`` represent
 :math:`A/m` to simplify expressions and
-help SymPy with less symbols in the equation. Without these simplifications,
-SymPy stalls in the computations due to too many symbols in the equation.
+help SymPy with less symbols in the equation (without these simplifications,
+SymPy stalls in the computations due to too many symbols in the equation).
 
 .. code-block:: python
 
@@ -900,9 +896,20 @@ where :math:`C_1` and :math:`C_2` must be determined by the initial conditions l
 It is wise to check that :math:`u_h` is indeed a solution of the homogeneous
 differential equation:
 
+.. index:: assert
+
 .. code-block:: python
 
         assert simplify(ode(u_h)) == 0
+
+We have previously just printed the residuals of the ODE and initial
+conditions after inserting the solution, but it is better in a code to
+let the programming language test that the residuals are symbolically zero.
+This is achieved using the ``assert`` statement in Python. The argument is
+a boolean expression, and if the expression evaluates to ``False``,
+an ``AssertionError`` is raised and the program aborts (otherwise ``assert``
+runs silently for a ``True`` boolean expression). Hereafter, we will use
+``assert`` for consistency checks in computer code.
 
 The ansatz for the particular solution :math:`u_p` is
 
@@ -985,39 +992,31 @@ manually ordered to something like the following:
 
 The most important feature of this solution is that there are
 two time scales with frequencies :math:`\psi` and :math:`\sqrt{\omega^2 - B^2}`,
-but the latter appears in terms that decay as :math:`e^{Bt}` in time.
+but the latter appears in terms that decay as :math:`e^{-Bt}` in time.
 The attention is usually on longer periods of time, so in that
 case the solution simplifies to
 
-.. _Eq:_auto20:
-
 .. math::
-   :label: _auto20
         
         u = \frac{Am^{-1}}{4 B^{2} \psi^{2} +
         \Omega^{2}} \left(2 B \psi
         \sin{\left (\psi t \right )} - \Omega\cos{\left (\psi t \right )}\right)
         \nonumber
         
-        
-
-.. _Eq:_auto21:
 
 .. math::
-   :label: _auto21
           
         = \frac{A}{m}\frac{1}{\sqrt{4B^2\psi^2 + \Omega^2}}\cos(\psi t + \phi)
         \frac{(\psi\omega)^{-1}}{(\psi\omega)^{-1}}
         \nonumber
         
-        
 
 .. _Eq:sec:scale:vib:damped:F:model:u_forced0:
 
 .. math::
-   :label: sec:scale:vib:damped:F:model:u_forced0
-          
-         = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
+
+    \tag{84}
+    = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
         \frac{1}{2}}\cos(\psi t + \phi),
         
         
@@ -1035,15 +1034,15 @@ and
 
 :math:`Q` is commonly called *quality factor* and :math:`\phi` is the
 *phase shift*. Dividing
-:eq:`sec:scale:vib:damped:F:model:u_forced0` by :math:`A/k`, which is a common
+:ref:`(84) <Eq:sec:scale:vib:damped:F:model:u_forced0>` by :math:`A/k`, which is a common
 scale for :math:`u`, gives the dimensionless relation
 
 .. _Eq:sec:scale:vib:damped:F:model:u_forced:
 
 .. math::
-   :label: sec:scale:vib:damped:F:model:u_forced
-        
-        \frac{u}{A/k} = \frac{Q}{\delta} R(Q,\delta)^{\frac{1}{2}}\cos(\psi t + \phi),
+
+    \tag{85}
+    \frac{u}{A/k} = \frac{Q}{\delta} R(Q,\delta)^{\frac{1}{2}}\cos(\psi t + \phi),
         \quad
         R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}{\thinspace .}
         
@@ -1053,26 +1052,28 @@ Choosing scales
 ~~~~~~~~~~~~~~~
 
 Much of the discussion about scales in the previous sections are
-relevant also with damping is included.
-Although the oscillations with frequency :math:`\sqrt{\omega^2-B^2}`
-die out for :math:`t\gg B^{-1}`, we start with using this frequency for
-the time scale.
-A highly relevant assumption for engineering applications of
-:eq:`sec:scale:vib:damped:F:model` is that the damping is small.
-Therefore, :math:`\sqrt{\omega^2-B^2}` is close to :math:`\omega` and we
-simply apply :math:`t_c=1/\omega` as before.
+relevant also when damping is included.  Although the oscillations
+with frequency :math:`\sqrt{\omega^2-B^2}` die out for :math:`t\gg B^{-1}`, we
+start with using this frequency for the time scale.  A highly relevant
+assumption for engineering applications of
+:ref:`(82) <Eq:sec:scale:vib:damped:F:model>` is that the damping is small.
+Therefore, :math:`\sqrt{\omega^2-B^2}` is close to :math:`\omega` and we simply
+apply :math:`t_c=1/\omega` as before.  [**hpl 11**: Why? According to :ref:`(84) <Eq:sec:scale:vib:damped:F:model:u_forced0>`, no :math:`\omega` is of interest for the time variation!]
 
 The coefficient in front of the :math:`\bar u'` term then becomes
 
 .. math::
          \frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}{\thinspace .}
 
+The rest of the ODE is given in the previous section, and the particular
+formulas depend on the choices of :math:`t_c` and :math:`u_c`.
+
 Choice of :math:`u_c` at resonance
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The relevant scale for :math:`u_c` at or nearby resonance (:math:`\psi = \omega`)
 becomes different from the previous section, since with damping,
-the maximum amplitude a finite value. For :math:`t\gg 1/B` when the
+the maximum amplitude is a finite value. For :math:`t\gg B^{-1}` when the
 :math:`\sin\psi t` term is dominating, we have for :math:`\psi = \omega`:
 
 .. math::
@@ -1100,9 +1101,9 @@ The differential equation on dimensionless form becomes
 .. _Eq:sec:scale:vib:damped:F:model:scaled1:
 
 .. math::
-   :label: sec:scale:vib:damped:F:model:scaled1
-        
-        \frac{d^2\bar u}{d\bar t^2} + Q^{-1}\frac{d\bar u}{d\bar t} + \bar u =
+
+    \tag{86}
+    \frac{d^2\bar u}{d\bar t^2} + Q^{-1}\frac{d\bar u}{d\bar t} + \bar u =
         \gamma
         \cos(\delta\bar t),
         \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
@@ -1113,52 +1114,52 @@ with
 
 .. \frac{A}{b\omega}
 
+.. _Eq:_auto21:
+
+.. math::
+
+    \tag{87}
+    \alpha = \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},
+        
+        
+
 .. _Eq:_auto22:
 
 .. math::
-   :label: _auto22
-        
-        \alpha = \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},
+
+    \tag{88}
+    \beta  = \frac{Vt_c}{u_c} = \frac{Vb}{A},
         
         
 
 .. _Eq:_auto23:
 
 .. math::
-   :label: _auto23
-          
-        \beta  = \frac{Vt_c}{u_c} = \frac{Vb}{A},
+
+    \tag{89}
+    \gamma = \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},
         
         
 
 .. _Eq:_auto24:
 
 .. math::
-   :label: _auto24
-          
-        \gamma = \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},
-        
-        
 
-.. _Eq:_auto25:
-
-.. math::
-   :label: _auto25
-          
-        \delta = \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1{\thinspace .}
+    \tag{90}
+    \delta = \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1{\thinspace .}
         
         
 
 Choice of :math:`u_c` when :math:`\omega\gg\psi`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-In the limit :math:`\omega\gg\psi` and :math:`t\gg 1/B`,
+In the limit :math:`\omega\gg\psi` and :math:`t\gg B^{-1}`,
 
 .. math::
          u \approx \frac{A}{m\omega^2}\cos\psi t = \frac{A}{k}\cos\psi t,
 
 showing that :math:`u_c=A/k` is an appropriate displacement scale.
-(Alternatively, we get this scale also from :math:`\gamma=1` in the ODE.)
+(Alternatively, we get this scale also from demanding :math:`\gamma=1` in the ODE.)
 The dimensionless numbers :math:`\alpha`, :math:`\beta`, and :math:`\delta` are as
 for the forced vibrations without damping.
 
@@ -1166,7 +1167,70 @@ Choice of :math:`u_c` when :math:`\omega\ll\psi`
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the limit :math:`\omega\ll\psi`, we should base :math:`t_c` on the rapid
-variations in the excitation, :math:`t_c=1/\psi`.
+variations in the excitation: :math:`t_c=1/\psi`.
+
+Software          (6)
+~~~~~~~~~~~~~~~~~~~~~
+
+It is easy to reuse a solver for a general vibration problem also
+in the dimensionless case.
+In particular, we may use the ``solver`` function in the
+file `vib.py <http://tinyurl.com/o8pb3yy/vib.py>`__:
+
+.. code-block:: python
+
+        def solver(I, V, m, b, s, F, dt, T, damping='linear'):
+
+for solving the ODE problem
+
+.. math::
+         mu'' + f(u') + s(u) = F(t),\quad u(0)=I,\ u'(0)=V,\ t\in (0,T],
+
+with time steps ``dt``. With ``damping='linear'``, we have :math:`f(u')=bu'`, while the
+other value is ``'quadratic'``, meaning :math:`f(u')=b|u'|u'`.
+Given the dimensionless numbers :math:`\alpha`, :math:`\beta`, :math:`\gamma`, :math:`\delta`,
+and :math:`Q`,
+an appropriate call for solving :ref:`(73) <Eq:sec:scale:vib:undamped:F:model:scaled2>` is
+
+.. code-block:: python
+
+        u, t = solver(I=alpha, V=beta, m=1, b=1.0/Q,
+                      s=lambda u: u, F=lambda t: gamma*cos(delta*t),
+        	      dt=2*pi/n, T=2*pi*P)
+
+where ``n`` is the number intervals per period and ``P`` is the number
+of periods to be simulated.
+We way wrap this call in a ``solver_scaled`` function and wrap it furthermore
+with ``joblib`` to avoid repeated calls,
+as we explained in
+the section :ref:`sec:scale:decay:prog`:
+
+.. code-block:: python
+
+        from vib import solver as solver_unscaled
+        
+        def solver_scaled(alpha, beta, gamma, delta, Q, T, dt):
+            """
+            Solve u'' + (1/Q)*u' + u = gamma*cos(delta*t),
+            u(0)=alpha, u'(1)=beta, for (0,T] with step dt.
+            """
+            print 'Computing the numerical solution'
+            from math import cos
+            return solver_unscaled(I=alpha, V=beta, m=1, b=1./Q,
+                                   s=lambda u: u,
+                                   F=lambda t: gamma*cos(delta*t),
+                                   dt=dt, T=T, damping='linear')
+        
+        import joblib
+        disk_memory = joblib.Memory(cachedir='temp')
+        solver_scaled = disk_memory.cache(solver_scaled)
+
+This code is found in `vib_scaled.py <http://tinyurl.com/o8pb3yy/vib_scaled.py>`__
+and features an application for running the scaled problem with
+options on the command-line for :math:`\alpha`, :math:`\beta`, :math:`\gamma`, :math:`\delta`,
+:math:`Q`, number of time steps per period, and number of periods (see
+the ``main`` function). It is an ideal application for exploring
+scaled vibration models.
 
 Oscillating electric circuits
 -----------------------------
@@ -1179,12 +1243,12 @@ The current :math:`I(t)` in a
 circuit with an inductor with inductance :math:`L`, a capacitor with
 capacitance :math:`C`, and overall resistance :math:`R`, obeys the equation
 
-.. _Eq:_auto26:
+.. _Eq:_auto25:
 
 .. math::
-   :label: _auto26
-        
-        \ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I = \dot V(t),
+
+    \tag{91}
+    \ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I = \dot V(t),
         
         
 
@@ -1203,7 +1267,7 @@ and get
 Here, we have scaled :math:`V(t)` according to
 
 .. math::
-         \bar V(bar t) = \frac{V(t_c\bar t)}{\max_t V(t)}{\thinspace .}
+         \bar V(\bar t) = \frac{V(t_c\bar t)}{\max_t V(t)}{\thinspace .}
 
 The time scale :math:`t_c` is chosen to make :math:`\ddot I` and :math:`I/(LC)` balance,
 :math:`t_c = \sqrt{LC}`.
@@ -1212,20 +1276,21 @@ means :math:`I_c = LCV_c`.
 With
 
 .. math::
-         \alpha = \frac{R}{2}\sqrt{\frac{C}{L}},
+         Q^{-1} = R\sqrt{\frac{C}{L}},
 
 we get the scaled equation
 
-.. _Eq:_auto27:
+.. _Eq:_auto26:
 
 .. math::
-   :label: _auto27
-        
-        \frac{d^2\bar I}{d\bar t^2} + 2\alpha\frac{d\bar I}{d\bar t}
-        + \bar I = \bar V(t){\thinspace .}
+
+    \tag{92}
+    \frac{d^2\bar I}{d\bar t^2} + Q^{-1}\frac{d\bar I}{d\bar t}
+        + \bar I = \bar V(t),
         
         
 
-Two additional dimensionless variables will arise from the initial
-conditions for :math:`I`.
+which is basically the same as we derived for mechanical vibrations.
+(Two additional dimensionless variables will arise from the initial
+conditions for :math:`I`, just as in the mechanics cases.)
 

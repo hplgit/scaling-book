@@ -77,17 +77,36 @@ The forthcoming text has the following goals.
  * Explain how to run a dimensionless model with software developed
    for the problem with dimensions.
 
-.. Topics not covered
 
+.. admonition:: What this book is and is not
 
-.. admonition:: Limited scope
-
-   Literature covering scaling and non-dimensionalization often also discuss
-   topics such as deriving functional relationships based on dimensional
-   reasoning, as well as dynamic similarity and use of dimensionless groups in
-   experimental investigations [Ref3]_ [Ref4]_.
-   These topics are not covered herein, because our focus is strictly
-   on making models based on differential equations dimensionless.
+   Books covering scaling and non-dimensionalization very often cover
+   topics not treated in the present book. One key topic is
+   dimensional analysis and the famous Buckingham Pi Theorem
+   [Ref04]_ [Ref05]_, which
+   can be used to derive the dimensionless numbers in a given problem
+   without the need for a detailed model with differential equations.
+   This is a strong of great
+   practical significance, especially when doing physical experiments.
+   However, as will be shown in this book, the dimensionless numbers in
+   a problem also naturally arise from scaling the differential equation(s).
+   Provided one has a model based on differential equation, there is
+   actually no need for classical dimensional analysis.
+   
+   Other classical topics closely related to scaling and non-dimensionalization
+   are analytical solution methods like perturbation techniques and
+   similarity solutions. These are not addressed in this book.
+   There are numerous texts on perturbation techniques, and these build
+   on an already scaled differential equation. Similarity solutions do not
+   fit within the present scope since these involve non-dimensional
+   combinations of the independent variables to derive new differential
+   equations that are easier to solve.
+   
+   Our scope is to scale differential
+   equations to simplify the setting of parameters in numerical simulations,
+   and at the same time understand more of the physics
+   through interpretation of the dimensionless numbers that automatically
+   arise from the scaling procedure.
 
 
 
@@ -103,9 +122,9 @@ problem
 .. _Eq:scale:decay:model:
 
 .. math::
-   :label: scale:decay:model
-        
-        u'(t) = -au(t),\quad u(0)=I,
+
+    \tag{2}
+    u'(t) = -au(t),\quad u(0)=I,
         
         
 
@@ -118,7 +137,7 @@ Example: Population dynamics
 
 The evolution of a population of humans, animals, cells, etc.,
 under unlimited access to resources, can be
-modeled by :eq:`scale:decay:model`. Then :math:`u` is the number of
+modeled by :ref:`(2) <Eq:scale:decay:model>`. Then :math:`u` is the number of
 individuals in the population, strictly speaking an integer, but well
 modeled by a real number in large populations.
 The parameter :math:`a` is the increase in the number of individuals per
@@ -127,8 +146,9 @@ time and per individual.
 Example: Decay of pressure with altitude
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The simple model :eq:`scale:decay:model` also governs the pressure
-in the atmosphere (under many assumptions). In this case :math:`u` is the
+The simple model :ref:`(2) <Eq:scale:decay:model>` also governs the pressure
+in the atmosphere (under many assumptions, such as an ideal gas in
+equilibrium). In this case :math:`u` is the
 pressure, measured in :math:`\hbox{Nm}^{-2}`; :math:`t` is the hight in meters;
 and :math:`a=M/(R^*T)`, where
 :math:`M` is the molar mass of the Earth's air (0.029 kg/mol),
@@ -160,9 +180,9 @@ We introduce a new dimensionless :math:`t`, called :math:`\bar t`, defined by
 .. _Eq:_auto1:
 
 .. math::
-   :label: _auto1
-        
-        \bar t = \frac{t}{t_c},
+
+    \tag{3}
+    \bar t = \frac{t}{t_c},
         
         
 
@@ -172,16 +192,16 @@ we introduce a dimensionless :math:`u`, named :math:`\bar u`, according to
 .. _Eq:_auto2:
 
 .. math::
-   :label: _auto2
-        
-        \bar u = \frac{u}{u_c},
+
+    \tag{4}
+    \bar u = \frac{u}{u_c},
         
         
 
 where :math:`u_c` is a constant *characteristic size* of :math:`u`. When :math:`u` has a specific
-interpretation, say when :eq:`scale:decay:model` models pressure
+interpretation, say when :ref:`(2) <Eq:scale:decay:model>` models pressure
 in an atmospheric layer, :math:`u_c` would be referred to as characteristic pressure.
-For a decaying population, :math:`u` may be a characteristic number of
+For a decaying population, :math:`u_c` may be a characteristic number of
 members in the population, e.g., the initial population :math:`I`.
 
 Step 3: Derive the model involving only dimensionless variables
@@ -189,7 +209,7 @@ Step 3: Derive the model involving only dimensionless variables
 
 The next task is to insert the new dimensionless variables in the
 governing mathematical model. That is, we replace :math:`t` by :math:`t_c\bar t`
-and :math:`u` by :math:`u_c\bar u` in :eq:`scale:decay:model`. The derivative
+and :math:`u` by :math:`u_c\bar u` in :ref:`(2) <Eq:scale:decay:model>`. The derivative
 with respect to :math:`\bar t` is derived as
 
 .. math::
@@ -198,21 +218,21 @@ with respect to :math:`\bar t` is derived as
         \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}{\thinspace .}
         
 
-The model :eq:`scale:decay:model` now becomes
+The model :ref:`(2) <Eq:scale:decay:model>` now becomes
 
 .. _Eq:scale:decay:model:scaled0:
 
 .. math::
-   :label: scale:decay:model:scaled0
-        
-        \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I{\thinspace .}
+
+    \tag{5}
+    \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I{\thinspace .}
         
         
 
 Step 4: Make each term dimensionless
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Equation :eq:`scale:decay:model:scaled0` still has terms with
+Equation :ref:`(5) <Eq:scale:decay:model:scaled0>` still has terms with
 dimensions. To make each term dimensionless, we usually divide by
 the coefficient in front of the term with the highest time derivative
 (but dividing by any coefficient in any term will do). The result is
@@ -220,9 +240,9 @@ the coefficient in front of the term with the highest time derivative
 .. _Eq:scale:decay:model:dimless0:
 
 .. math::
-   :label: scale:decay:model:dimless0
-        
-        \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
+
+    \tag{6}
+    \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
         {\thinspace .}
         
         
@@ -235,7 +255,7 @@ problem. Estimating such a time scale is certainly
 the most challenging part of the scaling procedure. There are different
 ways to reason. The first is to aim at a size of :math:`\bar u` and its derivatives
 that is of order unity. If :math:`u_c` is chosen such that :math:`|\bar u|` is
-of size unity, we see from :eq:`scale:decay:model:dimless0` that
+of size unity, we see from :ref:`(6) <Eq:scale:decay:model:dimless0>` that
 :math:`d\bar u/d\bar t` is of the size of :math:`\bar u` (i.e., unity)
 if we choose :math:`t_c = 1/a`.
 
@@ -269,8 +289,9 @@ As long as the factor is not an order of magnitude or more different,
 we do not pay attention to such small differences.
 Although :math:`t_c = a^{-1}\ln 2` is a fine time scale to be used in this
 problem, it leads to a scaled differential equation :math:`u'=-(\ln 2) u`,
-which is fine, but an unusual form. People tend to prefer :math:`u'=-u`,
-which arises from :math:`t_c=1/a`. We shall therefore use the latter
+which is fine, but an unusual form. People tend to prefer the simpler
+ODE :math:`u'=-u`,
+which arises from :math:`t_c=1/a`, and we shall therefore use this
 time scale.
 
 Regarding :math:`u_c`, we may look at the initial condition
@@ -285,9 +306,9 @@ With :math:`t_c=1/a` and :math:`u_c=I`, we have the final dimensionless model
 .. _Eq:scale:decay:model:dimless:
 
 .. math::
-   :label: scale:decay:model:dimless
-        
-        \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
+
+    \tag{7}
+    \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
         {\thinspace .}
         
         
@@ -297,18 +318,18 @@ This is a remarkable result in the sense that *all physical parameters*
 are removed from the model! Or more precisely, there are no physical input
 parameters to assign
 before using the model. In particular, numerical investigations of the original
-model :eq:`scale:decay:model` would need experiments with different
+model :ref:`(2) <Eq:scale:decay:model>` would need experiments with different
 :math:`a` and :math:`I` values, while numerical investigations of
-:eq:`scale:decay:model:dimless` can be limited to *a single run*! As soon
+:ref:`(7) <Eq:scale:decay:model:dimless>` can be limited to *a single run*! As soon
 as we have computed the curve :math:`\bar u(\bar t)`, we can find the
-solution :math:`u(t)` of :eq:`scale:decay:model` by
+solution :math:`u(t)` of :ref:`(2) <Eq:scale:decay:model>` by
 
 .. _Eq:scale:decay:u:dim:
 
 .. math::
-   :label: scale:decay:u:dim
-        
-        u(t) = u_c\bar u(t/t_c) = I\bar u(at)
+
+    \tag{8}
+    u(t) = u_c\bar u(t/t_c) = I\bar u(at)
         {\thinspace .}
         
         
@@ -318,7 +339,7 @@ This particular transformation actually means stretching the :math:`\bar t` and
 respectively.
 
 It is very common to drop the bars when the scaled problem has been
-derived and work further with :eq:`scale:decay:model:dimless` simply
+derived and work further with :ref:`(7) <Eq:scale:decay:model:dimless>` simply
 written as
 
 .. math::
@@ -327,24 +348,27 @@ written as
         {\thinspace .}
         
 
+Nevertheless, in this book we have decided to stick to bars for all
+dimensionless quantities.
+
 .. _sec:scale:decay:prog:
 
 Making software for utilizing the scaled model
 ----------------------------------------------
 
-Software for solving :eq:`scale:decay:model` could take advantage
-of the fact that only one simulation of :eq:`scale:decay:model:dimless`
+Software for solving :ref:`(2) <Eq:scale:decay:model>` could take advantage
+of the fact that only one simulation of :ref:`(7) <Eq:scale:decay:model:dimless>`
 is necessary. As soon as we have :math:`\bar u(\bar t)` accessible,
-a simple scaling :eq:`scale:decay:u:dim` computes the real :math:`u(t)`
+a simple scaling :ref:`(8) <Eq:scale:decay:u:dim>` computes the real :math:`u(t)`
 for any given input data :math:`a` and :math:`I`. Although the numerical computation of
-:math:`u(t)` from :eq:`scale:decay:model` is very fast in this simple model
-problem, using :eq:`scale:decay:u:dim` is very much faster than
+:math:`u(t)` from :ref:`(2) <Eq:scale:decay:model>` is very fast in this simple model
+problem, using :ref:`(8) <Eq:scale:decay:u:dim>` is very much faster than
 computing a full numerical solution in more complicated
 differential equation problems.
 
-We can compute with the dimensionless model :eq:`scale:decay:model:dimless`
-in two ways, either make a solver for :eq:`scale:decay:model:dimless`
-or reuse a solver for :eq:`scale:decay:model` with the parameters
+We can compute with the dimensionless model :ref:`(7) <Eq:scale:decay:model:dimless>`
+in two ways, either make a solver for :ref:`(7) <Eq:scale:decay:model:dimless>`
+or reuse a solver for :ref:`(2) <Eq:scale:decay:model>` with the parameters
 appropriately set (:math:`I=1`, :math:`a=1`).
 The latter approach has the advantage of giving us
 software that works both with a dimensionless model and a model
@@ -354,19 +378,22 @@ Software for the original problem with dimensions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We base our solver for
-:eq:`scale:decay:model:dimless` on a solver for :eq:`scale:decay:model`.
+:ref:`(7) <Eq:scale:decay:model:dimless>` on a solver for :ref:`(2) <Eq:scale:decay:model>`.
 Assume that we have some module ``decay.py`` that offers the following
 functions:
 
   * ``solver(I, a, T, dt, theta=0.5)`` for returning the solution arrays
-    ``u`` and ``t`` for :eq:`scale:decay:model` solved by the :math:`\theta` rule.
+    ``u`` and ``t`` for :ref:`(2) <Eq:scale:decay:model>` solved by the so-called
+    :math:`\theta` rule. This rule includes the Forward Euler scheme (:math:`\theta=0`),
+    the Backward Euler scheme (:math:`\theta=1`), or the Crank-Nicolson
+    (centered midpoint) scheme (:math:`\theta=\frac{1}{2}`).
 
   * ``read_command_line_argparse()`` for reading parameters in the problem
     from the command line and returning them: ``I``, ``a``, ``T``, ``theta`` (:math:`\theta`),
     and a list of :math:`\Delta t` values for time steps. (We shall only make
     use of the first :math:`\Delta t` value.)
 
-The basic statements for solving :eq:`scale:decay:model` are
+The basic statements for solving :ref:`(2) <Eq:scale:decay:model>` are
 then
 
 .. code-block:: python
@@ -383,7 +410,7 @@ The module `decay.py <http://tinyurl.com/o8pb3yy/decay.py>`__ is developed
 and explained in
 
 Section refaux{softeng1:basic:module} in
-the book `Finite Difference Computing with Exponential Decay Models <http://tinyurl.com/nclmcng/doc/pub/book>`__ [Ref5]_.
+the book `Finite Difference Computing with Exponential Decay Models <http://tinyurl.com/nclmcng/doc/pub/book>`__ [Ref06]_.
 
 To solve the dimensionless problem, just fix :math:`I=1` and :math:`a=1`:
 
@@ -396,10 +423,10 @@ Avoiding unnecessary computations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A key observation, as mentioned, is that we need to solve the problem
-:eq:`scale:decay:model:dimless` only once. All solutions
+:ref:`(7) <Eq:scale:decay:model:dimless>` only once. All solutions
 corresponding to different :math:`I` and :math:`a` values in the original physical
 problem can be recovered by scaling this single solution with formula
-:eq:`scale:decay:u:dim`.  We may therefore want to make software that
+:ref:`(8) <Eq:scale:decay:u:dim>`.  We may therefore want to make software that
 takes advantage of this fact. When requesting a solution, we see if it
 has already been computed and stored in a file, and if so, the data
 can be retrieved from file, otherwise we have to compute a new
@@ -580,9 +607,9 @@ form
 .. _Eq:scale:decay:model:g:
 
 .. math::
-   :label: scale:decay:model:g
-        
-        u'(t) = -au(t) + b,\quad u(0)=I
+
+    \tag{9}
+    u'(t) = -au(t) + b,\quad u(0)=I
         
         {\thinspace .}
         
@@ -593,9 +620,9 @@ is a spherical micro-organism falling in air,
 .. _Eq:scale:decay:model:g:spec:
 
 .. math::
-   :label: scale:decay:model:g:spec
-        
-        u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),
+
+    \tag{10}
+    u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),
         
         
 
@@ -667,7 +694,8 @@ of constant :math:`a` and :math:`b`:
            >>> print sol
            [log(I*a - b)/a]
    
-   The one solution that was found must then be substituted back in the
+   The one solution that was found (stored in a list!)
+   must then be substituted back in the
    expression ``u`` to yield the final solution:
    
    .. code-block:: python
@@ -698,7 +726,7 @@ Theory
 ~~~~~~
 
 The challenges in our scaling is to find the right :math:`u_c` and :math:`t_c`
-scales. From :eq:`scale:decay:model:g` we see that if :math:`u'\rightarrow 0`
+scales. From :ref:`(9) <Eq:scale:decay:model:g>` we see that if :math:`u'\rightarrow 0`
 as :math:`t\rightarrow\infty`, :math:`u` approaches the constant value :math:`b/a`. It can be
 convenient to let the scaled :math:`\bar u\rightarrow 1` as
 we approach the :math:`d\bar u/d\bar t = 0` state. This idea points to choosing
@@ -706,9 +734,9 @@ we approach the :math:`d\bar u/d\bar t = 0` state. This idea points to choosing
 .. _Eq:_auto3:
 
 .. math::
-   :label: _auto3
-        
-        u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
+
+    \tag{11}
+    u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
         {\thinspace .}
         
         
@@ -729,7 +757,7 @@ we approach the :math:`d\bar u/d\bar t = 0` state. This idea points to choosing
 .. index:: dimensionless number
 
 Inserting :math:`u = u_c\bar u = b\bar u/a` and :math:`t=t_c\bar t` in
-:eq:`scale:decay:model:g` leads to
+:ref:`(9) <Eq:scale:decay:model:g>` leads to
 
 .. math::
         
@@ -747,9 +775,9 @@ therefore choose
 .. _Eq:scale:decay:model:g:dimless:
 
 .. math::
-   :label: scale:decay:model:g:dimless
-        
-        \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,
+
+    \tag{12}
+    \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,
         
         
 
@@ -758,9 +786,9 @@ where :math:`\beta` is a dimensionless number,
 .. _Eq:_auto4:
 
 .. math::
-   :label: _auto4
-        
-        \beta = \frac{I}{u_c} = I\frac{a}{b},
+
+    \tag{13}
+    \beta = \frac{I}{u_c} = I\frac{a}{b},
         
         
 
@@ -772,21 +800,21 @@ the model. Many more examples on dimensionless parameters will appear
 in later sections.
 
 The analytical solution of the scaled model
-:eq:`scale:decay:model:g:dimless` reads
+:ref:`(12) <Eq:scale:decay:model:g:dimless>` reads
 
 .. _Eq:scale:decay:model:g:exact_scaled:
 
 .. math::
-   :label: scale:decay:model:g:exact_scaled
-        
-        \bar{u_{\small\mbox{e}}}(t) =
+
+    \tag{14}
+    \bar{u_{\small\mbox{e}}}(t) =
         e^{-t}\left( e^{t}-1 + \beta\right) = 1 + (\beta -1)e^{-t}{\thinspace .}
         
         
 
-The result :eq:`scale:decay:model:g:dimless` with the
-solution :eq:`scale:decay:model:g:exact_scaled` is actually
-astonishing if :math:`a` and :math:`b` are as in :eq:`scale:decay:model:g:spec`:
+The result :ref:`(12) <Eq:scale:decay:model:g:dimless>` with the
+solution :ref:`(14) <Eq:scale:decay:model:g:exact_scaled>` is actually
+astonishing if :math:`a` and :math:`b` are as in :ref:`(10) <Eq:scale:decay:model:g:spec>`:
 the six parameters :math:`d`, :math:`\mu`, :math:`\varrho_b`, :math:`\varrho`, :math:`V`, and :math:`g`
 are conjured to one:
 
@@ -802,23 +830,23 @@ In particular, if the motion starts from rest, :math:`\beta=0`, and
 there are no physical parameters in the scaled model!
 We can then perform a single simulation and recover all physical
 cases by the unscaling procedure. More precisely,
-having computed :math:`\bar u(\bar t)` from :eq:`scale:decay:model:g:dimless`,
+having computed :math:`\bar u(\bar t)` from :ref:`(12) <Eq:scale:decay:model:g:dimless>`,
 we can use
 
 .. _Eq:_auto5:
 
 .. math::
-   :label: _auto5
-        
-        u(t) = \frac{b}{a}\bar u(at),
+
+    \tag{15}
+    u(t) = \frac{b}{a}\bar u(at),
         
         
 
 to scale us back to the original
 problem again.
-We observe that :eq:`scale:decay:model:g:dimless` can utilize a solver
-for :eq:`scale:decay:model:g` by setting :math:`a=1`, :math:`b=1`, and :math:`I=\beta`.
-Given some implementation of a solver for :eq:`scale:decay:model:g`,
+We observe that :ref:`(12) <Eq:scale:decay:model:g:dimless>` can utilize a solver
+for :ref:`(9) <Eq:scale:decay:model:g>` by setting :math:`a=1`, :math:`b=1`, and :math:`I=\beta`.
+Given some implementation of a solver for :ref:`(9) <Eq:scale:decay:model:g>`,
 say ``solver(I, a, b, T, dt, theta)``,
 the scaled model is run by ``solver(beta, 1, 1, T, dt, theta)``.
 
@@ -831,9 +859,9 @@ We may develop a solver for the scaled problem that uses ``joblib``
 to cache solutions with the same :math:`\beta`, :math:`\Delta t`, and :math:`T`.
 For now we fix :math:`\theta=0.5`.
 The module `decay_vc.py <http://tinyurl.com/o8pb3yy/decay_vc.py>`__
-(see ref[the section :ref:`decay:general`][ in [Ref5]_[the
+(see ref[the section :ref:`decay:general`][ in [Ref06]_[the
 section `Implementation of the generalized model problem <http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem>`__
-[Ref5]_] for details)
+[Ref06]_] for details)
 has a function
 ``solver(I, a, b, T, dt, theta)`` for solving :math:`u'(t)=-a(t)u(t)+b(t)` for
 :math:`t\in (0,T]`, :math:`u(0)=I`, with time step ``dt``.
@@ -976,11 +1004,13 @@ is at least one point where :math:`\bar a = 0` and
 the differential equation collapses to :math:`u'=0`.)
 
 As an example, imagine a decaying cell culture where we at time :math:`t_1`
-change the environment such that the death rate increases: :math:`a(t) = d` for
+change the environment (typically the nutrition)
+such that the death rate increases by a factor 5.
+Mathematically, :math:`a(t) = d` for
 :math:`t < t_1` and :math:`a(t)=5d` for :math:`t\geq t_1`. The model reads :math:`u'=-a(t)u`, :math:`u(0)=I`.
 
 The :math:`a(t)` function is scaled by letting the characteristic size be
-:math:`a_c=d` (and :math:`a_0=0`):
+:math:`a_c=d` and :math:`a_0=0`:
 
 .. math::
          \bar a (\bar t) = \left\lbrace\begin{array}{ll}
@@ -997,16 +1027,17 @@ The scaled equation becomes
          \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = a_c\bar a(\bar t) u_c\bar u,\quad
         u_c\bar u(0) = I{\thinspace .}
 
+The natural choice of :math:`u_c` is :math:`I`.
 The characteristic time, previously taken as :math:`t_c=1/a`, can now be
-taken as :math:`t_c=t_1` or :math:`t_c=1/d`. The natural choice of :math:`u_c` is :math:`I`.
+chosen as :math:`t_c=t_1` or :math:`t_c=1/d`.
 With :math:`t_c=1/d` we get
 
 .. _Eq:sec:scale:decay:jump:eq1:
 
 .. math::
-   :label: sec:scale:decay:jump:eq1
-        
-        \bar u'(\bar t)=-\bar a\bar u,\quad \bar u(0)=1,\quad
+
+    \tag{16}
+    \bar u'(\bar t)=-\bar a\bar u,\quad \bar u(0)=1,\quad
         \bar a = \left\lbrace\begin{array}{ll}
         1, & \bar t < \gamma\\ 
         5, & \bar t \geq \gamma
@@ -1033,7 +1064,7 @@ the definition of :math:`\bar a`. Both problems involve :math:`\gamma`, which
 is the ratio between the time when the environmental change happens
 and the typical time for the decay (:math:`1/d`).
 
-A computation with the scaled model :eq:`sec:scale:decay:jump:eq1`
+A computation with the scaled model :ref:`(16) <Eq:sec:scale:decay:jump:eq1>`
 and the original model with dimensions appears in
 Figure :ref:`sec:scale:decay:jump:fig`.
 
@@ -1050,14 +1081,15 @@ Scaling a cooling problem with constant surroundings
 ----------------------------------------------------
 
 The heat exchange between a body at temperature :math:`T(t)` and the
-surroundings at :math:`T_s(t)` can be modeled by Newton's law of cooling:
+surroundings at constant temperature :math:`T_s`
+can be modeled by Newton's law of cooling:
 
 .. _Eq:scale:decay:cooling:model:
 
 .. math::
-   :label: scale:decay:cooling:model
-        
-        T'(t) = -k(T-T_s(t)),\quad T(0)=T_0,
+
+    \tag{17}
+    T'(t) = -k(T-T_s),\quad T(0)=T_0,
         
         
 
@@ -1067,9 +1099,9 @@ Exact solution          (2)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 An analytical solution is always handy to have as a control of the
-choice of scales. Here we have
-the result :math:`T(t) = T_s + (T_0 - T_s)e^{-kt}` when :math:`T_s` is constant,
-which is also the assumption for now.
+choice of scales. The solution of :ref:`(17) <Eq:scale:decay:cooling:model>`
+is by standard methods for ODEs found to be
+:math:`T(t) = T_s + (T_0 - T_s)e^{-kt}`.
 
 Scaling          (1)
 ~~~~~~~~~~~~~~~~~~~~
@@ -1083,9 +1115,9 @@ is therefore to scale and translate :math:`T` according to
 .. _Eq:scale:decay:cooling:Tbar:
 
 .. math::
-   :label: scale:decay:cooling:Tbar
-        
-        \bar T = \frac{T-T_0}{T_s-T_0}
+
+    \tag{18}
+    \bar T = \frac{T-T_0}{T_s-T_0}
         
         {\thinspace .}
         
@@ -1094,7 +1126,7 @@ Now, :math:`0\leq \bar T\leq 1`.
 
 Scaling time by :math:`\bar t = t/t_c` and inserting
 :math:`T= T_0 + (T_s-T_0)\bar T` and :math:`t=t_c\bar t` in the
-problem :eq:`scale:decay:cooling:model` gives
+problem :ref:`(17) <Eq:scale:decay:cooling:model>` gives
 
 .. math::
          \frac{d\bar T}{d\bar t} = - t_ck(\bar T - 1),\quad \bar T(0) = 0
@@ -1107,9 +1139,9 @@ is to choose :math:`t_ck=1`, which leaves us with the scaled problem
 .. _Eq:scale:decay:cooling:Tbar:eq:
 
 .. math::
-   :label: scale:decay:cooling:Tbar:eq
-        
-        \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
+
+    \tag{19}
+    \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
         
         {\thinspace .}
         
@@ -1122,9 +1154,9 @@ Our scaling implies that :math:`\bar T` starts at
 .. _Eq:scale:decay:cooling:T:
 
 .. math::
-   :label: scale:decay:cooling:T
-        
-        T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)
+
+    \tag{20}
+    T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)
         
         {\thinspace .}
         
@@ -1132,8 +1164,8 @@ Our scaling implies that :math:`\bar T` starts at
 Software          (2)
 ~~~~~~~~~~~~~~~~~~~~~
 
-An implementation for :eq:`scale:decay:cooling:model` works for
-:eq:`scale:decay:cooling:Tbar:eq` by setting :math:`k=1`, :math:`T_s=1`, and :math:`T_0=0`.
+An implementation for :ref:`(17) <Eq:scale:decay:cooling:model>` works for
+:ref:`(19) <Eq:scale:decay:cooling:Tbar:eq>` by setting :math:`k=1`, :math:`T_s=1`, and :math:`T_0=0`.
 
 Alternative scaling          (1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1143,9 +1175,9 @@ An alternative temperature scaling is to choose
 .. _Eq:scale:decay:cooling:Tbar2:
 
 .. math::
-   :label: scale:decay:cooling:Tbar2
-        
-        \bar T = \frac{T-T_s}{T_0-T_s}
+
+    \tag{21}
+    \bar T = \frac{T-T_s}{T_0-T_s}
         
         {\thinspace .}
         
@@ -1156,9 +1188,9 @@ The resulting scaled ODE problem then becomes
 .. _Eq:scale:decay:cooling:Tbar:eq2:
 
 .. math::
-   :label: scale:decay:cooling:Tbar:eq2
-        
-        \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1
+
+    \tag{22}
+    \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1
         
         {\thinspace .}
         
@@ -1168,16 +1200,16 @@ The resulting scaled ODE problem then becomes
 Scaling a cooling problem with time-dependent surroundings
 ----------------------------------------------------------
 
-Let us apply the model :eq:`scale:decay:cooling:model` in
+Let us apply the model :ref:`(17) <Eq:scale:decay:cooling:model>` in
 case the surrounding temperature varies in time. Say we have
 an oscillating temperature environment according to
 
 .. _Eq:scale:decay:cooling:Tst:
 
 .. math::
-   :label: scale:decay:cooling:Tst
-        
-        T_s(t) = T_m + a\sin(\omega t)
+
+    \tag{23}
+    T_s(t) = T_m + a\sin(\omega t)
         
         {\thinspace .}
         
@@ -1193,8 +1225,8 @@ original differential equation, we have
 .. math::
          T(t) = T_0e^{-kt} + e^{-kt}k\int_0^t e^{k\tau}T_s(\tau)d\tau{\thinspace .}
 
-With :math:`T_s(t)=T_m + a\sin (wt)` we can use SymPy to help us with
-integrations:
+With :math:`T_s(t)=T_m + a\sin (\omega t)` we can use SymPy to help us with
+integrations (note that we use ``w`` for :math:`\omega` in the computer code):
 
 .. code-block:: python
 
@@ -1213,15 +1245,15 @@ integrations:
 Reordering the result, we get
 
 .. math::
-         T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + w^2)^{-1}(akw e^{-kt}
-        + ak\sin (wt) - akw\cos(wt)){\thinspace .}
+         T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + \omega^2)^{-1}(ak\omega e^{-kt}
+        + ak\sin (\omega t) - akw\cos(\omega t)){\thinspace .}
 
 .. index:: dimensionless number
 
 Scaling          (2)
 ~~~~~~~~~~~~~~~~~~~~
 
-The scaling :eq:`scale:decay:cooling:Tbar` brings in a time-dependent
+The scaling :ref:`(18) <Eq:scale:decay:cooling:Tbar>` brings in a time-dependent
 characteristic temperature scale :math:`T_s-T_0`. Let us start with a
 fixed scale, where we take the characteristic temperature variation to
 be :math:`T_m - T_0`:
@@ -1241,16 +1273,16 @@ case,
 
 .. math::
          k(T_m-T_0)\frac{d\bar T}{d\bar t} = -k((T_m-T_0)\bar T + T_0 - T_m - a
-        \sin(wt),
+        \sin(\omega t),
 
 resulting in
 
 .. _Eq:scale:decay:cooling:model:scaled:
 
 .. math::
-   :label: scale:decay:cooling:model:scaled
-        
-        \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
+
+    \tag{24}
+    \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
         \bar T(0)=0,
         
         
@@ -1258,28 +1290,29 @@ resulting in
 where we have two dimensionless numbers:
 
 .. math::
-         \alpha = \frac{a}{T_m-T_0},\quad \beta = \frac{w}{k}{\thinspace .}
+         \alpha = \frac{a}{T_m-T_0},\quad \beta = \frac{\omega}{k}{\thinspace .}
 
-The :math:`\alpha` quantity
-measures the ratio of temperatures: amplitude of oscillations versus
-distance from initial temperature to the average temperature for large times.
-The :math:`\beta` number is the ratio of the two time scales:
-the frequency of the oscillations in :math:`T_s` and the inverse
-e-folding time of the heat transfer. For clear interpretation of :math:`\beta`
-we may introduce the period
-:math:`P=2\pi/w` of the oscillations in :math:`T_s` and the e-folding time :math:`e=1/k`. Then
-:math:`\beta = 2\pi e/P` and measures the e-folding time versus the period.
+The :math:`\alpha` quantity measures the ratio of temperatures: amplitude of
+oscillations versus distance from initial temperature to the average
+temperature for large times.  The :math:`\beta` number is the ratio of the
+two time scales: the frequency of the oscillations in :math:`T_s` and the
+inverse e-folding time of the heat transfer. For clear interpretation
+of :math:`\beta` we may introduce the period :math:`P=2\pi/\omega` of the
+oscillations in :math:`T_s` and the e-folding time :math:`e=1/k`. Then :math:`\beta =
+2\pi e/P` and measures the e-folding time versus the period.
 
 The original problem features five physical parameters: :math:`k`, :math:`T_0`,
-:math:`T_m`, :math:`a`, and :math:`w`, but only two dimensionless numbers appear in the
-scaled model :eq:`scale:decay:cooling:model:scaled`.
+:math:`T_m`, :math:`a`, and :math:`\omega`, but only two dimensionless numbers appear in the
+scaled model :ref:`(24) <Eq:scale:decay:cooling:model:scaled>`.
+
+[**hpl 8**: Geir can write about the Pi theorem here - it gives three parameters and a suboptimal solution compared to the scaling of the ODE directly.]
 
 Software          (3)
 ~~~~~~~~~~~~~~~~~~~~~
 
-Implementations of the unscaled problem :eq:`scale:decay:cooling:model`
+Implementations of the unscaled problem :ref:`(17) <Eq:scale:decay:cooling:model>`
 can be reused for the scaled model by setting :math:`k=1`, :math:`T_0=0`, and
-:math:`T_s(t) = 1 + \alpha\sin (\beta \bar t)` (:math:`T_m=1`, :math:`a=\alpha`, :math:`w=\beta`).
+:math:`T_s(t) = 1 + \alpha\sin (\beta \bar t)` (:math:`T_m=1`, :math:`a=\alpha`, :math:`\omega =\beta`).
 The file `osc_cooling.py <http://tinyurl.com/o8pb3yy/osc_cooling.py>`__ contains
 solvers for the problem with dimensions and
 for the scaled problem. The figure below
@@ -1298,29 +1331,29 @@ Discussion of the time scale          (1)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Looking at the analytical insight we have, :math:`T(t)` has two characteristic
-terms in time: :math:`e^{-kt}` and :math:`\sin(wt)`. The former points to a time
-scale :math:`t_c=1/k`, while the latter to :math:`t_c=1/w`.
+terms in time: :math:`e^{-kt}` and :math:`\sin(\omega t)`. The former points to a time
+scale :math:`t_c=1/k`, while the latter to :math:`t_c=1/\omega`.
 Which one should be chosen? Bringing the temperature from :math:`T_0` to
 the level of the surroundings, :math:`T_m`, goes like :math:`e^{-kt}`, so
 in this process :math:`t_c=1/k` is the characteristic time. Thereafter,
 the body's temperature just responds to the oscillations and the
-:math:`\sin (wt)` (and :math:`\cos(wt)`) term dominates. For these large times,
-:math:`t_c=1/w` is the appropriate time scale. Choosing :math:`t_c=1/w`
+:math:`\sin (\omega t)` (and :math:`\cos(\omega t)`) term dominates. For these large times,
+:math:`t_c=1/\omega` is the appropriate time scale. Choosing :math:`t_c=1/\omega`
 results in
 
 .. _Eq:scale:decay:cooling:model:scaled2:
 
 .. math::
-   :label: scale:decay:cooling:model:scaled2
-        
-        \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
+
+    \tag{25}
+    \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
         \bar T(0)=0{\thinspace .}
         
         
 
 Let us illustrate another, less effective, scaling.
 The temperature scale in
-:eq:`scale:decay:cooling:Tbar` looks natural, so we apply this
+:ref:`(18) <Eq:scale:decay:cooling:Tbar>` looks natural, so we apply this
 choice of scale. The characteristic temperature :math:`T_0-T_s`
 now involves
 a time-dependent term :math:`T_s(t)`. The mathematical steps become a bit
@@ -1369,9 +1402,9 @@ left with
 .. _Eq:scale:decay:cooling:Tbar:eq3:
 
 .. math::
-   :label: scale:decay:cooling:Tbar:eq3
-        
-        \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
+
+    \tag{26}
+    \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
         \alpha\beta \frac{\cos(\beta \bar t)}{1 + \alpha\sin(\beta\bar t) - \gamma}
         \bar T,
         
@@ -1383,16 +1416,16 @@ characterizing the relative importance of parameters in the problem:
 .. _Eq:_auto6:
 
 .. math::
-   :label: _auto6
-        
-        \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
+
+    \tag{27}
+    \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
         {\thinspace .}
         
         
 
-We notice that :eq:`scale:decay:cooling:Tbar:eq3`
+We notice that :ref:`(26) <Eq:scale:decay:cooling:Tbar:eq3>`
 is not a special case of the original problem
-:eq:`scale:decay:cooling:model`. Furthermore, the original five
+:ref:`(17) <Eq:scale:decay:cooling:model>`. Furthermore, the original five
 parameters :math:`k`, :math:`T_m`, :math:`a`, :math:`\omega`, and
 :math:`T_0` are reduced to three dimensionless parameters.
 We conclude that this scaling is inferior, because
@@ -1417,9 +1450,9 @@ In general, this reasoning gives rise to models
 .. _Eq:sec:scale:decay:nonlinear:model1:
 
 .. math::
-   :label: sec:scale:decay:nonlinear:model1
-        
-        u' = a(u)u,\quad u(0)=I,
+
+    \tag{28}
+    u' = a(u)u,\quad u(0)=I,
         
         
 
@@ -1429,9 +1462,9 @@ as the simplest:
 .. _Eq:sec:scale:decay:nonlinear:model2:
 
 .. math::
-   :label: sec:scale:decay:nonlinear:model2
-        
-        u' = \varrho u(1-u/M),\quad u(0)=I{\thinspace .}
+
+    \tag{29}
+    u' = \varrho u(1-u/M),\quad u(0)=I{\thinspace .}
         
         
 
@@ -1442,7 +1475,7 @@ A general choice of :math:`a` may be :math:`a(u)=\varrho(1-u/M)^p` for some expo
 Scaling          (3)
 ~~~~~~~~~~~~~~~~~~~~
 
-Let us scale :eq:`sec:scale:decay:nonlinear:model1` with
+Let us scale :ref:`(28) <Eq:sec:scale:decay:nonlinear:model1>` with
 :math:`a(u)=\varrho (1-u/M)^p`.
 The natural scale for :math:`u` is :math:`M` (:math:`u_c=M`), since we know that
 :math:`0 < u\leq M`, and this makes the dimensionless :math:`\bar u = u/M \in (0,1]`.
@@ -1454,7 +1487,7 @@ typically varying between 0 and :math:`\varrho`, so it can be scaled as
         (1 - \bar u)^p{\thinspace .}
 
 Time is scaled as :math:`\bar t = t/t_c` for some suitable characteristic time :math:`t_c`.
-Inserted in :eq:`sec:scale:decay:nonlinear:model1`, we get
+Inserted in :ref:`(28) <Eq:sec:scale:decay:nonlinear:model1>`, we get
 
 .. math::
          \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = \varrho\bar a u_c\bar u,\quad u_c\bar u(0)=I,
@@ -1479,9 +1512,9 @@ one, we get the dimensionless model
 .. _Eq:sec:scale:decay:nonlinear:model1:scaled:
 
 .. math::
-   :label: sec:scale:decay:nonlinear:model1:scaled
-        
-        \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
+
+    \tag{30}
+    \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
         \bar u(0) =\alpha{\thinspace .}
         
         
@@ -1502,18 +1535,18 @@ This choice of :math:`\bar u` results in
 .. _Eq:sec:scale:decay:nonlinear:model1:scaled2:
 
 .. math::
-   :label: sec:scale:decay:nonlinear:model1:scaled2
-        
-        \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
+
+    \tag{31}
+    \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
         \bar u(0) =0{\thinspace .}
         
         
 
-The essential difference between :eq:`sec:scale:decay:nonlinear:model1:scaled`
-and :eq:`sec:scale:decay:nonlinear:model1:scaled2` is that
+The essential difference between :ref:`(30) <Eq:sec:scale:decay:nonlinear:model1:scaled>`
+and :ref:`(31) <Eq:sec:scale:decay:nonlinear:model1:scaled2>` is that
 :math:`\bar u\in [\alpha, 1]` in the former and :math:`\bar u \in [0, 1-\alpha]` in
 the latter. Both models involve the dimensionless numbers :math:`\alpha` and :math:`p`.
-An advantage of :eq:`sec:scale:decay:nonlinear:model1:scaled`
+An advantage of :ref:`(30) <Eq:sec:scale:decay:nonlinear:model1:scaled>`
 is that software for the unscaled model can easily be used for the
 scaled model by choosing :math:`I=\alpha`, :math:`M=1`, and :math:`\varrho=1`.
 
@@ -1531,33 +1564,33 @@ who can get the disease, infectious (I) who are infected and may
 infect susceptibles, and recovered (R) who have recovered from the
 disease and gained immunity. We introduce :math:`S(t)`, :math:`I(t)`, and :math:`R(t)`
 as the number of people in the categories S, I, and R, respectively.
-The model, naturally known as the SIR model, takes the form a system
-of ODEs:
+The model, naturally known as the `SIR model <https://en.wikipedia.org/wiki/Epidemic_model>`__, takes the form a
+system of ODEs:
 
 .. _Eq:scale:SIR:S:
 
 .. math::
-   :label: scale:SIR:S
-        
-        \frac{dS}{dt} = - \beta SI,
+
+    \tag{32}
+    \frac{dS}{dt} = - \beta SI,
         
         
 
 .. _Eq:scale:SIR:I:
 
 .. math::
-   :label: scale:SIR:I
-          
-        \frac{dI}{dt} = \beta SI - \nu I,
+
+    \tag{33}
+    \frac{dI}{dt} = \beta SI - \nu I,
         
         
 
 .. _Eq:scale:SIR:R:
 
 .. math::
-   :label: scale:SIR:R
-          
-        \frac{dR}{dt} = \nu I,
+
+    \tag{34}
+    \frac{dR}{dt} = \nu I,
         
         
 
@@ -1565,6 +1598,8 @@ where :math:`\beta` and :math:`\nu` are empirical constants. The average time fo
 from the disease can be shown to be :math:`\nu^{-1}`, but :math:`\beta` is much harder
 to estimate, so working with a scaled model where :math:`\beta` is "scaled away"
 is advantageous.
+
+[**hpl 9**: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that "here are the ODEs" and if understanding of the "physics" is necessary, the reader must have the necessary background. Maybe state this in the preface?]
 
 Scaling          (4)
 ~~~~~~~~~~~~~~~~~~~~
@@ -1596,27 +1631,27 @@ to recover from the disease, we end up with the scaled model
 .. _Eq:scale:SIR:S2:
 
 .. math::
-   :label: scale:SIR:S2
-        
-        \frac{d\bar S}{d\bar t} = - R_0\bar S\bar I,
+
+    \tag{35}
+    \frac{d\bar S}{d\bar t} = - R_0\bar S\bar I,
         
         
 
 .. _Eq:scale:SIR:I2:
 
 .. math::
-   :label: scale:SIR:I2
-          
-        \frac{d\bar I}{d\bar t} = R_0 \bar S\bar I - \bar I,
+
+    \tag{36}
+    \frac{d\bar I}{d\bar t} = R_0 \bar S\bar I - \bar I,
         
         
 
 .. _Eq:scale:SIR:R2:
 
 .. math::
-   :label: scale:SIR:R2
-          
-        \frac{d\bar R}{d\bar t} = I,
+
+    \tag{37}
+    \frac{d\bar R}{d\bar t} = I,
         
         
 
@@ -1626,13 +1661,13 @@ the dimensionless number
 .. _Eq:_auto7:
 
 .. math::
-   :label: _auto7
-        
-        R_0 = \frac{S(0)\beta}{\nu}{\thinspace .}
+
+    \tag{38}
+    R_0 = \frac{S(0)\beta}{\nu}{\thinspace .}
         
         
 
-We see from :eq:`scale:SIR:I2` that to make the disease spreading,
+We see from :ref:`(36) <Eq:scale:SIR:I2>` that to make the disease spreading,
 :math:`d\bar I/d\bar t >0`, and therefore :math:`R_0 S(0) - 1 > 0` or :math:`R_0 > 1`
 since :math:`S(0)=1`.
 Therefore, :math:`R_0` reflects the disease's ability to spread and is
@@ -1641,7 +1676,7 @@ reproduction number <https://en.wikipedia.org/wiki/Basic_reproduction_number>`__
 This number reflects the number of infected people caused by one infectious
 individual during the time period of the disease.
 
-Looking at :eq:`scale:SIR:I`, we see that to increase :math:`I` initially,
+Looking at :ref:`(33) <Eq:scale:SIR:I>`, we see that to increase :math:`I` initially,
 we must have :math:`dI/dt >0` at :math:`t=0`, which implies
 :math:`\beta I(0)S(0) - \nu I(0) >0`, i.e., :math:`R_0 > 1`.
 
@@ -1665,7 +1700,7 @@ both with :math:`\alpha=0.02`.
 Alternative scaling          (3)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Adding :eq:`scale:SIR:S`-:eq:`scale:SIR:R` shows that
+Adding :ref:`(32) <Eq:scale:SIR:S>`-:ref:`(34) <Eq:scale:SIR:R>` shows that
 
 .. math::
          \frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
@@ -1680,14 +1715,14 @@ population :math:`N=S(0)+I(0)+R(0)`:
         \bar R = \frac{R}{N)}{\thinspace .}
         
 
-With the same time scale, one gets the system :eq:`scale:SIR:S2`-:eq:`scale:SIR:R2`, but with :math:`R_0` replaced by the dimensionless number:
+With the same time scale, one gets the system :ref:`(35) <Eq:scale:SIR:S2>`-:ref:`(37) <Eq:scale:SIR:R2>`, but with :math:`R_0` replaced by the dimensionless number:
 
 .. _Eq:_auto8:
 
 .. math::
-   :label: _auto8
-        
-        \tilde R_0 = \frac{N\beta}{\nu}{\thinspace .}
+
+    \tag{39}
+    \tilde R_0 = \frac{N\beta}{\nu}{\thinspace .}
         
         
 
@@ -1728,36 +1763,36 @@ vaccinated). The ODE model reads
 .. _Eq:scale:SIRV:S:
 
 .. math::
-   :label: scale:SIRV:S
-        
-        \frac{dS}{dt} = - \beta SI - pS + \mu R,
+
+    \tag{40}
+    \frac{dS}{dt} = - \beta SI - pS + \mu R,
         
         
 
 .. _Eq:scale:SIRV:I:
 
 .. math::
-   :label: scale:SIRV:I
-          
-        \frac{dI}{dt} = \beta SI - \nu I,
+
+    \tag{41}
+    \frac{dI}{dt} = \beta SI - \nu I,
         
         
 
 .. _Eq:scale:SIRV:R:
 
 .. math::
-   :label: scale:SIRV:R
-          
-        \frac{dR}{dt} = \nu I -\mu R,
+
+    \tag{42}
+    \frac{dR}{dt} = \nu I -\mu R,
         
         
 
 .. _Eq:scale:SIRV:V:
 
 .. math::
-   :label: scale:SIRV:V
-          
-        \frac{dV}{dt} = p S{\thinspace .}
+
+    \tag{43}
+    \frac{dV}{dt} = p S{\thinspace .}
         
         
 
@@ -1767,36 +1802,36 @@ the dimensionless model
 .. _Eq:scale:SIRV:S2:
 
 .. math::
-   :label: scale:SIRV:S2
-        
-        \frac{d\bar S}{d\bar t} = - R_0 \bar S \bar I - \delta S + \gamma \bar R,
+
+    \tag{44}
+    \frac{d\bar S}{d\bar t} = - R_0 \bar S \bar I - \delta S + \gamma \bar R,
         
         
 
 .. _Eq:scale:SIRV:I2:
 
 .. math::
-   :label: scale:SIRV:I2
-          
-        \frac{d\bar I}{d\bar t} = R_0 \bar S \bar I - \bar I,
+
+    \tag{45}
+    \frac{d\bar I}{d\bar t} = R_0 \bar S \bar I - \bar I,
         
         
 
 .. _Eq:scale:SIRV:R2:
 
 .. math::
-   :label: scale:SIRV:R2
-          
-        \frac{d\bar R}{d\bar t} = \bar I -\gamma \bar R,
+
+    \tag{46}
+    \frac{d\bar R}{d\bar t} = \bar I -\gamma \bar R,
         
         
 
 .. _Eq:scale:SIRV:V2:
 
 .. math::
-   :label: scale:SIRV:V2
-          
-        \frac{d\bar V}{d\bar t} = \delta \bar S,
+
+    \tag{47}
+    \frac{d\bar V}{d\bar t} = \delta \bar S,
         
         
 
@@ -1837,41 +1872,41 @@ substrate S is turned into a product P with aid of an enzyme E.
 S and E react to form a complex ES in the first stage of the reaction.
 In the second stage, ES is turned into E and P.
 Introducing the amount of S, E, ES, and P by :math:`[S]`, :math:`[E]`, :math:`[ES]`, and
-:math:`[P]`, the mathematical model can be written as
+:math:`[P]`, the mathematical model (known as `Michaelis-Menten kinetics <https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics>`__) can be written as
 
 .. _Eq:scale:MMK:ES1:
 
 .. math::
-   :label: scale:MMK:ES1
-        
-        \frac{d[ES]}{dt} = k_+[E][S] - k_v[ES] - k_-[ES],
+
+    \tag{48}
+    \frac{d[ES]}{dt} = k_+[E][S] - k_v[ES] - k_-[ES],
         
         
 
 .. _Eq:scale:MMK:P1:
 
 .. math::
-   :label: scale:MMK:P1
-          
-        \frac{d[P]}{dt} = k_v[ES],
+
+    \tag{49}
+    \frac{d[P]}{dt} = k_v[ES],
         
         
 
 .. _Eq:scale:MMK:S1:
 
 .. math::
-   :label: scale:MMK:S1
-          
-        \frac{d[S]}{dt} = -k_+[E][S] + k_-[ES],
+
+    \tag{50}
+    \frac{d[S]}{dt} = -k_+[E][S] + k_-[ES],
         
         
 
 .. _Eq:scale:MMK:E1:
 
 .. math::
-   :label: scale:MMK:E1
-          
-        \frac{d[E]}{dt} = -k_+[E][S] + k_-[ES] + k_v[ES]{\thinspace .}
+
+    \tag{51}
+    \frac{d[E]}{dt} = -k_+[E][S] + k_-[ES] + k_v[ES]{\thinspace .}
         
         
 
@@ -1894,19 +1929,18 @@ two conservation equations, arising from simply adding the ODEs:
 .. _Eq:_auto9:
 
 .. math::
-   :label: _auto9
-        
-        \frac{d[ES]}{dt} + \frac{d[E]}{dt}  =0,
-        
+
+    \tag{52}
+    \frac{d[ES]}{dt} + \frac{d[E]}{dt}  =0,
         
         
 
 .. _Eq:_auto10:
 
 .. math::
-   :label: _auto10
-          
-        \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} = 0,
+
+    \tag{53}
+    \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} = 0,
         
         
 
@@ -1915,39 +1949,39 @@ from which it follows that
 .. _Eq:scale:MMK:cons1:
 
 .. math::
-   :label: scale:MMK:cons1
-        
-        [ES] + [E] = E_0,
+
+    \tag{54}
+    [ES] + [E] = E_0,
         
         
 
 .. _Eq:scale:MMK:cons2:
 
 .. math::
-   :label: scale:MMK:cons2
-          
-        [ES] + [S] + [P] = S_0{\thinspace .}
+
+    \tag{55}
+    [ES] + [S] + [P] = S_0{\thinspace .}
         
         
 
-Using :eq:`scale:MMK:cons1`, we can eliminate :math:`[E]` and obtain a
+Using :ref:`(54) <Eq:scale:MMK:cons1>`, we can eliminate :math:`[E]` and obtain a
 system of only two ODEs,
 
 .. _Eq:_auto11:
 
 .. math::
-   :label: _auto11
-        
-        \frac{d[ES]}{dt} = k_+([ES]-E_0)[S] - (k_v + k_-)[ES],
+
+    \tag{56}
+    \frac{d[ES]}{dt} = k_+([ES]-E_0)[S] - (k_v + k_-)[ES],
         
         
 
 .. _Eq:_auto12:
 
 .. math::
-   :label: _auto12
-          
-        \frac{d[S]}{dt} = -k_+([ES]-E_0)[S] + k_-[ES]{\thinspace .}
+
+    \tag{57}
+    \frac{d[S]}{dt} = -k_+([ES]-E_0)[S] + k_-[ES]{\thinspace .}
         
         
 
@@ -1970,9 +2004,9 @@ equation for :math:`[S]` gives
 .. _Eq:scale:MMK:Seq1:
 
 .. math::
-   :label: scale:MMK:Seq1
-        
-        \frac{d[S]}{dt} = \frac{k_vE_0[S]}{[S] + K}{\thinspace .}
+
+    \tag{58}
+    \frac{d[S]}{dt} = \frac{k_vE_0[S]}{[S] + K}{\thinspace .}
         
         
 
@@ -2105,9 +2139,9 @@ leading to the final set of equations:
 .. _Eq:scale:MMK:Q2:
 
 .. math::
-   :label: scale:MMK:Q2
-        
-        \frac{d\bar Q}{d\bar t} = \alpha (\bar E\bar S
+
+    \tag{59}
+    \frac{d\bar Q}{d\bar t} = \alpha (\bar E\bar S
         - \bar Q),
         
         
@@ -2115,18 +2149,18 @@ leading to the final set of equations:
 .. _Eq:scale:MMK:P2:
 
 .. math::
-   :label: scale:MMK:P2
-          
-        \frac{d\bar P}{d\bar t} = \beta\bar Q,
+
+    \tag{60}
+    \frac{d\bar P}{d\bar t} = \beta\bar Q,
         
         
 
 .. _Eq:scale:MMK:S2:
 
 .. math::
-   :label: scale:MMK:S2
-          
-        \frac{d\bar S}{d\bar t} = -\bar E\bar S
+
+    \tag{61}
+    \frac{d\bar S}{d\bar t} = -\bar E\bar S
         + (1 - \beta\alpha^{-1})\bar Q,
         
         
@@ -2134,9 +2168,9 @@ leading to the final set of equations:
 .. _Eq:scale:MMK:E2:
 
 .. math::
-   :label: scale:MMK:E2
-          
-        \epsilon\frac{d\bar E}{d\bar t} = -\bar E\bar S + \bar Q{\thinspace .}
+
+    \tag{62}
+    \epsilon\frac{d\bar E}{d\bar t} = -\bar E\bar S + \bar Q{\thinspace .}
         
         
 
@@ -2153,15 +2187,15 @@ are reduced to three dimensionless constants:
    versus production of the complex (:math:`k_+`), made dimensionless by :math:`E_0`.
 
 Observe that software developed for
-solving :eq:`scale:MMK:ES1`-:eq:`scale:MMK:E1` cannot be reused
-for solving :eq:`scale:MMK:Q2`-:eq:`scale:MMK:E2` since the latter
+solving :ref:`(48) <Eq:scale:MMK:ES1>`-:ref:`(51) <Eq:scale:MMK:E1>` cannot be reused
+for solving :ref:`(59) <Eq:scale:MMK:Q2>`-:ref:`(62) <Eq:scale:MMK:E2>` since the latter
 system has a slightly different structure.
 
 Analysis of the scaled system
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 In the scaled system, we may assume :math:`\epsilon` small, which from
-:eq:`scale:MMK:E2` gives rise to the simplification
+:ref:`(62) <Eq:scale:MMK:E2>` gives rise to the simplification
 :math:`\epsilon\bar E^{\prime}=0`, and thereby the relation :math:`\bar Q = \bar E\bar S`.
 The conservation equation :math:`[ES] + [E]= E_0` reads :math:`Q_c\bar Q + E_0\bar E =
 E_0` such that :math:`\bar E = 1 - Q_c\bar Q/E_0=1- \bar Q S_0/K = 1 - \epsilon^{-1}\alpha^{-1}\bar Q`. The relation :math:`\bar Q=\bar E\bar S` then becomes
@@ -2174,27 +2208,27 @@ which can be solved for :math:`\bar Q`:
 .. math::
          \bar Q = \frac{\bar S}{1 + \epsilon^{-1}\alpha^{-1}\bar S}{\thinspace .}
 
-The equation :eq:`scale:MMK:S2` for :math:`\bar S` becomes
+The equation :ref:`(61) <Eq:scale:MMK:S2>` for :math:`\bar S` becomes
 
 .. _Eq:scale:MMK:Seq2:
 
 .. math::
-   :label: scale:MMK:Seq2
-        
-        \frac{d\bar S}{d\bar t} = -\beta\alpha^{-1}\bar Q =
+
+    \tag{63}
+    \frac{d\bar S}{d\bar t} = -\beta\alpha^{-1}\bar Q =
         -\frac{\beta\bar S}{\alpha + \epsilon^{-1}\bar S}{\thinspace .}
         
         
 
 This is a more precise analysis than the one leading to
-:eq:`scale:MMK:Seq1` since we now realize that the
+:ref:`(58) <Eq:scale:MMK:Seq1>` since we now realize that the
 mathematical assumption for the simplification is
 :math:`\epsilon\rightarrow 0`.
 
-Is :eq:`scale:MMK:Seq2` consistent with :eq:`scale:MMK:Seq1`? It is
+Is :ref:`(63) <Eq:scale:MMK:Seq2>` consistent with :ref:`(58) <Eq:scale:MMK:Seq1>`? It is
 easy to make algebraic mistakes when deriving scaled equations,
 so it is always wise to carry out consistency checks.
-Introducing dimensions in :eq:`scale:MMK:Seq2` leads to
+Introducing dimensions in :ref:`(63) <Eq:scale:MMK:Seq2>` leads to
 
 .. math::
         
@@ -2209,7 +2243,7 @@ and hence with :math:`t_c^{-1}=k_+E_0`,
 .. math::
          \frac{dS}{dt} = \frac{k_vE_0 S}{K + S},
 
-which is :eq:`scale:MMK:Seq1`.
+which is :ref:`(58) <Eq:scale:MMK:Seq1>`.
 
 Figure :ref:`scale:MMK:fig` shows the impact of :math:`\epsilon`: with a small
 value (0.1) we see that :math:`\bar Q\approx 0`, which justifies the

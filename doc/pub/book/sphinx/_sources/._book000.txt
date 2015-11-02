@@ -9,7 +9,7 @@
 Scaling of Differential Equations
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-:Authors: Hans Petter Langtangen
+:Authors: Hans Petter Langtangen, Geir K. Pedersen
 
 This book explains the mathematical details of making differential
 equation models dimensionless. A key feature of the text is the reasoning
@@ -19,7 +19,7 @@ the scaling technique for ordinary and partial differential equations
 from physics and biology. How to utilize scaled models in simulation
 software is also addressed.
 
-:Date: Oct 5, 2015
+:Date: Nov 2, 2015
 
-.. Externaldocuments: ../decay-book/book
+.. Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/chapters/wave/main_wave
 

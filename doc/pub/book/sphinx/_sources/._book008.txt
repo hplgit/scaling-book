@@ -16,9 +16,9 @@ equation to obtain the well-known convection-diffusion equation:
 .. _Eq:scale:convdiff:pde1:
 
 .. math::
-   :label: scale:convdiff:pde1
-        
-        \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
+
+    \tag{165}
+    \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
         {\alpha}\nabla^2 u,
         \quad  x,y, z\in \Omega,\ t\in (0, T]{\thinspace .}
         
@@ -27,9 +27,9 @@ equation to obtain the well-known convection-diffusion equation:
 The velocity field :math:`\boldsymbol{v}` is prescribed, and its characteristic size :math:`V`
 is normally clear from the problem description.
 
-[**hpl 14**: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]
+[**hpl 20**: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]
 
-[**hpl 15**: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different :math:`V` is obvious.]
+[**hpl 21**: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different :math:`V` is obvious.]
 
 Inserting
 
@@ -38,7 +38,7 @@ Inserting
         \ \bar t = \frac{t}{t_c}, \ \bar\boldsymbol{v} = \frac{\boldsymbol{v}}{V},
         \ \bar u =\frac{u}{u_c}
 
-in :eq:`scale:convdiff:pde1` yields
+in :ref:`(165) <Eq:scale:convdiff:pde1>` yields
 
 .. math::
         
@@ -71,9 +71,9 @@ The non-dimensional form of the PDE with :math:`t_c=L/V` becomes
 .. _Eq:scale:convdiff:pde1:d:
 
 .. math::
-   :label: scale:convdiff:pde1:d
-        
-        \frac{\partial \bar u}{\partial \bar t} +
+
+    \tag{166}
+    \frac{\partial \bar u}{\partial \bar t} +
         \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
         \hbox{Pe}^{-1}\bar\nabla^2\bar u,
         \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T],
@@ -101,9 +101,9 @@ In case we use the diffusion time scale
 .. _Eq:scale:convdiff:pde1:d2:
 
 .. math::
-   :label: scale:convdiff:pde1:d2
-        
-        \frac{\partial \bar u}{\partial \bar t} +
+
+    \tag{167}
+    \frac{\partial \bar u}{\partial \bar t} +
         \hbox{Pe}\,\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
         \bar\nabla^2\bar u,
         \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]{\thinspace .}
@@ -113,12 +113,12 @@ In case we use the diffusion time scale
 
 .. admonition:: Discussion of scales and balance of terms in the PDE
 
-   We see that :eq:`scale:convdiff:pde1:d` and :eq:`scale:convdiff:pde1:d2`
+   We see that :ref:`(166) <Eq:scale:convdiff:pde1:d>` and :ref:`(167) <Eq:scale:convdiff:pde1:d2>`
    are not equivalent, and they are based on two different time scales.
    For moderate Peclet numbers around 1, all terms have the same size
-   in :eq:`scale:convdiff:pde1:d`, i.e., a size around unity.
+   in :ref:`(166) <Eq:scale:convdiff:pde1:d>`, i.e., a size around unity.
    For large Peclet numbers,
-   :eq:`scale:convdiff:pde1:d` expresses a balance
+   :ref:`(166) <Eq:scale:convdiff:pde1:d>` expresses a balance
    between the time derivative term and the convection term, both of size
    unity, and then there is a very small term
    :math:`\hbox{Pe}^{-1}\bar\nabla^2\bar u` term because Pe is large and
@@ -141,7 +141,7 @@ In case we use the diffusion time scale
    since right scales imply that :math:`\partial\bar u/\partial\bar t` and
    :math:`\bar v\cdot\bar\nabla\bar u` of order unity. Switching to a time
    scale based on diffusion as the dominating physical effect gives
-   :eq:`scale:convdiff:pde1:d2`.  For very small Peclet numbers this
+   :ref:`(167) <Eq:scale:convdiff:pde1:d2>`.  For very small Peclet numbers this
    equation tells that the time-derivative balances the diffusion, while
    the convection :math:`\bar\boldsymbol{v}\cdot\bar\nabla\bar\boldsymbol{u}` is around
    unity, but multiplied by a very small coefficient Pe, so this term is
@@ -179,9 +179,9 @@ or
 .. _Eq:scale:convdiff:pde1:d3:
 
 .. math::
-   :label: scale:convdiff:pde1:d3
-        
-        \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+
+    \tag{168}
+    \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
         \hbox{Pe}^{-1}\bar\nabla^2\bar u{\thinspace .}
         
         
@@ -293,7 +293,7 @@ equal and of size around unity.
 
 .. index:: Reynolds number
 
-.. _scale:convdiff:
+.. _scale:convdiff:f:
 
 Convection-diffusion with a force term
 --------------------------------------
@@ -303,9 +303,9 @@ Let us add a force term :math:`f(\boldsymbol{x},t)` to the convection-diffusion 
 .. _Eq:scale:convdiff:pde2:
 
 .. math::
-   :label: scale:convdiff:pde2
-        
-        \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
+
+    \tag{169}
+    \frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
         {\alpha}\nabla^2 u + f{\thinspace .}
         
         

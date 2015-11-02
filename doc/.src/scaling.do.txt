@@ -37,8 +37,13 @@ idx{time}
 There are seven fundamental *base units*: length, mass, time, electric
 current, thermodynamic temperature, amount of substance, and luminous
 intensity.  The base units for length, mass, and time, which we are
-mostly occupied with in this book, are measured by the SI units
+mostly occupied with in this book, are the SI units
 meter (m), kilogram (kg), and seconds (s), respectively.
+
+[hpl: Geir,
+current measured in ampere is a base unit (charge is a derived unit).
+See URL: "http://physics.nist.gov/cuu/Units/units.html" or
+"wikipedia": "https://en.wikipedia.org/wiki/SI_base_unit".]
 
 The dimension of length is written as [L], the dimension of mass is
 [M], the dimension of time is [T], and the dimension of temperature is
@@ -113,6 +118,8 @@ $\hbox{kg/ms}^2$. Below are more derived quantities and their units.
 
 Some common physical quantities and their dimensions are listed next.
 
+[hpl: TODO: Check the tables.]
+
 |-----------------------------------------|
 | Quantity  | relation | unit | dimension |
 |----l----------l---------l---|----l------|
@@ -123,9 +130,10 @@ Some common physical quantities and their dimensions are listed next.
 | Young's modulus     | stress/strain | $\hbox{N/m}^2 = \hbox{Pa}$ | $\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$ |
 | Poisson's ratio     | transverse strain/axial strain | 1 | $[1]$ |
 | Lame' parameters $\lambda$ and $\mu$ | stress/strain | $\hbox{N/m}^2 = \hbox{Pa}$ | $\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$ |
-| moment (of a force) | force $\times$ distance | Nm | $[\hbox{ML}^2\hbox{T}^{-2}]$ |
+| moment (of a force) | distance $\times$ force  | Nm | $[\hbox{ML}^2\hbox{T}^{-2}]$ |
 | impulse             | force $\times$ time     | $\hbox{Ns}$ | $[\hbox{MLT}^{-1}]$ |
-| linear momentum     | force $\times$ velocity | Nm/s | $[\hbox{ML}^2\hbox{T}^{-3}]$ |
+| linear momentum     | mass $\times$ velocity | $\hbox{kg m/s}$ | $[\hbox{ML}\hbox{T}^{-1}]$ |
+| angular momentum     | distance $\times$ mass $\times$ velocity | $\hbox{kg m}^2/\hbox{s}$ | $[\hbox{ML}^2\hbox{T}^{-1}]$ |
 | work       | force $\times$ distance | $\hbox{Nm} = \hbox{J}$ | $[\hbox{ML}^2\hbox{T}^{-2}]$ |
 | energy     | work                    |  $\hbox{Nm} = \hbox{J}$ | $[\hbox{ML}^2\hbox{T}^{-2}]$ |
 | power      | work/time               | $\hbox{Nm/s} = \hbox{W}$ | $[\hbox{ML}^2\hbox{T}^{-3}]$ |
@@ -146,7 +154,7 @@ Units often have "prefixes": "https://en.wikipedia.org/wiki/Metric_prefix".
 For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 
-===== Errors and units =====
+===== Absolute errors, relative errors, and units =====
 
 Mathematically, it does not matter what units we use for a physical
 quantity. However, when we deal with approximations and errors,
@@ -167,17 +175,33 @@ computations are of unit size (or at least moderate) instead of being very
 large or very small. The techniques of this ${APPENDIX} show how this
 can be done.
 
-idx{units!US}
-idx{units!British}
+===== Units and computers =====
+
+Traditional numerical computing involves numbers only and therefore
+require dimensionless mathematical expressions. Usually, an implicit
+trivial scaling is used. One can, for example, just scale all length
+quantities by 1 m, all time quantities by 1 s, and all mass quantities
+by 1 kg, to obtain the dimensionless numbers needed for calculations.
+This is the most common approach, although it is very seldom explicitly
+stated.
+
+Symbolic computing packages, such as Mathematica and Maple, allow
+computations with quantities that have dimension. This is also possible
+in popular computer languages used for numerical computing (Section
+ref{scale:PQ} provides a specific example in Python).
+
 
 ===== Unit systems =====
+
+idx{units!US}
+idx{units!British}
 
 Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see Exercise
 ref{sec:scale:exer:US2SI1} for how to safely convert to a standard
-unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion is a
-mathematical topic much trained in school, errors in conversions
+unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables
+are frequently met in school, errors in unit conversions
 between units probably rank highest among all errors committed by
 scientists and engineers (and when a unit conversion error make an
 "airplane's fuel run out":
@@ -188,6 +212,8 @@ Readers who are primarily interested in the mathematical scaling
 technique may safely jump over Sections ref{scale:PQ} and
 ref{scale:parampool} and continue with Section ref{sec:scale:decay}.
 
+[hpl: Geir, here goes an example on difficulties with data in and out
+of various components in a tsunami model.]
 
 ===== PhysicalQuantity: object for computing with units =====
 label{scale:PQ}
@@ -206,6 +232,16 @@ fast in popularity and acts as a replacement for more specialized tools
 like MATLAB, R, and IDL.
 The coding examples in this book requires only familiarity with basic
 procedural programming in Python.
+
+Readers without knowledge of Python variables, functions, if tests,
+and module import should consult, e.g., a "brief tutorial on scientific
+Python": "http://hplgit.github.io/bumpy/doc/web/index.html",
+the "Python Scientific Lecture Notes": "http://scipy-lectures.github.com/",
+or a full textbook cite{Langtangen_2012} in parallel with reading about
+Python code in the present book.
+
+[hpl: Geir, is this sufficient intro about Python? Should we be more
+specific about the expected competence?]
 
 Computations with units in Python are well supported by the
 `PhysicalQuantity` object from the "ScientificPython package":
@@ -673,7 +709,8 @@ time and per individual.
 === Example: Decay of pressure with altitude ===
 
 The simple model (ref{scale:decay:model}) also governs the pressure
-in the atmosphere (under many assumptions). In this case $u$ is the
+in the atmosphere (under many assumptions, such as an ideal gas in
+equilibrium). In this case $u$ is the
 pressure, measured in $\hbox{Nm}^{-2}$; $t$ is the hight in meters;
 and $a=M/(R^*T)$, where
 $M$ is the molar mass of the Earth's air (0.029 kg/mol),
@@ -712,7 +749,7 @@ we introduce a dimensionless $u$, named $\bar u$, according to
 where $u_c$ is a constant *characteristic size* of $u$. When $u$ has a specific
 interpretation, say when (ref{scale:decay:model}) models pressure
 in an atmospheric layer, $u_c$ would be referred to as characteristic pressure.
-For a decaying population, $u$ may be a characteristic number of
+For a decaying population, $u_c$ may be a characteristic number of
 members in the population, e.g., the initial population $I$.
 
 === Step 3: Derive the model involving only dimensionless variables ===
@@ -793,8 +830,9 @@ As long as the factor is not an order of magnitude or more different,
 we do not pay attention to such small differences.
 Although $t_c = a^{-1}\ln 2$ is a fine time scale to be used in this
 problem, it leads to a scaled differential equation $u'=-(\ln 2) u$,
-which is fine, but an unusual form. People tend to prefer $u'=-u$,
-which arises from $t_c=1/a$. We shall therefore use the latter
+which is fine, but an unusual form. People tend to prefer the simpler
+ODE $u'=-u$,
+which arises from $t_c=1/a$, and we shall therefore use this
 time scale.
 
 Regarding $u_c$, we may look at the initial condition
@@ -845,6 +883,9 @@ written as
 \tp
 \]
 !et
+Nevertheless, in this book we have decided to stick to bars for all
+dimensionless quantities.
+
 
 ===== Making software for utilizing the scaled model =====
 label{sec:scale:decay:prog}
@@ -875,7 +916,10 @@ Assume that we have some module `decay.py` that offers the following
 functions:
 
   * `solver(I, a, T, dt, theta=0.5)` for returning the solution arrays
-    `u` and `t` for (ref{scale:decay:model}) solved by the $\theta$ rule.
+    `u` and `t` for (ref{scale:decay:model}) solved by the so-called
+    $\theta$ rule. This rule includes the Forward Euler scheme ($\theta=0$),
+    the Backward Euler scheme ($\theta=1$), or the Crank-Nicolson
+    (centered midpoint) scheme ($\theta=\half$).
   * `read_command_line_argparse()` for reading parameters in the problem
     from the command line and returning them: `I`, `a`, `T`, `theta` ($\theta$),
     and a list of $\Delta t$ values for time steps. (We shall only make
@@ -1117,7 +1161,8 @@ from the initial condition $u(0)=I$:
 >>> print sol
 [log(I*a - b)/a]
 !ec
-The one solution that was found must then be substituted back in the
+The one solution that was found (stored in a list!)
+must then be substituted back in the
 expression `u` to yield the final solution:
 
 !bc pyshell
@@ -1320,11 +1365,13 @@ is at least one point where $\bar a = 0$ and
 the differential equation collapses to $u'=0$.)
 
 As an example, imagine a decaying cell culture where we at time $t_1$
-change the environment such that the death rate increases: $a(t) = d$ for
+change the environment (typically the nutrition)
+such that the death rate increases by a factor 5.
+Mathematically, $a(t) = d$ for
 $t < t_1$ and $a(t)=5d$ for $t\geq t_1$. The model reads $u'=-a(t)u$, $u(0)=I$.
 
 The $a(t)$ function is scaled by letting the characteristic size be
-$a_c=d$ (and $a_0=0$):
+$a_c=d$ and $a_0=0$:
 
 !bt
 \[ \bar a (\bar t) = \left\lbrace\begin{array}{ll}
@@ -1342,8 +1389,9 @@ The scaled equation becomes
 \[ \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = a_c\bar a(\bar t) u_c\bar u,\quad
 u_c\bar u(0) = I\tp\]
 !et
+The natural choice of $u_c$ is $I$.
 The characteristic time, previously taken as $t_c=1/a$, can now be
-taken as $t_c=t_1$ or $t_c=1/d$. The natural choice of $u_c$ is $I$.
+chosen as $t_c=t_1$ or $t_c=1/d$.
 With $t_c=1/d$ we get
 
 !bt
@@ -1386,11 +1434,12 @@ FIGURE: [fig-scaling/decay_jump, width=800 frac=1] Exponential decay with jump: 
 label{scale:decay:cooling:const}
 
 The heat exchange between a body at temperature $T(t)$ and the
-surroundings at $T_s(t)$ can be modeled by Newton's law of cooling:
+surroundings at constant temperature $T_s$
+can be modeled by Newton's law of cooling:
 
 !bt
 \begin{equation}
-T'(t) = -k(T-T_s(t)),\quad T(0)=T_0,
+T'(t) = -k(T-T_s),\quad T(0)=T_0,
 label{scale:decay:cooling:model}
 \end{equation}
 !et
@@ -1399,9 +1448,9 @@ where $k$ is a prescribed heat transfer coefficient.
 === Exact solution ===
 
 An analytical solution is always handy to have as a control of the
-choice of scales. Here we have
-the result $T(t) = T_s + (T_0 - T_s)e^{-kt}$ when $T_s$ is constant,
-which is also the assumption for now.
+choice of scales. The solution of (ref{scale:decay:cooling:model})
+is by standard methods for ODEs found to be
+$T(t) = T_s + (T_0 - T_s)e^{-kt}$.
 
 === Scaling ===
 
@@ -1508,8 +1557,8 @@ original differential equation, we have
 !bt
 \[ T(t) = T_0e^{-kt} + e^{-kt}k\int_0^t e^{k\tau}T_s(\tau)d\tau\tp\]
 !et
-With $T_s(t)=T_m + a\sin (wt)$ we can use SymPy to help us with
-integrations:
+With $T_s(t)=T_m + a\sin (\omega t)$ we can use SymPy to help us with
+integrations (note that we use `w` for $\omega$ in the computer code):
 
 !bc pycod
 >>> from sympy import *
@@ -1527,8 +1576,8 @@ a*k*w*cos(t*w))*exp(k*t))*exp(-k*t)/((k**2 + w**2))
 Reordering the result, we get
 
 !bt
-\[ T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + w^2)^{-1}(akw e^{-kt}
-+ ak\sin (wt) - akw\cos(wt))\tp\]
+\[ T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + \omega^2)^{-1}(ak\omega e^{-kt}
++ ak\sin (\omega t) - akw\cos(\omega t))\tp\]
 !et
 
 idx{dimensionless number}
@@ -1555,7 +1604,7 @@ case,
 
 !bt
 \[ k(T_m-T_0)\frac{d\bar T}{d\bar t} = -k((T_m-T_0)\bar T + T_0 - T_m - a
-\sin(wt),\]
+\sin(\omega t),\]
 !et
 resulting in
 
@@ -1569,27 +1618,31 @@ label{scale:decay:cooling:model:scaled}
 where we have two dimensionless numbers:
 
 !bt
-\[ \alpha = \frac{a}{T_m-T_0},\quad \beta = \frac{w}{k}\tp\]
+\[ \alpha = \frac{a}{T_m-T_0},\quad \beta = \frac{\omega}{k}\tp\]
 !et
-The $\alpha$ quantity
-measures the ratio of temperatures: amplitude of oscillations versus
-distance from initial temperature to the average temperature for large times.
-The $\beta$ number is the ratio of the two time scales:
-the frequency of the oscillations in $T_s$ and the inverse
-e-folding time of the heat transfer. For clear interpretation of $\beta$
-we may introduce the period
-$P=2\pi/w$ of the oscillations in $T_s$ and the e-folding time $e=1/k$. Then
-$\beta = 2\pi e/P$ and measures the e-folding time versus the period.
+The $\alpha$ quantity measures the ratio of temperatures: amplitude of
+oscillations versus distance from initial temperature to the average
+temperature for large times.  The $\beta$ number is the ratio of the
+two time scales: the frequency of the oscillations in $T_s$ and the
+inverse e-folding time of the heat transfer. For clear interpretation
+of $\beta$ we may introduce the period $P=2\pi/\omega$ of the
+oscillations in $T_s$ and the e-folding time $e=1/k$. Then $\beta =
+2\pi e/P$ and measures the e-folding time versus the period.
 
 The original problem features five physical parameters: $k$, $T_0$,
-$T_m$, $a$, and $w$, but only two dimensionless numbers appear in the
+$T_m$, $a$, and $\omega$, but only two dimensionless numbers appear in the
 scaled model (ref{scale:decay:cooling:model:scaled}).
+
+[hpl: Geir can write about the Pi theorem here - it gives three
+parameters and a suboptimal solution compared to the scaling of the
+ODE directly.]
+
 
 === Software ===
 
 Implementations of the unscaled problem (ref{scale:decay:cooling:model})
 can be reused for the scaled model by setting $k=1$, $T_0=0$, and
-$T_s(t) = 1 + \alpha\sin (\beta \bar t)$ ($T_m=1$, $a=\alpha$, $w=\beta$).
+$T_s(t) = 1 + \alpha\sin (\beta \bar t)$ ($T_m=1$, $a=\alpha$, $\omega =\beta$).
 The file "`osc_cooling.py`": "${src_scaling}/osc_cooling.py" contains
 solvers for the problem with dimensions and
 for the scaled problem. The figure below
@@ -1606,14 +1659,14 @@ time, and the oscillations get smaller.
 === Discussion of the time scale ===
 
 Looking at the analytical insight we have, $T(t)$ has two characteristic
-terms in time: $e^{-kt}$ and $\sin(wt)$. The former points to a time
-scale $t_c=1/k$, while the latter to $t_c=1/w$.
+terms in time: $e^{-kt}$ and $\sin(\omega t)$. The former points to a time
+scale $t_c=1/k$, while the latter to $t_c=1/\omega$.
 Which one should be chosen? Bringing the temperature from $T_0$ to
 the level of the surroundings, $T_m$, goes like $e^{-kt}$, so
 in this process $t_c=1/k$ is the characteristic time. Thereafter,
 the body's temperature just responds to the oscillations and the
-$\sin (wt)$ (and $\cos(wt)$) term dominates. For these large times,
-$t_c=1/w$ is the appropriate time scale. Choosing $t_c=1/w$
+$\sin (\omega t)$ (and $\cos(\omega t)$) term dominates. For these large times,
+$t_c=1/\omega$ is the appropriate time scale. Choosing $t_c=1/\omega$
 results in
 
 !bt
@@ -1673,6 +1726,7 @@ The last term is complicated and becomes more tractable if we factor
 out dimensionless numbers. To this end, we scale $T_s$ by (e.g.) $T_m$,
 which means to factor out $T_m$ in the denominator. We are then
 left with
+
 !bt
 \begin{equation}
 \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
@@ -1683,6 +1737,7 @@ label{scale:decay:cooling:Tbar:eq3}
 !et
 where $\alpha$, $\beta$, and $\gamma$ are dimensionless numbers
 characterizing the relative importance of parameters in the problem:
+
 !bt
 \begin{equation}
 \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
@@ -1813,8 +1868,9 @@ who can get the disease, infectious (I) who are infected and may
 infect susceptibles, and recovered (R) who have recovered from the
 disease and gained immunity. We introduce $S(t)$, $I(t)$, and $R(t)$
 as the number of people in the categories S, I, and R, respectively.
-The model, naturally known as the SIR model, takes the form a system
-of ODEs:
+The model, naturally known as the "SIR model":
+"https://en.wikipedia.org/wiki/Epidemic_model", takes the form a
+system of ODEs:
 
 !bt
 \begin{align}
@@ -1830,6 +1886,13 @@ where $\beta$ and $\nu$ are empirical constants. The average time for recovering
 from the disease can be shown to be $\nu^{-1}$, but $\beta$ is much harder
 to estimate, so working with a scaled model where $\beta$ is ``scaled away''
 is advantageous.
+
+[hpl: Geir asked about the background for this model. A link to Wikipedia
+is now inserted, but in general all models in this book are just listed
+without further explanations. Do we need more references? The idea was
+that ``here are the ODEs'' and if understanding of the ``physics'' is
+necessary, the reader must have the necessary background. Maybe state
+this in the preface?]
 
 === Scaling ===
 
@@ -2020,7 +2083,8 @@ substrate S is turned into a product P with aid of an enzyme E.
 S and E react to form a complex ES in the first stage of the reaction.
 In the second stage, ES is turned into E and P.
 Introducing the amount of S, E, ES, and P by $[S]$, $[E]$, $[ES]$, and
-$[P]$, the mathematical model can be written as
+$[P]$, the mathematical model (known as "Michaelis-Menten kinetics":
+"https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics") can be written as
 
 !bt
 \begin{align}
@@ -2051,8 +2115,7 @@ two conservation equations, arising from simply adding the ODEs:
 
 !bt
 \begin{align}
-\frac{d[ES]}{dt} + \frac{d[E]}{dt} & =0,
-\\
+\frac{d[ES]}{dt} + \frac{d[E]}{dt} & =0,\\
 \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} &= 0,
 \end{align}
 !et
@@ -3663,7 +3726,7 @@ mesh as well as all the solutions `u0`, `u1`, and so on.
 
 Although the partial differential equation model has no physical
 parameters (assuming $x_0$ fixed), the corresponding numerical model
-depends on the Courant number $C=c\Delta t/\Delta x$ and the length
+depends on the Courant number $C=c\Delta t/\Delta x$ and the duration
 $T$ of the simulations.
 
 A specific application of this simple solver is the vibrations of a guitar
@@ -3789,10 +3852,12 @@ condition, plus the wave fed in from the left.
 Since $\max_t |U_L|=a$ we get
 
 !bt
-\begin{align*}
-\bar u(\bar x,0) &= \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},\\
+\begin{align}
+\bar u(\bar x,0) &= \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},
+label{scale:wave:oscbc:I}\\
 \bar u(0,\bar t) &= \sin(\bar t\omega L/c)\tp
-\end{align*}
+label{scale:wave:oscbc:u0}
+\end{align}
 !et
 Here, $U_L$ models an incoming wave $a\sin(k(x-ct)$, with $k$ specified.
 The result is incoming
@@ -3800,8 +3865,9 @@ waves of length $\lambda = 2\pi/k$. Since $\omega =kc$,
 $\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)$.
 (This formula demonstrates the previous assertion that the time scale
 of $U_L$, i.e., $1/\omega$, determines the wave length $1/\omega = \lambda/(2\pi)$ in space.)
-We realize from the formulas for $\bar u(\bar x, 0)$ and
-$\bar u(0,\bar t)$ that there are three key dimensionless parameters related
+We realize from the formulas (ref{scale:wave:oscbc:I}) and
+(ref{scale:wave:oscbc:u0})
+that there are three key dimensionless parameters related
 to these specific choices of initial and boundary conditions:
 
 !bt
@@ -4256,7 +4322,7 @@ respectively.
 ===== A three-dimensional wave equation problem =====
 
 To demonstrate how the scaling extends to and looks like in
-three-dimensions, we consider
+three spatial dimensions, we consider
 
 !bt
 \begin{equation}
@@ -4364,7 +4430,7 @@ implies $t_c\dfc/L^2=1$ and therefore $t_c = L^2/\dfc$.
 Insight through an analytical solution can alternatively
 help with choosing $t_c$.
 One can show that $u=Ae^{-pt}\sin (kx)$ is a solution of
-(ref{sec:scale:diffu:pde1:d0}) if $p=\dfc k^2$, for any $k$. Exponential decay in
+(ref{sec:scale:diffu:pde1}) if $p=\dfc k^2$, for any $k$. Exponential decay in
 time is a characteristic feature of the diffusion equation, and
 the e-folding time can then be taken as a time scale. This means
 $t_c = 1/p \sim k^{-2}$. Since $k$ is related to the spatial
@@ -4643,7 +4709,8 @@ where $t_c=L^2/\dfc$ is the appropriate scale.
 
 As usual, investigating the exact solution of the model problem can
 illuminate the involved scales. For this particular initial-boundary
-value problem the exact solution is known to be
+value problem the exact solution as $t\rightarrow\infty$ (such that
+the initial condition $u(x,0)=U_0$ is forgotten) can be shown to be
 
 !bt
 \begin{equation}
@@ -4651,7 +4718,7 @@ u(x,t) = U_0 - Ae^{-bx}\sin (bx - \omega t),\quad b =\sqrt{\frac{\omega}{2\dfc}}
 label{scale:heat:daynight:sol}
 \end{equation}
 !et
-This solution is of the form $e^{-bx}g(x-ct)$, i.e., a wave that
+This solution is of the form $e^{-bx}g(x-ct)$, i.e., a damped wave that
 moves to the right with velocity $c$ and a damped amplitude $e^{-bx}$.
 This is perhaps more easily seen if we make a rewrite
 
@@ -4887,7 +4954,7 @@ This PDE is also known as the KPP equation after
 Kolmogorov, Petrovsky, and Piskynov (who introduced the equation
 independently of Fisher).
 
-Introducing
+Setting
 
 !bt
 \[ \bar x = \frac{x}{x_c},\quad
@@ -4955,9 +5022,10 @@ $u_c=M$, we get
 where $\beta$ is a dimensionless number
 
 !bt
-\[ \beta = \frac{\dfc}{\varrho L^2} = \frac{\varrho^{-1}}{L^2/\dfc},\]
+\[ \beta = \frac{\dfc}{\varrho L^2} = \frac{\varrho^{-1}}{L^2/\dfc}\tp\]
 !et
-demonstrating that $\beta$ measures the ratio of the time scale
+The last equality demonstrates
+that $\beta$ measures the ratio of the time scale
 for exponential growth in the beginning of the logistic process
 and the time scale of diffusion $L^2/\dfc$ (i.e., the time it takes
 to transport a signal by diffusion through the domain).
@@ -7033,16 +7101,14 @@ The final dimensionless system becomes
 \beta
 \bar v
 (J_1 +  \bar v)
-(\bar v - 1) - \gamma\bar w - \delta,
-\\
+(\bar v - 1) - \gamma\bar w - \delta,\\
 0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
 \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\\
 \frac{d\bar v}{d\bar t} & = -
 \beta
 \bar v
 (J_1 +  \bar v)
-(\bar v -1)- \gamma\bar w - \delta,
-\\
+(\bar v -1)- \gamma\bar w - \delta,\\
 \frac{d\bar w}{d\bar t} &= -K_1\bar w +
 K_2\bar v + K_3\tp
 \end{align}

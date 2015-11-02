@@ -13,9 +13,9 @@ modeled by the equation
 .. _Eq:scale:dimunit:eq:u:
 
 .. math::
-   :label: scale:dimunit:eq:u
-        
-        mu'' + bu' + ku = 0,
+
+    \tag{1}
+    mu'' + bu' + ku = 0,
         
         
 
@@ -47,8 +47,10 @@ Base units and dimensions
 There are seven fundamental *base units*: length, mass, time, electric
 current, thermodynamic temperature, amount of substance, and luminous
 intensity.  The base units for length, mass, and time, which we are
-mostly occupied with in this book, are measured by the SI units
+mostly occupied with in this book, are the SI units
 meter (m), kilogram (kg), and seconds (s), respectively.
+
+[**hpl 4**: Geir, current measured in ampere is a base unit (charge is a derived unit). See `<http://physics.nist.gov/cuu/Units/units.html>`_ or `wikipedia <https://en.wikipedia.org/wiki/SI_base_unit>`__.]
 
 The dimension of length is written as [L], the dimension of mass is
 [M], the dimension of time is [T], and the dimension of temperature is
@@ -59,7 +61,7 @@ The dimension of force, another derived unit, is the same as the
 dimension of mass times acceleration, and hence the dimension of force is
 :math:`[\hbox{MLT}^{-2}]`.
 
-Let us find the dimensions of the terms in :eq:`scale:dimunit:eq:u`.
+Let us find the dimensions of the terms in :ref:`(1) <Eq:scale:dimunit:eq:u>`.
 A displacement :math:`u(t)` has dimension [L]. The derivative :math:`u'(t)` is
 change of displacement, which has dimension [L], divided by a time
 interval, which has dimension [T], implying that the dimension of :math:`u'`
@@ -67,7 +69,7 @@ is :math:`\hbox{LT}^{-1}`. This results coincides with the interpretation of
 :math:`u'` as velocity and the fact that velocity is defined as distance
 ([L]) per time ([T]).
 
-Looking at :eq:`scale:dimunit:eq:u`, and interpreting :math:`u(t)`
+Looking at :ref:`(1) <Eq:scale:dimunit:eq:u>`, and interpreting :math:`u(t)`
 as displacement, we realize that the term :math:`mu''`
 (mass times acceleration) has dimension :math:`[\hbox{MLT}^{-2}]`.  The term
 :math:`bu'` must have the same dimension, and since :math:`u'` has dimension
@@ -79,7 +81,7 @@ The unit of a physical quantity follows from the dimension expression.
 For example, since velocity has dimension :math:`\hbox{LT}^{-1}` and length
 is measured in m while time is measured in s, the unit for velocity
 becomes m/s. Similarly, force has dimension :math:`[\hbox{MLT}^{-2}]` and
-unit :math:`\hbox{kg\, m/s}^2`. The :math:`k` parameter in :eq:`scale:dimunit:eq:u`
+unit :math:`\hbox{kg\, m/s}^2`. The :math:`k` parameter in :ref:`(1) <Eq:scale:dimunit:eq:u>`
 is measured in :math:`\hbox{kg\,s}^{-2}`.
 
 
@@ -128,32 +130,35 @@ watt    W       power               J/s
 
 Some common physical quantities and their dimensions are listed next.
 
-================================================  ==============================  ====================================  =============================================  
-                    Quantity                                 relation                             unit                                    dimension                    
-================================================  ==============================  ====================================  =============================================  
-stress                                            force/area                      :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`[\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`   
-pressure                                          force/area                      :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`    
-density                                           mass/volume                     :math:`\hbox{kg/m}^3`                 :math:`[\hbox{ML}^{-3}]`                       
-strain                                            displacement/length             1                                     :math:`[1]`                                    
-Young's modulus                                   stress/strain                   :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`    
-Poisson's ratio                                   transverse strain/axial strain  1                                     :math:`[1]`                                    
-Lame' parameters :math:`\lambda` and :math:`\mu`  stress/strain                   :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`    
-moment (of a force)                               force :math:`\times` distance   Nm                                    :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
-impulse                                           force :math:`\times` time       :math:`\hbox{Ns}`                     :math:`[\hbox{MLT}^{-1}]`                      
-linear momentum                                   force :math:`\times` velocity   Nm/s                                  :math:`[\hbox{ML}^2\hbox{T}^{-3}]`             
-work                                              force :math:`\times` distance   :math:`\hbox{Nm} = \hbox{J}`          :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
-energy                                            work                            :math:`\hbox{Nm} = \hbox{J}`          :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
-power                                             work/time                       :math:`\hbox{Nm/s} = \hbox{W}`        :math:`[\hbox{ML}^2\hbox{T}^{-3}]`             
-heat                                              work                            J                                     :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
-heat flux                                         heat rate/area                  :math:`\hbox{Wm}^{-2}`                :math:`[\hbox{MT}^{-3}]`                       
-temperature                                       base unit                       K                                     :math:`[\Theta]`                               
-heat capacity                                     heat change/temperature change  J/K                                   :math:`[\hbox{ML}^2\hbox{T}^{-2}\Theta^{-1}]`  
-specific heat capacity                            heat capacity/unit mass         :math:`\hbox{JK}^{-1}\hbox{kg}^{-1}`  :math:`[\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}]`   
-thermal conductivity                              heat flux/temperature gradient  :math:`\hbox{Wm}^{-1}\hbox{K}^{-1}`   :math:`[\hbox{MLT}^{-3}\Theta^{-1}]`           
-dynamic viscosity                                 shear stress/velocity gradient  :math:`\hbox{kgm}^{-1}\hbox{s}^{-1}`  :math:`[\hbox{ML}^{-1}T^{-1}]`                 
-kinematic viscosity                               dynamic viscosity/density       :math:`[\hbox{m}^2/\hbox{s}`          :math:`\hbox{L}^2\hbox{T}^{-1}]`               
-surface tension                                   energy/area                     :math:`[\hbox{J/m}^2`                 :math:`\hbox{MT}^{-2}]`                        
-================================================  ==============================  ====================================  =============================================  
+[**hpl 5**: TODO: Check the tables.]
+
+================================================  ====================================================  ====================================  =============================================  
+                    Quantity                                            relation                                        unit                                    dimension                    
+================================================  ====================================================  ====================================  =============================================  
+stress                                            force/area                                            :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`[\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`   
+pressure                                          force/area                                            :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`    
+density                                           mass/volume                                           :math:`\hbox{kg/m}^3`                 :math:`[\hbox{ML}^{-3}]`                       
+strain                                            displacement/length                                   1                                     :math:`[1]`                                    
+Young's modulus                                   stress/strain                                         :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`    
+Poisson's ratio                                   transverse strain/axial strain                        1                                     :math:`[1]`                                    
+Lame' parameters :math:`\lambda` and :math:`\mu`  stress/strain                                         :math:`\hbox{N/m}^2 = \hbox{Pa}`      :math:`\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]`    
+moment (of a force)                               distance :math:`\times` force                         Nm                                    :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
+impulse                                           force :math:`\times` time                             :math:`\hbox{Ns}`                     :math:`[\hbox{MLT}^{-1}]`                      
+linear momentum                                   mass :math:`\times` velocity                          :math:`\hbox{kg m/s}`                 :math:`[\hbox{ML}\hbox{T}^{-1}]`               
+angular momentum                                  distance :math:`\times` mass :math:`\times` velocity  :math:`\hbox{kg m}^2/\hbox{s}`        :math:`[\hbox{ML}^2\hbox{T}^{-1}]`             
+work                                              force :math:`\times` distance                         :math:`\hbox{Nm} = \hbox{J}`          :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
+energy                                            work                                                  :math:`\hbox{Nm} = \hbox{J}`          :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
+power                                             work/time                                             :math:`\hbox{Nm/s} = \hbox{W}`        :math:`[\hbox{ML}^2\hbox{T}^{-3}]`             
+heat                                              work                                                  J                                     :math:`[\hbox{ML}^2\hbox{T}^{-2}]`             
+heat flux                                         heat rate/area                                        :math:`\hbox{Wm}^{-2}`                :math:`[\hbox{MT}^{-3}]`                       
+temperature                                       base unit                                             K                                     :math:`[\Theta]`                               
+heat capacity                                     heat change/temperature change                        J/K                                   :math:`[\hbox{ML}^2\hbox{T}^{-2}\Theta^{-1}]`  
+specific heat capacity                            heat capacity/unit mass                               :math:`\hbox{JK}^{-1}\hbox{kg}^{-1}`  :math:`[\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}]`   
+thermal conductivity                              heat flux/temperature gradient                        :math:`\hbox{Wm}^{-1}\hbox{K}^{-1}`   :math:`[\hbox{MLT}^{-3}\Theta^{-1}]`           
+dynamic viscosity                                 shear stress/velocity gradient                        :math:`\hbox{kgm}^{-1}\hbox{s}^{-1}`  :math:`[\hbox{ML}^{-1}T^{-1}]`                 
+kinematic viscosity                               dynamic viscosity/density                             :math:`[\hbox{m}^2/\hbox{s}`          :math:`\hbox{L}^2\hbox{T}^{-1}]`               
+surface tension                                   energy/area                                           :math:`[\hbox{J/m}^2`                 :math:`\hbox{MT}^{-2}]`                        
+================================================  ====================================================  ====================================  =============================================  
 
 Prefixes for units
 ~~~~~~~~~~~~~~~~~~
@@ -162,8 +167,8 @@ Units often have `prefixes <https://en.wikipedia.org/wiki/Metric_prefix>`__.
 For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or :math:`10^9` Pa.
 
-Errors and units
-----------------
+Absolute errors, relative errors, and units
+-------------------------------------------
 
 Mathematically, it does not matter what units we use for a physical
 quantity. However, when we deal with approximations and errors,
@@ -184,20 +189,35 @@ computations are of unit size (or at least moderate) instead of being very
 large or very small. The techniques of this appendix show how this
 can be done.
 
+Units and computers
+-------------------
+
+Traditional numerical computing involves numbers only and therefore
+require dimensionless mathematical expressions. Usually, an implicit
+trivial scaling is used. One can, for example, just scale all length
+quantities by 1 m, all time quantities by 1 s, and all mass quantities
+by 1 kg, to obtain the dimensionless numbers needed for calculations.
+This is the most common approach, although it is very seldom explicitly
+stated.
+
+Symbolic computing packages, such as Mathematica and Maple, allow
+computations with quantities that have dimension. This is also possible
+in popular computer languages used for numerical computing (the section :ref:`scale:PQ` provides a specific example in Python).
+
+Unit systems
+------------
+
 .. index::
    single: units; US
 
 .. index::
    single: units; British
 
-Unit systems
-------------
-
 Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see :ref:`sec:scale:exer:US2SI1` for how to safely convert to a standard
-unit like :math:`\hbox{kg\,m}^{-3}`).  Although unit conversion is a
-mathematical topic much trained in school, errors in conversions
+unit like :math:`\hbox{kg\,m}^{-3}`).  Although unit conversion tables
+are frequently met in school, errors in unit conversions
 between units probably rank highest among all errors committed by
 scientists and engineers (and when a unit conversion error make an
 `airplane's fuel run out <http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html>`__,
@@ -206,6 +226,8 @@ conversion is therefore paramount, and this topic is treated next.
 Readers who are primarily interested in the mathematical scaling
 technique may safely jump over the sections :ref:`scale:PQ` and
 :ref:`scale:parampool` and continue with the section :ref:`sec:scale:decay`.
+
+[**hpl 6**: Geir, here goes an example on difficulties with data in and out of various components in a tsunami model.]
 
 .. _scale:PQ:
 
@@ -230,6 +252,15 @@ fast in popularity and acts as a replacement for more specialized tools
 like MATLAB, R, and IDL.
 The coding examples in this book requires only familiarity with basic
 procedural programming in Python.
+
+Readers without knowledge of Python variables, functions, if tests,
+and module import should consult, e.g., a `brief tutorial on scientific
+Python <http://hplgit.github.io/bumpy/doc/web/index.html>`__,
+the `Python Scientific Lecture Notes <http://scipy-lectures.github.com/>`__,
+or a full textbook [Ref01]_ in parallel with reading about
+Python code in the present book.
+
+[**hpl 7**: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?]
 
 Computations with units in Python are well supported by the
 ``PhysicalQuantity`` object from the `ScientificPython package <https://bitbucket.org/khinsen/scientificpython>`__ by Konrad
@@ -641,7 +672,7 @@ of that parameter.
 
 .. [#Flask] You need to have Flask and additional packages installed.
    This is easy to do with a few ``pip install`` commands,
-   see [Ref1]_ or [Ref2]_.
+   see [Ref02]_ or [Ref03]_.
 
 .. _scale:dimunit:fig:GUI:
 

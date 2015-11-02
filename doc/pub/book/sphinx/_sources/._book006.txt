@@ -20,16 +20,16 @@ in a homogeneous medium may be written as
 .. _Eq:scale:wave:pde1:
 
 .. math::
-   :label: scale:wave:pde1
-        
-        \frac{\partial^2 u}{\partial t^2} =
+
+    \tag{93}
+    \frac{\partial^2 u}{\partial t^2} =
         c^2 {\partial^2 u\over\partial x^2}, \quad  x\in (0,L),\ t\in (0,T],
         
         
 
 where :math:`c` is the constant wave velocity of the medium.
 With a briefer notation, where subscripts indicate derivatives,
-the PDE :eq:`scale:wave:pde1` can be written
+the PDE :ref:`(93) <Eq:scale:wave:pde1>` can be written
 :math:`u_{tt}=c^2u_{xx}`. This subscript notation will occasionally be
 used later.
 
@@ -38,9 +38,9 @@ In multi dimensions in heterogeneous media we have the generalization
 .. _Eq:scale:wave:pde1:3D:
 
 .. math::
-   :label: scale:wave:pde1:3D
-        
-        \frac{\partial^2 u}{\partial t^2} =
+
+    \tag{94}
+    \frac{\partial^2 u}{\partial t^2} =
         \nabla\cdot\left(c^2 \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]{\thinspace .}
         
         
@@ -58,36 +58,36 @@ no initial velocity :math:`u_t`:
 .. _Eq:scale:wave:pde1:ic:u:
 
 .. math::
-   :label: scale:wave:pde1:ic:u
-        
-        u(x,0) = I(x), \quad x\in [0,L],
+
+    \tag{95}
+    u(x,0) = I(x), \quad x\in [0,L],
         
         
 
 .. _Eq:scale:wave:pde1:ic:ut:
 
 .. math::
-   :label: scale:wave:pde1:ic:ut
-          
-        {\partial\over\partial t}u(x,0) = 0, \quad  x\in [0,L],
+
+    \tag{96}
+    {\partial\over\partial t}u(x,0) = 0, \quad  x\in [0,L],
         
         
 
 .. _Eq:scale:wave:pde1:bc:0:
 
 .. math::
-   :label: scale:wave:pde1:bc:0
-          
-        u(0,t)  = 0, \quad   t\in (0,T],
+
+    \tag{97}
+    u(0,t)  = 0, \quad   t\in (0,T],
         
         
 
 .. _Eq:scale:wave:pde1:bc:L:
 
 .. math::
-   :label: scale:wave:pde1:bc:L
-          
-        u(L,t)  = 0, \quad   t\in (0,T].
+
+    \tag{98}
+    u(L,t)  = 0, \quad   t\in (0,T].
         
         
 
@@ -104,8 +104,8 @@ dependent variables:
         {\thinspace .}
         
 
-Inserting the :math:`x=x_c\bar x`, etc., in :eq:`scale:wave:pde1` and
-:eq:`scale:wave:pde1:ic:u`-:eq:`scale:wave:pde1:bc:L` gives
+Inserting the :math:`x=x_c\bar x`, etc., in :ref:`(93) <Eq:scale:wave:pde1>` and
+:ref:`(95) <Eq:scale:wave:pde1:ic:u>`-:ref:`(98) <Eq:scale:wave:pde1:bc:L>` gives
 
 .. math::
         
@@ -128,16 +128,16 @@ Inserting the :math:`x=x_c\bar x`, etc., in :eq:`scale:wave:pde1` and
 The key question is how to define the scales.
 A natural choice is :math:`x_c=L` since this makes :math:`\bar x\in [0,1]`.
 For the spatial scale and the problem governed by
-:eq:`scale:wave:pde1` we
+:ref:`(93) <Eq:scale:wave:pde1>` we
 have some analytical insight that can help.
 The solution behaves like
 
 .. _Eq:scale:wave:pde:sol:general:
 
 .. math::
-   :label: scale:wave:pde:sol:general
-        
-        u(x,t) = f_R(x-ct) + f_R(x+ct),
+
+    \tag{99}
+    u(x,t) = f_R(x-ct) + f_R(x+ct),
         
         
 
@@ -174,9 +174,9 @@ we end up with the dimensionless initial-boundary value problem
 .. _Eq:scale:wave:pde1:d:
 
 .. math::
-   :label: scale:wave:pde1:d
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2} =
+
+    \tag{100}
+    \frac{\partial^2 \bar u}{\partial \bar t^2} =
         {\partial^2 \bar u\over\partial x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],
         
         
@@ -184,9 +184,9 @@ we end up with the dimensionless initial-boundary value problem
 .. _Eq:scale:wave:pde1:ic:u:d:
 
 .. math::
-   :label: scale:wave:pde1:ic:u:d
-          
-        \bar u(\bar x,0) = \frac{I(\bar x L)}{\max_{x\in(0,L)} |I(x)|},
+
+    \tag{101}
+    \bar u(\bar x,0) = \frac{I(\bar x L)}{\max_{x\in(0,L)} |I(x)|},
         \quad \bar x\in [0,1],
         
         
@@ -194,9 +194,9 @@ we end up with the dimensionless initial-boundary value problem
 .. _Eq:scale:wave:pde1:ic:ut:d:
 
 .. math::
-   :label: scale:wave:pde1:ic:ut:d
-          
-        {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+
+    \tag{102}
+    {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
         \quad  \bar x\in [0,1],
         
         
@@ -204,9 +204,9 @@ we end up with the dimensionless initial-boundary value problem
 .. _Eq:scale:wave:pde1:bc:0:d:
 
 .. math::
-   :label: scale:wave:pde1:bc:0:d
-          
-        \bar u(0,\bar t)  = 0,
+
+    \tag{103}
+    \bar u(0,\bar t)  = 0,
         \quad  \bar t\in (0,\bar T],
         
         
@@ -214,9 +214,9 @@ we end up with the dimensionless initial-boundary value problem
 .. _Eq:scale:wave:pde1:bc:L:d:
 
 .. math::
-   :label: scale:wave:pde1:bc:L:d
-          
-        \bar u(1,\bar t)  = 0,
+
+    \tag{104}
+    \bar u(1,\bar t)  = 0,
         \quad  \bar t\in (0,\bar T].
         
         
@@ -224,7 +224,7 @@ we end up with the dimensionless initial-boundary value problem
 Here, :math:`\bar T = Tc/L`.
 
 The striking feature of
-:eq:`scale:wave:pde1:d`-:eq:`scale:wave:pde1:bc:L:d`
+:ref:`(100) <Eq:scale:wave:pde1:d>`-:ref:`(104) <Eq:scale:wave:pde1:bc:L:d>`
 is that there are *no physical parameters* involved! Everything we need
 to specify is the shape of the initial condition and then scale it
 such that it is less than or equal to 1.
@@ -232,23 +232,23 @@ such that it is less than or equal to 1.
 The physical solution with dimension is recovered from :math:`\bar u(\bar x,\bar t)`
 through
 
-.. _Eq:_auto28:
+.. _Eq:_auto27:
 
 .. math::
-   :label: _auto28
-        
-        u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
+
+    \tag{105}
+    u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
         
         
 
 Implementation of the scaled wave equation
 ------------------------------------------
 
-[**hpl 6**: This must be rewritten and placed in an appendix - or dropped. The basic code from ``wave1D_u0.py`` must be shown, otherwise the discussion of avoiding recomputation does not make much sense.]
+[**hpl 12**: This must be rewritten and placed in an appendix - or dropped. The basic code from ``wave1D_u0.py`` must be shown, otherwise the discussion of avoiding recomputation does not make much sense.]
 
-[**hpl 7**: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.]
+[**hpl 13**: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.]
 
-How do we implement :eq:`scale:wave:pde1:d`-:eq:`scale:wave:pde1:bc:L:d`?
+How do we implement :ref:`(100) <Eq:scale:wave:pde1:d>`-:ref:`(104) <Eq:scale:wave:pde1:bc:L:d>`?
 As for the simpler mathematical models, I suggest to implement the model
 with dimensions and observe how to set parameters to obtain the scaled
 model. In the present case, one must choose :math:`L=1`, :math:`c=1`, and scale :math:`I` by its
@@ -258,18 +258,18 @@ Several implementations of 1D wave equation models with different
 degree of mathematical and software complexity appear in
 the directory `wave/wave1D <http://tinyurl.com/nm5587k/wave/wave1D>`__. The simplest
 version is `wave1D_u0.py <http://tinyurl.com/nm5587k/wave/wave1D/wave1D_u0.py>`__
-that implements :eq:`scale:wave:pde1` and
-(:ref:`scale:wave:pde1:ic:u`-:eq:`scale:wave:pde1:bc:L`.
+that implements :ref:`(93) <Eq:scale:wave:pde1>` and
+(:ref:`scale:wave:pde1:ic:u`-:ref:`(98) <Eq:scale:wave:pde1:bc:L>`.
 This is the code to be used in the following. It is described
 in in
 the document `Finite difference methods for wave motion <http://tinyurl.com/k3sdbuv/pub/wave>`__
-[Ref6]_.
+[Ref07]_.
 
 Waves on a string
 ~~~~~~~~~~~~~~~~~
 
 As example, we may let the original initial-boundary value problem
-:eq:`scale:wave:pde1`-:eq:`scale:wave:pde1:bc:L` model
+:ref:`(93) <Eq:scale:wave:pde1>`-:ref:`(98) <Eq:scale:wave:pde1:bc:L>` model
 vibrations of a string on a string instrument. With :math:`u` as the
 displacement of the string, the boundary conditions :math:`u=0` at the ends
 are relevant, as well as the zero velocity condition :math:`\partial u/\partial t=0`
@@ -308,7 +308,7 @@ which we have a lot of in the ``solver`` functions for 1D wave equations.
 
 A manual strategy taken from `wave1D_dn_vc.py <http://tinyurl.com/nm5587k/wave/wave1D/wave1D_dn_vc.py>`__ and explained in
 the document
-`Scientific software engineering; wave equation model <http://tinyurl.com/k3sdbuv/pub/softeng2>`__ [Ref7]_
+`Scientific software engineering; wave equation model <http://tinyurl.com/k3sdbuv/pub/softeng2>`__ [Ref08]_
 is to convert
 all input data to the ``solver`` function to a string,
 which is thereafter converted to an SHA1 hash string
@@ -370,7 +370,7 @@ mentioned ``wave1D_u0.py`` file.
 
 This function employs ideas described in
 the document
-`Scientific software engineering; wave equation model <http://tinyurl.com/k3sdbuv/pub/softeng2>`__ [Ref7]_ for storing
+`Scientific software engineering; wave equation model <http://tinyurl.com/k3sdbuv/pub/softeng2>`__ [Ref08]_ for storing
 arrays on disk with use of ``joblib`` (class ``Storage``) and recognizing
 previous input through a hash string. If the input is the same, the
 hash is the same and we can test on the existence of a
@@ -381,7 +381,7 @@ mesh as well as all the solutions ``u0``, ``u1``, and so on.
 
 Although the partial differential equation model has no physical
 parameters (assuming :math:`x_0` fixed), the corresponding numerical model
-depends on the Courant number :math:`C=c\Delta t/\Delta x` and the length
+depends on the Courant number :math:`C=c\Delta t/\Delta x` and the duration
 :math:`T` of the simulations.
 
 A specific application of this simple solver is the vibrations of a guitar
@@ -473,7 +473,7 @@ precomputed file data.
 Time-dependent Dirichlet condition
 ----------------------------------
 
-A generalization of :eq:`scale:wave:pde1`-:eq:`scale:wave:pde1:bc:L` is to
+A generalization of :ref:`(93) <Eq:scale:wave:pde1>`-:ref:`(98) <Eq:scale:wave:pde1:bc:L>` is to
 allow for a time-dependent Dirichlet condition at one end, say
 :math:`u(0,t)=U_L(t)`. At the other end we may still have :math:`u=0`.
 This new condition at :math:`x=0` may model a specified wave that
@@ -515,9 +515,9 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 .. _Eq:scale:wave:pde2:d:
 
 .. math::
-   :label: scale:wave:pde2:d
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2} =
+
+    \tag{106}
+    \frac{\partial^2 \bar u}{\partial \bar t^2} =
         {\partial^2 \bar u\over\partial \bar x^2},
         \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],
         
@@ -526,9 +526,9 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 .. _Eq:scale:wave:pde2:ic:u:d:
 
 .. math::
-   :label: scale:wave:pde2:ic:u:d
-          
-        \bar u(\bar x,0) = \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
+
+    \tag{107}
+    \bar u(\bar x,0) = \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
         \quad \bar x\in [0,1],
         
         
@@ -536,9 +536,9 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 .. _Eq:scale:wave:pde2:ic:ut:d:
 
 .. math::
-   :label: scale:wave:pde2:ic:ut:d
-          
-        {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+
+    \tag{108}
+    {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
         \quad  \bar x\in [0,1],
         
         
@@ -546,9 +546,9 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 .. _Eq:scale:wave:pde2:bc:0:d:
 
 .. math::
-   :label: scale:wave:pde2:bc:0:d
-          
-        \bar u(0,\bar t)  = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
+
+    \tag{109}
+    \bar u(0,\bar t)  = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
         \quad  \bar t\in (0,\bar T],
         
         
@@ -556,9 +556,9 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 .. _Eq:scale:wave:pde2:bc:L:d:
 
 .. math::
-   :label: scale:wave:pde2:bc:L:d
-          
-        \bar u(1,\bar t)  = 0,
+
+    \tag{110}
+    \bar u(1,\bar t)  = 0,
         \quad \bar t\in (0,\bar T].
         
         
@@ -566,11 +566,11 @@ With :math:`u_c=\max_t |U_L(t)|`, we get the scaled problem
 Also this problem is free of physical parameters like :math:`c` and :math:`L`.
 The input is completely specified by the shape of :math:`I(x)` and :math:`U_L(t)`.
 
-Software          (6)
+Software          (7)
 ~~~~~~~~~~~~~~~~~~~~~
 
 Software for the original problem with dimensions can be reused for
-:eq:`scale:wave:pde2:d`-:eq:`scale:wave:pde2:bc:L:d` by
+:ref:`(106) <Eq:scale:wave:pde2:d>`-:ref:`(110) <Eq:scale:wave:pde2:bc:L:d>` by
 setting :math:`L=1`, :math:`c=1`, and scaling :math:`U_L(t)` and :math:`I(x)` by
 :math:`\max_t |U_L(t)|`.
 
@@ -593,10 +593,22 @@ condition, plus the wave fed in from the left.
 
 Since :math:`\max_t |U_L|=a` we get
 
+.. _Eq:scale:wave:oscbc:I:
+
 .. math::
+
+    \tag{111}
+    \bar u(\bar x,0) = \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},
         
-        \bar u(\bar x,0) &= \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},\\ 
-        \bar u(0,\bar t) &= \sin(\bar t\omega L/c){\thinspace .}
+        
+
+.. _Eq:scale:wave:oscbc:u0:
+
+.. math::
+
+    \tag{112}
+    \bar u(0,\bar t) = \sin(\bar t\omega L/c){\thinspace .}
+        
         
 
 Here, :math:`U_L` models an incoming wave :math:`a\sin(k(x-ct)`, with :math:`k` specified.
@@ -605,8 +617,9 @@ waves of length :math:`\lambda = 2\pi/k`. Since :math:`\omega =kc`,
 :math:`\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)`.
 (This formula demonstrates the previous assertion that the time scale
 of :math:`U_L`, i.e., :math:`1/\omega`, determines the wave length :math:`1/\omega = \lambda/(2\pi)` in space.)
-We realize from the formulas for :math:`\bar u(\bar x, 0)` and
-:math:`\bar u(0,\bar t)` that there are three key dimensionless parameters related
+We realize from the formulas :ref:`(111) <Eq:scale:wave:oscbc:I>` and
+:ref:`(112) <Eq:scale:wave:oscbc:u0>`
+that there are three key dimensionless parameters related
 to these specific choices of initial and boundary conditions:
 
 .. math::
@@ -673,7 +686,7 @@ end points. This solver is trivially adapted to the present case.
         </div>
         <p><em>:math:`\alpha=0.1`</em></p>
 
-[**hpl 8**: The HTML version features movies here. Link to them in the LaTeX PDF version as well?]
+[**hpl 14**: The HTML version features movies here. Link to them in the LaTeX PDF version as well?]
 
 .. _scale:wave:pde2:Vcond:
 
@@ -682,21 +695,21 @@ Velocity initial condition
 
 Now we change the initial condition from :math:`u=I` and :math:`\partial u/\partial t = 0` to
 
+.. _Eq:_auto28:
+
+.. math::
+
+    \tag{113}
+    u(x,0) = 0,
+        
+        
+
 .. _Eq:_auto29:
 
 .. math::
-   :label: _auto29
-        
-        u(x,0) = 0,
-        
-        
 
-.. _Eq:_auto30:
-
-.. math::
-   :label: _auto30
-          
-        \frac{\partial}{\partial t} u(x,0) = V(x){\thinspace .}
+    \tag{114}
+    \frac{\partial}{\partial t} u(x,0) = V(x){\thinspace .}
         
         
 
@@ -711,7 +724,7 @@ The scaled version of :math:`u_t(x,0)=V(x)` becomes
 Analytical insight
 ~~~~~~~~~~~~~~~~~~
 
-From :eq:`scale:wave:pde:sol:general` we now get :math:`f_L + f_R =0` and
+From :ref:`(99) <Eq:scale:wave:pde:sol:general>` we now get :math:`f_L + f_R =0` and
 :math:`cf_L' - cf_R' = V`. Introducing :math:`W(x)` such that :math:`W'(x)=V(x)`, a solution
 is :math:`-f_L=\frac{1}{2}W` and :math:`f_R=\frac{1}{2}W`. Hence,
 
@@ -747,9 +760,9 @@ based on :math:`V` becomes
 .. _Eq:scale:wave:pde2:Vcond:eq:
 
 .. math::
-   :label: scale:wave:pde2:Vcond:eq
-        
-        \bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}{\thinspace .}
+
+    \tag{115}
+    \bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}{\thinspace .}
         
         
 
@@ -764,7 +777,7 @@ based on :math:`V` becomes
    Since :math:`V` is :math:`\partial u/\partial t`, its dimension is
    :math:`[\hbox{LT}^{-1}]`. The dimensions of :math:`c` and :math:`L` are
    :math:`[\hbox{LT}^{-1}]` and :math:`[\hbox{L}]`. The dimension of the right-hand side
-   of :eq:`scale:wave:pde2:Vcond:eq` is then
+   of :ref:`(115) <Eq:scale:wave:pde2:Vcond:eq>` is then
    
    .. math::
             \frac{[\hbox{LT}^{-1}][L]}{[L][L\hbox{T}^{-1}]}
@@ -805,9 +818,9 @@ regardless of other parameters.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.
 
-[**hpl 9**: Do experiments. Make exercise or insert here.]
+[**hpl 15**: Do experiments. Make exercise or insert here.]
 
-[**hpl 10**: Could make paradox: small :math:`I`, big :math:`V`, but still significant impact of :math:`I` in a simulation. Why? Bug? The answer is above. Best as exercise.]
+[**hpl 16**: Could make paradox: small :math:`I`, big :math:`V`, but still significant impact of :math:`I` in a simulation. Why? Bug? The answer is above. Best as exercise.]
 
 .. _scale:wave:pde2:cvar:
 
@@ -823,16 +836,16 @@ to the PDE, modeling wave generation in the interior of
 the domain. For example, a moving slide at the bottom of a fjord
 will generate surface waves and is modeled by such an :math:`f(x,t)` term
 (provided the length of the waves is much larger than the depth so
-that a simple wave equation like :eq:`scale:wave:pde3` applies).
+that a simple wave equation like :ref:`(116) <Eq:scale:wave:pde3>` applies).
 The initial-boundary value problem
 can be then expressed as
 
 .. _Eq:scale:wave:pde3:
 
 .. math::
-   :label: scale:wave:pde3
-        
-        \frac{\partial^2 u}{\partial t^2} =
+
+    \tag{116}
+    \frac{\partial^2 u}{\partial t^2} =
         \frac{\partial}{\partial x}\left(
         \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
         \quad  x\in (0,L),\ t\in (0,T],
@@ -842,9 +855,9 @@ can be then expressed as
 .. _Eq:scale:wave:pde3:ic:u:
 
 .. math::
-   :label: scale:wave:pde3:ic:u
-          
-        u(x,0) = I(x),
+
+    \tag{117}
+    u(x,0) = I(x),
         \quad x\in [0,L],
         
         
@@ -852,9 +865,9 @@ can be then expressed as
 .. _Eq:scale:wave:pde3:ic:ut:
 
 .. math::
-   :label: scale:wave:pde3:ic:ut
-          
-        {\partial\over\partial t}u(x,0) = 0,
+
+    \tag{118}
+    {\partial\over\partial t}u(x,0) = 0,
         \quad  x\in [0,L],
         
         
@@ -862,9 +875,9 @@ can be then expressed as
 .. _Eq:scale:wave:pde3:bc:0:
 
 .. math::
-   :label: scale:wave:pde3:bc:0
-          
-        \frac{\partial}{\partial x}u(0,t)  = 0,
+
+    \tag{119}
+    \frac{\partial}{\partial x}u(0,t)  = 0,
         \quad  t\in (0,T],
         
         
@@ -872,9 +885,9 @@ can be then expressed as
 .. _Eq:scale:wave:pde3:bc:L:
 
 .. math::
-   :label: scale:wave:pde3:bc:L
-          
-        \frac{\partial}{\partial x}u(L,t)  = 0,
+
+    \tag{120}
+    \frac{\partial}{\partial x}u(L,t)  = 0,
         \quad  t\in (0,T].
         
         
@@ -884,12 +897,12 @@ Non-dimensionalization
 
 We make the coefficient :math:`\lambda` non-dimensional by
 
-.. _Eq:_auto31:
+.. _Eq:_auto30:
 
 .. math::
-   :label: _auto31
-        
-        \bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},
+
+    \tag{121}
+    \bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},
         
         
 
@@ -915,9 +928,9 @@ non-dimensional counterparts yields
 .. _Eq:scale:wave:pde3:d:
 
 .. math::
-   :label: scale:wave:pde3:d
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2} =
+
+    \tag{122}
+    \frac{\partial^2 \bar u}{\partial \bar t^2} =
         \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
         \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
         + \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
@@ -928,9 +941,9 @@ non-dimensional counterparts yields
 .. _Eq:scale:wave:pde3:ic:u:d:
 
 .. math::
-   :label: scale:wave:pde3:ic:u:d
-          
-        \bar u(\bar x,0) = \frac{I(x)}{u_c},
+
+    \tag{123}
+    \bar u(\bar x,0) = \frac{I(x)}{u_c},
         \quad \bar x\in [0,1],
         
         
@@ -938,9 +951,9 @@ non-dimensional counterparts yields
 .. _Eq:scale:wave:pde3:ic:ut:d:
 
 .. math::
-   :label: scale:wave:pde3:ic:ut:d
-          
-        {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+
+    \tag{124}
+    {\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
         \quad  \bar x\in [0,1],
         
         
@@ -948,9 +961,9 @@ non-dimensional counterparts yields
 .. _Eq:scale:wave:pde3:bc:0:d:
 
 .. math::
-   :label: scale:wave:pde3:bc:0:d
-          
-        \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t)  = 0,
+
+    \tag{125}
+    \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t)  = 0,
         \quad  \bar t\in (0,\bar T],
         
         
@@ -958,9 +971,9 @@ non-dimensional counterparts yields
 .. _Eq:scale:wave:pde3:bc:L:d:
 
 .. math::
-   :label: scale:wave:pde3:bc:L:d
-          
-        \frac{\partial}{\partial \bar x}\bar u(1,\bar t)  = 0,
+
+    \tag{126}
+    \frac{\partial}{\partial \bar x}\bar u(1,\bar t)  = 0,
         \quad  \bar t\in (0,\bar T],
         
         
@@ -1078,12 +1091,12 @@ A linear damping term :math:`b\,\partial u/\partial t` is often added to
 the wave equation to model energy dissipation and amplitude reduction.
 Our PDE now reads
 
-.. _Eq:_auto32:
+.. _Eq:_auto31:
 
 .. math::
-   :label: _auto32
-        
-        \frac{\partial^2 u}{\partial t^2}
+
+    \tag{127}
+    \frac{\partial^2 u}{\partial t^2}
         + b\frac{\partial u}{\partial t} =
         \frac{\partial}{\partial x}\left(
         \lambda(x) {\partial u\over\partial x}\right) + f(x,t){\thinspace .}
@@ -1107,12 +1120,12 @@ The damping term is usually much smaller than the two other terms involving
 we have two choices of :math:`u_c`: :math:`u_c=\max_x|I|` or :math:`u_c=t_c^2f_c`.
 The former choice of :math:`u_c` gives a PDE with two dimensionless numbers,
 
-.. _Eq:_auto33:
+.. _Eq:_auto32:
 
 .. math::
-   :label: _auto33
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2}
+
+    \tag{128}
+    \frac{\partial^2 \bar u}{\partial \bar t^2}
         + \gamma\frac{\partial \bar u}{\partial \bar t} =
         \frac{\partial}{\partial \bar x}\left(
         \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
@@ -1129,12 +1142,12 @@ measures the size of the damping, and :math:`\beta` is as given
 in the section :ref:`scale:wave:pde2:cvar`.
 With :math:`u_c=t_c^2f_c` we get a PDE where only :math:`\gamma` enters,
 
-.. _Eq:_auto34:
+.. _Eq:_auto33:
 
 .. math::
-   :label: _auto34
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2}
+
+    \tag{129}
+    \frac{\partial^2 \bar u}{\partial \bar t^2}
         + \gamma\frac{\partial \bar u}{\partial \bar t} =
         \frac{\partial}{\partial \bar x}\left(
         \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
@@ -1154,14 +1167,14 @@ A three-dimensional wave equation problem
 -----------------------------------------
 
 To demonstrate how the scaling extends to and looks like in
-three-dimensions, we consider
+three spatial dimensions, we consider
 
-.. _Eq:_auto35:
+.. _Eq:_auto34:
 
 .. math::
-   :label: _auto35
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2} =
+
+    \tag{130}
+    \frac{\partial^2 \bar u}{\partial \bar t^2} =
         \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
         \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
         \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right){\thinspace .}
@@ -1191,12 +1204,12 @@ size of the domain.
 As before, :math:`t_c = L/\sqrt{\lambda_c}`, and these choices lead to a
 dimensionless wave equation without physical parameters:
 
-.. _Eq:_auto36:
+.. _Eq:_auto35:
 
 .. math::
-   :label: _auto36
-        
-        \frac{\partial^2 \bar u}{\partial \bar t^2} =
+
+    \tag{131}
+    \frac{\partial^2 \bar u}{\partial \bar t^2} =
         \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
         \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
         \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right){\thinspace .}

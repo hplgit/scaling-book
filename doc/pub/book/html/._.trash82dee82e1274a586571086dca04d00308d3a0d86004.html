@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-pray model,Lotka-Volterra, competing species model">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model">
 
 <title>Scaling of Differential Equations</title>
 
@@ -36,8 +36,12 @@ code { color: inherit; background-color: transparent; }
                'scale:dimunit:tables',
                'scale:dimunit:tables'),
               ('Prefixes for units', 3, None, '___sec5'),
-              ('Errors and units', 2, None, '___sec6'),
-              ('Unit systems', 2, None, '___sec7'),
+              ('Absolute errors, relative errors, and units',
+               2,
+               None,
+               '___sec6'),
+              ('Units and computers', 2, None, '___sec7'),
+              ('Unit systems', 2, None, '___sec8'),
               ('PhysicalQuantity: object for computing with units',
                2,
                'scale:PQ',
@@ -46,28 +50,28 @@ code { color: inherit; background-color: transparent; }
                1,
                'scale:parampool',
                'scale:parampool'),
-              ('Example application', 3, None, '___sec10'),
-              ('Pool of parameters', 2, None, '___sec11'),
-              ('Fetching pool data for computing', 2, None, '___sec12'),
-              ('Reading command-line options', 2, None, '___sec13'),
-              ('Setting default values in a file', 2, None, '___sec14'),
+              ('Example application', 3, None, '___sec11'),
+              ('Pool of parameters', 2, None, '___sec12'),
+              ('Fetching pool data for computing', 2, None, '___sec13'),
+              ('Reading command-line options', 2, None, '___sec14'),
+              ('Setting default values in a file', 2, None, '___sec15'),
               ('Specifying multiple values of input parameters',
                2,
                None,
-               '___sec15'),
-              ('Generating a graphical user interface', 2, None, '___sec16'),
-              ('ODE models', 0, None, '___sec17'),
+               '___sec16'),
+              ('Generating a graphical user interface', 2, None, '___sec17'),
+              ('ODE models', 0, None, '___sec18'),
               ('Exponential decay problems',
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec19'),
-              ('The basic model problem', 2, None, '___sec20'),
-              ('Example: Population dynamics', 3, None, '___sec21'),
+              ('Fundamental ideas', 2, None, '___sec20'),
+              ('The basic model problem', 2, None, '___sec21'),
+              ('Example: Population dynamics', 3, None, '___sec22'),
               ('Example: Decay of pressure with altitude',
                3,
                None,
-               '___sec22'),
+               '___sec23'),
               ('The technical steps of the scaling procedure',
                2,
                'sec:scale:decay:steps',
@@ -75,17 +79,17 @@ code { color: inherit; background-color: transparent; }
               ('Step 1: Identify independent and dependent variables',
                3,
                None,
-               '___sec24'),
+               '___sec25'),
               ('Step 2: Make independent and dependent variables dimensionless',
                3,
                None,
-               '___sec25'),
+               '___sec26'),
               ('Step 3: Derive the model involving only dimensionless variables',
                3,
                None,
-               '___sec26'),
-              ('Step 4: Make each term dimensionless', 3, None, '___sec27'),
-              ('Step 5: Estimate the scales', 3, None, '___sec28'),
+               '___sec27'),
+              ('Step 4: Make each term dimensionless', 3, None, '___sec28'),
+              ('Step 5: Estimate the scales', 3, None, '___sec29'),
               ('Making software for utilizing the scaled model',
                2,
                'sec:scale:decay:prog',
@@ -93,16 +97,16 @@ code { color: inherit; background-color: transparent; }
               ('Software for the original problem with dimensions',
                3,
                None,
-               '___sec30'),
-              ('Avoiding unnecessary computations', 3, None, '___sec31'),
-              ('Implementation with joblib', 3, None, '___sec32'),
+               '___sec31'),
+              ('Avoiding unnecessary computations', 3, None, '___sec32'),
+              ('Implementation with joblib', 3, None, '___sec33'),
               ('Scaling a generalized problem',
                2,
                'sec:scale:decay:body',
                'sec:scale:decay:body'),
-              ('Exact solution', 3, None, '___sec34'),
-              ('Theory', 3, None, '___sec35'),
-              ('Software', 3, None, '___sec36'),
+              ('Exact solution', 3, None, '___sec35'),
+              ('Theory', 3, None, '___sec36'),
+              ('Software', 3, None, '___sec37'),
               ('Variable coefficients',
                2,
                'sec:scale:decay:jump',
@@ -111,52 +115,52 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
-              ('Exact solution', 3, None, '___sec39'),
-              ('Scaling', 3, None, '___sec40'),
-              ('Software', 3, None, '___sec41'),
-              ('Alternative scaling', 3, None, '___sec42'),
+              ('Exact solution', 3, None, '___sec40'),
+              ('Scaling', 3, None, '___sec41'),
+              ('Software', 3, None, '___sec42'),
+              ('Alternative scaling', 3, None, '___sec43'),
               ('Scaling a cooling problem with time-dependent surroundings',
                2,
                'scale:decay:cooling:osc',
                'scale:decay:cooling:osc'),
-              ('Exact solution', 3, None, '___sec44'),
-              ('Scaling', 3, None, '___sec45'),
-              ('Software', 3, None, '___sec46'),
-              ('Discussion of the time scale', 3, None, '___sec47'),
+              ('Exact solution', 3, None, '___sec45'),
+              ('Scaling', 3, None, '___sec46'),
+              ('Software', 3, None, '___sec47'),
+              ('Discussion of the time scale', 3, None, '___sec48'),
               ('Scaling a nonlinear ODE',
                2,
                'sec:scale:decay:nonlinear',
                'sec:scale:decay:nonlinear'),
-              ('Scaling', 3, None, '___sec49'),
-              ('Alternative scaling', 3, None, '___sec50'),
+              ('Scaling', 3, None, '___sec50'),
+              ('Alternative scaling', 3, None, '___sec51'),
               ('SIR ODE system for spreading of diseases',
                2,
                None,
-               '___sec51'),
-              ('Scaling', 3, None, '___sec52'),
-              ('Software', 3, None, '___sec53'),
-              ('Alternative scaling', 3, None, '___sec54'),
-              ('SIRV model with finite immunity', 2, None, '___sec55'),
+               '___sec52'),
+              ('Scaling', 3, None, '___sec53'),
+              ('Software', 3, None, '___sec54'),
+              ('Alternative scaling', 3, None, '___sec55'),
+              ('SIRV model with finite immunity', 2, None, '___sec56'),
               ('Michaelis-Menten kinetics for biochemical reactions',
                2,
                'scale:MMK',
                'scale:MMK'),
-              ('Classical analysis', 3, None, '___sec57'),
-              ('Dimensionless ODE system', 3, None, '___sec58'),
-              ('Determining scales', 3, None, '___sec59'),
-              ('Analysis of the scaled system', 3, None, '___sec60'),
+              ('Classical analysis', 3, None, '___sec58'),
+              ('Dimensionless ODE system', 3, None, '___sec59'),
+              ('Determining scales', 3, None, '___sec60'),
+              ('Analysis of the scaled system', 3, None, '___sec61'),
               ('Vibration problems', 1, 'sec:scale:vib', 'sec:scale:vib'),
               ('Undamped vibrations without forcing',
                2,
                'sec:scale:vib:undamped',
                'sec:scale:vib:undamped'),
-              ('The first technical steps of scaling', 3, None, '___sec63'),
-              ('The exact solution', 3, None, '___sec64'),
-              ('Discussion of the displacement scale', 3, None, '___sec65'),
-              ('Discussion of the time scale', 3, None, '___sec66'),
-              ('The dimensionless solution', 3, None, '___sec67'),
-              ('Alternative displacement scale', 3, None, '___sec68'),
-              ('About frequency and dimensions', 3, None, '___sec69'),
+              ('The first technical steps of scaling', 3, None, '___sec64'),
+              ('The exact solution', 3, None, '___sec65'),
+              ('Discussion of the displacement scale', 3, None, '___sec66'),
+              ('Discussion of the time scale', 3, None, '___sec67'),
+              ('The dimensionless solution', 3, None, '___sec68'),
+              ('Alternative displacement scale', 3, None, '___sec69'),
+              ('About frequency and dimensions', 3, None, '___sec70'),
               ('Undamped vibrations with constant forcing',
                2,
                'sec:scale:vib:undamped:mg',
@@ -168,77 +172,78 @@ code { color: inherit; background-color: transparent; }
               ('Investigating scales via analytical solutions',
                3,
                None,
-               '___sec72'),
-              ('The displacement and time scales', 3, None, '___sec73'),
+               '___sec73'),
+              ('The displacement and time scales', 3, None, '___sec74'),
               ('Finding the displacement scale from the differential equation',
                3,
                None,
-               '___sec74'),
+               '___sec75'),
               ('Scaling with free vibrations as time scale',
                3,
                None,
-               '___sec75'),
-              ('Software', 3, None, '___sec76'),
-              ('Choice of $u_c$ close to resonance', 3, None, '___sec77'),
-              ('Unit size of all terms in the ODE', 3, None, '___sec78'),
+               '___sec76'),
+              ('Software', 3, None, '___sec77'),
+              ('Choice of $u_c$ close to resonance', 3, None, '___sec78'),
+              ('Unit size of all terms in the ODE', 3, None, '___sec79'),
               ('Choice of $u_c$ when $\\psi\\gg\\omega$',
                3,
                None,
-               '___sec79'),
-              ('Displacement scale based on $I$', 3, None, '___sec80'),
+               '___sec80'),
+              ('Displacement scale based on $I$', 3, None, '___sec81'),
               ('Damped vibrations with forcing',
                2,
                'sec:scale:vib:damped:F',
                'sec:scale:vib:damped:F'),
-              ('The exact solution', 3, None, '___sec82'),
-              ('Choosing scales', 3, None, '___sec83'),
-              ('Choice of $u_c$ at resonance', 3, None, '___sec84'),
+              ('The exact solution', 3, None, '___sec83'),
+              ('Choosing scales', 3, None, '___sec84'),
+              ('Choice of $u_c$ at resonance', 3, None, '___sec85'),
               ('Choice of $u_c$ when $\\omega\\gg\\psi$',
                3,
                None,
-               '___sec85'),
+               '___sec86'),
               ('Choice of $u_c$ when $\\omega\\ll\\psi$',
                3,
                None,
-               '___sec86'),
-              ('Oscillating electric circuits', 2, None, '___sec87'),
-              ('Basic PDE models', 0, None, '___sec88'),
+               '___sec87'),
+              ('Software', 3, None, '___sec88'),
+              ('Oscillating electric circuits', 2, None, '___sec89'),
+              ('Basic PDE models', 0, None, '___sec90'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec90'),
+               '___sec92'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec91'),
-              ('Waves on a string', 3, None, '___sec92'),
-              ('Detecting an already computed case', 3, None, '___sec93'),
+               '___sec93'),
+              ('Waves on a string', 3, None, '___sec94'),
+              ('Detecting an already computed case', 3, None, '___sec95'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
-              ('Scaling', 3, None, '___sec95'),
-              ('Software', 3, None, '___sec96'),
-              ('Specific case', 3, None, '___sec97'),
+              ('Scaling', 3, None, '___sec97'),
+              ('Software', 3, None, '___sec98'),
+              ('Specific case', 3, None, '___sec99'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
-              ('Analytical insight', 3, None, '___sec99'),
-              ('Scaling', 3, None, '___sec100'),
-              ('Nonzero initial shape', 3, None, '___sec101'),
+              ('Analytical insight', 3, None, '___sec101'),
+              ('Scaling', 3, None, '___sec102'),
+              ('Nonzero initial shape', 3, None, '___sec103'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
-              ('Non-dimensionalization', 3, None, '___sec103'),
-              ('Choosing the time scale', 3, None, '___sec104'),
-              ('Choosing the spatial scale', 3, None, '___sec105'),
+              ('Non-dimensionalization', 3, None, '___sec105'),
+              ('Choosing the time scale', 3, None, '___sec106'),
+              ('Choosing the spatial scale', 3, None, '___sec107'),
               ('Scaling the velocity initial condition',
                3,
                None,
-               '___sec106'),
+               '___sec108'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -246,7 +251,7 @@ code { color: inherit; background-color: transparent; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec108'),
+               '___sec110'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
@@ -255,14 +260,18 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Generalized diffusion PDE', 2, None, '___sec111'),
-              ('Jump boundary condition', 2, None, '___sec112'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec113'),
-              ('Scaling', 3, None, '___sec114'),
-              ("Fisher's equation",
-               2,
+              ('Generalized diffusion PDE', 2, None, '___sec113'),
+              ('Jump boundary condition', 2, None, '___sec114'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec115'),
+              ('Scaling', 3, None, '___sec116'),
+              ('Reaction-diffusion equations',
+               1,
                'sec:scale:diffu:Fisher',
                'sec:scale:diffu:Fisher'),
+              ("Fisher's equation", 2, None, '___sec118'),
+              ('Balance of all terms', 3, None, '___sec119'),
+              ('Fixed length scale', 3, None, '___sec120'),
+              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec121'),
               ('The convection-diffusion equation',
                1,
                'scale:convdiff',
@@ -270,32 +279,47 @@ code { color: inherit; background-color: transparent; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec117'),
-              ('Stationary PDE', 2, None, '___sec118'),
+               '___sec123'),
+              ('Stationary PDE', 2, None, '___sec124'),
               ('Convection-diffusion with a force term',
                2,
-               'scale:convdiff',
-               'scale:convdiff'),
-              ('Advanced PDE models', 0, None, '___sec120'),
+               'scale:convdiff:f',
+               'scale:convdiff:f'),
+              ('Advanced PDE models', 0, None, '___sec126'),
               ('The equations of linear elasticity',
                1,
                'scale:elasticity',
                'scale:elasticity'),
               ('The general time-dependent elasticity problem',
                2,
-               None,
-               '___sec122'),
-              ('Software', 3, None, '___sec123'),
-              ('Dimensionless stress tensor', 2, None, '___sec124'),
+               'scale:elasticity:timedep',
+               'scale:elasticity:timedep'),
+              ('Software', 3, None, '___sec129'),
+              ('Dimensionless stress tensor',
+               2,
+               'scale:elasticity:PDE1:stress',
+               'scale:elasticity:PDE1:stress'),
               ('When can the acceleration term be neglected?',
                2,
                'scale:elasticity:waves',
                'scale:elasticity:waves'),
-              ('S waves', 3, None, '___sec126'),
-              ('P waves', 3, None, '___sec127'),
-              ('Time-varying load', 3, None, '___sec128'),
-              ('The stationary elasticity problem', 2, None, '___sec129'),
-              ('Quasi-static thermo-elasticity', 2, None, '___sec130'),
+              ('S waves', 3, None, '___sec132'),
+              ('P waves', 3, None, '___sec133'),
+              ('Time-varying load', 3, None, '___sec134'),
+              ('The stationary elasticity problem', 2, None, '___sec135'),
+              ('Scaling of the PDE', 3, None, '___sec136'),
+              ('Scaling of displacement boundary conditions',
+               3,
+               None,
+               '___sec137'),
+              ('Scaling of traction boundary conditions',
+               3,
+               None,
+               '___sec138'),
+              ('Quasi-static thermo-elasticity',
+               2,
+               'scale:elasticity:thermo',
+               'scale:elasticity:thermo'),
               ('The Navier-Stokes equations',
                1,
                'sec:scale:ns',
@@ -303,50 +327,65 @@ code { color: inherit; background-color: transparent; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec132'),
-              ('The most common dimensionless form of the Navier-Stokes equations',
-               2,
+               '___sec141'),
+              ('Scaling', 3, None, '___sec142'),
+              ('Dimensonless PDEs and the Reynolds number',
+               3,
                None,
-               '___sec133'),
+               '___sec143'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec134'),
-              ('Shear stress as pressure scale', 2, None, '___sec135'),
-              ('Including the gravity force', 2, None, '___sec136'),
-              ('Oscillating boundary conditions', 2, None, '___sec137'),
-              ('The Euler number', 2, None, '___sec138'),
-              ('Free surface conditions', 2, None, '___sec139'),
-              ('Thermal convection', 1, None, '___sec140'),
-              ('Forced convection', 2, None, '___sec141'),
+               '___sec144'),
+              ('Shear stress as pressure scale', 2, None, '___sec145'),
+              ('Gravity force and the Froude number', 2, None, '___sec146'),
+              ('Oscillating boundary conditions and the Strouhal number',
+               2,
+               None,
+               '___sec147'),
+              ('Cavitation and the Euler number', 2, None, '___sec148'),
+              ('Free surface conditions and the Weber number',
+               2,
+               None,
+               '___sec149'),
+              ('Thermal convection', 1, None, '___sec150'),
+              ('Forced convection', 2, None, '___sec151'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec143'),
-              ('Heating by viscous effects', 3, None, '___sec144'),
+              ('Governing equations', 3, None, '___sec153'),
+              ('Heating by viscous effects', 3, None, '___sec154'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec145'),
+               '___sec155'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec146'),
-              ('The Boussinesq approximation', 3, None, '___sec147'),
-              ('Scaling', 3, None, '___sec148'),
+               '___sec156'),
+              ('The Boussinesq approximation', 3, None, '___sec157'),
+              ('Scaling', 3, None, '___sec158'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec149'),
-              ('Heat transfer at boundaries', 2, None, '___sec150'),
+               '___sec159'),
+              ('Interpretations of the Grashof number', 3, None, '___sec160'),
+              ('Heat transfer at boundaries and the Nusselt number',
+               2,
+               None,
+               '___sec161'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec152'),
-              ('The Euler equations of gas dynamics', 1, None, '___sec153'),
-              ('Exercises', 1, None, '___sec154'),
+              ('Two-phase porous media flow', 1, None, '___sec163'),
+              ('The Euler equations of gas dynamics',
+               1,
+               'scale:Euler_eqs',
+               'scale:Euler_eqs'),
+              ('Scaling', 3, None, '___sec165'),
+              ('Exercises', 1, None, '___sec166'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -387,7 +426,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:projectile',
                'scale:vib:exer:projectile'),
-              ('Problem 11: Scale a predator-pray model',
+              ('Problem 11: Scale a predator-prey model',
                2,
                'scale:decay:exer:predpray',
                'scale:decay:exer:predpray'),
@@ -399,33 +438,53 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec168'),
+              ('Remarks', 3, None, '___sec180'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
                'sec:scale:exer:pendulum'),
-              ("Problem 15: Scale Duffing's equation",
+              ('Exercise 15: Scale the ODEs for a binary star',
+               2,
+               'sec:scale:exer:binary_star',
+               'sec:scale:exer:binary_star'),
+              ("Problem 16: Scale Duffing's equation",
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
-              ('Problem 16: Scale a stationary Couette flow',
+              ('Problem 17: Scale a stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec172'),
-              ('Problem 17: Scale a starting Couette flow',
+              ('Remarks', 3, None, '___sec185'),
+              ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 18: Scale Couette flow with pressure gradient',
+              ('Exercise 19: Scale Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 19: Suggestions...',
+              ('Exercise 20: Scale pulsatile pipeflow',
+               2,
+               'scale:exer:pipeflow:pulsatile',
+               'scale:exer:pipeflow:pulsatile'),
+              ('Exercise 21: Scale the linear cable equation',
+               2,
+               'scale:exer:cable_eq',
+               'scale:exer:cable_eq'),
+              ('Exercise 22: Comparison of vibration models for elastic structures',
+               2,
+               'scale::exer:elasticity:vibmodels',
+               'scale::exer:elasticity:vibmodels'),
+              ('Exercise 23: Scale the equations of quasi-static poro-elasticity',
+               2,
+               'scale:exer:poroelasticity',
+               'scale:exer:poroelasticity'),
+              ('Exercise 24: Suggestions...',
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec176')]}
+              ('References', 1, None, '___sec193')]}
 end of tocinfo -->
 
 <body>
@@ -453,9 +512,12 @@ $$
 \newcommand{\x}{\boldsymbol{x}}
 \renewcommand{\u}{\boldsymbol{u}}
 \renewcommand{\v}{\boldsymbol{v}}
+\newcommand{\rpos}{\boldsymbol{r}}
 \newcommand{\f}{\boldsymbol{f}}
+\newcommand{\F}{\boldsymbol{F}}
 \newcommand{\stress}{\boldsymbol{\sigma}}
 \newcommand{\I}{\boldsymbol{I}}
+\newcommand{\U}{\boldsymbol{U}}
 \newcommand{\dfc}{\alpha}  % diffusion coefficient
 \newcommand{\ii}{\boldsymbol{i}}
 \newcommand{\jj}{\boldsymbol{j}}
@@ -483,9 +545,9 @@ $$
         <ul class="dropdown-menu">
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86001.html#ch:preface" style="font-size: 80%;">Preface</a></li>
      <!-- navigation toc: --> <li><a href="#scale:dimunit" style="font-size: 80%;">Dimensions and units</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec17" style="font-size: 80%;">ODE models</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec88" style="font-size: 80%;">Basic PDE models</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec120" style="font-size: 80%;">Advanced PDE models</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec18" style="font-size: 80%;">ODE models</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec90" style="font-size: 80%;">Basic PDE models</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec126" style="font-size: 80%;">Advanced PDE models</a></li>
 
         </ul>
       </li>
@@ -533,8 +595,14 @@ as when trying to add one banana, one apple, and one orange).
 There are seven fundamental <em>base units</em>: length, mass, time, electric
 current, thermodynamic temperature, amount of substance, and luminous
 intensity.  The base units for length, mass, and time, which we are
-mostly occupied with in this book, are measured by the SI units
+mostly occupied with in this book, are the SI units
 meter (m), kilogram (kg), and seconds (s), respectively.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 4</b>: Geir, current measured in ampere is a base unit (charge is a derived unit). See <a href="http://physics.nist.gov/cuu/Units/units.html" target="_self"><tt>http://physics.nist.gov/cuu/Units/units.html</tt></a> or <a href="https://en.wikipedia.org/wiki/SI_base_unit" target="_self">wikipedia</a>.)</font>
+<!-- end inline comment -->
 
 <p>
 The dimension of length is written as [L], the dimension of mass is
@@ -622,35 +690,42 @@ Some common physical quantities and their dimensions are listed next.
 
 <p>
 
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 5</b>: TODO: Check the tables.)</font>
+<!-- end inline comment -->
+
+<p>
+
 <div class="row">
   <div class="col-xs-12">
     <table class="table table-striped table-hover table-condensed">
 <thead>
-<tr><td align="center"><b>                  Quantity                  </b></td> <td align="center"><b>           relation           </b></td> <td align="center"><b>               unit               </b></td> <td align="center"><b>                 dimension                 </b></td> </tr>
+<tr><td align="center"><b>                  Quantity                  </b></td> <td align="center"><b>                    relation                    </b></td> <td align="center"><b>               unit               </b></td> <td align="center"><b>                 dimension                 </b></td> </tr>
 </thead>
 <tbody>
-<tr><td align="left">   stress                                          </td> <td align="left">   force/area                        </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( [\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)     </td> </tr>
-<tr><td align="left">   pressure                                        </td> <td align="left">   force/area                        </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
-<tr><td align="left">   density                                         </td> <td align="left">   mass/volume                       </td> <td align="left">   \( \hbox{kg/m}^3 \)                   </td> <td align="left">   \( [\hbox{ML}^{-3}] \)                         </td> </tr>
-<tr><td align="left">   strain                                          </td> <td align="left">   displacement/length               </td> <td align="left">   1                                     </td> <td align="left">   \( [1] \)                                      </td> </tr>
-<tr><td align="left">   Young's modulus                                 </td> <td align="left">   stress/strain                     </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
-<tr><td align="left">   Poisson's ratio                                 </td> <td align="left">   transverse strain/axial strain    </td> <td align="left">   1                                     </td> <td align="left">   \( [1] \)                                      </td> </tr>
-<tr><td align="left">   Lame' parameters \( \lambda \) and \( \mu \)    </td> <td align="left">   stress/strain                     </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
-<tr><td align="left">   moment (of a force)                             </td> <td align="left">   force \( \times \) distance       </td> <td align="left">   Nm                                    </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
-<tr><td align="left">   impulse                                         </td> <td align="left">   force \( \times \) time           </td> <td align="left">   \( \hbox{Ns} \)                       </td> <td align="left">   \( [\hbox{MLT}^{-1}] \)                        </td> </tr>
-<tr><td align="left">   linear momentum                                 </td> <td align="left">   force \( \times \) velocity       </td> <td align="left">   Nm/s                                  </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-3}] \)               </td> </tr>
-<tr><td align="left">   work                                            </td> <td align="left">   force \( \times \) distance       </td> <td align="left">   \( \hbox{Nm} = \hbox{J} \)            </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
-<tr><td align="left">   energy                                          </td> <td align="left">   work                              </td> <td align="left">   \( \hbox{Nm} = \hbox{J} \)            </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
-<tr><td align="left">   power                                           </td> <td align="left">   work/time                         </td> <td align="left">   \( \hbox{Nm/s} = \hbox{W} \)          </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-3}] \)               </td> </tr>
-<tr><td align="left">   heat                                            </td> <td align="left">   work                              </td> <td align="left">   J                                     </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
-<tr><td align="left">   heat flux                                       </td> <td align="left">   heat rate/area                    </td> <td align="left">   \( \hbox{Wm}^{-2} \)                  </td> <td align="left">   \( [\hbox{MT}^{-3}] \)                         </td> </tr>
-<tr><td align="left">   temperature                                     </td> <td align="left">   base unit                         </td> <td align="left">   K                                     </td> <td align="left">   \( [\Theta] \)                                 </td> </tr>
-<tr><td align="left">   heat capacity                                   </td> <td align="left">   heat change/temperature change    </td> <td align="left">   J/K                                   </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}\Theta^{-1}] \)    </td> </tr>
-<tr><td align="left">   specific heat capacity                          </td> <td align="left">   heat capacity/unit mass           </td> <td align="left">   \( \hbox{JK}^{-1}\hbox{kg}^{-1} \)    </td> <td align="left">   \( [\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}] \)     </td> </tr>
-<tr><td align="left">   thermal conductivity                            </td> <td align="left">   heat flux/temperature gradient    </td> <td align="left">   \( \hbox{Wm}^{-1}\hbox{K}^{-1} \)     </td> <td align="left">   \( [\hbox{MLT}^{-3}\Theta^{-1}] \)             </td> </tr>
-<tr><td align="left">   dynamic viscosity                               </td> <td align="left">   shear stress/velocity gradient    </td> <td align="left">   \( \hbox{kgm}^{-1}\hbox{s}^{-1} \)    </td> <td align="left">   \( [\hbox{ML}^{-1}T^{-1}] \)                   </td> </tr>
-<tr><td align="left">   kinematic viscosity                             </td> <td align="left">   dynamic viscosity/density         </td> <td align="left">   \( [\hbox{m}^2/\hbox{s} \)            </td> <td align="left">   \( \hbox{L}^2\hbox{T}^{-1}] \)                 </td> </tr>
-<tr><td align="left">   surface tension                                 </td> <td align="left">   energy/area                       </td> <td align="left">   \( [\hbox{J/m}^2 \)                   </td> <td align="left">   \( \hbox{MT}^{-2}] \)                          </td> </tr>
+<tr><td align="left">   stress                                          </td> <td align="left">   force/area                                          </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( [\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)     </td> </tr>
+<tr><td align="left">   pressure                                        </td> <td align="left">   force/area                                          </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
+<tr><td align="left">   density                                         </td> <td align="left">   mass/volume                                         </td> <td align="left">   \( \hbox{kg/m}^3 \)                   </td> <td align="left">   \( [\hbox{ML}^{-3}] \)                         </td> </tr>
+<tr><td align="left">   strain                                          </td> <td align="left">   displacement/length                                 </td> <td align="left">   1                                     </td> <td align="left">   \( [1] \)                                      </td> </tr>
+<tr><td align="left">   Young's modulus                                 </td> <td align="left">   stress/strain                                       </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
+<tr><td align="left">   Poisson's ratio                                 </td> <td align="left">   transverse strain/axial strain                      </td> <td align="left">   1                                     </td> <td align="left">   \( [1] \)                                      </td> </tr>
+<tr><td align="left">   Lame' parameters \( \lambda \) and \( \mu \)    </td> <td align="left">   stress/strain                                       </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
+<tr><td align="left">   moment (of a force)                             </td> <td align="left">   distance \( \times \) force                         </td> <td align="left">   Nm                                    </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
+<tr><td align="left">   impulse                                         </td> <td align="left">   force \( \times \) time                             </td> <td align="left">   \( \hbox{Ns} \)                       </td> <td align="left">   \( [\hbox{MLT}^{-1}] \)                        </td> </tr>
+<tr><td align="left">   linear momentum                                 </td> <td align="left">   mass \( \times \) velocity                          </td> <td align="left">   \( \hbox{kg m/s} \)                   </td> <td align="left">   \( [\hbox{ML}\hbox{T}^{-1}] \)                 </td> </tr>
+<tr><td align="left">   angular momentum                                </td> <td align="left">   distance \( \times \) mass \( \times \) velocity    </td> <td align="left">   \( \hbox{kg m}^2/\hbox{s} \)          </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-1}] \)               </td> </tr>
+<tr><td align="left">   work                                            </td> <td align="left">   force \( \times \) distance                         </td> <td align="left">   \( \hbox{Nm} = \hbox{J} \)            </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
+<tr><td align="left">   energy                                          </td> <td align="left">   work                                                </td> <td align="left">   \( \hbox{Nm} = \hbox{J} \)            </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
+<tr><td align="left">   power                                           </td> <td align="left">   work/time                                           </td> <td align="left">   \( \hbox{Nm/s} = \hbox{W} \)          </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-3}] \)               </td> </tr>
+<tr><td align="left">   heat                                            </td> <td align="left">   work                                                </td> <td align="left">   J                                     </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
+<tr><td align="left">   heat flux                                       </td> <td align="left">   heat rate/area                                      </td> <td align="left">   \( \hbox{Wm}^{-2} \)                  </td> <td align="left">   \( [\hbox{MT}^{-3}] \)                         </td> </tr>
+<tr><td align="left">   temperature                                     </td> <td align="left">   base unit                                           </td> <td align="left">   K                                     </td> <td align="left">   \( [\Theta] \)                                 </td> </tr>
+<tr><td align="left">   heat capacity                                   </td> <td align="left">   heat change/temperature change                      </td> <td align="left">   J/K                                   </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}\Theta^{-1}] \)    </td> </tr>
+<tr><td align="left">   specific heat capacity                          </td> <td align="left">   heat capacity/unit mass                             </td> <td align="left">   \( \hbox{JK}^{-1}\hbox{kg}^{-1} \)    </td> <td align="left">   \( [\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}] \)     </td> </tr>
+<tr><td align="left">   thermal conductivity                            </td> <td align="left">   heat flux/temperature gradient                      </td> <td align="left">   \( \hbox{Wm}^{-1}\hbox{K}^{-1} \)     </td> <td align="left">   \( [\hbox{MLT}^{-3}\Theta^{-1}] \)             </td> </tr>
+<tr><td align="left">   dynamic viscosity                               </td> <td align="left">   shear stress/velocity gradient                      </td> <td align="left">   \( \hbox{kgm}^{-1}\hbox{s}^{-1} \)    </td> <td align="left">   \( [\hbox{ML}^{-1}T^{-1}] \)                   </td> </tr>
+<tr><td align="left">   kinematic viscosity                             </td> <td align="left">   dynamic viscosity/density                           </td> <td align="left">   \( [\hbox{m}^2/\hbox{s} \)            </td> <td align="left">   \( \hbox{L}^2\hbox{T}^{-1}] \)                 </td> </tr>
+<tr><td align="left">   surface tension                                 </td> <td align="left">   energy/area                                         </td> <td align="left">   \( [\hbox{J/m}^2 \)                   </td> <td align="left">   \( \hbox{MT}^{-2}] \)                          </td> </tr>
 </tbody>
     </table>
   </div>
@@ -663,7 +738,7 @@ Units often have <a href="https://en.wikipedia.org/wiki/Metric_prefix" target="_
 For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or \( 10^9 \) Pa.
 
-<h2 id="___sec6">Errors and units </h2>
+<h2 id="___sec6">Absolute errors, relative errors, and units </h2>
 
 <p>
 Mathematically, it does not matter what units we use for a physical
@@ -686,14 +761,30 @@ computations are of unit size (or at least moderate) instead of being very
 large or very small. The techniques of this appendix show how this
 can be done.
 
-<h2 id="___sec7">Unit systems </h2>
+<h2 id="___sec7">Units and computers </h2>
+
+<p>
+Traditional numerical computing involves numbers only and therefore
+require dimensionless mathematical expressions. Usually, an implicit
+trivial scaling is used. One can, for example, just scale all length
+quantities by 1 m, all time quantities by 1 s, and all mass quantities
+by 1 kg, to obtain the dimensionless numbers needed for calculations.
+This is the most common approach, although it is very seldom explicitly
+stated.
+
+<p>
+Symbolic computing packages, such as Mathematica and Maple, allow
+computations with quantities that have dimension. This is also possible
+in popular computer languages used for numerical computing (the section <a href="#scale:PQ">PhysicalQuantity: object for computing with units</a> provides a specific example in Python).
+
+<h2 id="___sec8">Unit systems </h2>
 
 <p>
 Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#sec:scale:exer:US2SI1">Exercise 1: Perform unit conversion</a> for how to safely convert to a standard
-unit like \( \hbox{kg\,m}^{-3} \)).  Although unit conversion is a
-mathematical topic much trained in school, errors in conversions
+unit like \( \hbox{kg\,m}^{-3} \)).  Although unit conversion tables
+are frequently met in school, errors in unit conversions
 between units probably rank highest among all errors committed by
 scientists and engineers (and when a unit conversion error make an
 <a href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html" target="_self">airplane's fuel run out</a>,
@@ -702,6 +793,12 @@ conversion is therefore paramount, and this topic is treated next.
 Readers who are primarily interested in the mathematical scaling
 technique may safely jump over the sections <a href="#scale:PQ">PhysicalQuantity: object for computing with units</a> and
 <a href="#scale:parampool">Parampool: user interfaces with automatic unit conversion</a> and continue with the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay">Exponential decay problems</a>.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 6</b>: Geir, here goes an example on difficulties with data in and out of various components in a tsunami model.)</font>
+<!-- end inline comment -->
 
 <h2 id="scale:PQ">PhysicalQuantity: object for computing with units</h2>
 
@@ -716,6 +813,20 @@ fast in popularity and acts as a replacement for more specialized tools
 like MATLAB, R, and IDL.
 The coding examples in this book requires only familiarity with basic
 procedural programming in Python.
+
+<p>
+Readers without knowledge of Python variables, functions, if tests,
+and module import should consult, e.g., a <a href="http://hplgit.github.io/bumpy/doc/web/index.html" target="_self">brief tutorial on scientific
+Python</a>,
+the <a href="http://scipy-lectures.github.com/" target="_self">Python Scientific Lecture Notes</a>,
+or a full textbook <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_2012">[1]</a> in parallel with reading about
+Python code in the present book.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 7</b>: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?)</font>
+<!-- end inline comment -->
 
 <p>
 Computations with units in Python are well supported by the
@@ -830,7 +941,7 @@ various type of user interfaces: command-line arguments (option-value
 pairs), text files, and interactive web pages. All of these
 are described next.
 
-<h3 id="___sec10">Example application </h3>
+<h3 id="___sec11">Example application </h3>
 
 <p>
 As case, we want to make software for computing with the simple
@@ -838,7 +949,7 @@ formula \( s=v_0t + \frac{1}{2}at^2 \). We want \( v_0 \) to be a velocity
 with unit m/s, \( a \) to acceleration with unit \( \hbox{m/s}^2 \), \( t \) to be
 time measured in s, and consequently \( s \) is a distance measured in m.
 
-<h2 id="___sec11">Pool of parameters </h2>
+<h2 id="___sec12">Pool of parameters </h2>
 
 <p>
 First, Parampool requires us to define a <em>pool</em> of all input
@@ -884,7 +995,7 @@ the <code>str2type</code> property, e.g., <code>str2type=float</code>.)
 </div>
 
 
-<h2 id="___sec12">Fetching pool data for computing </h2>
+<h2 id="___sec13">Fetching pool data for computing </h2>
 
 <p>
 We can make a little function for fetching values from the pool
@@ -908,7 +1019,7 @@ For example, if the user provides the command-line argument
 <code>--time '2 h'</code>, Parampool will convert this quantity to seconds and
 <code>pool.get_value('time')</code> will return 7200.
 
-<h2 id="___sec13">Reading command-line options </h2>
+<h2 id="___sec14">Reading command-line options </h2>
 
 <p>
 To run the computations, we define the pool, load values from the
@@ -977,7 +1088,7 @@ We can then do
 <p>
 and get output with the right unit as well.
 
-<h2 id="___sec14">Setting default values in a file </h2>
+<h2 id="___sec15">Setting default values in a file </h2>
 
 <p>
 In large applications with lots of input parameters one will often like
@@ -1038,7 +1149,7 @@ s=10972.8 m
 The resulting calculations are \( s=1.524\cdot 7200 + 0 =10972.8 \).
 You are encouraged to play around with the <a href="http://tinyurl.com/o8pb3yy/distance.py" target="_self"><tt>distance.py</tt></a> program.
 
-<h2 id="___sec15">Specifying multiple values of input parameters </h2>
+<h2 id="___sec16">Specifying multiple values of input parameters </h2>
 
 <p>
 Parampool has an interesting feature: multiple values can be assigned
@@ -1122,7 +1233,7 @@ Notice that some of the multiple values have dimensions different
 from the registered dimension for that parameter, and the table
 shows that conversion to the right dimension has taken place.
 
-<h2 id="___sec16">Generating a graphical user interface </h2>
+<h2 id="___sec17">Generating a graphical user interface </h2>
 
 <p>
 For the fun of it, we can easily generate a graphical user interface
@@ -1151,7 +1262,7 @@ generate(distance_unit2, pool_function<span style="color: #666666">=</span>defin
 </pre></div>
 <p>
 Running <code>generate_distance_GUI.py</code> creates a Flask-based web
-interface <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="You need to have Flask and additional packages installed. This is easy to do with a few pip install commands, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[1]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[2]</a>."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>
+interface <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="You need to have Flask and additional packages installed. This is easy to do with a few pip install commands, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[2]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[3]</a>."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>
 to our <code>distance_unit</code> function, see Figure <a href="#scale:dimunit:fig:GUI">1</a>.
 The text fields in this GUI allow specification of parameters with
 numbers and units, e.g., acceleration with unit yards per minute squared,
@@ -1161,7 +1272,7 @@ of that parameter.
 
 <p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> You need to have Flask and additional packages installed.
 This is easy to do with a few <code>pip install</code> commands,
-see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[1]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[2]</a>.</p>
+see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[2]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[3]</a>.</p>
 
 <p>
 <center> <!-- figure -->

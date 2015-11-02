@@ -66,8 +66,15 @@ existing models to solve the equations in the associated scaled model.
 Scaling is not a universal mathematical technique as the details
 depend on the problem at hand. We therefore present scaling in a range
 of specific applications, starting with simple ODEs, progressing with
-basic PDEs, before attacking more
-complicated models, especially from fluid mechanics.
+basic PDEs, before attacking more complicated models, especially from
+fluid mechanics. The mathematics in the first two chapters is very
+gentle and requires no more background than basic one-variable
+calculus and preferably some knowledge of differential equation
+models. The next chapter involves PDEs and assumes familiarity with
+basic models for wave phenomena, diffusion, and combined
+convection-diffusion. The final chapter is meant for readers with
+knowledge of continuum mechanical models. The mathematical level
+of the text rises quickly after the first two chapters.
 
 Section ref{scale:dimunit} discusses units and how to make programs
 that can automatically take care of unit conversion (the most frequent
@@ -129,5 +136,5 @@ Switch to different font?]
 \vspace{1cm}
 
 \noindent
-{\it Oslo, October 2015}  \hfill  {\it Hans Petter Langtangen}
+{\it Oslo, November 2015}  \hfill  {\it Hans Petter Langtangen, Geir K. Pedersen}
 # #endif
