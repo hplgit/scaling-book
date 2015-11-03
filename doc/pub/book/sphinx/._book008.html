@@ -168,7 +168,7 @@ and work with a pure convection (or advection) equation</p>
 <p>For small Peclet numbers, <span class="math">\(\hbox{Pe}^{-1}\bar\nabla^2\bar u\)</span> becomes
 very large and can only be balanced by two terms that are supposed to
 be unity of size.  The time-derivative and/or the convection term must
-be much larger than unity, but that means we use wrong scales,
+be much larger than unity, but that means we use suboptimal scales,
 since right scales imply that <span class="math">\(\partial\bar u/\partial\bar t\)</span> and
 <span class="math">\(\bar v\cdot\bar\nabla\bar u\)</span> of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
@@ -257,11 +257,12 @@ problem is now</p>
 \quad \bar x \in (0, \hbox{Pe}), \quad \bar u(0)=0,\ \bar u(\hbox{Pe})=1,\]</div>
 <p>with solution</p>
 <div class="math">
-\[\bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\hbox{Pe}}}{\thinspace .}\]</div>
+\[\bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\small\mbox{Pe}}}{\thinspace .}\]</div>
 <p>Figure <a class="reference internal" href="#scale-convdiff-fig-rescaled"><span class="std std-ref">Solution of scaled problem where the length scale depends on the Peclet number</span></a> displays <span class="math">\(\bar u\)</span> for some
 Peclet numbers, and we see that the shape of the graphs are the same
 with this scaling. For large Peclet numbers we realize that <span class="math">\(\bar u\)</span>
-and its derivatives are around unity (<span class="math">\(1-e^{\hbox{Pe}}\approx -e^{\hbox{Pe}}\)</span>),
+and its derivatives are around unity
+(<span class="math">\(1-e^{\hbox{Pe}}\approx -e^{\small\hbox{Pe}}\)</span>),
 but for small Peclet numbers <span class="math">\(d\bar u/d\bar x \sim \hbox{Pe}^{-1}\)</span>.</p>
 <div class="figure" id="id2">
 <span id="scale-convdiff-fig-rescaled"></span><a class="reference internal image-reference" href="_images/boundary_layer1D_scale2.png"><img alt="_images/boundary_layer1D_scale2.png" src="_images/boundary_layer1D_scale2.png" style="width: 600px;" /></a>

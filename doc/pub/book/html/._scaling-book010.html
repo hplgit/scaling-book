@@ -574,10 +574,11 @@ classical dimensionless numbers are discussed in terms of the scaling.
 <h1 id="scale:elasticity">The equations of linear elasticity</h1>
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 22</b>: It seems that the equations of elasticity and thermo-elasticity are never (?) non-dimensionalized in the literature.)</font>
-<!-- end inline comment -->
+To the best of the authors' knowledge, it seems that mathematical
+models in elasticity and structural analysis are almost never
+non-dimensionalized. This is probably due to tradition, but the
+following sections will demonstrate the usefulness of scaling also in
+this scientific field.
 
 <h2 id="scale:elasticity:timedep">The general time-dependent elasticity problem</h2>
 
@@ -691,7 +692,7 @@ we can simulate the dimensionless problem by setting \( \varrho =\bar\varrho \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 23</b>: What about setting boundary conditions?)</font>
+<font color="red">(<b>hpl 22</b>: What about setting boundary conditions?)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:elasticity:PDE1:stress">Dimensionless stress tensor</h2>
@@ -701,7 +702,10 @@ The stress tensor \( \stress \) is a key quantity in elasticity and is given by
 
 $$ \stress = \lambda\nabla\cdot\u\I + \mu(\nabla\u + (\nabla\u)^T)\tp$$
 
-Inserting dimensionless variables on the right-hand side gives
+This \( \stress \) can be computed as soon as the PDE problem for \( \u \)
+has been solved.
+Inserting dimensionless variables on the right-hand side of the above
+relation gives
 
 $$
 \begin{align*}
@@ -817,7 +821,7 @@ displacement field.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 24</b>: Think about the suitability of &quot;no shear&quot; as characteristic for curl-free \( \u \).)</font>
+<font color="red">(<b>hpl 23</b>: Think about the suitability of &quot;no shear&quot; as characteristic for curl-free \( \u \).)</font>
 <!-- end inline comment -->
 
 <h3 id="___sec134">Time-varying load </h3>
@@ -915,7 +919,7 @@ $$
 
 Now \( \beta \) is defined as
 
-$$ \beta = \frac{\lambda}{\mu}\tp$$
+$$ \beta = \frac{\lambda}{\mu} = \left(\frac{c_p}{c_s}\right)^2 - 2\tp$$
 
 It shows that in standard, stationary elasticity, \( \lambda/\mu \) is the
 only significant physical parameter.
@@ -1041,7 +1045,7 @@ In the absence of body forces, \( \beta \) is again the key parameter.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 25</b>: Any need to mention boundary conditions?)</font>
+<font color="red">(<b>hpl 24</b>: Any need to mention boundary conditions?)</font>
 <!-- end inline comment -->
 
 <h1 id="sec:scale:ns">The Navier-Stokes equations</h1>
@@ -2002,7 +2006,7 @@ where \( A \), \( v_m \), \( v_r \), \( v_p \),
 \( B \), \( c_1 \), \( c_2 \), and \( c_3 \) are specified constants.
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 26</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
+<font color="red">(<b>hpl 25</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
 <!-- end inline comment -->
 
 More complicated ODE systems for the cell dynamics may have up to a
@@ -2187,7 +2191,7 @@ $$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 27</b>: Compute the size of \( \beta \). Inspired by scaling of the cable equation, it could happen that \( \beta \) is very large if \( L \) is the diameter of the heart, and in that case we can demand \( \beta =1 \) to set \( L \). Then there is equal balance between the three main terms in the PDE.)</font>
+<font color="red">(<b>hpl 26</b>: Compute the size of \( \beta \). Inspired by scaling of the cable equation, it could happen that \( \beta \) is very large if \( L \) is the diameter of the heart, and in that case we can demand \( \beta =1 \) to set \( L \). Then there is equal balance between the three main terms in the PDE.)</font>
 <!-- end inline comment -->
 
 <p>
@@ -2209,13 +2213,13 @@ parameters.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 28</b>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.)</font>
+<font color="red">(<b>hpl 27</b>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 29</b>: Here is a comment on the scaling above versus Keener and Sneyd's scaling of the cable equation. Not meant to be part of the text, just some thoughts while we are working on the proper scaling of the bidomain equations.)</font>
+<font color="red">(<b>hpl 28</b>: Here is a comment on the scaling above versus Keener and Sneyd's scaling of the cable equation. Not meant to be part of the text, just some thoughts while we are working on the proper scaling of the bidomain equations.)</font>
 <!-- end inline comment -->
 
 <p>
@@ -2242,7 +2246,7 @@ and all terms have this dimension. The \( r_i \) and \( r_e \) quantities
 have unit V/(Am) (V is volt, A is ampere).
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 30</b>: Keener and Sneyd say \( r_i \) is Ohm per length, and since Ohm is V/A, it is the same.)</font>
+<font color="red">(<b>hpl 29</b>: Keener and Sneyd say \( r_i \) is Ohm per length, and since Ohm is V/A, it is the same.)</font>
 <!-- end inline comment -->
 
 The \( p \) parameter is a perimeter
@@ -2521,19 +2525,19 @@ There are six remaining dimensionless numbers to be set: \( K_{wm} \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 31</b>: Boundary conditions?)</font>
+<font color="red">(<b>hpl 30</b>: Boundary conditions?)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 32</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
+<font color="red">(<b>hpl 31</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 33</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
+<font color="red">(<b>hpl 32</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
 <!-- end inline comment -->
 
 <h1 id="scale:Euler_eqs">The Euler equations of gas dynamics</h1>
@@ -2592,7 +2596,7 @@ $$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 34</b>: Tell how the equations are solved and closed.)</font>
+<font color="red">(<b>hpl 33</b>: Tell how the equations are solved and closed.)</font>
 <!-- end inline comment -->
 
 <h3 id="___sec165">Scaling </h3>
@@ -3456,7 +3460,7 @@ Scale the problem.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 38</b>: Could extend to time-dependent case, but this will involve three time scales...)</font>
+<font color="red">(<b>hpl 37</b>: Could extend to time-dependent case, but this will involve three time scales...)</font>
 <!-- end inline comment -->
 
 <p>

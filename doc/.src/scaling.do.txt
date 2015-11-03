@@ -626,7 +626,7 @@ $q_c$ is a characteristic size of $|q|$. Since the numerator and denominator
 have the same dimension, $\bar q$ becomes a dimensionless number.
 
 If $q_c$ is the maximum value of $|q-q_0|$, we see that $0 < |\bar
-q|\leq 1$. How to find $q_c$ is sometimes the big challenging of
+q|\leq 1$. How to find $q_c$ is sometimes the big challenge of
 scaling. Examples will illustrate various approaches to meet this
 challenge.
 
@@ -656,10 +656,11 @@ dimensional analysis and the famous Buckingham Pi Theorem
 cite{Douglas_et_al_1979,Logan_1987}, which
 can be used to derive the dimensionless numbers in a given problem
 without the need for a detailed model with differential equations.
-This is a strong of great
+This is a strong statement of great
 practical significance, especially when doing physical experiments.
 However, as will be shown in this book, the dimensionless numbers in
-a problem also naturally arise from scaling the differential equation(s).
+a problem also arise, in a very natural way,
+from scaling the differential equation(s).
 Provided one has a model based on differential equation, there is
 actually no need for classical dimensional analysis.
 
@@ -667,9 +668,9 @@ Other classical topics closely related to scaling and non-dimensionalization
 are analytical solution methods like perturbation techniques and
 similarity solutions. These are not addressed in this book.
 There are numerous texts on perturbation techniques, and these build
-on an already scaled differential equation. Similarity solutions do not
+on an already scaled differential equations. Similarity solutions do not
 fit within the present scope since these involve non-dimensional
-combinations of the independent variables to derive new differential
+*combinations of the independent variables* to derive new differential
 equations that are easier to solve.
 
 Our scope is to scale differential
@@ -5251,7 +5252,7 @@ and work with a pure convection (or advection) equation
 For small Peclet numbers, $\hbox{Pe}^{-1}\bar\nabla^2\bar u$ becomes
 very large and can only be balanced by two terms that are supposed to
 be unity of size.  The time-derivative and/or the convection term must
-be much larger than unity, but that means we use wrong scales,
+be much larger than unity, but that means we use suboptimal scales,
 since right scales imply that $\partial\bar u/\partial\bar t$ and
 $\bar v\cdot\bar\nabla\bar u$ of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
@@ -5368,13 +5369,24 @@ problem is now
 !et
 with solution
 
+# #if FORMAT in ("latex", "pdflatex")
 !bt
-\[ \bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\hbox{Pe}}}\tp\]
+\[ \bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\hbox{\footnotesize Pe}}}\tp\]
 !et
+# #else
+!bt
+\[ \bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\small\mbox{Pe}}}\tp\]
+!et
+# #endif
 Figure ref{scale:convdiff:fig:rescaled} displays $\bar u$ for some
 Peclet numbers, and we see that the shape of the graphs are the same
 with this scaling. For large Peclet numbers we realize that $\bar u$
-and its derivatives are around unity ($1-e^{\hbox{Pe}}\approx -e^{\hbox{Pe}}$),
+and its derivatives are around unity
+# #if FORMAT in ("latex", "pdflatex")
+($1-e^{\hbox{Pe}}\approx -e^{\hbox{\footnotesize Pe}}$),
+# #else
+($1-e^{\hbox{Pe}}\approx -e^{\small\hbox{Pe}}$),
+# #endif
 but for small Peclet numbers $d\bar u/d\bar x \sim \hbox{Pe}^{-1}$.
 
 FIGURE: [fig-scaling/boundary_layer1D_scale2, width=600 frac=0.9] Solution of scaled problem where the length scale depends on the Peclet number. label{scale:convdiff:fig:rescaled}
@@ -5474,8 +5486,11 @@ classical dimensionless numbers are discussed in terms of the scaling.
 ======= The equations of linear elasticity =======
 label{scale:elasticity}
 
-[hpl: It seems that the equations of elasticity and thermo-elasticity
-are never (?) non-dimensionalized in the literature.]
+To the best of the authors' knowledge, it seems that mathematical
+models in elasticity and structural analysis are almost never
+non-dimensionalized. This is probably due to tradition, but the
+following sections will demonstrate the usefulness of scaling also in
+this scientific field.
 
 ===== The general time-dependent elasticity problem =====
 label{scale:elasticity:timedep}
@@ -5597,7 +5612,10 @@ The stress tensor $\stress$ is a key quantity in elasticity and is given by
 !bt
 \[ \stress = \lambda\nabla\cdot\u\I + \mu(\nabla\u + (\nabla\u)^T)\tp\]
 !et
-Inserting dimensionless variables on the right-hand side gives
+This $\stress$ can be computed as soon as the PDE problem for $\u$
+has been solved.
+Inserting dimensionless variables on the right-hand side of the above
+relation gives
 
 !bt
 \begin{align*}
@@ -5809,7 +5827,7 @@ $\varrho_c=\varrho$, $\bar\varrho=\bar\lambda=\bar\mu=1$):
 Now $\beta$ is defined as
 
 !bt
-\[ \beta = \frac{\lambda}{\mu}\tp\]
+\[ \beta = \frac{\lambda}{\mu} = \left(\frac{c_p}{c_s}\right)^2 - 2\tp\]
 !et
 It shows that in standard, stationary elasticity, $\lambda/\mu$ is the
 only significant physical parameter.

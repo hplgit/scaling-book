@@ -695,7 +695,7 @@ $$
 For small Peclet numbers, \( \hbox{Pe}^{-1}\bar\nabla^2\bar u \) becomes
 very large and can only be balanced by two terms that are supposed to
 be unity of size.  The time-derivative and/or the convection term must
-be much larger than unity, but that means we use wrong scales,
+be much larger than unity, but that means we use suboptimal scales,
 since right scales imply that \( \partial\bar u/\partial\bar t \) and
 \( \bar v\cdot\bar\nabla\bar u \) of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
@@ -814,12 +814,13 @@ $$ \frac{d\bar u}{d\bar x} = \frac{d^2\bar u}{d\bar x^2},
 
 with solution
 
-$$ \bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\hbox{Pe}}}\tp$$
+$$ \bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\small\mbox{Pe}}}\tp$$
 
 Figure <a href="#scale:convdiff:fig:rescaled">15</a> displays \( \bar u \) for some
 Peclet numbers, and we see that the shape of the graphs are the same
 with this scaling. For large Peclet numbers we realize that \( \bar u \)
-and its derivatives are around unity (\( 1-e^{\hbox{Pe}}\approx -e^{\hbox{Pe}} \)),
+and its derivatives are around unity
+(\( 1-e^{\hbox{Pe}}\approx -e^{\small\hbox{Pe}} \)),
 but for small Peclet numbers \( d\bar u/d\bar x \sim \hbox{Pe}^{-1} \).
 
 <p>

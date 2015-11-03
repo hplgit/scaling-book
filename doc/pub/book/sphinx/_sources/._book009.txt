@@ -18,7 +18,11 @@ classical dimensionless numbers are discussed in terms of the scaling.
 The equations of linear elasticity
 ==================================
 
-[**hpl 22**: It seems that the equations of elasticity and thermo-elasticity are never (?) non-dimensionalized in the literature.]
+To the best of the authors' knowledge, it seems that mathematical
+models in elasticity and structural analysis are almost never
+non-dimensionalized. This is probably due to tradition, but the
+following sections will demonstrate the usefulness of scaling also in
+this scientific field.
 
 .. _scale:elasticity:timedep:
 
@@ -143,7 +147,7 @@ Given software for :ref:`(170) <Eq:scale:elasticity:PDE1>`,
 we can simulate the dimensionless problem by setting :math:`\varrho =\bar\varrho`,
 :math:`\lambda =\beta\bar\lambda`, and :math:`\mu = \bar\mu`.
 
-[**hpl 23**: What about setting boundary conditions?]
+[**hpl 22**: What about setting boundary conditions?]
 
 .. _scale:elasticity:PDE1:stress:
 
@@ -155,7 +159,10 @@ The stress tensor :math:`\boldsymbol{\sigma}` is a key quantity in elasticity an
 .. math::
          \boldsymbol{\sigma} = \lambda\nabla\cdot\boldsymbol{u}\boldsymbol{I} + \mu(\nabla\boldsymbol{u} + (\nabla\boldsymbol{u})^T){\thinspace .}
 
-Inserting dimensionless variables on the right-hand side gives
+This :math:`\boldsymbol{\sigma}` can be computed as soon as the PDE problem for :math:`\boldsymbol{u}`
+has been solved.
+Inserting dimensionless variables on the right-hand side of the above
+relation gives
 
 .. math::
         
@@ -277,7 +284,7 @@ Our model equation :ref:`(174) <Eq:scale:elasticity:waves:eq>` then reduces to
 which is nothing but a wave equation for each component of the
 displacement field.
 
-[**hpl 24**: Think about the suitability of "no shear" as characteristic for curl-free :math:`\boldsymbol{u}`.]
+[**hpl 23**: Think about the suitability of "no shear" as characteristic for curl-free :math:`\boldsymbol{u}`.]
 
 Time-varying load
 ~~~~~~~~~~~~~~~~~
@@ -384,7 +391,7 @@ is an interesting case (this corresponds to :math:`\mu_c=\mu`, :math:`\lambda_c=
 Now :math:`\beta` is defined as
 
 .. math::
-         \beta = \frac{\lambda}{\mu}{\thinspace .}
+         \beta = \frac{\lambda}{\mu} = \left(\frac{c_p}{c_s}\right)^2 - 2{\thinspace .}
 
 It shows that in standard, stationary elasticity, :math:`\lambda/\mu` is the
 only significant physical parameter.
@@ -546,7 +553,7 @@ is common. The PDE system reduces in this case to
 
 In the absence of body forces, :math:`\beta` is again the key parameter.
 
-[**hpl 25**: Any need to mention boundary conditions?]
+[**hpl 24**: Any need to mention boundary conditions?]
 
 .. _sec:scale:ns:
 
@@ -1780,7 +1787,7 @@ model:
 
 where :math:`A`, :math:`v_m`, :math:`v_r`, :math:`v_p`,
 :math:`B`, :math:`c_1`, :math:`c_2`, and :math:`c_3` are specified constants.
-[**hpl 26**: Keyner and Sneyd have a constant in the equation for :math:`w`, in both the unscaled and scaled versions, while The Bible has not.]
+[**hpl 25**: Keyner and Sneyd have a constant in the equation for :math:`w`, in both the unscaled and scaled versions, while The Bible has not.]
 More complicated ODE systems for the cell dynamics may have up to a
 hundred unknowns
 and a correspondingly large collection of parameters.
@@ -2045,7 +2052,7 @@ There are eight dimensionless variables in the above equations:
         
         
 
-[**hpl 27**: Compute the size of :math:`\beta`. Inspired by scaling of the cable equation, it could happen that :math:`\beta` is very large if :math:`L` is the diameter of the heart, and in that case we can demand :math:`\beta =1` to set :math:`L`. Then there is equal balance between the three main terms in the PDE.]
+[**hpl 26**: Compute the size of :math:`\beta`. Inspired by scaling of the cable equation, it could happen that :math:`\beta` is very large if :math:`L` is the diameter of the heart, and in that case we can demand :math:`\beta =1` to set :math:`L`. Then there is equal balance between the three main terms in the PDE.]
 
 Since :math:`w` is just a help variable without any physiological interpretation,
 we can choose its scale :math:`w_c` freely to simplify the expressions.
@@ -2061,9 +2068,9 @@ well-established values from measurements, while :math:`\beta`, :math:`\gamma`,
 known values, combined with known scales and other known physical
 parameters.
 
-[**hpl 28**: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.]
+[**hpl 27**: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.]
 
-[**hpl 29**: Here is a comment on the scaling above versus Keener and Sneyd's scaling of the cable equation. Not meant to be part of the text, just some thoughts while we are working on the proper scaling of the bidomain equations.]
+[**hpl 28**: Here is a comment on the scaling above versus Keener and Sneyd's scaling of the cable equation. Not meant to be part of the text, just some thoughts while we are working on the proper scaling of the bidomain equations.]
 
 The cable equation from Keener and Sneyd is
 
@@ -2090,7 +2097,7 @@ We need to have a look at units. In the derivation of the cable equation,
 :math:`I_{\rm ion}` is current per unit length, i.e., it has dimension A/m,
 and all terms have this dimension. The :math:`r_i` and :math:`r_e` quantities
 have unit V/(Am) (V is volt, A is ampere).
-[**hpl 30**: Keener and Sneyd say :math:`r_i` is Ohm per length, and since Ohm is V/A, it is the same.]
+[**hpl 29**: Keener and Sneyd say :math:`r_i` is Ohm per length, and since Ohm is V/A, it is the same.]
 The :math:`p` parameter is a perimeter
 and measured in m.
 The term :math:`pC_m\partial V/\partial t` must have
@@ -2505,11 +2512,11 @@ parameters :math:`\alpha`, :math:`\beta`, :math:`\gamma`, :math:`\delta`, and :m
 There are six remaining dimensionless numbers to be set: :math:`K_{wm}`,
 :math:`K_{nm}`, :math:`S_{wr}`, :math:`S_{nr}`, :math:`a`, and :math:`b`.
 
-[**hpl 31**: Boundary conditions?]
+[**hpl 30**: Boundary conditions?]
 
-[**hpl 32**: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.]
+[**hpl 31**: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.]
 
-[**hpl 33**: Exercises: single-phase flow, with and without thermal effects.]
+[**hpl 32**: Exercises: single-phase flow, with and without thermal effects.]
 
 .. _scale:Euler_eqs:
 
@@ -2595,7 +2602,7 @@ The speed of sound is then
         
         
 
-[**hpl 34**: Tell how the equations are solved and closed.]
+[**hpl 33**: Tell how the equations are solved and closed.]
 
 Scaling          (10)
 ~~~~~~~~~~~~~~~~~~~~~
@@ -3458,7 +3465,7 @@ Scale the problem.
 
 .. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 
-[**hpl 38**: Could extend to time-dependent case, but this will involve three time scales...]
+[**hpl 37**: Could extend to time-dependent case, but this will involve three time scales...]
 
 Filename: ``Couette_wpressure``.
 
