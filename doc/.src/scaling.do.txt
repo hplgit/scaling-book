@@ -3393,7 +3393,8 @@ scaled vibration models.
 The differential equation for an oscillating electric circuit is
 very similar to the equation for forced, damped,
 mechanical vibrations, and their
-dimensionless form is identical.
+dimensionless form is identical. This fact will now be demonstrated.
+
 The current $I(t)$ in a
 circuit with an inductor with inductance $L$, a capacitor with
 capacitance $C$, and overall resistance $R$, obeys the equation
@@ -5054,7 +5055,7 @@ A general, nonlinear reaction-diffusion equation in 1D looks like
 
 !bt
 \begin{equation}
-\frac{\partial u}{\partial t} = \dfc\frac{\partial^2 u}{\partial t^2} + f(u)
+\frac{\partial u}{\partial t} = \dfc\frac{\partial^2 u}{\partial x^2} + f(u)
 \tp
 \end{equation}
 !et
@@ -5065,7 +5066,8 @@ value, one gets a non-dimensional PDE like
 !bt
 \[
 \frac{\partial\bar u}{\partial\bar t} = \frac{t_c\dfc}{x_c^2}
-\frac{\partial^2 u}{\partial t^2} + \frac{t_cf_c}{u_c}\bar f(u_c\bar u)\tp
+\frac{\partial^2\bar u}{\partial\bar x^2} +
+\frac{t_cf_c}{u_c}\bar f(u_c\bar u)\tp
 \]
 !et
 The characteristic size of $u$ can often be derived so we first assume
@@ -5081,7 +5083,7 @@ The corresponding PDE reads
 !bt
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2 u}{\partial t^2} + \bar f(u_c\bar u)\tp
+\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u)\tp
 \end{equation}
 !et
 
@@ -5101,7 +5103,7 @@ the reaction scale, $t_c = u_c/f_c$, one arrives a the PDE
 !bt
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
-\beta\frac{\partial^2 u}{\partial t^2} + \bar f(u_c\bar u),
+\beta\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u),
 \end{equation}
 !et
 where
@@ -5117,7 +5119,7 @@ diffusion time scale, $t_c=L^2/\dfc$, the scaled PDE becomes
 !bt
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2 u}{\partial t^2} + \beta^{-1}\bar f(u_c\bar u)\tp
+\frac{\partial^2\bar u}{\partial \bar x^2} + \beta^{-1}\bar f(u_c\bar u)\tp
 \end{equation}
 !et
 The size of $\beta$ in an application will determine which of the scalings
@@ -7079,11 +7081,6 @@ dimensionless terms only:
 \end{align*}
 !et
 
-A natural length scale could the size of the domain, in this case the
-diameter of the heart, but we could also base the length and time scales on
-equal balance of the time-derivative term, the diffusion terms, and the
-reaction term in the PDE. For now we let $L$ be the length scale.
-
 The time scale is not so obvious to choose.
 The PDEs are of diffusion nature, and the relevant time scale is related
 to the time it takes to diffuse the signal. On the other hand, the ODE
@@ -7093,11 +7090,33 @@ fast time scales for some components in the ODE system or in the
 (anticipated) slower diffusion scale of the PDEs. For now we choose
 the time scale based on diffusion. From previous examples in
 Section ref{sec:scale:diffu:homo1D}, we therefore
-set the coefficient in front of the diffusion term to unity, here
+set the coefficient in front of the diffusion term to unity.
+
+A natural length scale could be the size of the domain, in this case the
+diameter of the heart, but we could also base the length and time scales on
+equal balance of the time-derivative term, the diffusion terms, and the
+reaction term in the PDE. Such a balance will be used below.
+
+The reaction term can be rewritten as
 
 !bt
-\[ \frac{t_cM_c}{\chi C_mL^2} = 1\quad\Rightarrow\quad t_c = \frac{\chi C_mL^2}{M_c}\tp\]
+\[ \frac{t_cA}{C_m\Delta v }
+\Delta v^3 \bar v
+(J_1 + \bar v)
+(\bar v - 1),\quad J_1 = \frac{v_r-v_m}{\Delta v}\tp\]
 !et
+We require the coefficients in front of the first diffusion term and the
+reaction term to equal unity:
+
+!bt
+\[ \frac{t_cM_c}{\chi C_mL^2} = 1,\quad \frac{t_cA}{C_m}\Delta v^2 =1\tp,\]
+!et
+which determines the time and length scales:
+
+!bt
+\[ t_c = \frac{C_m}{A\Delta v^2},\quad L = \sqrt{\frac{M_c}{A\Delta v^2\chi}}\tp\]
+!et
+
 A natural dimensionless variable then arises from the second diffusion
 term:
 
@@ -7108,37 +7127,43 @@ The choice $u_c=\Delta v$ will of course remove the need for this dimensionless
 variable, but we include the freedom to have $u_c$ as
 some specified characteristic size of $u_e$.
 
+Since $w$ is just a help variable without any physiological interpretation,
+we can choose its scale $w_c$ freely to simplify the expressions.
+For example, we can fit $w_c$ to make the coefficient in front of
+the $\bar w$ term equal to unity:
+
+!bt
+\[ w_c = \frac{A}{B}\chi\Delta v^3\tp\]
+!et
+
 The final dimensionless system becomes
 
 !bt
 \begin{align}
 \frac{\partial \bar v}{\partial \bar t} &=
 \nabla\cdot( \bar M_i\bar\nabla\bar v) +
-\alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -\\
-&\quad
-\beta
+\alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -
 \bar v
 (J_1 +  \bar v)
-(\bar v - 1) - \gamma\bar w - \delta,\\
+(\bar v - 1) - \bar w - \beta,\\
 0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
 \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\\
 \frac{d\bar v}{d\bar t} & = -
-\beta
 \bar v
 (J_1 +  \bar v)
-(\bar v -1)- \gamma\bar w - \delta,\\
+(\bar v -1)- \bar w - \beta,\\
 \frac{d\bar w}{d\bar t} &= -K_1\bar w +
 K_2\bar v + K_3\tp
 \end{align}
 !et
-There are eight dimensionless variables in the above equations:
+There are seven dimensionless variables in the above equations:
+
+[hpl: Recalculate $K_1$, $K_2$, $K_3$ with right $t_c$.]
 
 !bt
 \begin{align}
 \alpha &= \frac{u_c}{\Delta v},\\
-\beta & = \frac{\chi AL^2\Delta v^2}{M_c},\\
-\gamma &= \frac{Bw_cL^2}{M_c\Delta v },\\
-\delta &= \frac{\chi L^2 I_{\rm{app}}}{M_c\Delta v },\\
+\beta &= \frac{I_{\rm{app}}}{\Delta v^3},\\
 J_1 &= \frac{v_r-v_m}{\Delta v},\\
 J_2 &= \frac{v_r}{\Delta v},\\
 K_1 &= \frac{\chi C_m L^2c_1}{M_c},\\
@@ -7147,110 +7172,17 @@ K_3 &= \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}\tp
 \end{align}
 !et
 
-[hpl: Compute the size of $\beta$. Inspired by scaling of the cable
-equation, it could happen that $\beta$ is very large if $L$
-is the diameter of the heart, and in that case we can demand
-$\beta =1$ to set $L$. Then there is equal balance between
-the three main terms in the PDE.]
-
-Since $w$ is just a help variable without any physiological interpretation,
-we can choose its scale $w_c$ freely to simplify the expressions.
-For example, we can fit $w_c$ to make $K_2=1$, $K_3=1$, or $\gamma=1$.
 
 Some of these dimensionless numbers have straightforward
 interpretations: $\alpha$ is the ratio of the span in the two electric
-potentials; $\delta$ is ratio of the source term and the
+potentials; $\beta$ is ratio of the source term with $I_{\rm{app}}$ and the
 time-derivative term of $v$, or the source term and the diffusion term
 in $v$.  The rest have fixed values: $J_1$ and $J_2$ have
-well-established values from measurements, while $\beta$, $\gamma$,
+well-established values from measurements, while $\beta$,
 $K_1$, $K_2$, and $K_3$ contain empirically fitted constants with
 known values, combined with known scales and other known physical
 parameters.
 
-[hpl: It is unclear what the gain really is, besides having primary
-variables of unit size. Since there are so many empirical constants,
-the number of dimensionlesss variables blows up, and instead of gettting
-more insight into the dynamics through these variables, they are just
-fixed numbers.]
-
-
-[hpl: Here is a comment on the scaling above versus Keener and Sneyd's
-scaling of the cable equation. Not meant to be part of the text, just
-some thoughts while we are working on the proper scaling of the
-bidomain equations.]
-
-The cable equation from Keener and Sneyd is
-!bt
-\[ pC_m\frac{\partial V}{\partial t} + pI_{\rm ion}(V) = \frac{1}{r_i+r_e}
-\frac{\partial^2 V}{\partial x^2},\]
-!et
-see (8.11). The standard way of scaling this equation is to introduce
-a time scale $t_c$, a length scale $x_c$, a $V$ scale $v_c$, and
-a scale $I_c$ for $I_{\rm ion}$ (typically $I_c = \max |I_{\rm ion}|$):
-
-!bt
-\[ \frac{\partial \bar V}{\partial\bar t} +
-\frac{t_c I_c}{C_m v_c}\bar I_{\rm ion}(v_c\bar V) =
-\frac{t_c}{pC_m(r_i+r_e)x_c^2} \frac{\partial^2 \bar V}{\partial \bar x^2}\tp\]
-!et
-Balance of the time derivative and the diffusion term determines the
-time scale:
-
-!bt
-\[ t_c = pC_m(r_i+r_e)x_c^2\tp\]
-!et
-We need to have a look at units. In the derivation of the cable equation,
-$I_{\rm ion}$ is current per unit length, i.e., it has dimension A/m,
-and all terms have this dimension. The $r_i$ and $r_e$ quantities
-have unit V/(Am) (V is volt, A is ampere).
-[hpl: Keener and Sneyd say $r_i$ is Ohm per length, and since Ohm
-is V/A, it is the same.]
-The $p$ parameter is a perimeter
-and measured in m.
-The term $pC_m\partial V/\partial t$ must have
-the unit of A/m, so $C_m$ is measured in $\hbox{As}\hbox{V}^{-1}\hbox{m}^{-2}$.
-Since $x_c^2$ has unit $\hbox{m}^2$, $t_c$ gets the right unit s.
-
-Normally,
-$x_c$ is based on domain length, but here we have the freedom to
-choose it to have other values. Demanding that the coefficient in
-the source term is unity determines $v_c$:
-
-!bt
-\[ v_c = \frac{t_cI_c}{C_m} = I_Cp(r_i+r_e)x_c^2\tp\]
-!et
-The resulting dimensionless equation is
-
-!bt
-\[ \frac{\partial \bar V}{\partial\bar t} +
-\bar I_{\rm ion}(v_c\bar V) =
-\frac{\partial^2 \bar V}{\partial \bar x^2}\tp\]
-!et
-It remains to find a proper length scale $x_c$ if not the domain length
-is chosen.
-
-Keener and Sneyd do things differently. First, they introduce
-$1/R_m = dI_{rm ion}/dV$ without motivation and multiply the
-cable equation by $R_m$ and divide by $p$:
-
-!bt
-\[ R_mC_m\frac{\partial V}{\partial t} + R_mI_{\rm ion}(V) = \frac{R_m}{p(r_i+r_e)}\frac{\partial^2 V}{\partial x^2}\tp\]
-!et
-The $R_m$ quantity is, according to the definition, measured in
-Vm/A. Then Keener and Sneyd introduce a length scale
-
-!bt
-\[ \lambda_m = \sqrt{\frac{R_m}{p(r_i+r_2)}},\]
-!et
-but this has dimension $\hbox{m}^{\half}$, not m. They introduce the
-time scale
-
-!bt
-\[ \tau_m = R_mC_m,\]
-!et
-which gets the dimension s/m, not s. Furthermore, they do not scale
-$V$ at all, it remains in volt. The resulting equation is not
-dimensionless. As far as I can see, each term has dimension V/m.
 
 ======= Two-phase porous media flow =======
 
