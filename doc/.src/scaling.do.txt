@@ -6223,10 +6223,17 @@ where Fr is the dimensionless Froude number,
 !bt
 \[ \hbox{Fr} = \frac{U}{\sqrt{Lg}}\tp\]
 !et
+This quantity reflects the ratio of inertia and gravity forces:
 
-idx{Strouhal number}
+!bt
+\[ \frac{|\u\cdot\nabla\u|}{|\varrho g|} \sim \frac{\varrho U^2/L}{\varrho g}
+= \hbox{Fr}^2\tp\]
+!et
+
 
 ===== Oscillating boundary conditions and the Strouhal number =====
+
+idx{Strouhal number}
 
 Many flows have an oscillating nature, often arising from some
 oscillating boundary condition. Suppose such a condition at some
@@ -7900,6 +7907,8 @@ can use an old time value for the nonlinear coefficient:
 label{scale:vib:exer:projectile}
 file=projectile
 
+## http://www.physics.arizona.edu/~dpsaltis/Phys205_f06/projectile.pdf
+
 We have the following mathematical model for the motion of a projectile
 in two dimensions:
 
@@ -9087,8 +9096,7 @@ The scaled cable equation is then
 \]
 !et
 
-Let now the spatial scale be fixed as $x_c=L$.
-Basing $t_c$ on
+Let now the spatial scale be fixed as $x_c=L$.  Basing $t_c$ on
 diffusion means $t_c = \tau (L/\lambda)^2$, and the scaled PDE becomes
 
 !bt
@@ -9102,10 +9110,8 @@ where
 \[ \beta = \left(\frac{L}{\lambda}\right)^2\tp\]
 !et
 
-Basing
-$t_c$ on the reaction scale, i.e., the
-balance of the time derivative and the reaction term, gives
-$t_c=\tau$ and the scaled PDE
+Basing $t_c$ on the reaction scale, i.e., the balance of the time
+derivative and the reaction term, gives $t_c=\tau$ and the scaled PDE
 
 !bt
 \[ \frac{\partial\bar u}{\partial\bar t} =
@@ -9118,18 +9124,18 @@ appears that $\lambda$ is about 1 mm and of the same order of
 magnitude as the cable length, so $\beta$ is around 1 in size.
 Then there are not big differences in these scalings, and the first
 one is to be preferred. The two others are more suitable when
-$\beta$ is small or large such that the term with $\beta$ can be
+$\beta$ is small or large, e.g., such that the term with $\beta$ can be
 left out of the PDE.
 !esol
 
 ===== Exercise: Comparison of vibration models for elastic structures =====
 label{scale::exer:elasticity:vibmodels}
 
-The time scale for displacement in elastic structures is,
-according to Section ref{scale:elasticity:timedep}, $t_c=L\sqrt{\varrho/\mu}$
-if we assume constant density $\varrho$ and constant shear modulus
-$\mu$ for the structure. The purpose of this exercise is to compare
-this time scale with the time scales of related models.
+The time scale for displacement in elastic structures is, according to
+Section ref{scale:elasticity:timedep}, $t_c=L\sqrt{\varrho/\mu}$ if we
+assume constant density $\varrho$ and constant shear modulus $\mu$ for
+the structure. The purpose of this exercise is to compare this time
+scale with the time scales of related models.
 
 !bsubex
 Longitudinal waves in a bar can be modeled approximately by the PDE
