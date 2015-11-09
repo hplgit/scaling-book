@@ -340,7 +340,10 @@ div { text-align: justify; text-justify: inter-word; }
               ('S waves', 3, None, '___sec132'),
               ('P waves', 3, None, '___sec133'),
               ('Time-varying load', 3, None, '___sec134'),
-              ('The stationary elasticity problem', 2, None, '___sec135'),
+              ('The stationary elasticity problem',
+               2,
+               'scale:elasticity:stationary',
+               'scale:elasticity:stationary'),
               ('Scaling of the PDE', 3, None, '___sec136'),
               ('Scaling of displacement boundary conditions',
                3,
@@ -418,8 +421,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Scaling', 3, None, '___sec165'),
-              ('Exercises', 1, None, '___sec166'),
+              ('Exercises', 1, None, '___sec165'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -472,7 +474,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec180'),
+              ('Remarks', 3, None, '___sec179'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -489,7 +491,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec185'),
+              ('Remarks', 3, None, '___sec184'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -518,7 +520,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec193')]}
+              ('References', 1, None, '___sec192')]}
 end of tocinfo -->
 
 <body>
@@ -592,6 +594,16 @@ models in elasticity and structural analysis are almost never
 non-dimensionalized. This is probably due to tradition, but the
 following sections will demonstrate the usefulness of scaling also in
 this scientific field.
+
+<p>
+We start out with the general, time-dependent elasticity PDE with
+variable material properties. Analysis based on scaling is used to
+determine with the acceleration term can be neglected. The stationary
+elasticity PDE is then discussed, including the simplification to
+homogeneous media. Scaling of different types of boundary conditions is
+also treated.  At the end, we scale the equations of coupled
+thermo-elasticity. All the models make the assumption of small
+displacement gradients.
 
 <h2 id="scale:elasticity:timedep">The general time-dependent elasticity problem</h2>
 
@@ -705,7 +717,7 @@ we can simulate the dimensionless problem by setting \( \varrho =\bar\varrho \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 22</b>: What about setting boundary conditions?)</font>
+<font color="red">(<b>hpl 17</b>: What about setting boundary conditions?)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:elasticity:PDE1:stress">Dimensionless stress tensor</h2>
@@ -788,6 +800,8 @@ $$ c_S = \sqrt{\frac{\mu}{\varrho}}\tp$$
 The corresponding waves are called
 <a href="https://en.wikipedia.org/wiki/S-wave" target="_self">S waves</a>. The curl of a
 displacement field is closely related to rotation of continuum elements.
+S waves are therefore rotation waves, also sometimes referred to as
+shear waves.
 
 <p>
 The divergence of a displacement field can be interpreted as the
@@ -816,8 +830,9 @@ with wave velocity
 
 $$ c_P = \sqrt{\frac{\lambda +2\mu}{\varrho}}\tp$$
 
-That is, the volume change propagates as a wave with speed \( c_P \).
-These type of waves are called <a href="https://en.wikipedia.org/wiki/P-wave" target="_self">P waves</a>.
+That is, the volume change (expansion/compression)
+propagates as a wave with speed \( c_P \).
+These type of waves are called <a href="https://en.wikipedia.org/wiki/P-wave" target="_self">P waves</a>. Other names are pressure and expansion/compression waves.
 
 <p>
 Suppose now that \( \nabla\times\u =0 \), i.e., there is no rotation (&quot;shear&quot;) of
@@ -830,12 +845,6 @@ $$ \frac{\partial^2\u}{\partial t^2} = c_P^2\nabla^2\u,$$
 
 which is nothing but a wave equation for each component of the
 displacement field.
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 23</b>: Think about the suitability of &quot;no shear&quot; as characteristic for curl-free \( \u \).)</font>
-<!-- end inline comment -->
 
 <h3 id="___sec134">Time-varying load </h3>
 
@@ -876,7 +885,7 @@ is very often the case in applications involving structural analysis.
 models and asks for comparisons of time scales for waves and
 mechanical vibrations in structures.
 
-<h2 id="___sec135">The stationary elasticity problem </h2>
+<h2 id="scale:elasticity:stationary">The stationary elasticity problem</h2>
 
 <h3 id="___sec136">Scaling of the PDE </h3>
 
@@ -1000,7 +1009,10 @@ $$
 
 where \( T \) is the temperature, \( \alpha \) is a coefficient of thermal expansion,
 \( c \) is a heat capacity, \( \kappa \) is the heat conduction coefficient,
-and \( \f_T \) is some heat source. Most thermo-elasticity applications have
+and \( \f_T \) is some heat source. The density \( \varrho \) is strictly speaking
+a function of \( T \) and the stress state, but a widely used approximation
+is to consider \( \varrho \) as a constant.
+Most thermo-elasticity applications have
 \( \f_T=0 \) so we drop this term. Most applications also involve some heating
 from a temperature level \( T_0 \) to some level \( T_0 +\Delta T \).
 A suitable scaling for \( T \) is therefore
@@ -1056,10 +1068,10 @@ $$
 In the absence of body forces, \( \beta \) is again the key parameter.
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 24</b>: Any need to mention boundary conditions?)</font>
-<!-- end inline comment -->
+The boundary conditions for thermo-elasticity consist of the conditions
+for elasticity and the conditions
+for diffusion. Scaling of such conditions are discussed in
+the section <a href="._scaling-book-solarized008.html#sec:scale:diffu">The diffusion equation</a> and <a href="#scale:elasticity:stationary">The stationary elasticity problem</a>.
 
 <h1 id="sec:scale:ns">The Navier-Stokes equations</h1>
 
@@ -1119,7 +1131,19 @@ For the velocity it is common to just introduce some \( U \) for
 For example, in the flow configuration below, with flow over a bump,
 we have some incoming
 flow with a profile \( v(y) \) and \( U \) can typically be chosen as
-\( U=\max_y v(y) \).
+\( U=\max_y v(y) \). The height of the bump influences the wake behind
+the bump, so a natural length scale is \( \alpha \). For numerical
+simulations in a domain of finite extent, \( W \) must be
+large enough to avoid feedback on the inlet profile, and \( L \) must be
+large enough for the type of outflow boundary condition used.
+Ideally, \( W,L\rightarrow\infty \), so none of these parameters are
+useful as length scales.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 18</b>: Geir, check this formulation for choice of length scale.)</font>
+<!-- end inline comment -->
 
 <p>
 <br />
@@ -1154,7 +1178,9 @@ $$ \frac{p_c}{\varrho U^2}\bar\nabla\bar p\tp$$
 
 The coefficient suggest a choice \( p_c=\varrho U^2 \) if the pressure
 gradient term is to have the same size as the acceleration terms.
-This \( p_c \) is a very common pressure scale in fluid mechanics.
+This \( p_c \) is a very common pressure scale in fluid mechanics,
+arising from Bernoulli's equation \( p + \frac{1}{2}\varrho \u\cdot\u =
+\hbox{const} \) for stationary flow.
 
 <h3 id="___sec143">Dimensonless PDEs and the Reynolds number </h3>
 
@@ -1356,9 +1382,11 @@ The coefficient in front of the dimensionless pressure gradient is then
 
 $$ \frac{p_{\infty} - p_v}{\varrho U^2}\tp $$
 
-Inspired by Bernoulli's equation \( p + \frac{1}{2}\varrho U^2 = \hbox{const} \)
+Inspired by Bernoulli's equation
+\( p + \frac{1}{2}\varrho \u\cdot\u =
+\hbox{const} \)
 in fluid mechanics, a factor \( \frac{1}{2} \) is often inserted in the
-denominator, and the corresponding dimensionless number,
+denominator. The corresponding dimensionless number,
 
 $$
 \begin{equation}
@@ -1381,7 +1409,7 @@ $$
 \begin{align}
 w &= \frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta,
 \tag{198}\\ 
-p - p_0 &=  - \sigma\left(R_x^{-1} + R_y^{-1}\right)\approx
+p - p_0 & \approx
 -\sigma\left(\frac{\partial^2\eta}{\partial x^2} +
 \frac{\partial^2\eta}{\partial y^2}\right),
 \tag{199}
@@ -1390,10 +1418,9 @@ $$
 
 where \( w \) is the velocity component in the \( z \) direction,
 \( p_0 \) is the atmospheric air pressure at the surface,
-\( \sigma \) represents the surface tension,
-while \( R_x \) and \( R_y \) are radii of curvature of the surface \( z=\eta \),
-which for small surface deformations can be approximated by second-order
-derivatives of \( \eta \) as indicated.
+and \( \sigma \) represents the surface tension.
+The approximation in <a href="#mjx-eqn-199">(199)</a> is valid
+under small deformations of the surface.
 
 <p>
 The dimensionless form of these conditions starts with inserting the
@@ -1466,29 +1493,34 @@ $$
 \nabla\cdot\u & = 0,
 \tag{203}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
-&= \kappa\nabla^2 T - p\nabla\cdot\u\tp
+&= \kappa\nabla^2 T \tp
 \tag{204}\\ 
 \tag{205}
 \end{align}
 $$
 
 The symbol \( T \) is the temperature, \( c \) is a heat capacity, and \( \kappa \)
-is the heat conduction coefficient for the fluid. The term
-\( p\nabla\cdot\u \) in <a href="#mjx-eqn-204">(204)</a>
-is usually neglected for liquids, but can be important for gases. We
-shall omit it here.
+is the heat conduction coefficient for the fluid. The PDE system
+applies primarily for liquids. For gases one may need a term
+\( - p\nabla\cdot\u \) for the pressure work in
+<a href="#mjx-eqn-204">(204)</a>
+as well as a modified equation of continuity
+<a href="#mjx-eqn-203">(203)</a>.
 
 <p>
 Despite the fact that \( \varrho \) depends on \( T \), we treat \( \varrho \)
 as a constant \( \varrho_0 \). The major effect of the \( \varrho(T) \)
 dependence is through the
-buoyancy effect caused by the gravity term \( -\varrho(T)g\kk \). We drop this
-term, and assume the momentum and continuity equations to be
+buoyancy effect caused by the gravity term \( -\varrho(T)g\kk \).
+It is common to drop this
+term in forced convection,
+and assume the momentum and continuity equations to be
 independent of the temperature. The flow is driven by boundary
-conditions, from which we can find a characteristic velocity \( U \).
+conditions (rather than density variations as in free convection),
+from which we can find a characteristic velocity \( U \).
 
 <p>
-We introduce dimensionless parameters according to
+Dimensionless parameters are introduced as follows:
 
 $$ \bar x = \frac{x}{L},
 \ t_c = \frac{L}{U},\ 
@@ -1569,7 +1601,7 @@ $$
 \nabla\cdot\u & = 0,
 \tag{210}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
-&= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij} -p\nabla\cdot\u\tp
+&= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
 \tag{211}\\ 
 \tag{212}
 \end{align}
@@ -1582,9 +1614,9 @@ by temperature differences and the fact that hot fluid rises while
 cold fluid falls.
 
 <p>
-The term \( p\nabla\cdot\u \) in <a href="#mjx-eqn-211">(211)</a>
-will be left out for simplicity, although it may be significant for
-free convection in gases.
+For slightly compressible gas flow a term \( -p\nabla\cdot\u \) may be
+needed in <a href="#mjx-eqn-211">(211)</a> and also
+a modified <a href="#mjx-eqn-210">(210)</a>.
 
 <h3 id="___sec154">Heating by viscous effects </h3>
 
@@ -1868,8 +1900,9 @@ $$
 $$
 
 <p>
-We realize that in free convection, the Grashof number plays the same
-role as the Reynolds number in the momentum equation. In particular,
+The Grashof number plays the same
+role as the Reynolds number in the momentum equation in free
+convection. In particular,
 it turns out that Gr governs the transition between laminar and
 turbulent flow.  For example, the transition to turbulence occurs in
 the range \( 10^8 < \hbox{Gr} < 10^9 \) for free convection from vertical
@@ -2019,7 +2052,7 @@ where \( A \), \( v_m \), \( v_r \), \( v_p \),
 \( B \), \( c_1 \), \( c_2 \), and \( c_3 \) are specified constants.
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 25</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
+<font color="red">(<b>hpl 19</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
 <!-- end inline comment -->
 
 More complicated ODE systems for the cell dynamics may have up to a
@@ -2118,12 +2151,6 @@ $$
 $$
 
 <p>
-A natural length scale could the size of the domain, in this case the
-diameter of the heart, but we could also base the length and time scales on
-equal balance of the time-derivative term, the diffusion terms, and the
-reaction term in the PDE. For now we let \( L \) be the length scale.
-
-<p>
 The time scale is not so obvious to choose.
 The PDEs are of diffusion nature, and the relevant time scale is related
 to the time it takes to diffuse the signal. On the other hand, the ODE
@@ -2133,10 +2160,32 @@ fast time scales for some components in the ODE system or in the
 (anticipated) slower diffusion scale of the PDEs. For now we choose
 the time scale based on diffusion. From previous examples in
 the section <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>, we therefore
-set the coefficient in front of the diffusion term to unity, here
+set the coefficient in front of the diffusion term to unity.
 
-$$ \frac{t_cM_c}{\chi C_mL^2} = 1\quad\Rightarrow\quad t_c = \frac{\chi C_mL^2}{M_c}\tp$$
+<p>
+A natural length scale could be the size of the domain, in this case the
+diameter of the heart, but we could also base the length and time scales on
+equal balance of the time-derivative term, the diffusion terms, and the
+reaction term in the PDE. Such a balance will be used below.
 
+<p>
+The reaction term can be rewritten as
+
+$$ \frac{t_cA}{C_m\Delta v }
+\Delta v^3 \bar v
+(J_1 + \bar v)
+(\bar v - 1),\quad J_1 = \frac{v_r-v_m}{\Delta v}\tp$$
+
+We require the coefficients in front of the first diffusion term and the
+reaction term to equal unity:
+
+$$ \frac{t_cM_c}{\chi C_mL^2} = 1,\quad \frac{t_cA}{C_m}\Delta v^2 =1\tp,$$
+
+which determines the time and length scales:
+
+$$ t_c = \frac{C_m}{A\Delta v^2},\quad L = \sqrt{\frac{M_c}{A\Delta v^2\chi}}\tp$$
+
+<p>
 A natural dimensionless variable then arises from the second diffusion
 term:
 
@@ -2147,6 +2196,14 @@ variable, but we include the freedom to have \( u_c \) as
 some specified characteristic size of \( u_e \).
 
 <p>
+Since \( w \) is just a help variable without any physiological interpretation,
+we can choose its scale \( w_c \) freely to simplify the expressions.
+For example, we can fit \( w_c \) to make the coefficient in front of
+the \( \bar w \) term equal to unity:
+
+$$ w_c = \frac{A}{B}\chi\Delta v^3\tp$$
+
+<p>
 The final dimensionless system becomes
 
 $$
@@ -2154,157 +2211,62 @@ $$
 \frac{\partial \bar v}{\partial \bar t} &=
 \nabla\cdot( \bar M_i\bar\nabla\bar v) +
 \alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -
-\tag{229}\\ 
-&\quad
-\beta
 \bar v
 (J_1 +  \bar v)
-(\bar v - 1) - \gamma\bar w - \delta,
-\tag{230}\\ 
+(\bar v - 1) - \bar w - \beta,
+\tag{229}\\ 
 0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
 \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),
-\tag{231}\\ 
+\tag{230}\\ 
 \frac{d\bar v}{d\bar t} & = -
-\beta
 \bar v
 (J_1 +  \bar v)
-(\bar v -1)- \gamma\bar w - \delta,
-\tag{232}\\ 
+(\bar v -1)- \bar w - \beta,
+\tag{231}\\ 
 \frac{d\bar w}{d\bar t} &= -K_1\bar w +
 K_2\bar v + K_3\tp
-\tag{233}
+\tag{232}
 \end{align}
 $$
 
-There are eight dimensionless variables in the above equations:
+There are seven dimensionless variables in the above equations:
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 20</b>: Recalculate \( K_1 \), \( K_2 \), \( K_3 \) with right \( t_c \).)</font>
+<!-- end inline comment -->
+
 
 $$
 \begin{align}
 \alpha &= \frac{u_c}{\Delta v},
+\tag{233}\\ 
+\beta &= \frac{I_{\rm{app}}}{\Delta v^3},
 \tag{234}\\ 
-\beta & = \frac{\chi AL^2\Delta v^2}{M_c},
-\tag{235}\\ 
-\gamma &= \frac{Bw_cL^2}{M_c\Delta v },
-\tag{236}\\ 
-\delta &= \frac{\chi L^2 I_{\rm{app}}}{M_c\Delta v },
-\tag{237}\\ 
 J_1 &= \frac{v_r-v_m}{\Delta v},
-\tag{238}\\ 
+\tag{235}\\ 
 J_2 &= \frac{v_r}{\Delta v},
-\tag{239}\\ 
+\tag{236}\\ 
 K_1 &= \frac{\chi C_m L^2c_1}{M_c},
-\tag{240}\\ 
+\tag{237}\\ 
 K_2 & = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
-\tag{241}\\ 
+\tag{238}\\ 
 K_3 &= \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}\tp
-\tag{242}
+\tag{239}
 \end{align}
 $$
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 26</b>: Compute the size of \( \beta \). Inspired by scaling of the cable equation, it could happen that \( \beta \) is very large if \( L \) is the diameter of the heart, and in that case we can demand \( \beta =1 \) to set \( L \). Then there is equal balance between the three main terms in the PDE.)</font>
-<!-- end inline comment -->
-
-<p>
-Since \( w \) is just a help variable without any physiological interpretation,
-we can choose its scale \( w_c \) freely to simplify the expressions.
-For example, we can fit \( w_c \) to make \( K_2=1 \), \( K_3=1 \), or \( \gamma=1 \).
-
-<p>
 Some of these dimensionless numbers have straightforward
 interpretations: \( \alpha \) is the ratio of the span in the two electric
-potentials; \( \delta \) is ratio of the source term and the
+potentials; \( \beta \) is ratio of the source term with \( I_{\rm{app}} \) and the
 time-derivative term of \( v \), or the source term and the diffusion term
 in \( v \).  The rest have fixed values: \( J_1 \) and \( J_2 \) have
-well-established values from measurements, while \( \beta \), \( \gamma \),
+well-established values from measurements, while \( \beta \),
 \( K_1 \), \( K_2 \), and \( K_3 \) contain empirically fitted constants with
 known values, combined with known scales and other known physical
 parameters.
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 27</b>: It is unclear what the gain really is, besides having primary variables of unit size. Since there are so many empirical constants, the number of dimensionlesss variables blows up, and instead of gettting more insight into the dynamics through these variables, they are just fixed numbers.)</font>
-<!-- end inline comment -->
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 28</b>: Here is a comment on the scaling above versus Keener and Sneyd's scaling of the cable equation. Not meant to be part of the text, just some thoughts while we are working on the proper scaling of the bidomain equations.)</font>
-<!-- end inline comment -->
-
-<p>
-The cable equation from Keener and Sneyd is
-$$ pC_m\frac{\partial V}{\partial t} + pI_{\rm ion}(V) = \frac{1}{r_i+r_e}
-\frac{\partial^2 V}{\partial x^2},$$
-
-see (8.11). The standard way of scaling this equation is to introduce
-a time scale \( t_c \), a length scale \( x_c \), a \( V \) scale \( v_c \), and
-a scale \( I_c \) for \( I_{\rm ion} \) (typically \( I_c = \max |I_{\rm ion}| \)):
-
-$$ \frac{\partial \bar V}{\partial\bar t} +
-\frac{t_c I_c}{C_m v_c}\bar I_{\rm ion}(v_c\bar V) =
-\frac{t_c}{pC_m(r_i+r_e)x_c^2} \frac{\partial^2 \bar V}{\partial \bar x^2}\tp$$
-
-Balance of the time derivative and the diffusion term determines the
-time scale:
-
-$$ t_c = pC_m(r_i+r_e)x_c^2\tp$$
-
-We need to have a look at units. In the derivation of the cable equation,
-\( I_{\rm ion} \) is current per unit length, i.e., it has dimension A/m,
-and all terms have this dimension. The \( r_i \) and \( r_e \) quantities
-have unit V/(Am) (V is volt, A is ampere).
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 29</b>: Keener and Sneyd say \( r_i \) is Ohm per length, and since Ohm is V/A, it is the same.)</font>
-<!-- end inline comment -->
-
-The \( p \) parameter is a perimeter
-and measured in m.
-The term \( pC_m\partial V/\partial t \) must have
-the unit of A/m, so \( C_m \) is measured in \( \hbox{As}\hbox{V}^{-1}\hbox{m}^{-2} \).
-Since \( x_c^2 \) has unit \( \hbox{m}^2 \), \( t_c \) gets the right unit s.
-
-<p>
-Normally,
-\( x_c \) is based on domain length, but here we have the freedom to
-choose it to have other values. Demanding that the coefficient in
-the source term is unity determines \( v_c \):
-
-$$ v_c = \frac{t_cI_c}{C_m} = I_Cp(r_i+r_e)x_c^2\tp$$
-
-The resulting dimensionless equation is
-
-$$ \frac{\partial \bar V}{\partial\bar t} +
-\bar I_{\rm ion}(v_c\bar V) =
-\frac{\partial^2 \bar V}{\partial \bar x^2}\tp$$
-
-It remains to find a proper length scale \( x_c \) if not the domain length
-is chosen.
-
-<p>
-Keener and Sneyd do things differently. First, they introduce
-\( 1/R_m = dI_{rm ion}/dV \) without motivation and multiply the
-cable equation by \( R_m \) and divide by \( p \):
-
-$$ R_mC_m\frac{\partial V}{\partial t} + R_mI_{\rm ion}(V) = \frac{R_m}{p(r_i+r_e)}\frac{\partial^2 V}{\partial x^2}\tp$$
-
-The \( R_m \) quantity is, according to the definition, measured in
-Vm/A. Then Keener and Sneyd introduce a length scale
-
-$$ \lambda_m = \sqrt{\frac{R_m}{p(r_i+r_2)}},$$
-
-but this has dimension \( \hbox{m}^{\half} \), not m. They introduce the
-time scale
-
-$$ \tau_m = R_mC_m,$$
-
-which gets the dimension s/m, not s. Furthermore, they do not scale
-\( V \) at all, it remains in volt. The resulting equation is not
-dimensionless. As far as I can see, each term has dimension V/m.
 
 <h1 id="___sec163">Two-phase porous media flow </h1>
 
@@ -2329,34 +2291,34 @@ algebraic relations that govern the two primary unknowns \( S \) and \( P \):
 $$
 \begin{align}
 \nabla\cdot\v_t &= -(Q_n + Q_w),
-\tag{243}\\ 
+\tag{240}\\ 
 \v_t &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
 + \lambda_n\varrho_n)g\kk,
-\tag{244}\\ 
+\tag{241}\\ 
 \phi\frac{\partial S}{\partial t} + f_w'(S)\v_t\cdot\nabla S &=
 \nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\ 
 &\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
-\tag{245}\\ 
+\tag{242}\\ 
 Q_w &= \frac{q_w}{\varrho_w},
-\tag{246}\\ 
+\tag{243}\\ 
 Q_n &= \frac{q_n}{\varrho_n},
-\tag{247}\\ 
+\tag{244}\\ 
 \lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
-\tag{248}\\ 
+\tag{245}\\ 
 \lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
-\tag{249}\\ 
+\tag{246}\\ 
 \lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
-\tag{250}\\ 
+\tag{247}\\ 
 k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
-\tag{251}\\ 
+\tag{248}\\ 
 k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
-\tag{252}\\ 
+\tag{249}\\ 
 f_w(S) &= \frac{\lambda_w}{\lambda_t},
-\tag{253}\\ 
+\tag{250}\\ 
 G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
-\tag{254}\\ 
+\tag{251}\\ 
 h_w(S) &= -\lambda_n(S)f_w(S),
-\tag{255}\tp
+\tag{252}\tp
 \end{align}
 $$
 
@@ -2379,16 +2341,16 @@ relative permeabilities.
 
 <p>
 The two PDEs are of elliptic and hyperbolic/parabolic nature:
-<a href="#mjx-eqn-243">(243)</a> is elliptic since it is the divergence of a
-vector field, while <a href="#mjx-eqn-245">(245)</a> is parabolic (\( h_w\geq 0 \)
+<a href="#mjx-eqn-240">(240)</a> is elliptic since it is the divergence of a
+vector field, while <a href="#mjx-eqn-242">(242)</a> is parabolic (\( h_w\geq 0 \)
 because \( p_c'(S)\geq 0 \) and \( \lambda_n \) as well as \( f_w \) are positive
 since \( k_{rn}>0 \) and \( k_{rw}>0 \)). Very often, \( p_c' \) is small so
-<a href="#mjx-eqn-245">(245)</a> is of hyperbolic nature, and \( S \) features very
+<a href="#mjx-eqn-242">(242)</a> is of hyperbolic nature, and \( S \) features very
 steep gradients that become shocks in the limit \( p_c'\rightarrow 0 \)
-and <a href="#mjx-eqn-245">(245)</a> is purely hyperbolic.
+and <a href="#mjx-eqn-242">(242)</a> is purely hyperbolic.
 A popular solution technique is based on operator splitting:
-<a href="#mjx-eqn-243">(243)</a> is solved with respect to \( P \), given \( S \), and
-<a href="#mjx-eqn-245">(245)</a> is solved with respect to \( S \), given \( P \).
+<a href="#mjx-eqn-240">(240)</a> is solved with respect to \( P \), given \( S \), and
+<a href="#mjx-eqn-242">(242)</a> is solved with respect to \( S \), given \( P \).
 
 <p>
 The saturation \( S \) is a non-dimensional quantity, and so are \( \phi \),
@@ -2442,18 +2404,18 @@ Inserting the above scaled quantities in the governing PDEs results in
 $$
 \begin{align}
 \bar\nabla\cdot\bar\v_t &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
-\tag{256}\\ 
+\tag{253}\\ 
 \bar\v_t &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
 \frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\ 
 &\quad\quad\frac{g\lambda_c\varrho}{v_c}
 (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\tag{257}\\ 
+\tag{254}\\ 
 \phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v_t\cdot
 \bar\nabla S &=
 \frac{t_c P_c\lambda_c}{L^2}
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\ 
 &\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
-\tag{258}
+\tag{255}
 \end{align}
 $$
 
@@ -2461,7 +2423,7 @@ As usual, \( L \) is taken as the characteristic length of the spatial domain.
 Since \( v_c \) is a velocity scale, a natural time scale is the time it
 takes to transport a signal with velocity \( v_c \) through the domain:
 \( t_c = L/v_c \). The diffusion term in the equation
-<a href="#mjx-eqn-261">(261)</a> then gets
+<a href="#mjx-eqn-258">(258)</a> then gets
 a dimensionless fraction
 
 $$ \frac{L P_c\lambda_c}{v_c L^2}\tp$$
@@ -2504,17 +2466,17 @@ Introducing another dimensionless variable,
 
 $$ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},$$
 
-we can write <a href="#mjx-eqn-256">(256)</a>-<a href="#mjx-eqn-258">(258)</a> in the
+we can write <a href="#mjx-eqn-253">(253)</a>-<a href="#mjx-eqn-255">(255)</a> in the
 final dimensionless form as
 
 $$
 \begin{align}
 \bar\nabla\cdot\bar\v_t &= -\epsilon(1 + \alpha^{-1}\gamma),
-\tag{259}\\ 
+\tag{256}\\ 
 \bar\v_t &= -\bar\lambda_t\bar\nabla\bar P +
 \bar\lambda_w \bar p_c'(S)\bar\nabla S +
 \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\tag{260}\\ 
+\tag{257}\\ 
 \phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v_t\cdot
 \bar\nabla S &= -
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
@@ -2524,7 +2486,7 @@ $$
 \frac{\partial S}{\partial\bar z} +\nonumber\\ 
 &\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
 \epsilon\tp
-\tag{261}
+\tag{258}
 \end{align}
 $$
 
@@ -2538,40 +2500,45 @@ There are six remaining dimensionless numbers to be set: \( K_{wm} \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 30</b>: Boundary conditions?)</font>
+<font color="red">(<b>hpl 21</b>: Boundary conditions?)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 31</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
+<font color="red">(<b>hpl 22</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 32</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
+<font color="red">(<b>hpl 23</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
 <!-- end inline comment -->
 
 <h1 id="scale:Euler_eqs">The Euler equations of gas dynamics</h1>
 
+<p>
+The fundamental equations for a compressible fluid are based on balance
+of mass, momentum, and energy. The PDE system, known as the Euler
+equations of gas dynamics, can be written as
+
 $$
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\varrho\u) &= 0,
-\tag{262}\\ 
+\tag{259}\\ 
 \frac{\partial(\varrho\u)}{\partial t} + \nabla\cdot(\varrho\u\u^T) &= -\nabla p + \varrho \f,
-\tag{263}\\ 
+\tag{260}\\ 
 \frac{\partial E}{\partial t} + \nabla\cdot(\u(E+p)) &= 0,
-\tag{264}
+\tag{261}
 \end{align}
 $$
 
-where
+where the total energy is given by
 
 $$
 \begin{equation}
 E = \varrho e + \frac{1}{2}\varrho\u\cdot\u\tp
-\tag{265}
+\tag{262}
 \end{equation}
 $$
 
@@ -2587,32 +2554,22 @@ relations:
 $$
 \begin{align}
 e &= c_v T,
-\tag{266}\\ 
+\tag{263}\\ 
 p &= \varrho RT = \frac{R}{c_v}(E-\half\varrho \u\cdot\u),
-\tag{267}
+\tag{264}
 \end{align}
 $$
 
 where \( c_v \) is the specific heat capacity at constant volume (for dry air
-\( c_v = 717.5 \hbox{J}\hbox{kg}^{-1}\hbox{K}^{-1} \)),
+\( c_v = 717.5\, \hbox{J}\,\hbox{kg}^{-1}\hbox{K}^{-1} \)),
 \( R \) is the specific ideal gas constant
 (\( R=287.14 \hbox{J}\hbox{kg}^{-1}\hbox{K}^{-1} \)), and \( T \) is the temperature.
-The speed of sound is then
-
-$$
-\begin{equation}
-c = \sqrt{\left(1 + \frac{R}{c_v}\right)\frac{p}{\varrho}}\tp
-\tag{268}
-\end{equation}
-$$
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 33</b>: Tell how the equations are solved and closed.)</font>
-<!-- end inline comment -->
-
-<h3 id="___sec165">Scaling </h3>
+The common way to solve these equations is to propagate \( \varrho \),
+\( \varrho\u \), and \( E \) by an explicit numerical method in time for
+<a href="#mjx-eqn-259">(259)</a>-<a href="#mjx-eqn-261">(261)</a>,
+using <a href="#mjx-eqn-264">(264)</a> for \( p \).
 
 <p>
 We introduce dimensionless independent variables,
@@ -2632,7 +2589,7 @@ $$
 \frac{\partial\bar\varrho}{\partial\bar t} + \frac{t_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\ 
 \frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} + \frac{t_cU}{L}\bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &= -\frac{t_cp_c}{UL\varrho_c}\nabla\bar p + \frac{t_c f_c}{U}\bar\varrho \bar\f,\\ 
 \frac{\partial\bar E}{\partial\bar t} + \frac{t_c U}{LE_c }\bar\nabla\cdot(\bar\u(E_c\bar E+p_c\bar p)) &= 0,\\ 
-\bar E & = \frac{\varrho_c}{E_c}c_v T_c\bar T + \frac{\varrho_c U^2}{E_c}\frac{1}{2}\bar\varrho\bar u\cdot\bar u\tp
+\bar p & = \frac{R}{c_v p_c}(E_c\bar E - \half\varrho_cu_c\bar\varrho\bar\u\cdot\bar\u)\tp
 \end{align*}
 $$
 
@@ -2646,15 +2603,27 @@ $$
 \bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\ 
 \frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} +
 \bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &=
--\nabla\bar p + \frac{Lf_c}{U^2}\bar\varrho \bar\f,\\ 
+-\nabla\bar p + \alpha\bar\varrho \bar\f,\\ 
 \frac{\partial\bar E}{\partial\bar t} +
 \bar\nabla\cdot(\bar\u(\bar E+ \bar p)) &= 0,\\ 
-\bar E & = \frac{1}{U^2}c_v T_c\bar T +
-\frac{1}{2}\bar\varrho\bar u\cdot\bar u\tp
+\bar p & = \frac{R}{c_v}(\bar E - \half\bar\varrho\bar u\cdot\bar u),
 \end{align*}
 $$
 
-<h1 id="___sec166">Exercises </h1>
+where \( \alpha \) is a dimensionless number:
+
+$$ \alpha = \frac{Lf_c}{U^2}\tp$$
+
+We realize that the scaled Euler equations look like
+the ones with dimension, apart from the \( \alpha \) coefficient.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 24</b>: Comment on software also for advanced models.)</font>
+<!-- end inline comment -->
+
+<h1 id="___sec165">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
@@ -2960,13 +2929,13 @@ Lotka-Volterra ODE system
 $$
 \begin{align}
 H^{\prime} &= H(a - bL),
-\tag{269}\\ 
+\tag{265}\\ 
 L^{\prime} &= L(dH - c),
-\tag{270}\\ 
+\tag{266}\\ 
 H(0)&=H_0,
-\tag{271}\\ 
+\tag{267}\\ 
 L(0)&=L_0\tp
-\tag{272}
+\tag{268}
 \end{align}
 $$
 
@@ -3002,13 +2971,13 @@ in the ODE problem we arrive at
 $$
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\tag{273}\\ 
+\tag{269}\\ 
 \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-\tag{274}\\ 
+\tag{270}\\ 
 H_c\bar H(0) &= H_0,
-\tag{275}\\ 
+\tag{271}\\ 
 L_c\bar H(0) &= L_0\tp
-\tag{276}
+\tag{272}
 \end{align}
 $$
 
@@ -3064,9 +3033,9 @@ interaction (cf.&nbsp;ref{scale:decay:exer:predprey}):
 $$
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
-\tag{277}\\ 
+\tag{273}\\ 
 \frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
-\tag{278}
+\tag{274}
 \end{align}
 $$
 
@@ -3144,7 +3113,7 @@ Filename: <code>sine_period</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec180">Remarks </h3>
+<h3 id="___sec179">Remarks </h3>
 
 <p>
 The <em>frequency</em> is the number of up and down cycles in one unit time.
@@ -3166,7 +3135,7 @@ The equation for a so-called simple pendulum with a mass \( m \) at the end is
 $$
 \begin{equation}
 mL\ddot\theta + mg\sin\theta = 0,
-\tag{279}
+\tag{275}
 \end{equation}
 $$
 
@@ -3180,7 +3149,7 @@ a similar equation,
 $$
 \begin{equation}
 I\ddot\theta + mgL\sin\theta = 0\tp
-\tag{280}
+\tag{276}
 \end{equation}
 $$
 
@@ -3210,9 +3179,9 @@ or a planet and a moon, are
 $$
 \begin{align}
 m_A\ddot\x_A &= \F,
-\tag{281}\\ 
+\tag{277}\\ 
 m_B\ddot\x_B &= -F,
-\tag{282}
+\tag{278}
 \end{align}
 $$
 
@@ -3301,7 +3270,7 @@ Filename: <code>stationary_Couette</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec185">Remarks </h3>
+<h3 id="___sec184">Remarks </h3>
 
 <p>
 The problem for \( u \) is a classical two-point boundary-value problem
@@ -3397,11 +3366,11 @@ is governed by
 $$
 \begin{align}
 \mu u''(z) &= -\beta
-\tag{283}\\ 
+\tag{279}\\ 
 u(0) &= 0,
-\tag{284}\\ 
+\tag{280}\\ 
 u(H) &= U_0\tp
-\tag{285}
+\tag{281}
 \end{align}
 $$
 
@@ -3429,7 +3398,7 @@ Scale the problem.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 37</b>: Could extend to time-dependent case, but this will involve three time scales...)</font>
+<font color="red">(<b>hpl 28</b>: Could extend to time-dependent case, but this will involve three time scales...)</font>
 <!-- end inline comment -->
 
 <p>
@@ -3451,13 +3420,13 @@ $$
 \begin{align}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
 \left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{286}\\ 
+\tag{282}\\ 
 \frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
-\tag{287}\\ 
+\tag{283}\\ 
 u(R,t) &= 0, & t\in (0,T],
-\tag{288}\\ 
+\tag{284}\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{289}
+\tag{285}
 \end{align}
 $$
 
@@ -3490,7 +3459,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
 -u\tp
-\tag{290}
+\tag{286}
 \end{equation}
 $$
 
@@ -3499,7 +3468,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale ref{scale:exer:cable_eq:PDE} in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-286">(286)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
@@ -3575,10 +3544,10 @@ $$
 \begin{align}
 (\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -\alpha\nabla p -
 \varrho\f,
-\tag{291}\\ 
+\tag{287}\\ 
 S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p +
 \alpha \frac{\partial}{\partial t}\nabla\cdot\u,
-\tag{292}
+\tag{288}
 \end{align}
 $$
 

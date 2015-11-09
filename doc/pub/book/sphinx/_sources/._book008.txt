@@ -27,9 +27,9 @@ equation to obtain the well-known convection-diffusion equation:
 The velocity field :math:`\boldsymbol{v}` is prescribed, and its characteristic size :math:`V`
 is normally clear from the problem description.
 
-[**hpl 20**: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated?]
+[**hpl 15**: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated? Geir says no.]
 
-[**hpl 21**: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different :math:`V` is obvious.]
+[**hpl 16**: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different :math:`V` is obvious.]
 
 Inserting
 

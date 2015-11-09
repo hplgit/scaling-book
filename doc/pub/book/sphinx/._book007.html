@@ -95,7 +95,6 @@ and a source term takes the form</p>
 <p>We first look at scaling the PDE itself, and thereafter we discuss
 some types of boundary conditions and how to scale the complete
 initial-boundary value problem.</p>
-<p>[<strong>hpl 17</strong>: Is it a problem that <span class="math">\({\alpha}\)</span> is now a physical parameter while it is so far a symbol for a dimensionless quantity?]</p>
 <div class="section" id="homogeneous-1d-diffusion-equation">
 <span id="sec-scale-diffu-homo1d"></span><h2>Homogeneous 1D diffusion equation<a class="headerlink" href="#homogeneous-1d-diffusion-equation" title="Permalink to this headline">¶</a></h2>
 <p>To make <a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(132)</span></a> dimensionless,
@@ -119,8 +118,11 @@ implies <span class="math">\(t_c{\alpha}/L^2=1\)</span> and therefore <span clas
 <p>Insight through an analytical solution can alternatively
 help with choosing <span class="math">\(t_c\)</span>.
 One can show that <span class="math">\(u=Ae^{-pt}\sin (kx)\)</span> is a solution of
-<a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(132)</span></a> if <span class="math">\(p={\alpha} k^2\)</span>, for any <span class="math">\(k\)</span>. Exponential decay in
-time is a characteristic feature of the diffusion equation, and
+<a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(132)</span></a> if <span class="math">\(p={\alpha} k^2\)</span>, for any <span class="math">\(k\)</span>.
+This is the typical solution arising from separation of variables
+and reflects the dynamics of the space and time in the PDE.
+Exponential decay in
+time is a characteristic feature of diffusion processes, and
 the e-folding time can then be taken as a time scale. This means
 <span class="math">\(t_c = 1/p \sim k^{-2}\)</span>. Since <span class="math">\(k\)</span> is related to the spatial
 wave length <span class="math">\(\lambda\)</span>
@@ -293,11 +295,11 @@ and the temperature in a rod of any material and any constant initial and
 boundary temperature can be retrieved by</p>
 <div class="math">
 \[u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t{\alpha}/L^2){\thinspace .}\]</div>
-<p>[<strong>hpl 18</strong>: Include simulation results.]</p>
+<p>[<strong>hpl 13</strong>: Include simulation results.]</p>
 </div>
 <div class="section" id="oscillating-dirichlet-condition">
 <h2>Oscillating Dirichlet condition<a class="headerlink" href="#oscillating-dirichlet-condition" title="Permalink to this headline">¶</a></h2>
-<p>[<strong>hpl 19</strong>: Do we need paragraph headings here?]</p>
+<p>[<strong>hpl 14</strong>: Do we need paragraph headings here?]</p>
 <p>Now we address a heat equation problem where the temperature is
 oscillating on the boundary <span class="math">\(x=0\)</span>:</p>
 <div class="math" id="eq-scale-heat-pde2">
@@ -529,14 +531,15 @@ and it suffices to solve <span class="math">\(\bar u_{\bar t} = \bar u_{\bar x\b
 <p>A general, nonlinear reaction-diffusion equation in 1D looks like</p>
 <div class="math" id="eq-auto39">
 \[\tag{161}
-\frac{\partial u}{\partial t} = {\alpha}\frac{\partial^2 u}{\partial t^2} + f(u)
+\frac{\partial u}{\partial t} = {\alpha}\frac{\partial^2 u}{\partial x^2} + f(u)
     {\thinspace .}\]</div>
 <p>By scaling the nonlinear reaction term <span class="math">\(f(u)\)</span> as <span class="math">\(f_c\bar f(u_c\bar u)\)</span>,
 where <span class="math">\(f_c\)</span> is a characteristic size of <span class="math">\(f(u)\)</span>, typically the maximum
 value, one gets a non-dimensional PDE like</p>
 <div class="math">
 \[\frac{\partial\bar u}{\partial\bar t} = \frac{t_c{\alpha}}{x_c^2}
-\frac{\partial^2 u}{\partial t^2} + \frac{t_cf_c}{u_c}\bar f(u_c\bar u){\thinspace .}\]</div>
+\frac{\partial^2\bar u}{\partial\bar x^2} +
+\frac{t_cf_c}{u_c}\bar f(u_c\bar u){\thinspace .}\]</div>
 <p>The characteristic size of <span class="math">\(u\)</span> can often be derived so we first assume
 that <span class="math">\(u_c\)</span> is given. This fact uniquely determines the space and time
 scales by demanding that all three terms are equally important and
@@ -547,7 +550,7 @@ of unit size:</p>
 <div class="math" id="eq-auto40">
 \[\tag{162}
 \frac{\partial\bar u}{\partial\bar t} =
-    \frac{\partial^2 u}{\partial t^2} + \bar f(u_c\bar u){\thinspace .}\]</div>
+    \frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u){\thinspace .}\]</div>
 <p>If <span class="math">\(x_c\)</span> is based on some known length scale <span class="math">\(L\)</span>, balance of all three
 terms can be used to determine <span class="math">\(u_c\)</span> and <span class="math">\(t_c\)</span>:</p>
 <div class="math">
@@ -560,7 +563,7 @@ the reaction scale, <span class="math">\(t_c = u_c/f_c\)</span>, one arrives a t
 <div class="math" id="eq-auto41">
 \[\tag{163}
 \frac{\partial\bar u}{\partial\bar t} =
-    \beta\frac{\partial^2 u}{\partial t^2} + \bar f(u_c\bar u),\]</div>
+    \beta\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u),\]</div>
 <p>where</p>
 <div class="math">
 \[\beta = \frac{{\alpha} u_c}{L^2 f_c} = \frac{u_c/f_c}{L^2/{\alpha}}\]</div>
@@ -571,7 +574,7 @@ diffusion time scale, <span class="math">\(t_c=L^2/{\alpha}\)</span>, the scaled
 <div class="math" id="eq-auto42">
 \[\tag{164}
 \frac{\partial\bar u}{\partial\bar t} =
-    \frac{\partial^2 u}{\partial t^2} + \beta^{-1}\bar f(u_c\bar u){\thinspace .}\]</div>
+    \frac{\partial^2\bar u}{\partial \bar x^2} + \beta^{-1}\bar f(u_c\bar u){\thinspace .}\]</div>
 <p>The size of <span class="math">\(\beta\)</span> in an application will determine which of the scalings
 that is most appropriate.</p>
 </div>

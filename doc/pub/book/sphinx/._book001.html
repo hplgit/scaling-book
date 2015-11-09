@@ -87,28 +87,27 @@ and paper, the modern world of numerical computing requires each
 physical parameter to have a numerical value, otherwise one cannot get
 started with the computations.  For example, in the simplest possible
 transient heat conduction simulation, a case relevant for a real
-physical material needs values for the heat capacity, the
-density, and the heat conduction coefficient of the material. In
-addition, relevant values must be chosen for initial and boundary
-temperatures as well as the size of the material.  With a
-dimensionless mathematical model, as explained in the section <a class="reference internal" href="._book007.html#sec-scale-diffu"><span class="std std-ref">The diffusion equation</span></a>, <em>no physical quantities</em> need to be assigned
-(!). Not only is this a simplification of great convenience, as one
-simulation is valid for any type of material, but it also actually
-increases the understanding of the physical problem.</p>
+physical material needs values for the heat capacity, the density, and
+the heat conduction coefficient of the material. In addition, relevant
+values must be chosen for initial and boundary temperatures as well as
+the size of the material.  With a dimensionless mathematical model, as
+explained in the chapter <a class="reference internal" href="._book007.html#sec-scale-diffu"><span class="std std-ref">The diffusion equation</span></a>, <em>no physical quantities</em>
+need to be assigned (!). Not only is this a simplification of great
+convenience, as one simulation is valid for any type of material, but
+it also actually increases the understanding of the physical problem.</p>
 <p>Scaling of differential equations is basically a simple mathematical
 process, consisting of the chain rule for differentiation and some
 algebra.  The <em>choice of scales</em>, however, is a non-trivial topic,
 which may cause confusion among practitioners without extensive
 experience with scaling.  How to choose scales is unfortunately not
-well treated in the literature. Most of the times, authors just state scales
-without proper motivation. The choice of scales is highly
+well treated in the literature. Most of the times, authors just state
+scales without proper motivation. The choice of scales is highly
 problem-dependent and requires knowledge of the characteristic
 features of the solution or the physics of the problem.  The present
 book aims at explaining &#8220;all nuts and bolts&#8221; of the scaling
-technique, including choice of scales, the algebra, the
-interpretation of dimensionless parameters in scaled models,
-and how scaling
-impacts software for solving differential equations.</p>
+technique, including choice of scales, the algebra, the interpretation
+of dimensionless parameters in scaled models, and how scaling impacts
+software for solving differential equations.</p>
 <p>Traditionally, scaling was mainly used to identify small parameters in
 mathematical models, such that perturbation methods based on series
 expansions in terms of the small parameters could be used as an
@@ -125,32 +124,26 @@ much easier than determining physically relevant values for the
 original physical parameters.</p>
 <p>Another great benefit of scaling is the physical insight that follows
 from dimensionless parameters. Since physical effects enter the
-problem through a few dimensionless groups, one can from these
-groups see how different effects compete in their
-impact on the solution. Ideally, a good physical understanding should
-provide the same insight, but it is not always easy to &#8220;think right&#8221;
-and realize how spatial and temporal scales interact with physical
-parameters.  This interaction becomes clear through the dimensionless
-numbers, and such numbers are therefore a great help, especially for
-students, in developing a correct physical understanding.</p>
-<p>Since we have a special focus on scaling related to numerical simulations,
-the book contains a lot of examples on how to program with
-dimensionless differential equation models. Most numerical models feature
-quantities with dimension, so we show in particular how to utilize such
-existing models to solve the equations in the associated scaled model.</p>
+problem through a few dimensionless groups, one can from these groups
+see how different effects compete in their impact on the
+solution. Ideally, a good physical understanding should provide the
+same insight, but it is not always easy to &#8220;think right&#8221; and realize
+how spatial and temporal scales interact with physical parameters.
+This interaction becomes clear through the dimensionless numbers, and
+such numbers are therefore a great help, especially for students, in
+developing a correct physical understanding.</p>
+<p>Since we have a special focus on scaling related to numerical
+simulations, the book contains a lot of examples on how to program
+with dimensionless differential equation models. Most numerical models
+feature quantities with dimension, so we show in particular how to
+utilize such existing models to solve the equations in the associated
+scaled model.</p>
 <p>Scaling is not a universal mathematical technique as the details
 depend on the problem at hand. We therefore present scaling in a range
 of specific applications, starting with simple ODEs, progressing with
 basic PDEs, before attacking more complicated models, especially from
-fluid mechanics. The mathematics in the first two chapters is very
-gentle and requires no more background than basic one-variable
-calculus and preferably some knowledge of differential equation
-models. The next chapter involves PDEs and assumes familiarity with
-basic models for wave phenomena, diffusion, and combined
-convection-diffusion. The final chapter is meant for readers with
-knowledge of continuum mechanical models. The mathematical level
-of the text rises quickly after the first two chapters.</p>
-<p>The section <a class="reference internal" href="._book003.html#scale-dimunit"><span class="std std-ref">Dimensions and units</span></a> discusses units and how to make programs
+fluid mechanics.</p>
+<p>The chapter <a class="reference internal" href="._book003.html#scale-dimunit"><span class="std std-ref">Dimensions and units</span></a> discusses units and how to make programs
 that can automatically take care of unit conversion (the most frequent
 mathematical mistake in industry and science?).  The section <a class="reference internal" href="._book004.html#sec-scale-decay"><span class="std std-ref">Exponential decay problems</span></a> introduces the mathematics of scaling and the
 thinking about scales in a simple ODE problems modeling exponential
@@ -158,13 +151,13 @@ decay. The ideas are generalized to nonlinear ODEs and to systems of
 ODEs.  Another ODE example on mechanical vibrations is treated in
 the section <a class="reference internal" href="._book005.html#sec-scale-vib"><span class="std std-ref">Vibration problems</span></a>, where we cover many different physical
 contexts and different choices of scales.  Scaling the standard,
-linear wave equation is the topic of the section <a class="reference internal" href="._book006.html#sec-scale-wave"><span class="std std-ref">The wave equation</span></a>,
-with discussion of how boundary and initial conditions influence the
-choice of scales.  Another PDE example, the diffusion equation,
-appears in the section <a class="reference internal" href="._book007.html#sec-scale-diffu"><span class="std std-ref">The diffusion equation</span></a>. Here we progress from a
-simple linear diffusion equation in 1D to the impact on scales of an
-oscillating boundary condition. A nonlinear diffusion model as well
-convection-diffusion PDEs are also discussed.  The final sections are
+linear wave equation is the topic of the chapter <a class="reference internal" href="._book006.html#sec-scale-wave"><span class="std std-ref">The wave equation</span></a>, with
+discussion of how boundary and initial conditions influence the choice
+of scales.  Another PDE example, the diffusion equation, appears in
+the chapter <a class="reference internal" href="._book007.html#sec-scale-diffu"><span class="std std-ref">The diffusion equation</span></a>. Here we progress from a simple linear
+diffusion equation in 1D to the impact on scales of an oscillating
+boundary condition. A nonlinear diffusion model as well
+convection-diffusion PDEs are also discussed.  The final Chapter is
 devoted to many famous PDEs arising from continuum models: elasticity,
 viscous fluid flow, thermal convection, etc.</p>
 <p>Especially experimental fluid mechanics is full of relations involving
@@ -173,16 +166,26 @@ number, but none of the textbooks the author has seen explain how
 these numbers actually relate to dimensionless forms of the governing
 equations. Consequently, this non-trivial topic is particularly
 highlighted in the fluid mechanics examples.</p>
+<p>The mathematics in the first two chapters is very gentle and requires
+no more background than basic one-variable calculus and preferably
+some knowledge of differential equation models. The next chapter
+involves PDEs and assumes familiarity with basic models for wave
+phenomena, diffusion, and combined convection-diffusion. The final
+chapter is meant for readers with knowledge of the physics and
+mathematics of continuum mechanical models. The mathematical level of
+the text rises quickly after the first two chapters.</p>
+<p>The pedagogy is to saturate the reader with a lot detailed examples to
+provide an understanding for the topic, primarily because the choice
+of scales depends on the problem at hand. One can also view the book
+as a reference on how to scale many of the most important differential
+equation models in physics.  For the simpler differential equations in
+Chapters 2 and 3, we present computer code for many computational
+examples, but the treatment of the advanced models in Chapter 4 is
+more superficial to limit the size of that chapter.</p>
 <p>To conclude, the purpose of this book is to demystify the
 technique and thinking about scaling differential equations and
 motivate for always bringing a differential equation model on
-dimensionless form before doing numerical simulations. The pedagogy
-is to saturate the reader with a lot detailed examples to provide
-an understanding for the topic, primarily because the choice of scales
-depends on the problem at hand.</p>
-<p>[<strong>hpl 1</strong>: There are numerous detailed numerical examples and plots in the first part, but the amount of simulations and plots dies off as the complexity in the models increase. Pros: The first examples are very gentle, with lots of details, and accompanying simulations help on the insight. The math goes faster in Chapter 3 and 4. It also is more time consuming to present simulations for the more complicated models, and visualization techniques and what to visualize are less obvious. Cons: The style of presentation changes.]</p>
-<p>[<strong>hpl 2</strong>: In the simpler model problems, the domains for the independent variables are explicitly listed in most places. As the complexity of models grows, the domains are dropped. It makes sense to drop domains that are not intervals, since these are named as some &#8220;Omega&#8221; anyway, while intervals will explicitly reflect spatial and temporal scales. First problem where this is evident: convection-diffusion multi-dimensional PDE.]</p>
-<p>[<strong>hpl 3</strong>: The book applies Springer&#8217;s svmono style, required now for all Springer books, but the math fonts look ugly, especially greek symbols and italic boldface symbols. Switch to different font?]</p>
+dimensionless form before doing numerical simulations.</p>
 </div>
 
 

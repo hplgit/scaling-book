@@ -84,7 +84,7 @@
 address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.</p>
-<p>[<strong>hpl 10</strong>: Include more figures.]</p>
+<p>[<strong>hpl 7</strong>: Include more figures.]</p>
 <div class="section" id="undamped-vibrations-without-forcing">
 <span id="sec-scale-vib-undamped"></span><h2>Undamped vibrations without forcing<a class="headerlink" href="#undamped-vibrations-without-forcing" title="Permalink to this headline">¶</a></h2>
 <p>The simplest differential equation model for mechanical vibrations
@@ -576,8 +576,7 @@ In case <span class="math">\(I=V=0\)</span> so that <span class="math">\(\alpha=
 \sin\left(\frac{1}{2}(1 -\delta^{-1})\bar t\right)
 \sin\left(\frac{1}{2}(1 +\delta^{-1})\bar t\right),\]</div>
 <p>which has an amplitude about <span class="math">\(2\)</span> for <span class="math">\(\delta\gg 1\)</span>.
-Figure <a class="reference internal" href="#sec-scale-vib-fig-fcos-b0-3"><span class="std std-ref">Forced undamped vibrations with rapid forcing</span></a> shows
-numerical simulations with 160 time steps per period of <span class="math">\(F(t)\)</span>.</p>
+Figure <a class="reference internal" href="#sec-scale-vib-fig-fcos-b0-3"><span class="std std-ref">Forced undamped vibrations with rapid forcing</span></a> shows a case.</p>
 <div class="figure" id="id7">
 <span id="sec-scale-vib-fig-fcos-b0-3"></span><a class="reference internal image-reference" href="_images/vib_delta10_b0_Fcos.png"><img alt="_images/vib_delta10_b0_Fcos.png" src="_images/vib_delta10_b0_Fcos.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text"><em>Forced undamped vibrations with rapid forcing</em></span></p>
@@ -585,7 +584,11 @@ numerical simulations with 160 time steps per period of <span class="math">\(F(t
 <p>With <span class="math">\(\alpha=0.05\delta^2=5\)</span>, we get a significant contribution from
 the free vibrations (the homogeneous solution of the ODE) as
 shown in Figure <a class="reference internal" href="#sec-scale-vib-fig-fcos-b0-4"><span class="std std-ref">Forced undamped vibrations with rapid forcing and initial displacement of 5</span></a>. For larger <span class="math">\(\alpha\)</span>
-values, one must base <span class="math">\(u_c\)</span> on <span class="math">\(I\)</span> instead.</p>
+values, one must base <span class="math">\(u_c\)</span> on <span class="math">\(I\)</span> instead.
+(The graphs in Figure <a class="reference internal" href="#sec-scale-vib-fig-fcos-b0-3"><span class="std std-ref">Forced undamped vibrations with rapid forcing</span></a> and
+<a class="reference internal" href="#sec-scale-vib-fig-fcos-b0-4"><span class="std std-ref">Forced undamped vibrations with rapid forcing and initial displacement of 5</span></a> were
+produced by
+numerical simulations with 160 time steps per period of the forcing.)</p>
 <div class="figure" id="id8">
 <span id="sec-scale-vib-fig-fcos-b0-4"></span><a class="reference internal image-reference" href="_images/vib_delta10_b0_a5_Fcos.png"><img alt="_images/vib_delta10_b0_a5_Fcos.png" src="_images/vib_delta10_b0_a5_Fcos.png" style="width: 600px;" /></a>
 <p class="caption"><span class="caption-text"><em>Forced undamped vibrations with rapid forcing and initial displacement of 5</em></span></p>
@@ -602,7 +605,7 @@ values, one must base <span class="math">\(u_c\)</span> on <span class="math">\(
 <p>with</p>
 <div class="math" id="eq-auto19">
 \[\tag{80}
-\beta  = \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt\frac{{m}{k}},\]</div>
+\beta  = \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},\]</div>
 <div class="math" id="eq-auto20">
 \[\tag{81}
 \gamma  = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} {\thinspace .}\]</div>
@@ -633,12 +636,24 @@ the damper (<span class="math">\(bu'\)</span>), a linear spring (<span class="ma
 <h3>The exact solution<a class="headerlink" href="#the-exact-solution-2" title="Permalink to this headline">¶</a></h3>
 <p>To choose scales, it is (as always)
 a great advantage to look into exact solutions.
-Using SymPy to solve <a class="reference internal" href="#eq-sec-scale-vib-damped-f-model"><span class="std std-ref">(82)</span></a> turns out
-to be difficult, because with damping, we have three solutions
-of <a class="reference internal" href="#eq-sec-scale-vib-damped-f-model"><span class="std std-ref">(82)</span></a>, and for vibrations we are
-only interested in one of them, the one with damped oscillations.
-So we have to drop <code class="docutils literal"><span class="pre">dsolve</span></code> and perform manual steps, either by
-hand or with the aid of SymPy. The solution is composed of a homogeneous
+Using SymPy to solve <a class="reference internal" href="#eq-sec-scale-vib-damped-f-model"><span class="std std-ref">(82)</span></a> is, in principle,
+very straightforward:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="gp">&gt;&gt;&gt; </span><span class="n">diffeq</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">u</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">b</span><span class="o">/</span><span class="n">m</span><span class="o">*</span><span class="n">diff</span><span class="p">(</span><span class="n">u</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">w</span><span class="o">**</span><span class="mi">2</span><span class="o">*</span><span class="n">u</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">dsolve</span><span class="p">(</span><span class="n">diffeq</span><span class="p">,</span> <span class="n">u</span><span class="p">(</span><span class="n">t</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">rhs</span>
+<span class="go">C1*exp(t*(-b - sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m)) +</span>
+<span class="go">C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))</span>
+</pre></div>
+</div>
+<p>This is indeed the correct solution, but it is on a complex
+exponential function form, valid for all <span class="math">\(b\)</span>, <span class="math">\(m\)</span>, and <span class="math">\(\omega\)</span>. We are
+interested in the case with <em>small damping</em>, <span class="math">\(b&lt; 2m\omega\)</span>, where the solution
+is an exponentially damped sinusoidal function. Rewriting the expression
+in the right form is tricky with SymPy commands. Instead, we demonstrate
+a common technique when doing symbolic computing: general procedures like
+<code class="docutils literal"><span class="pre">dsolve</span></code> are replaced by manual steps. That is, we solve the ODE &#8220;by hand&#8221;,
+but use SymPy to assist the calculations.</p>
+<p>The solution is composed of a homogeneous
 solution <span class="math">\(u_h\)</span> of <span class="math">\(mu'' + bu' + ku=0\)</span> and one particular solution <span class="math">\(u_p\)</span>
 of the nonhomogeneous equation
 <span class="math">\(mu'' + bu' + ku=A\cos(\psi t)\)</span>. The homogeneous solution with
@@ -808,7 +823,8 @@ start with using this frequency for the time scale.  A highly relevant
 assumption for engineering applications of
 <a class="reference internal" href="#eq-sec-scale-vib-damped-f-model"><span class="std std-ref">(82)</span></a> is that the damping is small.
 Therefore, <span class="math">\(\sqrt{\omega^2-B^2}\)</span> is close to <span class="math">\(\omega\)</span> and we simply
-apply <span class="math">\(t_c=1/\omega\)</span> as before.  [<strong>hpl 11</strong>: Why? According to <a class="reference internal" href="#eq-sec-scale-vib-damped-f-model-u-forced0"><span class="std std-ref">(84)</span></a>, no <span class="math">\(\omega\)</span> is of interest for the time variation!]</p>
+apply <span class="math">\(t_c=1/\omega\)</span> as before (if not the interest in large <span class="math">\(t\)</span> for
+which the oscillations with frequency <span class="math">\(\omega\)</span> has died out).</p>
 <p>The coefficient in front of the <span class="math">\(\bar u'\)</span> term then becomes</p>
 <div class="math">
 \[\frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}{\thinspace .}\]</div>
@@ -932,8 +948,8 @@ scaled vibration models.</p>
 <p>The differential equation for an oscillating electric circuit is
 very similar to the equation for forced, damped,
 mechanical vibrations, and their
-dimensionless form is identical.
-The current <span class="math">\(I(t)\)</span> in a
+dimensionless form is identical. This fact will now be demonstrated.</p>
+<p>The current <span class="math">\(I(t)\)</span> in a
 circuit with an inductor with inductance <span class="math">\(L\)</span>, a capacitor with
 capacitance <span class="math">\(C\)</span>, and overall resistance <span class="math">\(R\)</span>, obeys the equation</p>
 <div class="math" id="eq-auto25">

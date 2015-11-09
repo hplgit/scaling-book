@@ -340,7 +340,10 @@ div { text-align: justify; text-justify: inter-word; }
               ('S waves', 3, None, '___sec132'),
               ('P waves', 3, None, '___sec133'),
               ('Time-varying load', 3, None, '___sec134'),
-              ('The stationary elasticity problem', 2, None, '___sec135'),
+              ('The stationary elasticity problem',
+               2,
+               'scale:elasticity:stationary',
+               'scale:elasticity:stationary'),
               ('Scaling of the PDE', 3, None, '___sec136'),
               ('Scaling of displacement boundary conditions',
                3,
@@ -418,8 +421,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Scaling', 3, None, '___sec165'),
-              ('Exercises', 1, None, '___sec166'),
+              ('Exercises', 1, None, '___sec165'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -472,7 +474,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec180'),
+              ('Remarks', 3, None, '___sec179'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -489,7 +491,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec185'),
+              ('Remarks', 3, None, '___sec184'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -518,7 +520,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec193')]}
+              ('References', 1, None, '___sec192')]}
 end of tocinfo -->
 
 <body>
@@ -765,13 +767,13 @@ $$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 12</b>: This must be rewritten and placed in an appendix - or dropped. The basic code from <code>wave1D_u0.py</code> must be shown, otherwise the discussion of avoiding recomputation does not make much sense.)</font>
+<font color="red">(<b>hpl 8</b>: This must be rewritten and placed in an appendix - or dropped. The basic code from <code>wave1D_u0.py</code> must be shown, otherwise the discussion of avoiding recomputation does not make much sense.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 13</b>: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.)</font>
+<font color="red">(<b>hpl 9</b>: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.)</font>
 <!-- end inline comment -->
 
 <p>
@@ -1192,7 +1194,7 @@ end points. This solver is trivially adapted to the present case.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 14</b>: The HTML version features movies here. Link to them in the LaTeX PDF version as well?)</font>
+<font color="red">(<b>hpl 10</b>: The HTML version features movies here. Link to them in the LaTeX PDF version as well?)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:wave:pde2:Vcond">Velocity initial condition</h2>
@@ -1308,13 +1310,13 @@ teach us much about the interaction of the various physical effects.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 15</b>: Do experiments. Make exercise or insert here.)</font>
+<font color="red">(<b>hpl 11</b>: Do experiments. Make exercise or insert here.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 16</b>: Could make paradox: small \( I \), big \( V \), but still significant impact of \( I \) in a simulation. Why? Bug? The answer is above. Best as exercise.)</font>
+<font color="red">(<b>hpl 12</b>: Could make paradox: small \( I \), big \( V \), but still significant impact of \( I \) in a simulation. Why? Bug? The answer is above. Best as exercise.)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:wave:pde2:cvar">Variable wave velocity and forcing</h2>

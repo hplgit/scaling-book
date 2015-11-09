@@ -10,7 +10,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-[**hpl 10**: Include more figures.]
+[**hpl 7**: Include more figures.]
 
 .. _sec:scale:vib:undamped:
 
@@ -729,8 +729,7 @@ In case :math:`I=V=0` so that :math:`\alpha=\beta=0`,
         
 
 which has an amplitude about :math:`2` for :math:`\delta\gg 1`.
-Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` shows
-numerical simulations with 160 time steps per period of :math:`F(t)`.
+Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` shows a case.
 
 .. _sec:scale:vib:fig:Fcos_b0:3:
 
@@ -743,6 +742,10 @@ With :math:`\alpha=0.05\delta^2=5`, we get a significant contribution from
 the free vibrations (the homogeneous solution of the ODE) as
 shown in Figure :ref:`sec:scale:vib:fig:Fcos_b0:4`. For larger :math:`\alpha`
 values, one must base :math:`u_c` on :math:`I` instead.
+(The graphs in Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` and
+:ref:`sec:scale:vib:fig:Fcos_b0:4` were
+produced by
+numerical simulations with 160 time steps per period of the forcing.)
 
 .. _sec:scale:vib:fig:Fcos_b0:4:
 
@@ -774,7 +777,7 @@ with
 .. math::
 
     \tag{80}
-    \beta  = \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt\frac{{m}{k}},
+    \beta  = \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},
         
         
 
@@ -835,12 +838,27 @@ The exact solution          (2)
 
 To choose scales, it is (as always)
 a great advantage to look into exact solutions.
-Using SymPy to solve :ref:`(82) <Eq:sec:scale:vib:damped:F:model>` turns out
-to be difficult, because with damping, we have three solutions
-of :ref:`(82) <Eq:sec:scale:vib:damped:F:model>`, and for vibrations we are
-only interested in one of them, the one with damped oscillations.
-So we have to drop ``dsolve`` and perform manual steps, either by
-hand or with the aid of SymPy. The solution is composed of a homogeneous
+Using SymPy to solve :ref:`(82) <Eq:sec:scale:vib:damped:F:model>` is, in principle,
+very straightforward:
+
+.. code-block:: python
+
+        >>> diffeq = diff(u(t), t, t) + b/m*diff(u(t), t) + w**2*u(t)
+        >>> s = dsolve(diffeq, u(t))
+        >>> s.rhs
+        C1*exp(t*(-b - sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m)) +
+        C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))
+
+This is indeed the correct solution, but it is on a complex
+exponential function form, valid for all :math:`b`, :math:`m`, and :math:`\omega`. We are
+interested in the case with *small damping*, :math:`b< 2m\omega`, where the solution
+is an exponentially damped sinusoidal function. Rewriting the expression
+in the right form is tricky with SymPy commands. Instead, we demonstrate
+a common technique when doing symbolic computing: general procedures like
+``dsolve`` are replaced by manual steps. That is, we solve the ODE "by hand",
+but use SymPy to assist the calculations.
+
+The solution is composed of a homogeneous
 solution :math:`u_h` of :math:`mu'' + bu' + ku=0` and one particular solution :math:`u_p`
 of the nonhomogeneous equation
 :math:`mu'' + bu' + ku=A\cos(\psi t)`. The homogeneous solution with
@@ -1058,7 +1076,8 @@ start with using this frequency for the time scale.  A highly relevant
 assumption for engineering applications of
 :ref:`(82) <Eq:sec:scale:vib:damped:F:model>` is that the damping is small.
 Therefore, :math:`\sqrt{\omega^2-B^2}` is close to :math:`\omega` and we simply
-apply :math:`t_c=1/\omega` as before.  [**hpl 11**: Why? According to :ref:`(84) <Eq:sec:scale:vib:damped:F:model:u_forced0>`, no :math:`\omega` is of interest for the time variation!]
+apply :math:`t_c=1/\omega` as before (if not the interest in large :math:`t` for
+which the oscillations with frequency :math:`\omega` has died out).
 
 The coefficient in front of the :math:`\bar u'` term then becomes
 
@@ -1238,7 +1257,8 @@ Oscillating electric circuits
 The differential equation for an oscillating electric circuit is
 very similar to the equation for forced, damped,
 mechanical vibrations, and their
-dimensionless form is identical.
+dimensionless form is identical. This fact will now be demonstrated.
+
 The current :math:`I(t)` in a
 circuit with an inductor with inductance :math:`L`, a capacitor with
 capacitance :math:`C`, and overall resistance :math:`R`, obeys the equation

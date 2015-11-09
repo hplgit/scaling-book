@@ -340,7 +340,10 @@ div { text-align: justify; text-justify: inter-word; }
               ('S waves', 3, None, '___sec132'),
               ('P waves', 3, None, '___sec133'),
               ('Time-varying load', 3, None, '___sec134'),
-              ('The stationary elasticity problem', 2, None, '___sec135'),
+              ('The stationary elasticity problem',
+               2,
+               'scale:elasticity:stationary',
+               'scale:elasticity:stationary'),
               ('Scaling of the PDE', 3, None, '___sec136'),
               ('Scaling of displacement boundary conditions',
                3,
@@ -418,8 +421,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Scaling', 3, None, '___sec165'),
-              ('Exercises', 1, None, '___sec166'),
+              ('Exercises', 1, None, '___sec165'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -472,7 +474,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec180'),
+              ('Remarks', 3, None, '___sec179'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -489,7 +491,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec185'),
+              ('Remarks', 3, None, '___sec184'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -518,7 +520,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec193')]}
+              ('References', 1, None, '___sec192')]}
 end of tocinfo -->
 
 <body>
@@ -605,12 +607,6 @@ We first look at scaling the PDE itself, and thereafter we discuss
 some types of boundary conditions and how to scale the complete
 initial-boundary value problem.
 
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 17</b>: Is it a problem that \( \dfc \) is now a physical parameter while it is so far a symbol for a dimensionless quantity?)</font>
-<!-- end inline comment -->
-
 <h2 id="sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</h2>
 
 <p>
@@ -642,8 +638,11 @@ implies \( t_c\dfc/L^2=1 \) and therefore \( t_c = L^2/\dfc \).
 Insight through an analytical solution can alternatively
 help with choosing \( t_c \).
 One can show that \( u=Ae^{-pt}\sin (kx) \) is a solution of
-<a href="#mjx-eqn-132">(132)</a> if \( p=\dfc k^2 \), for any \( k \). Exponential decay in
-time is a characteristic feature of the diffusion equation, and
+<a href="#mjx-eqn-132">(132)</a> if \( p=\dfc k^2 \), for any \( k \).
+This is the typical solution arising from separation of variables
+and reflects the dynamics of the space and time in the PDE.
+Exponential decay in
+time is a characteristic feature of diffusion processes, and
 the e-folding time can then be taken as a time scale. This means
 \( t_c = 1/p \sim k^{-2} \). Since \( k \) is related to the spatial
 wave length \( \lambda \)
@@ -871,7 +870,7 @@ $$ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp$$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 18</b>: Include simulation results.)</font>
+<font color="red">(<b>hpl 13</b>: Include simulation results.)</font>
 <!-- end inline comment -->
 
 <h2 id="___sec115">Oscillating Dirichlet condition </h2>
@@ -879,7 +878,7 @@ $$ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp$$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 19</b>: Do we need paragraph headings here?)</font>
+<font color="red">(<b>hpl 14</b>: Do we need paragraph headings here?)</font>
 <!-- end inline comment -->
 
 <p>
@@ -1190,7 +1189,7 @@ A general, nonlinear reaction-diffusion equation in 1D looks like
 
 $$
 \begin{equation}
-\frac{\partial u}{\partial t} = \dfc\frac{\partial^2 u}{\partial t^2} + f(u)
+\frac{\partial u}{\partial t} = \dfc\frac{\partial^2 u}{\partial x^2} + f(u)
 \tp
 \tag{161}
 \end{equation}
@@ -1202,7 +1201,8 @@ value, one gets a non-dimensional PDE like
 
 $$
 \frac{\partial\bar u}{\partial\bar t} = \frac{t_c\dfc}{x_c^2}
-\frac{\partial^2 u}{\partial t^2} + \frac{t_cf_c}{u_c}\bar f(u_c\bar u)\tp
+\frac{\partial^2\bar u}{\partial\bar x^2} +
+\frac{t_cf_c}{u_c}\bar f(u_c\bar u)\tp
 $$
 
 The characteristic size of \( u \) can often be derived so we first assume
@@ -1217,7 +1217,7 @@ The corresponding PDE reads
 $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2 u}{\partial t^2} + \bar f(u_c\bar u)\tp
+\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u)\tp
 \tag{162}
 \end{equation}
 $$
@@ -1239,7 +1239,7 @@ the reaction scale, \( t_c = u_c/f_c \), one arrives a the PDE
 $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
-\beta\frac{\partial^2 u}{\partial t^2} + \bar f(u_c\bar u),
+\beta\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u),
 \tag{163}
 \end{equation}
 $$
@@ -1256,7 +1256,7 @@ diffusion time scale, \( t_c=L^2/\dfc \), the scaled PDE becomes
 $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2 u}{\partial t^2} + \beta^{-1}\bar f(u_c\bar u)\tp
+\frac{\partial^2\bar u}{\partial \bar x^2} + \beta^{-1}\bar f(u_c\bar u)\tp
 \tag{164}
 \end{equation}
 $$

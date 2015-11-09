@@ -1306,7 +1306,7 @@ The original problem features five physical parameters: :math:`k`, :math:`T_0`,
 :math:`T_m`, :math:`a`, and :math:`\omega`, but only two dimensionless numbers appear in the
 scaled model :ref:`(24) <Eq:scale:decay:cooling:model:scaled>`.
 
-[**hpl 8**: Geir can write about the Pi theorem here - it gives three parameters and a suboptimal solution compared to the scaling of the ODE directly.]
+[**hpl 5**: Geir, write about the Pi theorem here - it gives three parameters and a suboptimal solution compared to the scaling of the ODE directly.]
 
 Software          (3)
 ~~~~~~~~~~~~~~~~~~~~~
@@ -1600,7 +1600,7 @@ from the disease can be shown to be :math:`\nu^{-1}`, but :math:`\beta` is much 
 to estimate, so working with a scaled model where :math:`\beta` is "scaled away"
 is advantageous.
 
-[**hpl 9**: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that "here are the ODEs" and if understanding of the "physics" is necessary, the reader must have the necessary background. Maybe state this in the preface?]
+[**hpl 6**: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that "here are the ODEs" and if understanding of the "physics" is necessary, the reader must have the necessary background. Maybe state this in the preface?]
 
 Scaling          (4)
 ~~~~~~~~~~~~~~~~~~~~

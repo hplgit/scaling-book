@@ -132,14 +132,22 @@ def forced_vibrations():
     print latex(u_sol).replace('w', r'\omega')
     return u_sol
 
+def damped_forced_vibrations_v1():
+    # Demonstrate how dsolve solves this problem
+    u = symbols('u', cls=Function)
+    t, w, b, A, A1, m, psi = symbols('t w b A A1 m psi',
+                                     positive=True, real=True)
+    diffeq = diff(u(t), t, t) + b/m*diff(u(t), t) + w**2*u(t)
+    s = dsolve(diffeq, u(t))
+    print s.rhs
+    # Problem: general complex exponential solution, not
+    # expressed by sin/cos
+
 def damped_forced_vibrations():
     print "--- Damped forced vibrations ---"
     u = symbols('u', cls=Function)
     t, w, B, A, A1, m, psi = symbols('t w B A A1 m psi',
                                      positive=True, real=True)
-    # Probably not a feasible way of solving this ODE
-    # Remaining problem: inserting solution ODE does not give 0
-
     # dsolve does not work well for this more complicated case
     # Run manual procedure
 

@@ -340,7 +340,10 @@ div { text-align: justify; text-justify: inter-word; }
               ('S waves', 3, None, '___sec132'),
               ('P waves', 3, None, '___sec133'),
               ('Time-varying load', 3, None, '___sec134'),
-              ('The stationary elasticity problem', 2, None, '___sec135'),
+              ('The stationary elasticity problem',
+               2,
+               'scale:elasticity:stationary',
+               'scale:elasticity:stationary'),
               ('Scaling of the PDE', 3, None, '___sec136'),
               ('Scaling of displacement boundary conditions',
                3,
@@ -418,8 +421,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Scaling', 3, None, '___sec165'),
-              ('Exercises', 1, None, '___sec166'),
+              ('Exercises', 1, None, '___sec165'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -472,7 +474,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec180'),
+              ('Remarks', 3, None, '___sec179'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -489,7 +491,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec185'),
+              ('Remarks', 3, None, '___sec184'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -518,7 +520,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec193')]}
+              ('References', 1, None, '___sec192')]}
 end of tocinfo -->
 
 <body>
@@ -587,7 +589,7 @@ different physical scenarios.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 10</b>: Include more figures.)</font>
+<font color="red">(<b>hpl 7</b>: Include more figures.)</font>
 <!-- end inline comment -->
 
 <h2 id="sec:scale:vib:undamped">Undamped vibrations without forcing</h2>
@@ -1247,8 +1249,7 @@ $$ \bar u(\bar t) = (\delta^{-2}-1)^{-1}2
 $$
 
 which has an amplitude about \( 2 \) for \( \delta\gg 1 \).
-Figure <a href="#sec:scale:vib:fig:Fcos_b0:3">11</a> shows
-numerical simulations with 160 time steps per period of \( F(t) \).
+Figure <a href="#sec:scale:vib:fig:Fcos_b0:3">11</a> shows a case.
 
 <p>
 <center> <!-- figure -->
@@ -1262,6 +1263,10 @@ With \( \alpha=0.05\delta^2=5 \), we get a significant contribution from
 the free vibrations (the homogeneous solution of the ODE) as
 shown in Figure <a href="#sec:scale:vib:fig:Fcos_b0:4">12</a>. For larger \( \alpha \)
 values, one must base \( u_c \) on \( I \) instead.
+(The graphs in Figure <a href="#sec:scale:vib:fig:Fcos_b0:3">11</a> and
+<a href="#sec:scale:vib:fig:Fcos_b0:4">12</a> were
+produced by
+numerical simulations with 160 time steps per period of the forcing.)
 
 <p>
 <center> <!-- figure -->
@@ -1288,7 +1293,7 @@ with
 
 $$
 \begin{align}
-\beta  &= \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt\frac{{m}{k}},
+\beta  &= \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},
 \tag{80}\\ 
 \gamma & = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} \tp
 \tag{81}
@@ -1338,12 +1343,29 @@ $$
 <p>
 To choose scales, it is (as always)
 a great advantage to look into exact solutions.
-Using SymPy to solve <a href="#mjx-eqn-82">(82)</a> turns out
-to be difficult, because with damping, we have three solutions
-of <a href="#mjx-eqn-82">(82)</a>, and for vibrations we are
-only interested in one of them, the one with damped oscillations.
-So we have to drop <code>dsolve</code> and perform manual steps, either by
-hand or with the aid of SymPy. The solution is composed of a homogeneous
+Using SymPy to solve <a href="#mjx-eqn-82">(82)</a> is, in principle,
+very straightforward:
+
+<p>
+<!-- begin verbatim block  pyshell-->
+<pre><code>&gt;&gt;&gt; diffeq = diff(u(t), t, t) + b/m*diff(u(t), t) + w**2*u(t)
+&gt;&gt;&gt; s = dsolve(diffeq, u(t))
+&gt;&gt;&gt; s.rhs
+C1*exp(t*(-b - sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m)) +
+C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))
+</code></pre>
+<!-- end verbatim block -->
+This is indeed the correct solution, but it is on a complex
+exponential function form, valid for all \( b \), \( m \), and \( \omega \). We are
+interested in the case with <em>small damping</em>, \( b < 2m\omega \), where the solution
+is an exponentially damped sinusoidal function. Rewriting the expression
+in the right form is tricky with SymPy commands. Instead, we demonstrate
+a common technique when doing symbolic computing: general procedures like
+<code>dsolve</code> are replaced by manual steps. That is, we solve the ODE &quot;by hand&quot;,
+but use SymPy to assist the calculations.
+
+<p>
+The solution is composed of a homogeneous
 solution \( u_h \) of \( mu'' + bu' + ku=0 \) and one particular solution \( u_p \)
 of the nonhomogeneous equation
 \( mu'' + bu' + ku=A\cos(\psi t) \). The homogeneous solution with
@@ -1547,10 +1569,8 @@ start with using this frequency for the time scale.  A highly relevant
 assumption for engineering applications of
 <a href="#mjx-eqn-82">(82)</a> is that the damping is small.
 Therefore, \( \sqrt{\omega^2-B^2} \) is close to \( \omega \) and we simply
-apply \( t_c=1/\omega \) as before.  
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 11</b>: Why? According to <a href="#mjx-eqn-84">(84)</a>, no \( \omega \) is of interest for the time variation!)</font>
-<!-- end inline comment -->
+apply \( t_c=1/\omega \) as before (if not the interest in large \( t \) for
+which the oscillations with frequency \( \omega \) has died out).
 
 <p>
 The coefficient in front of the \( \bar u' \) term then becomes
@@ -1706,7 +1726,9 @@ scaled vibration models.
 The differential equation for an oscillating electric circuit is
 very similar to the equation for forced, damped,
 mechanical vibrations, and their
-dimensionless form is identical.
+dimensionless form is identical. This fact will now be demonstrated.
+
+<p>
 The current \( I(t) \) in a
 circuit with an inductor with inductance \( L \), a capacitor with
 capacitance \( C \), and overall resistance \( R \), obeys the equation

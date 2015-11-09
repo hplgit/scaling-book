@@ -20,6 +20,13 @@ Automatically generated HTML file from DocOnce source
 <style type="text/css">
 /* Let inline verbatim have the same color as the surroundings */
 code { color: inherit; background-color: transparent; }
+
+/* Add scrollbar to dropdown menus in bootstrap navigation bar */
+.dropdown-menu {
+   height: auto;
+   max-height: 400px;
+   overflow-x: hidden;
+}
 </style>
 
 
@@ -306,7 +313,10 @@ code { color: inherit; background-color: transparent; }
               ('S waves', 3, None, '___sec132'),
               ('P waves', 3, None, '___sec133'),
               ('Time-varying load', 3, None, '___sec134'),
-              ('The stationary elasticity problem', 2, None, '___sec135'),
+              ('The stationary elasticity problem',
+               2,
+               'scale:elasticity:stationary',
+               'scale:elasticity:stationary'),
               ('Scaling of the PDE', 3, None, '___sec136'),
               ('Scaling of displacement boundary conditions',
                3,
@@ -384,8 +394,7 @@ code { color: inherit; background-color: transparent; }
                1,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Scaling', 3, None, '___sec165'),
-              ('Exercises', 1, None, '___sec166'),
+              ('Exercises', 1, None, '___sec165'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -438,7 +447,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec180'),
+              ('Remarks', 3, None, '___sec179'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -455,7 +464,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec185'),
+              ('Remarks', 3, None, '___sec184'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -484,7 +493,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec193')]}
+              ('References', 1, None, '___sec192')]}
 end of tocinfo -->
 
 <body>
@@ -543,11 +552,199 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
-     <!-- navigation toc: --> <li><a href="._scaling-book001.html#ch:preface" style="font-size: 80%;">Preface</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit" style="font-size: 80%;">Dimensions and units</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec18" style="font-size: 80%;">ODE models</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec90" style="font-size: 80%;">Basic PDE models</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec126" style="font-size: 80%;">Advanced PDE models</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base units and dimensions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit:tables" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensions of common physical quantities</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prefixes for units</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Absolute errors, relative errors, and units</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Units and computers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unit systems</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:PQ" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PhysicalQuantity: object for computing with units</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:parampool" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Parampool: user interfaces with automatic unit conversion</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec11" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example application</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec12" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pool of parameters</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec13" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fetching pool data for computing</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec14" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reading command-line options</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec15" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Setting default values in a file</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec16" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specifying multiple values of input parameters</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec17" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generating a graphical user interface</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec18" style="font-size: 80%;"><b>ODE models</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#sec:scale:decay" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exponential decay problems</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec20" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec21" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The basic model problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Population dynamics</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec23" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Decay of pressure with altitude</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#sec:scale:decay:steps" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The technical steps of the scaling procedure</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec25" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 1: Identify independent and dependent variables</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec26" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 2: Make independent and dependent variables dimensionless</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec27" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 3: Derive the model involving only dimensionless variables</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec28" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Make each term dimensionless</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec29" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 5: Estimate the scales</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#sec:scale:decay:prog" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Making software for utilizing the scaled model</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec31" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original problem with dimensions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec32" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avoiding unnecessary computations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation with joblib</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#sec:scale:decay:body" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a generalized problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec35" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec36" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Theory</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec37" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#sec:scale:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable coefficients</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant surroundings</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec40" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec41" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec42" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec43" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternative scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#scale:decay:cooling:osc" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with time-dependent surroundings</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec45" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec46" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec47" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec48" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discussion of the time scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#sec:scale:decay:nonlinear" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a nonlinear ODE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec50" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec51" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternative scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec52" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIR ODE system for spreading of diseases</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec53" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec54" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec55" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternative scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec56" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIRV model with finite immunity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#scale:MMK" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Michaelis-Menten kinetics for biochemical reactions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec58" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Classical analysis</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec59" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensionless ODE system</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec60" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Determining scales</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book005.html#___sec61" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analysis of the scaled system</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:vib" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Vibration problems</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:vib:undamped" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Undamped vibrations without forcing</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec64" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The first technical steps of scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec65" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The exact solution</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec66" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discussion of the displacement scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec67" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Discussion of the time scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec68" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The dimensionless solution</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec69" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Alternative displacement scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec70" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;About frequency and dimensions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:vib:undamped:mg" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Undamped vibrations with constant forcing</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:vib:undamped:F" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Undamped vibrations with time-dependent forcing</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec73" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Investigating scales via analytical solutions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec74" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The displacement and time scales</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec75" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Finding the displacement scale from the differential equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec76" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling with free vibrations as time scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec77" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec78" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choice of \( u_c \) close to resonance</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec79" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unit size of all terms in the ODE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec80" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choice of \( u_c \) when \( \psi\gg\omega \)</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec81" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Displacement scale based on \( I \)</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:vib:damped:F" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Damped vibrations with forcing</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec83" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The exact solution</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec84" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing scales</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec85" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choice of \( u_c \) at resonance</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec86" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choice of \( u_c \) when \( \omega\gg\psi \)</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec87" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choice of \( u_c \) when \( \omega\ll\psi \)</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec88" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec89" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating electric circuits</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec90" style="font-size: 80%;"><b>Basic PDE models</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec92" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec93" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec94" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec95" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#scale:wave:pde2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time-dependent Dirichlet condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec97" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec98" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec99" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specific case</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#scale:wave:pde2:Vcond" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Velocity initial condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec101" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytical insight</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec102" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec103" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonzero initial shape</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#scale:wave:pde2:cvar" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable wave velocity and forcing</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec105" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Non-dimensionalization</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec106" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing the time scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec107" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing the spatial scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec108" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling the velocity initial condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#scale:wave:pde2:damped" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Damped wave equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec110" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A three-dimensional wave equation problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#sec:scale:diffu" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The diffusion equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#sec:scale:diffu:homo1D" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homogeneous 1D diffusion equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generalized diffusion PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec114" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jump boundary condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec115" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating Dirichlet condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#sec:scale:diffu:Fisher" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Reaction-diffusion equations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fisher's equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance of all terms</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec120" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fixed length scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec121" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonlinear reaction-diffusion PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The convection-diffusion equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec123" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion without a force term</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec124" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a force term</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec126" style="font-size: 80%;"><b>Advanced PDE models</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The equations of linear elasticity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:timedep" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The general time-dependent elasticity problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec129" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:PDE1:stress" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensionless stress tensor</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:waves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When can the acceleration term be neglected?</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec132" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec133" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec134" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time-varying load</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:stationary" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The stationary elasticity problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec136" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of the PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec137" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of displacement boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec138" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of traction boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:thermo" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quasi-static thermo-elasticity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:ns" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Navier-Stokes equations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec141" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The momentum equation without body forces</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec142" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec143" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensonless PDEs and the Reynolds number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec144" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of time for low Reynolds numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec145" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shear stress as pressure scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec146" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gravity force and the Froude number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating boundary conditions and the Strouhal number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec148" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavitation and the Euler number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free surface conditions and the Weber number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec150" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Thermal convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec151" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:fluid:forced_convection" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec153" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Governing equations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec154" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heating by viscous effects</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec155" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relation between density and temperature</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec156" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment on the form of the equation of continuity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec157" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Boussinesq approximation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec158" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec159" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Grashof, Prandtl, and Eckert numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec160" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interpretations of the Grashof number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec161" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat transfer at boundaries and the Nusselt number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec163" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec165" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:US2SI1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 1: Perform unit conversion</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:ball_y" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 2: Scale a simple formula</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:decay:cooling:osc" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 3: Perform alternative scalings</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:ball_y_wdrag" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 4: Scale a nonlinear ODE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 5: Implement a scaled model with jump</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:decay:cooling" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 6: Implement a scaled model for cooling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:decay:exer:decay:step" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 7: Scale variable coefficients</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:decay:exer:cooling:Ts" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 8: Alternative scalings of a cooling model</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:decay:exer:nonlin:logistic2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 9: Alternative scalings of a cooling model</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:vib:exer:projectile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 10: Scale projectile motion</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: Scale a predator-prey model</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Scale a model for competing species</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 13: Find the period of sinusoidal signals</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec179" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:pendulum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 14: Scale the pendulum equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: Scale the ODEs for a binary star</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Scale Duffing's equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Scale a stationary Couette flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec184" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Scale a starting Couette flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:vib:exer:Couette_wpressure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 19: Scale Couette flow with pressure gradient</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:pipeflow:pulsatile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 20: Scale pulsatile pipeflow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:cable_eq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 21: Scale the linear cable equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Comparison of vibration models for elastic structures</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Suggestions...</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec192" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
