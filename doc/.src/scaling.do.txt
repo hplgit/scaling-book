@@ -150,6 +150,61 @@ Units often have "prefixes": "https://en.wikipedia.org/wiki/Metric_prefix".
 For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 
+===== The Buckingham Pi theorem =====
+
+Almost all texts on scaling has a treatment of the famous Buckingham Pi
+theorem, which can be used to derive physical laws based on
+unit compatibility rather than the underlying physical mechanisms.
+This book has its focus on models where the physical mechanisms are
+already expressed through differential equations. Nevertheless, the Pi
+theorem has a remarkable position in the literature on scaling, and we
+will occasionally make references to it so the theorem is briefly
+discussed below.
+
+The theorem itself is simply stated in two parts. First, if a problem
+involves $n$ physical parameters in which $m$ independent unit-types
+(such as length, mass etc.) appear, then the parameters can be
+combined to exactly $n-m$ independent dimensionless numbers, referred
+to as Pi's. Secondly, any unit-free relation between the original $n$
+parameters can be transformed into a relation between the $n-m$
+dimensionless numbers.  Such relations may be identities or
+inequalities stating, for instance, whether or not a given effect is
+negligible. Moreover, the transformation an equation set into
+dimensionless form corresponds to expressing the coefficients, as well
+as the free and dependent variables, in terms of Pi's.
+
+At first glance the Pi theorem may appear as bordering on the
+trivial. However, it may produce remarkable progress for selected
+problems, such as turbulent jets, nuclear blasts or similarity
+solutions, without the deatiled knowledge of mathematical or physical
+models. Hence, to a novice in scaling it may stand out as something
+very profound, if not magical.  Anyhow, as one move on to more complex
+problems with many parameters the use of the theorem yields
+comparatively less gain as the number of Pi's become large and they
+may recombined in countless ways. It then requires either a good
+physical insight or information conveyed through an equation set to
+pick the useful dimensionless numbers or the appropriate scaling of
+the said equation set.  Sometimes the scrutiny of the equations also
+reveals that some of Pi's, obtained by applying the theorem, in fact
+may be removed from the problem.  As a consequence, in mathematical
+modeling of a complex physical problem the real assessment of scaling
+and dimensionless numbers will anyhow be an integral part of the
+analysis of the governing equations instead of a separate issue left
+with the Pi theorem. In textbooks and articles alike the discussion of
+scaling in the context of the equations are too often missing or
+presented in an half-hearted fashion. Hence, herein the focus will be
+on this process, while we do not provide much in the way of examples
+on the Pi theorem.  We do not allude that the Pi theorem is of little
+value.  In a number of contexts, such as in experiments, it may
+provide valuable and even crucial guidance, but in this particular
+textbook we seek to tell the complementary story on scaling.
+Moreover, as will be shown in this book, the dimensionless numbers in
+a problem also arise, in a very natural way, from scaling the
+differential equation(s).  Provided one has a model based on
+differential equation, there is actually no need for classical
+dimensional analysis.
+
+
 ===== Absolute errors, relative errors, and units =====
 
 Mathematically, it does not matter what units we use for a physical
@@ -196,71 +251,73 @@ Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see Exercise
 ref{sec:scale:exer:US2SI1} for how to safely convert to a standard
-unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables
-are frequently met in school, errors in unit conversions
-between units probably rank highest among all errors committed by
-scientists and engineers (and when a unit conversion error make an
-"airplane's fuel run out":
+unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables are
+frequently met in school, errors in unit conversions between units
+probably rank highest among all errors committed by scientists and
+engineers (and when a unit conversion error make an "airplane's fuel
+run out":
 "http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html",
 it is serious!).  Having good software tools to assist in unit
-conversion is therefore paramount, and this topic is treated next.
-Readers who are primarily interested in the mathematical scaling
-technique may safely jump over Sections ref{scale:PQ} and
-ref{scale:parampool} and continue with Section ref{sec:scale:decay}.
+conversion is therefore paramount, and this topic is treated in
+Sections ref{scale:PQ} and ref{scale:parampool}.  Readers who are
+primarily interested in the mathematical scaling technique may safely
+jump over this material and continue with Section
+ref{sec:scale:decay}.
 
-[Geir: HPL No need for a subsection of nay kind ?.]
 
-A slightly elaborated  example on scaling in an actual
-science/engineering tpic may hopefully be useful. 
-In its full extent the study of tsunamis spans geophysics, geology, 
-history, fluid dynamics, statistics, geodesy, engineering and civil 
-protection. This complexity reflects in a diversity of practices concerning 
-the use of units, scales and concepts. If we 
-narrow the scope to the modeling of tsunami propagation, the scaling aspect, at least, may seem simple as we are mainly concerned with length and time.
-Still, even here the non-uniformity concerning physical units is an 
-encumbrance.  A minor issue is the occasional use of non-SI units
-such as inches, or in old charts, even fathoms.
-More important is the non-uniformity in the magnitude of the different 
-variables, and the differences in the inherent  horizontal and vertical scales 
-in particular.
-Typically surface elevations are meters or smaller. For 
- far-field deep water propagation as well as small tsunamis, which are still
-of scientific interest, surface elevations are often given in $\hbox{cm}$ or even $\hbox{mm}$.
-In the deep ocean the characteristic depth is  orders of magnitude larger than
-this , typically $5000\hbox{\,m}$. Propagation distances, on the other hand,
-are hundreds or  thousands of kilometers. Often locations and computational
-grids are best described in geographical coordinates (longitude/latitude)
-which are related to SI units by 1 latitude minute being roughly one nautical
-mile ($1852\hbox{\,m}$) and 1 longitude minute being this quantity times the cosine of 
-the latitude. Wave periods of tsunamis are mostly from minutes to
-an hour, hopefully sufficiently short to be well separated from the half-daily
-period of the tides. Propagation times are typically hours or may be the better part of a  day when the Pacific Ocean is traversed.
+===== Example on challenges arising from unit systems =====
 
-The  scientists, engineers and bureaucrats in the tsunami community
+A slightly elaborated example on scaling in an actual
+science/engineering tpic may hopefully be useful.  In its full extent
+the study of tsunamis spans geophysics, geology, history, fluid
+dynamics, statistics, geodesy, engineering and civil protection. This
+complexity reflects in a diversity of practices concerning the use of
+units, scales and concepts. If we narrow the scope to the modeling of
+tsunami propagation, the scaling aspect, at least, may seem simple as
+we are mainly concerned with length and time.  Still, even here the
+non-uniformity concerning physical units is an encumbrance.  A minor
+issue is the occasional use of non-SI units such as inches, or in old
+charts, even fathoms.  More important is the non-uniformity in the
+magnitude of the different variables, and the differences in the
+inherent horizontal and vertical scales in particular.  Typically
+surface elevations are meters or smaller. For far-field deep water
+propagation as well as small tsunamis, which are still of scientific
+interest, surface elevations are often given in $\hbox{cm}$ or even
+$\hbox{mm}$.  In the deep ocean the characteristic depth is orders of
+magnitude larger than this , typically $5000\hbox{\,m}$. Propagation
+distances, on the other hand, are hundreds or thousands of
+kilometers. Often locations and computational grids are best described
+in geographical coordinates (longitude/latitude) which are related to
+SI units by 1 latitude minute being roughly one nautical mile
+($1852\hbox{\,m}$) and 1 longitude minute being this quantity times
+the cosine of the latitude. Wave periods of tsunamis are mostly from
+minutes to an hour, hopefully sufficiently short to be well separated
+from the half-daily period of the tides. Propagation times are
+typically hours or may be the better part of a day when the Pacific
+Ocean is traversed.
+
+The scientists, engineers and bureaucrats in the tsunami community
 tend to be particular and non-conform concerning formats and units, as
-well as the type of data required.  
-To accommodate these demands, a  tsunami modeler
-must produce a diversity of data which are in
-units and formats which cannot be used internally in his models. 
-On the other hand, he must
-also be prepared to accept his input data in diversified  forms.
-Some such data sets may be large, implying that unnecessary duplication,
-with different units or scaling, should be avoided.  
-In addition tsunami models are often bench-marked through comparison with
-experimental data. The lab scale is generally $\hbox{cm}$ or $\hbox{m}$, at most, which 
-implies that measured data are provided in different units than real events,
-or even in volts, with conversion information,
- as obtained from the measuring gauges.
+well as the type of data required.  To accommodate these demands, a
+tsunami modeler must produce a diversity of data which are in units
+and formats which cannot be used internally in his models.  On the
+other hand, he must also be prepared to accept his input data in
+diversified forms.  Some such data sets may be large, implying that
+unnecessary duplication, with different units or scaling, should be
+avoided.  In addition tsunami models are often bench-marked through
+comparison with experimental data. The lab scale is generally
+$\hbox{cm}$ or $\hbox{m}$, at most, which implies that measured data
+are provided in different units than real events, or even in volts,
+with conversion information, as obtained from the measuring gauges.
 
- 
-All the unit (and format) particulars is clearly a nuisance and
-give rise to a number of misconceptions and errors that may 
-cause loss of precious time or efforts. To reduce such problems 
-developers of computational tools should combine a reasonable flexibility 
-concerning units in input and output with a clear and consistent convention 
-for scaling within the tools. In fact, this is also goes for academic tools
-for in-house use.  
 
+All the unit (and format) particulars is clearly a nuisance and give
+rise to a number of misconceptions and errors that may cause loss of
+precious time or efforts. To reduce such problems developers of
+computational tools should combine a reasonable flexibility concerning
+units in input and output with a clear and consistent convention for
+scaling within the tools. In fact, this is also goes for academic
+tools for in-house use.
 
 
 ===== PhysicalQuantity: object for computing with units =====
@@ -703,48 +760,6 @@ Books covering scaling and non-dimensionalization very often cover
 topics not treated in the present book. One key topic is
 dimensional analysis and the famous Buckingham Pi Theorem
 cite{Douglas_et_al_1979,Logan_1987}.
- The theorem itself is simply
-stated in two parts. First, if a problem involves $n$ physical parameters
-in which $m$ independent unit-types (such as length, mass etc.) appear,
-then the parameters can be combined to exactly $n-m$ independent 
-dimensionless numbers, referred to as Pi's. Secondly, any unit-free
-relation between the original $n$ parameters can be transformed into a relation
-between the $n-m$ dimensionless numbers.  Such relations may be identities or
-inequalities stating, for instance, whether or not  a given effect is
-negligible. Moreover, the transformation an equation set into dimensionless 
-form corresponds to expressing the coefficients, as well as the free and dependent variables, in terms of Pi's. 
-
-At first glance the Pi theorem may appear as bordering on 
-the trivial. However, it may produce remarkable progress for selected 
-problems, such as 
-turbulent jets, nuclear blasts or similarity solutions, without the deatiled 
-knowledge of mathematical or physical models. Hence, to a novice
-in scaling it may stand out as something very profound, if not magical.
-Anyhow, as one move on to more complex problems with many parameters
-the use of the theorem yields comparatively less gain 
-as the number of Pi's become large and
-they may recombined in countless ways. It then requires either a good physical
-insight or information conveyed through an equation set to pick the useful
-dimensionless numbers or the appropriate scaling of the said equation set.
-Sometimes the scrutiny of the equations also reveals that some of Pi's, 
-obtained by applying the theorem, in fact may be removed from the problem.
-As a consequence, in mathematical modeling of a complex physical problem
-the real assessment of scaling and  dimensionless
-numbers will anyhow be an integral
- part of the analysis of the governing equations instead of a separate issue
-left with the Pi theorem. In textbooks and articles alike the discussion
-of scaling in the context of the equations are too often missing or 
-presented in an half-hearted fashion. Hence, herein the focus will be on
-this process, while we do not provide much in the way of examples on the
-Pi theorem.  We do not allude that the Pi theorem is of little value.
- In a number of contexts, such as in experiments, it may provide
-valuable and even crucial guidance, but in this particular textbook we 
-seek to tell the complementary story on scaling. 
-Moreover, as will be shown in this book, the dimensionless numbers in
-a problem also arise, in a very natural way,
-from scaling the differential equation(s).
-Provided one has a model based on differential equation, there is
-actually no need for classical dimensional analysis.
 
 Other classical topics closely related to scaling and non-dimensionalization
 are analytical solution methods like perturbation techniques and
@@ -1715,7 +1730,7 @@ oscillations in $T_s$ and the e-folding time $e=1/k$. Then $\beta =
 The original problem features five physical parameters: $k$, $T_0$,
 $T_m$, $a$, and $\omega$, but only two dimensionless numbers appear in the
 scaled model (ref{scale:decay:cooling:model:scaled}).
-In fact, this is an example where application of the Pi theorem falls 
+In fact, this is an example where application of the Pi theorem falls
 short. Since, only time and temperature are involved as unit types, the
 theorem predicts that the five parameters yields three dimensionless numbers,
 not two. The equations, on the other hand, shows us that the two parameters
@@ -1724,7 +1739,7 @@ $T_m$ and $T_0$ affect the nature of the problem only through their difference.
 parameters and a suboptimal solution compared to the scaling of the
 ODE directly.]
 [Geir: hpl, actually I wrote a little longer text on the PI theorem.
-This is better suited elsewhere.] 
+This is better suited elsewhere.]
 
 
 === Software ===
@@ -6150,7 +6165,7 @@ useful as length scales.
 [hpl: Geir, check this formulation for choice of length scale.]
 [Geir: $L$ cannot be used as both down-wind length of computational domain
 and general length scale. Could not change the $L$ on the figure, as it is
-part of the pdf. A little uncertain concerning the check -- it looks mostly 
+part of the pdf. A little uncertain concerning the check -- it looks mostly
 fine. The profile may have a length cale (as implicit in the figur). It may also be beneficial to have a spanwise
 limit of the computational domain in the figure ?]
 
