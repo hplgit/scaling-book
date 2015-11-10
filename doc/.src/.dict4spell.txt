@@ -22,6 +22,7 @@ KPP
 Karman
 Kolmogorov
 Langtangen
+Linearization
 Lotka
 MATLAB
 Mathematica
@@ -75,9 +76,11 @@ dimensionalized
 domining
 electrophysiology
 errorprone
+geodesy
 giga
 immiscible
 intracellular
+isentropic
 joblib
 memoize
 memoized

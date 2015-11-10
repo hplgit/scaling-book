@@ -156,7 +156,7 @@ Given software for :ref:`(170) <Eq:scale:elasticity:PDE1>`,
 we can simulate the dimensionless problem by setting :math:`\varrho =\bar\varrho`,
 :math:`\lambda =\beta\bar\lambda`, and :math:`\mu = \bar\mu`.
 
-[**hpl 17**: What about setting boundary conditions?]
+[**hpl 19**: What about setting boundary conditions?]
 
 .. _scale:elasticity:PDE1:stress:
 
@@ -661,12 +661,13 @@ flow with a profile :math:`v(y)` and :math:`U` can typically be chosen as
 :math:`U=\max_y v(y)`. The height of the bump influences the wake behind
 the bump, so a natural length scale is :math:`\alpha`. For numerical
 simulations in a domain of finite extent, :math:`W` must be
-large enough to avoid feedback on the inlet profile, and :math:`L` must be
+large enough to avoid feedback on the inlet profile, and :math:`L_c` must be
 large enough for the type of outflow boundary condition used.
-Ideally, :math:`W,L\rightarrow\infty`, so none of these parameters are
+Ideally, :math:`W,L_c\rightarrow\infty`, so none of these parameters are
 useful as length scales.
 
-[**hpl 18**: Geir, check this formulation for choice of length scale.]
+[**hpl 20**: Geir, check this formulation for choice of length scale.]
+[**Geir 21**: :math:`L` cannot be used as both down-wind length of computational domain and general length scale. Could not change the :math:`L` on the figure, as it is part of the pdf. A little uncertain concerning the check -- it looks mostly fine. The profile may have a length cale (as implicit in the figur). It may also be beneficial to have a spanwise limit of the computational domain in the figure ?]
 
 | 
 | 
@@ -879,10 +880,16 @@ where Fr is the dimensionless Froude number,
 .. math::
          \hbox{Fr} = \frac{U}{\sqrt{Lg}}{\thinspace .}
 
-.. index:: Strouhal number
+This quantity reflects the ratio of inertia and gravity forces:
+
+.. math::
+         \frac{|\boldsymbol{u}\cdot\nabla\boldsymbol{u}|}{|\varrho g|} \sim \frac{\varrho U^2/L}{\varrho g}
+        = \hbox{Fr}^2{\thinspace .}
 
 Oscillating boundary conditions and the Strouhal number
 -------------------------------------------------------
+
+.. index:: Strouhal number
 
 Many flows have an oscillating nature, often arising from some
 oscillating boundary condition. Suppose such a condition at some
@@ -1822,7 +1829,7 @@ model:
 
 where :math:`A`, :math:`v_m`, :math:`v_r`, :math:`v_p`,
 :math:`B`, :math:`c_1`, :math:`c_2`, and :math:`c_3` are specified constants.
-[**hpl 19**: Keyner and Sneyd have a constant in the equation for :math:`w`, in both the unscaled and scaled versions, while The Bible has not.]
+[**hpl 22**: Keyner and Sneyd have a constant in the equation for :math:`w`, in both the unscaled and scaled versions, while The Bible has not.]
 More complicated ODE systems for the cell dynamics may have up to a
 hundred unknowns
 and a correspondingly large collection of parameters.
@@ -2019,7 +2026,7 @@ The final dimensionless system becomes
 
 There are seven dimensionless variables in the above equations:
 
-[**hpl 20**: Recalculate :math:`K_1`, :math:`K_2`, :math:`K_3` with right :math:`t_c`.]
+[**hpl 23**: Recalculate :math:`K_1`, :math:`K_2`, :math:`K_3` with right :math:`t_c`.]
 
 .. _Eq:_auto70:
 
@@ -2461,16 +2468,21 @@ parameters :math:`\alpha`, :math:`\beta`, :math:`\gamma`, :math:`\delta`, and :m
 There are six remaining dimensionless numbers to be set: :math:`K_{wm}`,
 :math:`K_{nm}`, :math:`S_{wr}`, :math:`S_{nr}`, :math:`a`, and :math:`b`.
 
-[**hpl 21**: Boundary conditions?]
+[**hpl 24**: Boundary conditions?]
 
-[**hpl 22**: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.]
+[**hpl 25**: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.]
 
-[**hpl 23**: Exercises: single-phase flow, with and without thermal effects.]
+[**hpl 26**: Exercises: single-phase flow, with and without thermal effects.]
+
+.. _scale:gasdyn:
+
+Compressible gas dynamics
+=========================
 
 .. _scale:Euler_eqs:
 
 The Euler equations of gas dynamics
-===================================
+-----------------------------------
 
 The fundamental equations for a compressible fluid are based on balance
 of mass, momentum, and energy. The PDE system, known as the Euler
@@ -2596,7 +2608,226 @@ where :math:`\alpha` is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the :math:`\alpha` coefficient.
 
-[**hpl 24**: Comment on software also for advanced models.]
+[**hpl 27**: Comment on software also for advanced models.]
+
+.. _scale:gas:acoustic:
+
+The acoustic approximation and the Mach number
+----------------------------------------------
+
+Heat transfer can be neglected in
+`isentropic flow <https://en.wikipedia.org/wiki/Isentropic_process>`__,
+and there is hence an equation of state involving only :math:`\varrho` and
+:math:`p`:
+
+.. math::
+         p = F(\varrho){\thinspace .}
+
+The energy equation is now not needed and the Euler equations simplify
+to
+
+.. _Eq:scale:gas:acoustic:rho:
+
+.. math::
+
+    \tag{265}
+    \frac{\partial\varrho}{\partial t} + \nabla\cdot(\boldsymbol{u}\varrho) =0,
+        
+        
+
+.. _Eq:scale:gas:acoustic:u:
+
+.. math::
+
+    \tag{266}
+    \varrho\frac{\partial\boldsymbol{u}}{\partial t} + \varrho\boldsymbol{u}\cdot\nabla\boldsymbol{u} + \nabla p =0{\thinspace .}
+        
+        
+
+Elimination of the pressure
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Typically,
+
+.. math::
+         F(\varrho) = p_0\left(\frac{\varrho}{\varrho_0}\right)^\gamma,
+
+where :math:`\gamma = 5/3` for air. The first step is to eliminate :math:`p` in
+favor of :math:`\varrho` so we get a system for :math:`\varrho` and :math:`\boldsymbol{u}`.
+To this end,
+
+.. math::
+         \nabla p = F'(\varrho)\nabla\varrho,\quad
+        F'(\varrho)= c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1},
+
+where
+
+.. math::
+         c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}
+
+is the speed of sound in the fluid in the equilibrium state.
+Equation :ref:`(266) <Eq:scale:gas:acoustic:u>` with eliminated pressure :math:`p` reads
+
+.. _Eq:scale:gas:acoustic:u2:
+
+.. math::
+
+    \tag{267}
+    \varrho\frac{\partial\boldsymbol{u}}{\partial t} + \varrho\boldsymbol{u}\cdot\nabla\boldsymbol{u} +
+        c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0{\thinspace .}
+        
+        
+
+Basic scaling for small perturbations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In a model for sound waves there are small pressure, velocity, and
+density perturbation from a ground state at rest where :math:`\boldsymbol{u}=0`, :math:`\varrho=\varrho_0`, and :math:`p=p_0 = F(\varrho_0`. Let :math:`\varrho_c`, :math:`p_c=F(\varrho_c)`, and
+:math:`u_c` be characteristic sizes of these perturbations.
+The density, e.g., will then vary in :math:`[\varrho_0-\varrho_c,\varrho_0+\varrho_c]`.
+An appropriate scaling is now
+
+.. math::
+         \bar\varrho =\frac{\varrho - \varrho_0}{\varrho_c} 
+
+such that :math:`\bar\varrho\in [-1,1]`. Consequently,
+
+.. math::
+         \varrho = \varrho_0 + \varrho_c\bar\varrho = \varrho_0(1 + \alpha\bar\varrho),\quad \alpha = \frac{\varrho_c}{\varrho_0}{\thinspace .}
+
+Note that the dimensionless :math:`\alpha` is expected to be a very small number
+since :math:`\varrho_c\ll \varrho_0`.
+
+The velocity is scaled as :math:`\bar\boldsymbol{u} = \boldsymbol{u}/U` while space and time are scaled as usual:
+
+.. math::
+         \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
+        \quad\bar t = \frac{t}{t_c}{\thinspace .}
+
+Note that :math:`\varrho_0` and :math:`p_0` are known values, but the scales
+:math:`\varrho_c`, :math:`p_c=F(\varrho_c)`, and :math:`U` are not known. Usually these
+can be estimated from perturbations applied at the boundary.
+
+Inserting the dimensionless variables leads to
+
+.. math::
+        
+        \frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
+        + \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\boldsymbol{u}) &=0,\\ 
+        \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
+        \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
+        \frac{\varrho_0 U^2}{L}(1 \alpha\bar\varrho)\bar u\bar\nabla\bar\boldsymbol{u}
+        + \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
+        \bar\nabla\varrho
+        &=0{\thinspace .}
+        
+
+The time scale
+~~~~~~~~~~~~~~
+
+What is the appropriate time scale? It could be :math:`t_c=L/U` as in many
+other flow problems. However, in the present model we expect sound waves,
+so the velocity :math:`c_0` of the sound waves is the appropriate velocity scale.
+The flow velocity :math:`U` is expected to be very much smaller than :math:`c_0`
+(think of speaking: the sound travels very fast but one cannot feel
+the corresponding very small flow perturbation in the air).
+Therefore, :math:`t_c = L/c_0` is the corresponding natural time scale.
+Using this time scale, we achieve
+
+.. math::
+        
+        \frac{\partial\bar\varrho}{\partial\bar t}
+        + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\boldsymbol{u}) &=0,\\ 
+        (1 + \alpha\bar\varrho)
+        \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
+        \hbox{M}(1 + \alpha\bar\varrho)\bar\boldsymbol{u}\bar\nabla\bar\boldsymbol{u}
+        \hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+        &=0,
+        
+
+where the dimensionless number
+
+.. math::
+         \hbox{M} = \frac{U}{c_0},
+
+is known as the *Mach number*.
+
+.. index:: Mach number
+
+Linearization
+~~~~~~~~~~~~~
+
+With the assumption of small perturbations, M and :math:`\alpha` are small numbers.
+We can first approximate :math:`1+\alpha\approx 1`. Thereafter, we realize
+that multiplying by M in the momentum equation gives
+
+.. math::
+        
+        \hbox{M}\frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
+        \hbox{M}^2\bar\boldsymbol{u}\bar\nabla\bar\boldsymbol{u}
+        + \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+        =0
+
+The term :math:`\hbox{M}^2\bar\boldsymbol{u}\bar\nabla\bar\boldsymbol{u}` has size
+:math:`\hbox{M}^2` and is very smaller than the first and third term,
+suggesting that we omit the nonlinear term
+when the Mach number is small.
+We arrive at the following linearized system of PDEs
+
+.. _Eq:scale:gas:acoustic:rho:s:
+
+.. math::
+
+    \tag{268}
+    \frac{\partial\bar\varrho}{\partial\bar t}
+        + \hbox{M}\bar\nabla\cdot\bar\boldsymbol{u} =0,
+        
+        
+
+.. _Eq:scale:gas:acoustic:u2:s:
+
+.. math::
+
+    \tag{269}
+    \hbox{M}\frac{\partial\bar\boldsymbol{u}}{\partial\bar t} + \bar\nabla\varrho =0,
+        
+        
+
+The velocity :math:`\boldsymbol{u}` can be eliminated taking the time derivative of
+:ref:`(268) <Eq:scale:gas:acoustic:rho:s>` and the divergence of
+(:ref:`scale:gas:acoustic:u2:s`:
+
+.. _Eq:_auto77:
+
+.. math::
+
+    \tag{270}
+    \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
+        \bar\nabla^2\varrho = 0,
+        
+        
+
+which is nothing but a standard, linear wave equation. Similarly,
+we can eliminate :math:`\varrho` by taking the divergence of
+:ref:`(268) <Eq:scale:gas:acoustic:rho:s>` and the time derivative of
+(:ref:`scale:gas:acoustic:u2:s`:
+
+.. _Eq:_auto78:
+
+.. math::
+
+    \tag{271}
+    \frac{\partial^2\bar\boldsymbol{u}}{\partial\bar t^2} +
+        \bar\nabla^2\boldsymbol{u} = 0,
+        
+        
+
+which shows that each component of the velocity also propagates according
+to the wave equation with unit velocity.
+We also observe that there are no physical parameters in the scaled
+wave equations. The M parameter can be eliminated from
+:ref:`(268) <Eq:scale:gas:acoustic:rho:s>`-:ref:`(269) <Eq:scale:gas:acoustic:u2:s>`
+by introducing a new unknown :math:`\bar\boldsymbol{v} = M\bar\boldsymbol{u}`.
 
 Exercises
 =========
@@ -2897,7 +3128,7 @@ Lotka-Volterra ODE system
 
 .. math::
 
-    \tag{265}
+    \tag{272}
     H^{\prime} = H(a - bL),
         
         
@@ -2906,25 +3137,25 @@ Lotka-Volterra ODE system
 
 .. math::
 
-    \tag{266}
+    \tag{273}
     L^{\prime} = L(dH - c),
         
         
 
-.. _Eq:_auto77:
+.. _Eq:_auto79:
 
 .. math::
 
-    \tag{267}
+    \tag{274}
     H(0)=H_0,
         
         
 
-.. _Eq:_auto78:
+.. _Eq:_auto80:
 
 .. math::
 
-    \tag{268}
+    \tag{275}
     L(0)=L_0{\thinspace .}
         
         
@@ -2963,7 +3194,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{269}
+    \tag{276}
     \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} = H_0\bar H(a - bH_0\bar L),
         
         
@@ -2972,7 +3203,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{270}
+    \tag{277}
     \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} = H_0\bar L(dH_0\bar H - c),
         
         
@@ -2981,7 +3212,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{271}
+    \tag{278}
     H_c\bar H(0) = H_0,
         
         
@@ -2990,7 +3221,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{272}
+    \tag{279}
     L_c\bar H(0) = L_0{\thinspace .}
         
         
@@ -3040,20 +3271,20 @@ competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
 interaction (cf. |nbsp| :ref:`scale:decay:exer:predprey`):
 
-.. _Eq:_auto83:
+.. _Eq:_auto85:
 
 .. math::
 
-    \tag{273}
+    \tag{280}
     \frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
         
         
 
-.. _Eq:_auto84:
+.. _Eq:_auto86:
 
 .. math::
 
-    \tag{274}
+    \tag{281}
     \frac{dN_2}{dt} = r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
         
         
@@ -3141,11 +3372,11 @@ Problem 14: Scale the pendulum equation
 
 The equation for a so-called simple pendulum with a mass :math:`m` at the end is
 
-.. _Eq:_auto85:
+.. _Eq:_auto87:
 
 .. math::
 
-    \tag{275}
+    \tag{282}
     mL\ddot\theta + mg\sin\theta = 0,
         
         
@@ -3156,11 +3387,11 @@ the pendulum, and :math:`g` is the acceleration of gravity.
 A physical pendulum with moment of inertia :math:`I` is governed by
 a similar equation,
 
-.. _Eq:_auto86:
+.. _Eq:_auto88:
 
 .. math::
 
-    \tag{276}
+    \tag{283}
     I\ddot\theta + mgL\sin\theta = 0{\thinspace .}
         
         
@@ -3187,20 +3418,20 @@ Exercise 15: Scale the ODEs for a binary star
 The equations for a `binary star <https://en.wikipedia.org/wiki/Binary_star>`__,
 or a planet and a moon, are
 
-.. _Eq:_auto87:
+.. _Eq:_auto89:
 
 .. math::
 
-    \tag{277}
+    \tag{284}
     m_A\ddot\boldsymbol{x}_A = \boldsymbol{F},
         
         
 
-.. _Eq:_auto88:
+.. _Eq:_auto90:
 
 .. math::
 
-    \tag{278}
+    \tag{285}
     m_B\ddot\boldsymbol{x}_B = -F,
         
         
@@ -3373,29 +3604,29 @@ Exercise 19: Scale Couette flow with pressure gradient
 Viscous fluid flow between two infinite flat plates :math:`z=0` and :math:`z=H`
 is governed by
 
-.. _Eq:_auto91:
-
-.. math::
-
-    \tag{279}
-    \mu u''(z) = -\beta
-        
-        
-
-.. _Eq:_auto92:
-
-.. math::
-
-    \tag{280}
-    u(0) = 0,
-        
-        
-
 .. _Eq:_auto93:
 
 .. math::
 
-    \tag{281}
+    \tag{286}
+    \mu u''(z) = -\beta
+        
+        
+
+.. _Eq:_auto94:
+
+.. math::
+
+    \tag{287}
+    u(0) = 0,
+        
+        
+
+.. _Eq:_auto95:
+
+.. math::
+
+    \tag{288}
     u(H) = U_0{\thinspace .}
         
         
@@ -3417,7 +3648,7 @@ Scale the problem.
 
 .. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 
-[**hpl 28**: Could extend to time-dependent case, but this will involve three time scales...]
+[**hpl 31**: Could extend to time-dependent case, but this will involve three time scales...]
 
 Filename: ``Couette_wpressure``.
 
@@ -3433,31 +3664,13 @@ Exercise 20: Scale pulsatile pipeflow
 The flow of a viscous fluid in a straight pipe with circular
 cross section with radius :math:`R` is governed by
 
-.. _Eq:_auto100:
-
-.. math::
-
-    \tag{282}
-    \varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
-        \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],
-        
-        
-
-.. _Eq:_auto101:
-
-.. math::
-
-    \tag{283}
-    \frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],
-        
-        
-
 .. _Eq:_auto102:
 
 .. math::
 
-    \tag{284}
-    u(R,t) = 0,  t\in (0,T],
+    \tag{289}
+    \varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
+        \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],
         
         
 
@@ -3465,7 +3678,25 @@ cross section with radius :math:`R` is governed by
 
 .. math::
 
-    \tag{285}
+    \tag{290}
+    \frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],
+        
+        
+
+.. _Eq:_auto104:
+
+.. math::
+
+    \tag{291}
+    u(R,t) = 0,  t\in (0,T],
+        
+        
+
+.. _Eq:_auto105:
+
+.. math::
+
+    \tag{292}
     u(r,0) = 0,  r\in [0,R].
         
         
@@ -3498,7 +3729,7 @@ A key PDE in neuroscience is the `cable equation <https://en.wikipedia.org/wiki/
 
 .. math::
 
-    \tag{286}
+    \tag{293}
     \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
         -u{\thinspace .}
         
@@ -3508,7 +3739,7 @@ The unknown :math:`u` is the voltage (measured in volt) associated with
 an electric current along one-dimensional dendrites ("cables")
 in neural networks, while :math:`\tau` and :math:`\lambda` are given parameters.
 
-Scale :ref:`(286) <Eq:scale:exer:cable_eq:PDE>` in three ways: 1) let all terms in
+Scale :ref:`(293) <Eq:scale:exer:cable_eq:PDE>` in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 :math:`L` as spatial scale and base the time scale on diffusion, 3) use the
 domain size :math:`L` as spatial scale and base the time scale on
@@ -3527,11 +3758,11 @@ Filename: ``cable_eq``.
 Exercise 22: Comparison of vibration models for elastic structures
 ------------------------------------------------------------------
 
-The time scale for displacement in elastic structures is,
-according to the section :ref:`scale:elasticity:timedep`, :math:`t_c=L\sqrt{\varrho/\mu}`
-if we assume constant density :math:`\varrho` and constant shear modulus
-:math:`\mu` for the structure. The purpose of this exercise is to compare
-this time scale with the time scales of related models.
+The time scale for displacement in elastic structures is, according to
+the section :ref:`scale:elasticity:timedep`, :math:`t_c=L\sqrt{\varrho/\mu}` if we
+assume constant density :math:`\varrho` and constant shear modulus :math:`\mu` for
+the structure. The purpose of this exercise is to compare this time
+scale with the time scales of related models.
 
 **a)**
 Longitudinal waves in a bar can be modeled approximately by the PDE
@@ -3579,21 +3810,21 @@ Flow through a porous elastic medium may induce stress and deformation.
 This process is known as poro-elasticity and is governed by the
 following equations for a homogeneous medium:
 
-.. _Eq:_auto104:
+.. _Eq:_auto106:
 
 .. math::
 
-    \tag{287}
+    \tag{294}
     (\lambda + \mu)\nabla (\nabla\cdot\boldsymbol{u}) + \mu\nabla^2\boldsymbol{u} = -\alpha\nabla p -
         \varrho\boldsymbol{f},
         
         
 
-.. _Eq:_auto105:
+.. _Eq:_auto107:
 
 .. math::
 
-    \tag{288}
+    \tag{295}
     S\frac{\partial p}{\partial t} = \frac{K}{\mu_f}\nabla^2 p +
         \alpha \frac{\partial}{\partial t}\nabla\cdot\boldsymbol{u},
         

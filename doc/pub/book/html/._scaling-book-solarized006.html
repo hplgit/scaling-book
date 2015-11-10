@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model">
 
 <title>Scaling of Differential Equations</title>
 
@@ -70,13 +70,18 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:dimunit:tables',
                'scale:dimunit:tables'),
               ('Prefixes for units', 3, None, '___sec5'),
+              ('The Buckingham Pi theorem', 2, None, '___sec6'),
               ('Absolute errors, relative errors, and units',
                2,
                None,
-               '___sec6'),
-              ('Units and computers', 2, None, '___sec7'),
-              ('Unit systems', 2, None, '___sec8'),
-              ('PhysicalQuantity: object for computing with units',
+               '___sec7'),
+              ('Units and computers', 2, None, '___sec8'),
+              ('Unit systems', 2, None, '___sec9'),
+              ('Example on challenges arising from unit systems',
+               2,
+               None,
+               '___sec10'),
+              ('PhysicalQuantity: a tool for computing with units',
                2,
                'scale:PQ',
                'scale:PQ'),
@@ -84,28 +89,28 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:parampool',
                'scale:parampool'),
-              ('Example application', 3, None, '___sec11'),
-              ('Pool of parameters', 2, None, '___sec12'),
-              ('Fetching pool data for computing', 2, None, '___sec13'),
-              ('Reading command-line options', 2, None, '___sec14'),
-              ('Setting default values in a file', 2, None, '___sec15'),
+              ('Example application', 3, None, '___sec13'),
+              ('Pool of parameters', 2, None, '___sec14'),
+              ('Fetching pool data for computing', 2, None, '___sec15'),
+              ('Reading command-line options', 2, None, '___sec16'),
+              ('Setting default values in a file', 2, None, '___sec17'),
               ('Specifying multiple values of input parameters',
                2,
                None,
-               '___sec16'),
-              ('Generating a graphical user interface', 2, None, '___sec17'),
-              ('ODE models', 0, None, '___sec18'),
+               '___sec18'),
+              ('Generating a graphical user interface', 2, None, '___sec19'),
+              ('ODE models', 0, None, '___sec20'),
               ('Exponential decay problems',
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec20'),
-              ('The basic model problem', 2, None, '___sec21'),
-              ('Example: Population dynamics', 3, None, '___sec22'),
+              ('Fundamental ideas', 2, None, '___sec22'),
+              ('The basic model problem', 2, None, '___sec23'),
+              ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
                3,
                None,
-               '___sec23'),
+               '___sec25'),
               ('The technical steps of the scaling procedure',
                2,
                'sec:scale:decay:steps',
@@ -113,17 +118,17 @@ div { text-align: justify; text-justify: inter-word; }
               ('Step 1: Identify independent and dependent variables',
                3,
                None,
-               '___sec25'),
+               '___sec27'),
               ('Step 2: Make independent and dependent variables dimensionless',
                3,
                None,
-               '___sec26'),
+               '___sec28'),
               ('Step 3: Derive the model involving only dimensionless variables',
                3,
                None,
-               '___sec27'),
-              ('Step 4: Make each term dimensionless', 3, None, '___sec28'),
-              ('Step 5: Estimate the scales', 3, None, '___sec29'),
+               '___sec29'),
+              ('Step 4: Make each term dimensionless', 3, None, '___sec30'),
+              ('Step 5: Estimate the scales', 3, None, '___sec31'),
               ('Making software for utilizing the scaled model',
                2,
                'sec:scale:decay:prog',
@@ -131,16 +136,16 @@ div { text-align: justify; text-justify: inter-word; }
               ('Software for the original problem with dimensions',
                3,
                None,
-               '___sec31'),
-              ('Avoiding unnecessary computations', 3, None, '___sec32'),
-              ('Implementation with joblib', 3, None, '___sec33'),
+               '___sec33'),
+              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
                'sec:scale:decay:body',
                'sec:scale:decay:body'),
-              ('Exact solution', 3, None, '___sec35'),
-              ('Theory', 3, None, '___sec36'),
-              ('Software', 3, None, '___sec37'),
+              ('Exact solution', 3, None, '___sec37'),
+              ('Theory', 3, None, '___sec38'),
+              ('Software', 3, None, '___sec39'),
               ('Variable coefficients',
                2,
                'sec:scale:decay:jump',
@@ -149,52 +154,52 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
-              ('Exact solution', 3, None, '___sec40'),
-              ('Scaling', 3, None, '___sec41'),
-              ('Software', 3, None, '___sec42'),
-              ('Alternative scaling', 3, None, '___sec43'),
+              ('Exact solution', 3, None, '___sec42'),
+              ('Scaling', 3, None, '___sec43'),
+              ('Software', 3, None, '___sec44'),
+              ('Alternative scaling', 3, None, '___sec45'),
               ('Scaling a cooling problem with time-dependent surroundings',
                2,
                'scale:decay:cooling:osc',
                'scale:decay:cooling:osc'),
-              ('Exact solution', 3, None, '___sec45'),
-              ('Scaling', 3, None, '___sec46'),
-              ('Software', 3, None, '___sec47'),
-              ('Discussion of the time scale', 3, None, '___sec48'),
+              ('Exact solution', 3, None, '___sec47'),
+              ('Scaling', 3, None, '___sec48'),
+              ('Software', 3, None, '___sec49'),
+              ('Discussion of the time scale', 3, None, '___sec50'),
               ('Scaling a nonlinear ODE',
                2,
                'sec:scale:decay:nonlinear',
                'sec:scale:decay:nonlinear'),
-              ('Scaling', 3, None, '___sec50'),
-              ('Alternative scaling', 3, None, '___sec51'),
+              ('Scaling', 3, None, '___sec52'),
+              ('Alternative scaling', 3, None, '___sec53'),
               ('SIR ODE system for spreading of diseases',
                2,
                None,
-               '___sec52'),
-              ('Scaling', 3, None, '___sec53'),
-              ('Software', 3, None, '___sec54'),
-              ('Alternative scaling', 3, None, '___sec55'),
-              ('SIRV model with finite immunity', 2, None, '___sec56'),
+               '___sec54'),
+              ('Scaling', 3, None, '___sec55'),
+              ('Software', 3, None, '___sec56'),
+              ('Alternative scaling', 3, None, '___sec57'),
+              ('SIRV model with finite immunity', 2, None, '___sec58'),
               ('Michaelis-Menten kinetics for biochemical reactions',
                2,
                'scale:MMK',
                'scale:MMK'),
-              ('Classical analysis', 3, None, '___sec58'),
-              ('Dimensionless ODE system', 3, None, '___sec59'),
-              ('Determining scales', 3, None, '___sec60'),
-              ('Analysis of the scaled system', 3, None, '___sec61'),
+              ('Classical analysis', 3, None, '___sec60'),
+              ('Dimensionless ODE system', 3, None, '___sec61'),
+              ('Determining scales', 3, None, '___sec62'),
+              ('Analysis of the scaled system', 3, None, '___sec63'),
               ('Vibration problems', 1, 'sec:scale:vib', 'sec:scale:vib'),
               ('Undamped vibrations without forcing',
                2,
                'sec:scale:vib:undamped',
                'sec:scale:vib:undamped'),
-              ('The first technical steps of scaling', 3, None, '___sec64'),
-              ('The exact solution', 3, None, '___sec65'),
-              ('Discussion of the displacement scale', 3, None, '___sec66'),
-              ('Discussion of the time scale', 3, None, '___sec67'),
-              ('The dimensionless solution', 3, None, '___sec68'),
-              ('Alternative displacement scale', 3, None, '___sec69'),
-              ('About frequency and dimensions', 3, None, '___sec70'),
+              ('The first technical steps of scaling', 3, None, '___sec66'),
+              ('The exact solution', 3, None, '___sec67'),
+              ('Discussion of the displacement scale', 3, None, '___sec68'),
+              ('Discussion of the time scale', 3, None, '___sec69'),
+              ('The dimensionless solution', 3, None, '___sec70'),
+              ('Alternative displacement scale', 3, None, '___sec71'),
+              ('About frequency and dimensions', 3, None, '___sec72'),
               ('Undamped vibrations with constant forcing',
                2,
                'sec:scale:vib:undamped:mg',
@@ -206,78 +211,78 @@ div { text-align: justify; text-justify: inter-word; }
               ('Investigating scales via analytical solutions',
                3,
                None,
-               '___sec73'),
-              ('The displacement and time scales', 3, None, '___sec74'),
+               '___sec75'),
+              ('The displacement and time scales', 3, None, '___sec76'),
               ('Finding the displacement scale from the differential equation',
                3,
                None,
-               '___sec75'),
+               '___sec77'),
               ('Scaling with free vibrations as time scale',
                3,
                None,
-               '___sec76'),
-              ('Software', 3, None, '___sec77'),
-              ('Choice of $u_c$ close to resonance', 3, None, '___sec78'),
-              ('Unit size of all terms in the ODE', 3, None, '___sec79'),
+               '___sec78'),
+              ('Software', 3, None, '___sec79'),
+              ('Choice of $u_c$ close to resonance', 3, None, '___sec80'),
+              ('Unit size of all terms in the ODE', 3, None, '___sec81'),
               ('Choice of $u_c$ when $\\psi\\gg\\omega$',
                3,
                None,
-               '___sec80'),
-              ('Displacement scale based on $I$', 3, None, '___sec81'),
+               '___sec82'),
+              ('Displacement scale based on $I$', 3, None, '___sec83'),
               ('Damped vibrations with forcing',
                2,
                'sec:scale:vib:damped:F',
                'sec:scale:vib:damped:F'),
-              ('The exact solution', 3, None, '___sec83'),
-              ('Choosing scales', 3, None, '___sec84'),
-              ('Choice of $u_c$ at resonance', 3, None, '___sec85'),
+              ('The exact solution', 3, None, '___sec85'),
+              ('Choosing scales', 3, None, '___sec86'),
+              ('Choice of $u_c$ at resonance', 3, None, '___sec87'),
               ('Choice of $u_c$ when $\\omega\\gg\\psi$',
                3,
                None,
-               '___sec86'),
+               '___sec88'),
               ('Choice of $u_c$ when $\\omega\\ll\\psi$',
                3,
                None,
-               '___sec87'),
-              ('Software', 3, None, '___sec88'),
-              ('Oscillating electric circuits', 2, None, '___sec89'),
-              ('Basic PDE models', 0, None, '___sec90'),
+               '___sec89'),
+              ('Software', 3, None, '___sec90'),
+              ('Oscillating electric circuits', 2, None, '___sec91'),
+              ('Basic PDE models', 0, None, '___sec92'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec92'),
+               '___sec94'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec93'),
-              ('Waves on a string', 3, None, '___sec94'),
-              ('Detecting an already computed case', 3, None, '___sec95'),
+               '___sec95'),
+              ('Waves on a string', 3, None, '___sec96'),
+              ('Detecting an already computed case', 3, None, '___sec97'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
-              ('Scaling', 3, None, '___sec97'),
-              ('Software', 3, None, '___sec98'),
-              ('Specific case', 3, None, '___sec99'),
+              ('Scaling', 3, None, '___sec99'),
+              ('Software', 3, None, '___sec100'),
+              ('Specific case', 3, None, '___sec101'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
-              ('Analytical insight', 3, None, '___sec101'),
-              ('Scaling', 3, None, '___sec102'),
-              ('Nonzero initial shape', 3, None, '___sec103'),
+              ('Analytical insight', 3, None, '___sec103'),
+              ('Scaling', 3, None, '___sec104'),
+              ('Nonzero initial shape', 3, None, '___sec105'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
-              ('Non-dimensionalization', 3, None, '___sec105'),
-              ('Choosing the time scale', 3, None, '___sec106'),
-              ('Choosing the spatial scale', 3, None, '___sec107'),
+              ('Non-dimensionalization', 3, None, '___sec107'),
+              ('Choosing the time scale', 3, None, '___sec108'),
+              ('Choosing the spatial scale', 3, None, '___sec109'),
               ('Scaling the velocity initial condition',
                3,
                None,
-               '___sec108'),
+               '___sec110'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -285,7 +290,7 @@ div { text-align: justify; text-justify: inter-word; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec110'),
+               '___sec112'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
@@ -294,18 +299,18 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Generalized diffusion PDE', 2, None, '___sec113'),
-              ('Jump boundary condition', 2, None, '___sec114'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec115'),
-              ('Scaling', 3, None, '___sec116'),
+              ('Generalized diffusion PDE', 2, None, '___sec115'),
+              ('Jump boundary condition', 2, None, '___sec116'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec117'),
+              ('Scaling', 3, None, '___sec118'),
               ('Reaction-diffusion equations',
                1,
                'sec:scale:diffu:Fisher',
                'sec:scale:diffu:Fisher'),
-              ("Fisher's equation", 2, None, '___sec118'),
-              ('Balance of all terms', 3, None, '___sec119'),
-              ('Fixed length scale', 3, None, '___sec120'),
-              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec121'),
+              ("Fisher's equation", 2, None, '___sec120'),
+              ('Balance of all terms', 3, None, '___sec121'),
+              ('Fixed length scale', 3, None, '___sec122'),
+              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec123'),
               ('The convection-diffusion equation',
                1,
                'scale:convdiff',
@@ -313,13 +318,13 @@ div { text-align: justify; text-justify: inter-word; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec123'),
-              ('Stationary PDE', 2, None, '___sec124'),
+               '___sec125'),
+              ('Stationary PDE', 2, None, '___sec126'),
               ('Convection-diffusion with a force term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
-              ('Advanced PDE models', 0, None, '___sec126'),
+              ('Advanced PDE models', 0, None, '___sec128'),
               ('The equations of linear elasticity',
                1,
                'scale:elasticity',
@@ -328,7 +333,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:elasticity:timedep',
                'scale:elasticity:timedep'),
-              ('Software', 3, None, '___sec129'),
+              ('Software', 3, None, '___sec131'),
               ('Dimensionless stress tensor',
                2,
                'scale:elasticity:PDE1:stress',
@@ -337,22 +342,22 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:elasticity:waves',
                'scale:elasticity:waves'),
-              ('S waves', 3, None, '___sec132'),
-              ('P waves', 3, None, '___sec133'),
-              ('Time-varying load', 3, None, '___sec134'),
+              ('S waves', 3, None, '___sec134'),
+              ('P waves', 3, None, '___sec135'),
+              ('Time-varying load', 3, None, '___sec136'),
               ('The stationary elasticity problem',
                2,
                'scale:elasticity:stationary',
                'scale:elasticity:stationary'),
-              ('Scaling of the PDE', 3, None, '___sec136'),
+              ('Scaling of the PDE', 3, None, '___sec138'),
               ('Scaling of displacement boundary conditions',
                3,
                None,
-               '___sec137'),
+               '___sec139'),
               ('Scaling of traction boundary conditions',
                3,
                None,
-               '___sec138'),
+               '___sec140'),
               ('Quasi-static thermo-elasticity',
                2,
                'scale:elasticity:thermo',
@@ -364,64 +369,76 @@ div { text-align: justify; text-justify: inter-word; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec141'),
-              ('Scaling', 3, None, '___sec142'),
+               '___sec143'),
+              ('Scaling', 3, None, '___sec144'),
               ('Dimensonless PDEs and the Reynolds number',
                3,
                None,
-               '___sec143'),
+               '___sec145'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec144'),
-              ('Shear stress as pressure scale', 2, None, '___sec145'),
-              ('Gravity force and the Froude number', 2, None, '___sec146'),
+               '___sec146'),
+              ('Shear stress as pressure scale', 2, None, '___sec147'),
+              ('Gravity force and the Froude number', 2, None, '___sec148'),
               ('Oscillating boundary conditions and the Strouhal number',
                2,
                None,
-               '___sec147'),
-              ('Cavitation and the Euler number', 2, None, '___sec148'),
+               '___sec149'),
+              ('Cavitation and the Euler number', 2, None, '___sec150'),
               ('Free surface conditions and the Weber number',
                2,
                None,
-               '___sec149'),
-              ('Thermal convection', 1, None, '___sec150'),
-              ('Forced convection', 2, None, '___sec151'),
+               '___sec151'),
+              ('Thermal convection', 1, None, '___sec152'),
+              ('Forced convection', 2, None, '___sec153'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec153'),
-              ('Heating by viscous effects', 3, None, '___sec154'),
+              ('Governing equations', 3, None, '___sec155'),
+              ('Heating by viscous effects', 3, None, '___sec156'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec155'),
+               '___sec157'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec156'),
-              ('The Boussinesq approximation', 3, None, '___sec157'),
-              ('Scaling', 3, None, '___sec158'),
+               '___sec158'),
+              ('The Boussinesq approximation', 3, None, '___sec159'),
+              ('Scaling', 3, None, '___sec160'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec159'),
-              ('Interpretations of the Grashof number', 3, None, '___sec160'),
+               '___sec161'),
+              ('Interpretations of the Grashof number', 3, None, '___sec162'),
               ('Heat transfer at boundaries and the Nusselt number',
                2,
                None,
-               '___sec161'),
+               '___sec163'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec163'),
-              ('The Euler equations of gas dynamics',
+              ('Two-phase porous media flow', 1, None, '___sec165'),
+              ('Compressible gas dynamics',
                1,
+               'scale:gasdyn',
+               'scale:gasdyn'),
+              ('The Euler equations of gas dynamics',
+               2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Exercises', 1, None, '___sec165'),
+              ('The acoustic approximation and the Mach number',
+               2,
+               'scale:gas:acoustic',
+               'scale:gas:acoustic'),
+              ('Elimination of the pressure', 3, None, '___sec169'),
+              ('Basic scaling for small perturbations', 3, None, '___sec170'),
+              ('The time scale', 3, None, '___sec171'),
+              ('Linearization', 3, None, '___sec172'),
+              ('Exercises', 1, None, '___sec173'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -474,7 +491,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec179'),
+              ('Remarks', 3, None, '___sec187'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -491,7 +508,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec184'),
+              ('Remarks', 3, None, '___sec192'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -520,7 +537,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec192')]}
+              ('References', 1, None, '___sec200')]}
 end of tocinfo -->
 
 <body>
@@ -589,7 +606,7 @@ different physical scenarios.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 7</b>: Include more figures.)</font>
+<font color="red">(<b>hpl 9</b>: Include more figures.)</font>
 <!-- end inline comment -->
 
 <h2 id="sec:scale:vib:undamped">Undamped vibrations without forcing</h2>
@@ -619,7 +636,7 @@ and is connected to a spring that exerts a force \( -ku \) on the body.
 <p><img src="fig-scaling/oscillator_spring.png" align="bottom" width=500></p>
 </center>
 
-<h3 id="___sec64">The first technical steps of scaling </h3>
+<h3 id="___sec66">The first technical steps of scaling </h3>
 
 <p>
 The problem <a href="#mjx-eqn-64">(64)</a> has one independent
@@ -650,7 +667,7 @@ What is an appropriate displacement scale \( u_c \)? The initial condition
 Making the coefficient in front of the \( \bar u \) unity, such that
 both terms balance and are of size unity, is a candidate.
 
-<h3 id="___sec65">The exact solution </h3>
+<h3 id="___sec67">The exact solution </h3>
 
 <p>
 To better see what the proper scales of \( u \) and \( t \) are, we can look
@@ -748,7 +765,7 @@ $$
 Now we see that the \( u \) corresponds to cosine oscillations with a
 phase shift \( \phi \) and amplitude \( \sqrt{I^2 + (V/\omega)^2} \).
 
-<h3 id="___sec66">Discussion of the displacement scale </h3>
+<h3 id="___sec68">Discussion of the displacement scale </h3>
 
 <p>
 The amplitude of \( u \) is \( \sqrt{I^2 + V^2/\omega^2} \), and this
@@ -758,7 +775,7 @@ than the square root expression (but potentially a factor 1.4 wrong
 compared to the exact amplitude).  It is not very important to have
 \( |u|\leq 1 \), the point is to avoid \( |u| \) very small or large.
 
-<h3 id="___sec67">Discussion of the time scale </h3>
+<h3 id="___sec69">Discussion of the time scale </h3>
 
 <p>
 What is an appropriate time scale? Looking at
@@ -770,7 +787,7 @@ sine or cosine of \( \omega t \) so \( 1/\omega = \sqrt{m/k} \) can be a charact
 time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \) can
 be the characteristic time, leading to \( t_c=2\pi/\omega \).
 
-<h3 id="___sec68">The dimensionless solution </h3>
+<h3 id="___sec70">The dimensionless solution </h3>
 
 <p>
 With \( u_c=I \) and \( t_c=\sqrt{m/k} \) we get the scaled model
@@ -804,7 +821,7 @@ $$
 This expressions shows that the scaling is simply a matter of
 <em>stretching or shrinking the axes</em>.
 
-<h3 id="___sec69">Alternative displacement scale </h3>
+<h3 id="___sec71">Alternative displacement scale </h3>
 
 <p>
 Using \( u_c = V/\omega \), the equation
@@ -834,7 +851,7 @@ u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t)\tp
 \end{equation}
 $$
 
-<h3 id="___sec70">About frequency and dimensions </h3>
+<h3 id="___sec72">About frequency and dimensions </h3>
 
 <p>
 The solution goes like \( \cos\omega t \), where \( \omega =\sqrt{m/k} \)
@@ -921,7 +938,7 @@ three parameters (\( I \), \( V \), and \( A \)) that influence the magnitude of
 Moreover, there are two time scales, one for the free vibrations of
 the systems and one for the forced vibrations \( F(t) \).
 
-<h3 id="___sec73">Investigating scales via analytical solutions </h3>
+<h3 id="___sec75">Investigating scales via analytical solutions </h3>
 
 <p>
 We may look into the exact solution to see what the scales are.  We
@@ -1024,7 +1041,7 @@ an example on such a signal.
 <p><img src="fig-scaling/envelope.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec74">The displacement and time scales </h3>
+<h3 id="___sec76">The displacement and time scales </h3>
 
 <p>
 A characteristic displacement can in the latter special case
@@ -1047,7 +1064,7 @@ of frequency \( \psi \) or \( \omega \) when these are close and the largest
 of them when they are distant. In any case, we set
 \( t_c=1/\max(\psi,\omega) \).
 
-<h3 id="___sec75">Finding the displacement scale from the differential equation </h3>
+<h3 id="___sec77">Finding the displacement scale from the differential equation </h3>
 
 <p>
 Going back to <a href="#mjx-eqn-71">(71)</a>, we
@@ -1065,7 +1082,7 @@ by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
 relevant for small excitation frequency \( \psi \) compared to
 the free vibration frequency \( \omega \).
 
-<h3 id="___sec76">Scaling with free vibrations as time scale </h3>
+<h3 id="___sec78">Scaling with free vibrations as time scale </h3>
 
 <p>
 The next step is to work out the dimensionless ODE for the chosen scales.
@@ -1113,7 +1130,7 @@ physical effects:
    frequencies or the time scales of the forcing and the free vibrations.</li>
 </ul>
 
-<h3 id="___sec77">Software </h3>
+<h3 id="___sec79">Software </h3>
 
 <p>
 Any solver for <a href="#mjx-eqn-71">(71)</a>
@@ -1121,7 +1138,7 @@ can be used for <a href="#mjx-eqn-73">(73)</a>.
 More details are provided at the end of
 the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
-<h3 id="___sec78">Choice of \( u_c \) close to resonance </h3>
+<h3 id="___sec80">Choice of \( u_c \) close to resonance </h3>
 
 <p>
 We have chosen not to specify \( u_c \) in the formulas above. Now we shall
@@ -1171,7 +1188,7 @@ Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 <p><img src="fig-scaling/vib_delta099_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec79">Unit size of all terms in the ODE </h3>
+<h3 id="___sec81">Unit size of all terms in the ODE </h3>
 
 <p>
 Using the displacement scale \( u_c=A/k \) leads to
@@ -1203,7 +1220,7 @@ are important (e.g., \( \omega\gg\psi \)).
 <p><img src="fig-scaling/vib_delta05_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec80">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
+<h3 id="___sec82">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
 
 <p>
 Finally, we may look at the case where \( \psi\gg\omega \) such that
@@ -1275,7 +1292,7 @@ numerical simulations with 160 time steps per period of the forcing.)
 <p><img src="fig-scaling/vib_delta10_b0_a5_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec81">Displacement scale based on \( I \) </h3>
+<h3 id="___sec83">Displacement scale based on \( I \) </h3>
 
 <p>
 Choosing \( u_c=I \) gives
@@ -1338,7 +1355,7 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec83">The exact solution </h3>
+<h3 id="___sec85">The exact solution </h3>
 
 <p>
 To choose scales, it is (as always)
@@ -1559,7 +1576,7 @@ R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}\tp
 \end{equation}
 $$
 
-<h3 id="___sec84">Choosing scales </h3>
+<h3 id="___sec86">Choosing scales </h3>
 
 <p>
 Much of the discussion about scales in the previous sections are
@@ -1580,7 +1597,7 @@ $$ \frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}\tp$$
 The rest of the ODE is given in the previous section, and the particular
 formulas depend on the choices of \( t_c \) and \( u_c \).
 
-<h3 id="___sec85">Choice of \( u_c \) at resonance </h3>
+<h3 id="___sec87">Choice of \( u_c \) at resonance </h3>
 
 <p>
 The relevant scale for \( u_c \) at or nearby resonance (\( \psi = \omega \))
@@ -1637,7 +1654,7 @@ $$
 \end{align}
 $$
 
-<h3 id="___sec86">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
+<h3 id="___sec88">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
 
 <p>
 In the limit \( \omega\gg\psi \) and \( t\gg B^{-1} \),
@@ -1649,13 +1666,13 @@ showing that \( u_c=A/k \) is an appropriate displacement scale.
 The dimensionless numbers \( \alpha \), \( \beta \), and \( \delta \) are as
 for the forced vibrations without damping.
 
-<h3 id="___sec87">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
+<h3 id="___sec89">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
 
 <p>
 In the limit \( \omega\ll\psi \), we should base \( t_c \) on the rapid
 variations in the excitation: \( t_c=1/\psi \).
 
-<h3 id="___sec88">Software </h3>
+<h3 id="___sec90">Software </h3>
 
 <p>
 It is easy to reuse a solver for a general vibration problem also
@@ -1720,7 +1737,7 @@ options on the command-line for \( \alpha \), \( \beta \), \( \gamma \), \( \del
 the <code>main</code> function). It is an ideal application for exploring
 scaled vibration models.
 
-<h2 id="___sec89">Oscillating electric circuits </h2>
+<h2 id="___sec91">Oscillating electric circuits </h2>
 
 <p>
 The differential equation for an oscillating electric circuit is

@@ -176,7 +176,7 @@ as the free and dependent variables, in terms of Pi's.
 At first glance the Pi theorem may appear as bordering on the
 trivial. However, it may produce remarkable progress for selected
 problems, such as turbulent jets, nuclear blasts or similarity
-solutions, without the deatiled knowledge of mathematical or physical
+solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
 very profound, if not magical.  Anyhow, as one move on to more complex
 problems with many parameters the use of the theorem yields
@@ -268,59 +268,62 @@ ref{sec:scale:decay}.
 ===== Example on challenges arising from unit systems =====
 
 A slightly elaborated example on scaling in an actual
-science/engineering tpic may hopefully be useful.  In its full extent
-the study of tsunamis spans geophysics, geology, history, fluid
-dynamics, statistics, geodesy, engineering and civil protection. This
-complexity reflects in a diversity of practices concerning the use of
-units, scales and concepts. If we narrow the scope to the modeling of
-tsunami propagation, the scaling aspect, at least, may seem simple as
-we are mainly concerned with length and time.  Still, even here the
-non-uniformity concerning physical units is an encumbrance.  A minor
-issue is the occasional use of non-SI units such as inches, or in old
-charts, even fathoms.  More important is the non-uniformity in the
-magnitude of the different variables, and the differences in the
+science/engineering project may hopefully be useful for further
+motivation.  In its full extent, the study of *tsunamis* spans
+geophysics, geology, history, fluid dynamics, statistics, geodesy,
+engineering, and civil protection. This complexity reflects in a
+diversity of practices concerning the use of units, scales, and
+concepts. If we narrow the scope to the modeling of tsunami
+propagation, the scaling aspect, at least, may seem simple as we are
+mainly concerned with length and time.  Still, even here the
+non-uniformity concerning physical units is an encumbrance.
+
+A minor issue is the occasional use of non-SI units such as inches, or
+in old charts, even fathoms.  More important is the non-uniformity in
+the magnitude of the different variables, and the differences in the
 inherent horizontal and vertical scales in particular.  Typically
 surface elevations are meters or smaller. For far-field deep water
 propagation as well as small tsunamis, which are still of scientific
 interest, surface elevations are often given in $\hbox{cm}$ or even
 $\hbox{mm}$.  In the deep ocean the characteristic depth is orders of
-magnitude larger than this , typically $5000\hbox{\,m}$. Propagation
+magnitude larger than this, typically $5000\,\hbox{m}$. Propagation
 distances, on the other hand, are hundreds or thousands of
 kilometers. Often locations and computational grids are best described
 in geographical coordinates (longitude/latitude) which are related to
 SI units by 1 latitude minute being roughly one nautical mile
-($1852\hbox{\,m}$) and 1 longitude minute being this quantity times
+($1852\,\hbox{m}$), and 1 longitude minute being this quantity times
 the cosine of the latitude. Wave periods of tsunamis are mostly from
 minutes to an hour, hopefully sufficiently short to be well separated
 from the half-daily period of the tides. Propagation times are
-typically hours or may be the better part of a day when the Pacific
+typically hours or maybe the better part of a day when the Pacific
 Ocean is traversed.
 
-The scientists, engineers and bureaucrats in the tsunami community
+The scientists, engineers, and bureaucrats in the tsunami community
 tend to be particular and non-conform concerning formats and units, as
 well as the type of data required.  To accommodate these demands, a
 tsunami modeler must produce a diversity of data which are in units
-and formats which cannot be used internally in his models.  On the
-other hand, he must also be prepared to accept his input data in
-diversified forms.  Some such data sets may be large, implying that
+and formats which cannot be used internally in her models.  On the
+other hand, she must also be prepared to accept the input data in
+diversified forms.  Some data sets may be large, implying that
 unnecessary duplication, with different units or scaling, should be
-avoided.  In addition tsunami models are often bench-marked through
+avoided.  In addition, tsunami models are often bench-marked through
 comparison with experimental data. The lab scale is generally
 $\hbox{cm}$ or $\hbox{m}$, at most, which implies that measured data
 are provided in different units than real events, or even in volts,
 with conversion information, as obtained from the measuring gauges.
 
+All the unit particulars in various file formats is clearly a nuisance
+and give rise to a number of misconceptions and errors that may cause
+loss of precious time or efforts. To reduce such problems, developers
+of computational tools should combine a reasonable flexibility
+concerning units in input and output with a clear and consistent
+convention for scaling within the tools. In fact, this is also goes
+for academic tools for in-house use.
 
-All the unit (and format) particulars is clearly a nuisance and give
-rise to a number of misconceptions and errors that may cause loss of
-precious time or efforts. To reduce such problems developers of
-computational tools should combine a reasonable flexibility concerning
-units in input and output with a clear and consistent convention for
-scaling within the tools. In fact, this is also goes for academic
-tools for in-house use.
+[hpl: Geir, can we say something how contents in this book can help?
+Use of scaled models in software, use of unit conversion tools for input.]
 
-
-===== PhysicalQuantity: object for computing with units =====
+===== PhysicalQuantity: a tool for computing with units =====
 label{scale:PQ}
 
 idx{`PhysicalQuantity`}
@@ -344,6 +347,18 @@ Python": "http://hplgit.github.io/bumpy/doc/web/index.html",
 the "Python Scientific Lecture Notes": "http://scipy-lectures.github.com/",
 or a full textbook cite{Langtangen_2012} in parallel with reading about
 Python code in the present book.
+
+!bwarning This book applies Python 2.7
+Python exists in two incompatible versions, numbered 2 and 3.
+The differences can be made small, and there are tools to write
+code that runs under both versions.
+
+As Python version 2 is still dominating
+in scientific computing, we stick to this version, but
+write code in version 2.7 that is as close as possible to version 3.4
+and later. In most of our programs, only the `print` statement differs
+between version 2 and 3.
+!ewarning
 
 [hpl: Geir, is this sufficient intro about Python? Should we be more
 specific about the expected competence?]
@@ -7584,7 +7599,10 @@ $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
 [hpl: Exercises: single-phase flow, with and without thermal effects.]
 
-======= The Euler equations of gas dynamics =======
+======= Compressible gas dynamics =======
+label{scale:gasdyn}
+
+===== The Euler equations of gas dynamics =====
 label{scale:Euler_eqs}
 
 ## Taken from
@@ -7697,6 +7715,192 @@ We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
 [hpl: Comment on software also for advanced models.]
+
+===== The acoustic approximation and the Mach number =====
+label{scale:gas:acoustic}
+
+Heat transfer can be neglected in
+"isentropic flow": "https://en.wikipedia.org/wiki/Isentropic_process",
+and there is hence an equation of state involving only $\varrho$ and
+$p$:
+
+!bt
+\[ p = F(\varrho)\tp\]
+!et
+The energy equation is now not needed and the Euler equations simplify
+to
+
+!bt
+\begin{align}
+\frac{\partial\varrho}{\partial t} + \nabla\cdot(\u\varrho) &=0,
+label{scale:gas:acoustic:rho}\\
+\varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u + \nabla p &=0\tp
+label{scale:gas:acoustic:u}
+\end{align}
+!et
+
+=== Elimination of the pressure ===
+
+Typically,
+
+!bt
+\[ F(\varrho) = p_0\left(\frac{\varrho}{\varrho_0}\right)^\gamma,\]
+!et
+where $\gamma = 5/3$ for air. The first step is to eliminate $p$ in
+favor of $\varrho$ so we get a system for $\varrho$ and $\u$.
+To this end,
+
+!bt
+\[ \nabla p = F'(\varrho)\nabla\varrho,\quad
+F'(\varrho)= c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1},\]
+!et
+where
+
+!bt
+\[ c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}\]
+!et
+is the speed of sound in the fluid in the equilibrium state.
+Equation (ref{scale:gas:acoustic:u}) with eliminated pressure $p$ reads
+
+!bt
+\begin{equation}
+\varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u +
+c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0\tp
+label{scale:gas:acoustic:u2}
+\end{equation}
+!et
+
+=== Basic scaling for small perturbations ===
+
+In a model for sound waves there are small pressure, velocity, and
+density perturbation from a ground state at rest where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0$. Let $\varrho_c$, $p_c=F(\varrho_c)$, and
+$u_c$ be characteristic sizes of these perturbations.
+The density, e.g., will then vary in $[\varrho_0-\varrho_c,\varrho_0+\varrho_c]$.
+An appropriate scaling is now
+
+!bt
+\[ \bar\varrho =\frac{\varrho - \varrho_0}{\varrho_c} \]
+!et
+such that $\bar\varrho\in [-1,1]$. Consequently,
+
+!bt
+\[ \varrho = \varrho_0 + \varrho_c\bar\varrho = \varrho_0(1 + \alpha\bar\varrho),\quad \alpha = \frac{\varrho_c}{\varrho_0}\tp\]
+!et
+Note that the dimensionless $\alpha$ is expected to be a very small number
+since $\varrho_c\ll \varrho_0$.
+
+The velocity is scaled as $\bar\u = \u/U$ while space and time are scaled as usual:
+
+!bt
+\[ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
+\quad\bar t = \frac{t}{t_c}\tp\]
+!et
+Note that $\varrho_0$ and $p_0$ are known values, but the scales
+$\varrho_c$, $p_c=F(\varrho_c)$, and $U$ are not known. Usually these
+can be estimated from perturbations applied at the boundary.
+
+Inserting the dimensionless variables leads to
+
+!bt
+\begin{align*}
+\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
++ \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
+\frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
+\frac{\partial\bar\u}{\partial\bar t} +
+\frac{\varrho_0 U^2}{L}(1 \alpha\bar\varrho)\bar u\bar\nabla\bar\u
++ \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
+\bar\nabla\varrho
+&=0\tp
+\end{align*}
+!et
+
+=== The time scale ===
+
+What is the appropriate time scale? It could be $t_c=L/U$ as in many
+other flow problems. However, in the present model we expect sound waves,
+so the velocity $c_0$ of the sound waves is the appropriate velocity scale.
+The flow velocity $U$ is expected to be very much smaller than $c_0$
+(think of speaking: the sound travels very fast but one cannot feel
+the corresponding very small flow perturbation in the air).
+Therefore, $t_c = L/c_0$ is the corresponding natural time scale.
+Using this time scale, we achieve
+
+!bt
+\begin{align*}
+\frac{\partial\bar\varrho}{\partial\bar t}
++ \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
+(1 + \alpha\bar\varrho)
+\frac{\partial\bar\u}{\partial\bar t} +
+\hbox{M}(1 + \alpha\bar\varrho)\bar\u\bar\nabla\bar\u
+\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+&=0,
+\end{align*}
+!et
+where the dimensionless number
+
+!bt
+\[ \hbox{M} = \frac{U}{c_0},\]
+!et
+is known as the *Mach number*.
+
+idx{Mach number}
+
+=== Linearization ===
+
+With the assumption of small perturbations, M and $\alpha$ are small numbers.
+We can first approximate $1+\alpha\approx 1$. Thereafter, we realize
+that multiplying by M in the momentum equation gives
+
+!bt
+\[
+\hbox{M}\frac{\partial\bar\u}{\partial\bar t} +
+\hbox{M}^2\bar\u\bar\nabla\bar\u
++ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+=0\]
+!et
+The term $\hbox{M}^2\bar\u\bar\nabla\bar\u$ has size
+$\hbox{M}^2$ and is very smaller than the first and third term,
+suggesting that we omit the nonlinear term
+when the Mach number is small.
+We arrive at the following linearized system of PDEs
+
+!bt
+\begin{align}
+\frac{\partial\bar\varrho}{\partial\bar t}
++ \hbox{M}\bar\nabla\cdot\bar\u &=0,
+label{scale:gas:acoustic:rho:s}\\
+\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\varrho &=0,
+label{scale:gas:acoustic:u2:s}
+\end{align}
+!et
+
+The velocity $\u$ can be eliminated taking the time derivative of
+(ref{scale:gas:acoustic:rho:s}) and the divergence of
+(ref{scale:gas:acoustic:u2:s}:
+
+!bt
+\begin{equation}
+\frac{\partial^2\bar\varrho}{\partial\bar t^2} +
+\bar\nabla^2\varrho = 0,
+\end{equation}
+!et
+which is nothing but a standard, linear wave equation. Similarly,
+we can eliminate $\varrho$ by taking the divergence of
+(ref{scale:gas:acoustic:rho:s}) and the time derivative of
+(ref{scale:gas:acoustic:u2:s}:
+
+!bt
+\begin{equation}
+\frac{\partial^2\bar\u}{\partial\bar t^2} +
+\bar\nabla^2\u = 0,
+\end{equation}
+!et
+which shows that each component of the velocity also propagates according
+to the wave equation with unit velocity.
+We also observe that there are no physical parameters in the scaled
+wave equations. The M parameter can be eliminated from
+(ref{scale:gas:acoustic:rho:s})-(ref{scale:gas:acoustic:u2:s})
+by introducing a new unknown $\bar\v = M\bar\u$.
 
 ======= Exercises =======
 

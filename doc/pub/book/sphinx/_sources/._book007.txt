@@ -355,12 +355,12 @@ boundary temperature can be retrieved by
 .. math::
          u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t{\alpha}/L^2){\thinspace .}
 
-[**hpl 13**: Include simulation results.]
+[**hpl 15**: Include simulation results.]
 
 Oscillating Dirichlet condition
 -------------------------------
 
-[**hpl 14**: Do we need paragraph headings here?]
+[**hpl 16**: Do we need paragraph headings here?]
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary :math:`x=0`:

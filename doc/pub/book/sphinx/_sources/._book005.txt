@@ -10,7 +10,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-[**hpl 7**: Include more figures.]
+[**hpl 9**: Include more figures.]
 
 .. _sec:scale:vib:undamped:
 

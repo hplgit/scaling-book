@@ -137,16 +137,7 @@ for the problem with dimensions.</li>
 <p>Books covering scaling and non-dimensionalization very often cover
 topics not treated in the present book. One key topic is
 dimensional analysis and the famous Buckingham Pi Theorem
-<a class="reference internal" href="._book010.html#ref04" id="id1">[Ref04]</a> <a class="reference internal" href="._book010.html#ref05" id="id2">[Ref05]</a>, which
-can be used to derive the dimensionless numbers in a given problem
-without the need for a detailed model with differential equations.
-This is a strong statement of great
-practical significance, especially when doing physical experiments.
-However, as will be shown in this book, the dimensionless numbers in
-a problem also arise, in a very natural way,
-from scaling the differential equation(s).
-Provided one has a model based on differential equation, there is
-actually no need for classical dimensional analysis.</p>
+<a class="reference internal" href="._book010.html#ref04" id="id1">[Ref04]</a> <a class="reference internal" href="._book010.html#ref05" id="id2">[Ref05]</a>.</p>
 <p>Other classical topics closely related to scaling and non-dimensionalization
 are analytical solution methods like perturbation techniques and
 similarity solutions. These are not addressed in this book.
@@ -1015,8 +1006,14 @@ oscillations in <span class="math">\(T_s\)</span> and the e-folding time <span c
 2\pi e/P\)</span> and measures the e-folding time versus the period.</p>
 <p>The original problem features five physical parameters: <span class="math">\(k\)</span>, <span class="math">\(T_0\)</span>,
 <span class="math">\(T_m\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(\omega\)</span>, but only two dimensionless numbers appear in the
-scaled model <a class="reference internal" href="#eq-scale-decay-cooling-model-scaled"><span class="std std-ref">(24)</span></a>.</p>
-<p>[<strong>hpl 5</strong>: Geir, write about the Pi theorem here - it gives three parameters and a suboptimal solution compared to the scaling of the ODE directly.]</p>
+scaled model <a class="reference internal" href="#eq-scale-decay-cooling-model-scaled"><span class="std std-ref">(24)</span></a>.
+In fact, this is an example where application of the Pi theorem falls
+short. Since, only time and temperature are involved as unit types, the
+theorem predicts that the five parameters yields three dimensionless numbers,
+not two. The equations, on the other hand, shows us that the two parameters
+<span class="math">\(T_m\)</span> and <span class="math">\(T_0\)</span> affect the nature of the problem only through their difference.
+[<strong>hpl 5</strong>: Geir, write about the Pi theorem here - it gives three parameters and a suboptimal solution compared to the scaling of the ODE directly.]
+[<strong>Geir 6</strong>: hpl, actually I wrote a little longer text on the PI theorem. This is better suited elsewhere.]</p>
 </div>
 <div class="section" id="software-3">
 <h4>Software<a class="headerlink" href="#software-3" title="Permalink to this headline">¶</a></h4>
@@ -1202,9 +1199,10 @@ system of ODEs:</p>
 from the disease can be shown to be <span class="math">\(\nu^{-1}\)</span>, but <span class="math">\(\beta\)</span> is much harder
 to estimate, so working with a scaled model where <span class="math">\(\beta\)</span> is &#8220;scaled away&#8221;
 is advantageous.</p>
-<p>[<strong>hpl 6</strong>: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that &#8220;here are the ODEs&#8221; and if understanding of the &#8220;physics&#8221; is necessary, the reader must have the necessary background. Maybe state this in the preface?]</p>
-<div class="section" id="scaling-4">
-<h4>Scaling<a class="headerlink" href="#scaling-4" title="Permalink to this headline">¶</a></h4>
+<p>[<strong>hpl 7</strong>: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that &#8220;here are the ODEs&#8221; and if understanding of the &#8220;physics&#8221; is necessary, the reader must have the necessary background. Maybe state this in the preface?]
+[<strong>Geir 8</strong>: I will look at the example again. I guess we need to be pragmatic concerning background and explanations.]
+Scaling          (4)
+~~~~~~~~~~~~~~~~~~~~</p>
 <p>It is natural to scale <span class="math">\(S\)</span>, <span class="math">\(I\)</span>, and <span class="math">\(R\)</span> by, e.g., <span class="math">\(S(0)\)</span>:</p>
 <div class="math">
 \[\bar S = \frac{S}{S(0)},\quad \bar I = \frac{I}{S(0)},\quad
@@ -1245,7 +1243,6 @@ individual during the time period of the disease.</p>
 <p>Looking at <a class="reference internal" href="#eq-scale-sir-i"><span class="std std-ref">(33)</span></a>, we see that to increase <span class="math">\(I\)</span> initially,
 we must have <span class="math">\(dI/dt &gt;0\)</span> at <span class="math">\(t=0\)</span>, which implies
 <span class="math">\(\beta I(0)S(0) - \nu I(0) &gt;0\)</span>, i.e., <span class="math">\(R_0 &gt; 1\)</span>.</p>
-</div>
 <div class="section" id="software-4">
 <h4>Software<a class="headerlink" href="#software-4" title="Permalink to this headline">¶</a></h4>
 <p>Any implementation of the SIR model with dimensions can be reused for
@@ -1640,7 +1637,6 @@ for the chosen dimensionless numbers.</p>
 </ul>
 </li>
 <li><a class="reference internal" href="#sir-ode-system-for-spreading-of-diseases">SIR ODE system for spreading of diseases</a><ul>
-<li><a class="reference internal" href="#scaling-4">Scaling</a></li>
 <li><a class="reference internal" href="#software-4">Software</a></li>
 <li><a class="reference internal" href="#alternative-scaling-3">Alternative scaling</a></li>
 </ul>

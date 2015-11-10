@@ -244,9 +244,9 @@ through
 Implementation of the scaled wave equation
 ------------------------------------------
 
-[**hpl 8**: This must be rewritten and placed in an appendix - or dropped. The basic code from ``wave1D_u0.py`` must be shown, otherwise the discussion of avoiding recomputation does not make much sense.]
+[**hpl 10**: This must be rewritten and placed in an appendix - or dropped. The basic code from ``wave1D_u0.py`` must be shown, otherwise the discussion of avoiding recomputation does not make much sense.]
 
-[**hpl 9**: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.]
+[**hpl 11**: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.]
 
 How do we implement :ref:`(100) <Eq:scale:wave:pde1:d>`-:ref:`(104) <Eq:scale:wave:pde1:bc:L:d>`?
 As for the simpler mathematical models, I suggest to implement the model
@@ -686,7 +686,7 @@ end points. This solver is trivially adapted to the present case.
         </div>
         <p><em>:math:`\alpha=0.1`</em></p>
 
-[**hpl 10**: The HTML version features movies here. Link to them in the LaTeX PDF version as well?]
+[**hpl 12**: The HTML version features movies here. Link to them in the LaTeX PDF version as well?]
 
 .. _scale:wave:pde2:Vcond:
 
@@ -818,9 +818,9 @@ regardless of other parameters.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.
 
-[**hpl 11**: Do experiments. Make exercise or insert here.]
+[**hpl 13**: Do experiments. Make exercise or insert here.]
 
-[**hpl 12**: Could make paradox: small :math:`I`, big :math:`V`, but still significant impact of :math:`I` in a simulation. Why? Bug? The answer is above. Best as exercise.]
+[**hpl 14**: Could make paradox: small :math:`I`, big :math:`V`, but still significant impact of :math:`I` in a simulation. Why? Bug? The answer is above. Best as exercise.]
 
 .. _scale:wave:pde2:cvar:
 

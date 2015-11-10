@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model">
 
 <title>Scaling of Differential Equations</title>
 
@@ -70,13 +70,18 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:dimunit:tables',
                'scale:dimunit:tables'),
               ('Prefixes for units', 3, None, '___sec5'),
+              ('The Buckingham Pi theorem', 2, None, '___sec6'),
               ('Absolute errors, relative errors, and units',
                2,
                None,
-               '___sec6'),
-              ('Units and computers', 2, None, '___sec7'),
-              ('Unit systems', 2, None, '___sec8'),
-              ('PhysicalQuantity: object for computing with units',
+               '___sec7'),
+              ('Units and computers', 2, None, '___sec8'),
+              ('Unit systems', 2, None, '___sec9'),
+              ('Example on challenges arising from unit systems',
+               2,
+               None,
+               '___sec10'),
+              ('PhysicalQuantity: a tool for computing with units',
                2,
                'scale:PQ',
                'scale:PQ'),
@@ -84,28 +89,28 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'scale:parampool',
                'scale:parampool'),
-              ('Example application', 3, None, '___sec11'),
-              ('Pool of parameters', 2, None, '___sec12'),
-              ('Fetching pool data for computing', 2, None, '___sec13'),
-              ('Reading command-line options', 2, None, '___sec14'),
-              ('Setting default values in a file', 2, None, '___sec15'),
+              ('Example application', 3, None, '___sec13'),
+              ('Pool of parameters', 2, None, '___sec14'),
+              ('Fetching pool data for computing', 2, None, '___sec15'),
+              ('Reading command-line options', 2, None, '___sec16'),
+              ('Setting default values in a file', 2, None, '___sec17'),
               ('Specifying multiple values of input parameters',
                2,
                None,
-               '___sec16'),
-              ('Generating a graphical user interface', 2, None, '___sec17'),
-              ('ODE models', 0, None, '___sec18'),
+               '___sec18'),
+              ('Generating a graphical user interface', 2, None, '___sec19'),
+              ('ODE models', 0, None, '___sec20'),
               ('Exponential decay problems',
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec20'),
-              ('The basic model problem', 2, None, '___sec21'),
-              ('Example: Population dynamics', 3, None, '___sec22'),
+              ('Fundamental ideas', 2, None, '___sec22'),
+              ('The basic model problem', 2, None, '___sec23'),
+              ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
                3,
                None,
-               '___sec23'),
+               '___sec25'),
               ('The technical steps of the scaling procedure',
                2,
                'sec:scale:decay:steps',
@@ -113,17 +118,17 @@ div { text-align: justify; text-justify: inter-word; }
               ('Step 1: Identify independent and dependent variables',
                3,
                None,
-               '___sec25'),
+               '___sec27'),
               ('Step 2: Make independent and dependent variables dimensionless',
                3,
                None,
-               '___sec26'),
+               '___sec28'),
               ('Step 3: Derive the model involving only dimensionless variables',
                3,
                None,
-               '___sec27'),
-              ('Step 4: Make each term dimensionless', 3, None, '___sec28'),
-              ('Step 5: Estimate the scales', 3, None, '___sec29'),
+               '___sec29'),
+              ('Step 4: Make each term dimensionless', 3, None, '___sec30'),
+              ('Step 5: Estimate the scales', 3, None, '___sec31'),
               ('Making software for utilizing the scaled model',
                2,
                'sec:scale:decay:prog',
@@ -131,16 +136,16 @@ div { text-align: justify; text-justify: inter-word; }
               ('Software for the original problem with dimensions',
                3,
                None,
-               '___sec31'),
-              ('Avoiding unnecessary computations', 3, None, '___sec32'),
-              ('Implementation with joblib', 3, None, '___sec33'),
+               '___sec33'),
+              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
                'sec:scale:decay:body',
                'sec:scale:decay:body'),
-              ('Exact solution', 3, None, '___sec35'),
-              ('Theory', 3, None, '___sec36'),
-              ('Software', 3, None, '___sec37'),
+              ('Exact solution', 3, None, '___sec37'),
+              ('Theory', 3, None, '___sec38'),
+              ('Software', 3, None, '___sec39'),
               ('Variable coefficients',
                2,
                'sec:scale:decay:jump',
@@ -149,52 +154,52 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
-              ('Exact solution', 3, None, '___sec40'),
-              ('Scaling', 3, None, '___sec41'),
-              ('Software', 3, None, '___sec42'),
-              ('Alternative scaling', 3, None, '___sec43'),
+              ('Exact solution', 3, None, '___sec42'),
+              ('Scaling', 3, None, '___sec43'),
+              ('Software', 3, None, '___sec44'),
+              ('Alternative scaling', 3, None, '___sec45'),
               ('Scaling a cooling problem with time-dependent surroundings',
                2,
                'scale:decay:cooling:osc',
                'scale:decay:cooling:osc'),
-              ('Exact solution', 3, None, '___sec45'),
-              ('Scaling', 3, None, '___sec46'),
-              ('Software', 3, None, '___sec47'),
-              ('Discussion of the time scale', 3, None, '___sec48'),
+              ('Exact solution', 3, None, '___sec47'),
+              ('Scaling', 3, None, '___sec48'),
+              ('Software', 3, None, '___sec49'),
+              ('Discussion of the time scale', 3, None, '___sec50'),
               ('Scaling a nonlinear ODE',
                2,
                'sec:scale:decay:nonlinear',
                'sec:scale:decay:nonlinear'),
-              ('Scaling', 3, None, '___sec50'),
-              ('Alternative scaling', 3, None, '___sec51'),
+              ('Scaling', 3, None, '___sec52'),
+              ('Alternative scaling', 3, None, '___sec53'),
               ('SIR ODE system for spreading of diseases',
                2,
                None,
-               '___sec52'),
-              ('Scaling', 3, None, '___sec53'),
-              ('Software', 3, None, '___sec54'),
-              ('Alternative scaling', 3, None, '___sec55'),
-              ('SIRV model with finite immunity', 2, None, '___sec56'),
+               '___sec54'),
+              ('Scaling', 3, None, '___sec55'),
+              ('Software', 3, None, '___sec56'),
+              ('Alternative scaling', 3, None, '___sec57'),
+              ('SIRV model with finite immunity', 2, None, '___sec58'),
               ('Michaelis-Menten kinetics for biochemical reactions',
                2,
                'scale:MMK',
                'scale:MMK'),
-              ('Classical analysis', 3, None, '___sec58'),
-              ('Dimensionless ODE system', 3, None, '___sec59'),
-              ('Determining scales', 3, None, '___sec60'),
-              ('Analysis of the scaled system', 3, None, '___sec61'),
+              ('Classical analysis', 3, None, '___sec60'),
+              ('Dimensionless ODE system', 3, None, '___sec61'),
+              ('Determining scales', 3, None, '___sec62'),
+              ('Analysis of the scaled system', 3, None, '___sec63'),
               ('Vibration problems', 1, 'sec:scale:vib', 'sec:scale:vib'),
               ('Undamped vibrations without forcing',
                2,
                'sec:scale:vib:undamped',
                'sec:scale:vib:undamped'),
-              ('The first technical steps of scaling', 3, None, '___sec64'),
-              ('The exact solution', 3, None, '___sec65'),
-              ('Discussion of the displacement scale', 3, None, '___sec66'),
-              ('Discussion of the time scale', 3, None, '___sec67'),
-              ('The dimensionless solution', 3, None, '___sec68'),
-              ('Alternative displacement scale', 3, None, '___sec69'),
-              ('About frequency and dimensions', 3, None, '___sec70'),
+              ('The first technical steps of scaling', 3, None, '___sec66'),
+              ('The exact solution', 3, None, '___sec67'),
+              ('Discussion of the displacement scale', 3, None, '___sec68'),
+              ('Discussion of the time scale', 3, None, '___sec69'),
+              ('The dimensionless solution', 3, None, '___sec70'),
+              ('Alternative displacement scale', 3, None, '___sec71'),
+              ('About frequency and dimensions', 3, None, '___sec72'),
               ('Undamped vibrations with constant forcing',
                2,
                'sec:scale:vib:undamped:mg',
@@ -206,78 +211,78 @@ div { text-align: justify; text-justify: inter-word; }
               ('Investigating scales via analytical solutions',
                3,
                None,
-               '___sec73'),
-              ('The displacement and time scales', 3, None, '___sec74'),
+               '___sec75'),
+              ('The displacement and time scales', 3, None, '___sec76'),
               ('Finding the displacement scale from the differential equation',
                3,
                None,
-               '___sec75'),
+               '___sec77'),
               ('Scaling with free vibrations as time scale',
                3,
                None,
-               '___sec76'),
-              ('Software', 3, None, '___sec77'),
-              ('Choice of $u_c$ close to resonance', 3, None, '___sec78'),
-              ('Unit size of all terms in the ODE', 3, None, '___sec79'),
+               '___sec78'),
+              ('Software', 3, None, '___sec79'),
+              ('Choice of $u_c$ close to resonance', 3, None, '___sec80'),
+              ('Unit size of all terms in the ODE', 3, None, '___sec81'),
               ('Choice of $u_c$ when $\\psi\\gg\\omega$',
                3,
                None,
-               '___sec80'),
-              ('Displacement scale based on $I$', 3, None, '___sec81'),
+               '___sec82'),
+              ('Displacement scale based on $I$', 3, None, '___sec83'),
               ('Damped vibrations with forcing',
                2,
                'sec:scale:vib:damped:F',
                'sec:scale:vib:damped:F'),
-              ('The exact solution', 3, None, '___sec83'),
-              ('Choosing scales', 3, None, '___sec84'),
-              ('Choice of $u_c$ at resonance', 3, None, '___sec85'),
+              ('The exact solution', 3, None, '___sec85'),
+              ('Choosing scales', 3, None, '___sec86'),
+              ('Choice of $u_c$ at resonance', 3, None, '___sec87'),
               ('Choice of $u_c$ when $\\omega\\gg\\psi$',
                3,
                None,
-               '___sec86'),
+               '___sec88'),
               ('Choice of $u_c$ when $\\omega\\ll\\psi$',
                3,
                None,
-               '___sec87'),
-              ('Software', 3, None, '___sec88'),
-              ('Oscillating electric circuits', 2, None, '___sec89'),
-              ('Basic PDE models', 0, None, '___sec90'),
+               '___sec89'),
+              ('Software', 3, None, '___sec90'),
+              ('Oscillating electric circuits', 2, None, '___sec91'),
+              ('Basic PDE models', 0, None, '___sec92'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec92'),
+               '___sec94'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec93'),
-              ('Waves on a string', 3, None, '___sec94'),
-              ('Detecting an already computed case', 3, None, '___sec95'),
+               '___sec95'),
+              ('Waves on a string', 3, None, '___sec96'),
+              ('Detecting an already computed case', 3, None, '___sec97'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
-              ('Scaling', 3, None, '___sec97'),
-              ('Software', 3, None, '___sec98'),
-              ('Specific case', 3, None, '___sec99'),
+              ('Scaling', 3, None, '___sec99'),
+              ('Software', 3, None, '___sec100'),
+              ('Specific case', 3, None, '___sec101'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
-              ('Analytical insight', 3, None, '___sec101'),
-              ('Scaling', 3, None, '___sec102'),
-              ('Nonzero initial shape', 3, None, '___sec103'),
+              ('Analytical insight', 3, None, '___sec103'),
+              ('Scaling', 3, None, '___sec104'),
+              ('Nonzero initial shape', 3, None, '___sec105'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
-              ('Non-dimensionalization', 3, None, '___sec105'),
-              ('Choosing the time scale', 3, None, '___sec106'),
-              ('Choosing the spatial scale', 3, None, '___sec107'),
+              ('Non-dimensionalization', 3, None, '___sec107'),
+              ('Choosing the time scale', 3, None, '___sec108'),
+              ('Choosing the spatial scale', 3, None, '___sec109'),
               ('Scaling the velocity initial condition',
                3,
                None,
-               '___sec108'),
+               '___sec110'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -285,7 +290,7 @@ div { text-align: justify; text-justify: inter-word; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec110'),
+               '___sec112'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
@@ -294,18 +299,18 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Generalized diffusion PDE', 2, None, '___sec113'),
-              ('Jump boundary condition', 2, None, '___sec114'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec115'),
-              ('Scaling', 3, None, '___sec116'),
+              ('Generalized diffusion PDE', 2, None, '___sec115'),
+              ('Jump boundary condition', 2, None, '___sec116'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec117'),
+              ('Scaling', 3, None, '___sec118'),
               ('Reaction-diffusion equations',
                1,
                'sec:scale:diffu:Fisher',
                'sec:scale:diffu:Fisher'),
-              ("Fisher's equation", 2, None, '___sec118'),
-              ('Balance of all terms', 3, None, '___sec119'),
-              ('Fixed length scale', 3, None, '___sec120'),
-              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec121'),
+              ("Fisher's equation", 2, None, '___sec120'),
+              ('Balance of all terms', 3, None, '___sec121'),
+              ('Fixed length scale', 3, None, '___sec122'),
+              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec123'),
               ('The convection-diffusion equation',
                1,
                'scale:convdiff',
@@ -313,13 +318,13 @@ div { text-align: justify; text-justify: inter-word; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec123'),
-              ('Stationary PDE', 2, None, '___sec124'),
+               '___sec125'),
+              ('Stationary PDE', 2, None, '___sec126'),
               ('Convection-diffusion with a force term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
-              ('Advanced PDE models', 0, None, '___sec126'),
+              ('Advanced PDE models', 0, None, '___sec128'),
               ('The equations of linear elasticity',
                1,
                'scale:elasticity',
@@ -328,7 +333,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:elasticity:timedep',
                'scale:elasticity:timedep'),
-              ('Software', 3, None, '___sec129'),
+              ('Software', 3, None, '___sec131'),
               ('Dimensionless stress tensor',
                2,
                'scale:elasticity:PDE1:stress',
@@ -337,22 +342,22 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:elasticity:waves',
                'scale:elasticity:waves'),
-              ('S waves', 3, None, '___sec132'),
-              ('P waves', 3, None, '___sec133'),
-              ('Time-varying load', 3, None, '___sec134'),
+              ('S waves', 3, None, '___sec134'),
+              ('P waves', 3, None, '___sec135'),
+              ('Time-varying load', 3, None, '___sec136'),
               ('The stationary elasticity problem',
                2,
                'scale:elasticity:stationary',
                'scale:elasticity:stationary'),
-              ('Scaling of the PDE', 3, None, '___sec136'),
+              ('Scaling of the PDE', 3, None, '___sec138'),
               ('Scaling of displacement boundary conditions',
                3,
                None,
-               '___sec137'),
+               '___sec139'),
               ('Scaling of traction boundary conditions',
                3,
                None,
-               '___sec138'),
+               '___sec140'),
               ('Quasi-static thermo-elasticity',
                2,
                'scale:elasticity:thermo',
@@ -364,64 +369,76 @@ div { text-align: justify; text-justify: inter-word; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec141'),
-              ('Scaling', 3, None, '___sec142'),
+               '___sec143'),
+              ('Scaling', 3, None, '___sec144'),
               ('Dimensonless PDEs and the Reynolds number',
                3,
                None,
-               '___sec143'),
+               '___sec145'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec144'),
-              ('Shear stress as pressure scale', 2, None, '___sec145'),
-              ('Gravity force and the Froude number', 2, None, '___sec146'),
+               '___sec146'),
+              ('Shear stress as pressure scale', 2, None, '___sec147'),
+              ('Gravity force and the Froude number', 2, None, '___sec148'),
               ('Oscillating boundary conditions and the Strouhal number',
                2,
                None,
-               '___sec147'),
-              ('Cavitation and the Euler number', 2, None, '___sec148'),
+               '___sec149'),
+              ('Cavitation and the Euler number', 2, None, '___sec150'),
               ('Free surface conditions and the Weber number',
                2,
                None,
-               '___sec149'),
-              ('Thermal convection', 1, None, '___sec150'),
-              ('Forced convection', 2, None, '___sec151'),
+               '___sec151'),
+              ('Thermal convection', 1, None, '___sec152'),
+              ('Forced convection', 2, None, '___sec153'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec153'),
-              ('Heating by viscous effects', 3, None, '___sec154'),
+              ('Governing equations', 3, None, '___sec155'),
+              ('Heating by viscous effects', 3, None, '___sec156'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec155'),
+               '___sec157'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec156'),
-              ('The Boussinesq approximation', 3, None, '___sec157'),
-              ('Scaling', 3, None, '___sec158'),
+               '___sec158'),
+              ('The Boussinesq approximation', 3, None, '___sec159'),
+              ('Scaling', 3, None, '___sec160'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec159'),
-              ('Interpretations of the Grashof number', 3, None, '___sec160'),
+               '___sec161'),
+              ('Interpretations of the Grashof number', 3, None, '___sec162'),
               ('Heat transfer at boundaries and the Nusselt number',
                2,
                None,
-               '___sec161'),
+               '___sec163'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec163'),
-              ('The Euler equations of gas dynamics',
+              ('Two-phase porous media flow', 1, None, '___sec165'),
+              ('Compressible gas dynamics',
                1,
+               'scale:gasdyn',
+               'scale:gasdyn'),
+              ('The Euler equations of gas dynamics',
+               2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('Exercises', 1, None, '___sec165'),
+              ('The acoustic approximation and the Mach number',
+               2,
+               'scale:gas:acoustic',
+               'scale:gas:acoustic'),
+              ('Elimination of the pressure', 3, None, '___sec169'),
+              ('Basic scaling for small perturbations', 3, None, '___sec170'),
+              ('The time scale', 3, None, '___sec171'),
+              ('Linearization', 3, None, '___sec172'),
+              ('Exercises', 1, None, '___sec173'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -474,7 +491,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec179'),
+              ('Remarks', 3, None, '___sec187'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -491,7 +508,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec184'),
+              ('Remarks', 3, None, '___sec192'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -520,7 +537,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec192')]}
+              ('References', 1, None, '___sec200')]}
 end of tocinfo -->
 
 <body>
@@ -614,12 +631,6 @@ mostly occupied with in this book, are the SI units
 meter (m), kilogram (kg), and seconds (s), respectively.
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 1</b>: Geir, current measured in ampere is a base unit (charge is a derived unit). See <a href="http://physics.nist.gov/cuu/Units/units.html" target="_self"><tt>http://physics.nist.gov/cuu/Units/units.html</tt></a> or <a href="https://en.wikipedia.org/wiki/SI_base_unit" target="_self">wikipedia</a>.)</font>
-<!-- end inline comment -->
-
-<p>
 The dimension of length is written as [L], the dimension of mass is
 [M], the dimension of time is [T], and the dimension of temperature is
 \( [\Theta] \) (the dimensions of the other base units are omitted in
@@ -703,7 +714,7 @@ Some common physical quantities and their dimensions are listed next.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 2</b>: TODO: Check the tables.)</font>
+<font color="red">(<b>hpl 1</b>: TODO: Check the tables.)</font>
 <!-- end inline comment -->
 
 <p>
@@ -745,7 +756,64 @@ Units often have <a href="https://en.wikipedia.org/wiki/Metric_prefix" target="_
 For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or \( 10^9 \) Pa.
 
-<h2 id="___sec6">Absolute errors, relative errors, and units </h2>
+<h2 id="___sec6">The Buckingham Pi theorem </h2>
+
+<p>
+Almost all texts on scaling has a treatment of the famous Buckingham Pi
+theorem, which can be used to derive physical laws based on
+unit compatibility rather than the underlying physical mechanisms.
+This book has its focus on models where the physical mechanisms are
+already expressed through differential equations. Nevertheless, the Pi
+theorem has a remarkable position in the literature on scaling, and we
+will occasionally make references to it so the theorem is briefly
+discussed below.
+
+<p>
+The theorem itself is simply stated in two parts. First, if a problem
+involves \( n \) physical parameters in which \( m \) independent unit-types
+(such as length, mass etc.) appear, then the parameters can be
+combined to exactly \( n-m \) independent dimensionless numbers, referred
+to as Pi's. Secondly, any unit-free relation between the original \( n \)
+parameters can be transformed into a relation between the \( n-m \)
+dimensionless numbers.  Such relations may be identities or
+inequalities stating, for instance, whether or not a given effect is
+negligible. Moreover, the transformation an equation set into
+dimensionless form corresponds to expressing the coefficients, as well
+as the free and dependent variables, in terms of Pi's.
+
+<p>
+At first glance the Pi theorem may appear as bordering on the
+trivial. However, it may produce remarkable progress for selected
+problems, such as turbulent jets, nuclear blasts or similarity
+solutions, without the detailed knowledge of mathematical or physical
+models. Hence, to a novice in scaling it may stand out as something
+very profound, if not magical.  Anyhow, as one move on to more complex
+problems with many parameters the use of the theorem yields
+comparatively less gain as the number of Pi's become large and they
+may recombined in countless ways. It then requires either a good
+physical insight or information conveyed through an equation set to
+pick the useful dimensionless numbers or the appropriate scaling of
+the said equation set.  Sometimes the scrutiny of the equations also
+reveals that some of Pi's, obtained by applying the theorem, in fact
+may be removed from the problem.  As a consequence, in mathematical
+modeling of a complex physical problem the real assessment of scaling
+and dimensionless numbers will anyhow be an integral part of the
+analysis of the governing equations instead of a separate issue left
+with the Pi theorem. In textbooks and articles alike the discussion of
+scaling in the context of the equations are too often missing or
+presented in an half-hearted fashion. Hence, herein the focus will be
+on this process, while we do not provide much in the way of examples
+on the Pi theorem.  We do not allude that the Pi theorem is of little
+value.  In a number of contexts, such as in experiments, it may
+provide valuable and even crucial guidance, but in this particular
+textbook we seek to tell the complementary story on scaling.
+Moreover, as will be shown in this book, the dimensionless numbers in
+a problem also arise, in a very natural way, from scaling the
+differential equation(s).  Provided one has a model based on
+differential equation, there is actually no need for classical
+dimensional analysis.
+
+<h2 id="___sec7">Absolute errors, relative errors, and units </h2>
 
 <p>
 Mathematically, it does not matter what units we use for a physical
@@ -768,7 +836,7 @@ computations are of unit size (or at least moderate) instead of being very
 large or very small. The techniques of this appendix show how this
 can be done.
 
-<h2 id="___sec7">Units and computers </h2>
+<h2 id="___sec8">Units and computers </h2>
 
 <p>
 Traditional numerical computing involves numbers only and therefore
@@ -782,32 +850,91 @@ stated.
 <p>
 Symbolic computing packages, such as Mathematica and Maple, allow
 computations with quantities that have dimension. This is also possible
-in popular computer languages used for numerical computing (the section <a href="#scale:PQ">PhysicalQuantity: object for computing with units</a> provides a specific example in Python).
+in popular computer languages used for numerical computing (the section <a href="#scale:PQ">PhysicalQuantity: a tool for computing with units</a> provides a specific example in Python).
 
-<h2 id="___sec8">Unit systems </h2>
+<h2 id="___sec9">Unit systems </h2>
 
 <p>
 Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see <a href="._scaling-book-solarized010.html#sec:scale:exer:US2SI1">Exercise 1: Perform unit conversion</a> for how to safely convert to a standard
-unit like \( \hbox{kg\,m}^{-3} \)).  Although unit conversion tables
-are frequently met in school, errors in unit conversions
-between units probably rank highest among all errors committed by
-scientists and engineers (and when a unit conversion error make an
-<a href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html" target="_self">airplane's fuel run out</a>,
+unit like \( \hbox{kg\,m}^{-3} \)).  Although unit conversion tables are
+frequently met in school, errors in unit conversions between units
+probably rank highest among all errors committed by scientists and
+engineers (and when a unit conversion error make an <a href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html" target="_self">airplane's fuel
+run out</a>,
 it is serious!).  Having good software tools to assist in unit
-conversion is therefore paramount, and this topic is treated next.
-Readers who are primarily interested in the mathematical scaling
-technique may safely jump over the sections <a href="#scale:PQ">PhysicalQuantity: object for computing with units</a> and
-<a href="#scale:parampool">Parampool: user interfaces with automatic unit conversion</a> and continue with the section <a href="._scaling-book-solarized005.html#sec:scale:decay">Exponential decay problems</a>.
+conversion is therefore paramount, and this topic is treated in
+the sections <a href="#scale:PQ">PhysicalQuantity: a tool for computing with units</a> and <a href="#scale:parampool">Parampool: user interfaces with automatic unit conversion</a>.  Readers who are
+primarily interested in the mathematical scaling technique may safely
+jump over this material and continue with the section <a href="._scaling-book-solarized005.html#sec:scale:decay">Exponential decay problems</a>.
+
+<h2 id="___sec10">Example on challenges arising from unit systems </h2>
+
+<p>
+A slightly elaborated example on scaling in an actual
+science/engineering project may hopefully be useful for further
+motivation.  In its full extent, the study of <em>tsunamis</em> spans
+geophysics, geology, history, fluid dynamics, statistics, geodesy,
+engineering, and civil protection. This complexity reflects in a
+diversity of practices concerning the use of units, scales, and
+concepts. If we narrow the scope to the modeling of tsunami
+propagation, the scaling aspect, at least, may seem simple as we are
+mainly concerned with length and time.  Still, even here the
+non-uniformity concerning physical units is an encumbrance.
+
+<p>
+A minor issue is the occasional use of non-SI units such as inches, or
+in old charts, even fathoms.  More important is the non-uniformity in
+the magnitude of the different variables, and the differences in the
+inherent horizontal and vertical scales in particular.  Typically
+surface elevations are meters or smaller. For far-field deep water
+propagation as well as small tsunamis, which are still of scientific
+interest, surface elevations are often given in \( \hbox{cm} \) or even
+\( \hbox{mm} \).  In the deep ocean the characteristic depth is orders of
+magnitude larger than this, typically \( 5000\,\hbox{m} \). Propagation
+distances, on the other hand, are hundreds or thousands of
+kilometers. Often locations and computational grids are best described
+in geographical coordinates (longitude/latitude) which are related to
+SI units by 1 latitude minute being roughly one nautical mile
+(\( 1852\,\hbox{m} \)), and 1 longitude minute being this quantity times
+the cosine of the latitude. Wave periods of tsunamis are mostly from
+minutes to an hour, hopefully sufficiently short to be well separated
+from the half-daily period of the tides. Propagation times are
+typically hours or maybe the better part of a day when the Pacific
+Ocean is traversed.
+
+<p>
+The scientists, engineers, and bureaucrats in the tsunami community
+tend to be particular and non-conform concerning formats and units, as
+well as the type of data required.  To accommodate these demands, a
+tsunami modeler must produce a diversity of data which are in units
+and formats which cannot be used internally in her models.  On the
+other hand, she must also be prepared to accept the input data in
+diversified forms.  Some data sets may be large, implying that
+unnecessary duplication, with different units or scaling, should be
+avoided.  In addition, tsunami models are often bench-marked through
+comparison with experimental data. The lab scale is generally
+\( \hbox{cm} \) or \( \hbox{m} \), at most, which implies that measured data
+are provided in different units than real events, or even in volts,
+with conversion information, as obtained from the measuring gauges.
+
+<p>
+All the unit particulars in various file formats is clearly a nuisance
+and give rise to a number of misconceptions and errors that may cause
+loss of precious time or efforts. To reduce such problems, developers
+of computational tools should combine a reasonable flexibility
+concerning units in input and output with a clear and consistent
+convention for scaling within the tools. In fact, this is also goes
+for academic tools for in-house use.
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 3</b>: Geir, here goes an example on difficulties with data in and out of various components in a tsunami model.)</font>
+<font color="red">(<b>hpl 2</b>: Geir, can we say something how contents in this book can help? Use of scaled models in software, use of unit conversion tools for input.)</font>
 <!-- end inline comment -->
 
-<h2 id="scale:PQ">PhysicalQuantity: object for computing with units</h2>
+<h2 id="scale:PQ">PhysicalQuantity: a tool for computing with units</h2>
 
 <p>
 This book contains quite some computer code to illustrate how the theory
@@ -830,9 +957,31 @@ or a full textbook <a href="._scaling-book-solarized011.html#Langtangen_2012">[1
 Python code in the present book.
 
 <p>
+<div class="alert alert-block alert-warning alert-text-normal">
+<b>This book applies Python 2.7.</b>
+<p>
+Python exists in two incompatible versions, numbered 2 and 3.
+The differences can be made small, and there are tools to write
+code that runs under both versions.
+
+<p>
+As Python version 2 is still dominating
+in scientific computing, we stick to this version, but
+write code in version 2.7 that is as close as possible to version 3.4
+and later. In most of our programs, only the <code>print</code> statement differs
+between version 2 and 3.
+</div>
+
+
+<p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 4</b>: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?)</font>
+<font color="red">(<b>hpl 3</b>: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?)</font>
+<!-- end inline comment -->
+
+
+<!-- begin inline comment -->
+<font color="red">(<b>Geir 4</b>: hpl, no this will do.)</font>
 <!-- end inline comment -->
 
 <p>
@@ -947,7 +1096,7 @@ various type of user interfaces: command-line arguments (option-value
 pairs), text files, and interactive web pages. All of these
 are described next.
 
-<h3 id="___sec11">Example application </h3>
+<h3 id="___sec13">Example application </h3>
 
 <p>
 As case, we want to make software for computing with the simple
@@ -955,7 +1104,7 @@ formula \( s=v_0t + \frac{1}{2}at^2 \). We want \( v_0 \) to be a velocity
 with unit m/s, \( a \) to acceleration with unit \( \hbox{m/s}^2 \), \( t \) to be
 time measured in s, and consequently \( s \) is a distance measured in m.
 
-<h2 id="___sec12">Pool of parameters </h2>
+<h2 id="___sec14">Pool of parameters </h2>
 
 <p>
 First, Parampool requires us to define a <em>pool</em> of all input
@@ -1002,7 +1151,7 @@ the <code>str2type</code> property, e.g., <code>str2type=float</code>.)
 </div>
 
 
-<h2 id="___sec13">Fetching pool data for computing </h2>
+<h2 id="___sec15">Fetching pool data for computing </h2>
 
 <p>
 We can make a little function for fetching values from the pool
@@ -1025,7 +1174,7 @@ For example, if the user provides the command-line argument
 <code>--time '2 h'</code>, Parampool will convert this quantity to seconds and
 <code>pool.get_value('time')</code> will return 7200.
 
-<h2 id="___sec14">Reading command-line options </h2>
+<h2 id="___sec16">Reading command-line options </h2>
 
 <p>
 To run the computations, we define the pool, load values from the
@@ -1091,7 +1240,7 @@ print 's=%g' % s, s_unit
 <!-- end verbatim block -->
 and get output with the right unit as well.
 
-<h2 id="___sec15">Setting default values in a file </h2>
+<h2 id="___sec17">Setting default values in a file </h2>
 
 <p>
 In large applications with lots of input parameters one will often like
@@ -1148,7 +1297,7 @@ s=10972.8 m
 The resulting calculations are \( s=1.524\cdot 7200 + 0 =10972.8 \).
 You are encouraged to play around with the <a href="http://tinyurl.com/o8pb3yy/distance.py" target="_self"><tt>distance.py</tt></a> program.
 
-<h2 id="___sec16">Specifying multiple values of input parameters </h2>
+<h2 id="___sec18">Specifying multiple values of input parameters </h2>
 
 <p>
 Parampool has an interesting feature: multiple values can be assigned
@@ -1230,7 +1379,7 @@ Notice that some of the multiple values have dimensions different
 from the registered dimension for that parameter, and the table
 shows that conversion to the right dimension has taken place.
 
-<h2 id="___sec17">Generating a graphical user interface </h2>
+<h2 id="___sec19">Generating a graphical user interface </h2>
 
 <p>
 For the fun of it, we can easily generate a graphical user interface

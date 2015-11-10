@@ -83,16 +83,7 @@ The forthcoming text has the following goals.
    Books covering scaling and non-dimensionalization very often cover
    topics not treated in the present book. One key topic is
    dimensional analysis and the famous Buckingham Pi Theorem
-   [Ref04]_ [Ref05]_, which
-   can be used to derive the dimensionless numbers in a given problem
-   without the need for a detailed model with differential equations.
-   This is a strong statement of great
-   practical significance, especially when doing physical experiments.
-   However, as will be shown in this book, the dimensionless numbers in
-   a problem also arise, in a very natural way,
-   from scaling the differential equation(s).
-   Provided one has a model based on differential equation, there is
-   actually no need for classical dimensional analysis.
+   [Ref04]_ [Ref05]_.
    
    Other classical topics closely related to scaling and non-dimensionalization
    are analytical solution methods like perturbation techniques and
@@ -1305,8 +1296,13 @@ oscillations in :math:`T_s` and the e-folding time :math:`e=1/k`. Then :math:`\b
 The original problem features five physical parameters: :math:`k`, :math:`T_0`,
 :math:`T_m`, :math:`a`, and :math:`\omega`, but only two dimensionless numbers appear in the
 scaled model :ref:`(24) <Eq:scale:decay:cooling:model:scaled>`.
-
+In fact, this is an example where application of the Pi theorem falls
+short. Since, only time and temperature are involved as unit types, the
+theorem predicts that the five parameters yields three dimensionless numbers,
+not two. The equations, on the other hand, shows us that the two parameters
+:math:`T_m` and :math:`T_0` affect the nature of the problem only through their difference.
 [**hpl 5**: Geir, write about the Pi theorem here - it gives three parameters and a suboptimal solution compared to the scaling of the ODE directly.]
+[**Geir 6**: hpl, actually I wrote a little longer text on the PI theorem. This is better suited elsewhere.]
 
 Software          (3)
 ~~~~~~~~~~~~~~~~~~~~~
@@ -1600,8 +1596,8 @@ from the disease can be shown to be :math:`\nu^{-1}`, but :math:`\beta` is much 
 to estimate, so working with a scaled model where :math:`\beta` is "scaled away"
 is advantageous.
 
-[**hpl 6**: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that "here are the ODEs" and if understanding of the "physics" is necessary, the reader must have the necessary background. Maybe state this in the preface?]
-
+[**hpl 7**: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that "here are the ODEs" and if understanding of the "physics" is necessary, the reader must have the necessary background. Maybe state this in the preface?]
+[**Geir 8**: I will look at the example again. I guess we need to be pragmatic concerning background and explanations.]
 Scaling          (4)
 ~~~~~~~~~~~~~~~~~~~~
 
