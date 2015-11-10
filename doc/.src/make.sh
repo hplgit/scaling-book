@@ -79,7 +79,7 @@ system pdflatex $name
 # With solutions, password protected
 compile --device=screen
 newname=${topicname}-book-4screen-sol
-password="d!e!cay"
+password="s!c!ale"
 pdftk $name.pdf output $newname.pdf owner_pw foo user_pw $password
 
 compile --device=screen --without_solutions --without_answers

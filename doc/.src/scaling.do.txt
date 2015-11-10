@@ -704,6 +704,7 @@ craft of scaling in detail, we shall just work in standard SI units
 and avoid unit conversion so there will be no more use of
 `PhysicalQuantity` and Parampool.
 
+
 !split
 ========= ODE models =========
 
@@ -3578,6 +3579,1129 @@ which is basically the same as we derived for mechanical vibrations.
 (Two additional dimensionless variables will arise from the initial
 conditions for $I$, just as in the mechanics cases.)
 
+======= Exercises =======
+
+===== Exercise: Perform unit conversion =====
+label{sec:scale:exer:US2SI1}
+file=density_conversion
+
+Density (mass per volume: $[\hbox{ML}^{-3}]$) of water is
+given as 1.05 ounce per fluid ounce. Use the `PhysicalQuantity` object
+to convert to $\hbox{kg\,m}^{-3}$.
+
+!bsol
+Use `pydoc PhysicalQuantities` to find that `floz` is the name of
+the volume ``fluid ounce'' and `oz` is the name of the mass ``ounce''.
+Here is an interactive session for the conversion:
+
+!bc pyshell
+>>> from PhysicalQuantities import PhysicalQuantity as PQ
+>>> d = PQ('1.05 oz/floz')
+>>> d.convertToUnit('kg/m**3')
+>>> print d
+1006.54198946 kg/m**3
+!ec
+!esol
+
+===== Problem: Scale a simple formula =====
+label{sec:scale:exer:ball_y}
+file=scaled_vertical_motion
+
+The height $y$ of a body thrown up in the air is given by
+
+!bt
+\[ y = v_0t - \frac{1}{2}gt^2,\]
+!et
+where $t$ is time, $v_0$ is the initial velocity of the body at $t=0$,
+and $g$ is the acceleration of gravity. Scale this formula. Use
+two choices of the characteristic time: the time it takes to reach the
+maximum $y$ value and the time it takes to return to $y=0$.
+
+!bsol
+We introduce
+
+!bt
+\[ \bar y =\frac{y}{y_c},\quad \bar t = \frac{t}{t_c}\tp\]
+!et
+Inserted in the formula we get
+
+!bt
+\[ y_c\bar y = v_0t_c\bar t - \frac{1}{2}gt_c^2\bar t^2\tp\]
+!et
+
+1. At the maximum point of $y$, $y'=0$, so $y'=v_0 - gt=0$, which means
+$t=v_0/g$ and $y_{\max}=v_0v0/g - \frac{1}{2}gv_0^2/g^2 = \frac{1}{2}v_0^2/g$.
+We choose $t_c=v_0/g$ and $y_c=\frac{1}{2}v_0^2/g$.
+This gives
+
+!bt
+\[ \frac{1}{2}\frac{v_0^2}{g}\bar y = \frac{v_0^2}{g}\bar t -
+\frac{1}{2}\frac{v_0^2}{g}\bar t^2\quad\Rightarrow\quad
+\bar y = 2\bar t - \bar t^2\tp\]
+!et
+
+2. The body is back at $y=0$ for $v_0t - \frac{1}{2}gt^2=0$, which gives
+$t_c=2v_0/g$ and $y_c=2y_{\max}=v_0^2/g$. Inserted, we get
+
+!bt
+\[ \frac{v_0^2}{g}\bar y = 2\frac{v_0^2}{g}\bar t -
+\frac{1}{2}4\frac{v_0^2}{g}\bar t^2\quad\Rightarrow\quad
+\bar y = 2\bar t(1 - \bar t)\tp\]
+!et
+Observe that the physical parameters $v_0$ and $g$ are absent in the
+scaled formula.
+!esol
+
+===== Exercise: Perform alternative scalings =====
+label{sec:scale:exer:decay:cooling:osc}
+
+The problem in Section ref{scale:decay:cooling:osc} applies a
+temperature scaling
+
+!bt
+\[ \bar T = \frac{T-T_0}{T_m-T_0},\]
+!et
+which is not always suitable.
+
+!bsubex
+Consider the case $T_0=T_m$ and the fact that $|T_m-T_0|$ does not
+represent the characteristic temperature scale since it
+collapses to zero. Formulate a suitable
+scaling in this case. The figure below corresponds to $T_m=25$ C,
+$T_0=24.9$ C, and $a=2.5$ C. We clearly see that $\bar T$ is
+not of size unity.
+
+FIGURE: [fig-scaling/osc_cooling_wrong_scale, width=500 frac=0.8]
+
+!bsol
+The typical temperature variations will now be oscillations of amplitude
+$a$ around $T_m=T_0$, so $2a$ is the typical variation of the
+surrounding temperature. If the time scale of $T_s$ is sufficiently
+large (or more precisely, $\beta$ is small),
+the temperature will actually reach amplitudes of size $a$,
+but for fast oscillations in $T_s$, there will not be enough time to
+transfer heat to/from the body, so the amplitudes of $T$ will be
+smaller. Taking $2a$ to be the typical temperature range, we can propose
+the scaling
+
+!bt
+\[ \bar T = \frac{T-T_m}{2a}\tp\]
+!et
+Inserted in the differential equation, we get with $t_c=1/k$,
+
+!bt
+\[ k2a\frac{\bar T}{d\bar t} = -k(2a\bar T + T_m - (T_m + a\sin(\omega t))),\]
+!et
+which simplifies to
+
+!bt
+\[ \frac{\bar T}{d\bar t} = -(\bar T - \frac{1}{2}\sin(\beta t)),\]
+!et
+where $\beta = \omega/k$.
+The initial condition becomes
+
+!bt
+\[ \bar T(0) = -\half\alpha,\]
+!et
+where $\alpha = a/(T_m-T_0)$ is the dimensionless number that appeared
+in the scaled differential equation in Section ref{scale:decay:cooling:osc}.
+!esol
+!esubex
+
+!bsubex
+Consider the case where $a$ is much larger than $|T_m-T_0|$.
+What is an appropriate scaling of the temperature?
+
+!bsol
+In this case, $T$ will oscillate around $T_m$ and at maximum reach the
+amplitude $a$ if $\beta$ is small, see the figure in a).
+This is the same situation as in a),
+and we can consequently use the same scaling and obtain the same
+scaled problem.
+!esol
+!esubex
+
+===== Problem: Scale a nonlinear ODE =====
+label{sec:scale:exer:ball_y_wdrag}
+file=scaled_vertical_motion_with_drag
+
+The velocity $v(t)$
+of a body moving vertically through a fluid in the gravity field,
+with fluid drag and buoyancy, is governed by ODE
+
+!bt
+\[ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,\]
+!et
+where $t$ is time, $m$ is the mass of the body, $C_D$ is a drag coefficient,
+$\varrho$ is the density of the fluid, $A$ is the cross-sectional area
+perpendicular to the motion, $g$ is the acceleration of gravity,
+and $V$ is the volume of the body. Scale this ODE.
+
+!bsol
+We introduce as usual
+
+!bt
+\[ \bar v = \frac{v}{v_c},\quad \bar t = \frac{t}{t_c},\]
+!et
+but the main challenge is to find values for $v_c$ and $t_c$.
+Inserting the scaled quantities gives
+
+!bt
+\[ m\frac{v_c}{t_c}\frac{d\bar v}{d\bar t} =
+-\frac{1}{2}C_D\varrho A v_c^2 |\bar v|\bar v
+- mg + \varrho V g,\quad v_c v(0)=v_0,\]
+!et
+It is tempting to set $v_c=v_0$, but $v_0=0$ is a relevant value so
+this choice is not good. The motion is of decay type so $t_c$ and $v_c$
+should be based on characteristics of the decay. The terminal velocity,
+defined by $v'=0$, is
+
+!bt
+\[  v_T =  \sqrt{\frac{2(\varrho V - m)g}{C_D\varrho A}},\]
+!et
+when $\varrho V >m$ such that the buoyancy wins over gravity and
+the motion is upwards. Otherwise,
+
+!bt
+\[  v_T =  -\sqrt{\frac{2(m-\varrho V)g}{C_D\varrho A}}\tp\]
+!et
+The two formulas can be combined to
+
+!bt
+\[  v_T =  \mbox{sign}(\varrho V - m)\sqrt{\frac{2|\varrho V -m|g}{C_D\varrho A}}\tp\]
+!et
+
+We take $v_c = |v_T| = \sqrt{\frac{2|\varrho V - m|g}{C_D\varrho A}}$.
+This results in
+
+!bt
+\[
+\frac{d\bar v}{d\bar t} =
+-t_c\frac{1}{2m}C_D \varrho A \sqrt{\frac{2|\varrho V - m|g}{C_D\varrho A}}
+|\bar v|\bar v
+- t_c\sqrt{\frac{C_D\varrho g A}{2|\varrho V - m|}}(1- \frac{\varrho V}{m}),
+\]
+!et
+and
+!bt
+\[ v(0)=v_0
+\sqrt{\frac{C_D\varrho A}{2g|\varrho V - m|}}\tp\]
+!et
+
+A natural choice is to assume $d\bar v/d\bar t$ and $\bar v$ to
+be of the same order, which means that coefficient in front of the
+nonlinear term $|\bar v|\bar v$ should be unity. This forces $t_c$ to be
+
+!bt
+\[ t_c = \frac{2m}{\sqrt{2g|\varrho V - m|C_D\varrho A}}\tp\]
+!et
+Introducing the dimensionless numbers
+
+!bt
+\[ \alpha = \frac{\varrho V}{m}, \quad \beta = v_0\sqrt{\frac{C_D\varrho A}{2g|\varrho V - m|}} = \frac{v_0}{|v_T|},\]
+!et
+we get the scaled ODE problem
+
+!bt
+\[
+\frac{d\bar v}{d\bar t} =
+- |\bar v|\bar v + \mbox{sign}(1-\alpha),\quad
+\bar v(0)=\beta\tp
+\]
+!et
+Note that, as usual, the dimensionless numbers have simple
+interpretations:
+$\alpha$ is the ratio of the mass of the displaced fluid and
+the mass of the body, while $\beta$ is the ratio of the initial and
+terminal velocities.
+!esol
+
+===== Exercise: Implement a scaled model with jump =====
+label{sec:scale:exer:decay:jump}
+file=decay_jump
+
+Make software for the problem in Section ref{sec:scale:decay:jump}
+so that you can produce Figure ref{sec:scale:decay:jump:fig}.
+
+!bhint
+Follow the ideas for software in Section ref{sec:scale:decay:body}: use the
+"`decay_vc.py`": "${src_scaling}/decay_vc.py" module as computational
+engine and modify the
+"`falling_body.py`": "${src_scaling}/falling_body.py" code.
+!ehint
+
+===== Exercise: Implement a scaled model for cooling =====
+label{sec:scale:exer:decay:cooling}
+file=decay_cooling1
+
+Make software for the unscaled problem (ref{scale:decay:cooling:model})
+where $T_s$ can be a function of time.
+Use this implementation to compute the solution of the
+scaled problem (ref{scale:decay:cooling:model:scaled}).
+
+!bhint
+You may use the general software "`decay_vc.py`": "${src_scaling}/decay_vc.py"
+for computing with the cooling model.
+See Section ref{sec:scale:decay:body} for more ideas.
+!ehint
+
+===== Problem: Scale variable coefficients =====
+label{scale:decay:exer:decay:step}
+file=decay_varcoeff
+
+The goal of this exercise is to scale the problem
+$u^{\prime}(t) = -a(t)u(t) + b(t)$, $u(0)=I$, when
+
+!bt
+\[
+a(t) =\left\lbrace\begin{array}{ll}
+Q, & t < s,\\
+Q - A, & t\geq s,\end{array}\right.
+\quad b = \left\lbrace\begin{array}{ll}
+\gamma t, & t < s,\\
+0, & t\geq s,\end{array}\right.
+\]
+!et
+Here, $Q,A,\gamma >0$.
+
+===== Exercise: Alternative scalings of a cooling model =====
+label{scale:decay:exer:cooling:Ts}
+file=decay_cooling2
+
+Scale the model (ref{scale:decay:cooling:model}), with $T_s$
+given as in (ref{scale:decay:cooling:Tst}), using two alternative
+scalings of $T$: (ref{scale:decay:cooling:Tbar2}) and
+the simpler $\bar T = T/T_0$. Does the type of scaling impact how
+many dimensionless parameters we end up with?
+
+===== Exercise: Alternative scalings of a cooling model =====
+label{scale:decay:exer:nonlin:logistic2}
+file=growth
+
+Implement the scaled model (ref{sec:scale:decay:nonlinear:model1:scaled})
+and produce a plot with curves corresponding to various values of
+$\alpha$ and $p$ to summarize how $\bar u(\bar t)$ look like.
+
+!bhint
+A centered Crank-Nicolson-style
+scheme for (ref{sec:scale:decay:nonlinear:model1:scaled})
+can use an old time value for the nonlinear coefficient:
+
+!bt
+\[ \frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
+(1 - \alpha\bar u^n)^p\frac{1}{2}(\bar u^n + \bar u^{n+1})\tp\]
+!et
+!ehint
+
+===== Exercise: Scale projectile motion =====
+label{scale:vib:exer:projectile}
+file=projectile
+
+## http://www.physics.arizona.edu/~dpsaltis/Phys205_f06/projectile.pdf
+
+We have the following mathematical model for the motion of a projectile
+in two dimensions:
+
+!bt
+\[ m\ddot\x + \frac{1}{2}C_D\varrho A|\dot\x|\dot\x
+= -mg\jj,\quad \x(0)=\bm{0},\ \dot\x(0)=v_0\cos\theta\ii +
+v_0\sin\theta\jj\tp\]
+!et
+Here, $m$ is the mass of the projectile, $\x=x\ii + y\jj$ is
+the position vector of the projectile, $\ii$ and $\jj$
+are unit vectors along the $x$ and $y$ axes, respectively,
+$\ddot\x$ and $\dot\x$ is the second- and first-order
+time derivative of $\x(t)$, $C_D$ is a drag coefficient
+depending on the shape of the projectile (can be taken as 0.4 for a sphere),
+$\varrho$ is the density of the air, $A$ is the cross section area
+(can be taken as $\pi R^2$ for a sphere of radius $R$), $g$ is gravity,
+$v_0$ is the initial velocity of the projectile in a direction that makes
+the angle $\theta$ with the ground.
+
+!bsubex
+Neglect the air resistance term proportional to $\dot\x$ and solve
+analytically for $\x(t)$.
+
+!bsol
+The vector differential equation reduces to the two component equations
+
+!bt
+\[ m\ddot x(t) = 0,\quad m\ddot y(t) = -mg\tp\]
+!et
+Integrating twice yields
+
+!bt
+\[ x(t) = C_1t + C_2,\quad y(t) = -\frac{1}{2}gt^2 + C_3t + C_4\tp\]
+!et
+The condition $\x(0)=\bm{0}$ forces $C_2=C_4=0$. The condition on
+the derivative gives $C_1=v_0\cos\theta$ and $C_3=v_0\sin\theta$.
+The result is therefore
+
+!bt
+\[ \x(t) = v_0\cos(\theta) t\ii + (v_0\sin(\theta) t - \frac{1}{2}gt^2)\jj\tp\]
+!et
+!esol
+!esubex
+
+!bsubex
+Make the model for projectile motion with air resistance non-dimensional.
+Use the maximum height from the simplification in a) as length scale.
+
+!bsol
+We introduce dimensionless quantities:
+
+!bt
+\[ \bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad\bar t = \frac{t}{t_c},\]
+!et
+where the scales $L$ and $t_c$ must be determined. Inserted in the original
+equation:
+
+!bt
+\[ \frac{mL}{t_c^2}\frac{d^2\bar\x}{d\bar t^2} +
+\frac{1}{2} C_D\varrho A\frac{L^2}{t_c^2}\left\vert\frac{d\bar\x}{d\bar t}
+\right\vert = -mg\jj\tp\]
+!et
+Dividing by $mL/t_c^2$ gives
+
+!bt
+\[ \frac{d^2\bar\x}{d\bar t^2} +
+\frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
+\right\vert = -\frac{gt_c^2}{L}\jj\tp\]
+!et
+
+The maximum height $y_{\max}$ occurs when $\dot y = 0$:
+
+!bt
+\[ \dot y = v_0\sin\theta - gt = 0\quad\Rightarrow\quad
+t = g^{-1}v_0\sin\theta\tp\]
+!et
+The corresponding value is
+
+!bt
+\[ y_{\max}=g^{-1}v_0^2\sin^2\theta - \frac{1}{2}g^{-1}v_0^2\sin^2\theta =
+\frac{1}{2}g^{-1}v_0^2\sin^2\theta\tp\]
+!et
+We can take $L=y_{\max}$ and let $t_c$ be the corresponding $t$ value:
+$t_c=g^{-1}v_0\sin\theta$. Inserted in the scaled problem:
+
+!bt
+\[ \frac{d^2\bar\x}{d\bar t^2} +
+\frac{1}{2} C_D\varrho A\frac{v_0^2\sin^2\theta}{2mg}
+\left\vert\frac{d\bar\x}{d\bar t}
+\right\vert = -\jj\tp\]
+!et
+We can identify a dimensionless parameter
+
+!bt
+\[ \alpha = \frac{1}{4} m^{-1}g^{-1} C_D\varrho A v_0^2\sin^2\theta,\]
+!et
+and write the scaled equation as
+
+!bt
+\[ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
+\right\vert = -\jj,\]
+!et
+with initial conditions
+
+!bt
+\[ \bar\x(0)=\bm{0},\quad \frac{d\bar x}{d\bar t}(0) =
+\frac{t_c}{L}(v_0\cos\theta\ii + v_0\sin\theta\jj) =
+2\cot\theta\ii + 2\jj\tp\]
+!et
+
+[hpl: Check that $\alpha$ is dimensionless. Easy: $\varrho$
+goes like $m/L^3$, $A$ cancels $L^2$, $v_0^2$ cancels the
+remaining dimensions... seems to be correct...]
+[hpl: Need to check the final problem. Solve scaled problem without drag.]
+!esol
+!esubex
+
+!bsubex
+Make the model dimensionless again, but this time by demanding that
+the scaled initial velocity is unity in $x$ direction.
+
+!bsol
+The scaled initial velocity condition is
+
+!bt
+\[ \bar x(0) = \frac{t_c}{L}v_0\cos\theta\tp\]
+!et
+Demanding the scaled velocity to be unity gives
+
+!bt
+\[ L = t_cv_0\cos\theta\tp\]
+!et
+The scaled initial velocity in $y$ direction becomes
+
+!bt
+\[ \bar y(0) = \tan\theta\tp\]
+!et
+The scaled ODE becomes
+
+!bt
+\[ \frac{d^2\bar\x}{d\bar t^2} +
+\frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
+\right\vert = -\frac{g t_c}{v_0\cos\theta}\jj\tp\]
+!et
+We can choose $t_c$ such that the source term is unity:
+
+!bt
+\[ t_c = g^{-1}v_0\cos\theta,\]
+!et
+which makes
+
+!bt
+\[ L = t_cv_0\cos\theta = g^{-1}v_0^2\cos^2\theta\tp\]
+!et
+The coefficient in the drag term becomes
+
+!bt
+\[ \alpha = \frac{1}{2}m^{-1}g^{-1}C_D\varrho A v_0^2\cos^2\theta\tp\]
+!et
+!esol
+!esubex
+
+!bsubex
+A soccer ball has diameter $R=11$ cm and mass 0.43 kg, the density of air
+is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 10 km/h,
+while a hard kick may have 120 km/h. Estimate the dimensionless parameter
+in the scaled problem for a soft and a hard kick with
+$\theta$ corresponding to 30 degrees. Solve the scaled
+differential equation for these values and plot the trajectory ($y$ versus
+$x$) for the two cases.
+
+!bsol
+We need to express $R$, $v_0$, and $\theta$ in standard SI units:
+$R=0.11$ m, $\theta = 30\cdot pi/180 \approx 0.52$,
+$v_0 = 10/3.6 \approx 2.8$ m/s for a soft kick, and
+$v_0=120/3.6\approx 33.33$ m/s for a hard kick.
+Using $\alpha$ from b), we ...
+
+[hpl: Need to fill in more after $\alpha$ is checked - and solve the
+ODE with Odespy.]
+!esol
+!esubex
+
+===== Problem: Scale a predator-prey model =====
+label{scale:decay:exer:predpray}
+file=predator_prey
+
+idx{Lotka-Volterra, predator-prey model}
+
+The evolution of animal populations with a predator and a prey (e.g.,
+lynx and hares, or foxes and rabbits) can be described by the
+Lotka-Volterra ODE system
+
+!bt
+\begin{align}
+H^{\prime} &= H(a - bL),
+label{scale:decay:exer:predprey:eqH}\\
+L^{\prime} &= L(dH - c),
+label{scale:decay:exer:predprey:eqL}\\
+H(0)&=H_0,\\
+L(0)&=L_0\tp
+\end{align}
+!et
+Here, $H$ is the number of animals of the prey (say hares)
+and $L$ is the corresponding measure of the predator population (say lynx).
+There are six parameters: $a$, $b$, $c$, $d$, $H_0$, and $L_0$.
+
+The terms has the following meanings:
+
+ * $aH$ is the exponential
+   population growth of $H$ due to births and deaths and is governed by
+   the access to nutrition,
+ * $-bHL$ is the loss of preys because they are eaten by predators,
+ * $dHL$ is the increase of preys because they eat predators (but only
+   a fraction of the eaten preys, $bHL$, contribute to population growth
+   of the predator and therefore $d < b$),
+ * $-cL$ is the exponential decay in the predator population because of
+   deaths (the increase is modeled by $dHL$).
+
+Dimensionless independent and dependent variables are introduced as usual
+by
+
+!bt
+\[ \bar t = \frac{t}{t_c},\quad
+\bar H = \frac{H}{H_c},\quad \bar L = \frac{L}{L_c},
+\]
+!et
+where $t_c$, $H_c$, and $L_c$ are scales to be determined. Inserted
+in the ODE problem we arrive at
+
+!bt
+\begin{align}
+\frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
+label{scale:decay:exer:predprey:eqH:s}\\
+\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
+label{scale:decay:exer:predprey:eqL:s}\\
+H_c\bar H(0) &= H_0,
+label{scale:decay:exer:predprey:eqH0:s}\\
+L_c\bar H(0) &= L_0\tp
+label{scale:decay:exer:predprey:eqL0:s}
+\end{align}
+!et
+
+!bsubex
+Consider first a simple, intuitive scaling of $H$ and $L$ based on
+initial conditions $H_c=H_0$
+and $L_c=H_c$. This means that $\bar H$ starts out at unity and $\bar L$
+starts out as the fraction $L_0/H_0$. Find a time scale and identify
+dimensionless parameters in the scaled ODE problem.
+
+!bsol
+With $H_c=L_c=H_0$ in
+(ref{scale:decay:exer:predprey:eqH:s})-(ref{scale:decay:exer:predprey:eqL0:s})
+we get
+
+!bt
+\begin{align*}
+\frac{d\bar H}{d\bar t} &= \frac{a}{bH_0}\bar H  - \bar L\bar H,
+\\
+\frac{d\bar L}{d\bar t} &= \frac{d}{b}\bar L \bar H - \frac{c}{bH_0}\bar L),
+\\
+\bar H(0) &= 1,\\
+\bar L(0) &=\frac{L_0}{H_0}\tp
+\end{align*}
+!et
+With the dimensionless parameters
+
+!bt
+\[ \alpha = \frac{a}{bH_0},\quad\beta = \frac{d}{b},\quad\gamma =
+\frac{c}{bH_0},\quad \delta = \frac{H_0}{L_0},\]
+!et
+we can write the dimensionless problem as
+
+!bt
+\begin{align*}
+\frac{d\bar H}{d\bar t} &= \alpha\bar H  - \bar L\bar H,\\
+\frac{d\bar L}{d\bar t} &= \beta\bar L \bar H - \gamma\bar L),\\
+\bar H(0) &= 1,\\
+\bar L(0) &= \delta \tp
+\end{align*}
+!et
+
+The quantity $bH_0$ is the number of eaten preys per predator.
+Then $\alpha$ measures the ratio of natural population growth of
+the prey, due to nutrition, and the number of eaten preys per predator.
+The $\beta$ parameter measures the fraction of the eaten preys and
+the amount of this that actually
+leads to population growth of the predator.
+The number $\gamma$ reflects the ratio of
+predator deaths and the eaten preys per predator, and $\delta$ is
+the initial fraction of preys and predators.
+!esol
+!esubex
+
+!bsubex
+Try a different scaling where the aim is to adjust the scales such that
+the ODEs become as simple as possible, i.e, have as few dimensionless
+parameters as possible. Compare with the scaling in a).
+
+!bsol
+Dividing by $H_c$ and $L_c$ in
+(ref{scale:decay:exer:predprey:eqH:s}) and
+(ref{scale:decay:exer:predprey:eqL0:s}),
+respectively,
+and multiply by $t_c$:
+
+!bt
+\begin{align*}
+\frac{d\bar H}{d\bar t} &= t_c\bar H(a - bL_c\bar L),\\
+\frac{d\bar L}{d\bar t} &= t_c\bar L(dH_c\bar H - c)\tp
+\end{align*}
+!et
+Choosing $t_c=1/a$ and $t_c aL_c=1$, i.e., $L_c=a/b$, makes the
+first equation free of parameters: $\bar H^{\prime}=\bar H(1-\bar L)$.
+Factoring out $c$ in the equation for $L$ and choosing
+$H_c d/c=1$, i.e., $H_c=c/d$, leaves us with the $L$ equation
+as $\bar L^{\prime}=(c/a)\bar L(\bar H-1)$. The ratio $c/a$ is
+now called $\mu$ and equals
+$\gamma/\alpha$ from a).
+
+The initial conditions lead to $\bar H(0) = H_0/H_c=H_0d/c =\beta/\gamma = \nu$,
+and $\bar L(0)=L_0/L_c = L_0b/a = \delta/\alpha = \omega$.
+
+The dimensionless problem is now
+
+!bt
+\begin{align}
+\frac{d\bar H}{d\bar t} &= \bar H(1 - \bar L),\\
+\frac{d\bar L}{d\bar t} &= \mu \bar L(\bar H - 1) = \gamma\alpha^{-1} \bar L(\bar H - 1),\\
+\bar H(0) &= \nu = \beta/\gamma,\\
+\bar L(0) &= \omega = \delta/\alpha,
+\end{align}
+!et
+with
+
+!bt
+\[ \mu = \frac{c}{a},\quad \nu = H_0\frac{d}{c},\quad \omega = L_0\frac{b}{a}
+\tp\]
+!et
+The unknowns $\bar H$ and $\bar L$ now has less intuitive scalings,
+
+!bt
+\[ \bar H = \frac{Hd}{c},\quad \bar L = \frac{Lb}{a},\]
+!et
+while time is measured in the units based on the exponential growth
+due to births and deaths of preys ($a$). The number of dimensionless parameters
+is one less since we have one more scale (for $L_c$) at our
+disposal. Simplicity in one initial conditions in a) is
+exchanged with more simplicity in the ODEs, which now have
+only one dimensionless parameter.
+
+Note that $\nu$ and $\omega$ must be
+different from unity to avoid $\bar H\neq 0$ and $\bar L\neq 0$ because
+of the factors $1-L$ and $H-1$ in the equations that can make
+$\bar H^{\prime}=0$ and $\bar L^{\prime}=0$.
+!esol
+!esubex
+
+!bsubex
+A more mathematical approach to determining suitable scales for $H$ and $L$
+consists in finding the stationary points $(H,L)$ of the ODE system,
+where $H^{\prime}=L^{\prime}=0$, and use such points as characteristic
+sizes of the dependent variables. Show that $H^{\prime}=L^{\prime}=0$
+implies $H=L=0$ or $L=a/b$ and $H=c/d$. Use $H_c=a/b$, $L_c=c/d$,
+and find a time scale. Compare with the result in b).
+
+!bsol
+Setting $H^{\prime}=L^{\prime}=0$ leads to
+
+!bt
+\[ H(a-bL)=0,\quad L(dH-c)=0,\]
+!et
+from which we see that the factors must vanish: $H=L=0$,
+$L=a/b$, and $H=c/d$. With Use $H_c=a/b$, $L_c=c/d$, and $t_c=1/a$
+we get the same scaling as in b), but with a different motivation.
+!esol
+!esubex
+
+===== Problem: Scale a model for competing species =====
+label{scale:decay:exer:competing_species}
+file=competing_species
+
+idx{Lotka-Volterra, competing species model}
+
+Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
+competing species. A generalized Lotka-Volterra model
+is based on a logistic growth of each specie and a predator-prey like
+interaction (cf.~Problem ref{scale:decay:exer:predprey}):
+
+!bt
+\begin{align}
+\frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\
+\frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
+\end{align}
+!et
+where $r_1$, $r_2$, $M_1$, $M_2$, $s_{12}$, and $s_{21}$ are given constants.
+The initial conditions specify $N_1$ and $N_2$ at $t=0$.
+Find suitable scales and derive a dimensionless ODE problem.
+
+!bsol
+As always, we can introduce dimensionless variables,
+We use ideas from scaling of ODEs for logistic growth, i.e., we use
+the carrying capacities $M_1$ and $M_2$ as characteristic (maximum)
+values of $N_1$ and $N_2$, respectively. Time can be scaled from
+the initial exponential growth of $N_1$ or $N_2$, i.e., $t_c=1/r_1$
+or $t_c=1/r_2$. We choose the former here. Introducing
+
+!bt
+\[ \bar t = r_1 t,\quad u_1 = \frac{N_1}{M_1},\quad u_2 = \frac{N_2}{M_2},\]
+!et
+in the ODE system, leads to
+
+!bt
+\begin{align*}
+\frac{du_1}{d\bar t} &= u_1\left(1 - u_1 - b_{21}\beta\gamma\right),\\
+\frac{du_2}{d\bar t} &= \alpha u_2\left(1 - u_2 - b_{12}\beta^{-1}\gamma^{-1}\right),\\
+\end{align*}
+!et
+where the dimensionless numbers are given by
+
+!bt
+\[ \alpha = \frac{r_2}{r_1},\quad \beta=\frac{M_2}{M_1},
+\quad \gamma = \frac{b_{12}}{b_{21}}\tp\]
+!et
+We have introduced to separate numbers $\beta$ and $\gamma$ since they
+related to different parameters, but only their product matters.
+Alternatively, we could introduce the numbers $\mu = b_{12}\gamma$
+and $\nu = b_{21}\gamma^{-1}$ in the last term of the first and second
+ODE, respectively.
+
+## See Murray I, page 94.
+!esol
+
+===== Problem: Find the period of sinusoidal signals =====
+label{scale:decay:exer:sine}
+file=sine_period
+
+!bsubex
+Plot the function
+
+!bt
+\[ u(t) = A\sin(\omega t), \]
+!et
+for $t\in [0, 8\pi/\omega]$. Choose $\omega$ and $A$.
+
+!bsol
+Appropriate code is
+
+@@@CODE exer-scaling/sine_period.py fromto: import numpy@def u_damped
+
+FIGURE: [fig-scaling/sine_period_a, width=600 frac=0.9]
+!esol
+!esubex
+
+!bsubex
+The *period* $P$ of $u$ is the shortest distance between two peaks (where
+$u=A$). Show mathematically that
+
+!bt
+\[ P = \frac{2\pi}{\omega}\tp\]
+!et
+Frequently, $P$ is also referred to as the *wave length* of $u$.
+
+!bsol
+Since the sine function has period $2\pi$, we have that
+
+!bt
+\[ \sin(\omega t) = \sin(\omega t + 2\pi)\tp\]
+!et
+The definition of $P$ is that sine gets its value again after
+time $P$:
+
+!bt
+\[ \sin(\omega t) = \sin(\omega (t + P))\tp\]
+!et
+Combing we get that $\sin(\omega t + 2\pi) = \sin(\omega (t + P))$,
+so the arguments must be equal:
+
+!bt
+\[ \omega t + 2\pi = \omega (t + P),\]
+!et
+from which it follows that $P=2\pi/\omega$.
+
+An alternative is to find the peaks as the points where $du/dt=0$.
+Since $du/dt = \omega\cos (\omega t)$, this function is zero when
+$\omega t = n\pi$ for integer $n$. If $n\pi$ corresponds to a maximum,
+$(n+1)\pi$ will correspond to a minimum and $(n+2)\pi$ to the next
+maximum. The period $P$ is the distance in time between two maxima:
+
+!bt
+\[ \omega(t + P) - \omega t = (n+2\pi - n\pi\quad\Rightarrow\quad
+P = \frac{2\pi}{\omega}\tp
+\]
+!et
+!esol
+!esubex
+
+!bsubex
+Plot the damped signal $u(t)=e^{-at}\sin (\omega t)$ over four periods
+of $sin(\omega t)$. Choose $\omega$, $A$, and $a$.
+
+!bsol
+Code:
+
+@@@CODE exer-scaling/sine_period.py fromto: def u_damped@def d\(
+
+FIGURE: [fig-scaling/sine_period_c, width=600 frac=0.9]
+!esol
+!esubex
+
+!bsubex
+What is the period of $u(t)=e^{-at}\sin (\omega t)$? We define the
+period $P$ as the shortest distance between two peaks of the signal.
+
+!bhint
+Use that $v = p\cos(\omega t) + q\sin (\omega t)$ can be rewritten
+as $v = B\cos(\omega t - \phi)$ with $B=\sqrt{p^2 + q^2}$ and
+$\phi = \tan^{-1}(p/q)$. Use such a rewrite of $u'$ to find the peaks of
+$u$ and then the period.
+!ehint
+
+!bsol
+Finding the extrema from $u^{\prime}=0$ leads to
+
+!bt
+\[ u^{\prime} = -ae^{-at}\sin(\omega t) + e^{-at}\omega\cos(\omega t) = 0\tp\]
+!et
+Using the hint to rewrite ($p=\omega$, $q=-a$), we get
+
+!bt
+\[ u^{\prime} = e^{-at}B\cos(\omega t - \phi)=0,\quad B=\sqrt{\omega^2 + a^2},\ \phi = \tan^{-1}(-\omega/a)\tp\]
+!et
+Now, $e^{-at}$ is always positive so only the cosine function can
+cross zero, and that happens when the argument is $n\pi$ for integer $n$.
+However, all the maxima only occurs for $2n\pi$ ($n$ integer).
+Demanding the argument to be $2n\pi$ we get the distance between two
+nearby peaks as
+
+!bt
+\[ \omega (t + P) - \phi - (\omega t - \phi) = 2(n+1)\pi - 2n\pi,\]
+!et
+which leads to
+
+!bt
+\[ \omega P = 2\pi\quad\Rightarrow\quad P = \frac{2\pi}{\omega}\tp\]
+!et
+The period of the damped signal is the same; only $\omega$ can alter
+the period.
+!esol
+!esubex
+
+!bremarks
+The *frequency* is the number of up and down cycles in one unit time.
+Since there is one cycle in a period $P$, the frequency is $f =1/P$,
+measured in Hz.
+The *angular frequency* $\omega$ is then $\omega = 2\pi/P = 2\pi f$.
+!eremarks
+
+===== Problem: Scale the pendulum equation =====
+label{sec:scale:exer:pendulum}
+file=pendulum
+
+The equation for a so-called simple pendulum with a mass $m$ at the end is
+
+!bt
+\begin{equation}
+mL\ddot\theta + mg\sin\theta = 0,
+\end{equation}
+!et
+where $\theta(t)$ is the angle with the vertical, $L$ is the length of
+the pendulum, and $g$ is the acceleration of gravity.
+
+A physical pendulum with moment of inertia $I$ is governed by
+a similar equation,
+
+!bt
+\begin{equation}
+I\ddot\theta + mgL\sin\theta = 0\tp
+\end{equation}
+!et
+Both equations have the initial conditions $\theta(0)=\Theta$ and
+$\theta'(0)=0$ (start at rest).
+
+Use $\theta$ as dimensionless unknown, find a proper time scale,
+and scale both differential equations.
+
+!bsol
+Introducing $\bar t=t/t_c$ gives
+
+!bt
+\begin{align*}
+mL\frac{1}{t_c^2}\frac{d^2\theta}{d\bar t^2} + mg\sin\theta &= 0,\\
+I\frac{1}{t_c^2}\frac{d^2\theta}{d\bar t^2} + mgL\sin\theta &= 0\tp
+\end{align*}
+!et
+or on dimensionless form,
+
+!bt
+\begin{align*}
+\frac{d^2\theta}{d\bar t^2} + \frac{t_c^2g}{L}\sin\theta &= 0,\\
+\frac{d^2\theta}{d\bar t^2} + \frac{t_c^2mgL}{I}\sin\theta &= 0\tp
+\end{align*}
+!et
+An obvious choice to make the terms equal are $t_c=\sqrt{L/g}$
+in the first equation and $t_c=\sqrt{I/(mgL)}$ in the second.
+These choices are also compatible with the frequencies if the
+angle is small: $\ddot\theta + g/L\theta = 0$ has solution
+of the type $\sin(\omega t)$ with $\omega = \sqrt{g/L}$, and then
+$t_c=1/\omega$ is a natural scale.
+
+The dimensionless equations become equal in this case:
+
+!bt
+\[ \frac{d^2\theta}{d\bar t^2} + \sin\theta = 0\tp\]
+!et
+!esol
+
+===== Exercise: Scale the ODEs for a binary star =====
+label{sec:scale:exer:binary_star}
+file=binary_star
+
+The equations for a "binary star": "https://en.wikipedia.org/wiki/Binary_star",
+or a planet and a moon, are
+
+!bt
+\begin{align}
+m_A\ddot\x_A &= \F,\\
+m_B\ddot\x_B &= -F,
+\end{align}
+!et
+where $\x_A$ is the position of object (star) A, and $\x_B$ is the position
+object B. The corresponding masses are $m_A$ and $m_B$.
+The only force is the gravity force
+
+!bt
+\[ \F = \frac{Gm_Am_B}{||\rpos||^3}\rpos,\]
+!et
+where
+
+!bt
+\[ \rpos(t) = \x_A(t) - \x_B(t),\]
+!et
+and $G$ is the gravitational constant: $G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2$. A problem with these equations is that the parameters are very large
+($m_A$, $m_B$, $||\rpos||$) or very small ($G$). The rotation time
+for binary stars can be very small or large as well.
+
+!bsubex
+Scale the equations.
+
+!bsol
+A natural length scale could be the initial distance between the objects:
+$L=\rpos(0)$. We write the dimensionless quantities as
+
+!bt
+\[ \bar\x_A = \frac{\x_A}{L},\quad\bar\x_B = \frac{\x_B}{L},\quad
+\bar t = \frac{t}{t_c}\tp\]
+!et
+The gravity force is transformed to
+
+!bt
+\[ \F = \frac{Gm_Am_B}{L^2||\bar\rpos||^3}\bar\rpos,\quad \bar\rpos = \bar\x_B - \bar\x_A,\]
+!et
+so the first ODE for $\x_A$ becomes
+
+!bt
+\[ \frac{d^2 \bar\x_A}{d\bar t^2} =
+\frac{Gm_Bt_c^2}{L^3}\frac{\bar\rpos}{||\bar\rpos||^3}\tp\]
+!et
+Assuming that quantities with a bar and their derivatives are around unity
+in size, it is natural to choose $t_c$ such that the fraction $Gm_Bt_c/L^2=1$:
+
+!bt
+\[ t_c = \sqrt{\frac{L^3}{Gm_B}}\tp\]
+!et
+From the other equation for $\x_B$ we get another candidate for $t_c$ with
+$m_A$ instead of $m_B$. Which mass we choose play a role if $m_A\ll m_B$ or
+$m_B\ll m_A$. One solution is to use the sum of the masses:
+
+!bt
+\[ t_c = \sqrt{\frac{L^3}{G(m_A+m_B)}}\tp\]
+!et
+Taking a look at "Kepler's laws": "https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" of planetary motion, the orbital period for a planet around the star is given by the $t_c$ above, except for a missing factor of $2\pi$.
+Our characteristic time $t_c$ is therefore highly relevant.
+Introducing the dimensionless number
+
+!bt
+\[ \alpha = \frac{m_A}{m_B},\]
+!et
+we can write the dimensionless ODE as
+
+!bt
+\begin{align}
+\frac{d^2 \bar\x_A}{d\bar t^2} &=
+\frac{1}{1+\alpha}\frac{\bar\rpos}{||\bar\rpos||^3},\\
+\frac{d^2 \bar\x_B}{d\bar t^2} &=
+\frac{1}{1+\alpha^{-1}}\frac{\bar\rpos}{||\bar\rpos||^3}\tp
+\end{align}
+!et
+
+In the limit $m_A\ll m_B$, i.e., $\alpha\ll 1$,
+object B stands still, say $\bar\x_B=0$, and object
+A orbits according to
+
+!bt
+\[ \frac{d^2 \bar\x_A}{d\bar t^2} = -\frac{\bar\x_A}{||\bar \x_A||^3}\tp\]
+!et
+To better see the motion, we introduce polar coordinates $r$ and $\theta$:
+
+!bt
+\[ \bar\x_A = r\cos\theta\ii + r\sin\theta\jj,\]
+!et
+which means $\bar\x_A$ can be written as $\bar\x_A =r\ir$. Since
+
+!bt
+\[ \frac{d}{dt}\ir = \dot\theta\ith,\quad \frac{d}{dt}\ith = -\dot\theta\ir,\]
+!et
+we have
+
+!bt
+\[ \frac{d^2 \bar\x_A}{d\bar t^2} =
+(\ddot r - r\dot\theta^2)\ir + (r\ddot\theta + 2\dot r\dot\theta)\ith\tp
+\]
+!et
+The equation of motion for mass A is then
+
+!bt
+\begin{align*}
+\ddot r - r\dot\theta^2 &= -\frac{1}{r^2},\\
+r\ddot\theta + 2\dot r\dot\theta &= 0\tp
+\end{align*}
+!et
+The special case of circular motion, $r=1$, fulfills the equations, since
+the latter equation then gives $\dot\theta =\hbox{const}$ and
+the former then gives $\dot\theta = 1$.
+!esol
+!esubex
+
+!bsubex
+Solve the scaled equations numerically for two cases:
+
+ o a planet around a star:
+   $\alpha = 10^{-3}$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=\jj$,
+   $\x_B(0)=0$, $\dot\x_B(0)=0$
+ o two stars:
+   $\alpha = \half$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=\half\jj$,
+   $\x_B(0)=0$, $\dot\x_B(0)=-\half\jj$
+
+# #if FORMAT in ('html', 'sphinx')
+Here is a movie of two rotating stars (point 2 above):
+
+MOVIE: [mov-scaling/binary_star/movie.mp4]
+
+# #endif
+
+!bsol
+Here is an appropriate program
+(using "SciTools": "https://github.com/hplgit/scitools"
+for simpler animation code than required by Matplotlib):
+
+@@@CODE exer-scaling/binary_star.py
+
+FIGURE: [fig-scaling/planet_circular, width=500 frac=0.7] Planet in circular motion around a star.
+
+FIGURE: [mov-scaling/binary_star/tmp_0100, width=500 frac=0.7] Two rotating stars.
+
+!esol
+!esubex
+
+===== Problem: Scale Duffing's equation =====
+label{scale:vib:exer:Duffing}
+file=Duffing_eq
+
+Duffing's equation is a vibration equation with linear and cubic
+spring terms:
+
+!bt
+\[ mu'' + k_0u + k_1u^3 = 0,\quad u(0)=U_0,\ u'(0)=0\tp\]
+!et
+Scale this problem.
+
+!bsol
+We introduce $\bar t = t/t_c$ and $\bar u = u/u_c$:
+
+!bt
+\[ mt_c^{-2}u_c\bar u'' + k_0u_c\bar u + k_1u_c^3\bar u^3=,\quad
+u_c\bar u(0)=U_0,\ u_c\bar u'(0)=0\tp\]
+!et
+Choosing $t_c$ as in a linear vibration problem, $t_c = \sqrt{m/k_0}$,
+and $u_c=U_0$, we get
+
+!bt
+\[ 'bar u'' + \bar u + \alpha u^3 = 0,\quad \bar u(0)=1,\ \bar u'(0)=0,\]
+!et
+where
+
+!bt
+\[ \alpha = U_0^2\frac{k_1}{k_0},\]
+!et
+is a dimensionless parameter reflecting the ratio of the
+cubic spring term $k_1U_0^3$ and the linear spring term $k_0U_0$
+at maximum displacement.
+!esol
+
 !split
 ========= Basic PDE models =========
 
@@ -5612,6 +6736,492 @@ to $u_c= f_c L/V$.
 Alternatively, $u_c$ can be based on the initial condition, with similar
 results as found in the sections on the wave and diffusion PDEs.
 
+======= Exercises =======
+
+
+===== Problem: Scale a stationary Couette flow =====
+label{scale:vib:exer:stationary_Couette}
+file=stationary_Couette
+
+A fluid flows between two flat plates, with one plate at rest while
+the other moves with velocity $U_0$. This classical flow case is known as
+stationary Couette flow.
+
+!bsubex
+Directing the $x$ axis in the flow direction and letting $y$ be
+a coordinate perpendicular to the walls, one can assume that
+the velocity field simplifies to $\u = u(y)\ii$.
+Show from the Navier-Stokes equations that the boundary-value problem
+for $u(y)$ is
+
+!bt
+\[ u^{\prime\prime}(u) = 0,\quad u(0)=0,\ u(H)=U_0\tp\]
+!et
+We have here assumed at $y=0$ corresponds to the plate at rest and
+that $y=H$ represents the plate that moves. There are no pressure
+gradients present in the flow.
+!esubex
+
+!bsubex
+Scale the problem in a) and show that the result has no physical parameters
+left in the model:
+
+!bt
+\[ \frac{d^2\bar u}{d\bar y^2} = 0,\quad \bar u(0)=0,\ \bar u(1)=1\tp\]
+!et
+!esubex
+
+!bsubex
+We can compute $\bar u(\bar y)$ from one numerical simulation (or a
+straightforward integration of the differential equation). Set up
+the formula that finds $u(y; H, u_0)$ from $\bar u(\bar y)$ for any
+values of $H$ and $U_0$.
+!esubex
+
+!bremarks
+The problem for $u$ is a classical two-point boundary-value problem
+in applied mathematics and arises in a number of applications, where
+Couette flow is just one example. Heat conduction is another
+example: $u$ is temperature, and the heat conduction equation for
+an insulated rod reduces to $u^{\prime\prime}=0$ under stationary
+conditions and no heat source.
+Controlling the end $x=0$ at 0 degrees Celsius the other end $x=L$
+at $U_0$ degrees
+Celsius, gives the same boundary conditions as in the above flow problem.
+The scaled problem is of course the same whether we have flow of
+fluid or heat.
+!eremarks
+
+===== Problem: Scale a starting Couette flow =====
+label{scale:vib:exer:starting_Couette}
+file=starting_Couette
+
+A fluid is confined in a channel with two planar walls $z=0$ and $z=H$.
+The fluid is at rest. At time $t=0$ the upper wall is suddenly set in
+motion with a velocity $U\ii$. We assume that the velocity is
+directed along the $x$ axis: $\u = u(x,z,t)\ii$. From the equation of continuity, $\nabla\cdot\u =0$, we get that $\partial u/\partial x = 0$ such
+that $\u = u(z,t)\ii$. The boundary conditions are $\u=0$ at the lower
+wall $z=0$ and $\u = U\ii$ at the upper wall $z=H$. Assume that the
+pressure is constant everywhere and that there are no body forces.
+
+!bsubex
+Start with the incompressible Navier-Stokes equations and the
+assumption $\u = u(z,t)\ii$. Derive an initial-boundary value problem
+for $u(z,t)$. Scale the problem.
+
+!bsol
+Inserting the simplified velocity in the original Navier-Stokes equations
+makes the convection term $\u\cdot\nabla\u$ vanish and $\nabla p$ vanishes
+since $p$ is assumed constant (only the upper wall drives the flow).
+The result becomes
+
+!bt
+\[ \varrho \frac{\partial u}{\partial t} = \mu
+\frac{\partial^2 u}{\partial z},\]
+!et
+or using $\mu/\varrho =\nu$,
+
+!bt
+\[ \frac{\partial u}{\partial t} = \nu
+\frac{\partial^2 u}{\partial z},\]
+!et
+with $u(z,0)=0$, $u(0,t)=0$ and $u(H,t)=U$. This is a standard
+diffusion problem. The natural length scale is $H$, so
+$\bar z = z/H$. Using the well-established time scale $t_c= H^2/\nu$
+and the velocity scale $u_c=U$, we get the dimensionless problem
+
+!bt
+\[ \frac{\partial \bar u}{\partial \bar t} =
+\frac{\partial^2\bar u}{\partial \bar z},\]
+!et
+with $\bar u(\bar z,0)=0$, $u(0,\bar t)=0$, $u(1,t)=1$.
+There are no physical parameters. Having computed $\bar u(\bar z, \bar t)$,
+the physical solution can be retrieved as
+
+!bt
+\[ u(z,t) = U\bar u(\bar zH, \bar t H^2/\nu)\tp\]
+!et
+!esol
+!esubex
+
+!bsubex
+Start with the dimensionless Navier-Stokes equations and use
+the assumption $\bar\u = \bar u(\bar z,\bar t)\ii$ to reduce
+the problem. The resulting equation now contains a Reynolds
+number, i.e., one more physical parameter than in a).
+Why is this an inferior approach to scaling the problem?
+
+!bsol
+Inserting the simplified velocity in the scaled Navier-Stokes
+equations leads to
+
+!bt
+\[ \frac{\partial \bar u}{\partial \bar t} = \frac{1}{\hbox{Re}}
+\frac{\partial^2\bar u}{\partial \bar z}\tp\]
+!et
+Here we have the Reynolds number as parameter.
+
+The major difference is the scaling used in time: $t_c=H/U$
+(length scale is $H$ here) versus $t_c = H^2/\nu$. The latter
+is much more suitable as it is based on a diffusion problem and
+the present problem is indeed a diffusion problem.
+Normally, $\nu$ is very small, so $t_c$ based on diffusion is usually much
+larger than $H/U$. With an inappropriate time scale,
+$\partial \bar u/\partial\bar t$ is not of unit size, and we need a
+dimensionless number on the right-hand side to adjust the
+spatial derivative term to a non-unity size. The wrong scaling
+thereby introduces an extra (unnecessary) parameter.
+!esol
+!esubex
+
+!bsubex
+Can you construct a heat conduction problem that has the same solution
+$\bar u(\bar z,\bar t)$ as in a)?
+
+!bsol
+Consider a long rod with length $H$ aligned with the $z$ axis.
+The rod is isolated on the curved circular surface and kept
+at fixed temperatures $U_0$ and $U_H$ at the ends $z=0$ and $z=H$,
+respectively. The initial temperature is $U_0$.
+Because of the insulated curved surface, heat can only propagate in
+the $z$ direction, and a one-dimensional
+heat conduction equation is appropriate:
+
+!bt
+\[ \frac{\partial u}{\partial t} = \dfc
+\frac{\partial^2 u}{\partial z},\]
+!et
+with $u(z,0)=U_0$, $u(0,t)=U_0$, and $u(H,t)=U_H$.
+We introduce a dimensionless temperature
+
+!bt
+\[ \bar u = \frac{u - U_0}{U_H - U_0},\]
+!et
+such that $\bar u\in [0,1]$. The standard time scale $t_c=H^2/\dfc$
+is used, notifying that the length scale is $H$. Inserting the
+dimensionless variables in the governing equation results in
+the same problem as in a). It means that we from one solution
+$\bar u(\bar z,\bar t)$ can get solutions for heat conduction
+in rods of all lengths and materials, and with all boundary temperatures,
+as well as flow of any fluid
+between two walls with any gap and any velocity of the upper wall.
+!esol
+!esubex
+
+!bsubex
+Describe how the scaled problem in this exercise can be solved
+by a program that solves the following diffusion problem with dimensions:
+
+!bt
+\begin{align*}
+\frac{\partial u}{\partial t} &=
+\dfc \frac{\partial^2 u}{\partial z} + f(x,t),\\
+u(x,0) &= I(x),\\
+u(0,t) & =U_0(t),\\
+u(L,t) & =U_L(t)\tp
+\end{align*}
+!et
+
+!bsol
+Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
+$U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
+!esol
+!esubex
+
+===== Exercise: Scale Couette flow with pressure gradient =====
+label{scale:vib:exer:Couette_wpressure}
+file=Couette_wpressure
+
+Viscous fluid flow between two infinite flat plates $z=0$ and $z=H$
+is governed by
+
+!bt
+\begin{align}
+\mu u''(z) &= -\beta\\
+u(0) &= 0,\\
+u(H) &= U_0\tp
+\end{align}
+!et
+Here, $u(z)$ is the fluid velocity in $x$ direction (perpendicular to the
+$z$ axis), $\mu$ is the dynamic viscosity of the fluid, $\beta$ is
+a positive constant pressure gradient, and $U_0$ is the
+constant velocity of the upper
+plate $z=H$ in $x$ direction.
+
+!bsubex
+Find the exact solution $u(z)$. Point out how $\beta$ and $U_0$
+influence the magnitude of $u$.
+
+!bsol
+SymPy can integrate the differential equation twice and fit the
+integration constants to the boundary conditions:
+
+@@@CODE exer-scaling/Couette_wpressure.py fromto: import sympy@print u
+The result becomes
+
+!bt
+\[ u(z) =
+\frac{z}{2 H \mu} \left(H \beta \left(H - z\right) + 2 U_{0} \mu\right)\tp \]
+!et
+
+The maximum value of $u$ is found by
+
+@@@CODE exer-scaling/Couette_wpressure.py fromto: # Find max u@print umax
+and reads
+
+!bt
+\[ \max_z u =
+\frac{H^{2} \beta}{8 \mu} + \frac{U_{0}}{2} +
+\frac{U_{0}^{2} \mu}{2 H^{2} \beta}\tp
+\]
+!et
+If the pressure gradient is the domining driving force, we can neglect
+the $U_0$ terms: $\max_z u = H^2\beta/(8\mu)$. In case the movement
+of the upper plate is much more important than the pressure gradient
+for driving the flow, we can neglect the $\beta$ terms. However, we must
+then resort to the $u(z)$ expression for $\beta=0$, $u(z)=zU_0/H$,
+and realize that the maximum then is obtained at the boundary for
+$z=H$: $\max_z h=U_0$ (as intuitively obvious).
+!esol
+!esubex
+
+!bsubex
+Scale the problem.
+
+!bsol
+Introducing
+
+!bt
+\[ \bar z = \frac{z}{z_c}, \quad \bar u (\bar z) = \frac{u(z_c\bar z)}{u_c},\]
+!et
+in the equation gives
+
+!bt
+\[ \frac{d^2\bar u}{d\bar z^2} = -\frac{z_c^2\beta}{\mu u_c}\tp\]
+!et
+The natural scale for $z_c$ is $H$ since that makes $\bar z\in [0,1]$.
+For the two terms in the differential equation to be of order unity
+(with a correct scaling, the left-hand side should be of order unity),
+we must have
+
+!bt
+\[ u_c = \frac{H^2\beta}{\mu}\tp\]
+!et
+The boundary value problem is
+
+!bt
+\begin{align}
+\frac{d^2\bar u}{d\bar z^2} &= -1,\quad &\bar z\in (0,1),\\
+\bar u(0) &= 0,\\
+\bar u(1) &= \alpha,
+\end{align}
+!et
+where $\alpha$ is a dimensionless number
+
+!bt
+\[ \alpha = \frac{\mu U_0}{H^2\beta}\tp\]
+!et
+This is meaningful only for $\beta\neq 0$.
+
+Looking at the exact solution, we see that $\max_z u =
+H^2\beta/(8\mu)$, and with this $\max_z u$ as $u_c$ we get a
+differential equation $\bar u'' = -8$ instead, and $\bar u\in [0,1]$
+(if $U_0=0$). However, the factor $1$ or $8$ on the right-hand side is
+not significant, neither if $\bar u\in [0,1]$ or $\bar u\in [0,8]$.
+
+The scale $u_c$ used above is relevant if the pressure gradient is the
+dominating force. If $U_0$ is more important than $\beta$, or $\beta =0$,
+we choose $u_c=U_0$ and get instead
+
+!bt
+\begin{align}
+\frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),\\
+\bar u(0) &= 0,\\
+\bar u(1) &= 1\tp
+\end{align}
+!et
+!esol
+!esubex
+
+[hpl: Could extend to time-dependent case, but this will involve three time
+scales...]
+
+===== Exercise: Scale pulsatile pipeflow =====
+label{scale:exer:pipeflow:pulsatile}
+file=pipeflow
+
+The flow of a viscous fluid in a straight pipe with circular
+cross section with radius $R$ is governed by
+
+!bt
+\begin{align}
+\varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
+\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],\\
+\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],\\
+u(R,t) &= 0, & t\in (0,T],\\
+u(r,0) &= 0, & r\in [0,R].
+\end{align}
+!et
+The quantity $u(r,t)$ is the fluid velocity, $P(t)$ is a given
+pressure gradient, $\varrho$ is the fluid density, and $\mu$ is the
+dynamic viscosity.
+
+Assume $P(t) = A\cos\omega t$. Scale the problem and identify
+appropriate dimensionless numbers. The assume $P(t)$ is a more
+complicated function, but still period with period $p$.
+Discuss how the scaling can be extended to this case.
+
+!bsol
+We introduce dimensionless quantities:
+
+!bt
+\[ \bar r = \frac{r}{R},\quad \bar t = \frac{t}{t_c},\quad \bar u = \frac{u}{u_c}\tp\]
+!et
+The function $P(t)$ can be scaled as
+
+!bt
+\[ \bar P(\bar t) = \frac{P(t_c\bar t)}{A} = \sin (t_c\omega \bar t)\tp\]
+!et
+Inserted in the PDE, we get
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} = \frac{t_c \nu }{R^2}\frac{1}{\bar r}\frac{\partial}{\partial\bar r}
+\left(\bar r\frac{\partial\bar u}{\partial\bar r}\right) - \frac{t_c A}{\varrho u_c}\sin (t_c\omega\bar t),\]
+!et
+where $\mu = \mu/\varrho$.
+
+The scale for $u$ can be explored by seeking an analytical solution
+of the problem. Such solutions do exist, they are typically series
+expansions of Bessel functions, and it is not so easy to extract
+a simple expression for the maximum value of $|u(r,t)|$.
+A simpler approach is to estimate $u_c$ be demanding the coefficient
+in the pressure term to be of unit size:
+
+!bt
+\[ u_c = \frac{t_cA}{\varrho}\tp\]
+!et
+There are two choices of time scales: the pressure time scale $t_c=1/\omega$
+and the viscosity (or diffusion) time scale $t_c=R^2/nu$. With the latter
+we get $u_c = R^2 A/\mu$ and
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} = \frac{1}{\bar r}\frac{\partial}{\partial\bar r}
+\left(\bar r\frac{\partial\bar u}{\partial\bar r}\right) - \sin (\alpha\bar t),\]
+!et
+where
+
+!bt
+\[ \alpha = \frac{R^2\omega}{\nu} = \frac{R^2/\nu}{1/\omega},\]
+!et
+showing that $\alpha$ is the ratio of the viscosity time scale and
+the pressure oscillation time scale.
+
+With the pressure time scale we have
+
+!bt
+\[ u_c = \frac{\varrho A}{\omega},\]
+!et
+and the scaled PDE becomes
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} = \alpha^{-1}\frac{1}{\bar r}\frac{\partial}{\partial\bar r}
+\left(\bar r\frac{\partial\bar u}{\partial\bar r}\right) - \sin (\bar t)\tp\]
+!et
+In both cases the scaled boundary conditions become
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} = 0,\quad
+\bar u(1,\bar t) = 0,\]
+!et
+for $t\in (0,T/t_c]$, and $\bar u(\bar r, 0)=0$ for $\bar r\in [0,1]$.
+
+If $P(t)$ is not sinusoidal but periodic with period $p$, we have that
+$P$ is a function of $\omega t$ as above, with $\omega = 2\pi/p$.
+Everything in the scaling remains the same, just the $\sin$ term changes
+to $P(\alpha\bar t)$ if the time scale is based on viscosity (diffusion),
+and $P(\bar t)$ if the time scale is based on the pressure oscillations.
+!esol
+
+
+===== Exercise: Scale the linear cable equation =====
+label{scale:exer:cable_eq}
+file=cable_eq
+
+A key PDE in neuroscience is the "cable equation": "https://en.wikipedia.org/wiki/Cable_theory", here given in its simplest linear form:
+
+!bt
+\begin{equation}
+\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
+-u\tp
+label{scale:exer:cable_eq:PDE}
+\end{equation}
+!et
+The unknown $u$ is the voltage (measured in volt) associated with
+an electric current along one-dimensional dendrites (``cables'')
+in neural networks, while $\tau$ and $\lambda$ are given parameters.
+
+Scale (ref{scale:exer:cable_eq:PDE}) in three ways: 1) let all terms in
+the scaled equation have unit coefficients, 2) use the domain size
+$L$ as spatial scale and base the time scale on diffusion, 3) use the
+domain size $L$ as spatial scale and base the time scale on
+reaction, i.e., the $-u$ term.
+
+!bsol
+Straightforward scaling, with scales $u_c$, $t_c$, and $x_c$,
+leads in the first step to
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{t_c\lambda^2}{\tau x_c^2}\frac{\partial^2\bar u}{\partial\bar t^2}
+- \frac{t_c}{\tau}\bar u\tp\]
+!et
+Assuming that all terms are equally important and of unit size
+in the scaled PDE, we get a uniquely determined length and space scale:
+
+!bt
+\[ t_c = \tau,\quad x_c = \lambda\tp\]
+!et
+The scaled cable equation is then
+
+!bt
+\[
+\frac{\partial\bar u}{\partial\bar t} =
+\frac{\partial^2\bar u}{\partial\bar t^2}
+- \bar u\tp
+\]
+!et
+
+Let now the spatial scale be fixed as $x_c=L$.  Basing $t_c$ on
+diffusion means $t_c = \tau (L/\lambda)^2$, and the scaled PDE becomes
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{\partial^2\bar u}{\partial\bar t^2}
+- \beta\bar u,\]
+!et
+where
+
+!bt
+\[ \beta = \left(\frac{L}{\lambda}\right)^2\tp\]
+!et
+
+Basing $t_c$ on the reaction scale, i.e., the balance of the time
+derivative and the reaction term, gives $t_c=\tau$ and the scaled PDE
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\beta^{-1}\frac{\partial^2\bar u}{\partial\bar t^2}
+- \bar u\tp\]
+!et
+
+In neuroscience applications of the cable equation to dendrites, it
+appears that $\lambda$ is about 1 mm and of the same order of
+magnitude as the cable length, so $\beta$ is around 1 in size.
+Then there are not big differences in these scalings, and the first
+one is to be preferred. The two others are more suitable when
+$\beta$ is small or large, e.g., such that the term with $\beta$ can be
+left out of the PDE.
+!esol
 
 !split
 ========= Advanced PDE models =========
@@ -7940,1542 +9550,6 @@ thereby the Mach number.
 
 ======= Exercises =======
 
-===== Exercise: Perform unit conversion =====
-label{sec:scale:exer:US2SI1}
-file=density_conversion
-
-Density (mass per volume: $[\hbox{ML}^{-3}]$) of water is
-given as 1.05 ounce per fluid ounce. Use the `PhysicalQuantity` object
-to convert to $\hbox{kg\,m}^{-3}$.
-
-!bsol
-Use `pydoc PhysicalQuantities` to find that `floz` is the name of
-the volume ``fluid ounce'' and `oz` is the name of the mass ``ounce''.
-Here is an interactive session for the conversion:
-
-!bc pyshell
->>> from PhysicalQuantities import PhysicalQuantity as PQ
->>> d = PQ('1.05 oz/floz')
->>> d.convertToUnit('kg/m**3')
->>> print d
-1006.54198946 kg/m**3
-!ec
-!esol
-
-===== Problem: Scale a simple formula =====
-label{sec:scale:exer:ball_y}
-file=scaled_vertical_motion
-
-The height $y$ of a body thrown up in the air is given by
-
-!bt
-\[ y = v_0t - \frac{1}{2}gt^2,\]
-!et
-where $t$ is time, $v_0$ is the initial velocity of the body at $t=0$,
-and $g$ is the acceleration of gravity. Scale this formula. Use
-two choices of the characteristic time: the time it takes to reach the
-maximum $y$ value and the time it takes to return to $y=0$.
-
-!bsol
-We introduce
-
-!bt
-\[ \bar y =\frac{y}{y_c},\quad \bar t = \frac{t}{t_c}\tp\]
-!et
-Inserted in the formula we get
-
-!bt
-\[ y_c\bar y = v_0t_c\bar t - \frac{1}{2}gt_c^2\bar t^2\tp\]
-!et
-
-1. At the maximum point of $y$, $y'=0$, so $y'=v_0 - gt=0$, which means
-$t=v_0/g$ and $y_{\max}=v_0v0/g - \frac{1}{2}gv_0^2/g^2 = \frac{1}{2}v_0^2/g$.
-We choose $t_c=v_0/g$ and $y_c=\frac{1}{2}v_0^2/g$.
-This gives
-
-!bt
-\[ \frac{1}{2}\frac{v_0^2}{g}\bar y = \frac{v_0^2}{g}\bar t -
-\frac{1}{2}\frac{v_0^2}{g}\bar t^2\quad\Rightarrow\quad
-\bar y = 2\bar t - \bar t^2\tp\]
-!et
-
-2. The body is back at $y=0$ for $v_0t - \frac{1}{2}gt^2=0$, which gives
-$t_c=2v_0/g$ and $y_c=2y_{\max}=v_0^2/g$. Inserted, we get
-
-!bt
-\[ \frac{v_0^2}{g}\bar y = 2\frac{v_0^2}{g}\bar t -
-\frac{1}{2}4\frac{v_0^2}{g}\bar t^2\quad\Rightarrow\quad
-\bar y = 2\bar t(1 - \bar t)\tp\]
-!et
-Observe that the physical parameters $v_0$ and $g$ are absent in the
-scaled formula.
-!esol
-
-===== Exercise: Perform alternative scalings =====
-label{sec:scale:exer:decay:cooling:osc}
-
-The problem in Section ref{scale:decay:cooling:osc} applies a
-temperature scaling
-
-!bt
-\[ \bar T = \frac{T-T_0}{T_m-T_0},\]
-!et
-which is not always suitable.
-
-!bsubex
-Consider the case $T_0=T_m$ and the fact that $|T_m-T_0|$ does not
-represent the characteristic temperature scale since it
-collapses to zero. Formulate a suitable
-scaling in this case. The figure below corresponds to $T_m=25$ C,
-$T_0=24.9$ C, and $a=2.5$ C. We clearly see that $\bar T$ is
-not of size unity.
-
-FIGURE: [fig-scaling/osc_cooling_wrong_scale, width=500 frac=0.8]
-
-!bsol
-The typical temperature variations will now be oscillations of amplitude
-$a$ around $T_m=T_0$, so $2a$ is the typical variation of the
-surrounding temperature. If the time scale of $T_s$ is sufficiently
-large (or more precisely, $\beta$ is small),
-the temperature will actually reach amplitudes of size $a$,
-but for fast oscillations in $T_s$, there will not be enough time to
-transfer heat to/from the body, so the amplitudes of $T$ will be
-smaller. Taking $2a$ to be the typical temperature range, we can propose
-the scaling
-
-!bt
-\[ \bar T = \frac{T-T_m}{2a}\tp\]
-!et
-Inserted in the differential equation, we get with $t_c=1/k$,
-
-!bt
-\[ k2a\frac{\bar T}{d\bar t} = -k(2a\bar T + T_m - (T_m + a\sin(\omega t))),\]
-!et
-which simplifies to
-
-!bt
-\[ \frac{\bar T}{d\bar t} = -(\bar T - \frac{1}{2}\sin(\beta t)),\]
-!et
-where $\beta = \omega/k$.
-The initial condition becomes
-
-!bt
-\[ \bar T(0) = -\half\alpha,\]
-!et
-where $\alpha = a/(T_m-T_0)$ is the dimensionless number that appeared
-in the scaled differential equation in Section ref{scale:decay:cooling:osc}.
-!esol
-!esubex
-
-!bsubex
-Consider the case where $a$ is much larger than $|T_m-T_0|$.
-What is an appropriate scaling of the temperature?
-
-!bsol
-In this case, $T$ will oscillate around $T_m$ and at maximum reach the
-amplitude $a$ if $\beta$ is small, see the figure in a).
-This is the same situation as in a),
-and we can consequently use the same scaling and obtain the same
-scaled problem.
-!esol
-!esubex
-
-===== Problem: Scale a nonlinear ODE =====
-label{sec:scale:exer:ball_y_wdrag}
-file=scaled_vertical_motion_with_drag
-
-The velocity $v(t)$
-of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by ODE
-
-!bt
-\[ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,\]
-!et
-where $t$ is time, $m$ is the mass of the body, $C_D$ is a drag coefficient,
-$\varrho$ is the density of the fluid, $A$ is the cross-sectional area
-perpendicular to the motion, $g$ is the acceleration of gravity,
-and $V$ is the volume of the body. Scale this ODE.
-
-!bsol
-We introduce as usual
-
-!bt
-\[ \bar v = \frac{v}{v_c},\quad \bar t = \frac{t}{t_c},\]
-!et
-but the main challenge is to find values for $v_c$ and $t_c$.
-Inserting the scaled quantities gives
-
-!bt
-\[ m\frac{v_c}{t_c}\frac{d\bar v}{d\bar t} =
--\frac{1}{2}C_D\varrho A v_c^2 |\bar v|\bar v
-- mg + \varrho V g,\quad v_c v(0)=v_0,\]
-!et
-It is tempting to set $v_c=v_0$, but $v_0=0$ is a relevant value so
-this choice is not good. The motion is of decay type so $t_c$ and $v_c$
-should be based on characteristics of the decay. The terminal velocity,
-defined by $v'=0$, is
-
-!bt
-\[  v_T =  \sqrt{\frac{2(\varrho V - m)g}{C_D\varrho A}},\]
-!et
-when $\varrho V >m$ such that the buoyancy wins over gravity and
-the motion is upwards. Otherwise,
-
-!bt
-\[  v_T =  -\sqrt{\frac{2(m-\varrho V)g}{C_D\varrho A}}\tp\]
-!et
-The two formulas can be combined to
-
-!bt
-\[  v_T =  \mbox{sign}(\varrho V - m)\sqrt{\frac{2|\varrho V -m|g}{C_D\varrho A}}\tp\]
-!et
-
-We take $v_c = |v_T| = \sqrt{\frac{2|\varrho V - m|g}{C_D\varrho A}}$.
-This results in
-
-!bt
-\[
-\frac{d\bar v}{d\bar t} =
--t_c\frac{1}{2m}C_D \varrho A \sqrt{\frac{2|\varrho V - m|g}{C_D\varrho A}}
-|\bar v|\bar v
-- t_c\sqrt{\frac{C_D\varrho g A}{2|\varrho V - m|}}(1- \frac{\varrho V}{m}),
-\]
-!et
-and
-!bt
-\[ v(0)=v_0
-\sqrt{\frac{C_D\varrho A}{2g|\varrho V - m|}}\tp\]
-!et
-
-A natural choice is to assume $d\bar v/d\bar t$ and $\bar v$ to
-be of the same order, which means that coefficient in front of the
-nonlinear term $|\bar v|\bar v$ should be unity. This forces $t_c$ to be
-
-!bt
-\[ t_c = \frac{2m}{\sqrt{2g|\varrho V - m|C_D\varrho A}}\tp\]
-!et
-Introducing the dimensionless numbers
-
-!bt
-\[ \alpha = \frac{\varrho V}{m}, \quad \beta = v_0\sqrt{\frac{C_D\varrho A}{2g|\varrho V - m|}} = \frac{v_0}{|v_T|},\]
-!et
-we get the scaled ODE problem
-
-!bt
-\[
-\frac{d\bar v}{d\bar t} =
-- |\bar v|\bar v + \mbox{sign}(1-\alpha),\quad
-\bar v(0)=\beta\tp
-\]
-!et
-Note that, as usual, the dimensionless numbers have simple
-interpretations:
-$\alpha$ is the ratio of the mass of the displaced fluid and
-the mass of the body, while $\beta$ is the ratio of the initial and
-terminal velocities.
-!esol
-
-===== Exercise: Implement a scaled model with jump =====
-label{sec:scale:exer:decay:jump}
-file=decay_jump
-
-Make software for the problem in Section ref{sec:scale:decay:jump}
-so that you can produce Figure ref{sec:scale:decay:jump:fig}.
-
-!bhint
-Follow the ideas for software in Section ref{sec:scale:decay:body}: use the
-"`decay_vc.py`": "${src_scaling}/decay_vc.py" module as computational
-engine and modify the
-"`falling_body.py`": "${src_scaling}/falling_body.py" code.
-!ehint
-
-===== Exercise: Implement a scaled model for cooling =====
-label{sec:scale:exer:decay:cooling}
-file=decay_cooling1
-
-Make software for the unscaled problem (ref{scale:decay:cooling:model})
-where $T_s$ can be a function of time.
-Use this implementation to compute the solution of the
-scaled problem (ref{scale:decay:cooling:model:scaled}).
-
-!bhint
-You may use the general software "`decay_vc.py`": "${src_scaling}/decay_vc.py"
-for computing with the cooling model.
-See Section ref{sec:scale:decay:body} for more ideas.
-!ehint
-
-===== Problem: Scale variable coefficients =====
-label{scale:decay:exer:decay:step}
-file=decay_varcoeff
-
-The goal of this exercise is to scale the problem
-$u^{\prime}(t) = -a(t)u(t) + b(t)$, $u(0)=I$, when
-
-!bt
-\[
-a(t) =\left\lbrace\begin{array}{ll}
-Q, & t < s,\\
-Q - A, & t\geq s,\end{array}\right.
-\quad b = \left\lbrace\begin{array}{ll}
-\gamma t, & t < s,\\
-0, & t\geq s,\end{array}\right.
-\]
-!et
-Here, $Q,A,\gamma >0$.
-
-===== Exercise: Alternative scalings of a cooling model =====
-label{scale:decay:exer:cooling:Ts}
-file=decay_cooling2
-
-Scale the model (ref{scale:decay:cooling:model}), with $T_s$
-given as in (ref{scale:decay:cooling:Tst}), using two alternative
-scalings of $T$: (ref{scale:decay:cooling:Tbar2}) and
-the simpler $\bar T = T/T_0$. Does the type of scaling impact how
-many dimensionless parameters we end up with?
-
-===== Exercise: Alternative scalings of a cooling model =====
-label{scale:decay:exer:nonlin:logistic2}
-file=growth
-
-Implement the scaled model (ref{sec:scale:decay:nonlinear:model1:scaled})
-and produce a plot with curves corresponding to various values of
-$\alpha$ and $p$ to summarize how $\bar u(\bar t)$ look like.
-
-!bhint
-A centered Crank-Nicolson-style
-scheme for (ref{sec:scale:decay:nonlinear:model1:scaled})
-can use an old time value for the nonlinear coefficient:
-
-!bt
-\[ \frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
-(1 - \alpha\bar u^n)^p\frac{1}{2}(\bar u^n + \bar u^{n+1})\tp\]
-!et
-!ehint
-
-===== Exercise: Scale projectile motion =====
-label{scale:vib:exer:projectile}
-file=projectile
-
-## http://www.physics.arizona.edu/~dpsaltis/Phys205_f06/projectile.pdf
-
-We have the following mathematical model for the motion of a projectile
-in two dimensions:
-
-!bt
-\[ m\ddot\x + \frac{1}{2}C_D\varrho A|\dot\x|\dot\x
-= -mg\jj,\quad \x(0)=\bm{0},\ \dot\x(0)=v_0\cos\theta\ii +
-v_0\sin\theta\jj\tp\]
-!et
-Here, $m$ is the mass of the projectile, $\x=x\ii + y\jj$ is
-the position vector of the projectile, $\ii$ and $\jj$
-are unit vectors along the $x$ and $y$ axes, respectively,
-$\ddot\x$ and $\dot\x$ is the second- and first-order
-time derivative of $\x(t)$, $C_D$ is a drag coefficient
-depending on the shape of the projectile (can be taken as 0.4 for a sphere),
-$\varrho$ is the density of the air, $A$ is the cross section area
-(can be taken as $\pi R^2$ for a sphere of radius $R$), $g$ is gravity,
-$v_0$ is the initial velocity of the projectile in a direction that makes
-the angle $\theta$ with the ground.
-
-!bsubex
-Neglect the air resistance term proportional to $\dot\x$ and solve
-analytically for $\x(t)$.
-
-!bsol
-The vector differential equation reduces to the two component equations
-
-!bt
-\[ m\ddot x(t) = 0,\quad m\ddot y(t) = -mg\tp\]
-!et
-Integrating twice yields
-
-!bt
-\[ x(t) = C_1t + C_2,\quad y(t) = -\frac{1}{2}gt^2 + C_3t + C_4\tp\]
-!et
-The condition $\x(0)=\bm{0}$ forces $C_2=C_4=0$. The condition on
-the derivative gives $C_1=v_0\cos\theta$ and $C_3=v_0\sin\theta$.
-The result is therefore
-
-!bt
-\[ \x(t) = v_0\cos(\theta) t\ii + (v_0\sin(\theta) t - \frac{1}{2}gt^2)\jj\tp\]
-!et
-!esol
-!esubex
-
-!bsubex
-Make the model for projectile motion with air resistance non-dimensional.
-Use the maximum height from the simplification in a) as length scale.
-
-!bsol
-We introduce dimensionless quantities:
-
-!bt
-\[ \bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad\bar t = \frac{t}{t_c},\]
-!et
-where the scales $L$ and $t_c$ must be determined. Inserted in the original
-equation:
-
-!bt
-\[ \frac{mL}{t_c^2}\frac{d^2\bar\x}{d\bar t^2} +
-\frac{1}{2} C_D\varrho A\frac{L^2}{t_c^2}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -mg\jj\tp\]
-!et
-Dividing by $mL/t_c^2$ gives
-
-!bt
-\[ \frac{d^2\bar\x}{d\bar t^2} +
-\frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\frac{gt_c^2}{L}\jj\tp\]
-!et
-
-The maximum height $y_{\max}$ occurs when $\dot y = 0$:
-
-!bt
-\[ \dot y = v_0\sin\theta - gt = 0\quad\Rightarrow\quad
-t = g^{-1}v_0\sin\theta\tp\]
-!et
-The corresponding value is
-
-!bt
-\[ y_{\max}=g^{-1}v_0^2\sin^2\theta - \frac{1}{2}g^{-1}v_0^2\sin^2\theta =
-\frac{1}{2}g^{-1}v_0^2\sin^2\theta\tp\]
-!et
-We can take $L=y_{\max}$ and let $t_c$ be the corresponding $t$ value:
-$t_c=g^{-1}v_0\sin\theta$. Inserted in the scaled problem:
-
-!bt
-\[ \frac{d^2\bar\x}{d\bar t^2} +
-\frac{1}{2} C_D\varrho A\frac{v_0^2\sin^2\theta}{2mg}
-\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\jj\tp\]
-!et
-We can identify a dimensionless parameter
-
-!bt
-\[ \alpha = \frac{1}{4} m^{-1}g^{-1} C_D\varrho A v_0^2\sin^2\theta,\]
-!et
-and write the scaled equation as
-
-!bt
-\[ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\jj,\]
-!et
-with initial conditions
-
-!bt
-\[ \bar\x(0)=\bm{0},\quad \frac{d\bar x}{d\bar t}(0) =
-\frac{t_c}{L}(v_0\cos\theta\ii + v_0\sin\theta\jj) =
-2\cot\theta\ii + 2\jj\tp\]
-!et
-
-[hpl: Check that $\alpha$ is dimensionless. Easy: $\varrho$
-goes like $m/L^3$, $A$ cancels $L^2$, $v_0^2$ cancels the
-remaining dimensions... seems to be correct...]
-[hpl: Need to check the final problem. Solve scaled problem without drag.]
-!esol
-!esubex
-
-!bsubex
-Make the model dimensionless again, but this time by demanding that
-the scaled initial velocity is unity in $x$ direction.
-
-!bsol
-The scaled initial velocity condition is
-
-!bt
-\[ \bar x(0) = \frac{t_c}{L}v_0\cos\theta\tp\]
-!et
-Demanding the scaled velocity to be unity gives
-
-!bt
-\[ L = t_cv_0\cos\theta\tp\]
-!et
-The scaled initial velocity in $y$ direction becomes
-
-!bt
-\[ \bar y(0) = \tan\theta\tp\]
-!et
-The scaled ODE becomes
-
-!bt
-\[ \frac{d^2\bar\x}{d\bar t^2} +
-\frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\frac{g t_c}{v_0\cos\theta}\jj\tp\]
-!et
-We can choose $t_c$ such that the source term is unity:
-
-!bt
-\[ t_c = g^{-1}v_0\cos\theta,\]
-!et
-which makes
-
-!bt
-\[ L = t_cv_0\cos\theta = g^{-1}v_0^2\cos^2\theta\tp\]
-!et
-The coefficient in the drag term becomes
-
-!bt
-\[ \alpha = \frac{1}{2}m^{-1}g^{-1}C_D\varrho A v_0^2\cos^2\theta\tp\]
-!et
-!esol
-!esubex
-
-!bsubex
-A soccer ball has diameter $R=11$ cm and mass 0.43 kg, the density of air
-is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 10 km/h,
-while a hard kick may have 120 km/h. Estimate the dimensionless parameter
-in the scaled problem for a soft and a hard kick with
-$\theta$ corresponding to 30 degrees. Solve the scaled
-differential equation for these values and plot the trajectory ($y$ versus
-$x$) for the two cases.
-
-!bsol
-We need to express $R$, $v_0$, and $\theta$ in standard SI units:
-$R=0.11$ m, $\theta = 30\cdot pi/180 \approx 0.52$,
-$v_0 = 10/3.6 \approx 2.8$ m/s for a soft kick, and
-$v_0=120/3.6\approx 33.33$ m/s for a hard kick.
-Using $\alpha$ from b), we ...
-
-[hpl: Need to fill in more after $\alpha$ is checked - and solve the
-ODE with Odespy.]
-!esol
-!esubex
-
-===== Problem: Scale a predator-prey model =====
-label{scale:decay:exer:predpray}
-file=predator_prey
-
-idx{Lotka-Volterra, predator-prey model}
-
-The evolution of animal populations with a predator and a prey (e.g.,
-lynx and hares, or foxes and rabbits) can be described by the
-Lotka-Volterra ODE system
-
-!bt
-\begin{align}
-H^{\prime} &= H(a - bL),
-label{scale:decay:exer:predprey:eqH}\\
-L^{\prime} &= L(dH - c),
-label{scale:decay:exer:predprey:eqL}\\
-H(0)&=H_0,\\
-L(0)&=L_0\tp
-\end{align}
-!et
-Here, $H$ is the number of animals of the prey (say hares)
-and $L$ is the corresponding measure of the predator population (say lynx).
-There are six parameters: $a$, $b$, $c$, $d$, $H_0$, and $L_0$.
-
-The terms has the following meanings:
-
- * $aH$ is the exponential
-   population growth of $H$ due to births and deaths and is governed by
-   the access to nutrition,
- * $-bHL$ is the loss of preys because they are eaten by predators,
- * $dHL$ is the increase of preys because they eat predators (but only
-   a fraction of the eaten preys, $bHL$, contribute to population growth
-   of the predator and therefore $d < b$),
- * $-cL$ is the exponential decay in the predator population because of
-   deaths (the increase is modeled by $dHL$).
-
-Dimensionless independent and dependent variables are introduced as usual
-by
-
-!bt
-\[ \bar t = \frac{t}{t_c},\quad
-\bar H = \frac{H}{H_c},\quad \bar L = \frac{L}{L_c},
-\]
-!et
-where $t_c$, $H_c$, and $L_c$ are scales to be determined. Inserted
-in the ODE problem we arrive at
-
-!bt
-\begin{align}
-\frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-label{scale:decay:exer:predprey:eqH:s}\\
-\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-label{scale:decay:exer:predprey:eqL:s}\\
-H_c\bar H(0) &= H_0,
-label{scale:decay:exer:predprey:eqH0:s}\\
-L_c\bar H(0) &= L_0\tp
-label{scale:decay:exer:predprey:eqL0:s}
-\end{align}
-!et
-
-!bsubex
-Consider first a simple, intuitive scaling of $H$ and $L$ based on
-initial conditions $H_c=H_0$
-and $L_c=H_c$. This means that $\bar H$ starts out at unity and $\bar L$
-starts out as the fraction $L_0/H_0$. Find a time scale and identify
-dimensionless parameters in the scaled ODE problem.
-
-!bsol
-With $H_c=L_c=H_0$ in
-(ref{scale:decay:exer:predprey:eqH:s})-(ref{scale:decay:exer:predprey:eqL0:s})
-we get
-
-!bt
-\begin{align*}
-\frac{d\bar H}{d\bar t} &= \frac{a}{bH_0}\bar H  - \bar L\bar H,
-\\
-\frac{d\bar L}{d\bar t} &= \frac{d}{b}\bar L \bar H - \frac{c}{bH_0}\bar L),
-\\
-\bar H(0) &= 1,\\
-\bar L(0) &=\frac{L_0}{H_0}\tp
-\end{align*}
-!et
-With the dimensionless parameters
-
-!bt
-\[ \alpha = \frac{a}{bH_0},\quad\beta = \frac{d}{b},\quad\gamma =
-\frac{c}{bH_0},\quad \delta = \frac{H_0}{L_0},\]
-!et
-we can write the dimensionless problem as
-
-!bt
-\begin{align*}
-\frac{d\bar H}{d\bar t} &= \alpha\bar H  - \bar L\bar H,\\
-\frac{d\bar L}{d\bar t} &= \beta\bar L \bar H - \gamma\bar L),\\
-\bar H(0) &= 1,\\
-\bar L(0) &= \delta \tp
-\end{align*}
-!et
-
-The quantity $bH_0$ is the number of eaten preys per predator.
-Then $\alpha$ measures the ratio of natural population growth of
-the prey, due to nutrition, and the number of eaten preys per predator.
-The $\beta$ parameter measures the fraction of the eaten preys and
-the amount of this that actually
-leads to population growth of the predator.
-The number $\gamma$ reflects the ratio of
-predator deaths and the eaten preys per predator, and $\delta$ is
-the initial fraction of preys and predators.
-!esol
-!esubex
-
-!bsubex
-Try a different scaling where the aim is to adjust the scales such that
-the ODEs become as simple as possible, i.e, have as few dimensionless
-parameters as possible. Compare with the scaling in a).
-
-!bsol
-Dividing by $H_c$ and $L_c$ in
-(ref{scale:decay:exer:predprey:eqH:s}) and
-(ref{scale:decay:exer:predprey:eqL0:s}),
-respectively,
-and multiply by $t_c$:
-
-!bt
-\begin{align*}
-\frac{d\bar H}{d\bar t} &= t_c\bar H(a - bL_c\bar L),\\
-\frac{d\bar L}{d\bar t} &= t_c\bar L(dH_c\bar H - c)\tp
-\end{align*}
-!et
-Choosing $t_c=1/a$ and $t_c aL_c=1$, i.e., $L_c=a/b$, makes the
-first equation free of parameters: $\bar H^{\prime}=\bar H(1-\bar L)$.
-Factoring out $c$ in the equation for $L$ and choosing
-$H_c d/c=1$, i.e., $H_c=c/d$, leaves us with the $L$ equation
-as $\bar L^{\prime}=(c/a)\bar L(\bar H-1)$. The ratio $c/a$ is
-now called $\mu$ and equals
-$\gamma/\alpha$ from a).
-
-The initial conditions lead to $\bar H(0) = H_0/H_c=H_0d/c =\beta/\gamma = \nu$,
-and $\bar L(0)=L_0/L_c = L_0b/a = \delta/\alpha = \omega$.
-
-The dimensionless problem is now
-
-!bt
-\begin{align}
-\frac{d\bar H}{d\bar t} &= \bar H(1 - \bar L),\\
-\frac{d\bar L}{d\bar t} &= \mu \bar L(\bar H - 1) = \gamma\alpha^{-1} \bar L(\bar H - 1),\\
-\bar H(0) &= \nu = \beta/\gamma,\\
-\bar L(0) &= \omega = \delta/\alpha,
-\end{align}
-!et
-with
-
-!bt
-\[ \mu = \frac{c}{a},\quad \nu = H_0\frac{d}{c},\quad \omega = L_0\frac{b}{a}
-\tp\]
-!et
-The unknowns $\bar H$ and $\bar L$ now has less intuitive scalings,
-
-!bt
-\[ \bar H = \frac{Hd}{c},\quad \bar L = \frac{Lb}{a},\]
-!et
-while time is measured in the units based on the exponential growth
-due to births and deaths of preys ($a$). The number of dimensionless parameters
-is one less since we have one more scale (for $L_c$) at our
-disposal. Simplicity in one initial conditions in a) is
-exchanged with more simplicity in the ODEs, which now have
-only one dimensionless parameter.
-
-Note that $\nu$ and $\omega$ must be
-different from unity to avoid $\bar H\neq 0$ and $\bar L\neq 0$ because
-of the factors $1-L$ and $H-1$ in the equations that can make
-$\bar H^{\prime}=0$ and $\bar L^{\prime}=0$.
-!esol
-!esubex
-
-!bsubex
-A more mathematical approach to determining suitable scales for $H$ and $L$
-consists in finding the stationary points $(H,L)$ of the ODE system,
-where $H^{\prime}=L^{\prime}=0$, and use such points as characteristic
-sizes of the dependent variables. Show that $H^{\prime}=L^{\prime}=0$
-implies $H=L=0$ or $L=a/b$ and $H=c/d$. Use $H_c=a/b$, $L_c=c/d$,
-and find a time scale. Compare with the result in b).
-
-!bsol
-Setting $H^{\prime}=L^{\prime}=0$ leads to
-
-!bt
-\[ H(a-bL)=0,\quad L(dH-c)=0,\]
-!et
-from which we see that the factors must vanish: $H=L=0$,
-$L=a/b$, and $H=c/d$. With Use $H_c=a/b$, $L_c=c/d$, and $t_c=1/a$
-we get the same scaling as in b), but with a different motivation.
-!esol
-!esubex
-
-===== Problem: Scale a model for competing species =====
-label{scale:decay:exer:competing_species}
-file=competing_species
-
-idx{Lotka-Volterra, competing species model}
-
-Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
-competing species. A generalized Lotka-Volterra model
-is based on a logistic growth of each specie and a predator-prey like
-interaction (cf.~Problem ref{scale:decay:exer:predprey}):
-
-!bt
-\begin{align}
-\frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\
-\frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
-\end{align}
-!et
-where $r_1$, $r_2$, $M_1$, $M_2$, $s_{12}$, and $s_{21}$ are given constants.
-The initial conditions specify $N_1$ and $N_2$ at $t=0$.
-Find suitable scales and derive a dimensionless ODE problem.
-
-!bsol
-As always, we can introduce dimensionless variables,
-We use ideas from scaling of ODEs for logistic growth, i.e., we use
-the carrying capacities $M_1$ and $M_2$ as characteristic (maximum)
-values of $N_1$ and $N_2$, respectively. Time can be scaled from
-the initial exponential growth of $N_1$ or $N_2$, i.e., $t_c=1/r_1$
-or $t_c=1/r_2$. We choose the former here. Introducing
-
-!bt
-\[ \bar t = r_1 t,\quad u_1 = \frac{N_1}{M_1},\quad u_2 = \frac{N_2}{M_2},\]
-!et
-in the ODE system, leads to
-
-!bt
-\begin{align*}
-\frac{du_1}{d\bar t} &= u_1\left(1 - u_1 - b_{21}\beta\gamma\right),\\
-\frac{du_2}{d\bar t} &= \alpha u_2\left(1 - u_2 - b_{12}\beta^{-1}\gamma^{-1}\right),\\
-\end{align*}
-!et
-where the dimensionless numbers are given by
-
-!bt
-\[ \alpha = \frac{r_2}{r_1},\quad \beta=\frac{M_2}{M_1},
-\quad \gamma = \frac{b_{12}}{b_{21}}\tp\]
-!et
-We have introduced to separate numbers $\beta$ and $\gamma$ since they
-related to different parameters, but only their product matters.
-Alternatively, we could introduce the numbers $\mu = b_{12}\gamma$
-and $\nu = b_{21}\gamma^{-1}$ in the last term of the first and second
-ODE, respectively.
-
-## See Murray I, page 94.
-!esol
-
-===== Problem: Find the period of sinusoidal signals =====
-label{scale:decay:exer:sine}
-file=sine_period
-
-!bsubex
-Plot the function
-
-!bt
-\[ u(t) = A\sin(\omega t), \]
-!et
-for $t\in [0, 8\pi/\omega]$. Choose $\omega$ and $A$.
-
-!bsol
-Appropriate code is
-
-@@@CODE exer-scaling/sine_period.py fromto: import numpy@def u_damped
-
-FIGURE: [fig-scaling/sine_period_a, width=600 frac=0.9]
-!esol
-!esubex
-
-!bsubex
-The *period* $P$ of $u$ is the shortest distance between two peaks (where
-$u=A$). Show mathematically that
-
-!bt
-\[ P = \frac{2\pi}{\omega}\tp\]
-!et
-Frequently, $P$ is also referred to as the *wave length* of $u$.
-
-!bsol
-Since the sine function has period $2\pi$, we have that
-
-!bt
-\[ \sin(\omega t) = \sin(\omega t + 2\pi)\tp\]
-!et
-The definition of $P$ is that sine gets its value again after
-time $P$:
-
-!bt
-\[ \sin(\omega t) = \sin(\omega (t + P))\tp\]
-!et
-Combing we get that $\sin(\omega t + 2\pi) = \sin(\omega (t + P))$,
-so the arguments must be equal:
-
-!bt
-\[ \omega t + 2\pi = \omega (t + P),\]
-!et
-from which it follows that $P=2\pi/\omega$.
-
-An alternative is to find the peaks as the points where $du/dt=0$.
-Since $du/dt = \omega\cos (\omega t)$, this function is zero when
-$\omega t = n\pi$ for integer $n$. If $n\pi$ corresponds to a maximum,
-$(n+1)\pi$ will correspond to a minimum and $(n+2)\pi$ to the next
-maximum. The period $P$ is the distance in time between two maxima:
-
-!bt
-\[ \omega(t + P) - \omega t = (n+2\pi - n\pi\quad\Rightarrow\quad
-P = \frac{2\pi}{\omega}\tp
-\]
-!et
-!esol
-!esubex
-
-!bsubex
-Plot the damped signal $u(t)=e^{-at}\sin (\omega t)$ over four periods
-of $sin(\omega t)$. Choose $\omega$, $A$, and $a$.
-
-!bsol
-Code:
-
-@@@CODE exer-scaling/sine_period.py fromto: def u_damped@def d\(
-
-FIGURE: [fig-scaling/sine_period_c, width=600 frac=0.9]
-!esol
-!esubex
-
-!bsubex
-What is the period of $u(t)=e^{-at}\sin (\omega t)$? We define the
-period $P$ as the shortest distance between two peaks of the signal.
-
-!bhint
-Use that $v = p\cos(\omega t) + q\sin (\omega t)$ can be rewritten
-as $v = B\cos(\omega t - \phi)$ with $B=\sqrt{p^2 + q^2}$ and
-$\phi = \tan^{-1}(p/q)$. Use such a rewrite of $u'$ to find the peaks of
-$u$ and then the period.
-!ehint
-
-!bsol
-Finding the extrema from $u^{\prime}=0$ leads to
-
-!bt
-\[ u^{\prime} = -ae^{-at}\sin(\omega t) + e^{-at}\omega\cos(\omega t) = 0\tp\]
-!et
-Using the hint to rewrite ($p=\omega$, $q=-a$), we get
-
-!bt
-\[ u^{\prime} = e^{-at}B\cos(\omega t - \phi)=0,\quad B=\sqrt{\omega^2 + a^2},\ \phi = \tan^{-1}(-\omega/a)\tp\]
-!et
-Now, $e^{-at}$ is always positive so only the cosine function can
-cross zero, and that happens when the argument is $n\pi$ for integer $n$.
-However, all the maxima only occurs for $2n\pi$ ($n$ integer).
-Demanding the argument to be $2n\pi$ we get the distance between two
-nearby peaks as
-
-!bt
-\[ \omega (t + P) - \phi - (\omega t - \phi) = 2(n+1)\pi - 2n\pi,\]
-!et
-which leads to
-
-!bt
-\[ \omega P = 2\pi\quad\Rightarrow\quad P = \frac{2\pi}{\omega}\tp\]
-!et
-The period of the damped signal is the same; only $\omega$ can alter
-the period.
-!esol
-!esubex
-
-!bremarks
-The *frequency* is the number of up and down cycles in one unit time.
-Since there is one cycle in a period $P$, the frequency is $f =1/P$,
-measured in Hz.
-The *angular frequency* $\omega$ is then $\omega = 2\pi/P = 2\pi f$.
-!eremarks
-
-===== Problem: Scale the pendulum equation =====
-label{sec:scale:exer:pendulum}
-file=pendulum
-
-The equation for a so-called simple pendulum with a mass $m$ at the end is
-
-!bt
-\begin{equation}
-mL\ddot\theta + mg\sin\theta = 0,
-\end{equation}
-!et
-where $\theta(t)$ is the angle with the vertical, $L$ is the length of
-the pendulum, and $g$ is the acceleration of gravity.
-
-A physical pendulum with moment of inertia $I$ is governed by
-a similar equation,
-
-!bt
-\begin{equation}
-I\ddot\theta + mgL\sin\theta = 0\tp
-\end{equation}
-!et
-Both equations have the initial conditions $\theta(0)=\Theta$ and
-$\theta'(0)=0$ (start at rest).
-
-Use $\theta$ as dimensionless unknown, find a proper time scale,
-and scale both differential equations.
-
-!bsol
-Introducing $\bar t=t/t_c$ gives
-
-!bt
-\begin{align*}
-mL\frac{1}{t_c^2}\frac{d^2\theta}{d\bar t^2} + mg\sin\theta &= 0,\\
-I\frac{1}{t_c^2}\frac{d^2\theta}{d\bar t^2} + mgL\sin\theta &= 0\tp
-\end{align*}
-!et
-or on dimensionless form,
-
-!bt
-\begin{align*}
-\frac{d^2\theta}{d\bar t^2} + \frac{t_c^2g}{L}\sin\theta &= 0,\\
-\frac{d^2\theta}{d\bar t^2} + \frac{t_c^2mgL}{I}\sin\theta &= 0\tp
-\end{align*}
-!et
-An obvious choice to make the terms equal are $t_c=\sqrt{L/g}$
-in the first equation and $t_c=\sqrt{I/(mgL)}$ in the second.
-These choices are also compatible with the frequencies if the
-angle is small: $\ddot\theta + g/L\theta = 0$ has solution
-of the type $\sin(\omega t)$ with $\omega = \sqrt{g/L}$, and then
-$t_c=1/\omega$ is a natural scale.
-
-The dimensionless equations become equal in this case:
-
-!bt
-\[ \frac{d^2\theta}{d\bar t^2} + \sin\theta = 0\tp\]
-!et
-!esol
-
-===== Exercise: Scale the ODEs for a binary star =====
-label{sec:scale:exer:binary_star}
-file=binary_star
-
-The equations for a "binary star": "https://en.wikipedia.org/wiki/Binary_star",
-or a planet and a moon, are
-
-!bt
-\begin{align}
-m_A\ddot\x_A &= \F,\\
-m_B\ddot\x_B &= -F,
-\end{align}
-!et
-where $\x_A$ is the position of object (star) A, and $\x_B$ is the position
-object B. The corresponding masses are $m_A$ and $m_B$.
-The only force is the gravity force
-
-!bt
-\[ \F = \frac{Gm_Am_B}{||\rpos||^3}\rpos,\]
-!et
-where
-
-!bt
-\[ \rpos(t) = \x_A(t) - \x_B(t),\]
-!et
-and $G$ is the gravitational constant: $G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2$. A problem with these equations is that the parameters are very large
-($m_A$, $m_B$, $||\rpos||$) or very small ($G$). The rotation time
-for binary starts can be very small or large as well.
-
-!bsol
-A natural length scale could be the initial distance between the objects:
-$L=\rpos(0)$. We write the dimensionless quantities as
-
-!bt
-\[ \bar\x_A = \frac{\x_A}{L},\quad\bar\x_B = \frac{\x_B}{L},\quad
-\bar t = \frac{t}{t_c}\tp\]
-!et
-The gravity force is transformed to
-
-!bt
-\[ \F = \frac{Gm_Am_B}{L^2||\bar\rpos||^3}\bar\rpos,\quad \bar\rpos = \bar\x_A - \bar\x_B,\]
-!et
-so the first ODE for $\x_A$ becomes
-
-!bt
-\[ \frac{d^2 \bar\x_A}{d\bar t^2} =
-\frac{Gm_Bt_c^2}{L^3}\frac{\bar\rpos}{||\bar\rpos||^3}\tp\]
-!et
-Assuming that quantities with a bar and their derivatives are around unity
-in size, it is natural to choose $t_c$ such that the fraction $Gm_Bt_c/L^2=1$:
-
-!bt
-\[ t_c = \sqrt{\frac{L^3}{Gm_B}}\tp\]
-!et
-From the other equation for $\x_B$ we get another candidate for $t_c$ with
-$m_A$ instead of $m_B$. Which mass we choose play a role if $m_A\ll m_B$ or
-$m_B\ll m_A$. One solution is to use the sum of the masses:
-
-!bt
-\[ t_c = \sqrt{\frac{L^3}{G(m_A+m_B)}}\tp\]
-!et
-Taking a look at "Kepler's laws": "https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" of planetary motion, the orbital period for a planet around the star is given by the $t_c$ above, except for a missing factor of $2\pi$.
-Our characteristic time $t_c$ is therefore highly relevant.
-
-!bt
-\begin{align}
-\frac{d^2 \bar\x_A}{d\bar t^2} &=
-\frac{m_B}{m_A+m_B}\frac{\bar\rpos}{||\bar\rpos||^3},\\
-\frac{d^2 \bar\x_B}{d\bar t^2} &=
-\frac{m_A}{m_A+m_B}\frac{\bar\rpos}{||\bar\rpos||^3}\tp
-\end{align}
-!et
-
-In the limit $m_A\ll m_B$, object B stands still, say $\bar\x_B=0$, and object
-A orbits according to
-
-!bt
-\[ \frac{d^2 \bar\x_A}{d\bar t^2} = \frac{\bar\x_A}{||\bar \x_A||^3}\tp\]
-!et
-Switch to polar coordinates?
-
-!esol
-
-===== Problem: Scale Duffing's equation =====
-label{scale:vib:exer:Duffing}
-file=Duffing_eq
-
-Duffing's equation is a vibration equation with linear and cubic
-spring terms:
-
-!bt
-\[ mu'' + k_0u + k_1u^3 = 0,\quad u(0)=U_0,\ u'(0)=0\tp\]
-!et
-Scale this problem.
-
-!bsol
-We introduce $\bar t = t/t_c$ and $\bar u = u/u_c$:
-
-!bt
-\[ mt_c^{-2}u_c\bar u'' + k_0u_c\bar u + k_1u_c^3\bar u^3=,\quad
-u_c\bar u(0)=U_0,\ u_c\bar u'(0)=0\tp\]
-!et
-Choosing $t_c$ as in a linear vibration problem, $t_c = \sqrt{m/k_0}$,
-and $u_c=U_0$, we get
-
-!bt
-\[ 'bar u'' + \bar u + \alpha u^3 = 0,\quad \bar u(0)=1,\ \bar u'(0)=0,\]
-!et
-where
-
-!bt
-\[ \alpha = U_0^2\frac{k_1}{k_0},\]
-!et
-is a dimensionless parameter reflecting the ratio of the
-cubic spring term $k_1U_0^3$ and the linear spring term $k_0U_0$
-at maximum displacement.
-!esol
-
-===== Problem: Scale a stationary Couette flow =====
-label{scale:vib:exer:stationary_Couette}
-file=stationary_Couette
-
-A fluid flows between two flat plates, with one plate at rest while
-the other moves with velocity $U_0$. This classical flow case is known as
-stationary Couette flow.
-
-!bsubex
-Directing the $x$ axis in the flow direction and letting $y$ be
-a coordinate perpendicular to the walls, one can assume that
-the velocity field simplifies to $\u = u(y)\ii$.
-Show from the Navier-Stokes equations that the boundary-value problem
-for $u(y)$ is
-
-!bt
-\[ u^{\prime\prime}(u) = 0,\quad u(0)=0,\ u(H)=U_0\tp\]
-!et
-We have here assumed at $y=0$ corresponds to the plate at rest and
-that $y=H$ represents the plate that moves. There are no pressure
-gradients present in the flow.
-!esubex
-
-!bsubex
-Scale the problem in a) and show that the result has no physical parameters
-left in the model:
-
-!bt
-\[ \frac{d^2\bar u}{d\bar y^2} = 0,\quad \bar u(0)=0,\ \bar u(1)=1\tp\]
-!et
-!esubex
-
-!bsubex
-We can compute $\bar u(\bar y)$ from one numerical simulation (or a
-straightforward integration of the differential equation). Set up
-the formula that finds $u(y; H, u_0)$ from $\bar u(\bar y)$ for any
-values of $H$ and $U_0$.
-!esubex
-
-!bremarks
-The problem for $u$ is a classical two-point boundary-value problem
-in applied mathematics and arises in a number of applications, where
-Couette flow is just one example. Heat conduction is another
-example: $u$ is temperature, and the heat conduction equation for
-an insulated rod reduces to $u^{\prime\prime}=0$ under stationary
-conditions and no heat source.
-Controlling the end $x=0$ at 0 degrees Celsius the other end $x=L$
-at $U_0$ degrees
-Celsius, gives the same boundary conditions as in the above flow problem.
-The scaled problem is of course the same whether we have flow of
-fluid or heat.
-!eremarks
-
-===== Problem: Scale a starting Couette flow =====
-label{scale:vib:exer:starting_Couette}
-file=starting_Couette
-
-A fluid is confined in a channel with two planar walls $z=0$ and $z=H$.
-The fluid is at rest. At time $t=0$ the upper wall is suddenly set in
-motion with a velocity $U\ii$. We assume that the velocity is
-directed along the $x$ axis: $\u = u(x,z,t)\ii$. From the equation of continuity, $\nabla\cdot\u =0$, we get that $\partial u/\partial x = 0$ such
-that $\u = u(z,t)\ii$. The boundary conditions are $\u=0$ at the lower
-wall $z=0$ and $\u = U\ii$ at the upper wall $z=H$. Assume that the
-pressure is constant everywhere and that there are no body forces.
-
-!bsubex
-Start with the incompressible Navier-Stokes equations and the
-assumption $\u = u(z,t)\ii$. Derive an initial-boundary value problem
-for $u(z,t)$. Scale the problem.
-
-!bsol
-Inserting the simplified velocity in the original Navier-Stokes equations
-makes the convection term $\u\cdot\nabla\u$ vanish and $\nabla p$ vanishes
-since $p$ is assumed constant (only the upper wall drives the flow).
-The result becomes
-
-!bt
-\[ \varrho \frac{\partial u}{\partial t} = \mu
-\frac{\partial^2 u}{\partial z},\]
-!et
-or using $\mu/\varrho =\nu$,
-
-!bt
-\[ \frac{\partial u}{\partial t} = \nu
-\frac{\partial^2 u}{\partial z},\]
-!et
-with $u(z,0)=0$, $u(0,t)=0$ and $u(H,t)=U$. This is a standard
-diffusion problem. The natural length scale is $H$, so
-$\bar z = z/H$. Using the well-established time scale $t_c= H^2/\nu$
-and the velocity scale $u_c=U$, we get the dimensionless problem
-
-!bt
-\[ \frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial^2\bar u}{\partial \bar z},\]
-!et
-with $\bar u(\bar z,0)=0$, $u(0,\bar t)=0$, $u(1,t)=1$.
-There are no physical parameters. Having computed $\bar u(\bar z, \bar t)$,
-the physical solution can be retrieved as
-
-!bt
-\[ u(z,t) = U\bar u(\bar zH, \bar t H^2/\nu)\tp\]
-!et
-!esol
-!esubex
-
-!bsubex
-Start with the dimensionless Navier-Stokes equations and use
-the assumption $\bar\u = \bar u(\bar z,\bar t)\ii$ to reduce
-the problem. The resulting equation now contains a Reynolds
-number, i.e., one more physical parameter than in a).
-Why is this an inferior approach to scaling the problem?
-
-!bsol
-Inserting the simplified velocity in the scaled Navier-Stokes
-equations leads to
-
-!bt
-\[ \frac{\partial \bar u}{\partial \bar t} = \frac{1}{\hbox{Re}}
-\frac{\partial^2\bar u}{\partial \bar z}\tp\]
-!et
-Here we have the Reynolds number as parameter.
-
-The major difference is the scaling used in time: $t_c=H/U$
-(length scale is $H$ here) versus $t_c = H^2/\nu$. The latter
-is much more suitable as it is based on a diffusion problem and
-the present problem is indeed a diffusion problem.
-Normally, $\nu$ is very small, so $t_c$ based on diffusion is usually much
-larger than $H/U$. With an inappropriate time scale,
-$\partial \bar u/\partial\bar t$ is not of unit size, and we need a
-dimensionless number on the right-hand side to adjust the
-spatial derivative term to a non-unity size. The wrong scaling
-thereby introduces an extra (unnecessary) parameter.
-!esol
-!esubex
-
-!bsubex
-Can you construct a heat conduction problem that has the same solution
-$\bar u(\bar z,\bar t)$ as in a)?
-
-!bsol
-Consider a long rod with length $H$ aligned with the $z$ axis.
-The rod is isolated on the curved circular surface and kept
-at fixed temperatures $U_0$ and $U_H$ at the ends $z=0$ and $z=H$,
-respectively. The initial temperature is $U_0$.
-Because of the insulated curved surface, heat can only propagate in
-the $z$ direction, and a one-dimensional
-heat conduction equation is appropriate:
-
-!bt
-\[ \frac{\partial u}{\partial t} = \dfc
-\frac{\partial^2 u}{\partial z},\]
-!et
-with $u(z,0)=U_0$, $u(0,t)=U_0$, and $u(H,t)=U_H$.
-We introduce a dimensionless temperature
-
-!bt
-\[ \bar u = \frac{u - U_0}{U_H - U_0},\]
-!et
-such that $\bar u\in [0,1]$. The standard time scale $t_c=H^2/\dfc$
-is used, notifying that the length scale is $H$. Inserting the
-dimensionless variables in the governing equation results in
-the same problem as in a). It means that we from one solution
-$\bar u(\bar z,\bar t)$ can get solutions for heat conduction
-in rods of all lengths and materials, and with all boundary temperatures,
-as well as flow of any fluid
-between two walls with any gap and any velocity of the upper wall.
-!esol
-!esubex
-
-!bsubex
-Describe how the scaled problem in this exercise can be solved
-by a program that solves the following diffusion problem with dimensions:
-
-!bt
-\begin{align*}
-\frac{\partial u}{\partial t} &=
-\dfc \frac{\partial^2 u}{\partial z} + f(x,t),\\
-u(x,0) &= I(x),\\
-u(0,t) & =U_0(t),\\
-u(L,t) & =U_L(t)\tp
-\end{align*}
-!et
-
-!bsol
-Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
-$U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
-!esol
-!esubex
-
-===== Exercise: Scale Couette flow with pressure gradient =====
-label{scale:vib:exer:Couette_wpressure}
-file=Couette_wpressure
-
-Viscous fluid flow between two infinite flat plates $z=0$ and $z=H$
-is governed by
-
-!bt
-\begin{align}
-\mu u''(z) &= -\beta\\
-u(0) &= 0,\\
-u(H) &= U_0\tp
-\end{align}
-!et
-Here, $u(z)$ is the fluid velocity in $x$ direction (perpendicular to the
-$z$ axis), $\mu$ is the dynamic viscosity of the fluid, $\beta$ is
-a positive constant pressure gradient, and $U_0$ is the
-constant velocity of the upper
-plate $z=H$ in $x$ direction.
-
-!bsubex
-Find the exact solution $u(z)$. Point out how $\beta$ and $U_0$
-influence the magnitude of $u$.
-
-!bsol
-SymPy can integrate the differential equation twice and fit the
-integration constants to the boundary conditions:
-
-@@@CODE exer-scaling/Couette_wpressure.py fromto: import sympy@print u
-The result becomes
-
-!bt
-\[ u(z) =
-\frac{z}{2 H \mu} \left(H \beta \left(H - z\right) + 2 U_{0} \mu\right)\tp \]
-!et
-
-The maximum value of $u$ is found by
-
-@@@CODE exer-scaling/Couette_wpressure.py fromto: # Find max u@print umax
-and reads
-
-!bt
-\[ \max_z u =
-\frac{H^{2} \beta}{8 \mu} + \frac{U_{0}}{2} +
-\frac{U_{0}^{2} \mu}{2 H^{2} \beta}\tp
-\]
-!et
-If the pressure gradient is the domining driving force, we can neglect
-the $U_0$ terms: $\max_z u = H^2\beta/(8\mu)$. In case the movement
-of the upper plate is much more important than the pressure gradient
-for driving the flow, we can neglect the $\beta$ terms. However, we must
-then resort to the $u(z)$ expression for $\beta=0$, $u(z)=zU_0/H$,
-and realize that the maximum then is obtained at the boundary for
-$z=H$: $\max_z h=U_0$ (as intuitively obvious).
-!esol
-!esubex
-
-!bsubex
-Scale the problem.
-
-!bsol
-Introducing
-
-!bt
-\[ \bar z = \frac{z}{z_c}, \quad \bar u (\bar z) = \frac{u(z_c\bar z)}{u_c},\]
-!et
-in the equation gives
-
-!bt
-\[ \frac{d^2\bar u}{d\bar z^2} = -\frac{z_c^2\beta}{\mu u_c}\tp\]
-!et
-The natural scale for $z_c$ is $H$ since that makes $\bar z\in [0,1]$.
-For the two terms in the differential equation to be of order unity
-(with a correct scaling, the left-hand side should be of order unity),
-we must have
-
-!bt
-\[ u_c = \frac{H^2\beta}{\mu}\tp\]
-!et
-The boundary value problem is
-
-!bt
-\begin{align}
-\frac{d^2\bar u}{d\bar z^2} &= -1,\quad &\bar z\in (0,1),\\
-\bar u(0) &= 0,\\
-\bar u(1) &= \alpha,
-\end{align}
-!et
-where $\alpha$ is a dimensionless number
-
-!bt
-\[ \alpha = \frac{\mu U_0}{H^2\beta}\tp\]
-!et
-This is meaningful only for $\beta\neq 0$.
-
-Looking at the exact solution, we see that $\max_z u =
-H^2\beta/(8\mu)$, and with this $\max_z u$ as $u_c$ we get a
-differential equation $\bar u'' = -8$ instead, and $\bar u\in [0,1]$
-(if $U_0=0$). However, the factor $1$ or $8$ on the right-hand side is
-not significant, neither if $\bar u\in [0,1]$ or $\bar u\in [0,8]$.
-
-The scale $u_c$ used above is relevant if the pressure gradient is the
-dominating force. If $U_0$ is more important than $\beta$, or $\beta =0$,
-we choose $u_c=U_0$ and get instead
-
-!bt
-\begin{align}
-\frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),\\
-\bar u(0) &= 0,\\
-\bar u(1) &= 1\tp
-\end{align}
-!et
-!esol
-!esubex
-
-[hpl: Could extend to time-dependent case, but this will involve three time
-scales...]
-
-===== Exercise: Scale pulsatile pipeflow =====
-label{scale:exer:pipeflow:pulsatile}
-file=pipeflow
-
-The flow of a viscous fluid in a straight pipe with circular
-cross section with radius $R$ is governed by
-
-!bt
-\begin{align}
-\varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
-\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],\\
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],\\
-u(R,t) &= 0, & t\in (0,T],\\
-u(r,0) &= 0, & r\in [0,R].
-\end{align}
-!et
-The quantity $u(r,t)$ is the fluid velocity, $P(t)$ is a given
-pressure gradient, $\varrho$ is the fluid density, and $\mu$ is the
-dynamic viscosity.
-
-Assume $P(t) = A\cos\omega t$. Scale the problem and identify
-appropriate dimensionless numbers. The assume $P(t)$ is a more
-complicated function, but still period with period $p$.
-Discuss how the scaling can be extended to this case.
-
-!bsol
-We introduce dimensionless quantities:
-
-!bt
-\[ \bar r = \frac{r}{R},\quad \bar t = \frac{t}{t_c},\quad \bar u = \frac{u}{u_c}\tp\]
-!et
-The function $P(t)$ can be scaled as
-
-!bt
-\[ \bar P(\bar t) = \frac{P(t_c\bar t)}{A} = \sin (t_c\omega \bar t)\tp\]
-!et
-Inserted in the PDE, we get
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} = \frac{t_c \nu }{R^2}\frac{1}{\bar r}\frac{\partial}{\partial\bar r}
-\left(\bar r\frac{\partial\bar u}{\partial\bar r}\right) - \frac{t_c A}{\varrho u_c}\sin (t_c\omega\bar t),\]
-!et
-where $\mu = \mu/\varrho$.
-
-The scale for $u$ can be explored by seeking an analytical solution
-of the problem. Such solutions do exist, they are typically series
-expansions of Bessel functions, and it is not so easy to extract
-a simple expression for the maximum value of $|u(r,t)|$.
-A simpler approach is to estimate $u_c$ be demanding the coefficient
-in the pressure term to be of unit size:
-
-!bt
-\[ u_c = \frac{t_cA}{\varrho}\tp\]
-!et
-There are two choices of time scales: the pressure time scale $t_c=1/\omega$
-and the viscosity (or diffusion) time scale $t_c=R^2/nu$. With the latter
-we get $u_c = R^2 A/\mu$ and
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} = \frac{1}{\bar r}\frac{\partial}{\partial\bar r}
-\left(\bar r\frac{\partial\bar u}{\partial\bar r}\right) - \sin (\alpha\bar t),\]
-!et
-where
-
-!bt
-\[ \alpha = \frac{R^2\omega}{\nu} = \frac{R^2/\nu}{1/\omega},\]
-!et
-showing that $\alpha$ is the ratio of the viscosity time scale and
-the pressure oscillation time scale.
-
-With the pressure time scale we have
-
-!bt
-\[ u_c = \frac{\varrho A}{\omega},\]
-!et
-and the scaled PDE becomes
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} = \alpha^{-1}\frac{1}{\bar r}\frac{\partial}{\partial\bar r}
-\left(\bar r\frac{\partial\bar u}{\partial\bar r}\right) - \sin (\bar t)\tp\]
-!et
-In both cases the scaled boundary conditions become
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} = 0,\quad
-\bar u(1,\bar t) = 0,\]
-!et
-for $t\in (0,T/t_c]$, and $\bar u(\bar r, 0)=0$ for $\bar r\in [0,1]$.
-
-If $P(t)$ is not sinusoidal but periodic with period $p$, we have that
-$P$ is a function of $\omega t$ as above, with $\omega = 2\pi/p$.
-Everything in the scaling remains the same, just the $\sin$ term changes
-to $P(\alpha\bar t)$ if the time scale is based on viscosity (diffusion),
-and $P(\bar t)$ if the time scale is based on the pressure oscillations.
-!esol
-
-
-===== Exercise: Scale the linear cable equation =====
-label{scale:exer:cable_eq}
-file=cable_eq
-
-A key PDE in neuroscience is the "cable equation": "https://en.wikipedia.org/wiki/Cable_theory", here given in its simplest linear form:
-
-!bt
-\begin{equation}
-\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
--u\tp
-label{scale:exer:cable_eq:PDE}
-\end{equation}
-!et
-The unknown $u$ is the voltage (measured in volt) associated with
-an electric current along one-dimensional dendrites (``cables'')
-in neural networks, while $\tau$ and $\lambda$ are given parameters.
-
-Scale (ref{scale:exer:cable_eq:PDE}) in three ways: 1) let all terms in
-the scaled equation have unit coefficients, 2) use the domain size
-$L$ as spatial scale and base the time scale on diffusion, 3) use the
-domain size $L$ as spatial scale and base the time scale on
-reaction, i.e., the $-u$ term.
-
-!bsol
-Straightforward scaling, with scales $u_c$, $t_c$, and $x_c$,
-leads in the first step to
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} =
-\frac{t_c\lambda^2}{\tau x_c^2}\frac{\partial^2\bar u}{\partial\bar t^2}
-- \frac{t_c}{\tau}\bar u\tp\]
-!et
-Assuming that all terms are equally important and of unit size
-in the scaled PDE, we get a uniquely determined length and space scale:
-
-!bt
-\[ t_c = \tau,\quad x_c = \lambda\tp\]
-!et
-The scaled cable equation is then
-
-!bt
-\[
-\frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2\bar u}{\partial\bar t^2}
-- \bar u\tp
-\]
-!et
-
-Let now the spatial scale be fixed as $x_c=L$.  Basing $t_c$ on
-diffusion means $t_c = \tau (L/\lambda)^2$, and the scaled PDE becomes
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2\bar u}{\partial\bar t^2}
-- \beta\bar u,\]
-!et
-where
-
-!bt
-\[ \beta = \left(\frac{L}{\lambda}\right)^2\tp\]
-!et
-
-Basing $t_c$ on the reaction scale, i.e., the balance of the time
-derivative and the reaction term, gives $t_c=\tau$ and the scaled PDE
-
-!bt
-\[ \frac{\partial\bar u}{\partial\bar t} =
-\beta^{-1}\frac{\partial^2\bar u}{\partial\bar t^2}
-- \bar u\tp\]
-!et
-
-In neuroscience applications of the cable equation to dendrites, it
-appears that $\lambda$ is about 1 mm and of the same order of
-magnitude as the cable length, so $\beta$ is around 1 in size.
-Then there are not big differences in these scalings, and the first
-one is to be preferred. The two others are more suitable when
-$\beta$ is small or large, e.g., such that the term with $\beta$ can be
-left out of the PDE.
-!esol
 
 ===== Exercise: Comparison of vibration models for elastic structures =====
 label{scale::exer:elasticity:vibmodels}

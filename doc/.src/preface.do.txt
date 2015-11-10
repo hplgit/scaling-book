@@ -112,10 +112,18 @@ Chapters 2 and 3, we present computer code for many computational
 examples, but the treatment of the advanced models in Chapter 4 is
 more superficial to limit the size of that chapter.
 
+The exercises are named either Exercise or Problem. The latter is
+a stand-alone exercise without reference to the rest of the text, while
+the former typically extends a topic in the text or refers to sections or
+formulas in the text.
+
 To conclude, the purpose of this book is to demystify the
 technique and thinking about scaling differential equations and
 motivate for always bringing a differential equation model on
 dimensionless form before doing numerical simulations.
+
+__Acknowledgments.__
+[hpl: Thank proof readers, Springer, others, ...]
 
 
 # #if FORMAT in ("latex", "pdflatex")
