@@ -3443,7 +3443,7 @@ $$
 \begin{align}
 m_A\ddot\x_A &= \F,
 \tag{2.108}\\ 
-m_B\ddot\x_B &= -F,
+m_B\ddot\x_B &= -\F,
 \tag{2.109}
 \end{align}
 $$
@@ -3456,11 +3456,11 @@ $$ \F = \frac{Gm_Am_B}{||\rpos||^3}\rpos,$$
 
 where
 
-$$ \rpos(t) = \x_A(t) - \x_B(t),$$
+$$ \rpos(t) = \x_B(t) - \x_A(t),$$
 
 and \( G \) is the gravitational constant: \( G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2 \). A problem with these equations is that the parameters are very large
 (\( m_A \), \( m_B \), \( ||\rpos|| \)) or very small (\( G \)). The rotation time
-for binary stars can be very small or large as well.
+for binary stars can be very small and large as well.
 
 <p>
 <b>a)</b>
@@ -3503,7 +3503,8 @@ From the other equation for \( \x_B \) we get another candidate for \( t_c \) wi
 
 $$ t_c = \sqrt{\frac{L^3}{G(m_A+m_B)}}\tp$$
 
-Taking a look at <a href="https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" target="_self">Kepler's laws</a> of planetary motion, the orbital period for a planet around the star is given by the \( t_c \) above, except for a missing factor of \( 2\pi \).
+Taking a look at <a href="https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" target="_self">Kepler's laws</a> of planetary motion, the orbital period for a planet around the star is given by the \( t_c \) above, except for a missing factor of \( 2\pi \),
+but that means that \( t_c^{-1} \) is just the angular frequency of the motion.
 Our characteristic time \( t_c \) is therefore highly relevant.
 Introducing the dimensionless number
 
@@ -3529,7 +3530,8 @@ A orbits according to
 
 $$ \frac{d^2 \bar\x_A}{d\bar t^2} = -\frac{\bar\x_A}{||\bar \x_A||^3}\tp$$
 
-To better see the motion, we introduce polar coordinates \( r \) and \( \theta \):
+To better see the motion, and that our scaling is reasonable,
+we introduce polar coordinates \( r \) and \( \theta \):
 
 $$ \bar\x_A = r\cos\theta\ii + r\sin\theta\jj,$$
 
@@ -3554,7 +3556,9 @@ $$
 
 The special case of circular motion, \( r=1 \), fulfills the equations, since
 the latter equation then gives \( \dot\theta =\hbox{const} \) and
-the former then gives \( \dot\theta = 1 \).
+the former then gives \( \dot\theta = 1 \), i.e., the motion is
+\( r(t)=1 \), \( \theta(t)=t \), with unit angular frequency as expected and
+period \( 2\pi \) as expected.
 
 <p>
 </div></p>
@@ -3570,11 +3574,11 @@ Solve the scaled equations numerically for two cases:
 
 <ol>
 <li> a planet around a star:
-   \( \alpha = 10^{-3} \), \( \x_A(0)=(1,0) \), \( \dot\x_A(0)=\jj \),
+   \( \alpha = 10^{-3} \), \( \x_A(0)=(1,0) \), \( \dot\x_A(0)=(0,1) \),
    \( \x_B(0)=0 \), \( \dot\x_B(0)=0 \)</li>
 <li> two stars:
-   \( \alpha = \half \), \( \x_A(0)=(1,0) \), \( \dot\x_A(0)=\half\jj \),
-   \( \x_B(0)=0 \), \( \dot\x_B(0)=-\half\jj \)</li>
+   \( \alpha = \half \), \( \x_A(0)=(1,0) \), \( \dot\x_A(0)=(0,\half) \),
+   \( \x_B(0)=0 \), \( \dot\x_B(0)=(0,-\half) \)</li>
 </ol>
 
 Here is a movie of two rotating stars (point 2 above):
@@ -3737,7 +3741,7 @@ u_c\bar u(0)=U_0,\ u_c\bar u'(0)=0\tp$$
 Choosing \( t_c \) as in a linear vibration problem, \( t_c = \sqrt{m/k_0} \),
 and \( u_c=U_0 \), we get
 
-$$ 'bar u'' + \bar u + \alpha u^3 = 0,\quad \bar u(0)=1,\ \bar u'(0)=0,$$
+$$ \bar u'' + \bar u + \alpha u^3 = 0,\quad \bar u(0)=1,\ \bar u'(0)=0,$$
 
 where
 

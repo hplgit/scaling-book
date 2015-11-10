@@ -4580,7 +4580,8 @@ $m_B\ll m_A$. One solution is to use the sum of the masses:
 !bt
 \[ t_c = \sqrt{\frac{L^3}{G(m_A+m_B)}}\tp\]
 !et
-Taking a look at "Kepler's laws": "https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" of planetary motion, the orbital period for a planet around the star is given by the $t_c$ above, except for a missing factor of $2\pi$.
+Taking a look at "Kepler's laws": "https://en.wikipedia.org/wiki/Kepler%27s_laws_of_planetary_motion" of planetary motion, the orbital period for a planet around the star is given by the $t_c$ above, except for a missing factor of $2\pi$,
+but that means that $t_c^{-1}$ is just the angular frequency of the motion.
 Our characteristic time $t_c$ is therefore highly relevant.
 Introducing the dimensionless number
 
@@ -4605,7 +4606,8 @@ A orbits according to
 !bt
 \[ \frac{d^2 \bar\x_A}{d\bar t^2} = -\frac{\bar\x_A}{||\bar \x_A||^3}\tp\]
 !et
-To better see the motion, we introduce polar coordinates $r$ and $\theta$:
+To better see the motion, and that our scaling is reasonable,
+we introduce polar coordinates $r$ and $\theta$:
 
 !bt
 \[ \bar\x_A = r\cos\theta\ii + r\sin\theta\jj,\]
@@ -4632,7 +4634,9 @@ r\ddot\theta + 2\dot r\dot\theta &= 0\tp
 !et
 The special case of circular motion, $r=1$, fulfills the equations, since
 the latter equation then gives $\dot\theta =\hbox{const}$ and
-the former then gives $\dot\theta = 1$.
+the former then gives $\dot\theta = 1$, i.e., the motion is
+$r(t)=1$, $\theta(t)=t$, with unit angular frequency as expected and
+period $2\pi$ as expected.
 !esol
 !esubex
 
@@ -4690,7 +4694,7 @@ Choosing $t_c$ as in a linear vibration problem, $t_c = \sqrt{m/k_0}$,
 and $u_c=U_0$, we get
 
 !bt
-\[ 'bar u'' + \bar u + \alpha u^3 = 0,\quad \bar u(0)=1,\ \bar u'(0)=0,\]
+\[ \bar u'' + \bar u + \alpha u^3 = 0,\quad \bar u(0)=1,\ \bar u'(0)=0,\]
 !et
 where
 
