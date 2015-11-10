@@ -1490,7 +1490,7 @@ where We is the <em>Weber number</em>,
 $$
 \begin{equation}
 \hbox{We} = \frac{\varrho U^2L}{\sigma}\tp
-\label{}
+\tag{202}
 \end{equation}
 $$
 
@@ -1520,13 +1520,13 @@ $$
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\tag{202}\\ 
-\nabla\cdot\u & = 0,
 \tag{203}\\ 
+\nabla\cdot\u & = 0,
+\tag{204}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T \tp
-\tag{204}\\ 
-\tag{205}
+\tag{205}\\ 
+\tag{206}
 \end{align}
 $$
 
@@ -1534,9 +1534,9 @@ The symbol \( T \) is the temperature, \( c \) is a heat capacity, and \( \kappa
 is the heat conduction coefficient for the fluid. The PDE system
 applies primarily for liquids. For gases one may need a term
 \( - p\nabla\cdot\u \) for the pressure work in
-<a href="#mjx-eqn-204">(204)</a>
+<a href="#mjx-eqn-205">(205)</a>
 as well as a modified equation of continuity
-<a href="#mjx-eqn-203">(203)</a>.
+<a href="#mjx-eqn-204">(204)</a>.
 
 <p>
 Despite the fact that \( \varrho \) depends on \( T \), we treat \( \varrho \)
@@ -1590,14 +1590,14 @@ $$
 \frac{\partial \bar\u}{\partial \bar t} +
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u,
-\tag{206}\\ 
-\bar\nabla\cdot\bar\u & = 0,
 \tag{207}\\ 
+\bar\nabla\cdot\bar\u & = 0,
+\tag{208}\\ 
 \frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}
 \bar \nabla^2 \bar T\tp
-\tag{208}
+\tag{209}
 \end{align}
 $$
 
@@ -1628,13 +1628,13 @@ $$
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\tag{209}\\ 
-\nabla\cdot\u & = 0,
 \tag{210}\\ 
+\nabla\cdot\u & = 0,
+\tag{211}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
-\tag{211}\\ 
-\tag{212}
+\tag{212}\\ 
+\tag{213}
 \end{align}
 $$
 
@@ -1646,8 +1646,8 @@ cold fluid falls.
 
 <p>
 For slightly compressible gas flow a term \( -p\nabla\cdot\u \) may be
-needed in <a href="#mjx-eqn-211">(211)</a> and also
-a modified <a href="#mjx-eqn-210">(210)</a>.
+needed in <a href="#mjx-eqn-212">(212)</a> and also
+a modified <a href="#mjx-eqn-211">(211)</a>.
 
 <h3 id="___sec156">Heating by viscous effects </h3>
 
@@ -1678,8 +1678,8 @@ important and not.
 <h3 id="___sec157">Relation between density and temperature </h3>
 
 <p>
-The equations <a href="#mjx-eqn-209">(209)</a> and
-<a href="#mjx-eqn-210">(210)</a> has already been made dimensionless
+The equations <a href="#mjx-eqn-210">(210)</a> and
+<a href="#mjx-eqn-211">(211)</a> has already been made dimensionless
 in the previous section. The major difference is now that \( \varrho \)
 is no longer a constant, but a function of \( T \).
 The relationship between \( \varrho \) and \( T \) is often taken as
@@ -1719,20 +1719,20 @@ A very common approximation, called the <em>Boussinesq approximation</em>, is
 to neglect the density variations in all terms except the gravity term.
 This is a good approximation unless the change is \( \varrho \) is large.
 With the linear \( \varrho(T) \) formula and the Boussinesq approximation,
-<a href="#mjx-eqn-209">(209)</a>-<a href="#mjx-eqn-211">(211)</a>
+<a href="#mjx-eqn-210">(210)</a>-<a href="#mjx-eqn-212">(212)</a>
 take the form
 
 $$
 \begin{align}
 \varrho_0\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - (\varrho_0 - \varrho_0\beta(T-T_0))g\kk,
-\tag{213}\\ 
-\nabla\cdot\u & = 0,
 \tag{214}\\ 
+\nabla\cdot\u & = 0,
+\tag{215}\\ 
 \varrho_0 c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
-\tag{215}\\ 
-\tag{216}
+\tag{216}\\ 
+\tag{217}
 \end{align}
 $$
 
@@ -1786,14 +1786,14 @@ $$
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u
 - \hbox{Fr}^{-2}\kk  + \gamma \bar T\kk,
-\tag{217}\\ 
-\bar\nabla\cdot\bar\u & = 0,
 \tag{218}\\ 
+\bar\nabla\cdot\bar\u & = 0,
+\tag{219}\\ 
 \frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
-\tag{219}
+\tag{220}
 \end{align}
 $$
 
@@ -1918,15 +1918,15 @@ $$
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \u
 - \hbox{Fr}^{-2}\kk  + \bar T \kk,
-\tag{220}\\ 
-\bar\nabla\cdot\bar\u & = 0,
 \tag{221}\\ 
+\bar\nabla\cdot\bar\u & = 0,
+\tag{222}\\ 
 \hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T\right)
 &= \hbox{Pr}^{-1}
 \bar \nabla^2 \bar T + 2\hbox{Ec}\hbox{Gr}^{-1/2}
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
-\tag{222}
+\tag{223}
 \end{align}
 $$
 
@@ -1994,14 +1994,14 @@ surroundings is
 $$
 \begin{equation}
 -\kappa\frac{\partial T}{\partial n} = h_T(T - T_s),
-\tag{223}
+\tag{224}
 \end{equation}
 $$
 
 where \( \partial/\partial n \) means the derivative in the normal direction
 (\( \normalvec\cdot\nabla \)), \( h_T \) is an experimentally determined
 heat transfer coefficient, and \( T_s \) is the temperature of
-the surroundings. Scaling <a href="#mjx-eqn-223">(223)</a>
+the surroundings. Scaling <a href="#mjx-eqn-224">(224)</a>
 leads to
 
 $$ -\frac{\kappa\Delta t}{L}\frac{\partial \bar T}{\partial \bar n} = h_T(\Delta T \bar T + T_0 - T_s),$$
@@ -2040,9 +2040,9 @@ $$
 \chi C_m\frac{\partial v}{\partial t} &=
 \nabla\cdot( M_i\nabla v) + \nabla\cdot (M_i\nabla u_e) - \chi I_{\rm{ion}}
 - \chi I_{\rm{app}},
-\tag{224}\\ 
+\tag{225}\\ 
 0 &= \nabla\cdot( M_i\nabla v) + \nabla\cdot ((M_i + M_e)\nabla u_e)\tp
-\tag{225}
+\tag{226}
 \end{align}
 $$
 
@@ -2071,11 +2071,11 @@ model:
 $$
 \begin{align}
 C_m\frac{dv}{dt} & = - I_{\rm{ion}} - I_{\rm{app}},
-\tag{226}\\ 
-I_{\rm{ion}} &= A(v-v_r)(v - v_m)(v - v_p) + Bw,
 \tag{227}\\ 
+I_{\rm{ion}} &= A(v-v_r)(v - v_m)(v - v_p) + Bw,
+\tag{228}\\ 
 \frac{dw}{dt} &= -c_1w + c_2v + c_3,
-\tag{228}
+\tag{229}
 \end{align}
 $$
 
@@ -2245,18 +2245,18 @@ $$
 \bar v
 (J_1 +  \bar v)
 (\bar v - 1) - \bar w - \beta,
-\tag{229}\\ 
+\tag{230}\\ 
 0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
 \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),
-\tag{230}\\ 
+\tag{231}\\ 
 \frac{d\bar v}{d\bar t} & = -
 \bar v
 (J_1 +  \bar v)
 (\bar v -1)- \bar w - \beta,
-\tag{231}\\ 
+\tag{232}\\ 
 \frac{d\bar w}{d\bar t} &= -K_1\bar w +
 K_2\bar v + K_3\tp
-\tag{232}
+\tag{233}
 \end{align}
 $$
 
@@ -2272,19 +2272,19 @@ There are seven dimensionless variables in the above equations:
 $$
 \begin{align}
 \alpha &= \frac{u_c}{\Delta v},
-\tag{233}\\ 
-\beta &= \frac{I_{\rm{app}}}{\Delta v^3},
 \tag{234}\\ 
-J_1 &= \frac{v_r-v_m}{\Delta v},
+\beta &= \frac{I_{\rm{app}}}{\Delta v^3},
 \tag{235}\\ 
-J_2 &= \frac{v_r}{\Delta v},
+J_1 &= \frac{v_r-v_m}{\Delta v},
 \tag{236}\\ 
-K_1 &= \frac{\chi C_m L^2c_1}{M_c},
+J_2 &= \frac{v_r}{\Delta v},
 \tag{237}\\ 
-K_2 & = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
+K_1 &= \frac{\chi C_m L^2c_1}{M_c},
 \tag{238}\\ 
+K_2 & = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
+\tag{239}\\ 
 K_3 &= \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}\tp
-\tag{239}
+\tag{240}
 \end{align}
 $$
 
@@ -2322,34 +2322,34 @@ algebraic relations that govern the two primary unknowns \( S \) and \( P \):
 $$
 \begin{align}
 \nabla\cdot\v_t &= -(Q_n + Q_w),
-\tag{240}\\ 
+\tag{241}\\ 
 \v_t &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
 + \lambda_n\varrho_n)g\kk,
-\tag{241}\\ 
+\tag{242}\\ 
 \phi\frac{\partial S}{\partial t} + f_w'(S)\v_t\cdot\nabla S &=
 \nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\ 
 &\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
-\tag{242}\\ 
-Q_w &= \frac{q_w}{\varrho_w},
 \tag{243}\\ 
-Q_n &= \frac{q_n}{\varrho_n},
+Q_w &= \frac{q_w}{\varrho_w},
 \tag{244}\\ 
-\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
+Q_n &= \frac{q_n}{\varrho_n},
 \tag{245}\\ 
-\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
+\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
 \tag{246}\\ 
-\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
+\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
 \tag{247}\\ 
-k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
 \tag{248}\\ 
-k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
+k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
 \tag{249}\\ 
-f_w(S) &= \frac{\lambda_w}{\lambda_t},
+k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
 \tag{250}\\ 
-G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
+f_w(S) &= \frac{\lambda_w}{\lambda_t},
 \tag{251}\\ 
+G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
+\tag{252}\\ 
 h_w(S) &= -\lambda_n(S)f_w(S),
-\tag{252}\tp
+\tag{253}\tp
 \end{align}
 $$
 
@@ -2372,16 +2372,16 @@ relative permeabilities.
 
 <p>
 The two PDEs are of elliptic and hyperbolic/parabolic nature:
-<a href="#mjx-eqn-240">(240)</a> is elliptic since it is the divergence of a
-vector field, while <a href="#mjx-eqn-242">(242)</a> is parabolic (\( h_w\geq 0 \)
+<a href="#mjx-eqn-241">(241)</a> is elliptic since it is the divergence of a
+vector field, while <a href="#mjx-eqn-243">(243)</a> is parabolic (\( h_w\geq 0 \)
 because \( p_c'(S)\geq 0 \) and \( \lambda_n \) as well as \( f_w \) are positive
 since \( k_{rn}>0 \) and \( k_{rw}>0 \)). Very often, \( p_c' \) is small so
-<a href="#mjx-eqn-242">(242)</a> is of hyperbolic nature, and \( S \) features very
+<a href="#mjx-eqn-243">(243)</a> is of hyperbolic nature, and \( S \) features very
 steep gradients that become shocks in the limit \( p_c'\rightarrow 0 \)
-and <a href="#mjx-eqn-242">(242)</a> is purely hyperbolic.
+and <a href="#mjx-eqn-243">(243)</a> is purely hyperbolic.
 A popular solution technique is based on operator splitting:
-<a href="#mjx-eqn-240">(240)</a> is solved with respect to \( P \), given \( S \), and
-<a href="#mjx-eqn-242">(242)</a> is solved with respect to \( S \), given \( P \).
+<a href="#mjx-eqn-241">(241)</a> is solved with respect to \( P \), given \( S \), and
+<a href="#mjx-eqn-243">(243)</a> is solved with respect to \( S \), given \( P \).
 
 <p>
 The saturation \( S \) is a non-dimensional quantity, and so are \( \phi \),
@@ -2435,18 +2435,18 @@ Inserting the above scaled quantities in the governing PDEs results in
 $$
 \begin{align}
 \bar\nabla\cdot\bar\v_t &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
-\tag{253}\\ 
+\tag{254}\\ 
 \bar\v_t &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
 \frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\ 
 &\quad\quad\frac{g\lambda_c\varrho}{v_c}
 (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\tag{254}\\ 
+\tag{255}\\ 
 \phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v_t\cdot
 \bar\nabla S &=
 \frac{t_c P_c\lambda_c}{L^2}
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\ 
 &\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
-\tag{255}
+\tag{256}
 \end{align}
 $$
 
@@ -2454,7 +2454,7 @@ As usual, \( L \) is taken as the characteristic length of the spatial domain.
 Since \( v_c \) is a velocity scale, a natural time scale is the time it
 takes to transport a signal with velocity \( v_c \) through the domain:
 \( t_c = L/v_c \). The diffusion term in the equation
-<a href="#mjx-eqn-258">(258)</a> then gets
+<a href="#mjx-eqn-259">(259)</a> then gets
 a dimensionless fraction
 
 $$ \frac{L P_c\lambda_c}{v_c L^2}\tp$$
@@ -2497,17 +2497,17 @@ Introducing another dimensionless variable,
 
 $$ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},$$
 
-we can write <a href="#mjx-eqn-253">(253)</a>-<a href="#mjx-eqn-255">(255)</a> in the
+we can write <a href="#mjx-eqn-254">(254)</a>-<a href="#mjx-eqn-256">(256)</a> in the
 final dimensionless form as
 
 $$
 \begin{align}
 \bar\nabla\cdot\bar\v_t &= -\epsilon(1 + \alpha^{-1}\gamma),
-\tag{256}\\ 
+\tag{257}\\ 
 \bar\v_t &= -\bar\lambda_t\bar\nabla\bar P +
 \bar\lambda_w \bar p_c'(S)\bar\nabla S +
 \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\tag{257}\\ 
+\tag{258}\\ 
 \phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v_t\cdot
 \bar\nabla S &= -
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
@@ -2517,7 +2517,7 @@ $$
 \frac{\partial S}{\partial\bar z} +\nonumber\\ 
 &\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
 \epsilon\tp
-\tag{258}
+\tag{259}
 \end{align}
 $$
 
@@ -2558,11 +2558,11 @@ equations of gas dynamics, can be written as
 $$
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\varrho\u) &= 0,
-\tag{259}\\ 
-\frac{\partial(\varrho\u)}{\partial t} + \nabla\cdot(\varrho\u\u^T) &= -\nabla p + \varrho \f,
 \tag{260}\\ 
+\frac{\partial(\varrho\u)}{\partial t} + \nabla\cdot(\varrho\u\u^T) &= -\nabla p + \varrho \f,
+\tag{261}\\ 
 \frac{\partial E}{\partial t} + \nabla\cdot(\u(E+p)) &= 0,
-\tag{261}
+\tag{262}
 \end{align}
 $$
 
@@ -2571,7 +2571,7 @@ where the total energy is given by
 $$
 \begin{equation}
 E = \varrho e + \frac{1}{2}\varrho\u\cdot\u\tp
-\tag{262}
+\tag{263}
 \end{equation}
 $$
 
@@ -2587,9 +2587,9 @@ relations:
 $$
 \begin{align}
 e &= c_v T,
-\tag{263}\\ 
+\tag{264}\\ 
 p &= \varrho RT = \frac{R}{c_v}(E-\half\varrho \u\cdot\u),
-\tag{264}
+\tag{265}
 \end{align}
 $$
 
@@ -2601,8 +2601,8 @@ where \( c_v \) is the specific heat capacity at constant volume (for dry air
 <p>
 The common way to solve these equations is to propagate \( \varrho \),
 \( \varrho\u \), and \( E \) by an explicit numerical method in time for
-<a href="#mjx-eqn-259">(259)</a>-<a href="#mjx-eqn-261">(261)</a>,
-using <a href="#mjx-eqn-264">(264)</a> for \( p \).
+<a href="#mjx-eqn-260">(260)</a>-<a href="#mjx-eqn-262">(262)</a>,
+using <a href="#mjx-eqn-265">(265)</a> for \( p \).
 
 <p>
 We introduce dimensionless independent variables,
@@ -2672,9 +2672,9 @@ to
 $$
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\u\varrho) &=0,
-\tag{265}\\ 
+\tag{266}\\ 
 \varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u + \nabla p &=0\tp
-\tag{266}
+\tag{267}
 \end{align}
 $$
 
@@ -2697,13 +2697,13 @@ where
 $$ c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}$$
 
 is the speed of sound in the fluid in the equilibrium state.
-Equation <a href="#mjx-eqn-266">(266)</a> with eliminated pressure \( p \) reads
+Equation <a href="#mjx-eqn-267">(267)</a> with eliminated pressure \( p \) reads
 
 $$
 \begin{equation}
 \varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u +
 c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0\tp
-\tag{267}
+\tag{268}
 \end{equation}
 $$
 
@@ -2773,7 +2773,7 @@ $$
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\ 
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u
+\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
 \hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0,
 \end{align*}
@@ -2807,35 +2807,35 @@ $$
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot\bar\u &=0,
-\tag{268}\\ 
+\tag{269}\\ 
 \hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
-\tag{269}
+\tag{270}
 \end{align}
 $$
 
 <p>
 The velocity \( \u \) can be eliminated taking the time derivative of
-<a href="#mjx-eqn-268">(268)</a> and the divergence of
-<a href="#mjx-eqn-269">(269)</a>:
+<a href="#mjx-eqn-269">(269)</a> and the divergence of
+<a href="#mjx-eqn-270">(270)</a>:
 
 $$
 \begin{equation}
 \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
 \bar\nabla^2\bar\varrho = 0,
-\tag{270}
+\tag{271}
 \end{equation}
 $$
 
 which is nothing but a standard, linear wave equation. Similarly,
 we can eliminate \( \varrho \) by taking the divergence of
-<a href="#mjx-eqn-268">(268)</a> and the time derivative of
-<a href="#mjx-eqn-269">(269)</a>:
+<a href="#mjx-eqn-269">(269)</a> and the time derivative of
+<a href="#mjx-eqn-270">(270)</a>:
 
 $$
 \begin{equation}
 \frac{\partial^2\bar\u}{\partial\bar t^2} +
 \bar\nabla^2\bar\u = 0,
-\tag{271}
+\tag{272}
 \end{equation}
 $$
 
@@ -2843,7 +2843,7 @@ which shows that each component of the velocity also propagates according
 to the wave equation with unit velocity.
 We also observe that there are no physical parameters in the scaled
 wave equations. The M parameter can be eliminated from
-<a href="#mjx-eqn-268">(268)</a>-<a href="#mjx-eqn-269">(269)</a>
+<a href="#mjx-eqn-269">(269)</a>-<a href="#mjx-eqn-270">(270)</a>
 by introducing a new unknown \( \bar\v = M\bar\u \).
 
 <h2 id="___sec173">General isentropic flow </h2>
@@ -2856,8 +2856,8 @@ significant changes in \( \varrho \) and \( p \). The relevant time scale is
 not that of the waves, but of the overall flow: \( t_c=L/U \).
 
 <p>
-The governing equations are <a href="#mjx-eqn-265">(265)</a>
-and <a href="#mjx-eqn-267">(267)</a>. We scale \( \varrho \)
+The governing equations are <a href="#mjx-eqn-266">(266)</a>
+and <a href="#mjx-eqn-268">(268)</a>. We scale \( \varrho \)
 directly by its magnitude \( \varrho_c \): \( \bar\varrho = \varrho/\varrho_c \).
 Then \( F'(\varrho)=c_0^2\bar\varrho^{\gamma-1} \).
 All other scalings remain as in the section <a href="#scale:gas:acoustic">The acoustic approximation and the Mach number</a>.
@@ -2868,14 +2868,14 @@ $$
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
-\tag{272}\\ 
+\tag{273}\\ 
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
-\bar\varrho\bar u\bar\cdot\nabla\bar\u
-+ \hbox{M}^{-2}\varrho^{\gamma-1}
+\bar\varrho\bar\u\cdot\bar\nabla\bar\u
++ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
-\tag{273}
+\tag{274}
 \end{align}
 $$
 
@@ -3189,13 +3189,13 @@ Lotka-Volterra ODE system
 $$
 \begin{align}
 H^{\prime} &= H(a - bL),
-\tag{274}\\ 
-L^{\prime} &= L(dH - c),
 \tag{275}\\ 
-H(0)&=H_0,
+L^{\prime} &= L(dH - c),
 \tag{276}\\ 
+H(0)&=H_0,
+\tag{277}\\ 
 L(0)&=L_0\tp
-\tag{277}
+\tag{278}
 \end{align}
 $$
 
@@ -3231,13 +3231,13 @@ in the ODE problem we arrive at
 $$
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\tag{278}\\ 
-\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
 \tag{279}\\ 
-H_c\bar H(0) &= H_0,
+\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
 \tag{280}\\ 
+H_c\bar H(0) &= H_0,
+\tag{281}\\ 
 L_c\bar H(0) &= L_0\tp
-\tag{281}
+\tag{282}
 \end{align}
 $$
 
@@ -3293,9 +3293,9 @@ interaction (cf.&nbsp;ref{scale:decay:exer:predprey}):
 $$
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
-\tag{282}\\ 
+\tag{283}\\ 
 \frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
-\tag{283}
+\tag{284}
 \end{align}
 $$
 
@@ -3395,7 +3395,7 @@ The equation for a so-called simple pendulum with a mass \( m \) at the end is
 $$
 \begin{equation}
 mL\ddot\theta + mg\sin\theta = 0,
-\tag{284}
+\tag{285}
 \end{equation}
 $$
 
@@ -3409,7 +3409,7 @@ a similar equation,
 $$
 \begin{equation}
 I\ddot\theta + mgL\sin\theta = 0\tp
-\tag{285}
+\tag{286}
 \end{equation}
 $$
 
@@ -3439,9 +3439,9 @@ or a planet and a moon, are
 $$
 \begin{align}
 m_A\ddot\x_A &= \F,
-\tag{286}\\ 
+\tag{287}\\ 
 m_B\ddot\x_B &= -F,
-\tag{287}
+\tag{288}
 \end{align}
 $$
 
@@ -3626,11 +3626,11 @@ is governed by
 $$
 \begin{align}
 \mu u''(z) &= -\beta
-\tag{288}\\ 
-u(0) &= 0,
 \tag{289}\\ 
+u(0) &= 0,
+\tag{290}\\ 
 u(H) &= U_0\tp
-\tag{290}
+\tag{291}
 \end{align}
 $$
 
@@ -3680,13 +3680,13 @@ $$
 \begin{align}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
 \left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{291}\\ 
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
 \tag{292}\\ 
-u(R,t) &= 0, & t\in (0,T],
+\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
 \tag{293}\\ 
+u(R,t) &= 0, & t\in (0,T],
+\tag{294}\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{294}
+\tag{295}
 \end{align}
 $$
 
@@ -3719,7 +3719,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
 -u\tp
-\tag{295}
+\tag{296}
 \end{equation}
 $$
 
@@ -3728,7 +3728,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale <a href="#mjx-eqn-295">(295)</a> in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-296">(296)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
@@ -3804,10 +3804,10 @@ $$
 \begin{align}
 (\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -\alpha\nabla p -
 \varrho\f,
-\tag{296}\\ 
+\tag{297}\\ 
 S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p +
 \alpha \frac{\partial}{\partial t}\nabla\cdot\u,
-\tag{297}
+\tag{298}
 \end{align}
 $$
 

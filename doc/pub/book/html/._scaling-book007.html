@@ -809,13 +809,13 @@ $$
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} =
 c^2 {\partial^2 u\over\partial x^2}, \quad  x\in (0,L),\ t\in (0,T],
-\tag{93}
+\tag{3.1}
 \end{equation}
 $$
 
 where \( c \) is the constant wave velocity of the medium.
 With a briefer notation, where subscripts indicate derivatives,
-the PDE <a href="#mjx-eqn-93">(93)</a> can be written
+the PDE <a href="#mjx-eqn-3.1">(3.1)</a> can be written
 \( u_{tt}=c^2u_{xx} \). This subscript notation will occasionally be
 used later.
 
@@ -826,7 +826,7 @@ $$
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} =
 \nabla\cdot\left(c^2 \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]\tp
-\tag{94}
+\tag{3.2}
 \end{equation}
 $$
 
@@ -843,13 +843,13 @@ no initial velocity \( u_t \):
 $$
 \begin{align}
 u(x,0) &= I(x), \quad &x\in [0,L],
-\tag{95}\\ 
+\tag{3.3}\\ 
 {\partial\over\partial t}u(x,0) &= 0, \quad & x\in [0,L],
-\tag{96}\\ 
+\tag{3.4}\\ 
 u(0,t) & = 0, \quad  & t\in (0,T],
-\tag{97}\\ 
+\tag{3.5}\\ 
 u(L,t) & = 0, \quad  & t\in (0,T].
-\tag{98}
+\tag{3.6}
 \end{align}
 $$
 
@@ -866,8 +866,8 @@ $$
 \tp
 $$
 
-Inserting the \( x=x_c\bar x \), etc., in <a href="#mjx-eqn-93">(93)</a> and
-<a href="#mjx-eqn-95">(95)</a>-<a href="#mjx-eqn-98">(98)</a> gives
+Inserting the \( x=x_c\bar x \), etc., in <a href="#mjx-eqn-3.1">(3.1)</a> and
+<a href="#mjx-eqn-3.3">(3.3)</a>-<a href="#mjx-eqn-3.6">(3.6)</a> gives
 
 $$
 \begin{align*}
@@ -892,14 +892,14 @@ $$
 The key question is how to define the scales.
 A natural choice is \( x_c=L \) since this makes \( \bar x\in [0,1] \).
 For the spatial scale and the problem governed by
-<a href="#mjx-eqn-93">(93)</a> we
+<a href="#mjx-eqn-3.1">(3.1)</a> we
 have some analytical insight that can help.
 The solution behaves like
 
 $$
 \begin{equation}
 u(x,t) = f_R(x-ct) + f_R(x+ct),
-\tag{99}
+\tag{3.7}
 \end{equation}
 $$
 
@@ -938,19 +938,19 @@ $$
 \begin{align}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial x^2}, \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\tag{100}\\ 
+\tag{3.8}\\ 
 \bar u(\bar x,0) &= \frac{I(\bar x L)}{\max_{x\in(0,L)} |I(x)|},
 \quad &\bar x\in [0,1],
-\tag{101}\\ 
+\tag{3.9}\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\tag{102}\\ 
+\tag{3.10}\\ 
 \bar u(0,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\tag{103}\\ 
+\tag{3.11}\\ 
 \bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T].
-\tag{104}
+\tag{3.12}
 \end{align}
 $$
 
@@ -958,7 +958,7 @@ Here, \( \bar T = Tc/L \).
 
 <p>
 The striking feature of
-<a href="#mjx-eqn-100">(100)</a>-<a href="#mjx-eqn-104">(104)</a>
+<a href="#mjx-eqn-3.8">(3.8)</a>-<a href="#mjx-eqn-3.12">(3.12)</a>
 is that there are <em>no physical parameters</em> involved! Everything we need
 to specify is the shape of the initial condition and then scale it
 such that it is less than or equal to 1.
@@ -970,7 +970,7 @@ through
 $$
 \begin{equation}
 u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
-\tag{105}
+\tag{3.13}
 \end{equation}
 $$
 
@@ -989,7 +989,7 @@ $$
 <!-- end inline comment -->
 
 <p>
-How do we implement <a href="#mjx-eqn-100">(100)</a>-<a href="#mjx-eqn-104">(104)</a>?
+How do we implement <a href="#mjx-eqn-3.8">(3.8)</a>-<a href="#mjx-eqn-3.12">(3.12)</a>?
 As for the simpler mathematical models, I suggest to implement the model
 with dimensions and observe how to set parameters to obtain the scaled
 model. In the present case, one must choose \( L=1 \), \( c=1 \), and scale \( I \) by its
@@ -1000,8 +1000,8 @@ Several implementations of 1D wave equation models with different
 degree of mathematical and software complexity appear in
 the directory <a href="http://tinyurl.com/nm5587k/wave/wave1D" target="_self"><tt>wave/wave1D</tt></a>. The simplest
 version is <a href="http://tinyurl.com/nm5587k/wave/wave1D/wave1D_u0.py" target="_self"><tt>wave1D_u0.py</tt></a>
-that implements <a href="#mjx-eqn-93">(93)</a> and
-<a href="#mjx-eqn-95">(95)</a>-(ref{scale:wave:pde1:bc:L}.
+that implements <a href="#mjx-eqn-3.1">(3.1)</a> and
+<a href="#mjx-eqn-3.3">(3.3)</a>-(ref{scale:wave:pde1:bc:L}.
 This is the code to be used in the following. It is described
 in in
 the document <a href="http://tinyurl.com/k3sdbuv/pub/wave" target="_self">Finite difference methods for wave motion</a>
@@ -1011,7 +1011,7 @@ the document <a href="http://tinyurl.com/k3sdbuv/pub/wave" target="_self">Finite
 
 <p>
 As example, we may let the original initial-boundary value problem
-<a href="#mjx-eqn-93">(93)</a>-<a href="#mjx-eqn-98">(98)</a> model
+<a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a> model
 vibrations of a string on a string instrument. With \( u \) as the
 displacement of the string, the boundary conditions \( u=0 \) at the ends
 are relevant, as well as the zero velocity condition \( \partial u/\partial t=0 \)
@@ -1228,7 +1228,7 @@ precomputed file data.
 <h2 id="scale:wave:pde2">Time-dependent Dirichlet condition</h2>
 
 <p>
-A generalization of <a href="#mjx-eqn-93">(93)</a>-<a href="#mjx-eqn-98">(98)</a> is to
+A generalization of <a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a> is to
 allow for a time-dependent Dirichlet condition at one end, say
 \( u(0,t)=U_L(t) \). At the other end we may still have \( u=0 \).
 This new condition at \( x=0 \) may model a specified wave that
@@ -1274,19 +1274,19 @@ $$
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial \bar x^2},
 \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\tag{106}\\ 
+\tag{3.14}\\ 
 \bar u(\bar x,0) &= \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
 \quad &\bar x\in [0,1],
-\tag{107}\\ 
+\tag{3.15}\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\tag{108}\\ 
+\tag{3.16}\\ 
 \bar u(0,\bar t) & = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
 \quad  &\bar t\in (0,\bar T],
-\tag{109}\\ 
+\tag{3.17}\\ 
 \bar u(1,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
-\tag{110}
+\tag{3.18}
 \end{align}
 $$
 
@@ -1297,7 +1297,7 @@ The input is completely specified by the shape of \( I(x) \) and \( U_L(t) \).
 
 <p>
 Software for the original problem with dimensions can be reused for
-<a href="#mjx-eqn-106">(106)</a>-<a href="#mjx-eqn-110">(110)</a> by
+<a href="#mjx-eqn-3.14">(3.14)</a>-<a href="#mjx-eqn-3.18">(3.18)</a> by
 setting \( L=1 \), \( c=1 \), and scaling \( U_L(t) \) and \( I(x) \) by
 \( \max_t |U_L(t)| \).
 
@@ -1325,9 +1325,9 @@ Since \( \max_t |U_L|=a \) we get
 $$
 \begin{align}
 \bar u(\bar x,0) &= \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},
-\tag{111}\\ 
+\tag{3.19}\\ 
 \bar u(0,\bar t) &= \sin(\bar t\omega L/c)\tp
-\tag{112}
+\tag{3.20}
 \end{align}
 $$
 
@@ -1337,8 +1337,8 @@ waves of length \( \lambda = 2\pi/k \). Since \( \omega =kc \),
 \( \bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda) \).
 (This formula demonstrates the previous assertion that the time scale
 of \( U_L \), i.e., \( 1/\omega \), determines the wave length \( 1/\omega = \lambda/(2\pi) \) in space.)
-We realize from the formulas <a href="#mjx-eqn-111">(111)</a> and
-<a href="#mjx-eqn-112">(112)</a>
+We realize from the formulas <a href="#mjx-eqn-3.19">(3.19)</a> and
+<a href="#mjx-eqn-3.20">(3.20)</a>
 that there are three key dimensionless parameters related
 to these specific choices of initial and boundary conditions:
 
@@ -1420,9 +1420,9 @@ Now we change the initial condition from \( u=I \) and \( \partial u/\partial t 
 $$
 \begin{align}
 u(x,0) &= 0,
-\tag{113}\\ 
+\tag{3.21}\\ 
 \frac{\partial}{\partial t} u(x,0) &= V(x)\tp
-\tag{114}
+\tag{3.22}
 \end{align}
 $$
 
@@ -1436,7 +1436,7 @@ $$
 <h3 id="___sec103">Analytical insight </h3>
 
 <p>
-From <a href="#mjx-eqn-99">(99)</a> we now get \( f_L + f_R =0 \) and
+From <a href="#mjx-eqn-3.7">(3.7)</a> we now get \( f_L + f_R =0 \) and
 \( cf_L' - cf_R' = V \). Introducing \( W(x) \) such that \( W'(x)=V(x) \), a solution
 is \( -f_L=\frac{1}{2}W \) and \( f_R=\frac{1}{2}W \). Hence,
 
@@ -1469,7 +1469,7 @@ based on \( V \) becomes
 $$
 \begin{equation}
 \bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}\tp
-\tag{115}
+\tag{3.23}
 \end{equation}
 $$
 
@@ -1483,7 +1483,7 @@ The dimension of \( I \) is the same as \( u \), here taken to be displacement:
 Since \( V \) is \( \partial u/\partial t \), its dimension is
 \( [\hbox{LT}^{-1}] \). The dimensions of \( c \) and \( L \) are
 \( [\hbox{LT}^{-1}] \) and \( [\hbox{L}] \). The dimension of the right-hand side
-of <a href="#mjx-eqn-115">(115)</a> is then
+of <a href="#mjx-eqn-3.23">(3.23)</a> is then
 
 $$ \frac{[\hbox{LT}^{-1}][L]}{[L][L\hbox{T}^{-1}]}
 = 1,$$
@@ -1544,7 +1544,7 @@ to the PDE, modeling wave generation in the interior of
 the domain. For example, a moving slide at the bottom of a fjord
 will generate surface waves and is modeled by such an \( f(x,t) \) term
 (provided the length of the waves is much larger than the depth so
-that a simple wave equation like <a href="#mjx-eqn-116">(116)</a> applies).
+that a simple wave equation like <a href="#mjx-eqn-3.24">(3.24)</a> applies).
 The initial-boundary value problem
 can be then expressed as
 
@@ -1554,19 +1554,19 @@ $$
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
 \quad & x\in (0,L),\ t\in (0,T],
-\tag{116}\\ 
+\tag{3.24}\\ 
 u(x,0) &= I(x),
 \quad &x\in [0,L],
-\tag{117}\\ 
+\tag{3.25}\\ 
 {\partial\over\partial t}u(x,0) &= 0,
 \quad & x\in [0,L],
-\tag{118}\\ 
+\tag{3.26}\\ 
 \frac{\partial}{\partial x}u(0,t) & = 0,
 \quad  &t\in (0,T],
-\tag{119}\\ 
+\tag{3.27}\\ 
 \frac{\partial}{\partial x}u(L,t) & = 0,
 \quad  &t\in (0,T].
-\tag{120}
+\tag{3.28}
 \end{align}
 $$
 
@@ -1578,7 +1578,7 @@ We make the coefficient \( \lambda \) non-dimensional by
 $$
 \begin{equation}
 \bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},
-\tag{121}
+\tag{3.29}
 \end{equation}
 $$
 
@@ -1605,19 +1605,19 @@ $$
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
 + \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
 \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\tag{122}\\ 
+\tag{3.30}\\ 
 \bar u(\bar x,0) &= \frac{I(x)}{u_c},
 \quad &\bar x\in [0,1],
-\tag{123}\\ 
+\tag{3.31}\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\tag{124}\\ 
+\tag{3.32}\\ 
 \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\tag{125}\\ 
+\tag{3.33}\\ 
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\tag{126}
+\tag{3.34}
 \end{align}
 $$
 
@@ -1730,7 +1730,7 @@ $$
 + b\frac{\partial u}{\partial t} =
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t)\tp
-\tag{127}
+\tag{3.35}
 \end{equation}
 $$
 
@@ -1758,7 +1758,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(
 \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
 \beta\bar f(\bar x,\bar t),
-\tag{128}
+\tag{3.36}
 \end{equation}
 $$
 
@@ -1777,7 +1777,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(
 \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
 \bar f(\bar x,\bar t)\tp
-\tag{129}
+\tag{3.37}
 \end{equation}
 $$
 
@@ -1802,7 +1802,7 @@ $$
 \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
 \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
 \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right)\tp
-\tag{130}
+\tag{3.38}
 \end{equation}
 $$
 
@@ -1833,7 +1833,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
 \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
 \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right)\tp
-\tag{131}
+\tag{3.39}
 \end{equation}
 $$
 

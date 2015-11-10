@@ -888,7 +888,7 @@ problem
 $$
 \begin{equation}
 u'(t) = -au(t),\quad u(0)=I,
-\tag{2}
+\tag{2.1}
 \end{equation}
 $$
 
@@ -901,7 +901,7 @@ which is helpful to have in mind during the scaling process.
 <p>
 The evolution of a population of humans, animals, cells, etc.,
 under unlimited access to resources, can be
-modeled by <a href="#mjx-eqn-2">(2)</a>. Then \( u \) is the number of
+modeled by <a href="#mjx-eqn-2.1">(2.1)</a>. Then \( u \) is the number of
 individuals in the population, strictly speaking an integer, but well
 modeled by a real number in large populations.
 The parameter \( a \) is the increase in the number of individuals per
@@ -910,7 +910,7 @@ time and per individual.
 <h3 id="___sec25">Example: Decay of pressure with altitude </h3>
 
 <p>
-The simple model <a href="#mjx-eqn-2">(2)</a> also governs the pressure
+The simple model <a href="#mjx-eqn-2.1">(2.1)</a> also governs the pressure
 in the atmosphere (under many assumptions, such as an ideal gas in
 equilibrium). In this case \( u \) is the
 pressure, measured in \( \hbox{Nm}^{-2} \); \( t \) is the hight in meters;
@@ -936,7 +936,7 @@ We introduce a new dimensionless \( t \), called \( \bar t \), defined by
 $$
 \begin{equation}
 \bar t = \frac{t}{t_c},
-\tag{3}
+\tag{2.2}
 \end{equation}
 $$
 
@@ -945,12 +945,12 @@ we introduce a dimensionless \( u \), named \( \bar u \), according to
 $$
 \begin{equation}
 \bar u = \frac{u}{u_c},
-\tag{4}
+\tag{2.3}
 \end{equation}
 $$
 
 where \( u_c \) is a constant <em>characteristic size</em> of \( u \). When \( u \) has a specific
-interpretation, say when <a href="#mjx-eqn-2">(2)</a> models pressure
+interpretation, say when <a href="#mjx-eqn-2.1">(2.1)</a> models pressure
 in an atmospheric layer, \( u_c \) would be referred to as characteristic pressure.
 For a decaying population, \( u_c \) may be a characteristic number of
 members in the population, e.g., the initial population \( I \).
@@ -960,7 +960,7 @@ members in the population, e.g., the initial population \( I \).
 <p>
 The next task is to insert the new dimensionless variables in the
 governing mathematical model. That is, we replace \( t \) by \( t_c\bar t \)
-and \( u \) by \( u_c\bar u \) in <a href="#mjx-eqn-2">(2)</a>. The derivative
+and \( u \) by \( u_c\bar u \) in <a href="#mjx-eqn-2.1">(2.1)</a>. The derivative
 with respect to \( \bar t \) is derived as
 
 $$ \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
@@ -968,19 +968,19 @@ $$ \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
 \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}\tp
 $$
 
-The model <a href="#mjx-eqn-2">(2)</a> now becomes
+The model <a href="#mjx-eqn-2.1">(2.1)</a> now becomes
 
 $$
 \begin{equation}
 \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I\tp
-\tag{5}
+\tag{2.4}
 \end{equation}
 $$
 
 <h3 id="___sec30">Step 4: Make each term dimensionless </h3>
 
 <p>
-Equation <a href="#mjx-eqn-5">(5)</a> still has terms with
+Equation <a href="#mjx-eqn-2.4">(2.4)</a> still has terms with
 dimensions. To make each term dimensionless, we usually divide by
 the coefficient in front of the term with the highest time derivative
 (but dividing by any coefficient in any term will do). The result is
@@ -989,7 +989,7 @@ $$
 \begin{equation}
 \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
 \tp
-\tag{6}
+\tag{2.5}
 \end{equation}
 $$
 
@@ -1001,7 +1001,7 @@ problem. Estimating such a time scale is certainly
 the most challenging part of the scaling procedure. There are different
 ways to reason. The first is to aim at a size of \( \bar u \) and its derivatives
 that is of order unity. If \( u_c \) is chosen such that \( |\bar u| \) is
-of size unity, we see from <a href="#mjx-eqn-6">(6)</a> that
+of size unity, we see from <a href="#mjx-eqn-2.5">(2.5)</a> that
 \( d\bar u/d\bar t \) is of the size of \( \bar u \) (i.e., unity)
 if we choose \( t_c = 1/a \).
 
@@ -1053,7 +1053,7 @@ $$
 \begin{equation}
 \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
 \tp
-\tag{7}
+\tag{2.6}
 \end{equation}
 $$
 
@@ -1062,17 +1062,17 @@ This is a remarkable result in the sense that <em>all physical parameters</em>
 are removed from the model! Or more precisely, there are no physical input
 parameters to assign
 before using the model. In particular, numerical investigations of the original
-model <a href="#mjx-eqn-2">(2)</a> would need experiments with different
+model <a href="#mjx-eqn-2.1">(2.1)</a> would need experiments with different
 \( a \) and \( I \) values, while numerical investigations of
-<a href="#mjx-eqn-7">(7)</a> can be limited to <em>a single run</em>! As soon
+<a href="#mjx-eqn-2.6">(2.6)</a> can be limited to <em>a single run</em>! As soon
 as we have computed the curve \( \bar u(\bar t) \), we can find the
-solution \( u(t) \) of <a href="#mjx-eqn-2">(2)</a> by
+solution \( u(t) \) of <a href="#mjx-eqn-2.1">(2.1)</a> by
 
 $$
 \begin{equation}
 u(t) = u_c\bar u(t/t_c) = I\bar u(at)
 \tp
-\tag{8}
+\tag{2.7}
 \end{equation}
 $$
 
@@ -1082,7 +1082,7 @@ respectively.
 
 <p>
 It is very common to drop the bars when the scaled problem has been
-derived and work further with <a href="#mjx-eqn-7">(7)</a> simply
+derived and work further with <a href="#mjx-eqn-2.6">(2.6)</a> simply
 written as
 
 $$
@@ -1096,20 +1096,20 @@ dimensionless quantities.
 <h2 id="sec:scale:decay:prog">Making software for utilizing the scaled model</h2>
 
 <p>
-Software for solving <a href="#mjx-eqn-2">(2)</a> could take advantage
-of the fact that only one simulation of <a href="#mjx-eqn-7">(7)</a>
+Software for solving <a href="#mjx-eqn-2.1">(2.1)</a> could take advantage
+of the fact that only one simulation of <a href="#mjx-eqn-2.6">(2.6)</a>
 is necessary. As soon as we have \( \bar u(\bar t) \) accessible,
-a simple scaling <a href="#mjx-eqn-8">(8)</a> computes the real \( u(t) \)
+a simple scaling <a href="#mjx-eqn-2.7">(2.7)</a> computes the real \( u(t) \)
 for any given input data \( a \) and \( I \). Although the numerical computation of
-\( u(t) \) from <a href="#mjx-eqn-2">(2)</a> is very fast in this simple model
-problem, using <a href="#mjx-eqn-8">(8)</a> is very much faster than
+\( u(t) \) from <a href="#mjx-eqn-2.1">(2.1)</a> is very fast in this simple model
+problem, using <a href="#mjx-eqn-2.7">(2.7)</a> is very much faster than
 computing a full numerical solution in more complicated
 differential equation problems.
 
 <p>
-We can compute with the dimensionless model <a href="#mjx-eqn-7">(7)</a>
-in two ways, either make a solver for <a href="#mjx-eqn-7">(7)</a>
-or reuse a solver for <a href="#mjx-eqn-2">(2)</a> with the parameters
+We can compute with the dimensionless model <a href="#mjx-eqn-2.6">(2.6)</a>
+in two ways, either make a solver for <a href="#mjx-eqn-2.6">(2.6)</a>
+or reuse a solver for <a href="#mjx-eqn-2.1">(2.1)</a> with the parameters
 appropriately set (\( I=1 \), \( a=1 \)).
 The latter approach has the advantage of giving us
 software that works both with a dimensionless model and a model
@@ -1119,13 +1119,13 @@ with dimensions and all the original physical parameters.
 
 <p>
 We base our solver for
-<a href="#mjx-eqn-7">(7)</a> on a solver for <a href="#mjx-eqn-2">(2)</a>.
+<a href="#mjx-eqn-2.6">(2.6)</a> on a solver for <a href="#mjx-eqn-2.1">(2.1)</a>.
 Assume that we have some module <code>decay.py</code> that offers the following
 functions:
 
 <ul>
   <li> <code>solver(I, a, T, dt, theta=0.5)</code> for returning the solution arrays
-    <code>u</code> and <code>t</code> for <a href="#mjx-eqn-2">(2)</a> solved by the so-called
+    <code>u</code> and <code>t</code> for <a href="#mjx-eqn-2.1">(2.1)</a> solved by the so-called
     \( \theta \) rule. This rule includes the Forward Euler scheme (\( \theta=0 \)),
     the Backward Euler scheme (\( \theta=1 \)), or the Crank-Nicolson
     (centered midpoint) scheme (\( \theta=\half \)).</li>
@@ -1135,7 +1135,7 @@ functions:
     use of the first \( \Delta t \) value.)</li>
 </ul>
 
-The basic statements for solving <a href="#mjx-eqn-2">(2)</a> are
+The basic statements for solving <a href="#mjx-eqn-2.1">(2.1)</a> are
 then
 
 <p>
@@ -1171,10 +1171,10 @@ u, t <span style="color: #666666">=</span> solver(I<span style="color: #666666">
 
 <p>
 A key observation, as mentioned, is that we need to solve the problem
-<a href="#mjx-eqn-7">(7)</a> only once. All solutions
+<a href="#mjx-eqn-2.6">(2.6)</a> only once. All solutions
 corresponding to different \( I \) and \( a \) values in the original physical
 problem can be recovered by scaling this single solution with formula
-<a href="#mjx-eqn-8">(8)</a>.  We may therefore want to make software that
+<a href="#mjx-eqn-2.7">(2.7)</a>.  We may therefore want to make software that
 takes advantage of this fact. When requesting a solution, we see if it
 has already been computed and stored in a file, and if so, the data
 can be retrieved from file, otherwise we have to compute a new
@@ -1361,7 +1361,7 @@ form
 $$
 \begin{equation}
 u'(t) = -au(t) + b,\quad u(0)=I
-\tag{9}
+\tag{2.8}
 \tp
 \end{equation}
 $$
@@ -1372,7 +1372,7 @@ is a spherical micro-organism falling in air,
 $$
 \begin{equation}
 u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),
-\tag{10}
+\tag{2.9}
 \end{equation}
 $$
 
@@ -1485,7 +1485,7 @@ for inclusion in reports.
 
 <p>
 The challenges in our scaling is to find the right \( u_c \) and \( t_c \)
-scales. From <a href="#mjx-eqn-9">(9)</a> we see that if \( u'\rightarrow 0 \)
+scales. From <a href="#mjx-eqn-2.8">(2.8)</a> we see that if \( u'\rightarrow 0 \)
 as \( t\rightarrow\infty \), \( u \) approaches the constant value \( b/a \). It can be
 convenient to let the scaled \( \bar u\rightarrow 1 \) as
 we approach the \( d\bar u/d\bar t = 0 \) state. This idea points to choosing
@@ -1494,7 +1494,7 @@ $$
 \begin{equation}
 u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
 \tp
-\tag{11}
+\tag{2.10}
 \end{equation}
 $$
 
@@ -1511,7 +1511,7 @@ negative, but the scaled velocity \( u/u_c \), becomes positive.
 
 <p>
 Inserting \( u = u_c\bar u = b\bar u/a \) and \( t=t_c\bar t \) in
-<a href="#mjx-eqn-9">(9)</a> leads to
+<a href="#mjx-eqn-2.8">(2.8)</a> leads to
 
 $$
 \frac{d\bar u}{d\bar t} = -t_c a\bar u + \frac{t_c}{u_c}b,
@@ -1528,7 +1528,7 @@ therefore choose
 $$
 \begin{equation}
 \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,
-\tag{12}
+\tag{2.11}
 \end{equation}
 $$
 
@@ -1536,7 +1536,7 @@ where \( \beta \) is a dimensionless number,
 $$
 \begin{equation}
 \beta = \frac{I}{u_c} = I\frac{a}{b},
-\tag{13}
+\tag{2.12}
 \end{equation}
 $$
 
@@ -1549,20 +1549,20 @@ in later sections.
 
 <p>
 The analytical solution of the scaled model
-<a href="#mjx-eqn-12">(12)</a> reads
+<a href="#mjx-eqn-2.11">(2.11)</a> reads
 
 $$
 \begin{equation}
 \bar\uex(t) =
 e^{-t}\left( e^{t}-1 + \beta\right) = 1 + (\beta -1)e^{-t}\tp
-\tag{14}
+\tag{2.13}
 \end{equation}
 $$
 
 <p>
-The result <a href="#mjx-eqn-12">(12)</a> with the
-solution <a href="#mjx-eqn-14">(14)</a> is actually
-astonishing if \( a \) and \( b \) are as in <a href="#mjx-eqn-10">(10)</a>:
+The result <a href="#mjx-eqn-2.11">(2.11)</a> with the
+solution <a href="#mjx-eqn-2.13">(2.13)</a> is actually
+astonishing if \( a \) and \( b \) are as in <a href="#mjx-eqn-2.9">(2.9)</a>:
 the six parameters \( d \), \( \mu \), \( \varrho_b \), \( \varrho \), \( V \), and \( g \)
 are conjured to one:
 $$ \beta = I\frac{3\pi d\mu}{\varrho_b V}
@@ -1576,21 +1576,21 @@ In particular, if the motion starts from rest, \( \beta=0 \), and
 there are no physical parameters in the scaled model!
 We can then perform a single simulation and recover all physical
 cases by the unscaling procedure. More precisely,
-having computed \( \bar u(\bar t) \) from <a href="#mjx-eqn-12">(12)</a>,
+having computed \( \bar u(\bar t) \) from <a href="#mjx-eqn-2.11">(2.11)</a>,
 we can use
 
 $$
 \begin{equation}
 u(t) = \frac{b}{a}\bar u(at),
-\tag{15}
+\tag{2.14}
 \end{equation}
 $$
 
 to scale us back to the original
 problem again.
-We observe that <a href="#mjx-eqn-12">(12)</a> can utilize a solver
-for <a href="#mjx-eqn-9">(9)</a> by setting \( a=1 \), \( b=1 \), and \( I=\beta \).
-Given some implementation of a solver for <a href="#mjx-eqn-9">(9)</a>,
+We observe that <a href="#mjx-eqn-2.11">(2.11)</a> can utilize a solver
+for <a href="#mjx-eqn-2.8">(2.8)</a> by setting \( a=1 \), \( b=1 \), and \( I=\beta \).
+Given some implementation of a solver for <a href="#mjx-eqn-2.8">(2.8)</a>,
 say <code>solver(I, a, b, T, dt, theta)</code>,
 the scaled model is run by <code>solver(beta, 1, 1, T, dt, theta)</code>.
 
@@ -1785,7 +1785,7 @@ $$
 1, & \bar t < \gamma\\ 
 5, & \bar t \geq \gamma
 \end{array}\right.
-\tag{16}
+\tag{2.15}
 \end{equation}
 $$
 
@@ -1807,7 +1807,7 @@ is the ratio between the time when the environmental change happens
 and the typical time for the decay (\( 1/d \)).
 
 <p>
-A computation with the scaled model <a href="#mjx-eqn-16">(16)</a>
+A computation with the scaled model <a href="#mjx-eqn-2.15">(2.15)</a>
 and the original model with dimensions appears in
 Figure <a href="#sec:scale:decay:jump:fig">4</a>.
 
@@ -1828,7 +1828,7 @@ can be modeled by Newton's law of cooling:
 $$
 \begin{equation}
 T'(t) = -k(T-T_s),\quad T(0)=T_0,
-\tag{17}
+\tag{2.16}
 \end{equation}
 $$
 
@@ -1838,7 +1838,7 @@ where \( k \) is a prescribed heat transfer coefficient.
 
 <p>
 An analytical solution is always handy to have as a control of the
-choice of scales. The solution of <a href="#mjx-eqn-17">(17)</a>
+choice of scales. The solution of <a href="#mjx-eqn-2.16">(2.16)</a>
 is by standard methods for ODEs found to be
 \( T(t) = T_s + (T_0 - T_s)e^{-kt} \).
 
@@ -1853,7 +1853,7 @@ is therefore to scale and translate \( T \) according to
 $$
 \begin{equation}
 \bar T = \frac{T-T_0}{T_s-T_0}
-\tag{18}
+\tag{2.17}
 \tp
 \end{equation}
 $$
@@ -1863,7 +1863,7 @@ Now, \( 0\leq \bar T\leq 1 \).
 <p>
 Scaling time by \( \bar t = t/t_c \) and inserting
 \( T= T_0 + (T_s-T_0)\bar T \) and \( t=t_c\bar t \) in the
-problem <a href="#mjx-eqn-17">(17)</a> gives
+problem <a href="#mjx-eqn-2.16">(2.16)</a> gives
 
 $$ \frac{d\bar T}{d\bar t} = - t_ck(\bar T - 1),\quad \bar T(0) = 0
 \tp
@@ -1874,7 +1874,7 @@ is to choose \( t_ck=1 \), which leaves us with the scaled problem
 $$
 \begin{equation}
 \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
-\tag{19}
+\tag{2.18}
 \tp
 \end{equation}
 $$
@@ -1886,7 +1886,7 @@ Our scaling implies that \( \bar T \) starts at
 $$
 \begin{equation}
 T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)
-\tag{20}
+\tag{2.19}
 \tp
 \end{equation}
 $$
@@ -1894,8 +1894,8 @@ $$
 <h3 id="___sec44">Software </h3>
 
 <p>
-An implementation for <a href="#mjx-eqn-17">(17)</a> works for
-<a href="#mjx-eqn-19">(19)</a> by setting \( k=1 \), \( T_s=1 \), and \( T_0=0 \).
+An implementation for <a href="#mjx-eqn-2.16">(2.16)</a> works for
+<a href="#mjx-eqn-2.18">(2.18)</a> by setting \( k=1 \), \( T_s=1 \), and \( T_0=0 \).
 
 <h3 id="___sec45">Alternative scaling </h3>
 
@@ -1904,7 +1904,7 @@ An alternative temperature scaling is to choose
 $$
 \begin{equation}
 \bar T = \frac{T-T_s}{T_0-T_s}
-\tag{21}
+\tag{2.20}
 \tp
 \end{equation}
 $$
@@ -1915,7 +1915,7 @@ The resulting scaled ODE problem then becomes
 $$
 \begin{equation}
 \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1
-\tag{22}
+\tag{2.21}
 \tp
 \end{equation}
 $$
@@ -1923,14 +1923,14 @@ $$
 <h2 id="scale:decay:cooling:osc">Scaling a cooling problem with time-dependent surroundings</h2>
 
 <p>
-Let us apply the model <a href="#mjx-eqn-17">(17)</a> in
+Let us apply the model <a href="#mjx-eqn-2.16">(2.16)</a> in
 case the surrounding temperature varies in time. Say we have
 an oscillating temperature environment according to
 
 $$
 \begin{equation}
 T_s(t) = T_m + a\sin(\omega t)
-\tag{23}
+\tag{2.22}
 \tp
 \end{equation}
 $$
@@ -1972,7 +1972,7 @@ $$ T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + \omega^2)^{-1}(ak\omega e^{-kt}
 <h3 id="___sec48">Scaling </h3>
 
 <p>
-The scaling <a href="#mjx-eqn-18">(18)</a> brings in a time-dependent
+The scaling <a href="#mjx-eqn-2.17">(2.17)</a> brings in a time-dependent
 characteristic temperature scale \( T_s-T_0 \). Let us start with a
 fixed scale, where we take the characteristic temperature variation to
 be \( T_m - T_0 \):
@@ -1999,7 +1999,7 @@ $$
 \begin{equation}
 \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
 \bar T(0)=0,
-\tag{24}
+\tag{2.23}
 \end{equation}
 $$
 
@@ -2019,7 +2019,7 @@ oscillations in \( T_s \) and the e-folding time \( e=1/k \). Then \( \beta =
 <p>
 The original problem features five physical parameters: \( k \), \( T_0 \),
 \( T_m \), \( a \), and \( \omega \), but only two dimensionless numbers appear in the
-scaled model <a href="#mjx-eqn-24">(24)</a>.
+scaled model <a href="#mjx-eqn-2.23">(2.23)</a>.
 In fact, this is an example where application of the Pi theorem falls
 short. Since, only time and temperature are involved as unit types, the
 theorem predicts that the five parameters yields three dimensionless numbers,
@@ -2038,7 +2038,7 @@ not two. The equations, on the other hand, shows us that the two parameters
 <h3 id="___sec49">Software </h3>
 
 <p>
-Implementations of the unscaled problem <a href="#mjx-eqn-17">(17)</a>
+Implementations of the unscaled problem <a href="#mjx-eqn-2.16">(2.16)</a>
 can be reused for the scaled model by setting \( k=1 \), \( T_0=0 \), and
 \( T_s(t) = 1 + \alpha\sin (\beta \bar t) \) (\( T_m=1 \), \( a=\alpha \), \( \omega =\beta \)).
 The file <a href="http://tinyurl.com/o8pb3yy/osc_cooling.py" target="_self"><tt>osc_cooling.py</tt></a> contains
@@ -2074,14 +2074,14 @@ $$
 \begin{equation}
 \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
 \bar T(0)=0\tp
-\tag{25}
+\tag{2.24}
 \end{equation}
 $$
 
 <p>
 Let us illustrate another, less effective, scaling.
 The temperature scale in
-<a href="#mjx-eqn-18">(18)</a> looks natural, so we apply this
+<a href="#mjx-eqn-2.17">(2.17)</a> looks natural, so we apply this
 choice of scale. The characteristic temperature \( T_0-T_s \)
 now involves
 a time-dependent term \( T_s(t) \). The mathematical steps become a bit
@@ -2128,7 +2128,7 @@ $$
 \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
 \alpha\beta \frac{\cos(\beta \bar t)}{1 + \alpha\sin(\beta\bar t) - \gamma}
 \bar T,
-\tag{26}
+\tag{2.25}
 \end{equation}
 $$
 
@@ -2139,13 +2139,13 @@ $$
 \begin{equation}
 \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
 \tp
-\tag{27}
+\tag{2.26}
 \end{equation}
 $$
 
-We notice that <a href="#mjx-eqn-26">(26)</a>
+We notice that <a href="#mjx-eqn-2.25">(2.25)</a>
 is not a special case of the original problem
-<a href="#mjx-eqn-17">(17)</a>. Furthermore, the original five
+<a href="#mjx-eqn-2.16">(2.16)</a>. Furthermore, the original five
 parameters \( k \), \( T_m \), \( a \), \( \omega \), and
 \( T_0 \) are reduced to three dimensionless parameters.
 We conclude that this scaling is inferior, because
@@ -2166,7 +2166,7 @@ In general, this reasoning gives rise to models
 $$
 \begin{equation}
 u' = a(u)u,\quad u(0)=I,
-\tag{28}
+\tag{2.27}
 \end{equation}
 $$
 
@@ -2176,7 +2176,7 @@ as the simplest:
 $$
 \begin{equation}
 u' = \varrho u(1-u/M),\quad u(0)=I\tp
-\tag{29}
+\tag{2.28}
 \end{equation}
 $$
 
@@ -2185,7 +2185,7 @@ A general choice of \( a \) may be \( a(u)=\varrho(1-u/M)^p \) for some exponent
 <h3 id="___sec52">Scaling </h3>
 
 <p>
-Let us scale <a href="#mjx-eqn-28">(28)</a> with
+Let us scale <a href="#mjx-eqn-2.27">(2.27)</a> with
 \( a(u)=\varrho (1-u/M)^p \).
 The natural scale for \( u \) is \( M \) (\( u_c=M \)), since we know that
 \( 0 < u\leq M \), and this makes the dimensionless \( \bar u = u/M \in (0,1] \).
@@ -2196,7 +2196,7 @@ $$ \bar a(\bar u) = \frac{a(u)}{\varrho} = (1 - \frac{u}{M})^p =
 (1 - \bar u)^p\tp$$
 
 Time is scaled as \( \bar t = t/t_c \) for some suitable characteristic time \( t_c \).
-Inserted in <a href="#mjx-eqn-28">(28)</a>, we get
+Inserted in <a href="#mjx-eqn-2.27">(2.27)</a>, we get
 
 $$ \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = \varrho\bar a u_c\bar u,\quad u_c\bar u(0)=I,$$
 
@@ -2219,7 +2219,7 @@ $$
 \begin{equation}
 \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
 \bar u(0) =\alpha\tp
-\tag{30}
+\tag{2.29}
 \end{equation}
 $$
 
@@ -2239,15 +2239,15 @@ $$
 \begin{equation}
 \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
 \bar u(0) =0\tp
-\tag{31}
+\tag{2.30}
 \end{equation}
 $$
 
-The essential difference between <a href="#mjx-eqn-30">(30)</a>
-and <a href="#mjx-eqn-31">(31)</a> is that
+The essential difference between <a href="#mjx-eqn-2.29">(2.29)</a>
+and <a href="#mjx-eqn-2.30">(2.30)</a> is that
 \( \bar u\in [\alpha, 1] \) in the former and \( \bar u \in [0, 1-\alpha] \) in
 the latter. Both models involve the dimensionless numbers \( \alpha \) and \( p \).
-An advantage of <a href="#mjx-eqn-30">(30)</a>
+An advantage of <a href="#mjx-eqn-2.29">(2.29)</a>
 is that software for the unscaled model can easily be used for the
 scaled model by choosing \( I=\alpha \), \( M=1 \), and \( \varrho=1 \).
 
@@ -2272,11 +2272,11 @@ system of ODEs:
 $$
 \begin{align}
 \frac{dS}{dt} &= - \beta SI,
-\tag{32}\\ 
+\tag{2.31}\\ 
 \frac{dI}{dt} &= \beta SI - \nu I,
-\tag{33}\\ 
+\tag{2.32}\\ 
 \frac{dR}{dt} &= \nu I,
-\tag{34}
+\tag{2.33}
 \end{align}
 $$
 
@@ -2327,11 +2327,11 @@ to recover from the disease, we end up with the scaled model
 $$
 \begin{align}
 \frac{d\bar S}{d\bar t} &= - R_0\bar S\bar I,
-\tag{35}\\ 
+\tag{2.34}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S\bar I - \bar I,
-\tag{36}\\ 
+\tag{2.35}\\ 
 \frac{d\bar R}{d\bar t} &= I,
-\tag{37}
+\tag{2.36}
 \end{align}
 $$
 
@@ -2341,11 +2341,11 @@ the dimensionless number
 $$
 \begin{equation}
 R_0 = \frac{S(0)\beta}{\nu}\tp
-\tag{38}
+\tag{2.37}
 \end{equation}
 $$
 
-We see from <a href="#mjx-eqn-36">(36)</a> that to make the disease spreading,
+We see from <a href="#mjx-eqn-2.35">(2.35)</a> that to make the disease spreading,
 \( d\bar I/d\bar t >0 \), and therefore \( R_0 S(0) - 1 > 0 \) or \( R_0 > 1 \)
 since \( S(0)=1 \).
 Therefore, \( R_0 \) reflects the disease's ability to spread and is
@@ -2355,7 +2355,7 @@ This number reflects the number of infected people caused by one infectious
 individual during the time period of the disease.
 
 <p>
-Looking at <a href="#mjx-eqn-33">(33)</a>, we see that to increase \( I \) initially,
+Looking at <a href="#mjx-eqn-2.32">(2.32)</a>, we see that to increase \( I \) initially,
 we must have \( dI/dt >0 \) at \( t=0 \), which implies
 \( \beta I(0)S(0) - \nu I(0) >0 \), i.e., \( R_0 > 1 \).
 
@@ -2381,7 +2381,7 @@ both with \( \alpha=0.02 \).
 <h3 id="___sec57">Alternative scaling </h3>
 
 <p>
-Adding <a href="#mjx-eqn-32">(32)</a>-<a href="#mjx-eqn-34">(34)</a> shows that
+Adding <a href="#mjx-eqn-2.31">(2.31)</a>-<a href="#mjx-eqn-2.33">(2.33)</a> shows that
 
 $$ \frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
 S+I+R=\hbox{const}=N,$$
@@ -2394,12 +2394,12 @@ $$ \bar S = \frac{S}{N},\quad \bar I = \frac{I}{N},\quad
 \bar R = \frac{R}{N)}\tp
 $$
 
-With the same time scale, one gets the system <a href="#mjx-eqn-35">(35)</a>-<a href="#mjx-eqn-37">(37)</a>, but with \( R_0 \) replaced by the dimensionless number:
+With the same time scale, one gets the system <a href="#mjx-eqn-2.34">(2.34)</a>-<a href="#mjx-eqn-2.36">(2.36)</a>, but with \( R_0 \) replaced by the dimensionless number:
 
 $$
 \begin{equation}
 \tilde R_0 = \frac{N\beta}{\nu}\tp
-\tag{39}
+\tag{2.38}
 \end{equation}
 $$
 
@@ -2443,13 +2443,13 @@ vaccinated). The ODE model reads
 $$
 \begin{align}
 \frac{dS}{dt} &= - \beta SI - pS + \mu R,
-\tag{40}\\ 
+\tag{2.39}\\ 
 \frac{dI}{dt} &= \beta SI - \nu I,
-\tag{41}\\ 
+\tag{2.40}\\ 
 \frac{dR}{dt} &= \nu I -\mu R,
-\tag{42}\\ 
+\tag{2.41}\\ 
 \frac{dV}{dt} &= p S\tp
-\tag{43}
+\tag{2.42}
 \end{align}
 $$
 
@@ -2459,13 +2459,13 @@ the dimensionless model
 $$
 \begin{align}
 \frac{d\bar S}{d\bar t} &= - R_0 \bar S \bar I - \delta S + \gamma \bar R,
-\tag{44}\\ 
+\tag{2.43}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S \bar I - \bar I,
-\tag{45}\\ 
+\tag{2.44}\\ 
 \frac{d\bar R}{d\bar t} &= \bar I -\gamma \bar R,
-\tag{46}\\ 
+\tag{2.45}\\ 
 \frac{d\bar V}{d\bar t} &= \delta \bar S,
-\tag{47}
+\tag{2.46}
 \end{align}
 $$
 
@@ -2509,13 +2509,13 @@ Introducing the amount of S, E, ES, and P by \( [S] \), \( [E] \), \( [ES] \), a
 $$
 \begin{align}
 \frac{d[ES]}{dt} &= k_+[E][S] - k_v[ES] - k_-[ES],
-\tag{48}\\ 
+\tag{2.47}\\ 
 \frac{d[P]}{dt} &= k_v[ES],
-\tag{49}\\ 
+\tag{2.48}\\ 
 \frac{d[S]}{dt} &= -k_+[E][S] + k_-[ES],
-\tag{50}\\ 
+\tag{2.49}\\ 
 \frac{d[E]}{dt} &= -k_+[E][S] + k_-[ES] + k_v[ES]\tp
-\tag{51}
+\tag{2.50}
 \end{align}
 $$
 
@@ -2539,9 +2539,9 @@ two conservation equations, arising from simply adding the ODEs:
 $$
 \begin{align}
 \frac{d[ES]}{dt} + \frac{d[E]}{dt} & =0,
-\tag{52}\\ 
+\tag{2.51}\\ 
 \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} &= 0,
-\tag{53}
+\tag{2.52}
 \end{align}
 $$
 
@@ -2550,21 +2550,21 @@ from which it follows that
 $$
 \begin{align}
 [ES] + [E] &= E_0,
-\tag{54}\\ 
+\tag{2.53}\\ 
 [ES] + [S] + [P] &= S_0\tp
-\tag{55}
+\tag{2.54}
 \end{align}
 $$
 
-Using <a href="#mjx-eqn-54">(54)</a>, we can eliminate \( [E] \) and obtain a
+Using <a href="#mjx-eqn-2.53">(2.53)</a>, we can eliminate \( [E] \) and obtain a
 system of only two ODEs,
 
 $$
 \begin{align}
 \frac{d[ES]}{dt} &= k_+([ES]-E_0)[S] - (k_v + k_-)[ES],
-\tag{56}\\ 
+\tag{2.55}\\ 
 \frac{d[S]}{dt} &= -k_+([ES]-E_0)[S] + k_-[ES]\tp
-\tag{57}
+\tag{2.56}
 \end{align}
 $$
 
@@ -2585,7 +2585,7 @@ equation for \( [S] \) gives
 $$
 \begin{equation}
 \frac{d[S]}{dt} = \frac{k_vE_0[S]}{[S] + K}\tp
-\tag{58}
+\tag{2.57}
 \end{equation}
 $$
 
@@ -2710,14 +2710,14 @@ $$
 \begin{align}
 \frac{d\bar Q}{d\bar t} &= \alpha (\bar E\bar S
 - \bar Q),
-\tag{59}\\ 
+\tag{2.58}\\ 
 \frac{d\bar P}{d\bar t} &= \beta\bar Q,
-\tag{60}\\ 
+\tag{2.59}\\ 
 \frac{d\bar S}{d\bar t} &= -\bar E\bar S
 + (1 - \beta\alpha^{-1})\bar Q,
-\tag{61}\\ 
+\tag{2.60}\\ 
 \epsilon\frac{d\bar E}{d\bar t} &= -\bar E\bar S + \bar Q\tp
-\tag{62}
+\tag{2.61}
 \end{align}
 $$
 
@@ -2734,15 +2734,15 @@ are reduced to three dimensionless constants:
 </ul>
 
 Observe that software developed for
-solving <a href="#mjx-eqn-48">(48)</a>-<a href="#mjx-eqn-51">(51)</a> cannot be reused
-for solving <a href="#mjx-eqn-59">(59)</a>-<a href="#mjx-eqn-62">(62)</a> since the latter
+solving <a href="#mjx-eqn-2.47">(2.47)</a>-<a href="#mjx-eqn-2.50">(2.50)</a> cannot be reused
+for solving <a href="#mjx-eqn-2.58">(2.58)</a>-<a href="#mjx-eqn-2.61">(2.61)</a> since the latter
 system has a slightly different structure.
 
 <h3 id="___sec63">Analysis of the scaled system </h3>
 
 <p>
 In the scaled system, we may assume \( \epsilon \) small, which from
-<a href="#mjx-eqn-62">(62)</a> gives rise to the simplification
+<a href="#mjx-eqn-2.61">(2.61)</a> gives rise to the simplification
 \( \epsilon\bar E^{\prime}=0 \), and thereby the relation \( \bar Q = \bar E\bar S \).
 The conservation equation \( [ES] + [E]= E_0 \) reads \( Q_c\bar Q + E_0\bar E =
 E_0 \) such that \( \bar E = 1 - Q_c\bar Q/E_0=1- \bar Q S_0/K = 1 - \epsilon^{-1}\alpha^{-1}\bar Q \). The relation \( \bar Q=\bar E\bar S \) then becomes
@@ -2753,26 +2753,26 @@ which can be solved for \( \bar Q \):
 
 $$ \bar Q = \frac{\bar S}{1 + \epsilon^{-1}\alpha^{-1}\bar S}\tp$$
 
-The equation <a href="#mjx-eqn-61">(61)</a> for \( \bar S \) becomes
+The equation <a href="#mjx-eqn-2.60">(2.60)</a> for \( \bar S \) becomes
 
 $$
 \begin{equation}
 \frac{d\bar S}{d\bar t} = -\beta\alpha^{-1}\bar Q =
 -\frac{\beta\bar S}{\alpha + \epsilon^{-1}\bar S}\tp
-\tag{63}
+\tag{2.62}
 \end{equation}
 $$
 
 This is a more precise analysis than the one leading to
-<a href="#mjx-eqn-58">(58)</a> since we now realize that the
+<a href="#mjx-eqn-2.57">(2.57)</a> since we now realize that the
 mathematical assumption for the simplification is
 \( \epsilon\rightarrow 0 \).
 
 <p>
-Is <a href="#mjx-eqn-63">(63)</a> consistent with <a href="#mjx-eqn-58">(58)</a>? It is
+Is <a href="#mjx-eqn-2.62">(2.62)</a> consistent with <a href="#mjx-eqn-2.57">(2.57)</a>? It is
 easy to make algebraic mistakes when deriving scaled equations,
 so it is always wise to carry out consistency checks.
-Introducing dimensions in <a href="#mjx-eqn-63">(63)</a> leads to
+Introducing dimensions in <a href="#mjx-eqn-2.62">(2.62)</a> leads to
 
 $$
 \frac{t_c}{S_0}\frac{d S}{dt} =
@@ -2785,7 +2785,7 @@ and hence with \( t_c^{-1}=k_+E_0 \),
 
 $$ \frac{dS}{dt} = \frac{k_vE_0 S}{K + S},$$
 
-which is <a href="#mjx-eqn-58">(58)</a>.
+which is <a href="#mjx-eqn-2.57">(2.57)</a>.
 
 <p>
 Figure <a href="#scale:MMK:fig">6</a> shows the impact of \( \epsilon \): with a small

@@ -813,7 +813,7 @@ reads
 $$
 \begin{equation}
 mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V\tp
-\tag{64}
+\tag{2.63}
 \end{equation}
 $$
 
@@ -834,14 +834,14 @@ and is connected to a spring that exerts a force \( -ku \) on the body.
 <h3 id="___sec66">The first technical steps of scaling </h3>
 
 <p>
-The problem <a href="#mjx-eqn-64">(64)</a> has one independent
+The problem <a href="#mjx-eqn-2.63">(2.63)</a> has one independent
 variable \( t \) and one dependent variable \( u \). We introduce dimensionless
 versions of these variables:
 
 $$ \bar u =\frac{u}{u_c},\quad\bar t = \frac{t}{t_c},$$
 
 where \( u_c \) and \( t_c \) are characteristic values of \( u \) and \( t \).
-Inserted in <a href="#mjx-eqn-64">(64)</a>, we get
+Inserted in <a href="#mjx-eqn-2.63">(2.63)</a>, we get
 
 $$ m\frac{u_c}{t_c^2}\frac{d^2\bar u}{d\bar t^2} + ku_c\bar u = 0,
 \quad u_c\bar u(0)=I,\quad \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}(0)=V,$$
@@ -852,7 +852,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u = 0,
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{65}
+\tag{2.64}
 \end{equation}
 $$
 
@@ -868,7 +868,7 @@ both terms balance and are of size unity, is a candidate.
 To better see what the proper scales of \( u \) and \( t \) are, we can look
 into the analytical solution of this problem.
 Although the exact solution of
-<a href="#mjx-eqn-64">(64)</a> is quite straightforward to calculate
+<a href="#mjx-eqn-2.63">(2.63)</a> is quite straightforward to calculate
 by hand, we take the opportunity to make use of SymPy to
 find \( u(t) \). The use of SymPy can later be generalized to vibration
 ODEs that are harder to solve by hand.
@@ -979,7 +979,7 @@ compared to the exact amplitude).  It is not very important to have
 
 <p>
 What is an appropriate time scale? Looking at
-<a href="#mjx-eqn-65">(65)</a> and arguing that
+<a href="#mjx-eqn-2.64">(2.64)</a> and arguing that
 \( \bar u'' \) and \( \bar u \) both should be around unity in size, the
 coefficient \( t_c^2k/m \) must equal unity, implying that \( t_c=\sqrt{m/k} \).
 Also from the analytical solution we see that the solution goes like the
@@ -996,7 +996,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + \bar u = 0,
 \quad \bar u(0)=1,\ \bar u'(0)=\alpha,
-\tag{66}
+\tag{2.65}
 \end{equation}
 $$
 
@@ -1014,7 +1014,7 @@ The unscaled solution is recovered as
 $$
 \begin{equation}
 u(t) = I\bar u(\sqrt{k/m}\bar t)\tp
-\tag{67}
+\tag{2.66}
 \end{equation}
 $$
 
@@ -1038,7 +1038,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + 4\pi^2 \bar u = 0,
 \quad \bar u(0)=\alpha^{-1},\ \bar u'(0)=2\pi\tp
-\tag{68}
+\tag{2.67}
 \end{equation}
 $$
 
@@ -1047,7 +1047,7 @@ The unscaled solution is in this case recovered by
 $$
 \begin{equation}
 u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t)\tp
-\tag{69}
+\tag{2.68}
 \end{equation}
 $$
 
@@ -1070,7 +1070,7 @@ the unit for counts per unit time.
 
 <p>
 For vertical vibrations in the gravity field, the model
-<a href="#mjx-eqn-64">(64)</a> must also take the gravity force
+<a href="#mjx-eqn-2.63">(2.63)</a> must also take the gravity force
 \( -mg \) into account:
 
 $$ mu'' + ku = -mg\tp$$
@@ -1107,12 +1107,12 @@ gravity, except for an offset \( mg/(kI) \) in the displacement.
 
 <p>
 Now we add a transient forcing term \( F(t) \) to the model
-<a href="#mjx-eqn-64">(64)</a>:
+<a href="#mjx-eqn-2.63">(2.63)</a>:
 
 $$
 \begin{equation}
 mu'' + ku = F(t),\quad u(0)=I,\ u'(0)=V\tp
-\tag{70}
+\tag{2.69}
 \end{equation}
 $$
 
@@ -1128,7 +1128,7 @@ $$
 \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u =
 \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{71}
+\tag{2.70}
 \end{equation}
 $$
 
@@ -1227,7 +1227,7 @@ $$
 u(t) = \frac{A}{m(\omega^2 - \psi^2)} 2
 \sin\left(\frac{\psi - \omega}{2}t\right)
 \sin\left(\frac{\psi + \omega}{2}t\right),
-\tag{72}
+\tag{2.71}
 \end{equation}
 $$
 
@@ -1269,7 +1269,7 @@ of them when they are distant. In any case, we set
 <h3 id="___sec77">Finding the displacement scale from the differential equation </h3>
 
 <p>
-Going back to <a href="#mjx-eqn-71">(71)</a>, we
+Going back to <a href="#mjx-eqn-2.70">(2.70)</a>, we
 may demand that all the three terms in the differential equation
 are of size unity. This leads to \( t_c=\sqrt{m/k} \)
 and \( u_c=At_c^2/m = A/k \). The formula for \( u_c \) is a kind of measure
@@ -1278,7 +1278,7 @@ forcing and the spring force (the dimensionless number
 \( A/(ku_c) \) would be this ratio).
 
 <p>
-Looking at <a href="#mjx-eqn-72">(72)</a>, we see
+Looking at <a href="#mjx-eqn-2.71">(2.71)</a>, we see
 that if \( \psi\ll\omega \), the amplitude can be approximated
 by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
 relevant for small excitation frequency \( \psi \) compared to
@@ -1290,7 +1290,7 @@ the free vibration frequency \( \omega \).
 The next step is to work out the dimensionless ODE for the chosen scales.
 We first select the time scale based on the free oscillations
 with frequency \( \omega \), i.e., \( t_c=1/\omega \). Inserting the expression in
-<a href="#mjx-eqn-71">(71)</a> results in
+<a href="#mjx-eqn-2.70">(2.70)</a> results in
 
 $$
 \begin{equation}
@@ -1298,7 +1298,7 @@ $$
 \gamma
 \cos(\delta\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta\tp
-\tag{73}
+\tag{2.72}
 \end{equation}
 $$
 
@@ -1307,13 +1307,13 @@ Here we have four dimensionless variables
 $$
 \begin{align}
 \alpha &= \frac{I}{u_c},
-\tag{74}\\ 
+\tag{2.73}\\ 
 \beta  &= \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},
-\tag{75}\\ 
+\tag{2.74}\\ 
 \gamma &= \frac{t_c^2 A}{mu_c} = \frac{A}{ku_c},
-\tag{76}\\ 
+\tag{2.75}\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
-\tag{77}
+\tag{2.76}
 \end{align}
 $$
 
@@ -1335,8 +1335,8 @@ physical effects:
 <h3 id="___sec79">Software </h3>
 
 <p>
-Any solver for <a href="#mjx-eqn-71">(71)</a>
-can be used for <a href="#mjx-eqn-73">(73)</a>.
+Any solver for <a href="#mjx-eqn-2.70">(2.70)</a>
+can be used for <a href="#mjx-eqn-2.72">(2.72)</a>.
 More details are provided at the end of
 the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
@@ -1372,7 +1372,7 @@ forcing, but the state close to resonance brings the amplitude up to
 about unity, see the result of numerical simulations with \( \delta=0.99 \) in
 Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 Neglecting \( \alpha \),
-the solution is given by <a href="#mjx-eqn-72">(72)</a>,
+the solution is given by <a href="#mjx-eqn-2.71">(2.71)</a>,
 which here means \( A=1-\delta^2 \), \( m=1 \), \( \omega=1 \), \( \psi=\delta \):
 
 $$ \bar u(\bar t) = 2\sin(-0.005\bar t)\sin(0.995\bar t)\tp $$
@@ -1394,7 +1394,7 @@ Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 
 <p>
 Using the displacement scale \( u_c=A/k \) leads to
-<a href="#mjx-eqn-73">(73)</a> with
+<a href="#mjx-eqn-2.72">(2.72)</a> with
 
 $$
 \begin{align*}
@@ -1438,7 +1438,7 @@ $$
 \gamma
 \cos(\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
-\tag{78}
+\tag{2.77}
 \end{equation}
 $$
 
@@ -1459,7 +1459,7 @@ However, if \( \alpha \) and/or \( \beta \) is large,
 the initial condition dominates over the forcing, and will also dominate
 the amplitude of \( u \), thereby making the scaling of \( u \) inappropriate.
 In case \( I=V=0 \) so that \( \alpha=\beta=0 \),
-<a href="#mjx-eqn-72">(72)</a> predicts
+<a href="#mjx-eqn-2.71">(2.71)</a> predicts
 (\( A=m=1 \), \( \omega=\delta^{-1} \), \( \psi=1 \))
 
 $$ \bar u(\bar t) = (\delta^{-2}-1)^{-1}2
@@ -1504,7 +1504,7 @@ $$
 \frac{d^2\bar u}{d\bar t^2} + \bar u =
 \gamma\cos(\delta\bar t),
 \quad \bar u(0)=1,\ \bar u'(0)=\beta,
-\tag{79}
+\tag{2.78}
 \end{equation}
 $$
 
@@ -1513,9 +1513,9 @@ with
 $$
 \begin{align}
 \beta  &= \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},
-\tag{80}\\ 
+\tag{2.79}\\ 
 \gamma & = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} \tp
-\tag{81}
+\tag{2.80}
 \end{align}
 $$
 
@@ -1529,7 +1529,7 @@ We now introduce a linear damping force \( bu'(t) \) in the equation of motion:
 $$
 \begin{equation}
 mu'' + bu' + ku = A\cos(\psi t),\quad u(0)=I,\ u'(0)=V\tp
-\tag{82}
+\tag{2.81}
 \end{equation}
 $$
 
@@ -1553,7 +1553,7 @@ $$
 + \frac{t_c^2 k}{m}\bar u =
 \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{83}
+\tag{2.82}
 \end{equation}
 $$
 
@@ -1562,7 +1562,7 @@ $$
 <p>
 To choose scales, it is (as always)
 a great advantage to look into exact solutions.
-Using SymPy to solve <a href="#mjx-eqn-82">(82)</a> is, in principle,
+Using SymPy to solve <a href="#mjx-eqn-2.81">(2.81)</a> is, in principle,
 very straightforward:
 
 <p>
@@ -1757,7 +1757,7 @@ u &= \frac{Am^{-1}}{4 B^{2} \psi^{2} +
 \nonumber\\ 
 & = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
 \frac{1}{2}}\cos(\psi t + \phi),
-\tag{84}
+\tag{2.83}
 \end{align}
 $$
 
@@ -1772,7 +1772,7 @@ $$ \phi = \tan^{-1}\left(-\frac{2B}{\omega^2 - \psi^2}\right)
 
 \( Q \) is commonly called <em>quality factor</em> and \( \phi \) is the
 <em>phase shift</em>. Dividing
-<a href="#mjx-eqn-84">(84)</a> by \( A/k \), which is a common
+<a href="#mjx-eqn-2.83">(2.83)</a> by \( A/k \), which is a common
 scale for \( u \), gives the dimensionless relation
 
 $$
@@ -1780,7 +1780,7 @@ $$
 \frac{u}{A/k} = \frac{Q}{\delta} R(Q,\delta)^{\frac{1}{2}}\cos(\psi t + \phi),
 \quad
 R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}\tp
-\tag{85}
+\tag{2.84}
 \end{equation}
 $$
 
@@ -1792,7 +1792,7 @@ relevant also when damping is included.  Although the oscillations
 with frequency \( \sqrt{\omega^2-B^2} \) die out for \( t\gg B^{-1} \), we
 start with using this frequency for the time scale.  A highly relevant
 assumption for engineering applications of
-<a href="#mjx-eqn-82">(82)</a> is that the damping is small.
+<a href="#mjx-eqn-2.81">(2.81)</a> is that the damping is small.
 Therefore, \( \sqrt{\omega^2-B^2} \) is close to \( \omega \) and we simply
 apply \( t_c=1/\omega \) as before (if not the interest in large \( t \) for
 which the oscillations with frequency \( \omega \) has died out).
@@ -1840,7 +1840,7 @@ $$
 \gamma
 \cos(\delta\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
-\tag{86}
+\tag{2.85}
 \end{equation}
 $$
 
@@ -1852,13 +1852,13 @@ with
 $$
 \begin{align}
 \alpha &= \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},
-\tag{87}\\ 
+\tag{2.86}\\ 
 \beta  &= \frac{Vt_c}{u_c} = \frac{Vb}{A},
-\tag{88}\\ 
+\tag{2.87}\\ 
 \gamma &= \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},
-\tag{89}\\ 
+\tag{2.88}\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1\tp
-\tag{90}
+\tag{2.89}
 \end{align}
 $$
 
@@ -1902,7 +1902,7 @@ with time steps <code>dt</code>. With <code>damping='linear'</code>, we have \( 
 other value is <code>'quadratic'</code>, meaning \( f(u')=b|u'|u' \).
 Given the dimensionless numbers \( \alpha \), \( \beta \), \( \gamma \), \( \delta \),
 and \( Q \),
-an appropriate call for solving <a href="#mjx-eqn-73">(73)</a> is
+an appropriate call for solving <a href="#mjx-eqn-2.72">(2.72)</a> is
 
 <p>
 
@@ -1964,7 +1964,7 @@ capacitance \( C \), and overall resistance \( R \), obeys the equation
 $$
 \begin{equation}
 \ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I = \dot V(t),
-\tag{91}
+\tag{2.90}
 \end{equation}
 $$
 
@@ -1997,7 +1997,7 @@ $$
 \begin{equation}
 \frac{d^2\bar I}{d\bar t^2} + Q^{-1}\frac{d\bar I}{d\bar t}
 + \bar I = \bar V(t),
-\tag{92}
+\tag{2.91}
 \end{equation}
 $$
 

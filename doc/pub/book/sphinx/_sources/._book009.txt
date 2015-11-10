@@ -1063,10 +1063,13 @@ Using :math:`u_c=U`, :math:`t_c=L/U`, and :math:`p_c = \varrho U^2`, results in
 
 where We is the *Weber number*,
 
+.. _Eq:_auto63:
+
 .. math::
+
+    \tag{202}
+    \hbox{We} = \frac{\varrho U^2L}{\sigma}{\thinspace .}
         
-        \hbox{We} = \frac{\varrho U^2L}{\sigma}{\thinspace .}
-        label{}
         
 
 The Weber number measures the importance of surface tension effects and
@@ -1101,7 +1104,7 @@ equation and the energy equation for the temperature:
 
 .. math::
 
-    \tag{202}
+    \tag{203}
     \varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
         = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},
         
@@ -1111,7 +1114,7 @@ equation and the energy equation for the temperature:
 
 .. math::
 
-    \tag{203}
+    \tag{204}
     \nabla\cdot\boldsymbol{u}  = 0,
         
         
@@ -1120,24 +1123,24 @@ equation and the energy equation for the temperature:
 
 .. math::
 
-    \tag{204}
+    \tag{205}
     \varrho c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
         = \kappa\nabla^2 T {\thinspace .}
         
         
 
-.. _Eq:_auto63:
+.. _Eq:_auto64:
 
 .. math::
 
-    \tag{205}
+    \tag{206}
     The symbol :math:`T` is the temperature, :math:`c` is a heat capacity, and :math:`\kappa`
 is the heat conduction coefficient for the fluid. The PDE system
 applies primarily for liquids. For gases one may need a term
 :math:`- p\nabla\cdot\boldsymbol{u}` for the pressure work in
-:ref:`(204) <Eq:scale:fluid:forced_convection:eq:energy_T_forced>`
+:ref:`(205) <Eq:scale:fluid:forced_convection:eq:energy_T_forced>`
 as well as a modified equation of continuity
-:ref:`(203) <Eq:scale:fluid:forced_convection:eq:cont_T_forced>`.
+:ref:`(204) <Eq:scale:fluid:forced_convection:eq:cont_T_forced>`.
 
 Despite the fact that :math:`\varrho` depends on :math:`T`, we treat :math:`\varrho`
 as a constant :math:`\varrho_0`. The major effect of the :math:`\varrho(T)`
@@ -1188,7 +1191,7 @@ Making each term in each equation dimensionless reduces the system to
 
 .. math::
 
-    \tag{206}
+    \tag{207}
     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
         \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
         = -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \boldsymbol{u},
@@ -1199,7 +1202,7 @@ Making each term in each equation dimensionless reduces the system to
 
 .. math::
 
-    \tag{207}
+    \tag{208}
     \bar\nabla\cdot\bar\boldsymbol{u}  = 0,
         
         
@@ -1208,7 +1211,7 @@ Making each term in each equation dimensionless reduces the system to
 
 .. math::
 
-    \tag{208}
+    \tag{209}
     \frac{\partial \bar T}{\partial \bar t} +
         \bar\boldsymbol{u}\cdot\bar\nabla \bar T
         = \hbox{Pe}^{-1}
@@ -1249,7 +1252,7 @@ coupled to an energy equation governing the temperature:
 
 .. math::
 
-    \tag{209}
+    \tag{210}
     \varrho\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
         = -\nabla p + \mu\nabla^2\boldsymbol{u} - \varrho g\boldsymbol{k},
         
@@ -1259,7 +1262,7 @@ coupled to an energy equation governing the temperature:
 
 .. math::
 
-    \tag{210}
+    \tag{211}
     \nabla\cdot\boldsymbol{u}  = 0,
         
         
@@ -1268,17 +1271,17 @@ coupled to an energy equation governing the temperature:
 
 .. math::
 
-    \tag{211}
+    \tag{212}
     \varrho c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
         = \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}{\thinspace .}
         
         
 
-.. _Eq:_auto64:
+.. _Eq:_auto65:
 
 .. math::
 
-    \tag{212}
+    \tag{213}
     The symbol :math:`T` is the temperature, :math:`c` is a heat capacity, :math:`\kappa`
 is the heat conduction coefficient for the fluid. In free convection,
 the gravity term :math:`-\varrho(T) g\boldsymbol{k}` is essential since the flow is driven
@@ -1286,8 +1289,8 @@ by temperature differences and the fact that hot fluid rises while
 cold fluid falls.
 
 For slightly compressible gas flow a term :math:`-p\nabla\cdot\boldsymbol{u}` may be
-needed in :ref:`(211) <Eq:scale:fluid:free_convection:eq:energy_T>` and also
-a modified :ref:`(210) <Eq:scale:fluid:free_convection:eq:cont_T>`.
+needed in :ref:`(212) <Eq:scale:fluid:free_convection:eq:energy_T>` and also
+a modified :ref:`(211) <Eq:scale:fluid:free_convection:eq:cont_T>`.
 
 Heating by viscous effects
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1319,8 +1322,8 @@ important and not.
 Relation between density and temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The equations :ref:`(209) <Eq:scale:fluid:free_convection:eq:momentum_T>` and
-:ref:`(210) <Eq:scale:fluid:free_convection:eq:cont_T>` has already been made dimensionless
+The equations :ref:`(210) <Eq:scale:fluid:free_convection:eq:momentum_T>` and
+:ref:`(211) <Eq:scale:fluid:free_convection:eq:cont_T>` has already been made dimensionless
 in the previous section. The major difference is now that :math:`\varrho`
 is no longer a constant, but a function of :math:`T`.
 The relationship between :math:`\varrho` and :math:`T` is often taken as
@@ -1363,14 +1366,14 @@ A very common approximation, called the *Boussinesq approximation*, is
 to neglect the density variations in all terms except the gravity term.
 This is a good approximation unless the change is :math:`\varrho` is large.
 With the linear :math:`\varrho(T)` formula and the Boussinesq approximation,
-:ref:`(209) <Eq:scale:fluid:free_convection:eq:momentum_T>`-:ref:`(211) <Eq:scale:fluid:free_convection:eq:energy_T>`
+:ref:`(210) <Eq:scale:fluid:free_convection:eq:momentum_T>`-:ref:`(212) <Eq:scale:fluid:free_convection:eq:energy_T>`
 take the form
 
 .. _Eq:scale:fluid:free_convection:eq:momentum_TB:
 
 .. math::
 
-    \tag{213}
+    \tag{214}
     \varrho_0\left(\frac{\partial \boldsymbol{u}}{\partial t} + \boldsymbol{u}\cdot\nabla\boldsymbol{u}\right)
         = -\nabla p + \mu\nabla^2\boldsymbol{u} - (\varrho_0 - \varrho_0\beta(T-T_0))g\boldsymbol{k},
         
@@ -1380,7 +1383,7 @@ take the form
 
 .. math::
 
-    \tag{214}
+    \tag{215}
     \nabla\cdot\boldsymbol{u}  = 0,
         
         
@@ -1389,17 +1392,17 @@ take the form
 
 .. math::
 
-    \tag{215}
+    \tag{216}
     \varrho_0 c\left(\frac{\partial T}{\partial t} + \boldsymbol{u}\cdot\nabla T\right)
         = \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}{\thinspace .}
         
         
 
-.. _Eq:_auto65:
+.. _Eq:_auto66:
 
 .. math::
 
-    \tag{216}
+    \tag{217}
     A good justification of the Boussinesq approximation is provided
 by Tritton [Ref09]_ (Ch. 13).
 
@@ -1447,7 +1450,7 @@ These equations reduce to
 
 .. math::
 
-    \tag{217}
+    \tag{218}
     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
         \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
         = -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \boldsymbol{u}
@@ -1459,7 +1462,7 @@ These equations reduce to
 
 .. math::
 
-    \tag{218}
+    \tag{219}
     \bar\nabla\cdot\bar\boldsymbol{u}  = 0,
         
         
@@ -1468,7 +1471,7 @@ These equations reduce to
 
 .. math::
 
-    \tag{219}
+    \tag{220}
     \frac{\partial \bar T}{\partial \bar t} +
         \bar\boldsymbol{u}\cdot\bar\nabla \bar T
         = \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
@@ -1613,7 +1616,7 @@ system becomes
 
 .. math::
 
-    \tag{220}
+    \tag{221}
     \frac{\partial \bar\boldsymbol{u}}{\partial \bar t} +
         \bar \boldsymbol{u}\cdot\bar \nabla\bar\boldsymbol{u}
         = -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \boldsymbol{u}
@@ -1625,7 +1628,7 @@ system becomes
 
 .. math::
 
-    \tag{221}
+    \tag{222}
     \bar\nabla\cdot\bar\boldsymbol{u}  = 0,
         
         
@@ -1634,7 +1637,7 @@ system becomes
 
 .. math::
 
-    \tag{222}
+    \tag{223}
     \hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
         \bar\boldsymbol{u}\cdot\bar\nabla \bar T\right)
         = \hbox{Pr}^{-1}
@@ -1713,7 +1716,7 @@ surroundings is
 
 .. math::
 
-    \tag{223}
+    \tag{224}
     -\kappa\frac{\partial T}{\partial n} = h_T(T - T_s),
         
         
@@ -1721,7 +1724,7 @@ surroundings is
 where :math:`\partial/\partial n` means the derivative in the normal direction
 (:math:`\boldsymbol{n}\cdot\nabla`), :math:`h_T` is an experimentally determined
 heat transfer coefficient, and :math:`T_s` is the temperature of
-the surroundings. Scaling :ref:`(223) <Eq:scale:fluid:free_convection:fluxcond>`
+the surroundings. Scaling :ref:`(224) <Eq:scale:fluid:free_convection:fluxcond>`
 leads to
 
 .. math::
@@ -1764,7 +1767,7 @@ model for the electric signal propagation is the bidomain equations:
 
 .. math::
 
-    \tag{224}
+    \tag{225}
     \chi C_m\frac{\partial v}{\partial t} =
         \nabla\cdot( M_i\nabla v) + \nabla\cdot (M_i\nabla u_e) - \chi I_{\rm{ion}}
         - \chi I_{\rm{app}},
@@ -1775,7 +1778,7 @@ model for the electric signal propagation is the bidomain equations:
 
 .. math::
 
-    \tag{225}
+    \tag{226}
     0 = \nabla\cdot( M_i\nabla v) + \nabla\cdot ((M_i + M_e)\nabla u_e){\thinspace .}
         
         
@@ -1804,7 +1807,7 @@ model:
 
 .. math::
 
-    \tag{226}
+    \tag{227}
     C_m\frac{dv}{dt}  = - I_{\rm{ion}} - I_{\rm{app}},
         
         
@@ -1813,7 +1816,7 @@ model:
 
 .. math::
 
-    \tag{227}
+    \tag{228}
     I_{\rm{ion}} = A(v-v_r)(v - v_m)(v - v_p) + Bw,
         
         
@@ -1822,7 +1825,7 @@ model:
 
 .. math::
 
-    \tag{228}
+    \tag{229}
     \frac{dw}{dt} = -c_1w + c_2v + c_3,
         
         
@@ -1978,11 +1981,11 @@ the :math:`\bar w` term equal to unity:
 
 The final dimensionless system becomes
 
-.. _Eq:_auto66:
+.. _Eq:_auto67:
 
 .. math::
 
-    \tag{229}
+    \tag{230}
     \frac{\partial \bar v}{\partial \bar t} =
         \nabla\cdot( \bar M_i\bar\nabla\bar v) +
         \alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -
@@ -1992,25 +1995,13 @@ The final dimensionless system becomes
         
         
 
-.. _Eq:_auto67:
-
-.. math::
-
-    \tag{230}
-    0 = \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
-        \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),
-        
-        
-
 .. _Eq:_auto68:
 
 .. math::
 
     \tag{231}
-    \frac{d\bar v}{d\bar t}  = -
-        \bar v
-        (J_1 +  \bar v)
-        (\bar v -1)- \bar w - \beta,
+    0 = \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
+        \alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),
         
         
 
@@ -2019,6 +2010,18 @@ The final dimensionless system becomes
 .. math::
 
     \tag{232}
+    \frac{d\bar v}{d\bar t}  = -
+        \bar v
+        (J_1 +  \bar v)
+        (\bar v -1)- \bar w - \beta,
+        
+        
+
+.. _Eq:_auto70:
+
+.. math::
+
+    \tag{233}
     \frac{d\bar w}{d\bar t} = -K_1\bar w +
         K_2\bar v + K_3{\thinspace .}
         
@@ -2028,21 +2031,12 @@ There are seven dimensionless variables in the above equations:
 
 [**hpl 23**: Recalculate :math:`K_1`, :math:`K_2`, :math:`K_3` with right :math:`t_c`.]
 
-.. _Eq:_auto70:
-
-.. math::
-
-    \tag{233}
-    \alpha = \frac{u_c}{\Delta v},
-        
-        
-
 .. _Eq:_auto71:
 
 .. math::
 
     \tag{234}
-    \beta = \frac{I_{\rm{app}}}{\Delta v^3},
+    \alpha = \frac{u_c}{\Delta v},
         
         
 
@@ -2051,7 +2045,7 @@ There are seven dimensionless variables in the above equations:
 .. math::
 
     \tag{235}
-    J_1 = \frac{v_r-v_m}{\Delta v},
+    \beta = \frac{I_{\rm{app}}}{\Delta v^3},
         
         
 
@@ -2060,7 +2054,7 @@ There are seven dimensionless variables in the above equations:
 .. math::
 
     \tag{236}
-    J_2 = \frac{v_r}{\Delta v},
+    J_1 = \frac{v_r-v_m}{\Delta v},
         
         
 
@@ -2069,7 +2063,7 @@ There are seven dimensionless variables in the above equations:
 .. math::
 
     \tag{237}
-    K_1 = \frac{\chi C_m L^2c_1}{M_c},
+    J_2 = \frac{v_r}{\Delta v},
         
         
 
@@ -2078,7 +2072,7 @@ There are seven dimensionless variables in the above equations:
 .. math::
 
     \tag{238}
-    K_2  = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
+    K_1 = \frac{\chi C_m L^2c_1}{M_c},
         
         
 
@@ -2087,6 +2081,15 @@ There are seven dimensionless variables in the above equations:
 .. math::
 
     \tag{239}
+    K_2  = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
+        
+        
+
+.. _Eq:_auto77:
+
+.. math::
+
+    \tag{240}
     K_3 = \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}{\thinspace .}
         
         
@@ -2124,7 +2127,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{240}
+    \tag{241}
     \nabla\cdot\boldsymbol{v}_t = -(Q_n + Q_w),
         
         
@@ -2133,7 +2136,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{241}
+    \tag{242}
     \boldsymbol{v}_t = -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
         + \lambda_n\varrho_n)g\boldsymbol{k},
         
@@ -2149,7 +2152,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{242}
+    \tag{243}
     \qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
         
         
@@ -2158,7 +2161,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{243}
+    \tag{244}
     Q_w = \frac{q_w}{\varrho_w},
         
         
@@ -2167,7 +2170,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{244}
+    \tag{245}
     Q_n = \frac{q_n}{\varrho_n},
         
         
@@ -2176,7 +2179,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{245}
+    \tag{246}
     \lambda_w(S) = \frac{K}{\mu_w}k_{rw}(S),
         
         
@@ -2185,7 +2188,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{246}
+    \tag{247}
     \lambda_n(S) = \frac{K}{\mu_n}k_{rn}(S),
         
         
@@ -2194,7 +2197,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{247}
+    \tag{248}
     \lambda_t(S) = \lambda_w(S) + \lambda_n(S),
         
         
@@ -2203,7 +2206,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{248}
+    \tag{249}
     k_{rw}(S) = K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
         
         
@@ -2212,7 +2215,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{249}
+    \tag{250}
     k_{rn}(S) = K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
         
         
@@ -2221,7 +2224,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{250}
+    \tag{251}
     f_w(S) = \frac{\lambda_w}{\lambda_t},
         
         
@@ -2230,7 +2233,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{251}
+    \tag{252}
     G_w(S) = h_w(S)(\varrho_n - \varrho_w),
         
         
@@ -2239,7 +2242,7 @@ algebraic relations that govern the two primary unknowns :math:`S` and :math:`P`
 
 .. math::
 
-    \tag{252}
+    \tag{253}
     h_w(S) = -\lambda_n(S)f_w(S),
         {\thinspace .}
         
@@ -2261,16 +2264,16 @@ relative permeabilities :math:`k_{rw}` and :math:`k_{rn}`, respectively, and
 relative permeabilities.
 
 The two PDEs are of elliptic and hyperbolic/parabolic nature:
-:ref:`(240) <Eq:scale:twoph:Peq>` is elliptic since it is the divergence of a
-vector field, while :ref:`(242) <Eq:scale:twoph:Seq>` is parabolic (:math:`h_w\geq 0`
+:ref:`(241) <Eq:scale:twoph:Peq>` is elliptic since it is the divergence of a
+vector field, while :ref:`(243) <Eq:scale:twoph:Seq>` is parabolic (:math:`h_w\geq 0`
 because :math:`p_c'(S)\geq 0` and :math:`\lambda_n` as well as :math:`f_w` are positive
 since :math:`k_{rn}>0` and :math:`k_{rw}>0`). Very often, :math:`p_c'` is small so
-:ref:`(242) <Eq:scale:twoph:Seq>` is of hyperbolic nature, and :math:`S` features very
+:ref:`(243) <Eq:scale:twoph:Seq>` is of hyperbolic nature, and :math:`S` features very
 steep gradients that become shocks in the limit :math:`p_c'\rightarrow 0`
-and :ref:`(242) <Eq:scale:twoph:Seq>` is purely hyperbolic.
+and :ref:`(243) <Eq:scale:twoph:Seq>` is purely hyperbolic.
 A popular solution technique is based on operator splitting:
-:ref:`(240) <Eq:scale:twoph:Peq>` is solved with respect to :math:`P`, given :math:`S`, and
-:ref:`(242) <Eq:scale:twoph:Seq>` is solved with respect to :math:`S`, given :math:`P`.
+:ref:`(241) <Eq:scale:twoph:Peq>` is solved with respect to :math:`P`, given :math:`S`, and
+:ref:`(243) <Eq:scale:twoph:Seq>` is solved with respect to :math:`S`, given :math:`P`.
 
 The saturation :math:`S` is a non-dimensional quantity, and so are :math:`\phi`,
 :math:`k_{rw}`, :math:`k_{rn}`, :math:`K_{wm}`, :math:`K_{nm}`, :math:`f_w`, and :math:`f_w'`.
@@ -2324,7 +2327,7 @@ Inserting the above scaled quantities in the governing PDEs results in
 
 .. math::
 
-    \tag{253}
+    \tag{254}
     \bar\nabla\cdot\bar\boldsymbol{v}_t = -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
         
         
@@ -2339,7 +2342,7 @@ Inserting the above scaled quantities in the governing PDEs results in
 
 .. math::
 
-    \tag{254}
+    \tag{255}
     \quad\quad\frac{g\lambda_c\varrho}{v_c}
         (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\boldsymbol{k},
         
@@ -2357,7 +2360,7 @@ Inserting the above scaled quantities in the governing PDEs results in
 
 .. math::
 
-    \tag{255}
+    \tag{256}
     \quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ{\thinspace .}
         
         
@@ -2366,7 +2369,7 @@ As usual, :math:`L` is taken as the characteristic length of the spatial domain.
 Since :math:`v_c` is a velocity scale, a natural time scale is the time it
 takes to transport a signal with velocity :math:`v_c` through the domain:
 :math:`t_c = L/v_c`. The diffusion term in the equation
-:ref:`(258) <Eq:scale:twoph:Seq:s>` then gets
+:ref:`(259) <Eq:scale:twoph:Seq:s>` then gets
 a dimensionless fraction
 
 .. math::
@@ -2414,14 +2417,14 @@ Introducing another dimensionless variable,
 .. math::
          \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},
 
-we can write :ref:`(253) <Eq:scale:twoph:Peq:s0>`-:ref:`(255) <Eq:scale:twoph:Seq:s0>` in the
+we can write :ref:`(254) <Eq:scale:twoph:Peq:s0>`-:ref:`(256) <Eq:scale:twoph:Seq:s0>` in the
 final dimensionless form as
 
 .. _Eq:scale:twoph:Peq:s:
 
 .. math::
 
-    \tag{256}
+    \tag{257}
     \bar\nabla\cdot\bar\boldsymbol{v}_t = -\epsilon(1 + \alpha^{-1}\gamma),
         
         
@@ -2430,7 +2433,7 @@ final dimensionless form as
 
 .. math::
 
-    \tag{257}
+    \tag{258}
     \bar\boldsymbol{v}_t = -\bar\lambda_t\bar\nabla\bar P +
         \bar\lambda_w \bar p_c'(S)\bar\nabla S +
         \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\boldsymbol{k},
@@ -2456,7 +2459,7 @@ final dimensionless form as
 
 .. math::
 
-    \tag{258}
+    \tag{259}
     \quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
         \epsilon{\thinspace .}
         
@@ -2492,7 +2495,7 @@ equations of gas dynamics, can be written as
 
 .. math::
 
-    \tag{259}
+    \tag{260}
     \frac{\partial\varrho}{\partial t} + \nabla\cdot(\varrho\boldsymbol{u}) = 0,
         
         
@@ -2501,7 +2504,7 @@ equations of gas dynamics, can be written as
 
 .. math::
 
-    \tag{260}
+    \tag{261}
     \frac{\partial(\varrho\boldsymbol{u})}{\partial t} + \nabla\cdot(\varrho\boldsymbol{u}\boldsymbol{u}^T) = -\nabla p + \varrho \boldsymbol{f},
         
         
@@ -2510,7 +2513,7 @@ equations of gas dynamics, can be written as
 
 .. math::
 
-    \tag{261}
+    \tag{262}
     \frac{\partial E}{\partial t} + \nabla\cdot(\boldsymbol{u}(E+p)) = 0,
         
         
@@ -2521,7 +2524,7 @@ where the total energy is given by
 
 .. math::
 
-    \tag{262}
+    \tag{263}
     E = \varrho e + \frac{1}{2}\varrho\boldsymbol{u}\cdot\boldsymbol{u}{\thinspace .}
         
         
@@ -2538,7 +2541,7 @@ relations:
 
 .. math::
 
-    \tag{263}
+    \tag{264}
     e = c_v T,
         
         
@@ -2547,7 +2550,7 @@ relations:
 
 .. math::
 
-    \tag{264}
+    \tag{265}
     p = \varrho RT = \frac{R}{c_v}(E-\frac{1}{2}\varrho \boldsymbol{u}\cdot\boldsymbol{u}),
         
         
@@ -2559,8 +2562,8 @@ where :math:`c_v` is the specific heat capacity at constant volume (for dry air
 
 The common way to solve these equations is to propagate :math:`\varrho`,
 :math:`\varrho\boldsymbol{u}`, and :math:`E` by an explicit numerical method in time for
-:ref:`(259) <Eq:scale:Euler_eqs:mass>`-:ref:`(261) <Eq:scale:Euler_eqs:energy>`,
-using :ref:`(264) <Eq:scale:Euler_eqs:p>` for :math:`p`.
+:ref:`(260) <Eq:scale:Euler_eqs:mass>`-:ref:`(262) <Eq:scale:Euler_eqs:energy>`,
+using :ref:`(265) <Eq:scale:Euler_eqs:p>` for :math:`p`.
 
 We introduce dimensionless independent variables,
 
@@ -2630,7 +2633,7 @@ to
 
 .. math::
 
-    \tag{265}
+    \tag{266}
     \frac{\partial\varrho}{\partial t} + \nabla\cdot(\boldsymbol{u}\varrho) =0,
         
         
@@ -2639,7 +2642,7 @@ to
 
 .. math::
 
-    \tag{266}
+    \tag{267}
     \varrho\frac{\partial\boldsymbol{u}}{\partial t} + \varrho\boldsymbol{u}\cdot\nabla\boldsymbol{u} + \nabla p =0{\thinspace .}
         
         
@@ -2666,13 +2669,13 @@ where
          c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}
 
 is the speed of sound in the fluid in the equilibrium state.
-Equation :ref:`(266) <Eq:scale:gas:acoustic:u>` with eliminated pressure :math:`p` reads
+Equation :ref:`(267) <Eq:scale:gas:acoustic:u>` with eliminated pressure :math:`p` reads
 
 .. _Eq:scale:gas:acoustic:u2:
 
 .. math::
 
-    \tag{267}
+    \tag{268}
     \varrho\frac{\partial\boldsymbol{u}}{\partial t} + \varrho\boldsymbol{u}\cdot\nabla\boldsymbol{u} +
         c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0{\thinspace .}
         
@@ -2745,7 +2748,7 @@ Using this time scale, we achieve
         + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\boldsymbol{u}) &=0,\\ 
         (1 + \alpha\bar\varrho)
         \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
-        \hbox{M}(1 + \alpha\bar\varrho)\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
+        \hbox{M}(1 + \alpha\bar\varrho)\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u} +
         \hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
         &=0,
         
@@ -2782,7 +2785,7 @@ We arrive at the following linearized system of PDEs
 
 .. math::
 
-    \tag{268}
+    \tag{269}
     \frac{\partial\bar\varrho}{\partial\bar t}
         + \hbox{M}\bar\nabla\cdot\bar\boldsymbol{u} =0,
         
@@ -2792,20 +2795,20 @@ We arrive at the following linearized system of PDEs
 
 .. math::
 
-    \tag{269}
+    \tag{270}
     \hbox{M}\frac{\partial\bar\boldsymbol{u}}{\partial\bar t} + \bar\nabla\bar\varrho =0,
         
         
 
 The velocity :math:`\boldsymbol{u}` can be eliminated taking the time derivative of
-:ref:`(268) <Eq:scale:gas:acoustic:rho:s>` and the divergence of
-:ref:`(269) <Eq:scale:gas:acoustic:u2:s>`:
+:ref:`(269) <Eq:scale:gas:acoustic:rho:s>` and the divergence of
+:ref:`(270) <Eq:scale:gas:acoustic:u2:s>`:
 
-.. _Eq:_auto77:
+.. _Eq:_auto78:
 
 .. math::
 
-    \tag{270}
+    \tag{271}
     \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
         \bar\nabla^2\bar\varrho = 0,
         
@@ -2813,14 +2816,14 @@ The velocity :math:`\boldsymbol{u}` can be eliminated taking the time derivative
 
 which is nothing but a standard, linear wave equation. Similarly,
 we can eliminate :math:`\varrho` by taking the divergence of
-:ref:`(268) <Eq:scale:gas:acoustic:rho:s>` and the time derivative of
-:ref:`(269) <Eq:scale:gas:acoustic:u2:s>`:
+:ref:`(269) <Eq:scale:gas:acoustic:rho:s>` and the time derivative of
+:ref:`(270) <Eq:scale:gas:acoustic:u2:s>`:
 
-.. _Eq:_auto78:
+.. _Eq:_auto79:
 
 .. math::
 
-    \tag{271}
+    \tag{272}
     \frac{\partial^2\bar\boldsymbol{u}}{\partial\bar t^2} +
         \bar\nabla^2\bar\boldsymbol{u} = 0,
         
@@ -2830,7 +2833,7 @@ which shows that each component of the velocity also propagates according
 to the wave equation with unit velocity.
 We also observe that there are no physical parameters in the scaled
 wave equations. The M parameter can be eliminated from
-:ref:`(268) <Eq:scale:gas:acoustic:rho:s>`-:ref:`(269) <Eq:scale:gas:acoustic:u2:s>`
+:ref:`(269) <Eq:scale:gas:acoustic:rho:s>`-:ref:`(270) <Eq:scale:gas:acoustic:u2:s>`
 by introducing a new unknown :math:`\bar\boldsymbol{v} = M\bar\boldsymbol{u}`.
 
 General isentropic flow
@@ -2842,33 +2845,33 @@ in a significant velocity of characteristic size :math:`U` and corresponding
 significant changes in :math:`\varrho` and :math:`p`. The relevant time scale is
 not that of the waves, but of the overall flow: :math:`t_c=L/U`.
 
-The governing equations are :ref:`(265) <Eq:scale:gas:acoustic:rho>`
-and :ref:`(267) <Eq:scale:gas:acoustic:u2>`. We scale :math:`\varrho`
+The governing equations are :ref:`(266) <Eq:scale:gas:acoustic:rho>`
+and :ref:`(268) <Eq:scale:gas:acoustic:u2>`. We scale :math:`\varrho`
 directly by its magnitude :math:`\varrho_c`: :math:`\bar\varrho = \varrho/\varrho_c`.
 Then :math:`F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}`.
 All other scalings remain as in the section :ref:`scale:gas:acoustic`.
 The result of inserting dimensionless variables and using
 :math:`t_c=L/U` is
 
-.. _Eq:_auto79:
-
-.. math::
-
-    \tag{272}
-    \frac{\partial\bar\varrho}{\partial\bar t}
-        + \bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}) =0,
-        
-        
-
 .. _Eq:_auto80:
 
 .. math::
 
     \tag{273}
+    \frac{\partial\bar\varrho}{\partial\bar t}
+        + \bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}) =0,
+        
+        
+
+.. _Eq:_auto81:
+
+.. math::
+
+    \tag{274}
     \bar\varrho
         \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
-        \bar\varrho\bar u\bar\cdot\nabla\bar\boldsymbol{u}
-        + \hbox{M}^{-2}\varrho^{\gamma-1}
+        \bar\varrho\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
+        + \hbox{M}^{-2}\bar\varrho^{\gamma-1}
         \bar\nabla\bar\varrho
         =0{\thinspace .}
         
@@ -3177,7 +3180,7 @@ Lotka-Volterra ODE system
 
 .. math::
 
-    \tag{274}
+    \tag{275}
     H^{\prime} = H(a - bL),
         
         
@@ -3186,17 +3189,8 @@ Lotka-Volterra ODE system
 
 .. math::
 
-    \tag{275}
-    L^{\prime} = L(dH - c),
-        
-        
-
-.. _Eq:_auto81:
-
-.. math::
-
     \tag{276}
-    H(0)=H_0,
+    L^{\prime} = L(dH - c),
         
         
 
@@ -3205,6 +3199,15 @@ Lotka-Volterra ODE system
 .. math::
 
     \tag{277}
+    H(0)=H_0,
+        
+        
+
+.. _Eq:_auto83:
+
+.. math::
+
+    \tag{278}
     L(0)=L_0{\thinspace .}
         
         
@@ -3243,7 +3246,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{278}
+    \tag{279}
     \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} = H_0\bar H(a - bH_0\bar L),
         
         
@@ -3252,7 +3255,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{279}
+    \tag{280}
     \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} = H_0\bar L(dH_0\bar H - c),
         
         
@@ -3261,7 +3264,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{280}
+    \tag{281}
     H_c\bar H(0) = H_0,
         
         
@@ -3270,7 +3273,7 @@ in the ODE problem we arrive at
 
 .. math::
 
-    \tag{281}
+    \tag{282}
     L_c\bar H(0) = L_0{\thinspace .}
         
         
@@ -3320,20 +3323,20 @@ competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
 interaction (cf. |nbsp| :ref:`scale:decay:exer:predprey`):
 
-.. _Eq:_auto87:
-
-.. math::
-
-    \tag{282}
-    \frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
-        
-        
-
 .. _Eq:_auto88:
 
 .. math::
 
     \tag{283}
+    \frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
+        
+        
+
+.. _Eq:_auto89:
+
+.. math::
+
+    \tag{284}
     \frac{dN_2}{dt} = r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
         
         
@@ -3421,11 +3424,11 @@ Problem 14: Scale the pendulum equation
 
 The equation for a so-called simple pendulum with a mass :math:`m` at the end is
 
-.. _Eq:_auto89:
+.. _Eq:_auto90:
 
 .. math::
 
-    \tag{284}
+    \tag{285}
     mL\ddot\theta + mg\sin\theta = 0,
         
         
@@ -3436,11 +3439,11 @@ the pendulum, and :math:`g` is the acceleration of gravity.
 A physical pendulum with moment of inertia :math:`I` is governed by
 a similar equation,
 
-.. _Eq:_auto90:
+.. _Eq:_auto91:
 
 .. math::
 
-    \tag{285}
+    \tag{286}
     I\ddot\theta + mgL\sin\theta = 0{\thinspace .}
         
         
@@ -3467,20 +3470,20 @@ Exercise 15: Scale the ODEs for a binary star
 The equations for a `binary star <https://en.wikipedia.org/wiki/Binary_star>`__,
 or a planet and a moon, are
 
-.. _Eq:_auto91:
-
-.. math::
-
-    \tag{286}
-    m_A\ddot\boldsymbol{x}_A = \boldsymbol{F},
-        
-        
-
 .. _Eq:_auto92:
 
 .. math::
 
     \tag{287}
+    m_A\ddot\boldsymbol{x}_A = \boldsymbol{F},
+        
+        
+
+.. _Eq:_auto93:
+
+.. math::
+
+    \tag{288}
     m_B\ddot\boldsymbol{x}_B = -F,
         
         
@@ -3653,21 +3656,12 @@ Exercise 19: Scale Couette flow with pressure gradient
 Viscous fluid flow between two infinite flat plates :math:`z=0` and :math:`z=H`
 is governed by
 
-.. _Eq:_auto95:
-
-.. math::
-
-    \tag{288}
-    \mu u''(z) = -\beta
-        
-        
-
 .. _Eq:_auto96:
 
 .. math::
 
     \tag{289}
-    u(0) = 0,
+    \mu u''(z) = -\beta
         
         
 
@@ -3676,6 +3670,15 @@ is governed by
 .. math::
 
     \tag{290}
+    u(0) = 0,
+        
+        
+
+.. _Eq:_auto98:
+
+.. math::
+
+    \tag{291}
     u(H) = U_0{\thinspace .}
         
         
@@ -3713,22 +3716,13 @@ Exercise 20: Scale pulsatile pipeflow
 The flow of a viscous fluid in a straight pipe with circular
 cross section with radius :math:`R` is governed by
 
-.. _Eq:_auto104:
-
-.. math::
-
-    \tag{291}
-    \varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
-        \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],
-        
-        
-
 .. _Eq:_auto105:
 
 .. math::
 
     \tag{292}
-    \frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],
+    \varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
+        \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],
         
         
 
@@ -3737,7 +3731,7 @@ cross section with radius :math:`R` is governed by
 .. math::
 
     \tag{293}
-    u(R,t) = 0,  t\in (0,T],
+    \frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],
         
         
 
@@ -3746,6 +3740,15 @@ cross section with radius :math:`R` is governed by
 .. math::
 
     \tag{294}
+    u(R,t) = 0,  t\in (0,T],
+        
+        
+
+.. _Eq:_auto108:
+
+.. math::
+
+    \tag{295}
     u(r,0) = 0,  r\in [0,R].
         
         
@@ -3778,7 +3781,7 @@ A key PDE in neuroscience is the `cable equation <https://en.wikipedia.org/wiki/
 
 .. math::
 
-    \tag{295}
+    \tag{296}
     \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
         -u{\thinspace .}
         
@@ -3788,7 +3791,7 @@ The unknown :math:`u` is the voltage (measured in volt) associated with
 an electric current along one-dimensional dendrites ("cables")
 in neural networks, while :math:`\tau` and :math:`\lambda` are given parameters.
 
-Scale :ref:`(295) <Eq:scale:exer:cable_eq:PDE>` in three ways: 1) let all terms in
+Scale :ref:`(296) <Eq:scale:exer:cable_eq:PDE>` in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 :math:`L` as spatial scale and base the time scale on diffusion, 3) use the
 domain size :math:`L` as spatial scale and base the time scale on
@@ -3859,21 +3862,21 @@ Flow through a porous elastic medium may induce stress and deformation.
 This process is known as poro-elasticity and is governed by the
 following equations for a homogeneous medium:
 
-.. _Eq:_auto108:
-
-.. math::
-
-    \tag{296}
-    (\lambda + \mu)\nabla (\nabla\cdot\boldsymbol{u}) + \mu\nabla^2\boldsymbol{u} = -\alpha\nabla p -
-        \varrho\boldsymbol{f},
-        
-        
-
 .. _Eq:_auto109:
 
 .. math::
 
     \tag{297}
+    (\lambda + \mu)\nabla (\nabla\cdot\boldsymbol{u}) + \mu\nabla^2\boldsymbol{u} = -\alpha\nabla p -
+        \varrho\boldsymbol{f},
+        
+        
+
+.. _Eq:_auto110:
+
+.. math::
+
+    \tag{298}
     S\frac{\partial p}{\partial t} = \frac{K}{\mu_f}\nabla^2 p +
         \alpha \frac{\partial}{\partial t}\nabla\cdot\boldsymbol{u},
         

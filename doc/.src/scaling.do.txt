@@ -6499,7 +6499,6 @@ where We is the *Weber number*,
 !bt
 \begin{equation}
 \hbox{We} = \frac{\varrho U^2L}{\sigma}\tp
-label{}
 \end{equation}
 !et
 The Weber number measures the importance of surface tension effects and
@@ -7836,7 +7835,7 @@ Using this time scale, we achieve
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u
+\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
 \hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0,
 \end{align*}
@@ -7928,8 +7927,8 @@ $t_c=L/U$ is
 + \bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
-\bar\varrho\bar u\bar\cdot\nabla\bar\u
-+ \hbox{M}^{-2}\varrho^{\gamma-1}
+\bar\varrho\bar\u\cdot\bar\nabla\bar\u
++ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align}

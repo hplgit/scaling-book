@@ -41,18 +41,20 @@ system doconce format html $name $opt --html_style=solarized3 --html_output=$htm
 system doconce split_html $html.html --nav_button=text
 
 # Compile standard sphinx
+# (lots of mathjax rendering failures, especially with \bar\boldsymbol{},
+# so we drop sphinx)
 theme=cbc
-system doconce format sphinx $name $opt --sphinx_keep_splits --without_solutions --without_answers
-system doconce split_rst $name
-system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
-system python automake_sphinx.py
+#system doconce format sphinx $name $opt --sphinx_keep_splits --without_solutions --without_answers
+#system doconce split_rst $name
+#system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
+#system python automake_sphinx.py
 
 # Publish
 repo=../pub
 dest=${repo}/book
 if [ ! -d $dest ]; then mkdir $dest; fi
 if [ ! -d $dest/html ]; then mkdir $dest/html; fi
-if [ ! -d $dest/sphinx ]; then mkdir $dest/sphinx; fi
+#if [ ! -d $dest/sphinx ]; then mkdir $dest/sphinx; fi
 
 cp *book*.html ._*book*.html .*trash*.html $dest/html
 figdirs="fig-* mov-*"
@@ -62,8 +64,8 @@ for figdir in $figdirs; do
         cp -r $figdir/ $dest/html
     fi
 done
-rm -rf ${dest}/sphinx
-cp -r sphinx-${theme}/_build/html ${dest}/sphinx
+#rm -rf ${dest}/sphinx
+#cp -r sphinx-${theme}/_build/html ${dest}/sphinx
 
 cd $dest
 git add .
