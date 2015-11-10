@@ -1717,13 +1717,13 @@ Equation <a class="reference internal" href="#eq-scale-gas-acoustic-u"><span cla
 \varrho\frac{\partial\boldsymbol{u}}{\partial t} + \varrho\boldsymbol{u}\cdot\nabla\boldsymbol{u} +
     c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0{\thinspace .}\]</div>
 </div>
-<div class="section" id="basic-scaling-for-small-perturbations">
-<h4>Basic scaling for small perturbations<a class="headerlink" href="#basic-scaling-for-small-perturbations" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="basic-scaling-for-small-wave-perturbations">
+<h4>Basic scaling for small wave perturbations<a class="headerlink" href="#basic-scaling-for-small-wave-perturbations" title="Permalink to this headline">¶</a></h4>
 <p>In a model for sound waves there are small pressure, velocity, and
-density perturbation from a ground state at rest where <span class="math">\(\boldsymbol{u}=0\)</span>, <span class="math">\(\varrho=\varrho_0\)</span>, and <span class="math">\(p=p_0 = F(\varrho_0\)</span>. Let <span class="math">\(\varrho_c\)</span>, <span class="math">\(p_c=F(\varrho_c)\)</span>, and
+density perturbations from a ground state at rest where <span class="math">\(\boldsymbol{u}=0\)</span>, <span class="math">\(\varrho=\varrho_0\)</span>, and <span class="math">\(p=p_0 = F(\varrho_0)\)</span>. Let <span class="math">\(\varrho_c\)</span>, <span class="math">\(p_c=F(\varrho_c)\)</span>, and
 <span class="math">\(u_c\)</span> be characteristic sizes of these perturbations.
 The density, e.g., will then vary in <span class="math">\([\varrho_0-\varrho_c,\varrho_0+\varrho_c]\)</span>.
-An appropriate scaling is now</p>
+An appropriate scaling is</p>
 <div class="math">
 \[\bar\varrho =\frac{\varrho - \varrho_0}{\varrho_c}\]</div>
 <p>such that <span class="math">\(\bar\varrho\in [-1,1]\)</span>. Consequently,</p>
@@ -1731,7 +1731,10 @@ An appropriate scaling is now</p>
 \[\varrho = \varrho_0 + \varrho_c\bar\varrho = \varrho_0(1 + \alpha\bar\varrho),\quad \alpha = \frac{\varrho_c}{\varrho_0}{\thinspace .}\]</div>
 <p>Note that the dimensionless <span class="math">\(\alpha\)</span> is expected to be a very small number
 since <span class="math">\(\varrho_c\ll \varrho_0\)</span>.</p>
-<p>The velocity is scaled as <span class="math">\(\bar\boldsymbol{u} = \boldsymbol{u}/U\)</span> while space and time are scaled as usual:</p>
+<p>The velocity is scaled as</p>
+<div class="math">
+\[\bar\boldsymbol{u} = \boldsymbol{u}/U,\]</div>
+<p>while space and time are scaled as usual:</p>
 <div class="math">
 \[\bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
 \quad\bar t = \frac{t}{t_c}{\thinspace .}\]</div>
@@ -1744,9 +1747,9 @@ can be estimated from perturbations applied at the boundary.</p>
 + \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\boldsymbol{u}) &amp;=0,\\
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
 \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
-\frac{\varrho_0 U^2}{L}(1 \alpha\bar\varrho)\bar u\bar\nabla\bar\boldsymbol{u}
+\frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\boldsymbol{u}
 + \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
-\bar\nabla\varrho
+\bar\nabla\bar\varrho
 &amp;=0{\thinspace .}\end{split}\]</div>
 </div>
 <div class="section" id="the-time-scale">
@@ -1756,16 +1759,16 @@ other flow problems. However, in the present model we expect sound waves,
 so the velocity <span class="math">\(c_0\)</span> of the sound waves is the appropriate velocity scale.
 The flow velocity <span class="math">\(U\)</span> is expected to be very much smaller than <span class="math">\(c_0\)</span>
 (think of speaking: the sound travels very fast but one cannot feel
-the corresponding very small flow perturbation in the air).
-Therefore, <span class="math">\(t_c = L/c_0\)</span> is the corresponding natural time scale.
+the corresponding very small flow perturbation in the air!).
+Therefore, <span class="math">\(t_c = L/c_0\)</span> is the corresponding (short) natural time scale.
 Using this time scale, we achieve</p>
 <div class="math">
 \[\begin{split}\frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\boldsymbol{u}) &amp;=0,\\
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
-\hbox{M}(1 + \alpha\bar\varrho)\bar\boldsymbol{u}\bar\nabla\bar\boldsymbol{u}
-\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+\hbox{M}(1 + \alpha\bar\varrho)\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
+\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &amp;=0,\end{split}\]</div>
 <p>where the dimensionless number</p>
 <div class="math">
@@ -1775,17 +1778,16 @@ Using this time scale, we achieve</p>
 <div class="section" id="linearization">
 <span id="index-23"></span><h4>Linearization<a class="headerlink" href="#linearization" title="Permalink to this headline">¶</a></h4>
 <p>With the assumption of small perturbations, M and <span class="math">\(\alpha\)</span> are small numbers.
-We can first approximate <span class="math">\(1+\alpha\approx 1\)</span>. Thereafter, we realize
+We can first approximate <span class="math">\(1+\alpha\)</span> by 1. Thereafter, we realize
 that multiplying by M in the momentum equation gives</p>
 <div class="math">
 \[\hbox{M}\frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
-\hbox{M}^2\bar\boldsymbol{u}\bar\nabla\bar\boldsymbol{u}
-+ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+\hbox{M}^2\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}
++ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 =0\]</div>
-<p>The term <span class="math">\(\hbox{M}^2\bar\boldsymbol{u}\bar\nabla\bar\boldsymbol{u}\)</span> has size
+<p>The term <span class="math">\(\hbox{M}^2\bar\boldsymbol{u}\cdot\bar\nabla\bar\boldsymbol{u}\)</span> has size
 <span class="math">\(\hbox{M}^2\)</span> and is very smaller than the first and third term,
-suggesting that we omit the nonlinear term
-when the Mach number is small.
+suggesting that we omit the nonlinear term.
 We arrive at the following linearized system of PDEs</p>
 <div class="math" id="eq-scale-gas-acoustic-rho-s">
 \[\tag{268}
@@ -1793,22 +1795,22 @@ We arrive at the following linearized system of PDEs</p>
     + \hbox{M}\bar\nabla\cdot\bar\boldsymbol{u} =0,\]</div>
 <div class="math" id="eq-scale-gas-acoustic-u2-s">
 \[\tag{269}
-\hbox{M}\frac{\partial\bar\boldsymbol{u}}{\partial\bar t} + \bar\nabla\varrho =0,\]</div>
+\hbox{M}\frac{\partial\bar\boldsymbol{u}}{\partial\bar t} + \bar\nabla\bar\varrho =0,\]</div>
 <p>The velocity <span class="math">\(\boldsymbol{u}\)</span> can be eliminated taking the time derivative of
 <a class="reference internal" href="#eq-scale-gas-acoustic-rho-s"><span class="std std-ref">(268)</span></a> and the divergence of
-(<span class="xref std std-ref">scale:gas:acoustic:u2:s</span>:</p>
+<a class="reference internal" href="#eq-scale-gas-acoustic-u2-s"><span class="std std-ref">(269)</span></a>:</p>
 <div class="math" id="eq-auto77">
 \[\tag{270}
 \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
-    \bar\nabla^2\varrho = 0,\]</div>
+    \bar\nabla^2\bar\varrho = 0,\]</div>
 <p>which is nothing but a standard, linear wave equation. Similarly,
 we can eliminate <span class="math">\(\varrho\)</span> by taking the divergence of
 <a class="reference internal" href="#eq-scale-gas-acoustic-rho-s"><span class="std std-ref">(268)</span></a> and the time derivative of
-(<span class="xref std std-ref">scale:gas:acoustic:u2:s</span>:</p>
+<a class="reference internal" href="#eq-scale-gas-acoustic-u2-s"><span class="std std-ref">(269)</span></a>:</p>
 <div class="math" id="eq-auto78">
 \[\tag{271}
 \frac{\partial^2\bar\boldsymbol{u}}{\partial\bar t^2} +
-    \bar\nabla^2\boldsymbol{u} = 0,\]</div>
+    \bar\nabla^2\bar\boldsymbol{u} = 0,\]</div>
 <p>which shows that each component of the velocity also propagates according
 to the wave equation with unit velocity.
 We also observe that there are no physical parameters in the scaled
@@ -1816,6 +1818,36 @@ wave equations. The M parameter can be eliminated from
 <a class="reference internal" href="#eq-scale-gas-acoustic-rho-s"><span class="std std-ref">(268)</span></a>-<a class="reference internal" href="#eq-scale-gas-acoustic-u2-s"><span class="std std-ref">(269)</span></a>
 by introducing a new unknown <span class="math">\(\bar\boldsymbol{v} = M\bar\boldsymbol{u}\)</span>.</p>
 </div>
+</div>
+<div class="section" id="general-isentropic-flow">
+<h3>General isentropic flow<a class="headerlink" href="#general-isentropic-flow" title="Permalink to this headline">¶</a></h3>
+<p>Suppose we are not interested in acoustic waves in isentropic flow,
+as described in the previous section, but
+in a significant velocity of characteristic size <span class="math">\(U\)</span> and corresponding
+significant changes in <span class="math">\(\varrho\)</span> and <span class="math">\(p\)</span>. The relevant time scale is
+not that of the waves, but of the overall flow: <span class="math">\(t_c=L/U\)</span>.</p>
+<p>The governing equations are <a class="reference internal" href="#eq-scale-gas-acoustic-rho"><span class="std std-ref">(265)</span></a>
+and <a class="reference internal" href="#eq-scale-gas-acoustic-u2"><span class="std std-ref">(267)</span></a>. We scale <span class="math">\(\varrho\)</span>
+directly by its magnitude <span class="math">\(\varrho_c\)</span>: <span class="math">\(\bar\varrho = \varrho/\varrho_c\)</span>.
+Then <span class="math">\(F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}\)</span>.
+All other scalings remain as in the section <a class="reference internal" href="#scale-gas-acoustic"><span class="std std-ref">The acoustic approximation and the Mach number</span></a>.
+The result of inserting dimensionless variables and using
+<span class="math">\(t_c=L/U\)</span> is</p>
+<div class="math" id="eq-auto79">
+\[\tag{272}
+\frac{\partial\bar\varrho}{\partial\bar t}
+    + \bar\nabla\cdot(\bar\varrho\bar\boldsymbol{u}) =0,\]</div>
+<div class="math" id="eq-auto80">
+\[\tag{273}
+\bar\varrho
+    \frac{\partial\bar\boldsymbol{u}}{\partial\bar t} +
+    \bar\varrho\bar u\bar\cdot\nabla\bar\boldsymbol{u}
+    + \hbox{M}^{-2}\varrho^{\gamma-1}
+    \bar\nabla\bar\varrho
+    =0{\thinspace .}\]</div>
+<p>Again, there is only one dimensionless parameter, the Mach number M.
+The boundary conditions specify the characteristic velocity <span class="math">\(U\)</span> and
+thereby the Mach number.</p>
 </div>
 </div>
 <div class="section" id="exercises">
@@ -1975,16 +2007,16 @@ differential equation for these values and plot the trajectory (<span class="mat
 lynx and hares, or foxes and rabbits) can be described by the
 Lotka-Volterra ODE system</p>
 <div class="math" id="eq-scale-decay-exer-predprey-eqh">
-\[\tag{272}
+\[\tag{274}
 H^{\prime} = H(a - bL),\]</div>
 <div class="math" id="eq-scale-decay-exer-predprey-eql">
-\[\tag{273}
-L^{\prime} = L(dH - c),\]</div>
-<div class="math" id="eq-auto79">
-\[\tag{274}
-H(0)=H_0,\]</div>
-<div class="math" id="eq-auto80">
 \[\tag{275}
+L^{\prime} = L(dH - c),\]</div>
+<div class="math" id="eq-auto81">
+\[\tag{276}
+H(0)=H_0,\]</div>
+<div class="math" id="eq-auto82">
+\[\tag{277}
 L(0)=L_0{\thinspace .}\]</div>
 <p>Here, <span class="math">\(H\)</span> is the number of animals of the prey (say hares)
 and <span class="math">\(L\)</span> is the corresponding measure of the predator population (say lynx).
@@ -2011,16 +2043,16 @@ by</p>
 <p>where <span class="math">\(t_c\)</span>, <span class="math">\(H_c\)</span>, and <span class="math">\(L_c\)</span> are scales to be determined. Inserted
 in the ODE problem we arrive at</p>
 <div class="math" id="eq-scale-decay-exer-predprey-eqh-s">
-\[\tag{276}
+\[\tag{278}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} = H_0\bar H(a - bH_0\bar L),\]</div>
 <div class="math" id="eq-scale-decay-exer-predprey-eql-s">
-\[\tag{277}
+\[\tag{279}
 \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} = H_0\bar L(dH_0\bar H - c),\]</div>
 <div class="math" id="eq-scale-decay-exer-predprey-eqh0-s">
-\[\tag{278}
+\[\tag{280}
 H_c\bar H(0) = H_0,\]</div>
 <div class="math" id="eq-scale-decay-exer-predprey-eql0-s">
-\[\tag{279}
+\[\tag{281}
 L_c\bar H(0) = L_0{\thinspace .}\]</div>
 <p><strong>a)</strong>
 Consider first a simple, intuitive scaling of <span class="math">\(H\)</span> and <span class="math">\(L\)</span> based on
@@ -2047,11 +2079,11 @@ and find a time scale. Compare with the result in b).</p>
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
 interaction (cf.&nbsp;<span class="xref std std-ref">scale:decay:exer:predprey</span>):</p>
-<div class="math" id="eq-auto85">
-\[\tag{280}
+<div class="math" id="eq-auto87">
+\[\tag{282}
 \frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\]</div>
-<div class="math" id="eq-auto86">
-\[\tag{281}
+<div class="math" id="eq-auto88">
+\[\tag{283}
 \frac{dN_2}{dt} = r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),\]</div>
 <p>where <span class="math">\(r_1\)</span>, <span class="math">\(r_2\)</span>, <span class="math">\(M_1\)</span>, <span class="math">\(M_2\)</span>, <span class="math">\(s_{12}\)</span>, and <span class="math">\(s_{21}\)</span> are given constants.
 The initial conditions specify <span class="math">\(N_1\)</span> and <span class="math">\(N_2\)</span> at <span class="math">\(t=0\)</span>.
@@ -2094,15 +2126,15 @@ The <em>angular frequency</em> <span class="math">\(\omega\)</span> is then <spa
 <div class="section" id="problem-14-scale-the-pendulum-equation">
 <span id="sec-scale-exer-pendulum"></span><h3>Problem 14: Scale the pendulum equation<a class="headerlink" href="#problem-14-scale-the-pendulum-equation" title="Permalink to this headline">¶</a></h3>
 <p>The equation for a so-called simple pendulum with a mass <span class="math">\(m\)</span> at the end is</p>
-<div class="math" id="eq-auto87">
-\[\tag{282}
+<div class="math" id="eq-auto89">
+\[\tag{284}
 mL\ddot\theta + mg\sin\theta = 0,\]</div>
 <p>where <span class="math">\(\theta(t)\)</span> is the angle with the vertical, <span class="math">\(L\)</span> is the length of
 the pendulum, and <span class="math">\(g\)</span> is the acceleration of gravity.</p>
 <p>A physical pendulum with moment of inertia <span class="math">\(I\)</span> is governed by
 a similar equation,</p>
-<div class="math" id="eq-auto88">
-\[\tag{283}
+<div class="math" id="eq-auto90">
+\[\tag{285}
 I\ddot\theta + mgL\sin\theta = 0{\thinspace .}\]</div>
 <p>Both equations have the initial conditions <span class="math">\(\theta(0)=\Theta\)</span> and
 <span class="math">\(\theta'(0)=0\)</span> (start at rest).</p>
@@ -2114,11 +2146,11 @@ and scale both differential equations.</p>
 <span id="sec-scale-exer-binary-star"></span><h3>Exercise 15: Scale the ODEs for a binary star<a class="headerlink" href="#exercise-15-scale-the-odes-for-a-binary-star" title="Permalink to this headline">¶</a></h3>
 <p>The equations for a <a class="reference external" href="https://en.wikipedia.org/wiki/Binary_star">binary star</a>,
 or a planet and a moon, are</p>
-<div class="math" id="eq-auto89">
-\[\tag{284}
+<div class="math" id="eq-auto91">
+\[\tag{286}
 m_A\ddot\boldsymbol{x}_A = \boldsymbol{F},\]</div>
-<div class="math" id="eq-auto90">
-\[\tag{285}
+<div class="math" id="eq-auto92">
+\[\tag{287}
 m_B\ddot\boldsymbol{x}_B = -F,\]</div>
 <p>where <span class="math">\(\boldsymbol{x}_A\)</span> is the position of object (star) A, and <span class="math">\(\boldsymbol{x}_B\)</span> is the position
 object B. The corresponding masses are <span class="math">\(m_A\)</span> and <span class="math">\(m_B\)</span>.
@@ -2221,14 +2253,14 @@ u(L,t) &amp; =U_L(t){\thinspace .}\end{split}\]</div>
 <span id="scale-vib-exer-couette-wpressure"></span><h3>Exercise 19: Scale Couette flow with pressure gradient<a class="headerlink" href="#exercise-19-scale-couette-flow-with-pressure-gradient" title="Permalink to this headline">¶</a></h3>
 <p>Viscous fluid flow between two infinite flat plates <span class="math">\(z=0\)</span> and <span class="math">\(z=H\)</span>
 is governed by</p>
-<div class="math" id="eq-auto93">
-\[\tag{286}
-\mu u''(z) = -\beta\]</div>
-<div class="math" id="eq-auto94">
-\[\tag{287}
-u(0) = 0,\]</div>
 <div class="math" id="eq-auto95">
 \[\tag{288}
+\mu u''(z) = -\beta\]</div>
+<div class="math" id="eq-auto96">
+\[\tag{289}
+u(0) = 0,\]</div>
+<div class="math" id="eq-auto97">
+\[\tag{290}
 u(H) = U_0{\thinspace .}\]</div>
 <p>Here, <span class="math">\(u(z)\)</span> is the fluid velocity in <span class="math">\(x\)</span> direction (perpendicular to the
 <span class="math">\(z\)</span> axis), <span class="math">\(\mu\)</span> is the dynamic viscosity of the fluid, <span class="math">\(\beta\)</span> is
@@ -2247,18 +2279,18 @@ Scale the problem.</p>
 <span id="scale-exer-pipeflow-pulsatile"></span><h3>Exercise 20: Scale pulsatile pipeflow<a class="headerlink" href="#exercise-20-scale-pulsatile-pipeflow" title="Permalink to this headline">¶</a></h3>
 <p>The flow of a viscous fluid in a straight pipe with circular
 cross section with radius <span class="math">\(R\)</span> is governed by</p>
-<div class="math" id="eq-auto102">
-\[\tag{289}
-\varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
-    \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],\]</div>
-<div class="math" id="eq-auto103">
-\[\tag{290}
-\frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],\]</div>
 <div class="math" id="eq-auto104">
 \[\tag{291}
-u(R,t) = 0,  t\in (0,T],\]</div>
+\varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
+    \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],\]</div>
 <div class="math" id="eq-auto105">
 \[\tag{292}
+\frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],\]</div>
+<div class="math" id="eq-auto106">
+\[\tag{293}
+u(R,t) = 0,  t\in (0,T],\]</div>
+<div class="math" id="eq-auto107">
+\[\tag{294}
 u(r,0) = 0,  r\in [0,R].\]</div>
 <p>The quantity <span class="math">\(u(r,t)\)</span> is the fluid velocity, <span class="math">\(P(t)\)</span> is a given
 pressure gradient, <span class="math">\(\varrho\)</span> is the fluid density, and <span class="math">\(\mu\)</span> is the
@@ -2273,13 +2305,13 @@ Discuss how the scaling can be extended to this case.</p>
 <span id="scale-exer-cable-eq"></span><h3>Exercise 21: Scale the linear cable equation<a class="headerlink" href="#exercise-21-scale-the-linear-cable-equation" title="Permalink to this headline">¶</a></h3>
 <p>A key PDE in neuroscience is the <a class="reference external" href="https://en.wikipedia.org/wiki/Cable_theory">cable equation</a>, here given in its simplest linear form:</p>
 <div class="math" id="eq-scale-exer-cable-eq-pde">
-\[\tag{293}
+\[\tag{295}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
     -u{\thinspace .}\]</div>
 <p>The unknown <span class="math">\(u\)</span> is the voltage (measured in volt) associated with
 an electric current along one-dimensional dendrites (&#8220;cables&#8221;)
 in neural networks, while <span class="math">\(\tau\)</span> and <span class="math">\(\lambda\)</span> are given parameters.</p>
-<p>Scale <a class="reference internal" href="#eq-scale-exer-cable-eq-pde"><span class="std std-ref">(293)</span></a> in three ways: 1) let all terms in
+<p>Scale <a class="reference internal" href="#eq-scale-exer-cable-eq-pde"><span class="std std-ref">(295)</span></a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 <span class="math">\(L\)</span> as spatial scale and base the time scale on diffusion, 3) use the
 domain size <span class="math">\(L\)</span> as spatial scale and base the time scale on
@@ -2320,12 +2352,12 @@ for three-dimensional elasticity.</p>
 <p>Flow through a porous elastic medium may induce stress and deformation.
 This process is known as poro-elasticity and is governed by the
 following equations for a homogeneous medium:</p>
-<div class="math" id="eq-auto106">
-\[\tag{294}
+<div class="math" id="eq-auto108">
+\[\tag{296}
 (\lambda + \mu)\nabla (\nabla\cdot\boldsymbol{u}) + \mu\nabla^2\boldsymbol{u} = -\alpha\nabla p -
     \varrho\boldsymbol{f},\]</div>
-<div class="math" id="eq-auto107">
-\[\tag{295}
+<div class="math" id="eq-auto109">
+\[\tag{297}
 S\frac{\partial p}{\partial t} = \frac{K}{\mu_f}\nabla^2 p +
     \alpha \frac{\partial}{\partial t}\nabla\cdot\boldsymbol{u},\]</div>
 <p>where <span class="math">\(\boldsymbol{u}(\boldsymbol{x},t)\)</span> is the displacement field, <span class="math">\(\lambda\)</span> and <span class="math">\(\mu\)</span> are
@@ -2440,11 +2472,12 @@ oscillating pressure in tube (channel first)</li>
 <li><a class="reference internal" href="#the-euler-equations-of-gas-dynamics">The Euler equations of gas dynamics</a></li>
 <li><a class="reference internal" href="#the-acoustic-approximation-and-the-mach-number">The acoustic approximation and the Mach number</a><ul>
 <li><a class="reference internal" href="#elimination-of-the-pressure">Elimination of the pressure</a></li>
-<li><a class="reference internal" href="#basic-scaling-for-small-perturbations">Basic scaling for small perturbations</a></li>
+<li><a class="reference internal" href="#basic-scaling-for-small-wave-perturbations">Basic scaling for small wave perturbations</a></li>
 <li><a class="reference internal" href="#the-time-scale">The time scale</a></li>
 <li><a class="reference internal" href="#linearization">Linearization</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#general-isentropic-flow">General isentropic flow</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#exercises">Exercises</a><ul>

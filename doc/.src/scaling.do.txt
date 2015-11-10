@@ -7770,13 +7770,13 @@ label{scale:gas:acoustic:u2}
 \end{equation}
 !et
 
-=== Basic scaling for small perturbations ===
+=== Basic scaling for small wave perturbations ===
 
 In a model for sound waves there are small pressure, velocity, and
-density perturbation from a ground state at rest where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0$. Let $\varrho_c$, $p_c=F(\varrho_c)$, and
+density perturbations from a ground state at rest where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0)$. Let $\varrho_c$, $p_c=F(\varrho_c)$, and
 $u_c$ be characteristic sizes of these perturbations.
 The density, e.g., will then vary in $[\varrho_0-\varrho_c,\varrho_0+\varrho_c]$.
-An appropriate scaling is now
+An appropriate scaling is
 
 !bt
 \[ \bar\varrho =\frac{\varrho - \varrho_0}{\varrho_c} \]
@@ -7789,7 +7789,12 @@ such that $\bar\varrho\in [-1,1]$. Consequently,
 Note that the dimensionless $\alpha$ is expected to be a very small number
 since $\varrho_c\ll \varrho_0$.
 
-The velocity is scaled as $\bar\u = \u/U$ while space and time are scaled as usual:
+The velocity is scaled as
+
+!bt
+\[ \bar\u = \u/U,\]
+!et
+while space and time are scaled as usual:
 
 !bt
 \[ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
@@ -7807,9 +7812,9 @@ Inserting the dimensionless variables leads to
 + \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
-\frac{\varrho_0 U^2}{L}(1 \alpha\bar\varrho)\bar u\bar\nabla\bar\u
+\frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\u
 + \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
-\bar\nabla\varrho
+\bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
 !et
@@ -7821,8 +7826,8 @@ other flow problems. However, in the present model we expect sound waves,
 so the velocity $c_0$ of the sound waves is the appropriate velocity scale.
 The flow velocity $U$ is expected to be very much smaller than $c_0$
 (think of speaking: the sound travels very fast but one cannot feel
-the corresponding very small flow perturbation in the air).
-Therefore, $t_c = L/c_0$ is the corresponding natural time scale.
+the corresponding very small flow perturbation in the air!).
+Therefore, $t_c = L/c_0$ is the corresponding (short) natural time scale.
 Using this time scale, we achieve
 
 !bt
@@ -7831,8 +7836,8 @@ Using this time scale, we achieve
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}(1 + \alpha\bar\varrho)\bar\u\bar\nabla\bar\u
-\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u
+\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0,
 \end{align*}
 !et
@@ -7848,20 +7853,19 @@ idx{Mach number}
 === Linearization ===
 
 With the assumption of small perturbations, M and $\alpha$ are small numbers.
-We can first approximate $1+\alpha\approx 1$. Thereafter, we realize
+We can first approximate $1+\alpha$ by 1. Thereafter, we realize
 that multiplying by M in the momentum equation gives
 
 !bt
 \[
 \hbox{M}\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}^2\bar\u\bar\nabla\bar\u
-+ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u
++ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 =0\]
 !et
-The term $\hbox{M}^2\bar\u\bar\nabla\bar\u$ has size
+The term $\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u$ has size
 $\hbox{M}^2$ and is very smaller than the first and third term,
-suggesting that we omit the nonlinear term
-when the Mach number is small.
+suggesting that we omit the nonlinear term.
 We arrive at the following linearized system of PDEs
 
 !bt
@@ -7869,30 +7873,30 @@ We arrive at the following linearized system of PDEs
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot\bar\u &=0,
 label{scale:gas:acoustic:rho:s}\\
-\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\varrho &=0,
+\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
 label{scale:gas:acoustic:u2:s}
 \end{align}
 !et
 
 The velocity $\u$ can be eliminated taking the time derivative of
 (ref{scale:gas:acoustic:rho:s}) and the divergence of
-(ref{scale:gas:acoustic:u2:s}:
+(ref{scale:gas:acoustic:u2:s}):
 
 !bt
 \begin{equation}
 \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
-\bar\nabla^2\varrho = 0,
+\bar\nabla^2\bar\varrho = 0,
 \end{equation}
 !et
 which is nothing but a standard, linear wave equation. Similarly,
 we can eliminate $\varrho$ by taking the divergence of
 (ref{scale:gas:acoustic:rho:s}) and the time derivative of
-(ref{scale:gas:acoustic:u2:s}:
+(ref{scale:gas:acoustic:u2:s}):
 
 !bt
 \begin{equation}
 \frac{\partial^2\bar\u}{\partial\bar t^2} +
-\bar\nabla^2\u = 0,
+\bar\nabla^2\bar\u = 0,
 \end{equation}
 !et
 which shows that each component of the velocity also propagates according
@@ -7901,6 +7905,39 @@ We also observe that there are no physical parameters in the scaled
 wave equations. The M parameter can be eliminated from
 (ref{scale:gas:acoustic:rho:s})-(ref{scale:gas:acoustic:u2:s})
 by introducing a new unknown $\bar\v = M\bar\u$.
+
+===== General isentropic flow =====
+
+Suppose we are not interested in acoustic waves in isentropic flow,
+as described in the previous section, but
+in a significant velocity of characteristic size $U$ and corresponding
+significant changes in $\varrho$ and $p$. The relevant time scale is
+not that of the waves, but of the overall flow: $t_c=L/U$.
+
+The governing equations are (ref{scale:gas:acoustic:rho})
+and (ref{scale:gas:acoustic:u2}). We scale $\varrho$
+directly by its magnitude $\varrho_c$: $\bar\varrho = \varrho/\varrho_c$.
+Then $F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}$.
+All other scalings remain as in Section ref{scale:gas:acoustic}.
+The result of inserting dimensionless variables and using
+$t_c=L/U$ is
+
+!bt
+\begin{align}
+\frac{\partial\bar\varrho}{\partial\bar t}
++ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
+\bar\varrho
+\frac{\partial\bar\u}{\partial\bar t} +
+\bar\varrho\bar u\bar\cdot\nabla\bar\u
++ \hbox{M}^{-2}\varrho^{\gamma-1}
+\bar\nabla\bar\varrho
+&=0\tp
+\end{align}
+!et
+Again, there is only one dimensionless parameter, the Mach number M.
+The boundary conditions specify the characteristic velocity $U$ and
+thereby the Mach number.
+
 
 ======= Exercises =======
 

@@ -408,10 +408,14 @@ code { color: inherit; background-color: transparent; }
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
               ('Elimination of the pressure', 3, None, '___sec169'),
-              ('Basic scaling for small perturbations', 3, None, '___sec170'),
+              ('Basic scaling for small wave perturbations',
+               3,
+               None,
+               '___sec170'),
               ('The time scale', 3, None, '___sec171'),
               ('Linearization', 3, None, '___sec172'),
-              ('Exercises', 1, None, '___sec173'),
+              ('General isentropic flow', 2, None, '___sec173'),
+              ('Exercises', 1, None, '___sec174'),
               ('Exercise 1: Perform unit conversion',
                2,
                'sec:scale:exer:US2SI1',
@@ -464,7 +468,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec187'),
+              ('Remarks', 3, None, '___sec188'),
               ('Problem 14: Scale the pendulum equation',
                2,
                'sec:scale:exer:pendulum',
@@ -481,7 +485,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec192'),
+              ('Remarks', 3, None, '___sec193'),
               ('Problem 18: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
@@ -510,7 +514,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec200')]}
+              ('References', 1, None, '___sec201')]}
 end of tocinfo -->
 
 <body>
@@ -739,10 +743,11 @@ $$
      <!-- navigation toc: --> <li><a href="#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation and the Mach number</a></li>
      <!-- navigation toc: --> <li><a href="#___sec169" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec170" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec170" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
      <!-- navigation toc: --> <li><a href="#___sec171" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The time scale</a></li>
      <!-- navigation toc: --> <li><a href="#___sec172" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linearization</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec173" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec173" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec174" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:US2SI1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 1: Perform unit conversion</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:ball_y" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 2: Scale a simple formula</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:decay:cooling:osc" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 3: Perform alternative scalings</a></li>
@@ -756,12 +761,12 @@ $$
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: Scale a predator-prey model</a></li>
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Scale a model for competing species</a></li>
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 13: Find the period of sinusoidal signals</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec187" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec188" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:pendulum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 14: Scale the pendulum equation</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: Scale the ODEs for a binary star</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Scale Duffing's equation</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Scale a stationary Couette flow</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec192" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec193" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Scale a starting Couette flow</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:Couette_wpressure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 19: Scale Couette flow with pressure gradient</a></li>
      <!-- navigation toc: --> <li><a href="#scale:exer:pipeflow:pulsatile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 20: Scale pulsatile pipeflow</a></li>
@@ -769,7 +774,7 @@ $$
      <!-- navigation toc: --> <li><a href="#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Comparison of vibration models for elastic structures</a></li>
      <!-- navigation toc: --> <li><a href="#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Suggestions...</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#___sec200" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#___sec201" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -2893,14 +2898,14 @@ c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0\tp
 \end{equation}
 $$
 
-<h3 id="___sec170">Basic scaling for small perturbations </h3>
+<h3 id="___sec170">Basic scaling for small wave perturbations </h3>
 
 <p>
 In a model for sound waves there are small pressure, velocity, and
-density perturbation from a ground state at rest where \( \u=0 \), \( \varrho=\varrho_0 \), and \( p=p_0 = F(\varrho_0 \). Let \( \varrho_c \), \( p_c=F(\varrho_c) \), and
+density perturbations from a ground state at rest where \( \u=0 \), \( \varrho=\varrho_0 \), and \( p=p_0 = F(\varrho_0) \). Let \( \varrho_c \), \( p_c=F(\varrho_c) \), and
 \( u_c \) be characteristic sizes of these perturbations.
 The density, e.g., will then vary in \( [\varrho_0-\varrho_c,\varrho_0+\varrho_c] \).
-An appropriate scaling is now
+An appropriate scaling is
 
 $$ \bar\varrho =\frac{\varrho - \varrho_0}{\varrho_c} $$
 
@@ -2912,7 +2917,11 @@ Note that the dimensionless \( \alpha \) is expected to be a very small number
 since \( \varrho_c\ll \varrho_0 \).
 
 <p>
-The velocity is scaled as \( \bar\u = \u/U \) while space and time are scaled as usual:
+The velocity is scaled as
+
+$$ \bar\u = \u/U,$$
+
+while space and time are scaled as usual:
 
 $$ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
 \quad\bar t = \frac{t}{t_c}\tp$$
@@ -2930,9 +2939,9 @@ $$
 + \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\ 
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
-\frac{\varrho_0 U^2}{L}(1 \alpha\bar\varrho)\bar u\bar\nabla\bar\u
+\frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\u
 + \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
-\bar\nabla\varrho
+\bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
 $$
@@ -2945,8 +2954,8 @@ other flow problems. However, in the present model we expect sound waves,
 so the velocity \( c_0 \) of the sound waves is the appropriate velocity scale.
 The flow velocity \( U \) is expected to be very much smaller than \( c_0 \)
 (think of speaking: the sound travels very fast but one cannot feel
-the corresponding very small flow perturbation in the air).
-Therefore, \( t_c = L/c_0 \) is the corresponding natural time scale.
+the corresponding very small flow perturbation in the air!).
+Therefore, \( t_c = L/c_0 \) is the corresponding (short) natural time scale.
 Using this time scale, we achieve
 
 $$
@@ -2955,8 +2964,8 @@ $$
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\ 
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}(1 + \alpha\bar\varrho)\bar\u\bar\nabla\bar\u
-\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u
+\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0,
 \end{align*}
 $$
@@ -2971,19 +2980,18 @@ is known as the <em>Mach number</em>.
 
 <p>
 With the assumption of small perturbations, M and \( \alpha \) are small numbers.
-We can first approximate \( 1+\alpha\approx 1 \). Thereafter, we realize
+We can first approximate \( 1+\alpha \) by 1. Thereafter, we realize
 that multiplying by M in the momentum equation gives
 
 $$
 \hbox{M}\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}^2\bar\u\bar\nabla\bar\u
-+ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\varrho
+\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u
++ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 =0$$
 
-The term \( \hbox{M}^2\bar\u\bar\nabla\bar\u \) has size
+The term \( \hbox{M}^2\bar\u\cdot\bar\nabla\bar\u \) has size
 \( \hbox{M}^2 \) and is very smaller than the first and third term,
-suggesting that we omit the nonlinear term
-when the Mach number is small.
+suggesting that we omit the nonlinear term.
 We arrive at the following linearized system of PDEs
 
 $$
@@ -2991,7 +2999,7 @@ $$
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot\bar\u &=0,
 \tag{268}\\ 
-\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\varrho &=0,
+\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
 \tag{269}
 \end{align}
 $$
@@ -2999,12 +3007,12 @@ $$
 <p>
 The velocity \( \u \) can be eliminated taking the time derivative of
 <a href="#mjx-eqn-268">(268)</a> and the divergence of
-(ref{scale:gas:acoustic:u2:s}:
+<a href="#mjx-eqn-269">(269)</a>:
 
 $$
 \begin{equation}
 \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
-\bar\nabla^2\varrho = 0,
+\bar\nabla^2\bar\varrho = 0,
 \tag{270}
 \end{equation}
 $$
@@ -3012,12 +3020,12 @@ $$
 which is nothing but a standard, linear wave equation. Similarly,
 we can eliminate \( \varrho \) by taking the divergence of
 <a href="#mjx-eqn-268">(268)</a> and the time derivative of
-(ref{scale:gas:acoustic:u2:s}:
+<a href="#mjx-eqn-269">(269)</a>:
 
 $$
 \begin{equation}
 \frac{\partial^2\bar\u}{\partial\bar t^2} +
-\bar\nabla^2\u = 0,
+\bar\nabla^2\bar\u = 0,
 \tag{271}
 \end{equation}
 $$
@@ -3029,7 +3037,44 @@ wave equations. The M parameter can be eliminated from
 <a href="#mjx-eqn-268">(268)</a>-<a href="#mjx-eqn-269">(269)</a>
 by introducing a new unknown \( \bar\v = M\bar\u \).
 
-<h1 id="___sec173">Exercises </h1>
+<h2 id="___sec173">General isentropic flow </h2>
+
+<p>
+Suppose we are not interested in acoustic waves in isentropic flow,
+as described in the previous section, but
+in a significant velocity of characteristic size \( U \) and corresponding
+significant changes in \( \varrho \) and \( p \). The relevant time scale is
+not that of the waves, but of the overall flow: \( t_c=L/U \).
+
+<p>
+The governing equations are <a href="#mjx-eqn-265">(265)</a>
+and <a href="#mjx-eqn-267">(267)</a>. We scale \( \varrho \)
+directly by its magnitude \( \varrho_c \): \( \bar\varrho = \varrho/\varrho_c \).
+Then \( F'(\varrho)=c_0^2\bar\varrho^{\gamma-1} \).
+All other scalings remain as in the section <a href="#scale:gas:acoustic">The acoustic approximation and the Mach number</a>.
+The result of inserting dimensionless variables and using
+\( t_c=L/U \) is
+
+$$
+\begin{align}
+\frac{\partial\bar\varrho}{\partial\bar t}
++ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
+\tag{272}\\ 
+\bar\varrho
+\frac{\partial\bar\u}{\partial\bar t} +
+\bar\varrho\bar u\bar\cdot\nabla\bar\u
++ \hbox{M}^{-2}\varrho^{\gamma-1}
+\bar\nabla\bar\varrho
+&=0\tp
+\tag{273}
+\end{align}
+$$
+
+Again, there is only one dimensionless parameter, the Mach number M.
+The boundary conditions specify the characteristic velocity \( U \) and
+thereby the Mach number.
+
+<h1 id="___sec174">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
@@ -3773,13 +3818,13 @@ Lotka-Volterra ODE system
 $$
 \begin{align}
 H^{\prime} &= H(a - bL),
-\tag{272}\\ 
-L^{\prime} &= L(dH - c),
-\tag{273}\\ 
-H(0)&=H_0,
 \tag{274}\\ 
+L^{\prime} &= L(dH - c),
+\tag{275}\\ 
+H(0)&=H_0,
+\tag{276}\\ 
 L(0)&=L_0\tp
-\tag{275}
+\tag{277}
 \end{align}
 $$
 
@@ -3815,13 +3860,13 @@ in the ODE problem we arrive at
 $$
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\tag{276}\\ 
-\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-\tag{277}\\ 
-H_c\bar H(0) &= H_0,
 \tag{278}\\ 
+\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
+\tag{279}\\ 
+H_c\bar H(0) &= H_0,
+\tag{280}\\ 
 L_c\bar H(0) &= L_0\tp
-\tag{279}
+\tag{281}
 \end{align}
 $$
 
@@ -3845,7 +3890,7 @@ dimensionless parameters in the scaled ODE problem.
 
 <p>
 With \( H_c=L_c=H_0 \) in
-<a href="#mjx-eqn-276">(276)</a>-<a href="#mjx-eqn-279">(279)</a>
+<a href="#mjx-eqn-278">(278)</a>-<a href="#mjx-eqn-281">(281)</a>
 we get
 
 $$
@@ -3912,8 +3957,8 @@ parameters as possible. Compare with the scaling in a).
 
 <p>
 Dividing by \( H_c \) and \( L_c \) in
-<a href="#mjx-eqn-276">(276)</a> and
-<a href="#mjx-eqn-279">(279)</a>,
+<a href="#mjx-eqn-278">(278)</a> and
+<a href="#mjx-eqn-281">(281)</a>,
 respectively,
 and multiply by \( t_c \):
 
@@ -3942,13 +3987,13 @@ The dimensionless problem is now
 $$
 \begin{align}
 \frac{d\bar H}{d\bar t} &= \bar H(1 - \bar L),
-\tag{280}\\ 
-\frac{d\bar L}{d\bar t} &= \mu \bar L(\bar H - 1) = \gamma\alpha^{-1} \bar L(\bar H - 1),
-\tag{281}\\ 
-\bar H(0) &= \nu = \beta/\gamma,
 \tag{282}\\ 
+\frac{d\bar L}{d\bar t} &= \mu \bar L(\bar H - 1) = \gamma\alpha^{-1} \bar L(\bar H - 1),
+\tag{283}\\ 
+\bar H(0) &= \nu = \beta/\gamma,
+\tag{284}\\ 
 \bar L(0) &= \omega = \delta/\alpha,
-\tag{283}
+\tag{285}
 \end{align}
 $$
 
@@ -4038,9 +4083,9 @@ interaction (cf.&nbsp;ref{scale:decay:exer:predprey}):
 $$
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
-\tag{284}\\ 
+\tag{286}\\ 
 \frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
-\tag{285}
+\tag{287}
 \end{align}
 $$
 
@@ -4348,7 +4393,7 @@ Filename: <code>sine_period</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec187">Remarks </h3>
+<h3 id="___sec188">Remarks </h3>
 
 <p>
 The <em>frequency</em> is the number of up and down cycles in one unit time.
@@ -4370,7 +4415,7 @@ The equation for a so-called simple pendulum with a mass \( m \) at the end is
 $$
 \begin{equation}
 mL\ddot\theta + mg\sin\theta = 0,
-\tag{286}
+\tag{288}
 \end{equation}
 $$
 
@@ -4384,7 +4429,7 @@ a similar equation,
 $$
 \begin{equation}
 I\ddot\theta + mgL\sin\theta = 0\tp
-\tag{287}
+\tag{289}
 \end{equation}
 $$
 
@@ -4460,9 +4505,9 @@ or a planet and a moon, are
 $$
 \begin{align}
 m_A\ddot\x_A &= \F,
-\tag{288}\\ 
+\tag{290}\\ 
 m_B\ddot\x_B &= -F,
-\tag{289}
+\tag{291}
 \end{align}
 $$
 
@@ -4524,10 +4569,10 @@ $$
 \begin{align}
 \frac{d^2 \bar\x_A}{d\bar t^2} &=
 \frac{m_B}{m_A+m_B}\frac{\bar\rpos}{||\bar\rpos||^3},
-\tag{290}\\ 
+\tag{292}\\ 
 \frac{d^2 \bar\x_B}{d\bar t^2} &=
 \frac{m_A}{m_A+m_B}\frac{\bar\rpos}{||\bar\rpos||^3}\tp
-\tag{291}
+\tag{293}
 \end{align}
 $$
 
@@ -4649,7 +4694,7 @@ Filename: <code>stationary_Couette</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec192">Remarks </h3>
+<h3 id="___sec193">Remarks </h3>
 
 <p>
 The problem for \( u \) is a classical two-point boundary-value problem
@@ -4884,11 +4929,11 @@ is governed by
 $$
 \begin{align}
 \mu u''(z) &= -\beta
-\tag{292}\\ 
+\tag{294}\\ 
 u(0) &= 0,
-\tag{293}\\ 
+\tag{295}\\ 
 u(H) &= U_0\tp
-\tag{294}
+\tag{296}
 \end{align}
 $$
 
@@ -5014,11 +5059,11 @@ The boundary value problem is
 $$
 \begin{align}
 \frac{d^2\bar u}{d\bar z^2} &= -1,\quad &\bar z\in (0,1),
-\tag{295}\\ 
+\tag{297}\\ 
 \bar u(0) &= 0,
-\tag{296}\\ 
+\tag{298}\\ 
 \bar u(1) &= \alpha,
-\tag{297}
+\tag{299}
 \end{align}
 $$
 
@@ -5043,11 +5088,11 @@ we choose \( u_c=U_0 \) and get instead
 $$
 \begin{align}
 \frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),
-\tag{298}\\ 
+\tag{300}\\ 
 \bar u(0) &= 0,
-\tag{299}\\ 
+\tag{301}\\ 
 \bar u(1) &= 1\tp
-\tag{300}
+\tag{302}
 \end{align}
 $$
 
@@ -5084,13 +5129,13 @@ $$
 \begin{align}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
 \left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{301}\\ 
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
-\tag{302}\\ 
-u(R,t) &= 0, & t\in (0,T],
 \tag{303}\\ 
+\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
+\tag{304}\\ 
+u(R,t) &= 0, & t\in (0,T],
+\tag{305}\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{304}
+\tag{306}
 \end{align}
 $$
 
@@ -5202,7 +5247,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
 -u\tp
-\tag{305}
+\tag{307}
 \end{equation}
 $$
 
@@ -5211,7 +5256,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale <a href="#mjx-eqn-305">(305)</a> in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-307">(307)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
@@ -5413,10 +5458,10 @@ $$
 \begin{align}
 (\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -\alpha\nabla p -
 \varrho\f,
-\tag{306}\\ 
+\tag{308}\\ 
 S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p +
 \alpha \frac{\partial}{\partial t}\nabla\cdot\u,
-\tag{307}
+\tag{309}
 \end{align}
 $$
 
