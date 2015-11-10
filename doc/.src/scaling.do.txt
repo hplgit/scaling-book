@@ -4526,7 +4526,7 @@ or a planet and a moon, are
 !bt
 \begin{align}
 m_A\ddot\x_A &= \F,\\
-m_B\ddot\x_B &= -F,
+m_B\ddot\x_B &= -\F,
 \end{align}
 !et
 where $\x_A$ is the position of object (star) A, and $\x_B$ is the position
@@ -4539,11 +4539,11 @@ The only force is the gravity force
 where
 
 !bt
-\[ \rpos(t) = \x_A(t) - \x_B(t),\]
+\[ \rpos(t) = \x_B(t) - \x_A(t),\]
 !et
 and $G$ is the gravitational constant: $G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2$. A problem with these equations is that the parameters are very large
 ($m_A$, $m_B$, $||\rpos||$) or very small ($G$). The rotation time
-for binary stars can be very small or large as well.
+for binary stars can be very small and large as well.
 
 !bsubex
 Scale the equations.
@@ -4640,11 +4640,11 @@ the former then gives $\dot\theta = 1$.
 Solve the scaled equations numerically for two cases:
 
  o a planet around a star:
-   $\alpha = 10^{-3}$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=\jj$,
+   $\alpha = 10^{-3}$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=(0,1)$,
    $\x_B(0)=0$, $\dot\x_B(0)=0$
  o two stars:
-   $\alpha = \half$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=\half\jj$,
-   $\x_B(0)=0$, $\dot\x_B(0)=-\half\jj$
+   $\alpha = \half$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=(0,\half)$,
+   $\x_B(0)=0$, $\dot\x_B(0)=(0,-\half)$
 
 # #if FORMAT in ('html', 'sphinx')
 Here is a movie of two rotating stars (point 2 above):
