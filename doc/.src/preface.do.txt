@@ -123,6 +123,9 @@ motivate for always bringing a differential equation model on
 dimensionless form before doing numerical simulations.
 
 __Acknowledgments.__
+The authors are thankful to Dr. Joakim Sundnes who greatly contributed to
+the writing of Section ref{scale:bidomain}.
+
 [hpl: Thank proof readers, Springer, others, ...]
 
 

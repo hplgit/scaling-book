@@ -20,6 +20,14 @@
    publisher: Cambridge
    status:    published
    entrytype: book
+** Computing the Electrical Activity in the Heart
+   key:       Sundnes_2006
+   author:    J. Sundnes, G. T. Lines, X. Cai, B. F. Nielsen, K.-A. Mardal, A. Tveito
+   year:      2006
+   publisher: Springer
+   status:    published
+   series:    Monographs in Computational Science and Engineering
+   entrytype: book
 ** {P}ython Scripting for Computational Science
    key:       Langtangen_2008a
    author:    H. P. Langtangen

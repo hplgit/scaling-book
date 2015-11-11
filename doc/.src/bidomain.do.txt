@@ -1,0 +1,259 @@
+======= The bidomain model in electrophysiology =======
+label{scale:bidomain}
+
+The mechanical functioning of the heart is crucially dependent on
+correct electric signal propagation through the heart tissue.
+A widely used mathematical
+model for the electric signal propagation is the bidomain equations:
+!bt
+\begin{align}
+\chi C_m\frac{\partial v}{\partial t} &=
+\nabla\cdot( \sigma_i\nabla v) + \nabla\cdot (\sigma_i\nabla u_e) - \chi I_{\rm{ion}}
+- \chi I_{\rm{app}},
+label{scale:bidomain:eqv}\\
+0 &= \nabla\cdot( \sigma_i\nabla v) + \nabla\cdot ((\sigma_i + \sigma_e)\nabla u_e)\tp
+label{scale:bidomain:equ_e}
+\end{align}
+!et
+These PDEs are posed in a spatial domain $H$ for $t\in (0, T]$. The symbols in these PDEs have the following meaning:
+$u_e$ is the extracellular electric potential,
+$v$ is the transmembrane potential (difference between the extracellular
+and intracellular potential),
+$C_m$ is the capacitance of the cell membrane,
+$\chi$ is a membrane area to cell volume ratio,
+$\sigma_i$ is a electric conductivity tensor for the intracellular space, and
+$\sigma_e$ is a electric conductivity tensor for the extracellular space.
+
+The boundary conditions are of Neumann type, and we drop these from the discussion.
+The initial condition is typically $u_e=0, v = v_r$, where
+$v_{r}$ is a constant resting potential.
+
+The PDE system is driven by $I_{\rm{ion}} + I_{\rm{app}}$, where
+$I_{\rm{ion}}$ is a reaction term describing ionic currents across the
+cell membrane, and $ I_{\rm{app}}$ is an externally applied stimulus
+current. The applied current is normally a prescribed function,
+typically piecewise constant in time and space, while
+$I_{\rm{ion}} = I_{\rm{ion}}(v,s)$, where $s$ is a state vector
+describing the electro-chemical state of the cells. Typical components
+of $s$ are intracellular ionic concentrations and so-called gate variables that
+describe the permeability of the cell membrane, and its dynamics is
+governed governed by a system of ODEs, see for instance cite{Sundnes_2006} for
+details. The total
+current $I_{\rm{ion}}$ is normally written as a sum of individual
+ionic currents:
+
+!bt
+\[ I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{j}(s,v), \]
+!et
+where $n$ is typically between 10 and 20 in recent models of cardiac
+cells. Most of the individual currents will be on the form
+$ I_{j}(s,v) = g_j(s)(v-v_j), $
+where $v_j$ is the equlibrium potential of the specific ion, and
+$g_j(s)$ describes the membrane conductance to a specific ion. Without
+much loss of generality we can assume that this formulation is valid
+for all $I_{j}$, and the total ionic current can then be written in the
+general form
+
+!bt
+\[
+I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{\rm{j}}(s,v) = g(s)(v-v_{eq}(s)) ,
+\]
+!et
+where $g(s) = \sum_{j=1}^n g_j(s)$ and $v_{eq}(s) = (\sum_{j=1}^n g_j
+v_j)/\sum_{j=1}^n g_j$.
+As noted above, the dynamics of $s$ is governed by an ODE system on
+the form
+!bt
+\[
+\frac{ds}{dt} = f(v,s) \tp
+\]
+!et
+The time scales of individual components of $s$ typically vary
+greatly, making any scaling of this system highly dependent on the
+component under study. For the present text, the focus is on
+tissue-level electrophysiology as described by
+(ref{scale:bidomain:eqv})-(ref{scale:bidomain:equ_e}), and we will proceed
+to scale these equations. The bidomain model is a system of
+reaction-diffusion type, and the scaling will be based on the general
+non-linear reaction-diffusion equation in Section ref{sec:scale:diffu:homo1D}.
+
+Dimensionless independent variables are introduced by
+
+!bt
+\[ \bar x = \frac{x}{L},\quad
+\bar y = \frac{y}{L},\quad \bar z = \frac{z}{L},\quad
+\bar t = \frac{t}{t_c},\]
+!et
+where $L$ is the characteristic length scale, and $t_c$ is the
+characteristic time scale. Dimensionless dependent variables are
+expressed as
+
+!bt
+\[ \bar v = \frac{v-v_r}{v_p-v_r},\quad \bar u = \frac{u_e}{u_c} \tp\]
+!et
+As noted above, $v_r$ is the resting potential, and $v_p$ is the peak potential.
+The scaling of $v$ ensures $\bar v\in [0,1]$. We introduce the symbol
+$\Delta v = v_p-v_r$ to save space in the formulas: $\bar v = (v-v_r)/\Delta v$.
+The scale for $u_e$ is $u_c$, to be
+determined either from simplicity of the equations or from available analysis of
+its magnitude.
+
+The variable tensor coefficients $\sigma_i$ and $\sigma_e$ depend on the spatial
+coordinates and are also scaled:
+!bt
+\[ \bar \sigma_i = \frac{\sigma_i}{\sigma_c},\quad \bar \sigma_e = \frac{\sigma_e}{\sigma_c}\tp\]
+!et
+For simplicity, we have chosen a common scale $\sigma_c$, but the two tensors
+may employ difference scales, and we may also choose different scales
+for different directions, to reflect the anisotropic conductivity of
+the tissue. One typically chooses $\sigma_c$ as a norm of
+$\sigma_i + \sigma_e$, e.g., the maximum value.
+
+Finally, we introduce a scaling of the parameters entering the ionic
+current term
+
+!bt
+\[ \bar v_{eq} = (v_{eq}-v_r)/\Delta v,\quad\bar g = g/g_c\tp\]
+!et
+For the characteristic membrane conductance a common choice is
+$g_c = 1/R_m$, where $R_m$ is the membrane resistance at
+rest, but we will instead set $g_c = g_{\max}$, the maximum conductance
+of the membrane. These choices will ensure $\bar v_{eq}, \bar g \in
+[0,1]$.
+
+
+Inserting the dimensionless variables in the equations, the system
+of governing equations becomes
+
+!bt
+\begin{align*}
+\frac{\Delta v}{t_c}\chi C_m\frac{\partial \bar v}{\partial \bar t} &=
+\frac{\sigma_c\Delta v }{L^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
+\frac{\sigma_c u_c}{L^2}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\
+&\quad - \chi g_c \Delta v \bar g (s)(\bar v-\bar v_{eq}(s)) -\chi I_{\rm{app}},
+\\
+0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\
+\end{align*}
+!et
+Multiplying the equations by appropriate factors leads to equations with
+dimensionless terms only:
+!bt
+\begin{align*}
+\frac{\partial \bar v}{\partial \bar t} &=
+\frac{t_c\sigma_c}{\chi C_mL^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
+\frac{t_c\sigma_c u_c}{\Delta v \chi C_mL^2}\nabla\cdot (\bar
+\sigma_i\bar \nabla \bar u) - \\
+&\quad
+\frac{g_c t_c}{C_m} \bar g (s)(\bar v-\bar v_{eq}(s))
+- \frac{t_c}{C_m\Delta v} I_{\rm{app}},\\
+0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\
+\end{align*}
+!et
+
+The time scale is not so obvious to choose. As noted above, the ODE
+system that governs $s$ and thereby $\bar g(s), \bar v_{eq} (s)$ may
+feature a wide range of spatial scales. Furthermore, even if we focus
+on the tissue equations and focus on the dynamics of $v$ and $u_e$,
+the bidomain equations are characterized by relatively small regions
+having large spatial and temporal gradients, while in most of the
+domain variations are slower. The PDEs are of reaction-diffusion
+nature, and the solution takes the form of a wavefront of activation
+that propagates through the tissue. For now we choose the time scale
+based on balancing the reaction and diffusion components.  From
+previous examples in Section ref{sec:scale:diffu:homo1D}, we therefore
+set the terms in front of the reaction term and the diffusion term to
+unity.  This idea means
+
+!bt
+\[ \frac{t_c\sigma_c}{\chi C_mL^2} = 1,\quad \frac{t_cg_c}{C_m} =1,\]
+!et
+which determines the time and length scales:
+
+!bt
+\[ t_c = \frac{C_m}{g_c},\quad L = \sqrt{\frac{\sigma_c}{g_c \chi}}\tp\]
+!et
+
+Two natural dimensionless variables then arise from the second diffusion
+term and the applied current term:
+!bt
+\[ \alpha = \frac{u_c}{\Delta v}, \quad \beta =
+\frac{I_{\rm{app}}}{g_c \Delta v} \tp\]
+!et
+In many cases it will be natural to set $u_c=\Delta v$, which of
+course removes the need for $\alpha$, but we
+include the freedom to have $u_c$ as
+some specified characteristic size of $u_e$.
+
+The final dimensionless system becomes
+!bt
+\begin{align}
+\frac{\partial \bar v}{\partial \bar t} &=
+\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
+\alpha\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) \\
+& \quad -\bar g (s)(\bar v-\bar v_{eq}(s))
+- \beta
+\\
+0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) +
+\alpha\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u) \tp
+\end{align}
+!et
+The two dimensionless variables in these equations have
+straightforward
+interpretations: $\alpha$ is the ratio of the span in the two electric
+potentials, and $\beta$ is ratio of the source term with $I_{\rm{app}}$ and the
+time-derivative term of $v$, or the source term and the diffusion term
+in $v$.
+
+[js: preliminary notes]
+We can insert typical values for the parameters to get a feel for the
+chosen scaling. We have
+
+!bt
+\begin{align*}
+C_m &= 1.0\, \mu\hbox{F\,cm}^{-2}, \quad g_c = g_{max} = 13.0
+\hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS\,cm}^{-2}, \\
+\chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} , \\
+\sigma_c &= 3.0 \hbox{mS\,cm}^{-1}\tp
+\end{align*}
+!et
+
+This gives the following values of $t_c$ and $L$:
+!bt
+\begin{align*} t_c &= \frac{1.0 \mu\hbox{F\,cm}^{-2}}{13.0 \mu\hbox{F\,cm}^{-2}} =
+\frac{1.0}{13.0}\frac{\mu\hbox{F}}{\hbox{mS}} \approx 0.076 \hbox{ms} \\
+L &= \sqrt{\frac{\sigma_c}{\chi g_c}} = \sqrt{\frac{3.0
+\hbox{mS\,cm}^{-2}}{2000\hbox{cm}^{-1} \mu\hbox{F\,cm}^-2}}
+\approx 0.087 \hbox{mm} \tp
+\end{align*}
+!et
+These values are both very small, which is probably related to our
+choice of $g_c = g_{\max}$. This implies that we choose the appropriate
+scaling based on the upstroke phase of the action potential, when both
+spatial and temporal variations are extremely high. This may therefore
+be a ``correct'' scaling exactly at the wavefront of the electrical
+potential, but seems less relevant elsewhere. Choosing $g_c$ to be for
+instance the resting conductance, which is the common choice when
+scaling the cable equation, may increase $t_c, L$ by factors up to 2500 and
+50, respectively.
+
+[hpl: Joakim, can you say something about the relevance of these scales? A factor of 2500 is quite big...]
+
+The conduction velocity is often a quantity of interest, and we could
+obtain an alternative relation between $t_c$ and $L$ by requiring
+$v_{c} = L/t_c$. In human cardiac tissue $v_c$ is known to be about
+60 cm/s, while the choices above gives
+
+!bt
+\[
+\frac{L}{t_c} =  \frac{0.087\rm{mm}}{0.076\rm{ms}} \approx 144
+\hbox{cm/s}\tp \]
+!et
+Enforcing $L/t_c = 60 \hbox{cm\,s}^-1$ gives the constraint $g_c \approx
+4.8 \hbox{mS\,cm}^{-2}$, and yields $L \approx 0.17$ mm and
+$t_c=0.21$ ms. These are still small values, but very close to the
+standard values of $\Delta x, \Delta t$ required for accurate
+numerical solution. That is, this choice of scaling will give $\Delta x
+\approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
+
+[hpl: That sounds a big strange, but if the focus is on a smaller scale,
+choosing $L$ and $t_c$ from this scale leads to that conclusion.]

@@ -2038,61 +2038,77 @@ The mechanical functioning of the heart is crucially dependent on
 correct electric signal propagation through the heart tissue.
 A widely used mathematical
 model for the electric signal propagation is the bidomain equations:
-
 $$
 \begin{align}
 \chi C_m\frac{\partial v}{\partial t} &=
-\nabla\cdot( M_i\nabla v) + \nabla\cdot (M_i\nabla u_e) - \chi I_{\rm{ion}}
+\nabla\cdot( \sigma_i\nabla v) + \nabla\cdot (\sigma_i\nabla u_e) - \chi I_{\rm{ion}}
 - \chi I_{\rm{app}},
 \tag{247}\\ 
-0 &= \nabla\cdot( M_i\nabla v) + \nabla\cdot ((M_i + M_e)\nabla u_e)\tp
+0 &= \nabla\cdot( \sigma_i\nabla v) + \nabla\cdot ((\sigma_i + \sigma_e)\nabla u_e)\tp
 \tag{248}
 \end{align}
 $$
 
-These PDEs are posed in a spatial domain \( H \) for \( t\in (0, T] \). The boundary
-conditions are of Neumann type, and we drop these from the discussion.
-The initial condition is typically \( u_e=v=0 \).
-
-<p>
-The symbols in these PDEs have the following meaning:
+These PDEs are posed in a spatial domain \( H \) for \( t\in (0, T] \). The symbols in these PDEs have the following meaning:
 \( u_e \) is the extracellular electric potential,
 \( v \) is the transmembrane potential (difference between the extracellular
 and intracellular potential),
 \( C_m \) is the capacitance of the cell membrane,
 \( \chi \) is a membrane area to cell volume ratio,
-\( M_i \) is a electric conductivity tensor for the intracellular space,
-\( M_e \) is a electric conductivity tensor for the extracellular space,
-\( I_{\rm{ion}} \) is the ionic current across the cell membrane, and
-\( I_{\rm{app}} \) is an externally applied current.
+\( \sigma_i \) is a electric conductivity tensor for the intracellular space, and
+\( \sigma_e \) is a electric conductivity tensor for the extracellular space.
 
 <p>
-The PDE system is driven by \( I_{\rm{ion}} + I_{\rm{app}} \), and models
-for these source terms consist of a system of ODEs at each point
-in the domain. The simplest relevant ODE system is the FitzHugh-Nagumo
-model:
+The boundary conditions are of Neumann type, and we drop these from the discussion.
+The initial condition is typically \( u_e=0, v = v_r \), where
+\( v_{r} \) is a constant resting potential.
+
+<p>
+The PDE system is driven by \( I_{\rm{ion}} + I_{\rm{app}} \), where
+\( I_{\rm{ion}} \) is a reaction term describing ionic currents across the
+cell membrane, and $ I_{\rm{app}}$ is an externally applied stimulus
+current. The applied current is normally a prescribed function,
+typically piecewise constant in time and space, while
+\( I_{\rm{ion}} = I_{\rm{ion}}(v,s) \), where \( s \) is a state vector
+describing the electro-chemical state of the cells. Typical components
+of \( s \) are intracellular ionic concentrations and so-called gate variables that
+describe the permeability of the cell membrane, and its dynamics is
+governed governed by a system of ODEs, see for instance <a href="._scaling-book-solarized011.html#Sundnes_2006">[11]</a> for
+details. The total
+current \( I_{\rm{ion}} \) is normally written as a sum of individual
+ionic currents:
+
+$$ I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{j}(s,v), $$
+
+where \( n \) is typically between 10 and 20 in recent models of cardiac
+cells. Most of the individual currents will be on the form
+$ I_{j}(s,v) = g_j(s)(v-v_j), $
+where \( v_j \) is the equlibrium potential of the specific ion, and
+\( g_j(s) \) describes the membrane conductance to a specific ion. Without
+much loss of generality we can assume that this formulation is valid
+for all \( I_{j} \), and the total ionic current can then be written in the
+general form
 
 $$
-\begin{align}
-C_m\frac{dv}{dt} & = - I_{\rm{ion}} - I_{\rm{app}},
-\tag{249}\\ 
-I_{\rm{ion}} &= A(v-v_r)(v - v_m)(v - v_p) + Bw,
-\tag{250}\\ 
-\frac{dw}{dt} &= -c_1w + c_2v + c_3,
-\tag{251}
-\end{align}
+I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{\rm{j}}(s,v) = g(s)(v-v_{eq}(s)) ,
 $$
 
-where \( A \), \( v_m \), \( v_r \), \( v_p \),
-\( B \), \( c_1 \), \( c_2 \), and \( c_3 \) are specified constants.
+where \( g(s) = \sum_{j=1}^n g_j(s) \) and \( v_{eq}(s) = (\sum_{j=1}^n g_j
+v_j)/\sum_{j=1}^n g_j \).
+As noted above, the dynamics of \( s \) is governed by an ODE system on
+the form
+$$
+\frac{ds}{dt} = f(v,s) \tp
+$$
 
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 27</b>: Keyner and Sneyd have a constant in the equation for \( w \), in both the unscaled and scaled versions, while The Bible has not.)</font>
-<!-- end inline comment -->
-
-More complicated ODE systems for the cell dynamics may have up to a
-hundred unknowns
-and a correspondingly large collection of parameters.
+The time scales of individual components of \( s \) typically vary
+greatly, making any scaling of this system highly dependent on the
+component under study. For the present text, the focus is on
+tissue-level electrophysiology as described by
+<a href="#mjx-eqn-247">(247)</a>-<a href="#mjx-eqn-248">(248)</a>, and we will proceed
+to scale these equations. The bidomain model is a system of
+reaction-diffusion type, and the scaling will be based on the general
+non-linear reaction-diffusion equation in the section <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>.
 
 <p>
 Dimensionless independent variables are introduced by
@@ -2105,25 +2121,37 @@ where \( L \) is the characteristic length scale, and \( t_c \) is the
 characteristic time scale. Dimensionless dependent variables are
 expressed as
 
-$$ \bar v = \frac{v-v_r}{v_p-v_r},\quad \bar u = \frac{u_e}{u_c}, \quad \bar w =
-\frac{w}{w_c}\tp$$
+$$ \bar v = \frac{v-v_r}{v_p-v_r},\quad \bar u = \frac{u_e}{u_c} \tp$$
 
-Here, \( v_r \) is the resting potential, and \( v_p \) is the peak potential.
+As noted above, \( v_r \) is the resting potential, and \( v_p \) is the peak potential.
 The scaling of \( v \) ensures \( \bar v\in [0,1] \). We introduce the symbol
 \( \Delta v = v_p-v_r \) to save space in the formulas: \( \bar v = (v-v_r)/\Delta v \).
-The scale for \( u_e \) is \( u_c \), and \( w_c \) is a scale for \( w \), both to be
+The scale for \( u_e \) is \( u_c \), to be
 determined either from simplicity of the equations or from available analysis of
-their magnitudes.
+its magnitude.
 
 <p>
-The variable tensor coefficients \( M_i \) and \( M_e \) depend on the spatial
+The variable tensor coefficients \( \sigma_i \) and \( \sigma_e \) depend on the spatial
 coordinates and are also scaled:
+$$ \bar \sigma_i = \frac{\sigma_i}{\sigma_c},\quad \bar \sigma_e = \frac{\sigma_e}{\sigma_c}\tp$$
 
-$$ \bar M_i = \frac{M_i}{M_c},\quad \bar M_e = \frac{M_e}{M_c}\tp$$
+For simplicity, we have chosen a common scale \( \sigma_c \), but the two tensors
+may employ difference scales, and we may also choose different scales
+for different directions, to reflect the anisotropic conductivity of
+the tissue. One typically chooses \( \sigma_c \) as a norm of
+\( \sigma_i + \sigma_e \), e.g., the maximum value.
 
-For simplicity, we have chosen a common scale \( M_c \), but the two tensors
-may employ difference scales. One typically chooses \( M_c \) as a norm of
-\( M_i + M_e \), e.g., the maximum value.
+<p>
+Finally, we introduce a scaling of the parameters entering the ionic
+current term
+
+$$ \bar v_{eq} = (v_{eq}-v_r)/\Delta v,\quad\bar g = g/g_c\tp$$
+
+For the characteristic membrane conductance a common choice is
+\( g_c = 1/R_m \), where \( R_m \) is the membrane resistance at
+rest, but we will instead set \( g_c = g_{\max} \), the maximum conductance
+of the membrane. These choices will ensure \( \bar v_{eq}, \bar g \in
+[0,1] \).
 
 <p>
 Inserting the dimensionless variables in the equations, the system
@@ -2132,176 +2160,152 @@ of governing equations becomes
 $$
 \begin{align*}
 \frac{\Delta v}{t_c}\chi C_m\frac{\partial \bar v}{\partial \bar t} &=
-\frac{M_c\Delta v }{L^2}\nabla\cdot( \bar M_i\bar\nabla\bar v) +
-\frac{M_c u_c}{L^2}\nabla\cdot (\bar M_i\bar \nabla \bar u) -\\ 
-&\quad
-\chi A
-\Delta v \bar v
-(v_r  - v_m + \Delta v \bar v)
-(v_r - v_p + \Delta v \bar v)-\\ 
-&\quad Bw_c\bar w
-- \chi I_{\rm{app}},
+\frac{\sigma_c\Delta v }{L^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
+\frac{\sigma_c u_c}{L^2}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\ 
+&\quad - \chi g_c \Delta v \bar g (s)(\bar v-\bar v_{eq}(s)) -\chi I_{\rm{app}},
 \\ 
-0 &= \frac{M_c\Delta v }{L^2}\bar \nabla\cdot( \bar M_i\bar \nabla \bar v) + \frac{M_cu_c}{L^2}\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\\ 
-\frac{\Delta v}{t_c}C_m\frac{d\bar v}{d\bar t} & = -
-A
-\Delta v \bar v
-(v_r  - v_m + \Delta v \bar v)
-(v_r - v_p + \Delta v \bar v)-\\ 
-&\quad Bw_c\bar w - I_{\rm{app}},
-\\ 
-\frac{w_c}{t_c}\frac{d\bar w}{d\bar t} &= -c_1w_c\bar w +
-c_2(v_r + \Delta v \bar v) + c_3\tp
+0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \end{align*}
 $$
 
 Multiplying the equations by appropriate factors leads to equations with
 dimensionless terms only:
-
 $$
 \begin{align*}
 \frac{\partial \bar v}{\partial \bar t} &=
-\frac{t_cM_c}{\chi C_mL^2}\nabla\cdot( \bar M_i\bar\nabla\bar v) +
-\frac{t_cM_c u_c}{\Delta v \chi C_mL^2}\nabla\cdot (\bar M_i\bar \nabla \bar u) -\\ 
+\frac{t_c\sigma_c}{\chi C_mL^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
+\frac{t_c\sigma_c u_c}{\Delta v \chi C_mL^2}\nabla\cdot (\bar
+\sigma_i\bar \nabla \bar u) - \\ 
 &\quad
-\frac{t_cA}{C_m\Delta v }
-\Delta v \bar v
-(v_r  - v_m + \Delta v \bar v)
-\Delta v(\bar v - 1)-\\ 
-&\quad \frac{t_cBw_c}{\chi C_m\Delta v }\bar w
-- \frac{t_c I_{\rm{app}}}{C_m\Delta v },
-\\ 
-0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),\\ 
-\frac{d\bar v}{d\bar t} & = -
-\frac{t_c A}{C_m\Delta v }
-\Delta v \bar v
-(v_r  - v_m + \Delta v \bar v)
-\Delta v(\bar v - 1)-\\ 
-&\quad \frac{t_c Bw_c}{C_m\Delta v }\bar w
-- \frac{t_c}{C_m\Delta v }I_{\rm{app}},
-\\ 
-\frac{d\bar w}{d\bar t} &= -t_cc_1\bar w +
-\frac{t_cc_2}{w_c}(v_r + \Delta v \bar v) + \frac{t_cc_3}{w_c}\tp
+\frac{g_c t_c}{C_m} \bar g (s)(\bar v-\bar v_{eq}(s))
+- \frac{t_c}{C_m\Delta v} I_{\rm{app}},\\ 
+0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \end{align*}
 $$
 
 <p>
-The time scale is not so obvious to choose.
-The PDEs are of diffusion nature, and the relevant time scale is related
-to the time it takes to diffuse the signal. On the other hand, the ODE
-system, in general, may feature many different time scales. Which time
-scale to choose for \( t_c \) depends on whether one is interested in
-fast time scales for some components in the ODE system or in the
-(anticipated) slower diffusion scale of the PDEs. For now we choose
-the time scale based on diffusion. From previous examples in
-the section <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>, we therefore
-set the coefficient in front of the diffusion term to unity.
+The time scale is not so obvious to choose. As noted above, the ODE
+system that governs \( s \) and thereby \( \bar g(s), \bar v_{eq} (s) \) may
+feature a wide range of spatial scales. Furthermore, even if we focus
+on the tissue equations and focus on the dynamics of \( v \) and \( u_e \),
+the bidomain equations are characterized by relatively small regions
+having large spatial and temporal gradients, while in most of the
+domain variations are slower. The PDEs are of reaction-diffusion
+nature, and the solution takes the form of a wavefront of activation
+that propagates through the tissue. For now we choose the time scale
+based on balancing the reaction and diffusion components.  From
+previous examples in the section <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>, we therefore
+set the terms in front of the reaction term and the diffusion term to
+unity.  This idea means
 
-<p>
-A natural length scale could be the size of the domain, in this case the
-diameter of the heart, but we could also base the length and time scales on
-equal balance of the time-derivative term, the diffusion terms, and the
-reaction term in the PDE. Such a balance will be used below.
-
-<p>
-The reaction term can be rewritten as
-
-$$ \frac{t_cA}{C_m\Delta v }
-\Delta v^3 \bar v
-(J_1 + \bar v)
-(\bar v - 1),\quad J_1 = \frac{v_r-v_m}{\Delta v}\tp$$
-
-We require the coefficients in front of the first diffusion term and the
-reaction term to equal unity:
-
-$$ \frac{t_cM_c}{\chi C_mL^2} = 1,\quad \frac{t_cA}{C_m}\Delta v^2 =1\tp,$$
+$$ \frac{t_c\sigma_c}{\chi C_mL^2} = 1,\quad \frac{t_cg_c}{C_m} =1,$$
 
 which determines the time and length scales:
 
-$$ t_c = \frac{C_m}{A\Delta v^2},\quad L = \sqrt{\frac{M_c}{A\Delta v^2\chi}}\tp$$
+$$ t_c = \frac{C_m}{g_c},\quad L = \sqrt{\frac{\sigma_c}{g_c \chi}}\tp$$
 
 <p>
-A natural dimensionless variable then arises from the second diffusion
-term:
+Two natural dimensionless variables then arise from the second diffusion
+term and the applied current term:
+$$ \alpha = \frac{u_c}{\Delta v}, \quad \beta =
+\frac{I_{\rm{app}}}{g_c \Delta v} \tp$$
 
-$$ \alpha = \frac{u_c}{\Delta v}\tp$$
-
-The choice \( u_c=\Delta v \) will of course remove the need for this dimensionless
-variable, but we include the freedom to have \( u_c \) as
+In many cases it will be natural to set \( u_c=\Delta v \), which of
+course removes the need for \( \alpha \), but we
+include the freedom to have \( u_c \) as
 some specified characteristic size of \( u_e \).
 
 <p>
-Since \( w \) is just a help variable without any physiological interpretation,
-we can choose its scale \( w_c \) freely to simplify the expressions.
-For example, we can fit \( w_c \) to make the coefficient in front of
-the \( \bar w \) term equal to unity:
-
-$$ w_c = \frac{A}{B}\chi\Delta v^3\tp$$
-
-<p>
 The final dimensionless system becomes
-
 $$
 \begin{align}
 \frac{\partial \bar v}{\partial \bar t} &=
-\nabla\cdot( \bar M_i\bar\nabla\bar v) +
-\alpha\nabla\cdot (\bar M_i\bar \nabla \bar u) -
-\bar v
-(J_1 +  \bar v)
-(\bar v - 1) - \bar w - \beta,
-\tag{252}\\ 
-0 &= \bar \nabla\cdot( \bar M_i\bar \nabla \bar v) +
-\alpha\nabla\cdot ((\bar M_i + \bar M_e)\bar \nabla \bar u),
-\tag{253}\\ 
-\frac{d\bar v}{d\bar t} & = -
-\bar v
-(J_1 +  \bar v)
-(\bar v -1)- \bar w - \beta,
-\tag{254}\\ 
-\frac{d\bar w}{d\bar t} &= -K_1\bar w +
-K_2\bar v + K_3\tp
-\tag{255}
+\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
+\alpha\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) 
+\tag{249}\\ 
+& \quad -\bar g (s)(\bar v-\bar v_{eq}(s))
+- \beta
+\tag{250}\\ 
+0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) +
+\alpha\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u) \tp
+\tag{251}
 \end{align}
 $$
 
-There are seven dimensionless variables in the above equations:
+The two dimensionless variables in these equations have
+straightforward
+interpretations: \( \alpha \) is the ratio of the span in the two electric
+potentials, and \( \beta \) is ratio of the source term with \( I_{\rm{app}} \) and the
+time-derivative term of \( v \), or the source term and the diffusion term
+in \( v \).
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 28</b>: Recalculate \( K_1 \), \( K_2 \), \( K_3 \) with right \( t_c \).)</font>
+<font color="red">(<b>js 27</b>: preliminary notes)</font>
 <!-- end inline comment -->
 
+We can insert typical values for the parameters to get a feel for the
+chosen scaling. We have
 
 $$
-\begin{align}
-\alpha &= \frac{u_c}{\Delta v},
-\tag{256}\\ 
-\beta &= \frac{I_{\rm{app}}}{\Delta v^3},
-\tag{257}\\ 
-J_1 &= \frac{v_r-v_m}{\Delta v},
-\tag{258}\\ 
-J_2 &= \frac{v_r}{\Delta v},
-\tag{259}\\ 
-K_1 &= \frac{\chi C_m L^2c_1}{M_c},
-\tag{260}\\ 
-K_2 & = \frac{\chi C_m L^2\Delta v^2c_2}{M_c w_c},
-\tag{261}\\ 
-K_3 &= \frac{\chi C_mL^2(c_3 + c_2 v_r\Delta v)}{M_cw_c}\tp
-\tag{262}
-\end{align}
+\begin{align*}
+C_m &= 1.0\, \mu\hbox{F\,cm}^{-2}, \quad g_c = g_{max} = 13.0
+\hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS\,cm}^{-2}, \\ 
+\chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} , \\ 
+\sigma_c &= 3.0 \hbox{mS\,cm}^{-1}\tp
+\end{align*}
 $$
 
 <p>
-Some of these dimensionless numbers have straightforward
-interpretations: \( \alpha \) is the ratio of the span in the two electric
-potentials; \( \beta \) is ratio of the source term with \( I_{\rm{app}} \) and the
-time-derivative term of \( v \), or the source term and the diffusion term
-in \( v \).  The rest have fixed values: \( J_1 \) and \( J_2 \) have
-well-established values from measurements, while \( \beta \),
-\( K_1 \), \( K_2 \), and \( K_3 \) contain empirically fitted constants with
-known values, combined with known scales and other known physical
-parameters.
+This gives the following values of \( t_c \) and \( L \):
+$$
+\begin{align*} t_c &= \frac{1.0 \mu\hbox{F\,cm}^{-2}}{13.0 \mu\hbox{F\,cm}^{-2}} =
+\frac{1.0}{13.0}\frac{\mu\hbox{F}}{\hbox{mS}} \approx 0.076 \hbox{ms} \\ 
+L &= \sqrt{\frac{\sigma_c}{\chi g_c}} = \sqrt{\frac{3.0
+\hbox{mS\,cm}^{-2}}{2000\hbox{cm}^{-1} \mu\hbox{F\,cm}^-2}}
+\approx 0.087 \hbox{mm} \tp
+\end{align*}
+$$
+
+These values are both very small, which is probably related to our
+choice of \( g_c = g_{\max} \). This implies that we choose the appropriate
+scaling based on the upstroke phase of the action potential, when both
+spatial and temporal variations are extremely high. This may therefore
+be a &quot;correct&quot; scaling exactly at the wavefront of the electrical
+potential, but seems less relevant elsewhere. Choosing \( g_c \) to be for
+instance the resting conductance, which is the common choice when
+scaling the cable equation, may increase \( t_c, L \) by factors up to 2500 and
+50, respectively.
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 28</b>: Joakim, can you say something about the relevance of these scales? A factor of 2500 is quite big...)</font>
+<!-- end inline comment -->
+
+<p>
+The conduction velocity is often a quantity of interest, and we could
+obtain an alternative relation between \( t_c \) and \( L \) by requiring
+\( v_{c} = L/t_c \). In human cardiac tissue \( v_c \) is known to be about
+60 cm/s, while the choices above gives
+
+$$
+\frac{L}{t_c} =  \frac{0.087\rm{mm}}{0.076\rm{ms}} \approx 144
+\hbox{cm/s}\tp $$
+
+Enforcing \( L/t_c = 60 \hbox{cm\,s}^-1 \) gives the constraint \( g_c \approx
+4.8 \hbox{mS\,cm}^{-2} \), and yields \( L \approx 0.17 \) mm and
+\( t_c=0.21 \) ms. These are still small values, but very close to the
+standard values of \( \Delta x, \Delta t \) required for accurate
+numerical solution. That is, this choice of scaling will give \( \Delta x
+\approx \Delta t \approx 1 \), instead of \( \bar t, \bar x \approx 1 \)?
+
+<p>
+
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 29</b>: That sounds a big strange, but if the focus is on a smaller scale, choosing \( L \) and \( t_c \) from this scale leads to that conclusion.)</font>
+<!-- end inline comment -->
 
 <h1 id="___sec190">Two-phase porous media flow </h1>
 
@@ -2326,34 +2330,34 @@ algebraic relations that govern the two primary unknowns \( S \) and \( P \):
 $$
 \begin{align}
 \nabla\cdot\v_t &= -(Q_n + Q_w),
-\tag{263}\\ 
+\tag{252}\\ 
 \v_t &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
 + \lambda_n\varrho_n)g\kk,
-\tag{264}\\ 
+\tag{253}\\ 
 \phi\frac{\partial S}{\partial t} + f_w'(S)\v_t\cdot\nabla S &=
 \nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\ 
 &\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
-\tag{265}\\ 
+\tag{254}\\ 
 Q_w &= \frac{q_w}{\varrho_w},
-\tag{266}\\ 
+\tag{255}\\ 
 Q_n &= \frac{q_n}{\varrho_n},
-\tag{267}\\ 
+\tag{256}\\ 
 \lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
-\tag{268}\\ 
+\tag{257}\\ 
 \lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
-\tag{269}\\ 
+\tag{258}\\ 
 \lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
-\tag{270}\\ 
+\tag{259}\\ 
 k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
-\tag{271}\\ 
+\tag{260}\\ 
 k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
-\tag{272}\\ 
+\tag{261}\\ 
 f_w(S) &= \frac{\lambda_w}{\lambda_t},
-\tag{273}\\ 
+\tag{262}\\ 
 G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
-\tag{274}\\ 
+\tag{263}\\ 
 h_w(S) &= -\lambda_n(S)f_w(S),
-\tag{275}\tp
+\tag{264}\tp
 \end{align}
 $$
 
@@ -2376,16 +2380,16 @@ relative permeabilities.
 
 <p>
 The two PDEs are of elliptic and hyperbolic/parabolic nature:
-<a href="#mjx-eqn-263">(263)</a> is elliptic since it is the divergence of a
-vector field, while <a href="#mjx-eqn-265">(265)</a> is parabolic (\( h_w\geq 0 \)
+<a href="#mjx-eqn-252">(252)</a> is elliptic since it is the divergence of a
+vector field, while <a href="#mjx-eqn-254">(254)</a> is parabolic (\( h_w\geq 0 \)
 because \( p_c'(S)\geq 0 \) and \( \lambda_n \) as well as \( f_w \) are positive
 since \( k_{rn}>0 \) and \( k_{rw}>0 \)). Very often, \( p_c' \) is small so
-<a href="#mjx-eqn-265">(265)</a> is of hyperbolic nature, and \( S \) features very
+<a href="#mjx-eqn-254">(254)</a> is of hyperbolic nature, and \( S \) features very
 steep gradients that become shocks in the limit \( p_c'\rightarrow 0 \)
-and <a href="#mjx-eqn-265">(265)</a> is purely hyperbolic.
+and <a href="#mjx-eqn-254">(254)</a> is purely hyperbolic.
 A popular solution technique is based on operator splitting:
-<a href="#mjx-eqn-263">(263)</a> is solved with respect to \( P \), given \( S \), and
-<a href="#mjx-eqn-265">(265)</a> is solved with respect to \( S \), given \( P \).
+<a href="#mjx-eqn-252">(252)</a> is solved with respect to \( P \), given \( S \), and
+<a href="#mjx-eqn-254">(254)</a> is solved with respect to \( S \), given \( P \).
 
 <p>
 The saturation \( S \) is a non-dimensional quantity, and so are \( \phi \),
@@ -2439,18 +2443,18 @@ Inserting the above scaled quantities in the governing PDEs results in
 $$
 \begin{align}
 \bar\nabla\cdot\bar\v_t &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
-\tag{276}\\ 
+\tag{265}\\ 
 \bar\v_t &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
 \frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\ 
 &\quad\quad\frac{g\lambda_c\varrho}{v_c}
 (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\tag{277}\\ 
+\tag{266}\\ 
 \phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v_t\cdot
 \bar\nabla S &=
 \frac{t_c P_c\lambda_c}{L^2}
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\ 
 &\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
-\tag{278}
+\tag{267}
 \end{align}
 $$
 
@@ -2458,7 +2462,7 @@ As usual, \( L \) is taken as the characteristic length of the spatial domain.
 Since \( v_c \) is a velocity scale, a natural time scale is the time it
 takes to transport a signal with velocity \( v_c \) through the domain:
 \( t_c = L/v_c \). The diffusion term in the equation
-<a href="#mjx-eqn-281">(281)</a> then gets
+<a href="#mjx-eqn-270">(270)</a> then gets
 a dimensionless fraction
 
 $$ \frac{L P_c\lambda_c}{v_c L^2}\tp$$
@@ -2501,17 +2505,17 @@ Introducing another dimensionless variable,
 
 $$ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},$$
 
-we can write <a href="#mjx-eqn-276">(276)</a>-<a href="#mjx-eqn-278">(278)</a> in the
+we can write <a href="#mjx-eqn-265">(265)</a>-<a href="#mjx-eqn-267">(267)</a> in the
 final dimensionless form as
 
 $$
 \begin{align}
 \bar\nabla\cdot\bar\v_t &= -\epsilon(1 + \alpha^{-1}\gamma),
-\tag{279}\\ 
+\tag{268}\\ 
 \bar\v_t &= -\bar\lambda_t\bar\nabla\bar P +
 \bar\lambda_w \bar p_c'(S)\bar\nabla S +
 \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\tag{280}\\ 
+\tag{269}\\ 
 \phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v_t\cdot
 \bar\nabla S &= -
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
@@ -2521,7 +2525,7 @@ $$
 \frac{\partial S}{\partial\bar z} +\nonumber\\ 
 &\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
 \epsilon\tp
-\tag{281}
+\tag{270}
 \end{align}
 $$
 
@@ -2535,19 +2539,19 @@ There are six remaining dimensionless numbers to be set: \( K_{wm} \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 29</b>: Boundary conditions?)</font>
+<font color="red">(<b>hpl 30</b>: Boundary conditions?)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 30</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
+<font color="red">(<b>hpl 31</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 31</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
+<font color="red">(<b>hpl 32</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
 <!-- end inline comment -->
 
 <h1 id="scale:gasdyn">Compressible gas dynamics</h1>
@@ -2562,11 +2566,11 @@ equations of gas dynamics, can be written as
 $$
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\varrho\u) &= 0,
-\tag{282}\\ 
+\tag{271}\\ 
 \frac{\partial(\varrho\u)}{\partial t} + \nabla\cdot(\varrho\u\u^T) &= -\nabla p + \varrho \f,
-\tag{283}\\ 
+\tag{272}\\ 
 \frac{\partial E}{\partial t} + \nabla\cdot(\u(E+p)) &= 0,
-\tag{284}
+\tag{273}
 \end{align}
 $$
 
@@ -2575,7 +2579,7 @@ where the total energy is given by
 $$
 \begin{equation}
 E = \varrho e + \frac{1}{2}\varrho\u\cdot\u\tp
-\tag{285}
+\tag{274}
 \end{equation}
 $$
 
@@ -2591,9 +2595,9 @@ relations:
 $$
 \begin{align}
 e &= c_v T,
-\tag{286}\\ 
+\tag{275}\\ 
 p &= \varrho RT = \frac{R}{c_v}(E-\half\varrho \u\cdot\u),
-\tag{287}
+\tag{276}
 \end{align}
 $$
 
@@ -2605,8 +2609,8 @@ where \( c_v \) is the specific heat capacity at constant volume (for dry air
 <p>
 The common way to solve these equations is to propagate \( \varrho \),
 \( \varrho\u \), and \( E \) by an explicit numerical method in time for
-<a href="#mjx-eqn-282">(282)</a>-<a href="#mjx-eqn-284">(284)</a>,
-using <a href="#mjx-eqn-287">(287)</a> for \( p \).
+<a href="#mjx-eqn-271">(271)</a>-<a href="#mjx-eqn-273">(273)</a>,
+using <a href="#mjx-eqn-276">(276)</a> for \( p \).
 
 <p>
 We introduce dimensionless independent variables,
@@ -2657,7 +2661,7 @@ the ones with dimension, apart from the \( \alpha \) coefficient.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 32</b>: Comment on software also for advanced models.)</font>
+<font color="red">(<b>hpl 33</b>: Comment on software also for advanced models.)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:gas:acoustic">The acoustic approximation and the Mach number</h2>
@@ -2676,9 +2680,9 @@ to
 $$
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\u\varrho) &=0,
-\tag{288}\\ 
+\tag{277}\\ 
 \varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u + \nabla p &=0\tp
-\tag{289}
+\tag{278}
 \end{align}
 $$
 
@@ -2701,13 +2705,13 @@ where
 $$ c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}$$
 
 is the speed of sound in the fluid in the equilibrium state.
-Equation <a href="#mjx-eqn-289">(289)</a> with eliminated pressure \( p \) reads
+Equation <a href="#mjx-eqn-278">(278)</a> with eliminated pressure \( p \) reads
 
 $$
 \begin{equation}
 \varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u +
 c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0\tp
-\tag{290}
+\tag{279}
 \end{equation}
 $$
 
@@ -2811,35 +2815,35 @@ $$
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot\bar\u &=0,
-\tag{291}\\ 
+\tag{280}\\ 
 \hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
-\tag{292}
+\tag{281}
 \end{align}
 $$
 
 <p>
 The velocity \( \u \) can be eliminated taking the time derivative of
-<a href="#mjx-eqn-291">(291)</a> and the divergence of
-<a href="#mjx-eqn-292">(292)</a>:
+<a href="#mjx-eqn-280">(280)</a> and the divergence of
+<a href="#mjx-eqn-281">(281)</a>:
 
 $$
 \begin{equation}
 \frac{\partial^2\bar\varrho}{\partial\bar t^2} +
 \bar\nabla^2\bar\varrho = 0,
-\tag{293}
+\tag{282}
 \end{equation}
 $$
 
 which is nothing but a standard, linear wave equation. Similarly,
 we can eliminate \( \varrho \) by taking the divergence of
-<a href="#mjx-eqn-291">(291)</a> and the time derivative of
-<a href="#mjx-eqn-292">(292)</a>:
+<a href="#mjx-eqn-280">(280)</a> and the time derivative of
+<a href="#mjx-eqn-281">(281)</a>:
 
 $$
 \begin{equation}
 \frac{\partial^2\bar\u}{\partial\bar t^2} +
 \bar\nabla^2\bar\u = 0,
-\tag{294}
+\tag{283}
 \end{equation}
 $$
 
@@ -2847,7 +2851,7 @@ which shows that each component of the velocity also propagates according
 to the wave equation with unit velocity.
 We also observe that there are no physical parameters in the scaled
 wave equations. The M parameter can be eliminated from
-<a href="#mjx-eqn-291">(291)</a>-<a href="#mjx-eqn-292">(292)</a>
+<a href="#mjx-eqn-280">(280)</a>-<a href="#mjx-eqn-281">(281)</a>
 by introducing a new unknown \( \bar\v = M\bar\u \).
 
 <h2 id="___sec198">General isentropic flow </h2>
@@ -2860,8 +2864,8 @@ significant changes in \( \varrho \) and \( p \). The relevant time scale is
 not that of the waves, but of the overall flow: \( t_c=L/U \).
 
 <p>
-The governing equations are <a href="#mjx-eqn-288">(288)</a>
-and <a href="#mjx-eqn-290">(290)</a>. We scale \( \varrho \)
+The governing equations are <a href="#mjx-eqn-277">(277)</a>
+and <a href="#mjx-eqn-279">(279)</a>. We scale \( \varrho \)
 directly by its magnitude \( \varrho_c \): \( \bar\varrho = \varrho/\varrho_c \).
 Then \( F'(\varrho)=c_0^2\bar\varrho^{\gamma-1} \).
 All other scalings remain as in the section <a href="#scale:gas:acoustic">The acoustic approximation and the Mach number</a>.
@@ -2872,14 +2876,14 @@ $$
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
-\tag{295}\\ 
+\tag{284}\\ 
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \bar\varrho\bar\u\cdot\bar\nabla\bar\u
 + \hbox{M}^{-2}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
-\tag{296}
+\tag{285}
 \end{align}
 $$
 
@@ -2952,10 +2956,10 @@ $$
 \begin{align}
 (\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -\alpha\nabla p -
 \varrho\f,
-\tag{297}\\ 
+\tag{286}\\ 
 S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p +
 \alpha \frac{\partial}{\partial t}\nabla\cdot\u,
-\tag{298}
+\tag{287}
 \end{align}
 $$
 

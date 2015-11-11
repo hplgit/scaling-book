@@ -18,6 +18,7 @@ HIV
 Hinsen
 IDL
 Informatics
+Joakim
 KPP
 Karman
 Kolmogorov
@@ -54,6 +55,7 @@ ScientificPython
 Simula
 Sneyd
 Strouhal
+Sundnes
 SymPy
 SymPy's
 TOC

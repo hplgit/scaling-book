@@ -44,6 +44,7 @@ system doconce split_html $html.html --nav_button=text
 # (lots of mathjax rendering failures, especially with \bar\boldsymbol{},
 # so we drop sphinx)
 theme=cbc
+theme=classic
 #system doconce format sphinx $name $opt --sphinx_keep_splits --without_solutions --without_answers
 #system doconce split_rst $name
 #system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
