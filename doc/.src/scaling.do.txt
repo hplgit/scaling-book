@@ -4711,6 +4711,42 @@ cubic spring term $k_1U_0^3$ and the linear spring term $k_0U_0$
 at maximum displacement.
 !esol
 
+===== Problem: Large vertical motion in the gravity field =====
+label{scale:vib:exer:rocket}
+file=rocket
+
+!bt
+\begin{equation}
+h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T]\tp\]
+\end{equation}
+!et
+
+!bt
+\[ \bar h = \frac{h}{h_c},\quad \bar t = \frac{t}{t_c}\tp\]
+!et
+
+!bt
+\[
+\frac{d^2\bar h}{\d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
+= -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+\frac{R}{h_c}\right)^2}
+\]
+!et
+
+!bt
+\[ \frac{d\bar h}{d\bar t}(0) = \frac{t_cV}{h_c}\tp\]
+!et
+
+!bsubex
+Assume we study the motion of a rocket. In this case
+$h$ is of the same size as $R$ so $h_c=R$ is a reasonable choice.
+!esubex
+
+!bsubex
+Assume that $h$ is small compared to $R$. In the limit $h/R\rightarrow 0$,
+the governing equation simplifies to the well-known motion in a
+constant gravity field: $h''=-g$.
+!esubex
+
 !split
 ========= Basic PDE models =========
 
@@ -4897,15 +4933,15 @@ biased with respect to the practical benefit of reusing old solutions.
 Does it hurt to document the idea? Need views on this.]
 
 How do we implement (ref{scale:wave:pde1:d})-(ref{scale:wave:pde1:bc:L:d})?
-As for the simpler mathematical models, I suggest to implement the model
+As for the simpler mathematical models, we suggest to implement the model
 with dimensions and observe how to set parameters to obtain the scaled
 model. In the present case, one must choose $L=1$, $c=1$, and scale $I$ by its
 maximum value. That's all!
 
 Several implementations of 1D wave equation models with different
-degree of mathematical and software complexity appear in
-the directory "`wave/wave1D`": "${src_wave}/wave1D". The simplest
-version is "`wave1D_u0.py`": "${src_wave}/wave1D/wave1D_u0.py"
+degree of mathematical and software complexity come along with this
+book. The simplest
+version is "`wave1D_u0.py`": "${src_scaling}/wave1D_u0.py"
 that implements (ref{scale:wave:pde1}) and
 (ref{scale:wave:pde1:ic:u}-(ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
@@ -9109,14 +9145,14 @@ label{scale:gas:acoustic:u}
 
 === Elimination of the pressure ===
 
-Typically,
+A common equation of state is
 
 !bt
 \[ F(\varrho) = p_0\left(\frac{\varrho}{\varrho_0}\right)^\gamma,\]
 !et
 where $\gamma = 5/3$ for air. The first step is to eliminate $p$ in
 favor of $\varrho$ so we get a system for $\varrho$ and $\u$.
-To this end,
+To this end, we must calculate $\nabla p$:
 
 !bt
 \[ \nabla p = F'(\varrho)\nabla\varrho,\quad
@@ -9149,11 +9185,11 @@ Space and time are scaled as usual as
 The scaled dependent variables are
 
 !bt
-\[ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \u/U\tp\]
+\[ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \frac{\u}{U}\tp\]
 !et
 Then $F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}$.
 
-Inserting the dimensionless variables leads to
+Inserting the dimensionless variables in the two governing PDEs leads to
 
 !bt
 \begin{align*}
@@ -9197,6 +9233,8 @@ idx{Mach number}
 ===== The acoustic approximation for sound waves =====
 label{scale:gas:acoustic}
 
+=== Wave nature of isentropic flow with small perturbations ===
+
 A model for sound waves can be based on (ref{scale:gas:acoustic:rho})
 and (ref{scale:gas:acoustic:u2}), but in this case
 there are small pressure, velocity, and
@@ -9204,7 +9242,7 @@ density *perturbations* from a ground state at rest
 where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0)$.
 Introducing the perturbations $\hat\varrho = \varrho - \varrho_0$ and $\hat\u$,
 (ref{scale:gas:acoustic:rho})
-and (ref{scale:gas:acoustic:u2})
+and (ref{scale:gas:acoustic:u2}) take the form
 
 !bt
 \begin{align*}
@@ -9234,7 +9272,7 @@ for the density perturbations:
 \[ \frac{\partial^2\hat\varrho}{\partial t^2} = c_0^2\nabla^2\hat\varrho\tp\]
 !et
 Similarly, $\hat\varrho$ can be eliminated and one gets a wave equation for
-$\hat\u$ with wave velocity $c_0$.
+$\hat\u$, also with wave velocity $c_0$.
 This means that the sound perturbations travel with velocity $c_0$.
 
 
@@ -9257,9 +9295,10 @@ Note that the dimensionless $\alpha$ is expected to be a very small number
 since $\varrho_c\ll \varrho_0$.
 The velocity, space, and time are scaled as in the previous
 section.
-Note that $\varrho_0$ and $p_0$ are known values, but the scales
+Also note that $\varrho_0$ and $p_0$ are known values, but the scales
 $\varrho_c$ and $U$ are not known. Usually these
-can be estimated from perturbations applied at the boundary.
+can be estimated from perturbations (i.e., sound generation)
+applied at the boundary.
 
 Inserting the scaled variables in (ref{scale:gas:acoustic:rho})
 and (ref{scale:gas:acoustic:u2}) results in
@@ -9329,8 +9368,8 @@ The velocity $\u$ can be eliminated taking the time derivative of
 
 !bt
 \begin{equation}
-\frac{\partial^2\bar\varrho}{\partial\bar t^2} +
-\bar\nabla^2\bar\varrho = 0,
+\frac{\partial^2\bar\varrho}{\partial\bar t^2} =
+\bar\nabla^2\bar\varrho,
 \end{equation}
 !et
 which is nothing but a standard dimensionless wave equation with
@@ -9341,8 +9380,8 @@ we can eliminate $\varrho$ by taking the divergence of
 
 !bt
 \begin{equation}
-\frac{\partial^2\bar\u}{\partial\bar t^2} +
-\bar\nabla^2\bar\u = 0\tp
+\frac{\partial^2\bar\u}{\partial\bar t^2} =
+\bar\nabla^2\bar\u\tp
 \end{equation}
 !et
 We also observe that there are no physical parameters in the scaled

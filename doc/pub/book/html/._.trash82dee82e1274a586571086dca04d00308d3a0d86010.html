@@ -497,11 +497,15 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Basic scaling for small wave perturbations',
+              ('Wave nature of isentropic flow with small perturbations',
                3,
                None,
                '___sec196'),
-              ('Exercises', 1, None, '___sec197'),
+              ('Basic scaling for small wave perturbations',
+               3,
+               None,
+               '___sec197'),
+              ('Exercises', 1, None, '___sec198'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -514,7 +518,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec201')]}
+              ('References', 1, None, '___sec202')]}
 end of tocinfo -->
 
 <body>
@@ -772,12 +776,13 @@ $$
      <!-- navigation toc: --> <li><a href="#___sec193" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
      <!-- navigation toc: --> <li><a href="#___sec194" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
      <!-- navigation toc: --> <li><a href="#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Comparison of vibration models for elastic structures</a></li>
      <!-- navigation toc: --> <li><a href="#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Suggestions...</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#___sec201" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#___sec202" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -2884,7 +2889,7 @@ $$ F(\varrho) = p_0\left(\frac{\varrho}{\varrho_0}\right)^\gamma,$$
 
 where \( \gamma = 5/3 \) for air. The first step is to eliminate \( p \) in
 favor of \( \varrho \) so we get a system for \( \varrho \) and \( \u \).
-To this end,
+To this end, we must calculate \( \nabla p \):
 
 $$ \nabla p = F'(\varrho)\nabla\varrho,\quad
 F'(\varrho)= c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1},$$
@@ -2914,12 +2919,12 @@ $$ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
 
 The scaled dependent variables are
 
-$$ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \u/U\tp$$
+$$ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \frac{\u}{U}\tp$$
 
 Then \( F'(\varrho)=c_0^2\bar\varrho^{\gamma-1} \).
 
 <p>
-Inserting the dimensionless variables leads to
+Inserting the dimensionless variables in the two governing PDEs leads to
 
 $$
 \begin{align*}
@@ -2962,6 +2967,8 @@ thereby the Mach number.
 
 <h2 id="scale:gas:acoustic">The acoustic approximation for sound waves</h2>
 
+<h3 id="___sec196">Wave nature of isentropic flow with small perturbations </h3>
+
 <p>
 A model for sound waves can be based on <a href="#mjx-eqn-4.86">(4.86)</a>
 and <a href="#mjx-eqn-4.88">(4.88)</a>, but in this case
@@ -2970,7 +2977,7 @@ density <em>perturbations</em> from a ground state at rest
 where \( \u=0 \), \( \varrho=\varrho_0 \), and \( p=p_0 = F(\varrho_0) \).
 Introducing the perturbations \( \hat\varrho = \varrho - \varrho_0 \) and \( \hat\u \),
 <a href="#mjx-eqn-4.86">(4.86)</a>
-and <a href="#mjx-eqn-4.88">(4.88)</a>
+and <a href="#mjx-eqn-4.88">(4.88)</a> take the form
 
 $$
 \begin{align*}
@@ -3001,10 +3008,10 @@ for the density perturbations:
 $$ \frac{\partial^2\hat\varrho}{\partial t^2} = c_0^2\nabla^2\hat\varrho\tp$$
 
 Similarly, \( \hat\varrho \) can be eliminated and one gets a wave equation for
-\( \hat\u \) with wave velocity \( c_0 \).
+\( \hat\u \), also with wave velocity \( c_0 \).
 This means that the sound perturbations travel with velocity \( c_0 \).
 
-<h3 id="___sec196">Basic scaling for small wave perturbations </h3>
+<h3 id="___sec197">Basic scaling for small wave perturbations </h3>
 
 <p>
 Let \( \varrho_c \) and
@@ -3022,9 +3029,10 @@ Note that the dimensionless \( \alpha \) is expected to be a very small number
 since \( \varrho_c\ll \varrho_0 \).
 The velocity, space, and time are scaled as in the previous
 section.
-Note that \( \varrho_0 \) and \( p_0 \) are known values, but the scales
+Also note that \( \varrho_0 \) and \( p_0 \) are known values, but the scales
 \( \varrho_c \) and \( U \) are not known. Usually these
-can be estimated from perturbations applied at the boundary.
+can be estimated from perturbations (i.e., sound generation)
+applied at the boundary.
 
 <p>
 Inserting the scaled variables in <a href="#mjx-eqn-4.86">(4.86)</a>
@@ -3097,8 +3105,8 @@ The velocity \( \u \) can be eliminated taking the time derivative of
 
 $$
 \begin{equation}
-\frac{\partial^2\bar\varrho}{\partial\bar t^2} +
-\bar\nabla^2\bar\varrho = 0,
+\frac{\partial^2\bar\varrho}{\partial\bar t^2} =
+\bar\nabla^2\bar\varrho,
 \tag{4.93}
 \end{equation}
 $$
@@ -3111,8 +3119,8 @@ we can eliminate \( \varrho \) by taking the divergence of
 
 $$
 \begin{equation}
-\frac{\partial^2\bar\u}{\partial\bar t^2} +
-\bar\nabla^2\bar\u = 0\tp
+\frac{\partial^2\bar\u}{\partial\bar t^2} =
+\bar\nabla^2\bar\u\tp
 \tag{4.94}
 \end{equation}
 $$
@@ -3122,7 +3130,7 @@ wave equations. The M parameter can be eliminated from
 <a href="#mjx-eqn-4.91">(4.91)</a>-<a href="#mjx-eqn-4.92">(4.92)</a> as well
 by introducing a new unknown \( \bar\v = M\bar\u \).
 
-<h1 id="___sec197">Exercises </h1>
+<h1 id="___sec198">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
