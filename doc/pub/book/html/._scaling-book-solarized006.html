@@ -518,19 +518,17 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec196'),
+              ('Exercises', 1, None, '___sec197'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -543,7 +541,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec201')]}
 end of tocinfo -->
 
 <body>
@@ -1128,7 +1126,7 @@ physical effects:
 
 <ul>
  <li> \( \alpha \): ratio of the initial displacement and
-   the typical displacement \( u_c \),</li>
+   the characteristic response \( u_c \),</li>
  <li> \( \beta \): ratio of the initial velocity
    and the typical velocity measure \( u_c/t_c \),</li>
  <li> \( \gamma \): ratio of
@@ -1625,7 +1623,7 @@ $$ u_c = \frac{A}{b\psi} = \frac{A}{b\omega}\tp$$
 
 (It is wise during computations like this to stop and check the
 dimensions: \( A \) must be \( [\hbox{MLT}^{-2}] \) from the original
-equation (\( F(t) \) must have same dimension as \( mu'' \)),
+equation (\( F(t) \) must have the same dimension as \( mu'' \)),
 \( bu' \) also has dimension \( [\hbox{MLT}^{-2}] \), implying that
 \( b \) has dimension \( [\hbox{MT}^{-1}] \). \( A/b \) then has dimension
 \( LT^{-1} \), and \( A/(b\psi) \) gets dimension \( [L] \), which matches
@@ -1710,7 +1708,7 @@ an appropriate call for solving <a href="#mjx-eqn-73">(73)</a> is
 	      dt=2*pi/n, T=2*pi*P)
 </code></pre>
 <!-- end verbatim block -->
-where <code>n</code> is the number intervals per period and <code>P</code> is the number
+where <code>n</code> is the number of intervals per period and <code>P</code> is the number
 of periods to be simulated.
 We way wrap this call in a <code>solver_scaled</code> function and wrap it furthermore
 with <code>joblib</code> to avoid repeated calls,
@@ -2007,7 +2005,7 @@ Filename: <code>decay_cooling2</code>.
 <p>
 Implement the scaled model <a href="._scaling-book-solarized005.html#mjx-eqn-30">(30)</a>
 and produce a plot with curves corresponding to various values of
-\( \alpha \) and \( p \) to summarize how \( \bar u(\bar t) \) look like.
+\( \alpha \) and \( p \) to summarize how \( \bar u(\bar t) \) looks like.
 
 <p>
 <!-- --- begin hint in exercise --- -->

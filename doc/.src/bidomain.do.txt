@@ -21,8 +21,8 @@ $v$ is the transmembrane potential (difference between the extracellular
 and intracellular potential),
 $C_m$ is the capacitance of the cell membrane,
 $\chi$ is a membrane area to cell volume ratio,
-$\sigma_i$ is a electric conductivity tensor for the intracellular space, and
-$\sigma_e$ is a electric conductivity tensor for the extracellular space.
+$\sigma_i$ is an electric conductivity tensor for the intracellular space, and
+$\sigma_e$ is an electric conductivity tensor for the extracellular space.
 
 The boundary conditions are of Neumann type, and we drop these from the discussion.
 The initial condition is typically $u_e=0, v = v_r$, where

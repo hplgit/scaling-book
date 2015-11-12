@@ -518,19 +518,17 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec196'),
+              ('Exercises', 1, None, '___sec197'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -543,7 +541,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec201')]}
 end of tocinfo -->
 
 <body>
@@ -632,11 +630,15 @@ as when trying to add one banana, one apple, and one orange).
 <h2 id="___sec3">Base units and dimensions </h2>
 
 <p>
-There are seven fundamental <em>base units</em>: length, mass, time, electric
-current, thermodynamic temperature, amount of substance, and luminous
-intensity.  The base units for length, mass, and time, which we are
-mostly occupied with in this book, are the SI units
-meter (m), kilogram (kg), and seconds (s), respectively.
+There are seven fundamental (SI) <em>base units</em> and corresponding
+physical quantities:
+meter (m) for length,
+kilogram (kg) for mass,
+second (s) for time,
+kelvin (K) for temperature,
+ampere (A) for electric current,
+candela (cd) for luminous intensity,
+mole (mol) for the amount of substance.
 
 <p>
 The dimension of length is written as [L], the dimension of mass is
@@ -1392,7 +1394,7 @@ shows that conversion to the right dimension has taken place.
 <p>
 For the fun of it, we can easily generate a graphical user interface
 via Parampool. We wrap the <code>distance_unit</code> function in a function that
-returns the result is some nice-looking HTML code:
+returns the result in some nice-looking HTML code:
 
 <p>
 <!-- begin verbatim block  pycod-->

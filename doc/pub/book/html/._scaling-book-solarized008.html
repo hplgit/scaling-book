@@ -518,19 +518,17 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec196'),
+              ('Exercises', 1, None, '___sec197'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -543,7 +541,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec201')]}
 end of tocinfo -->
 
 <body>
@@ -612,7 +610,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} =
 \dfc\frac{\partial^2 u}{\partial x^2}, \quad  x\in (0,L),\ t\in (0,T],
-\tag{146}
+\tag{141}
 \end{equation}
 $$
 
@@ -624,7 +622,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} =
 \nabla\cdot\left(\dfc \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]\tp
-\tag{147}
+\tag{142}
 \end{equation}
 $$
 
@@ -635,20 +633,20 @@ initial-boundary value problem.
 <h2 id="sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</h2>
 
 <p>
-To make <a href="#mjx-eqn-146">(146)</a> dimensionless,
+To make <a href="#mjx-eqn-141">(141)</a> dimensionless,
 we introduce as usual dimensionless dependent and independent variables:
 
 $$ \bar x = \frac{x}{x_c},
 \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}\tp$$
 
 Inserting the dimensionless quantities in the one-dimensional
-PDE <a href="#mjx-eqn-146">(146)</a> results in
+PDE <a href="#mjx-eqn-141">(141)</a> results in
 
 $$
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{t_c\dfc}{L^2}
 \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T = T/t_c]\tp
-\tag{148}
+\tag{143}
 $$
 
 Arguing as for the wave equation that the scaling should result in
@@ -663,7 +661,7 @@ implies \( t_c\dfc/L^2=1 \) and therefore \( t_c = L^2/\dfc \).
 Insight through an analytical solution can alternatively
 help with choosing \( t_c \).
 One can show that \( u=Ae^{-pt}\sin (kx) \) is a solution of
-<a href="#mjx-eqn-146">(146)</a> if \( p=\dfc k^2 \), for any \( k \).
+<a href="#mjx-eqn-141">(141)</a> if \( p=\dfc k^2 \), for any \( k \).
 This is the typical solution arising from separation of variables
 and reflects the dynamics of the space and time in the PDE.
 Exponential decay in
@@ -711,7 +709,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\tag{149}
+\tag{144}
 \end{equation}
 $$
 
@@ -719,13 +717,13 @@ with initial condition
 
 $$ \bar u(\bar x, 0) = \bar I(\bar x) = \frac{I(x_c\bar x)}{\max_x |I(x)|}\tp$$
 
-Notice that <a href="#mjx-eqn-149">(149)</a> is without physical parameters,
+Notice that <a href="#mjx-eqn-144">(144)</a> is without physical parameters,
 but there may be parameters in \( I(x) \).
 
 <h2 id="___sec133">Generalized diffusion PDE </h2>
 
 <p>
-Turning the attention to <a href="#mjx-eqn-147">(147)</a>, we introduce
+Turning the attention to <a href="#mjx-eqn-142">(142)</a>, we introduce
 the dimensionless diffusion coefficient
 
 $$ \bar\dfc(\bar x,\bar y,\bar z) =
@@ -758,7 +756,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
-\tag{150}
+\tag{145}
 \end{equation}
 $$
 
@@ -779,7 +777,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + f,
-\tag{151}
+\tag{146}
 \end{equation}
 $$
 
@@ -834,16 +832,16 @@ $$
 \frac{\partial u}{\partial t} &=
 \dfc \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
-\tag{152}\\ 
+\tag{147}\\ 
 u(x,0) &= U_0,
 \quad & x\in [0,L],
-\tag{153}\\ 
+\tag{148}\\ 
 u(0, t) & = U_1,
 \quad  & t\in (0, T],
-\tag{154}\\ 
+\tag{149}\\ 
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
-\tag{155}
+\tag{150}
 \end{align}
 $$
 
@@ -872,16 +870,16 @@ $$
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{\partial^2 \bar u}{\partial \bar x^2},
 \quad &  \bar x\in (0,1),\ \bar t\in (0, \bar T],
-\tag{156}\\ 
+\tag{151}\\ 
 \bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\tag{157}\\ 
+\tag{152}\\ 
 \bar u(0, \bar t) & = 1,
 \quad  & \bar t\in (0, \bar T],
-\tag{158}\\ 
+\tag{153}\\ 
 \frac{\partial}{\partial \bar x} u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
-\tag{159}
+\tag{154}
 \end{align}
 $$
 
@@ -915,16 +913,16 @@ $$
 \frac{\partial u}{\partial t} &=
 \dfc \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
-\tag{160}\\ 
+\tag{155}\\ 
 u(x,0) &= U_0,
 \quad & x\in [0,L],
-\tag{161}\\ 
+\tag{156}\\ 
 u(0, t) & = U_0 + A\sin(\omega t),
 \quad  & t\in (0, T],
-\tag{162}\\ 
+\tag{157}\\ 
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
-\tag{163}
+\tag{158}
 \end{align}
 $$
 
@@ -932,7 +930,7 @@ One important physical application is temperature oscillations in the
 ground, either day and night variations
 at a short temporal and spatial scale, or seasonal variations in the
 Earth's crust.
-An important modeling assumption is <a href="#mjx-eqn-163">(163)</a>,
+An important modeling assumption is <a href="#mjx-eqn-158">(158)</a>,
 which means that the boundary \( x=L \) is placed sufficiently far from \( x=0 \)
 such that the solution is much damped and basically constant so
 \( u_x=0 \) is a reasonable condition.
@@ -964,7 +962,7 @@ the initial condition \( u(x,0)=U_0 \) is forgotten) can be shown to be
 $$
 \begin{equation}
 u(x,t) = U_0 - Ae^{-bx}\sin (bx - \omega t),\quad b =\sqrt{\frac{\omega}{2\dfc}}\tp
-\tag{164}
+\tag{159}
 \end{equation}
 $$
 
@@ -1015,7 +1013,7 @@ $$
 2, & t_c = 2/\omega,\\ 
 2\beta^2, & t_c = L^2/\dfc,\ x_c=L
 \end{array}\right.
-\tag{165}
+\tag{160}
 \end{equation}
 $$
 
@@ -1026,7 +1024,7 @@ are no parameters in the dimensionless solution:
 $$
 \begin{equation}
 \bar u(\bar x, \bar t) = e^{-\bar x}\sin(\bar x - \bar t)\tp
-\tag{166}
+\tag{161}
 \end{equation}
 $$
 
@@ -1034,13 +1032,13 @@ Therefore, \( x_c=1/b \) and \( t_c=1/\omega \) (or \( t_c=2/\omega \), but the
 factor 2 is of no importance) are the most appropriate scales.
 
 <p>
-To further argue why <a href="#mjx-eqn-166">(166)</a> demonstrates
+To further argue why <a href="#mjx-eqn-161">(161)</a> demonstrates
 that these scales are
 preferred, think of
 \( \omega \) as large. Then the wave is damped over a short
 distance and there will be a thin boundary layer of temperature
 oscillations near \( x=0 \) and little changes in \( u \) in the rest of
-the domain. The scaling <a href="#mjx-eqn-166">(166)</a> resolves
+the domain. The scaling <a href="#mjx-eqn-161">(161)</a> resolves
 this problem by using \( 1/b \sim \omega^{-1/2} \) as length scale,
 because then the boundary layer thickness is independent of
 \( \omega \). The length of the domain can be chosen as, e.g., \( 4/b \)
@@ -1066,16 +1064,16 @@ $$
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{1}{2}\frac{\partial^2 u}{\partial x^2},
 \quad & \bar x\in (0,4/b),\ \bar t\in (0,\bar T],
-\tag{167}\\ 
+\tag{162}\\ 
 \bar u(\bar x,0) &= 0,
 \quad &\bar x\in [0,1]
-\tag{168}\\ 
+\tag{163}\\ 
 \bar u(0,\bar t) & = \sin(\bar t),
 \quad  &\bar t\in (0,\bar T],
-\tag{169}\\ 
+\tag{164}\\ 
 \frac{\partial}{\partial\bar x}\bar u(1,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
-\tag{170}
+\tag{165}
 \end{align}
 $$
 
@@ -1085,7 +1083,7 @@ $$ \frac{t_c\dfc}{1/b^2} = \frac{b^2\dfc}{\omega}
 = \frac{1}{2}\tp$$
 
 We may, of course, choose \( t_c=2/\omega \) and get rid of the \( \half \) factor,
-if desired, but then it turns up in <a href="#mjx-eqn-169">(169)</a> instead,
+if desired, but then it turns up in <a href="#mjx-eqn-164">(164)</a> instead,
 as \( \sin (2\bar t) \).
 
 <h1 id="sec:scale:diffu:Fisher">Reaction-diffusion equations</h1>
@@ -1102,7 +1100,7 @@ $$
 \frac{\partial u}{\partial t} =
 \dfc\frac{\partial^2 u}{\partial x^2} + \varrho u(1-u/M)
 \tp
-\tag{171}
+\tag{166}
 \end{equation}
 $$
 
@@ -1145,7 +1143,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u)\tp
-\tag{172}
+\tag{167}
 \end{equation}
 $$
 
@@ -1175,7 +1173,7 @@ $$
 \frac{\partial \bar u}{\partial \bar t} =
 \beta
 \frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u),
-\tag{173}
+\tag{168}
 \end{equation}
 $$
 
@@ -1198,7 +1196,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{\partial^2 \bar u}{\partial x^2} + \beta^{-1}\bar u (1 - \bar u),
-\tag{174}
+\tag{169}
 \end{equation}
 $$
 
@@ -1216,7 +1214,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} = \dfc\frac{\partial^2 u}{\partial x^2} + f(u)
 \tp
-\tag{175}
+\tag{170}
 \end{equation}
 $$
 
@@ -1243,7 +1241,7 @@ $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
 \frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u)\tp
-\tag{176}
+\tag{171}
 \end{equation}
 $$
 
@@ -1265,7 +1263,7 @@ $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
 \beta\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u),
-\tag{177}
+\tag{172}
 \end{equation}
 $$
 
@@ -1282,7 +1280,7 @@ $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
 \frac{\partial^2\bar u}{\partial \bar x^2} + \beta^{-1}\bar f(u_c\bar u)\tp
-\tag{178}
+\tag{173}
 \end{equation}
 $$
 

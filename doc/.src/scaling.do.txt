@@ -34,12 +34,16 @@ idx{length}
 idx{mass}
 idx{time}
 
-There are seven fundamental *base units*: length, mass, time, electric
-current, thermodynamic temperature, amount of substance, and luminous
-intensity.  The base units for length, mass, and time, which we are
-mostly occupied with in this book, are the SI units
-meter (m), kilogram (kg), and seconds (s), respectively.
 
+There are seven fundamental (SI) *base units* and corresponding
+physical quantities:
+meter (m) for length,
+kilogram (kg) for mass,
+second (s) for time,
+kelvin (K) for temperature,
+ampere (A) for electric current,
+candela (cd) for luminous intensity,
+mole (mol) for the amount of substance.
 
 The dimension of length is written as [L], the dimension of mass is
 [M], the dimension of time is [T], and the dimension of temperature is
@@ -674,7 +678,7 @@ idx{graphical web interface}
 
 For the fun of it, we can easily generate a graphical user interface
 via Parampool. We wrap the `distance_unit` function in a function that
-returns the result is some nice-looking HTML code:
+returns the result in some nice-looking HTML code:
 
 @@@CODE src-scaling/distance.py fromto: def distance_unit2@def distance_table
 In addition, we must make a file `generate_distance_GUI.py` with the
@@ -1080,7 +1084,7 @@ solution and store it in a file.
 
 A very plain solution to the problem is found in the file
 "`decay_scaled_v1.py`": "${src_scaling}/decay_scaled_v1.py".
-The `np.savetxt` function saves a two-dimensional arrays (``table'') to
+The `np.savetxt` function saves a two-dimensional array (``table'') to
 a text file, and the `np.loadtxt` function can load the data back
 into the program. A better solution to this problem is obtained
 by using the `joblib` package as described next.
@@ -1396,7 +1400,7 @@ we can use
 u(t) = \frac{b}{a}\bar u(at),
 \end{equation}
 !et
-to scale us back to the original
+to scale back to the original
 problem again.
 We observe that (ref{scale:decay:model:g:dimless}) can utilize a solver
 for (ref{scale:decay:model:g}) by setting $a=1$, $b=1$, and $I=\beta$.
@@ -1778,7 +1782,8 @@ time, and the oscillations get smaller.
 
 === Discussion of the time scale ===
 
-Looking at the analytical insight we have, $T(t)$ has two characteristic
+Looking at the analytical insight we have obtained, we
+observe that $T(t)$ has two characteristic
 terms in time: $e^{-kt}$ and $\sin(\omega t)$. The former points to a time
 scale $t_c=1/k$, while the latter to $t_c=1/\omega$.
 Which one should be chosen? Bringing the temperature from $T_0$ to
@@ -2980,7 +2985,7 @@ These dimensionless variables have interpretations as ratios of
 physical effects:
 
  * $\alpha$: ratio of the initial displacement and
-   the typical displacement $u_c$,
+   the characteristic response $u_c$,
  * $\beta$: ratio of the initial velocity
    and the typical velocity measure $u_c/t_c$,
  * $\gamma$: ratio of
@@ -3435,7 +3440,7 @@ This motivates the choice
 !et
 (It is wise during computations like this to stop and check the
 dimensions: $A$ must be $[\hbox{MLT}^{-2}]$ from the original
-equation ($F(t)$ must have same dimension as $mu''$),
+equation ($F(t)$ must have the same dimension as $mu''$),
 $bu'$ also has dimension $[\hbox{MLT}^{-2}]$, implying that
 $b$ has dimension $[\hbox{MT}^{-1}]$. $A/b$ then has dimension
 $LT^{-1}$, and $A/(b\psi)$ gets dimension $[L]$, which matches
@@ -3508,7 +3513,7 @@ u, t = solver(I=alpha, V=beta, m=1, b=1.0/Q,
               s=lambda u: u, F=lambda t: gamma*cos(delta*t),
 	      dt=2*pi/n, T=2*pi*P)
 !ec
-where `n` is the number intervals per period and `P` is the number
+where `n` is the number of intervals per period and `P` is the number
 of periods to be simulated.
 We way wrap this call in a `solver_scaled` function and wrap it furthermore
 with `joblib` to avoid repeated calls,
@@ -3880,7 +3885,7 @@ file=growth
 
 Implement the scaled model (ref{sec:scale:decay:nonlinear:model1:scaled})
 and produce a plot with curves corresponding to various values of
-$\alpha$ and $p$ to summarize how $\bar u(\bar t)$ look like.
+$\alpha$ and $p$ to summarize how $\bar u(\bar t)$ looks like.
 
 !bhint
 A centered Crank-Nicolson-style
@@ -4826,9 +4831,8 @@ which tells that the initial condition splits in two, half of it moves
 to the left and half to the right.
 This means in particular that we can choose $u_c=\max_x |I(x)|$
 and get $|\bar u|\leq 1$, which is a goal. It must be added that
-boundary conditions may result in reflected waves and a more
-complicated solution that indicated above with the two left- and
-right-going parts of the initial condition.
+boundary conditions may result in reflected waves, and the solution is
+then more complicated than indicated in the formula above.
 
 Regarding the time scale, we may look at the two terms in the scaled
 PDE and argue that if $|u|$ and its derivatives are to be of order unity,
@@ -5158,18 +5162,23 @@ The dimensionless parameters have the following interpretations:
 Again, these dimensionless parameters tell a lot about the interplay of
 the physical effects in the problem. And only some ratios count!
 
-We can simulate two special cases: $\alpha=10$ (large) where the
-incoming wave is small and the solution is dominated by the two waves
-arising from $I(x)$, and $\alpha=0.1$ (small) where the incoming waves
-dominate and the has the initial condition as a small perturbation of
-the wave shape. We may choose a peak-shaped initial condition: $\beta = 10$,
+We can simulate two special cases:
+
+ o $\alpha=10$ (large) where the
+   incoming wave is small and the solution is dominated by the two waves
+   arising from $I(x)$,
+ o $\alpha=0.1$ (small) where the incoming waves
+   dominate and the solution has the initial condition just
+   as a small perturbation of the wave shape.
+
+We may choose a peak-shaped initial condition: $\beta = 10$,
 and also a relatively short incoming wave compared to the domain size:
 $\gamma = 6\pi$ (i.e., wave length of incoming wave is $L/6$).
 A function `simulate_Gaussian_and_incoming_wave` in
 the file "`session.py`": "${src_scaling}/session.py"
 applies the general unscaled
 solver in "`wave1D_dn.py`": "${src_scaling}/wave1D_dn.py"
-for solving the wave equation with constant $c$
+for solving the wave equation with constant $c$,
 and any time-dependent function or $\partial u/\partial x=0$ at the
 end points. This solver is trivially adapted to the present case.
 #@@@CODE src-scaling/session.py fromto: def simulate_Gaussian_and@import odespy
@@ -5374,26 +5383,21 @@ Inserting dependent and independent variables expressed by their
 non-dimensional counterparts yields
 
 !bt
-\begin{align}
+\begin{align*}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
 + \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
-\quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-label{scale:wave:pde3:d}\\
+\quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],\\
 \bar u(\bar x,0) &= \frac{I(x)}{u_c},
-\quad &\bar x\in [0,1],
-label{scale:wave:pde3:ic:u:d}\\
+\quad &\bar x\in [0,1],\\
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
-\quad & \bar x\in [0,1],
-label{scale:wave:pde3:ic:ut:d}\\
+\quad & \bar x\in [0,1],\\
 \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t) & = 0,
-\quad  &\bar t\in (0,\bar T],
-label{scale:wave:pde3:bc:0:d}\\
+\quad  &\bar t\in (0,\bar T],\\
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-label{scale:wave:pde3:bc:L:d}
-\end{align}
+\end{align*}
 !et
 with $\bar T = Tc/L$.
 
@@ -6520,7 +6524,7 @@ very large and can only be balanced by two terms that are supposed to
 be unity of size.  The time-derivative and/or the convection term must
 be much larger than unity, but that means we use suboptimal scales,
 since right scales imply that $\partial\bar u/\partial\bar t$ and
-$\bar v\cdot\bar\nabla\bar u$ of order unity. Switching to a time
+$\bar v\cdot\bar\nabla\bar u$ are of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
 (ref{scale:convdiff:pde1:d2}).  For very small Peclet numbers this
 equation tells that the time-derivative balances the diffusion, while
@@ -8137,7 +8141,7 @@ idx{Peclet number}
 idx{Reynolds number}
 
 The model governing forced convection consists of the Navier-Stokes
-equation and the energy equation for the temperature:
+equations and the energy equation for the temperature:
 
 !bt
 \begin{align}
@@ -8278,22 +8282,21 @@ $\varepsilon_{ij}$ is the strain-rate tensor in the flow, defined by
 \[ \varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}
 + \frac{\partial u_j}{\partial x_i}\right) = \frac{1}{2}(\nabla\u + (\nabla\u)^T),\]
 !et
-where $u_i$ is the velocity in direction of $x_i$ ($i=1,2,3$ measures the
-space directions). The term $2\mu\varepsilon_{ij}\varepsilon_{ij}$
+where $u_i$ is the velocity in direction of $x_i$ ($i=1,2,3$ measures
+the space directions). The term $2\mu\varepsilon_{ij}\varepsilon_{ij}$
 is written with Einstein's summation convention in mind such that
-there is an implicit sum over $i$ and $j$.
-This term is actually much more relevant
-for forced convection, but was left out in Section
+there is an implicit sum over $i$ and $j$.  This term is actually much
+more relevant for forced convection, but was left out in Section
 ref{scale:fluid:forced_convection} for mathematical simplicity.
-Heating by the work of viscous forces is often a very
-small effect and can be neglected, although it plays a major role in
-forging and extrusion of metals where the viscosity is very large,
-and those processes requires large external forces to drive the flow.
-The reason to include the work by viscous forces under the heading of
-free convection is more that we want to scale a more complete, general
-mathematical model for mixed force and free convection, and arrive
-at dimensionless numbers that can tell with this extra term is
-important and not.
+Heating by the work of viscous forces is often a very small effect and
+can be neglected, although it plays a major role in forging and
+extrusion of metals where the viscosity is very large, and those
+processes require large external forces to drive the flow.  The reason
+behind the inclusion of the work by viscous forces under the heading
+of free convection is more that we want to scale a more complete,
+general mathematical model for mixed force and free convection, and
+arrive at dimensionless numbers that can tell if this extra term is
+important or not.
 
 === Relation between density and temperature ===
 
@@ -8320,7 +8323,7 @@ and $\varrho_0$ is a reference density when the temperature is at $T_0$.
 
 It might look strange that the equation of continuity (from the mass
 conservation principle) is $\nabla\cdot\u =0$
-when there are density variations in the flow. The rationale for using
+when there are density variations in the flow. The reason for using
 this version of the continuity equation is the assumption that
 the density of each fluid particle remains constant. Consequently,
 from the general equation of continuity,
@@ -8337,7 +8340,7 @@ and the equation reduces to $\nabla\cdot\u = 0$.
 
 A very common approximation, called the *Boussinesq approximation*, is
 to neglect the density variations in all terms except the gravity term.
-This is a good approximation unless the change is $\varrho$ is large.
+This is a good approximation unless the change in $\varrho$ is large.
 With the linear $\varrho(T)$ formula and the Boussinesq approximation,
 (ref{scale:fluid:free_convection:eq:momentum_T})-(ref{scale:fluid:free_convection:eq:energy_T})
 take the form
@@ -8468,7 +8471,7 @@ Translating this similarity to scales,
 !bt
 \[ \varrho_0 U^2/L \sim \varrho_0 g \beta\Delta T,\]
 !et
-gives an $U$ of in terms of $\Delta T$ :
+gives an $U$ in terms of $\Delta T$ :
 
 !bt
 \[ U = \sqrt{\beta L \Delta T}\tp\]
@@ -9082,8 +9085,7 @@ the ones with dimension, apart from the $\alpha$ coefficient.
 
 [hpl: Comment on software also for advanced models.]
 
-===== The acoustic approximation and the Mach number =====
-label{scale:gas:acoustic}
+===== General isentropic flow =====
 
 Heat transfer can be neglected in
 "isentropic flow": "https://en.wikipedia.org/wiki/Isentropic_process",
@@ -9136,12 +9138,111 @@ label{scale:gas:acoustic:u2}
 \end{equation}
 !et
 
+The governing equations are now (ref{scale:gas:acoustic:rho})
+and (ref{scale:gas:acoustic:u2}).
+Space and time are scaled as usual as
+
+!bt
+\[ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
+\quad\bar t = \frac{t}{t_c}\tp\]
+!et
+The scaled dependent variables are
+
+!bt
+\[ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \u/U\tp\]
+!et
+Then $F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}$.
+
+Inserting the dimensionless variables leads to
+
+!bt
+\begin{align*}
+\frac{\varrho_c}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
++ \frac{\varrho_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
+\frac{\varrho_c U}{t_c}\bar\varrho
+\frac{\partial\bar\u}{\partial\bar t} +
+\frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar\u
++ \frac{\varrho_c}{L}c_0^2\bar\varrho^{\gamma-1}
+\bar\nabla\bar\varrho
+&=0\tp
+\end{align*}
+!et
+The characteristic flow velocity is $U$ so a natural time scale is
+$t_c = L/U$. This choice leads to the scaled PDEs
+
+!bt
+\begin{align}
+\frac{\partial\bar\varrho}{\partial\bar t}
++ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
+\bar\varrho
+\frac{\partial\bar\u}{\partial\bar t} +
+\bar\varrho\bar\u\cdot\bar\nabla\bar\u
++ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
+\bar\nabla\bar\varrho
+&=0,
+\end{align}
+!et
+where the dimensionless number
+
+!bt
+\[ \hbox{M} = \frac{U}{c_0},\]
+!et
+is known as the *Mach number*.
+The boundary conditions specify the characteristic velocity $U$ and
+thereby the Mach number.
+
+idx{Mach number}
+
+
+===== The acoustic approximation for sound waves =====
+label{scale:gas:acoustic}
+
+A model for sound waves can be based on (ref{scale:gas:acoustic:rho})
+and (ref{scale:gas:acoustic:u2}), but in this case
+there are small pressure, velocity, and
+density *perturbations* from a ground state at rest
+where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0)$.
+Introducing the perturbations $\hat\varrho = \varrho - \varrho_0$ and $\hat\u$,
+(ref{scale:gas:acoustic:rho})
+and (ref{scale:gas:acoustic:u2})
+
+!bt
+\begin{align*}
+\frac{\partial\hat\varrho}{\partial t} + \nabla\cdot(\hat\u(\varrho_0 + \hat\varrho) &=0,\\
+(\varrho_0 + \hat\varrho)
+\frac{\partial\hat\u}{\partial t} + (\varrho_0+\hat\varrho)\hat\u\cdot\nabla\hat\u +
+c_0^2\left(1 + \frac{\hat\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\hat\varrho &=0\tp
+\end{align*}
+!et
+For small perturbations we can linearize this PDE system by
+neglecting all products of $\hat\varrho$ and
+$\hat\u$. Also, $1 + \hat\varrho/\varrho_0\approx 1$.
+This leaves us with the simplified system
+
+!bt
+\begin{align*}
+\frac{\partial\hat\varrho}{\partial t} + \varrho_0\nabla\cdot\hat\u &=0,\\
+\varrho_0\frac{\partial\hat\u}{\partial t} +
+c_0^2\nabla\hat\varrho &=0\tp
+\end{align*}
+!et
+Eliminating $\hat\u$ by differentiating the first PDE with respect to $t$
+and taking the divergence of the second PDE gives a standard wave equation
+for the density perturbations:
+
+!bt
+\[ \frac{\partial^2\hat\varrho}{\partial t^2} = c_0^2\nabla^2\hat\varrho\tp\]
+!et
+Similarly, $\hat\varrho$ can be eliminated and one gets a wave equation for
+$\hat\u$ with wave velocity $c_0$.
+This means that the sound perturbations travel with velocity $c_0$.
+
+
 === Basic scaling for small wave perturbations ===
 
-In a model for sound waves there are small pressure, velocity, and
-density perturbations from a ground state at rest where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0)$. Let $\varrho_c$, $p_c=F(\varrho_c)$, and
-$u_c$ be characteristic sizes of these perturbations.
-The density, e.g., will then vary in $[\varrho_0-\varrho_c,\varrho_0+\varrho_c]$.
+Let $\varrho_c$ and
+$u_c$ be characteristic sizes of the perturbations in density and velocity.
+The density will then vary in $[\varrho_0-\varrho_c,\varrho_0+\varrho_c]$.
 An appropriate scaling is
 
 !bt
@@ -9154,23 +9255,14 @@ such that $\bar\varrho\in [-1,1]$. Consequently,
 !et
 Note that the dimensionless $\alpha$ is expected to be a very small number
 since $\varrho_c\ll \varrho_0$.
-
-The velocity is scaled as
-
-!bt
-\[ \bar\u = \u/U,\]
-!et
-while space and time are scaled as usual:
-
-!bt
-\[ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
-\quad\bar t = \frac{t}{t_c}\tp\]
-!et
+The velocity, space, and time are scaled as in the previous
+section.
 Note that $\varrho_0$ and $p_0$ are known values, but the scales
-$\varrho_c$, $p_c=F(\varrho_c)$, and $U$ are not known. Usually these
+$\varrho_c$ and $U$ are not known. Usually these
 can be estimated from perturbations applied at the boundary.
 
-Inserting the dimensionless variables leads to
+Inserting the scaled variables in (ref{scale:gas:acoustic:rho})
+and (ref{scale:gas:acoustic:u2}) results in
 
 !bt
 \begin{align*}
@@ -9185,16 +9277,13 @@ Inserting the dimensionless variables leads to
 \end{align*}
 !et
 
-=== The time scale ===
-
-What is the appropriate time scale? It could be $t_c=L/U$ as in many
-other flow problems. However, in the present model we expect sound waves,
-so the velocity $c_0$ of the sound waves is the appropriate velocity scale.
-The flow velocity $U$ is expected to be very much smaller than $c_0$
+Since we now model sound waves, the relevant time scale is not $L/U$
+but the time it takes a wave to travel through the domain: $t_c=L/c_0$.
+This is a much smaller time scale than in the previous section because
+$c_0\gg U$
 (think of speaking: the sound travels very fast but one cannot feel
 the corresponding very small flow perturbation in the air!).
-Therefore, $t_c = L/c_0$ is the corresponding (short) natural time scale.
-Using this time scale, we achieve
+Using $t_c=L/u_0$ we get
 
 !bt
 \begin{align*}
@@ -9204,19 +9293,9 @@ Using this time scale, we achieve
 \frac{\partial\bar\u}{\partial\bar t} +
 \hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
 \hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
-&=0,
+&=0\tp
 \end{align*}
 !et
-where the dimensionless number
-
-!bt
-\[ \hbox{M} = \frac{U}{c_0},\]
-!et
-is known as the *Mach number*.
-
-idx{Mach number}
-
-=== Linearization ===
 
 With the assumption of small perturbations, M and $\alpha$ are small numbers.
 We can first approximate $1+\alpha$ by 1. Thereafter, we realize
@@ -9254,7 +9333,8 @@ The velocity $\u$ can be eliminated taking the time derivative of
 \bar\nabla^2\bar\varrho = 0,
 \end{equation}
 !et
-which is nothing but a standard, linear wave equation. Similarly,
+which is nothing but a standard dimensionless wave equation with
+unit wave velocity. Similarly,
 we can eliminate $\varrho$ by taking the divergence of
 (ref{scale:gas:acoustic:rho:s}) and the time derivative of
 (ref{scale:gas:acoustic:u2:s}):
@@ -9262,47 +9342,13 @@ we can eliminate $\varrho$ by taking the divergence of
 !bt
 \begin{equation}
 \frac{\partial^2\bar\u}{\partial\bar t^2} +
-\bar\nabla^2\bar\u = 0,
+\bar\nabla^2\bar\u = 0\tp
 \end{equation}
 !et
-which shows that each component of the velocity also propagates according
-to the wave equation with unit velocity.
 We also observe that there are no physical parameters in the scaled
 wave equations. The M parameter can be eliminated from
-(ref{scale:gas:acoustic:rho:s})-(ref{scale:gas:acoustic:u2:s})
+(ref{scale:gas:acoustic:rho:s})-(ref{scale:gas:acoustic:u2:s}) as well
 by introducing a new unknown $\bar\v = M\bar\u$.
-
-===== General isentropic flow =====
-
-Suppose we are not interested in acoustic waves in isentropic flow,
-as described in the previous section, but
-in a significant velocity of characteristic size $U$ and corresponding
-significant changes in $\varrho$ and $p$. The relevant time scale is
-not that of the waves, but of the overall flow: $t_c=L/U$.
-
-The governing equations are (ref{scale:gas:acoustic:rho})
-and (ref{scale:gas:acoustic:u2}). We scale $\varrho$
-directly by its magnitude $\varrho_c$: $\bar\varrho = \varrho/\varrho_c$.
-Then $F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}$.
-All other scalings remain as in Section ref{scale:gas:acoustic}.
-The result of inserting dimensionless variables and using
-$t_c=L/U$ is
-
-!bt
-\begin{align}
-\frac{\partial\bar\varrho}{\partial\bar t}
-+ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
-\bar\varrho
-\frac{\partial\bar\u}{\partial\bar t} +
-\bar\varrho\bar\u\cdot\bar\nabla\bar\u
-+ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
-\bar\nabla\bar\varrho
-&=0\tp
-\end{align}
-!et
-Again, there is only one dimensionless parameter, the Mach number M.
-The boundary conditions specify the characteristic velocity $U$ and
-thereby the Mach number.
 
 
 ======= Exercises =======
@@ -9361,7 +9407,7 @@ Vertical vibrations of a beam are governed by the PDE
 where $u(x,t)$ is the vertical displacement along the beam,
 $\rho$ is the mass per length of the beam,
 $E$ is Young's modulus, and $I$ is the moment of inertia. For a
-rectangular cross section of with $b$ and height $h$, $I=\frac{1}{12}bh^3$.
+rectangular cross section of width $b$ and height $h$, $I=\frac{1}{12}bh^3$.
 Compare the time scale for these vibrations with the time scale $t_c$
 for three-dimensional elasticity.
 

@@ -491,19 +491,17 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec196'),
+              ('Exercises', 1, None, '___sec197'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -516,7 +514,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec201')]}
 end of tocinfo -->
 
 <body>
@@ -771,17 +769,15 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec190" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation and the Mach number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec193" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec194" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec195" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The time scale</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linearization</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Comparison of vibration models for elastic structures</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Suggestions...</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec203" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec201" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -1329,7 +1325,7 @@ physical effects:
 
 <ul>
  <li> \( \alpha \): ratio of the initial displacement and
-   the typical displacement \( u_c \),</li>
+   the characteristic response \( u_c \),</li>
  <li> \( \beta \): ratio of the initial velocity
    and the typical velocity measure \( u_c/t_c \),</li>
  <li> \( \gamma \): ratio of
@@ -1832,7 +1828,7 @@ $$ u_c = \frac{A}{b\psi} = \frac{A}{b\omega}\tp$$
 
 (It is wise during computations like this to stop and check the
 dimensions: \( A \) must be \( [\hbox{MLT}^{-2}] \) from the original
-equation (\( F(t) \) must have same dimension as \( mu'' \)),
+equation (\( F(t) \) must have the same dimension as \( mu'' \)),
 \( bu' \) also has dimension \( [\hbox{MLT}^{-2}] \), implying that
 \( b \) has dimension \( [\hbox{MT}^{-1}] \). \( A/b \) then has dimension
 \( LT^{-1} \), and \( A/(b\psi) \) gets dimension \( [L] \), which matches
@@ -1919,7 +1915,7 @@ an appropriate call for solving <a href="#mjx-eqn-2.72">(2.72)</a> is
 	      dt<span style="color: #666666">=2*</span>pi<span style="color: #666666">/</span>n, T<span style="color: #666666">=2*</span>pi<span style="color: #666666">*</span>P)
 </pre></div>
 <p>
-where <code>n</code> is the number intervals per period and <code>P</code> is the number
+where <code>n</code> is the number of intervals per period and <code>P</code> is the number
 of periods to be simulated.
 We way wrap this call in a <code>solver_scaled</code> function and wrap it furthermore
 with <code>joblib</code> to avoid repeated calls,
@@ -2239,7 +2235,7 @@ Filename: <code>decay_cooling2</code>.
 <p>
 Implement the scaled model <a href="._scaling-book005.html#mjx-eqn-2.29">(2.29)</a>
 and produce a plot with curves corresponding to various values of
-\( \alpha \) and \( p \) to summarize how \( \bar u(\bar t) \) look like.
+\( \alpha \) and \( p \) to summarize how \( \bar u(\bar t) \) looks like.
 
 <p>
 <!-- --- begin hint in exercise --- -->
