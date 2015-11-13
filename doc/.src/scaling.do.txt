@@ -3610,7 +3610,7 @@ Here is an interactive session for the conversion:
 
 ===== Problem: Scale a simple formula =====
 label{sec:scale:exer:ball_y}
-file=scaled_vertical_motion
+file=vertical_motion
 
 The height $y$ of a body thrown up in the air is given by
 
@@ -3728,7 +3728,7 @@ scaled problem.
 
 ===== Problem: Scale a nonlinear ODE =====
 label{sec:scale:exer:ball_y_wdrag}
-file=scaled_vertical_motion_with_drag
+file=vertical_motion_with_drag
 
 The velocity $v(t)$
 of a body moving vertically through a fluid in the gravity field,
@@ -3837,7 +3837,7 @@ engine and modify the
 
 ===== Exercise: Implement a scaled model for cooling =====
 label{sec:scale:exer:decay:cooling}
-file=decay_cooling1
+file=cooling1
 
 Make software for the unscaled problem (ref{scale:decay:cooling:model})
 where $T_s$ can be a function of time.
@@ -3871,7 +3871,7 @@ Here, $Q,A,\gamma >0$.
 
 ===== Exercise: Alternative scalings of a cooling model =====
 label{scale:decay:exer:cooling:Ts}
-file=decay_cooling2
+file=cooling2
 
 Scale the model (ref{scale:decay:cooling:model}), with $T_s$
 given as in (ref{scale:decay:cooling:Tst}), using two alternative
@@ -4713,7 +4713,7 @@ at maximum displacement.
 
 ===== Problem: Large vertical motion in the gravity field =====
 label{scale:vib:exer:rocket}
-file=rocket
+file=vertical_motion_with_varying_gravity
 
 !bt
 \begin{equation}
@@ -4737,14 +4737,22 @@ h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T]\tp\]
 !et
 
 !bsubex
-Assume we study the motion of a rocket. In this case
-$h$ is of the same size as $R$ so $h_c=R$ is a reasonable choice.
+Assume we study the motion over long distances out of the atmoshere.
+In this case $h$ may be of the same size as $R$ so $h_c=R$ is a
+reasonable choice. Determine $t_c$ from requiring the initial velocity
+to be unity. Set up the dimensionless ODE problem.
+!esubex
+
+!bsubex
+As a), but determine $t_c$ by demanding both terms in the scaled ODE to
+have unit coefficients.
 !esubex
 
 !bsubex
 Assume that $h$ is small compared to $R$. In the limit $h/R\rightarrow 0$,
 the governing equation simplifies to the well-known motion in a
-constant gravity field: $h''=-g$.
+constant gravity field: $h''=-g$. Use this model to suggest a time and
+length scale, and derive a dimensionless ODE problem.
 !esubex
 
 !split
