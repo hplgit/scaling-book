@@ -18,8 +18,10 @@ def S(x, A, x0, sigma):
     return A*exp(-0.5*(x-x0)**2/sigma**2)
 
 class PlotSurfaceAndBottom(PlotAndStoreSolution):
-    def __init__(self, B, S, **kwargs):
+    def __init__(self, B, S, a, L, B0, A, x0, sigma, **kwargs):
         self.B, self.S = B, S  # functions for bottom and slide
+        self.a, self.L, self.B0 = a, L, B0
+        self.A, self.x0, self.sigma = A, x0, sigma
         PlotAndStoreSolution.__init__(self, **kwargs)
 
     def __call__(self, u, x, t, n):
@@ -36,20 +38,17 @@ class PlotSurfaceAndBottom(PlotAndStoreSolution):
         # Animate
         if n % self.skip_frame != 0:
             return
-        # Plot u and mark medium x=x_L and x=x_R
-        x_L, x_R = self.medium
-        umin, umax = self.yaxis
         title = 'Nx=%d' % (x.size-1)
         if self.title:
             title = self.title + ' ' + title
+        bottom = self.B(x, a, L, B0) + self.S(x, A, x0(t), sigma)
         if self.backend is None:
             # native matplotlib animation
             if n == 0:
                 self.plt.ion()
                 self.lines = self.plt.plot(
                     x, u, 'r-',
-                    [x_L, x_L], [umin, umax], 'k--',
-                    [x_R, x_R], [umin, umax], 'k--')
+                    x, bottom, 'b-')
                 self.plt.axis([x[0], x[-1],
                                self.yaxis[0], self.yaxis[1]])
                 self.plt.xlabel('x')
@@ -57,17 +56,16 @@ class PlotSurfaceAndBottom(PlotAndStoreSolution):
                 self.plt.title(title)
                 self.plt.text(0.75, 1.0, 'C=0.25')
                 self.plt.text(0.32, 1.0, 'C=1')
-                self.plt.legend(['t=%.3f' % t[n]])
+                self.plt.legend(['t=%.3f' % t[n], 'bottom'])
             else:
                 # Update new solution
                 self.lines[0].set_ydata(u)
+                self.lines[1].set_ydata(bottom)
                 self.plt.legend(['t=%.3f' % t[n]])
                 self.plt.draw()
         else:
             # scitools.easyviz animation
-            self.plt.plot(x, u, 'r-',
-                          [x_L, x_L], [umin, umax], 'k--',
-                          [x_R, x_R], [umin, umax], 'k--',
+            self.plt.plot(x, u, 'r-', x, bottom, 'b-',
                           xlabel='x', ylabel='u',
                           axis=[x[0], x[-1],
                                 self.yaxis[0], self.yaxis[1]],
@@ -84,3 +82,13 @@ class PlotSurfaceAndBottom(PlotAndStoreSolution):
         self.plt.savefig('frame_%04d.png' % (n))
 
 def slides_waves():
+    L = 10
+    a = 3
+    A = 0.3
+    t0 = 3
+    v = 1
+    x0 = lambda t: v*t if t < t0 else v*t0
+    sigma = 1.0
+
+    def bottom(x, t):
+        return 0 - ???

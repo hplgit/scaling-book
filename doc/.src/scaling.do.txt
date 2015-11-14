@@ -4723,7 +4723,7 @@ $h(t)$ is then
 
 !bt
 \begin{equation}
-h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T],\]
+h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T],
 \end{equation}
 !et
 where $g$ is the acceleration of gravity at the earth's surface.
@@ -4737,7 +4737,7 @@ which leads to the dimensionless ODE
 
 !bt
 \[
-\frac{d^2\bar h}{\d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
+\frac{d^2\bar h}{d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
 = -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+\frac{R}{h_c}\right)^2}
 \]
 !et
@@ -4769,7 +4769,7 @@ Inserting this $t_c$ in the ODE gives the scaled ODE problem
 
 !bt
 \[
-\frac{d^2\bar h}{\d\bar t^2} =
+\frac{d^2\bar h}{d\bar t^2} =
 -\frac{\epsilon^{-1}}{\left(1 + \bar h\right)^2},
 \quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=1\tp\]
 !et
@@ -4795,7 +4795,7 @@ The initial condition then becomes
 The scaled ODE problem becomes
 
 !bt
-\[ \frac{d^2\bar h}{\d\bar t^2} = -\frac{1}{\left(1 + \bar h\right)^2},
+\[ \frac{d^2\bar h}{d\bar t^2} = -\frac{1}{\left(1 + \bar h\right)^2},
 \quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=\epsilon\tp\]
 !et
 !esol
@@ -4823,8 +4823,8 @@ The scaled ODE takes the form
 
 !bt
 \[
-\frac{d^2\bar h}{\d\bar t^2}
-= -\frac{8\epsilon^{-4}{\left(\bar h+2\epsilon^{-2}\right)^2}
+\frac{d^2\bar h}{d\bar t^2}
+= -\frac{8\epsilon^{-4}}{\left(\bar h+2\epsilon^{-2}\right)^2}
 = -8\frac{1}{\left(2 + \epsilon^2\bar h\right)^2}\tp
 \]
 !et
@@ -4833,7 +4833,7 @@ by choosing $t_c$ to be twice the characteristic time above:
 $t_c = 2V/g$, which implies $h_c=V^2/g$ and the scaled ODE
 
 !bt
-\[ \frac{d^2\bar h}{\d\bar t^2}
+\[ \frac{d^2\bar h}{d\bar t^2}
 = -\frac{4\epsilon^{-2}}{\left(1 + \epsilon^{2}\bar h\right)^2}\tp \]
 !et
 The initial condition remains the same: $\bar h'(0)=2$.
@@ -5068,7 +5068,7 @@ a triangular shape.
 
 The file "`wave1D_u0_scaled.py`": "${src_scaling}/wave1D_u0_scaled.py"
 has functionality for detecting whether a simulation corresponds to
-a previsouly run scaled case, and if so, the solution is retrieved from
+a previously run scaled case, and if so, the solution is retrieved from
 file. The implementation technique makes use of `joblib`, but is more
 complicated than showed previously in this book since some of the
 arguments to the function that computes the solution are functions,
@@ -9406,56 +9406,60 @@ label{scale:surfacewaves}
 ===== Equations for surface waves =====
 label{scale:surfacewaves:Eulereq}
 
-For gravity waves on the surface of an  fluid it is
-often a good approximation to ignore viscous effects.
-If we exclude capillary waves (small Weber number, see section ref{freesurface:Weber}) the flow of an incompressible homogeneous fluid is 
- governed by the Euler equations of motion
-on the form
-
+For gravity waves on the surface of an fluid it is often a good
+approximation to ignore viscous effects.  If we exclude capillary
+waves (small Weber number, see section ref{freesurface:Weber}) the
+flow of an incompressible homogeneous fluid is governed by the Euler
+equations of motion on the form
 
 !bt
 \begin{align}
 \nabla\cdot\u &=0,
 label{scale:surfacewaves:cont}\\
-\frac{\partial\u}{\partial t} + \u\cdot\nabla\u + \frac{1}{\rho}\nabla p +g\mathbf{k}&=0.\tp
+\frac{\partial\u}{\partial t} + \u\cdot\nabla\u + \frac{1}{\rho}\nabla p +g\mathbf{k}&=0\tp
 label{scale:surfacewave:u}
 \end{align}
 !et
 When the free surface position is describes as
 $z=\eta(x,y,t)$, with $z$ as the vertical coordinate, the boundary conditions
 at the surface read
+
 !bt
 \begin{align}
 p &=p_s,
 label{scale:surfacewaves:dynsurf}\\
-\frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta &=w,\tp
+\frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta &=w,
 label{scale:surfacewave:kinsurf}
 \end{align}
 !et
 where $p_s$ is the external pressure applied to the surface. At the
-bottom, $z=-h(x,y)$, there is the no-flux condition 
+bottom, $z=-h(x,y)$, there is the no-flux condition
+
 !bt
+\[
 label{scale:surfacewave:kinbott}
-\frac{\partial h}{\partial x}u+\frac{\partial h}{\partial y}v =-w
-!et 
-In addition to $\rho$ and  $g$ we assume that a typical depth $h_c$, 
-a typical wavelength $\lambda_c$ and a typical surface elevation $A$, which 
+\frac{\partial h}{\partial x}u+\frac{\partial h}{\partial y}v =-w\tp
+\]
+!et
+In addition to $\rho$ and  $g$ we assume that a typical depth $h_c$,
+a typical wavelength $\lambda_c$ and a typical surface elevation $A$, which
 then per definition is a scale for $\eta$, are
 the given parameters. From these we must derive scales for the coordinates, then velocity components and the pressure.
 First, it is instructive to define a typical wave celerity, $c_c$, which
-must be linked to the length and time scale according to $c_c=\lambda_c/t_c$.   
-Since there is no other given parameter that matches the mass dimension of 
+must be linked to the length and time scale according to $c_c=\lambda_c/t_c$.
+Since there is no other given parameter that matches the mass dimension of
 $\rho$ we express $c_c$ in terms of $A$, $\lambda_c$, $h_c$, and $g$.
 Most of the work on waves in any discipline of physics is devoted to linear
-or weakly nonlinear waves and the wave celerity must be presumed to remain 
-finite as $A$ goes to zero (see, for instance, section \refl{scale:gas:acoustic}). Hence, we may assume  $c_c$ must depend on $g$ and either $h_c$ or $\lambda_c$. Next, the horizontal directions must be treated similarly, implying that
-we have a velocity scale, $U, for $u$ and $v$, a common length scale $L$ for
+or weakly nonlinear waves and the wave celerity must be presumed to remain
+finite as $A$ goes to zero (see, for instance, Section ref{scale:gas:acoustic}). Hence, we may assume  $c_c$ must depend on $g$ and either $h_c$ or $\lambda_c$. Next, the horizontal directions must be treated similarly, implying that
+we have a velocity scale, $U$, for $u$ and $v$, a common length scale $L$ for
 $x$ and $y$. The obvious choice for $L$ is $\lambda_c$.  The "vertical quantities" $w$ and $z$ have scales $W$ and $Z$, respectively.
-We assume that also the length scales $Z$ remains finite 
+We assume that also the length scales $Z$ remains finite
 as $A\rightarrow 0$ and hence is independent of $A$. This is less
 obvious for $Z$ than for $c_c$ and $t_c$, but may be confirmed by the existence
 of linear solutions when solving the equation set.
-From the linear part of (\ref{scale:surfacewave:kinsurf}) and (\ref{scale:surfacewaves:cont}) we obtain two relations between velocity and coordinate scales by demanding the non-dimensionalized terms to be of order unity
+From the linear part of (ref{scale:surfacewave:kinsurf}) and (ref{scale:surfacewaves:cont}) we obtain two relations between velocity and coordinate scales by demanding the non-dimensionalized terms to be of order unity
+
 !bt
 \begin{align}
 \frac{A}{t_c} &=& W,
@@ -9466,86 +9470,99 @@ label{scale:surfacewave:contscal}
 !et
 These will be useful, but does not suffice to establish the scaling.
 
-
-The pressure may regarded as the sum of a large equilibrium part, balancing 
+The pressure may regarded as the sum of a large equilibrium part, balancing
 gravity, and a much smaller dynamic part associated with the presence of
-waves. To make the latter appear appear in the equations we define the 
+waves. To make the latter appear in the equations we define the
 dynamic pressure, $p_d$, according to
 !bt
-p=p_s-\rho g z +p_d,
-!et  
+\[ p=p_s-\rho g z +p_d,\]
+!et
 and the pressure scale $p_c=\rho g A$ for $p_d$ then follows directly from
-the surface condition (\ref{scale:surfacewaves:dynsurf}).
+the surface condition (ref{scale:surfacewaves:dynsurf}).
 
 The equation set will be scaled according to
+
 !bt
-\bar t=\frac{t}{t_c},\ \bar x=\frac{x}{L},\ \bar y =\frac{y}{L},\ \bar z =\frac{z}{Z},\ \bar \eta=\frac{\eta}{A},\ \bar u=\frac{u}{U},\ \bar v=\frac{v}{U},\ \bar w=\frac{w}{W},\ \bar p_d=\frac{p_d}{p_c}. 
-!et  
+\[
+\bar t=\frac{t}{t_c},\ \bar x=\frac{x}{L},\ \bar y =\frac{y}{L},\ \bar z =\frac{z}{Z},\ \bar \eta=\frac{\eta}{A},\ \bar u=\frac{u}{U},\ \bar v=\frac{v}{U},\ \bar w=\frac{w}{W},\ \bar p_d=\frac{p_d}{p_c}\tp
+\]
+!et
 In the further development of the scaling
 we focus on two limiting cases, namely deep and shallow water.
 
 === Waves in deep  water ===
+
 Deep water means that $h_c\gg\lambda_c$. Presumably the waves will not feel the bottom and $h$ as well as $h_c$ are removed from our equations. The bottom boundary condition is replaced by a requirement of vanishing velocity as $z\rightarrow -\infty$. Consequently,
-$c_c$ must depend upon $\lambda_c$ and $g$, leaving us with 
+$c_c$ must depend upon $\lambda_c$ and $g$, leaving us with
 $c_c=\sqrt{g\lambda_c}$ and $Z=\lambda_c=L$ as the only options.
-Then, $t_c=\sqrt{\lambda/c/g}$ and 
-  (\ref{scale:surfacewaves:kinscal}) and (\ref{scale:surfacewaves:kontscal})
- imply
-$U=W=c_0\frac{A}{\lambda_c}=\epsilon c_0$, where we have introduced the non-dimensional number
+Then, $t_c=\sqrt{\lambda/c/g}$ and
+(ref{scale:surfacewaves:kinscal}) and (ref{scale:surfacewaves:kontscal})
+imply $U=W=c_0\frac{A}{\lambda_c}=\epsilon c_0$, where we have introduced the non-dimensional number
+
 !bt
-\epsilon=\frac{A}{\lambda_c}$,
+\[\epsilon=\frac{A}{\lambda_c},\]
 !et
-which is the wave steepness. The equality of the horizontal and the vertical 
-scale is consistent with the common knowledge that the particle orbits in 
-surface waves are circular.  
+which is the wave steepness. The equality of the horizontal and the vertical
+scale is consistent with the common knowledge that the particle orbits in
+surface waves are circular.
 The scaled equation are now expressed with $\epsilon$ as sole dimensionless
-number 
+number
 !bt
 \begin{align}
 \bar \nabla\cdot\bar\u &=0,
-label{scale:surfacewaves:cont}\\
-\frac{\partial\bar\u}{\partial \bar t} + \epsilon\bar \u\cdot\bar\nabla\bar\u + \bar\nabla \bar p_d&=0.\tp
-label{scale:surfacewave:u}
+label{scale:surfacewaves:cont:}\\
+\frac{\partial\bar\u}{\partial \bar t} + \epsilon\bar \u\cdot\bar\nabla\bar\u + \bar\nabla \bar p_d&=0\tp
+label{scale:surfacewave:u:s}
 \end{align}
 !et
 Surface conditions, at $z=\epsilon \eta$, become
+
 !bt
 \begin{align}
 \bar p_d &=\bar \eta,
-label{scale:surfacewaves:dynsurf}\\
-\frac{\partial\bar\eta}{\partial \bar t} + \epsilon \bar \u\cdot\bar\nabla\bar\eta &=\bar w,\tp
-label{scale:surfacewave:kinsurf}
+label{scale:surfacewaves:dynsurf:s}\\
+\frac{\partial\bar\eta}{\partial \bar t} + \epsilon \bar \u\cdot\bar\nabla\bar\eta &=\bar w,
+label{scale:surfacewave:kinsurf:s}
 \end{align}
 !et
 bottom condition, as $\bar z \rightarrow -\infty$,
+
 !bt
-label{scale:surfacewave:kinbott}
-\bar\u \rightarrow 0.
-!et 
-
-
-=== Long waves in shallow  water ===
-In this case the basic assumption is that the wavelength is large compared to the
-depth:  $\lambda_c\gg h_c$. In analogy with reasoning above we the presume that
-the speed of the waves remains finite as $\lambda_c\rightarrow \infty$.
-Then, $c_c$ must be based on $g$ and $\h_c$, which leads to $c_c=\sqrt{gh_c}$ 
-and $t_c=\lambda_c/\sqrt{gh_c}$. The natural choice for the vertical length scale is now the depth; $Z=h_c$.
-Application of (\ref{scale:surfacewaves:kinscal}) and (\ref{scale:surfacewaves:kontscal}) now leads to 
- $W=c_c A/\lambda_c$ and $U=c_c A/h_c.
+\begin{equation}
+label{scale:surfacewave:kinbott2}
+\bar\u \rightarrow 0\tp
+\end{equation}
 !et
+
+
+=== Long waves in shallow water ===
+
+In this case the basic assumption is that the wavelength is large
+compared to the depth: $\lambda_c\gg h_c$. In analogy with reasoning
+above we the presume that the speed of the waves remains finite as
+$\lambda_c\rightarrow \infty$.  Then, $c_c$ must be based on $g$ and
+$h_c$, which leads to $c_c=\sqrt{gh_c}$ and
+$t_c=\lambda_c/\sqrt{gh_c}$. The natural choice for the vertical
+length scale is now the depth; $Z=h_c$.  Application of
+(ref{scale:surfacewaves:kinscal}) and
+(ref{scale:surfacewaves:kontscal}) now leads to $W=c_c A/\lambda_c$
+and $U=c_c A/h_c$.
+
 Introducing the dimensionless numbers
 !bt
-\alpha=\frac{A}{h_c},\quad \mu=\frac{h_c}{\lambda_c},
+\[ \alpha=\frac{A}{h_c},\quad \mu=\frac{h_c}{\lambda_c},\]
 !et
 we rewrite the velocity scales as
+
 !bt
-W=\mu\alpha c_c,\quad U=\alpha c_c.
+\[ W=\mu\alpha c_c,\quad U=\alpha c_c\tp\]
 !et
 We observe that $W\ll U$ for shallow water and that particle orbits must be elongated in the horizontal direction.
 
 The equation set is now most transparently written by introducing the
 horizontal velocity $\bar\u_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
 and the corresponding vertical component of the gradient operator, $\nabla_h$
+
 !bt
 \begin{align}
 \bar \nabla\cdot\bar\u_h +\frac{\partial \bar w}{\partial \bar z}&=0,
@@ -9556,20 +9573,24 @@ label{scale:surfacewave:uh}
 \end{align}
 !et
 Surface conditions, at $z=\alpha \eta$, become
+
 !bt
 \begin{align}
 \bar p_d &=\bar \eta,
-label{scale:surfacewaves:dynsurf}\\
+label{scale:surfacewaves:dynsurf:s2}\\
 \frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,\tp
-label{scale:surfacewave:kinsurf}
+label{scale:surfacewave:kinsurf:s2}
 \end{align}
 !et
 bottom condition
+
 !bt
-label{scale:surfacewave:kinbott}
-\bar\nabla_h\cdot\u_h =-\bar w.
-!et 
-An immediate consequence is that $\bar p_d$ remains equal to $\bar eta$ throuhout the water column when $\mu^2\rightarrow 0$, which imply that the pressure becomes hydrostatic
+\begin{equation}
+label{scale:surfacewave:kinbott3}
+\bar\nabla_h\cdot\u_h =-\bar w\tp
+\end{equation}
+!et
+An immediate consequence is that $\bar p_d$ remains equal to $\bar eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure becomes hydrostatic
 
 
 ======= Exercises =======
