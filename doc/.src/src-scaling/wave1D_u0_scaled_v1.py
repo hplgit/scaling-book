@@ -1,7 +1,4 @@
 import sys, os
-# Enable loading modules in ../../decay/src-decay
-sys.path.insert(0, os.path.join(os.pardir, os.pardir,
-                                'wave', 'src-wave', 'wave1D'))
 from wave1D_u0 import solver as solver_unscaled
 
 def solver_scaled_prev(I, dt, C, T):

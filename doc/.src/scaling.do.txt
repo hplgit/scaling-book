@@ -4711,19 +4711,29 @@ cubic spring term $k_1U_0^3$ and the linear spring term $k_0U_0$
 at maximum displacement.
 !esol
 
-===== Problem: Large vertical motion in the gravity field =====
+===== Problem: Vertical motion in a varying gravity field =====
 label{scale:vib:exer:rocket}
-file=vertical_motion_with_varying_gravity
+file=varying_gravity
+
+A body (e.g., projectile or rocket) is launched at the earth's surface
+at velocity $V$ The height of the body at time $t$ is $h(t)$.
+Unless $h$ is very much smaller than the earth's radius $R$, the motion
+takes place in a varying gravity field. The governing ODE problem for
+$h(t)$ is then
 
 !bt
 \begin{equation}
-h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T]\tp\]
+h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T],\]
 \end{equation}
 !et
+where $g$ is the acceleration of gravity at the earth's surface.
+
+The goal is discuss scalings of this problem. First we introduce
 
 !bt
-\[ \bar h = \frac{h}{h_c},\quad \bar t = \frac{t}{t_c}\tp\]
+\[ \bar h = \frac{h}{h_c},\quad \bar t = \frac{t}{t_c},\]
 !et
+which leads to the dimensionless ODE
 
 !bt
 \[
@@ -4731,28 +4741,105 @@ h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T]\tp\]
 = -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+\frac{R}{h_c}\right)^2}
 \]
 !et
+and the dimensionless initial condition
 
 !bt
 \[ \frac{d\bar h}{d\bar t}(0) = \frac{t_cV}{h_c}\tp\]
 !et
+The key dimensionless variable in this problem turns out to be
+
+!bt
+\[ \epsilon = \frac{V}{\sqrt{Rg}}\tp\]
+!et
 
 !bsubex
-Assume we study the motion over long distances out of the atmoshere.
-In this case $h$ may be of the same size as $R$ so $h_c=R$ is a
+Assume we study the motion over long distances such that
+$h$ may be of the same size as $R$. In this case, $h_c=R$ is a
 reasonable choice. Determine $t_c$ from requiring the initial velocity
 to be unity. Set up the dimensionless ODE problem.
+
+!bsol
+The requirement leads to
+
+!bt
+\[ \frac{t_cV}{h_c} = \frac{t_cV}{R} = 1\quad\Rightarrow\quad
+t_c = \frac{R}{V}\tp\]
+!et
+Inserting this $t_c$ in the ODE gives the scaled ODE problem
+
+!bt
+\[
+\frac{d^2\bar h}{\d\bar t^2} =
+-\frac{\epsilon^{-1}}{\left(1 + \bar h\right)^2},
+\quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=1\tp\]
+!et
+!esol
 !esubex
 
 !bsubex
 As a), but determine $t_c$ by demanding both terms in the scaled ODE to
 have unit coefficients.
+
+!bsol
+We set
+
+!bt
+\[ \frac{t_c^2}{h_c^3}R^2g = \frac{t_c^2g}{R}=1\quad\Rightarrow\quad
+t_c = \sqrt{\frac{R}{g}}\tp\]
+!et
+The initial condition then becomes
+
+!bt
+\[ \frac{d\bar h}{d\bar t}(0) = \frac{V}{\sqrt{Rg}} = \epsilon\tp\]
+!et
+The scaled ODE problem becomes
+
+!bt
+\[ \frac{d^2\bar h}{\d\bar t^2} = -\frac{1}{\left(1 + \bar h\right)^2},
+\quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=\epsilon\tp\]
+!et
+!esol
 !esubex
 
 !bsubex
-Assume that $h$ is small compared to $R$. In the limit $h/R\rightarrow 0$,
+For small initial velocity $V$, $h$ will be small compared to $R$.
+In the limit $h/R\rightarrow 0$,
 the governing equation simplifies to the well-known motion in a
 constant gravity field: $h''=-g$. Use this model to suggest a time and
 length scale, and derive a dimensionless ODE problem.
+
+!bsol
+The solution of $h''=-g$ with $h(0)$ and $h'(0)=V$ is easily obtained
+by integrating twice: $h=-\half gt^2 +Vt$. The maximum height reached
+by the body is found by setting $h'(t)=0$: $V-gt=0$, which suggests
+a corresponding characteristic time $t_c = V/g$. The maximum height
+$h(t_c)=\half V^2/g$ can be used as characteristic height: $h_c=\half V^2/g$.
+Inserted in the initial condition, we get
+
+!bt
+\[ \frac{d\bar h}{d\bar t}(0) = \frac{Vt_c}{h_c}= 2\tp\]
+!et
+The scaled ODE takes the form
+
+!bt
+\[
+\frac{d^2\bar h}{\d\bar t^2}
+= -\frac{8\epsilon^{-4}{\left(\bar h+2\epsilon^{-2}\right)^2}
+= -8\frac{1}{\left(2 + \epsilon^2\bar h\right)^2}\tp
+\]
+!et
+The factors 8 and 2 can be reduced to one factor 4
+by choosing $t_c$ to be twice the characteristic time above:
+$t_c = 2V/g$, which implies $h_c=V^2/g$ and the scaled ODE
+
+!bt
+\[ \frac{d^2\bar h}{\d\bar t^2}
+= -\frac{4\epsilon^{-2}}{\left(1 + \epsilon^{2}\bar h\right)^2}\tp \]
+!et
+The initial condition remains the same: $\bar h'(0)=2$.
+
+[hpl: Problem: zero limit!]
+!esol
 !esubex
 
 !split
@@ -4928,18 +5015,6 @@ u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
 
 ===== Implementation of the scaled wave equation =====
 
-[hpl: This must be rewritten and placed in an appendix - or dropped.
-The basic code from `wave1D_u0.py` must be shown, otherwise the
-discussion of avoiding recomputation does not make much sense.]
-
-[hpl: I make a big issue of retrieving data from file, but in more
-complicated cases, this has little practical value as the number of
-dimensionless numbers gets large (approaching the number of parameters
-anyway). In the present simple cases, the computations are so fast
-that there is little to gain by avoiding them. The text is therefore
-biased with respect to the practical benefit of reusing old solutions.
-Does it hurt to document the idea? Need views on this.]
-
 How do we implement (ref{scale:wave:pde1:d})-(ref{scale:wave:pde1:bc:L:d})?
 As for the simpler mathematical models, we suggest to implement the model
 with dimensions and observe how to set parameters to obtain the scaled
@@ -4953,28 +5028,26 @@ version is "`wave1D_u0.py`": "${src_scaling}/wave1D_u0.py"
 that implements (ref{scale:wave:pde1}) and
 (ref{scale:wave:pde1:ic:u}-(ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
-in ref[Sections ref{wave:pde1:impl}][ in cite{Langtangen_deqbook_wave}][in
-the document "Finite difference methods for wave motion":
-"http://tinyurl.com/k3sdbuv/pub/wave"
-cite{Langtangen_deqbook_wave}].
+in ref[Sections ref{wave:pde1:impl}][ in cite{Langtangen_Linge_fdm}][in
+the "Finite difference computing with PDEs":
+"http://tinyurl.com/xxx"
+cite{Langtangen_Linge_fdm}].
 
 
 === Waves on a string ===
 
 As example, we may let the original initial-boundary value problem
-(ref{scale:wave:pde1})-(ref{scale:wave:pde1:bc:L}) model
-vibrations of a string on a string instrument. With $u$ as the
-displacement of the string, the boundary conditions $u=0$ at the ends
-are relevant, as well as the zero velocity condition $\partial u/\partial t=0$
-at $t=0$.
-The initial condition $I(x)$ has typically a triangular shape for a picked
-guitar string.
-The physical problem needs parameters for the amplitude of $I(x)$,
-the length $L$ of the string, and the value of $c$ for the string. Only
-the latter is challenging as it involves relating $c$ to the
-pitch (i.e., time frequency) of the string. In the scaled problem, we
-can forget about all this. We simply set $L=1$, $c=1$, and let
-$I(x)$ have a peak of unity at $x=x_0\in(0,1)$:
+(ref{scale:wave:pde1})-(ref{scale:wave:pde1:bc:L}) model vibrations of
+a string on a string instrument. With $u$ as the displacement of the
+string, the boundary conditions $u=0$ at the ends are relevant, as
+well as the zero velocity condition $\partial u/\partial t=0$ at
+$t=0$.  The initial condition $I(x)$ has typically a triangular shape
+for a picked guitar string.  The physical problem needs parameters for
+the amplitude of $I(x)$, the length $L$ of the string, and the value
+of $c$ for the string. Only the latter is challenging as it involves
+relating $c$ to the pitch (i.e., time frequency) of the string. In the
+scaled problem, we can forget about all this. We simply set $L=1$,
+$c=1$, and let $I(x)$ have a peak of unity at $x=x_0\in(0,1)$:
 
 !bt
 \[
@@ -4993,98 +5066,27 @@ a triangular shape.
 
 === Detecting an already computed case ===
 
-In Section ref{sec:scale:decay:prog} we demonstrated the use of `joblib`
-for making a function that detects if a case has already been run and
-in that case the previous solution can be returned from a database.
-It turns out that `joblib` cannot handle functions with function arguments,
-which we have a lot of in the `solver` functions for 1D wave equations.
+The file "`wave1D_u0_scaled.py`": "${src_scaling}/wave1D_u0_scaled.py"
+has functionality for detecting whether a simulation corresponds to
+a previsouly run scaled case, and if so, the solution is retrieved from
+file. The implementation technique makes use of `joblib`, but is more
+complicated than showed previously in this book since some of the
+arguments to the function that computes the solution are functions,
+and one must recognized if the function has been used as argument
+before or not. There is documentation in the `wave1D_u0_scaled.py`
+file how this is done.
 
-A manual strategy taken from "`wave1D_dn_vc.py`": "${src_wave}/wave1D/wave1D_dn_vc.py" and explained in
-ref[Section ref{softeng2:wave1D:filestorage:hashlib}][ in
-cite{Langtangen_deqbook_softeng2}][the document
-"Scientific software engineering; wave equation model":
-"http://tinyurl.com/k3sdbuv/pub/softeng2" cite{Langtangen_deqbook_softeng2}]
-is to convert
-all input data to the `solver` function to a string,
-which is thereafter converted to an SHA1 hash string
-(via `hashlib.sha1`) and used to recognize the input.
-A SHA1 string is also suitable as part of a file or directory name
-where computed solutions can be stored.
-
-We can, in the wave equation solver
-retrieve the solution, rather than computing it, if
-the hash string is the same (because then the computations have already been
-done). This can save a lot of computations if a scaled solution can be
-reused in a number of cases with dimensions. We will sketch the
-code that implements the idea.
-
-A solver for the scaled problem is first developed. We limit the
-focus to the simple constant-coefficient wave equation with $u_t(x,0)=0$.
-The solver for the unscaled problem is taken from the previously
-mentioned `wave1D_u0.py` file.
-
-@@@CODE src-scaling/wave1D_u0_scaled.py fromto: from wave1D_u0@def unscale_u
-This function employs ideas described in
-ref[Sections ref{softeng2:wave1D:filestorage:joblib} and
-ref{softeng2:wave1D:filestorage:hashlib}][ in
-cite{Langtangen_deqbook_softeng2}][the document
-"Scientific software engineering; wave equation model": "http://tinyurl.com/k3sdbuv/pub/softeng2" cite{Langtangen_deqbook_softeng2}] for storing
-arrays on disk with use of `joblib` (class `Storage`) and recognizing
-previous input through a hash string. If the input is the same, the
-hash is the same and we can test on the existence of a
-directory whose name contains the hash. If that directory exists, the
-solution for this set of input data is already computed, and we can just
-return the `storage` object from which one can retrieve the space and time
-mesh as well as all the solutions `u0`, `u1`, and so on.
-
-Although the partial differential equation model has no physical
-parameters (assuming $x_0$ fixed), the corresponding numerical model
-depends on the Courant number $C=c\Delta t/\Delta x$ and the duration
-$T$ of the simulations.
-
-A specific application of this simple solver is the vibrations of a guitar
-string. The scaled version depends only on $C$ (if we say $T$ is fixed
-and $N_x$ is fixed through $\Delta t$). The string vibrations can be
-simulated by the following function:
-
-@@@CODE src-scaling/wave1D_u0_scaled.py fromto: def guitar_scaled@def guitar\(
-
-To solve an unscaled problem, we need some unscale functions:
-
-@@@CODE src-scaling/wave1D_u0_scaled.py fromto: def unscale_u@def guitar_scaled
-We can now easily solve a range of unscaled cases by
-
-@@@CODE src-scaling/wave1D_u0_scaled.py fromto: def guitar\(@if __name
-If `guitar_scaled` figures out that the scaled problem is already solved,
-it just returns the `storage` object, otherwise it performs calculations.
-Anyway, we retrieve the space and time mesh as well as all the solutions.
-The `plot` function from "SciTools": "https://github.com/hplgit/scitools"
-is used for compact code for
-animation, but Matplotlib can equally well be used (with a bit more coding).
-
-Suppose we run three calls to `guitar` with three different values of
-`I_max`. The output will be
-
-!bc
-Computing the numerical solution
-No need to compute the numerical solution
-No need to compute the numerical solution
-!ec
-This indicates that we rely on the scaled solution for the two
-other cases with different `I_max` parameter. Running such a program again
-will avoid all computations and show movies solely based on
-precomputed file data.
 
 ===== Time-dependent Dirichlet condition =====
 label{scale:wave:pde2}
 
-A generalization of (ref{scale:wave:pde1})-(ref{scale:wave:pde1:bc:L}) is to
-allow for a time-dependent Dirichlet condition at one end, say
-$u(0,t)=U_L(t)$. At the other end we may still have $u=0$.
-This new condition at $x=0$ may model a specified wave that
-enters the domain. For example, if we feed in a monochromatic wave
-$A\sin(k(x-ct))$ from the left end, $U_L(t)=A\sin (kct)$.
-This forcing of the wave motion has its own amplitude and time scale that
+A generalization of (ref{scale:wave:pde1})-(ref{scale:wave:pde1:bc:L})
+is to allow for a time-dependent Dirichlet condition at one end, say
+$u(0,t)=U_L(t)$. At the other end we may still have $u=0$.  This new
+condition at $x=0$ may model a specified wave that enters the
+domain. For example, if we feed in a monochromatic wave
+$A\sin(k(x-ct))$ from the left end, $U_L(t)=A\sin (kct)$.  This
+forcing of the wave motion has its own amplitude and time scale that
 could affect the choice of $u_c$ and $t_c$.
 
 The main difference from the previous initial-boundary value problem

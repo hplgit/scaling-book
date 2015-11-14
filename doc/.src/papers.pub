@@ -251,6 +251,13 @@
    sortkey:   Odespy
    note:      \url{https://github.com/hplgit/odespy}
    entrytype: misc
+** Finite Difference Computing with Partial Differential Equation
+   key:       Langtangen_Linge_fdm
+   author:    H. P. Langtangen, S. Linge
+   status:    published
+   note:      \url{http://tinyurl.com/xxx}
+   url:       http://tinyurl.com/xxx
+   entrytype: misc
 ** Finite difference methods for vibration ODEs
    key:       Langtangen_deqbook_vib
    author:    H. P. Langtangen
@@ -258,26 +265,12 @@
    note:      \url{http://tinyurl.com/k3sdbuv/pub/vib}
    url:       http://tinyurl.com/k3sdbuv/pub/vib
    entrytype: misc
-** Scientific software engineering; {ODE} case
-   key:       Langtangen_deqbook_softeng1
-   author:    H. P. Langtangen
-   status:    published
-   note:      \url{http://tinyurl.com/k3sdbuv/pub/softeng1}
-   url:       http://tinyurl.com/k3sdbuv/pub/softeng1
-   entrytype: misc
 ** Truncation error analysis
    key:       Langtangen_deqbook_trunc
    author:    H. P. Langtangen
    status:    published
    note:      \url{http://tinyurl.com/k3sdbuv/pub/trunc}
    url:       http://tinyurl.com/k3sdbuv/pub/trunc
-   entrytype: misc
-** Scaling
-   key:       Langtangen_deqbook_scale
-   author:    H. P. Langtangen
-   status:    published
-   note:      \url{http://tinyurl.com/k3sdbuv/pub/scale}
-   url:       http://tinyurl.com/k3sdbuv/pub/scale
    entrytype: misc
 ** Finite difference methods for wave motion
    key:       Langtangen_deqbook_wave
