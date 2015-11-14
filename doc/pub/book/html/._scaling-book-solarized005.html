@@ -518,19 +518,21 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('Wave nature of isentropic flow with small perturbations',
+               3,
+               None,
+               '___sec196'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec197'),
+              ('Exercises', 1, None, '___sec198'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -543,7 +545,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec202')]}
 end of tocinfo -->
 
 <body>
@@ -997,7 +999,7 @@ solution and store it in a file.
 <p>
 A very plain solution to the problem is found in the file
 <a href="http://tinyurl.com/o8pb3yy/decay_scaled_v1.py" target="_self"><tt>decay_scaled_v1.py</tt></a>.
-The <code>np.savetxt</code> function saves a two-dimensional arrays (&quot;table&quot;) to
+The <code>np.savetxt</code> function saves a two-dimensional array (&quot;table&quot;) to
 a text file, and the <code>np.loadtxt</code> function can load the data back
 into the program. A better solution to this problem is obtained
 by using the <code>joblib</code> package as described next.
@@ -1397,7 +1399,7 @@ u(t) = \frac{b}{a}\bar u(at),
 \end{equation}
 $$
 
-to scale us back to the original
+to scale back to the original
 problem again.
 We observe that <a href="#mjx-eqn-12">(12)</a> can utilize a solver
 for <a href="#mjx-eqn-9">(9)</a> by setting \( a=1 \), \( b=1 \), and \( I=\beta \).
@@ -1868,7 +1870,8 @@ time, and the oscillations get smaller.
 <h3 id="___sec50">Discussion of the time scale </h3>
 
 <p>
-Looking at the analytical insight we have, \( T(t) \) has two characteristic
+Looking at the analytical insight we have obtained, we
+observe that \( T(t) \) has two characteristic
 terms in time: \( e^{-kt} \) and \( \sin(\omega t) \). The former points to a time
 scale \( t_c=1/k \), while the latter to \( t_c=1/\omega \).
 Which one should be chosen? Bringing the temperature from \( T_0 \) to

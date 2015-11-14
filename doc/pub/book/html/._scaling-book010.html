@@ -491,19 +491,21 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('Wave nature of isentropic flow with small perturbations',
+               3,
+               None,
+               '___sec196'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec197'),
+              ('Exercises', 1, None, '___sec198'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -516,7 +518,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec202')]}
 end of tocinfo -->
 
 <body>
@@ -771,17 +773,16 @@ $$
      <!-- navigation toc: --> <li><a href="#___sec190" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation and the Mach number</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec193" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
      <!-- navigation toc: --> <li><a href="#___sec194" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec195" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The time scale</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Linearization</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Comparison of vibration models for elastic structures</a></li>
      <!-- navigation toc: --> <li><a href="#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Suggestions...</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec203" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec202" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -1712,7 +1713,7 @@ is only dependent on a given velocity field.
 
 <p>
 The model governing forced convection consists of the Navier-Stokes
-equation and the energy equation for the temperature:
+equations and the energy equation for the temperature:
 
 $$
 \begin{align}
@@ -1857,21 +1858,20 @@ represented by the term \( 2\mu\varepsilon_{ij}\varepsilon_{ij} \), where
 $$ \varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}
 + \frac{\partial u_j}{\partial x_i}\right) = \frac{1}{2}(\nabla\u + (\nabla\u)^T),$$
 
-where \( u_i \) is the velocity in direction of \( x_i \) (\( i=1,2,3 \) measures the
-space directions). The term \( 2\mu\varepsilon_{ij}\varepsilon_{ij} \)
+where \( u_i \) is the velocity in direction of \( x_i \) (\( i=1,2,3 \) measures
+the space directions). The term \( 2\mu\varepsilon_{ij}\varepsilon_{ij} \)
 is written with Einstein's summation convention in mind such that
-there is an implicit sum over \( i \) and \( j \).
-This term is actually much more relevant
-for forced convection, but was left out in the section <a href="#scale:fluid:forced_convection">Free convection</a> for mathematical simplicity.
-Heating by the work of viscous forces is often a very
-small effect and can be neglected, although it plays a major role in
-forging and extrusion of metals where the viscosity is very large,
-and those processes requires large external forces to drive the flow.
-The reason to include the work by viscous forces under the heading of
-free convection is more that we want to scale a more complete, general
-mathematical model for mixed force and free convection, and arrive
-at dimensionless numbers that can tell with this extra term is
-important and not.
+there is an implicit sum over \( i \) and \( j \).  This term is actually much
+more relevant for forced convection, but was left out in the section <a href="#scale:fluid:forced_convection">Free convection</a> for mathematical simplicity.
+Heating by the work of viscous forces is often a very small effect and
+can be neglected, although it plays a major role in forging and
+extrusion of metals where the viscosity is very large, and those
+processes require large external forces to drive the flow.  The reason
+behind the inclusion of the work by viscous forces under the heading
+of free convection is more that we want to scale a more complete,
+general mathematical model for mixed force and free convection, and
+arrive at dimensionless numbers that can tell if this extra term is
+important or not.
 
 <h3 id="___sec182">Relation between density and temperature </h3>
 
@@ -1898,7 +1898,7 @@ and \( \varrho_0 \) is a reference density when the temperature is at \( T_0 \).
 <p>
 It might look strange that the equation of continuity (from the mass
 conservation principle) is \( \nabla\cdot\u =0 \)
-when there are density variations in the flow. The rationale for using
+when there are density variations in the flow. The reason for using
 this version of the continuity equation is the assumption that
 the density of each fluid particle remains constant. Consequently,
 from the general equation of continuity,
@@ -1915,7 +1915,7 @@ and the equation reduces to \( \nabla\cdot\u = 0 \).
 <p>
 A very common approximation, called the <em>Boussinesq approximation</em>, is
 to neglect the density variations in all terms except the gravity term.
-This is a good approximation unless the change is \( \varrho \) is large.
+This is a good approximation unless the change in \( \varrho \) is large.
 With the linear \( \varrho(T) \) formula and the Boussinesq approximation,
 <a href="#mjx-eqn-4.41">(4.41)</a>-<a href="#mjx-eqn-4.43">(4.43)</a>
 take the form
@@ -2042,7 +2042,7 @@ Translating this similarity to scales,
 
 $$ \varrho_0 U^2/L \sim \varrho_0 g \beta\Delta T,$$
 
-gives an \( U \) of in terms of \( \Delta T \) :
+gives an \( U \) in terms of \( \Delta T \) :
 
 $$ U = \sqrt{\beta L \Delta T}\tp$$
 
@@ -2249,8 +2249,8 @@ These PDEs are posed in a spatial domain \( H \) for \( t\in (0, T] \). The symb
 and intracellular potential),
 \( C_m \) is the capacitance of the cell membrane,
 \( \chi \) is a membrane area to cell volume ratio,
-\( \sigma_i \) is a electric conductivity tensor for the intracellular space, and
-\( \sigma_e \) is a electric conductivity tensor for the extracellular space.
+\( \sigma_i \) is an electric conductivity tensor for the intracellular space, and
+\( \sigma_e \) is an electric conductivity tensor for the extracellular space.
 
 <p>
 The boundary conditions are of Neumann type, and we drop these from the discussion.
@@ -2858,7 +2858,7 @@ the ones with dimension, apart from the \( \alpha \) coefficient.
 <font color="red">(<b>hpl 33</b>: Comment on software also for advanced models.)</font>
 <!-- end inline comment -->
 
-<h2 id="scale:gas:acoustic">The acoustic approximation and the Mach number</h2>
+<h2 id="___sec193">General isentropic flow </h2>
 
 <p>
 Heat transfer can be neglected in
@@ -2889,7 +2889,7 @@ $$ F(\varrho) = p_0\left(\frac{\varrho}{\varrho_0}\right)^\gamma,$$
 
 where \( \gamma = 5/3 \) for air. The first step is to eliminate \( p \) in
 favor of \( \varrho \) so we get a system for \( \varrho \) and \( \u \).
-To this end,
+To this end, we must calculate \( \nabla p \):
 
 $$ \nabla p = F'(\varrho)\nabla\varrho,\quad
 F'(\varrho)= c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1},$$
@@ -2909,13 +2909,114 @@ c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0\tp
 \end{equation}
 $$
 
-<h3 id="___sec195">Basic scaling for small wave perturbations </h3>
+<p>
+The governing equations are now <a href="#mjx-eqn-4.86">(4.86)</a>
+and <a href="#mjx-eqn-4.88">(4.88)</a>.
+Space and time are scaled as usual as
+
+$$ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
+\quad\bar t = \frac{t}{t_c}\tp$$
+
+The scaled dependent variables are
+
+$$ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \frac{\u}{U}\tp$$
+
+Then \( F'(\varrho)=c_0^2\bar\varrho^{\gamma-1} \).
 
 <p>
-In a model for sound waves there are small pressure, velocity, and
-density perturbations from a ground state at rest where \( \u=0 \), \( \varrho=\varrho_0 \), and \( p=p_0 = F(\varrho_0) \). Let \( \varrho_c \), \( p_c=F(\varrho_c) \), and
-\( u_c \) be characteristic sizes of these perturbations.
-The density, e.g., will then vary in \( [\varrho_0-\varrho_c,\varrho_0+\varrho_c] \).
+Inserting the dimensionless variables in the two governing PDEs leads to
+
+$$
+\begin{align*}
+\frac{\varrho_c}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
++ \frac{\varrho_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\ 
+\frac{\varrho_c U}{t_c}\bar\varrho
+\frac{\partial\bar\u}{\partial\bar t} +
+\frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar\u
++ \frac{\varrho_c}{L}c_0^2\bar\varrho^{\gamma-1}
+\bar\nabla\bar\varrho
+&=0\tp
+\end{align*}
+$$
+
+The characteristic flow velocity is \( U \) so a natural time scale is
+\( t_c = L/U \). This choice leads to the scaled PDEs
+
+$$
+\begin{align}
+\frac{\partial\bar\varrho}{\partial\bar t}
++ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
+\tag{4.89}\\ 
+\bar\varrho
+\frac{\partial\bar\u}{\partial\bar t} +
+\bar\varrho\bar\u\cdot\bar\nabla\bar\u
++ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
+\bar\nabla\bar\varrho
+&=0,
+\tag{4.90}
+\end{align}
+$$
+
+where the dimensionless number
+
+$$ \hbox{M} = \frac{U}{c_0},$$
+
+is known as the <em>Mach number</em>.
+The boundary conditions specify the characteristic velocity \( U \) and
+thereby the Mach number.
+
+<h2 id="scale:gas:acoustic">The acoustic approximation for sound waves</h2>
+
+<h3 id="___sec196">Wave nature of isentropic flow with small perturbations </h3>
+
+<p>
+A model for sound waves can be based on <a href="#mjx-eqn-4.86">(4.86)</a>
+and <a href="#mjx-eqn-4.88">(4.88)</a>, but in this case
+there are small pressure, velocity, and
+density <em>perturbations</em> from a ground state at rest
+where \( \u=0 \), \( \varrho=\varrho_0 \), and \( p=p_0 = F(\varrho_0) \).
+Introducing the perturbations \( \hat\varrho = \varrho - \varrho_0 \) and \( \hat\u \),
+<a href="#mjx-eqn-4.86">(4.86)</a>
+and <a href="#mjx-eqn-4.88">(4.88)</a> take the form
+
+$$
+\begin{align*}
+\frac{\partial\hat\varrho}{\partial t} + \nabla\cdot(\hat\u(\varrho_0 + \hat\varrho) &=0,\\ 
+(\varrho_0 + \hat\varrho)
+\frac{\partial\hat\u}{\partial t} + (\varrho_0+\hat\varrho)\hat\u\cdot\nabla\hat\u +
+c_0^2\left(1 + \frac{\hat\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\hat\varrho &=0\tp
+\end{align*}
+$$
+
+For small perturbations we can linearize this PDE system by
+neglecting all products of \( \hat\varrho \) and
+\( \hat\u \). Also, \( 1 + \hat\varrho/\varrho_0\approx 1 \).
+This leaves us with the simplified system
+
+$$
+\begin{align*}
+\frac{\partial\hat\varrho}{\partial t} + \varrho_0\nabla\cdot\hat\u &=0,\\ 
+\varrho_0\frac{\partial\hat\u}{\partial t} +
+c_0^2\nabla\hat\varrho &=0\tp
+\end{align*}
+$$
+
+Eliminating \( \hat\u \) by differentiating the first PDE with respect to \( t \)
+and taking the divergence of the second PDE gives a standard wave equation
+for the density perturbations:
+
+$$ \frac{\partial^2\hat\varrho}{\partial t^2} = c_0^2\nabla^2\hat\varrho\tp$$
+
+Similarly, \( \hat\varrho \) can be eliminated and one gets a wave equation for
+\( \hat\u \), also with wave velocity \( c_0 \).
+This means that the sound perturbations travel with velocity \( c_0 \).
+
+<h3 id="___sec197">Basic scaling for small wave perturbations </h3>
+
+<p>
+Let \( \varrho_c \) and
+\( u_c \) be characteristic sizes of the perturbations in density and velocity.
+The density will then vary in \( [\varrho_0-\varrho_c,\varrho_0+\varrho_c] \).
 An appropriate scaling is
 
 $$ \bar\varrho =\frac{\varrho - \varrho_0}{\varrho_c} $$
@@ -2926,23 +3027,16 @@ $$ \varrho = \varrho_0 + \varrho_c\bar\varrho = \varrho_0(1 + \alpha\bar\varrho)
 
 Note that the dimensionless \( \alpha \) is expected to be a very small number
 since \( \varrho_c\ll \varrho_0 \).
+The velocity, space, and time are scaled as in the previous
+section.
+Also note that \( \varrho_0 \) and \( p_0 \) are known values, but the scales
+\( \varrho_c \) and \( U \) are not known. Usually these
+can be estimated from perturbations (i.e., sound generation)
+applied at the boundary.
 
 <p>
-The velocity is scaled as
-
-$$ \bar\u = \u/U,$$
-
-while space and time are scaled as usual:
-
-$$ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
-\quad\bar t = \frac{t}{t_c}\tp$$
-
-Note that \( \varrho_0 \) and \( p_0 \) are known values, but the scales
-\( \varrho_c \), \( p_c=F(\varrho_c) \), and \( U \) are not known. Usually these
-can be estimated from perturbations applied at the boundary.
-
-<p>
-Inserting the dimensionless variables leads to
+Inserting the scaled variables in <a href="#mjx-eqn-4.86">(4.86)</a>
+and <a href="#mjx-eqn-4.88">(4.88)</a> results in
 
 $$
 \begin{align*}
@@ -2957,17 +3051,14 @@ $$
 \end{align*}
 $$
 
-<h3 id="___sec196">The time scale </h3>
-
 <p>
-What is the appropriate time scale? It could be \( t_c=L/U \) as in many
-other flow problems. However, in the present model we expect sound waves,
-so the velocity \( c_0 \) of the sound waves is the appropriate velocity scale.
-The flow velocity \( U \) is expected to be very much smaller than \( c_0 \)
+Since we now model sound waves, the relevant time scale is not \( L/U \)
+but the time it takes a wave to travel through the domain: \( t_c=L/c_0 \).
+This is a much smaller time scale than in the previous section because
+\( c_0\gg U \)
 (think of speaking: the sound travels very fast but one cannot feel
 the corresponding very small flow perturbation in the air!).
-Therefore, \( t_c = L/c_0 \) is the corresponding (short) natural time scale.
-Using this time scale, we achieve
+Using \( t_c=L/u_0 \) we get
 
 $$
 \begin{align*}
@@ -2977,17 +3068,9 @@ $$
 \frac{\partial\bar\u}{\partial\bar t} +
 \hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
 \hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
-&=0,
+&=0\tp
 \end{align*}
 $$
-
-where the dimensionless number
-
-$$ \hbox{M} = \frac{U}{c_0},$$
-
-is known as the <em>Mach number</em>.
-
-<h3 id="___sec197">Linearization </h3>
 
 <p>
 With the assumption of small perturbations, M and \( \alpha \) are small numbers.
@@ -3009,83 +3092,45 @@ $$
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot\bar\u &=0,
-\tag{4.89}\\ 
+\tag{4.91}\\ 
 \hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
-\tag{4.90}
+\tag{4.92}
 \end{align}
 $$
 
 <p>
 The velocity \( \u \) can be eliminated taking the time derivative of
-<a href="#mjx-eqn-4.89">(4.89)</a> and the divergence of
-<a href="#mjx-eqn-4.90">(4.90)</a>:
+<a href="#mjx-eqn-4.91">(4.91)</a> and the divergence of
+<a href="#mjx-eqn-4.92">(4.92)</a>:
 
 $$
 \begin{equation}
-\frac{\partial^2\bar\varrho}{\partial\bar t^2} +
-\bar\nabla^2\bar\varrho = 0,
-\tag{4.91}
+\frac{\partial^2\bar\varrho}{\partial\bar t^2} =
+\bar\nabla^2\bar\varrho,
+\tag{4.93}
 \end{equation}
 $$
 
-which is nothing but a standard, linear wave equation. Similarly,
+which is nothing but a standard dimensionless wave equation with
+unit wave velocity. Similarly,
 we can eliminate \( \varrho \) by taking the divergence of
-<a href="#mjx-eqn-4.89">(4.89)</a> and the time derivative of
-<a href="#mjx-eqn-4.90">(4.90)</a>:
+<a href="#mjx-eqn-4.91">(4.91)</a> and the time derivative of
+<a href="#mjx-eqn-4.92">(4.92)</a>:
 
 $$
 \begin{equation}
-\frac{\partial^2\bar\u}{\partial\bar t^2} +
-\bar\nabla^2\bar\u = 0,
-\tag{4.92}
+\frac{\partial^2\bar\u}{\partial\bar t^2} =
+\bar\nabla^2\bar\u\tp
+\tag{4.94}
 \end{equation}
 $$
 
-which shows that each component of the velocity also propagates according
-to the wave equation with unit velocity.
 We also observe that there are no physical parameters in the scaled
 wave equations. The M parameter can be eliminated from
-<a href="#mjx-eqn-4.89">(4.89)</a>-<a href="#mjx-eqn-4.90">(4.90)</a>
+<a href="#mjx-eqn-4.91">(4.91)</a>-<a href="#mjx-eqn-4.92">(4.92)</a> as well
 by introducing a new unknown \( \bar\v = M\bar\u \).
 
-<h2 id="___sec198">General isentropic flow </h2>
-
-<p>
-Suppose we are not interested in acoustic waves in isentropic flow,
-as described in the previous section, but
-in a significant velocity of characteristic size \( U \) and corresponding
-significant changes in \( \varrho \) and \( p \). The relevant time scale is
-not that of the waves, but of the overall flow: \( t_c=L/U \).
-
-<p>
-The governing equations are <a href="#mjx-eqn-4.86">(4.86)</a>
-and <a href="#mjx-eqn-4.88">(4.88)</a>. We scale \( \varrho \)
-directly by its magnitude \( \varrho_c \): \( \bar\varrho = \varrho/\varrho_c \).
-Then \( F'(\varrho)=c_0^2\bar\varrho^{\gamma-1} \).
-All other scalings remain as in the section <a href="#scale:gas:acoustic">The acoustic approximation and the Mach number</a>.
-The result of inserting dimensionless variables and using
-\( t_c=L/U \) is
-
-$$
-\begin{align}
-\frac{\partial\bar\varrho}{\partial\bar t}
-+ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
-\tag{4.93}\\ 
-\bar\varrho
-\frac{\partial\bar\u}{\partial\bar t} +
-\bar\varrho\bar\u\cdot\bar\nabla\bar\u
-+ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
-\bar\nabla\bar\varrho
-&=0\tp
-\tag{4.94}
-\end{align}
-$$
-
-Again, there is only one dimensionless parameter, the Mach number M.
-The boundary conditions specify the characteristic velocity \( U \) and
-thereby the Mach number.
-
-<h1 id="___sec199">Exercises </h1>
+<h1 id="___sec198">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
@@ -3126,7 +3171,7 @@ $$ \rho\frac{\partial^2 u}{\partial t^2} + EI\frac{\partial^4 u}{\partial x^4} =
 where \( u(x,t) \) is the vertical displacement along the beam,
 \( \rho \) is the mass per length of the beam,
 \( E \) is Young's modulus, and \( I \) is the moment of inertia. For a
-rectangular cross section of with \( b \) and height \( h \), \( I=\frac{1}{12}bh^3 \).
+rectangular cross section of width \( b \) and height \( h \), \( I=\frac{1}{12}bh^3 \).
 Compare the time scale for these vibrations with the time scale \( t_c \)
 for three-dimensional elasticity.
 

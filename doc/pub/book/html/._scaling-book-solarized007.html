@@ -518,19 +518,21 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('Wave nature of isentropic flow with small perturbations',
+               3,
+               None,
+               '___sec196'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec197'),
+              ('Exercises', 1, None, '___sec198'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -543,7 +545,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec202')]}
 end of tocinfo -->
 
 <body>
@@ -729,9 +731,8 @@ which tells that the initial condition splits in two, half of it moves
 to the left and half to the right.
 This means in particular that we can choose \( u_c=\max_x |I(x)| \)
 and get \( |\bar u|\leq 1 \), which is a goal. It must be added that
-boundary conditions may result in reflected waves and a more
-complicated solution that indicated above with the two left- and
-right-going parts of the initial condition.
+boundary conditions may result in reflected waves, and the solution is
+then more complicated than indicated in the formula above.
 
 <p>
 Regarding the time scale, we may look at the two terms in the scaled
@@ -1178,18 +1179,25 @@ Again, these dimensionless parameters tell a lot about the interplay of
 the physical effects in the problem. And only some ratios count!
 
 <p>
-We can simulate two special cases: \( \alpha=10 \) (large) where the
-incoming wave is small and the solution is dominated by the two waves
-arising from \( I(x) \), and \( \alpha=0.1 \) (small) where the incoming waves
-dominate and the has the initial condition as a small perturbation of
-the wave shape. We may choose a peak-shaped initial condition: \( \beta = 10 \),
+We can simulate two special cases:
+
+<ol>
+<li> \( \alpha=10 \) (large) where the
+   incoming wave is small and the solution is dominated by the two waves
+   arising from \( I(x) \),</li>
+<li> \( \alpha=0.1 \) (small) where the incoming waves
+   dominate and the solution has the initial condition just
+   as a small perturbation of the wave shape.</li>
+</ol>
+
+We may choose a peak-shaped initial condition: \( \beta = 10 \),
 and also a relatively short incoming wave compared to the domain size:
 \( \gamma = 6\pi \) (i.e., wave length of incoming wave is \( L/6 \)).
 A function <code>simulate_Gaussian_and_incoming_wave</code> in
 the file <a href="http://tinyurl.com/o8pb3yy/session.py" target="_self"><tt>session.py</tt></a>
 applies the general unscaled
 solver in <a href="http://tinyurl.com/o8pb3yy/wave1D_dn.py" target="_self"><tt>wave1D_dn.py</tt></a>
-for solving the wave equation with constant \( c \)
+for solving the wave equation with constant \( c \),
 and any time-dependent function or \( \partial u/\partial x=0 \) at the
 end points. This solver is trivially adapted to the present case.
 <!-- @@@CODE src-scaling/session.py fromto: def simulate_Gaussian_and@import odespy -->
@@ -1423,26 +1431,21 @@ Inserting dependent and independent variables expressed by their
 non-dimensional counterparts yields
 
 $$
-\begin{align}
+\begin{align*}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
 + \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
-\quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\tag{136}\\ 
+\quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],\\ 
 \bar u(\bar x,0) &= \frac{I(x)}{u_c},
-\quad &\bar x\in [0,1],
-\tag{137}\\ 
+\quad &\bar x\in [0,1],\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
-\quad & \bar x\in [0,1],
-\tag{138}\\ 
+\quad & \bar x\in [0,1],\\ 
 \frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t) & = 0,
-\quad  &\bar t\in (0,\bar T],
-\tag{139}\\ 
+\quad  &\bar t\in (0,\bar T],\\ 
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\tag{140}
-\end{align}
+\end{align*}
 $$
 
 with \( \bar T = Tc/L \).
@@ -1554,7 +1557,7 @@ $$
 + b\frac{\partial u}{\partial t} =
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t)\tp
-\tag{141}
+\tag{136}
 \end{equation}
 $$
 
@@ -1582,7 +1585,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(
 \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
 \beta\bar f(\bar x,\bar t),
-\tag{142}
+\tag{137}
 \end{equation}
 $$
 
@@ -1601,7 +1604,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(
 \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
 \bar f(\bar x,\bar t)\tp
-\tag{143}
+\tag{138}
 \end{equation}
 $$
 
@@ -1626,7 +1629,7 @@ $$
 \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
 \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
 \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right)\tp
-\tag{144}
+\tag{139}
 \end{equation}
 $$
 
@@ -1657,7 +1660,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
 \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
 \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right)\tp
-\tag{145}
+\tag{140}
 \end{equation}
 $$
 

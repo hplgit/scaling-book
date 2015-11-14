@@ -518,19 +518,21 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('The acoustic approximation and the Mach number',
+              ('General isentropic flow', 2, None, '___sec193'),
+              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
                'scale:gas:acoustic'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('Wave nature of isentropic flow with small perturbations',
+               3,
+               None,
+               '___sec196'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec195'),
-              ('The time scale', 3, None, '___sec196'),
-              ('Linearization', 3, None, '___sec197'),
-              ('General isentropic flow', 2, None, '___sec198'),
-              ('Exercises', 1, None, '___sec199'),
+               '___sec197'),
+              ('Exercises', 1, None, '___sec198'),
               ('Exercise 22: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -543,7 +545,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec203')]}
+              ('References', 1, None, '___sec202')]}
 end of tocinfo -->
 
 <body>
@@ -616,7 +618,7 @@ $$
 \frac{\partial u}{\partial t} + \v\cdot\nabla u =
 \dfc\nabla^2 u,
 \quad  x,y, z\in \Omega,\ t\in (0, T]\tp
-\tag{179}
+\tag{174}
 \end{equation}
 $$
 
@@ -642,7 +644,7 @@ $$ \bar x = \frac{x}{x_c},\ \bar y = \frac{y}{y_c},\ \bar z = \frac{z}{z_c},
 \ \bar t = \frac{t}{t_c}, \ \bar\v = \frac{\v}{V},
 \ \bar u =\frac{u}{u_c}$$
 
-in <a href="#mjx-eqn-179">(179)</a> yields
+in <a href="#mjx-eqn-174">(174)</a> yields
 
 $$
 \frac{u_c}{t_c}
@@ -678,7 +680,7 @@ $$
 \bar\v\cdot\bar\nabla\bar u =
 \hbox{Pe}^{-1}\bar\nabla^2\bar u,
 \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T],
-\tag{180}
+\tag{175}
 \end{equation}
 $$
 
@@ -705,7 +707,7 @@ $$
 \hbox{Pe}\,\bar\v\cdot\bar\nabla\bar u =
 \bar\nabla^2\bar u,
 \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]\tp
-\tag{181}
+\tag{176}
 \end{equation}
 $$
 
@@ -713,12 +715,12 @@ $$
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Discussion of scales and balance of terms in the PDE.</b>
 <p>
-We see that <a href="#mjx-eqn-180">(180)</a> and <a href="#mjx-eqn-181">(181)</a>
+We see that <a href="#mjx-eqn-175">(175)</a> and <a href="#mjx-eqn-176">(176)</a>
 are not equivalent, and they are based on two different time scales.
 For moderate Peclet numbers around 1, all terms have the same size
-in <a href="#mjx-eqn-180">(180)</a>, i.e., a size around unity.
+in <a href="#mjx-eqn-175">(175)</a>, i.e., a size around unity.
 For large Peclet numbers,
-<a href="#mjx-eqn-180">(180)</a> expresses a balance
+<a href="#mjx-eqn-175">(175)</a> expresses a balance
 between the time derivative term and the convection term, both of size
 unity, and then there is a very small term
 \( \hbox{Pe}^{-1}\bar\nabla^2\bar u \) term because Pe is large and
@@ -739,9 +741,9 @@ very large and can only be balanced by two terms that are supposed to
 be unity of size.  The time-derivative and/or the convection term must
 be much larger than unity, but that means we use suboptimal scales,
 since right scales imply that \( \partial\bar u/\partial\bar t \) and
-\( \bar v\cdot\bar\nabla\bar u \) of order unity. Switching to a time
+\( \bar v\cdot\bar\nabla\bar u \) are of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
-<a href="#mjx-eqn-181">(181)</a>.  For very small Peclet numbers this
+<a href="#mjx-eqn-176">(176)</a>.  For very small Peclet numbers this
 equation tells that the time-derivative balances the diffusion, while
 the convection \( \bar\v\cdot\bar\nabla\bar\u \) is around
 unity, but multiplied by a very small coefficient Pe, so this term is
@@ -778,7 +780,7 @@ $$
 \begin{equation}
 \bar\v\cdot\bar\nabla\bar u =
 \hbox{Pe}^{-1}\bar\nabla^2\bar u\tp
-\tag{182}
+\tag{177}
 \end{equation}
 $$
 
@@ -891,7 +893,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} + \v\cdot\nabla u =
 \dfc\nabla^2 u + f\tp
-\tag{183}
+\tag{178}
 \end{equation}
 $$
 
@@ -1090,11 +1092,11 @@ is governed by
 $$
 \begin{align}
 \mu u''(z) &= -\beta
-\tag{184}\\ 
+\tag{179}\\ 
 u(0) &= 0,
-\tag{185}\\ 
+\tag{180}\\ 
 u(H) &= U_0\tp
-\tag{186}
+\tag{181}
 \end{align}
 $$
 
@@ -1144,13 +1146,13 @@ $$
 \begin{align}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
 \left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{187}\\ 
+\tag{182}\\ 
 \frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
-\tag{188}\\ 
+\tag{183}\\ 
 u(R,t) &= 0, & t\in (0,T],
-\tag{189}\\ 
+\tag{184}\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{190}
+\tag{185}
 \end{align}
 $$
 
@@ -1183,7 +1185,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
 -u\tp
-\tag{191}
+\tag{186}
 \end{equation}
 $$
 
@@ -1192,7 +1194,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale <a href="#mjx-eqn-191">(191)</a> in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-186">(186)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
