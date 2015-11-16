@@ -74,6 +74,13 @@
    publisher: Wiley
    status:    published
    entrytype: book
+** Mathematics Applied to Deterministic Problems in the Natural Sciences
+   key:       Lin_Segel
+   author:    C. C. Lin, L. A. Segel
+   year:      1988
+   publisher: SIAM
+   status:    published
+   entrytype: book
 ** Iterative Methods for Linear and Nonlinear Equations
    key:       Kelley_1995
    author:    C. T. Kelley

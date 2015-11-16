@@ -37,6 +37,7 @@ Nicolson
 NumPy
 Nusselt
 ODEs
+Odespy
 PDE
 PDEs
 Parampool
@@ -52,6 +53,7 @@ SHA
 SIRV
 SciTools
 ScientificPython
+Segel
 Simula
 Sneyd
 Strouhal
