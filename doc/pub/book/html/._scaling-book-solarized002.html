@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -70,7 +70,10 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:dimunit:tables',
                'scale:dimunit:tables'),
               ('Prefixes for units', 3, None, '___sec5'),
-              ('The Buckingham Pi theorem', 2, None, '___sec6'),
+              ('The Buckingham Pi theorem',
+               2,
+               'scale:dimunit:Pi',
+               'scale:dimunit:Pi'),
               ('Absolute errors, relative errors, and units',
                2,
                None,
@@ -312,43 +315,47 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
-              ('Basic PDE models', 0, None, '___sec110'),
+              ('Problem 17: Vertical motion in a varying gravity field',
+               2,
+               'scale:vib:exer:rocket',
+               'scale:vib:exer:rocket'),
+              ('Basic PDE models', 0, None, '___sec111'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec112'),
+               '___sec113'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec113'),
-              ('Waves on a string', 3, None, '___sec114'),
-              ('Detecting an already computed case', 3, None, '___sec115'),
+               '___sec114'),
+              ('Waves on a string', 3, None, '___sec115'),
+              ('Detecting an already computed case', 3, None, '___sec116'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
-              ('Scaling', 3, None, '___sec117'),
-              ('Software', 3, None, '___sec118'),
-              ('Specific case', 3, None, '___sec119'),
+              ('Scaling', 3, None, '___sec118'),
+              ('Software', 3, None, '___sec119'),
+              ('Specific case', 3, None, '___sec120'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
-              ('Analytical insight', 3, None, '___sec121'),
-              ('Scaling', 3, None, '___sec122'),
-              ('Nonzero initial shape', 3, None, '___sec123'),
+              ('Analytical insight', 3, None, '___sec122'),
+              ('Scaling', 3, None, '___sec123'),
+              ('Nonzero initial shape', 3, None, '___sec124'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
-              ('Non-dimensionalization', 3, None, '___sec125'),
-              ('Choosing the time scale', 3, None, '___sec126'),
-              ('Choosing the spatial scale', 3, None, '___sec127'),
+              ('Non-dimensionalization', 3, None, '___sec126'),
+              ('Choosing the time scale', 3, None, '___sec127'),
+              ('Choosing the spatial scale', 3, None, '___sec128'),
               ('Scaling the velocity initial condition',
                3,
                None,
-               '___sec128'),
+               '___sec129'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -356,7 +363,7 @@ div { text-align: justify; text-justify: inter-word; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec130'),
+               '___sec131'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
@@ -365,18 +372,18 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Generalized diffusion PDE', 2, None, '___sec133'),
-              ('Jump boundary condition', 2, None, '___sec134'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec135'),
-              ('Scaling', 3, None, '___sec136'),
+              ('Generalized diffusion PDE', 2, None, '___sec134'),
+              ('Jump boundary condition', 2, None, '___sec135'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec136'),
+              ('Scaling', 3, None, '___sec137'),
               ('Reaction-diffusion equations',
                1,
                'sec:scale:diffu:Fisher',
                'sec:scale:diffu:Fisher'),
-              ("Fisher's equation", 2, None, '___sec138'),
-              ('Balance of all terms', 3, None, '___sec139'),
-              ('Fixed length scale', 3, None, '___sec140'),
-              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec141'),
+              ("Fisher's equation", 2, None, '___sec139'),
+              ('Balance of all terms', 3, None, '___sec140'),
+              ('Fixed length scale', 3, None, '___sec141'),
+              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec142'),
               ('The convection-diffusion equation',
                1,
                'scale:convdiff',
@@ -384,35 +391,39 @@ div { text-align: justify; text-justify: inter-word; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec143'),
-              ('Stationary PDE', 2, None, '___sec144'),
+               '___sec144'),
+              ('Stationary PDE', 2, None, '___sec145'),
               ('Convection-diffusion with a force term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
-              ('Exercises', 1, None, '___sec146'),
-              ('Problem 17: Scale a stationary Couette flow',
+              ('Exercises', 1, None, '___sec147'),
+              ('Problem 18: Scale a stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec148'),
-              ('Problem 18: Scale a starting Couette flow',
+              ('Remarks', 3, None, '___sec149'),
+              ('Problem 19: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 19: Scale Couette flow with pressure gradient',
+              ('Exercise 20: Scale Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 20: Scale pulsatile pipeflow',
+              ('Exercise 21: Scale pulsatile pipeflow',
                2,
                'scale:exer:pipeflow:pulsatile',
                'scale:exer:pipeflow:pulsatile'),
-              ('Exercise 21: Scale the linear cable equation',
+              ('Exercise 22: Scale the linear cable equation',
                2,
                'scale:exer:cable_eq',
                'scale:exer:cable_eq'),
-              ('Advanced PDE models', 0, None, '___sec153'),
+              ('Exercise 23: Scale a discontinuous heat conduction problem',
+               2,
+               'scale:exer:twometal',
+               'scale:exer:twometal'),
+              ('Advanced PDE models', 0, None, '___sec155'),
               ('The equations of linear elasticity',
                1,
                'scale:elasticity',
@@ -421,7 +432,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:elasticity:timedep',
                'scale:elasticity:timedep'),
-              ('Software', 3, None, '___sec156'),
+              ('Software', 3, None, '___sec158'),
               ('Dimensionless stress tensor',
                2,
                'scale:elasticity:PDE1:stress',
@@ -430,22 +441,22 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:elasticity:waves',
                'scale:elasticity:waves'),
-              ('S waves', 3, None, '___sec159'),
-              ('P waves', 3, None, '___sec160'),
-              ('Time-varying load', 3, None, '___sec161'),
+              ('S waves', 3, None, '___sec161'),
+              ('P waves', 3, None, '___sec162'),
+              ('Time-varying load', 3, None, '___sec163'),
               ('The stationary elasticity problem',
                2,
                'scale:elasticity:stationary',
                'scale:elasticity:stationary'),
-              ('Scaling of the PDE', 3, None, '___sec163'),
+              ('Scaling of the PDE', 3, None, '___sec165'),
               ('Scaling of displacement boundary conditions',
                3,
                None,
-               '___sec164'),
+               '___sec166'),
               ('Scaling of traction boundary conditions',
                3,
                None,
-               '___sec165'),
+               '___sec167'),
               ('Quasi-static thermo-elasticity',
                2,
                'scale:elasticity:thermo',
@@ -457,59 +468,59 @@ div { text-align: justify; text-justify: inter-word; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec168'),
-              ('Scaling', 3, None, '___sec169'),
+               '___sec170'),
+              ('Scaling', 3, None, '___sec171'),
               ('Dimensonless PDEs and the Reynolds number',
                3,
                None,
-               '___sec170'),
+               '___sec172'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec171'),
-              ('Shear stress as pressure scale', 2, None, '___sec172'),
-              ('Gravity force and the Froude number', 2, None, '___sec173'),
+               '___sec173'),
+              ('Shear stress as pressure scale', 2, None, '___sec174'),
+              ('Gravity force and the Froude number', 2, None, '___sec175'),
               ('Oscillating boundary conditions and the Strouhal number',
                2,
                None,
-               '___sec174'),
-              ('Cavitation and the Euler number', 2, None, '___sec175'),
+               '___sec176'),
+              ('Cavitation and the Euler number', 2, None, '___sec177'),
               ('Free surface conditions and the Weber number',
                2,
-               None,
-               '___sec176'),
-              ('Thermal convection', 1, None, '___sec177'),
-              ('Forced convection', 2, None, '___sec178'),
+               'freesurface:Weber',
+               'freesurface:Weber'),
+              ('Thermal convection', 1, None, '___sec179'),
+              ('Forced convection', 2, None, '___sec180'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec180'),
-              ('Heating by viscous effects', 3, None, '___sec181'),
+              ('Governing equations', 3, None, '___sec182'),
+              ('Heating by viscous effects', 3, None, '___sec183'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec182'),
+               '___sec184'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec183'),
-              ('The Boussinesq approximation', 3, None, '___sec184'),
-              ('Scaling', 3, None, '___sec185'),
+               '___sec185'),
+              ('The Boussinesq approximation', 3, None, '___sec186'),
+              ('Scaling', 3, None, '___sec187'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec186'),
-              ('Interpretations of the Grashof number', 3, None, '___sec187'),
+               '___sec188'),
+              ('Interpretations of the Grashof number', 3, None, '___sec189'),
               ('Heat transfer at boundaries and the Nusselt number',
                2,
                None,
-               '___sec188'),
+               '___sec190'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec190'),
+              ('Two-phase porous media flow', 1, None, '___sec192'),
               ('Compressible gas dynamics',
                1,
                'scale:gasdyn',
@@ -518,8 +529,8 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('General isentropic flow', 2, None, '___sec193'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('General isentropic flow', 2, None, '___sec195'),
+              ('Elimination of the pressure', 3, None, '___sec196'),
               ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
@@ -527,25 +538,35 @@ div { text-align: justify; text-justify: inter-word; }
               ('Wave nature of isentropic flow with small perturbations',
                3,
                None,
-               '___sec196'),
+               '___sec198'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec197'),
-              ('Exercises', 1, None, '___sec198'),
-              ('Exercise 22: Comparison of vibration models for elastic structures',
+               '___sec199'),
+              ('Surface gravity waves',
+               1,
+               'scale:surfacewaves',
+               'scale:surfacewaves'),
+              ('Equations for surface waves',
+               2,
+               'scale:surfacewaves:Eulereq',
+               'scale:surfacewaves:Eulereq'),
+              ('Waves in deep  water', 3, None, '___sec202'),
+              ('Long waves in shallow water', 3, None, '___sec203'),
+              ('Exercises', 1, None, '___sec204'),
+              ('Exercise 24: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
                'scale::exer:elasticity:vibmodels'),
-              ('Exercise 23: Scale the equations of quasi-static poro-elasticity',
+              ('Exercise 25: Scale the equations of quasi-static poro-elasticity',
                2,
                'scale:exer:poroelasticity',
                'scale:exer:poroelasticity'),
-              ('Exercise 24: Suggestions...',
+              ('Exercise 26: Suggestions...',
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec202')]}
+              ('References', 1, None, '___sec208')]}
 end of tocinfo -->
 
 <body>
@@ -573,6 +594,7 @@ $$
 \newcommand{\x}{\boldsymbol{x}}
 \renewcommand{\u}{\boldsymbol{u}}
 \renewcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
 \newcommand{\rpos}{\boldsymbol{r}}
 \newcommand{\f}{\boldsymbol{f}}
 \newcommand{\F}{\boldsymbol{F}}
@@ -613,7 +635,7 @@ $$
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#___sec2"> Fundamental concepts </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#___sec3"> Base units and dimensions </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#scale:dimunit:tables"> Dimensions of common physical quantities </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#___sec6"> The Buckingham Pi theorem </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#scale:dimunit:Pi"> The Buckingham Pi theorem </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#___sec7"> Absolute errors, relative errors, and units </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#___sec8"> Units and computers </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized004.html#___sec9"> Unit systems </a><br>
@@ -663,34 +685,36 @@ $$
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized006.html#sec:scale:exer:pendulum"> Problem 14: Scale the pendulum equation </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized006.html#sec:scale:exer:binary_star"> Exercise 15: Scale the ODEs for a binary star </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized006.html#scale:vib:exer:Duffing"> Problem 16: Scale Duffing's equation </a><br>
-<a href="._scaling-book-solarized007.html#___sec110"> Basic PDE models </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized006.html#scale:vib:exer:rocket"> Problem 17: Vertical motion in a varying gravity field </a><br>
+<a href="._scaling-book-solarized007.html#___sec111"> Basic PDE models </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#sec:scale:wave"> The wave equation </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#___sec112"> Simple homogeneous Dirichlet conditions </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#___sec113"> Implementation of the scaled wave equation </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#___sec113"> Simple homogeneous Dirichlet conditions </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#___sec114"> Implementation of the scaled wave equation </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#scale:wave:pde2"> Time-dependent Dirichlet condition </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#scale:wave:pde2:Vcond"> Velocity initial condition </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#scale:wave:pde2:cvar"> Variable wave velocity and forcing </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#scale:wave:pde2:damped"> Damped wave equation </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#___sec130"> A three-dimensional wave equation problem </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized007.html#___sec131"> A three-dimensional wave equation problem </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#sec:scale:diffu"> The diffusion equation </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#sec:scale:diffu:homo1D"> Homogeneous 1D diffusion equation </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec133"> Generalized diffusion PDE </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec134"> Jump boundary condition </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec135"> Oscillating Dirichlet condition </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec134"> Generalized diffusion PDE </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec135"> Jump boundary condition </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec136"> Oscillating Dirichlet condition </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#sec:scale:diffu:Fisher"> Reaction-diffusion equations </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec138"> Fisher's equation </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec141"> Nonlinear reaction-diffusion PDE </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec139"> Fisher's equation </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized008.html#___sec142"> Nonlinear reaction-diffusion PDE </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:convdiff"> The convection-diffusion equation </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#___sec143"> Convection-diffusion without a force term </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#___sec144"> Stationary PDE </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#___sec144"> Convection-diffusion without a force term </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#___sec145"> Stationary PDE </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:convdiff:f"> Convection-diffusion with a force term </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#___sec146"> Exercises </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:vib:exer:stationary_Couette"> Problem 17: Scale a stationary Couette flow </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:vib:exer:starting_Couette"> Problem 18: Scale a starting Couette flow </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:vib:exer:Couette_wpressure"> Exercise 19: Scale Couette flow with pressure gradient </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:exer:pipeflow:pulsatile"> Exercise 20: Scale pulsatile pipeflow </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:exer:cable_eq"> Exercise 21: Scale the linear cable equation </a><br>
-<a href="._scaling-book-solarized010.html#___sec153"> Advanced PDE models </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#___sec147"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:vib:exer:stationary_Couette"> Problem 18: Scale a stationary Couette flow </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:vib:exer:starting_Couette"> Problem 19: Scale a starting Couette flow </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:vib:exer:Couette_wpressure"> Exercise 20: Scale Couette flow with pressure gradient </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:exer:pipeflow:pulsatile"> Exercise 21: Scale pulsatile pipeflow </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:exer:cable_eq"> Exercise 22: Scale the linear cable equation </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized009.html#scale:exer:twometal"> Exercise 23: Scale a discontinuous heat conduction problem </a><br>
+<a href="._scaling-book-solarized010.html#___sec155"> Advanced PDE models </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:elasticity"> The equations of linear elasticity </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:elasticity:timedep"> The general time-dependent elasticity problem </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:elasticity:PDE1:stress"> Dimensionless stress tensor </a><br>
@@ -698,29 +722,31 @@ $$
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:elasticity:stationary"> The stationary elasticity problem </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:elasticity:thermo"> Quasi-static thermo-elasticity </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#sec:scale:ns"> The Navier-Stokes equations </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec168"> The momentum equation without body forces </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec171"> Scaling of time for low Reynolds numbers </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec172"> Shear stress as pressure scale </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec173"> Gravity force and the Froude number </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec174"> Oscillating boundary conditions and the Strouhal number </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec175"> Cavitation and the Euler number </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec176"> Free surface conditions and the Weber number </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec177"> Thermal convection </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec178"> Forced convection </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec170"> The momentum equation without body forces </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec173"> Scaling of time for low Reynolds numbers </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec174"> Shear stress as pressure scale </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec175"> Gravity force and the Froude number </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec176"> Oscillating boundary conditions and the Strouhal number </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec177"> Cavitation and the Euler number </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#freesurface:Weber"> Free surface conditions and the Weber number </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec179"> Thermal convection </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec180"> Forced convection </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:fluid:forced_convection"> Free convection </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec186"> The Grashof, Prandtl, and Eckert numbers </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec188"> Heat transfer at boundaries and the Nusselt number </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec188"> The Grashof, Prandtl, and Eckert numbers </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec190"> Heat transfer at boundaries and the Nusselt number </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:bidomain"> The bidomain model in electrophysiology </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec190"> Two-phase porous media flow </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec192"> Two-phase porous media flow </a><br>
 &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:gasdyn"> Compressible gas dynamics </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:Euler_eqs"> The Euler equations of gas dynamics </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec193"> General isentropic flow </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec195"> General isentropic flow </a><br>
 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:gas:acoustic"> The acoustic approximation for sound waves </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec198"> Exercises </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale::exer:elasticity:vibmodels"> Exercise 22: Comparison of vibration models for elastic structures </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:exer:poroelasticity"> Exercise 23: Scale the equations of quasi-static poro-elasticity </a><br>
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale::exer:suggest"> Exercise 24: Suggestions... </a><br>
-&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized011.html#___sec202"> References </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:surfacewaves"> Surface gravity waves </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:surfacewaves:Eulereq"> Equations for surface waves </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#___sec204"> Exercises </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale::exer:elasticity:vibmodels"> Exercise 24: Comparison of vibration models for elastic structures </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale:exer:poroelasticity"> Exercise 25: Scale the equations of quasi-static poro-elasticity </a><br>
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized010.html#scale::exer:suggest"> Exercise 26: Suggestions... </a><br>
+&nbsp; &nbsp; &nbsp; <a href="._scaling-book-solarized011.html#___sec208"> References </a><br>
 </p>
 <p>
 <p>

@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -43,7 +43,10 @@ code { color: inherit; background-color: transparent; }
                'scale:dimunit:tables',
                'scale:dimunit:tables'),
               ('Prefixes for units', 3, None, '___sec5'),
-              ('The Buckingham Pi theorem', 2, None, '___sec6'),
+              ('The Buckingham Pi theorem',
+               2,
+               'scale:dimunit:Pi',
+               'scale:dimunit:Pi'),
               ('Absolute errors, relative errors, and units',
                2,
                None,
@@ -285,43 +288,47 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
-              ('Basic PDE models', 0, None, '___sec110'),
+              ('Problem 17: Vertical motion in a varying gravity field',
+               2,
+               'scale:vib:exer:rocket',
+               'scale:vib:exer:rocket'),
+              ('Basic PDE models', 0, None, '___sec111'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Simple homogeneous Dirichlet conditions',
                2,
                None,
-               '___sec112'),
+               '___sec113'),
               ('Implementation of the scaled wave equation',
                2,
                None,
-               '___sec113'),
-              ('Waves on a string', 3, None, '___sec114'),
-              ('Detecting an already computed case', 3, None, '___sec115'),
+               '___sec114'),
+              ('Waves on a string', 3, None, '___sec115'),
+              ('Detecting an already computed case', 3, None, '___sec116'),
               ('Time-dependent Dirichlet condition',
                2,
                'scale:wave:pde2',
                'scale:wave:pde2'),
-              ('Scaling', 3, None, '___sec117'),
-              ('Software', 3, None, '___sec118'),
-              ('Specific case', 3, None, '___sec119'),
+              ('Scaling', 3, None, '___sec118'),
+              ('Software', 3, None, '___sec119'),
+              ('Specific case', 3, None, '___sec120'),
               ('Velocity initial condition',
                2,
                'scale:wave:pde2:Vcond',
                'scale:wave:pde2:Vcond'),
-              ('Analytical insight', 3, None, '___sec121'),
-              ('Scaling', 3, None, '___sec122'),
-              ('Nonzero initial shape', 3, None, '___sec123'),
+              ('Analytical insight', 3, None, '___sec122'),
+              ('Scaling', 3, None, '___sec123'),
+              ('Nonzero initial shape', 3, None, '___sec124'),
               ('Variable wave velocity and forcing',
                2,
                'scale:wave:pde2:cvar',
                'scale:wave:pde2:cvar'),
-              ('Non-dimensionalization', 3, None, '___sec125'),
-              ('Choosing the time scale', 3, None, '___sec126'),
-              ('Choosing the spatial scale', 3, None, '___sec127'),
+              ('Non-dimensionalization', 3, None, '___sec126'),
+              ('Choosing the time scale', 3, None, '___sec127'),
+              ('Choosing the spatial scale', 3, None, '___sec128'),
               ('Scaling the velocity initial condition',
                3,
                None,
-               '___sec128'),
+               '___sec129'),
               ('Damped wave equation',
                2,
                'scale:wave:pde2:damped',
@@ -329,7 +336,7 @@ code { color: inherit; background-color: transparent; }
               ('A three-dimensional wave equation problem',
                2,
                None,
-               '___sec130'),
+               '___sec131'),
               ('The diffusion equation',
                1,
                'sec:scale:diffu',
@@ -338,18 +345,18 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:diffu:homo1D',
                'sec:scale:diffu:homo1D'),
-              ('Generalized diffusion PDE', 2, None, '___sec133'),
-              ('Jump boundary condition', 2, None, '___sec134'),
-              ('Oscillating Dirichlet condition', 2, None, '___sec135'),
-              ('Scaling', 3, None, '___sec136'),
+              ('Generalized diffusion PDE', 2, None, '___sec134'),
+              ('Jump boundary condition', 2, None, '___sec135'),
+              ('Oscillating Dirichlet condition', 2, None, '___sec136'),
+              ('Scaling', 3, None, '___sec137'),
               ('Reaction-diffusion equations',
                1,
                'sec:scale:diffu:Fisher',
                'sec:scale:diffu:Fisher'),
-              ("Fisher's equation", 2, None, '___sec138'),
-              ('Balance of all terms', 3, None, '___sec139'),
-              ('Fixed length scale', 3, None, '___sec140'),
-              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec141'),
+              ("Fisher's equation", 2, None, '___sec139'),
+              ('Balance of all terms', 3, None, '___sec140'),
+              ('Fixed length scale', 3, None, '___sec141'),
+              ('Nonlinear reaction-diffusion PDE', 2, None, '___sec142'),
               ('The convection-diffusion equation',
                1,
                'scale:convdiff',
@@ -357,35 +364,39 @@ code { color: inherit; background-color: transparent; }
               ('Convection-diffusion without a force term',
                2,
                None,
-               '___sec143'),
-              ('Stationary PDE', 2, None, '___sec144'),
+               '___sec144'),
+              ('Stationary PDE', 2, None, '___sec145'),
               ('Convection-diffusion with a force term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
-              ('Exercises', 1, None, '___sec146'),
-              ('Problem 17: Scale a stationary Couette flow',
+              ('Exercises', 1, None, '___sec147'),
+              ('Problem 18: Scale a stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
-              ('Remarks', 3, None, '___sec148'),
-              ('Problem 18: Scale a starting Couette flow',
+              ('Remarks', 3, None, '___sec149'),
+              ('Problem 19: Scale a starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 19: Scale Couette flow with pressure gradient',
+              ('Exercise 20: Scale Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 20: Scale pulsatile pipeflow',
+              ('Exercise 21: Scale pulsatile pipeflow',
                2,
                'scale:exer:pipeflow:pulsatile',
                'scale:exer:pipeflow:pulsatile'),
-              ('Exercise 21: Scale the linear cable equation',
+              ('Exercise 22: Scale the linear cable equation',
                2,
                'scale:exer:cable_eq',
                'scale:exer:cable_eq'),
-              ('Advanced PDE models', 0, None, '___sec153'),
+              ('Exercise 23: Scale a discontinuous heat conduction problem',
+               2,
+               'scale:exer:twometal',
+               'scale:exer:twometal'),
+              ('Advanced PDE models', 0, None, '___sec155'),
               ('The equations of linear elasticity',
                1,
                'scale:elasticity',
@@ -394,7 +405,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:elasticity:timedep',
                'scale:elasticity:timedep'),
-              ('Software', 3, None, '___sec156'),
+              ('Software', 3, None, '___sec158'),
               ('Dimensionless stress tensor',
                2,
                'scale:elasticity:PDE1:stress',
@@ -403,22 +414,22 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:elasticity:waves',
                'scale:elasticity:waves'),
-              ('S waves', 3, None, '___sec159'),
-              ('P waves', 3, None, '___sec160'),
-              ('Time-varying load', 3, None, '___sec161'),
+              ('S waves', 3, None, '___sec161'),
+              ('P waves', 3, None, '___sec162'),
+              ('Time-varying load', 3, None, '___sec163'),
               ('The stationary elasticity problem',
                2,
                'scale:elasticity:stationary',
                'scale:elasticity:stationary'),
-              ('Scaling of the PDE', 3, None, '___sec163'),
+              ('Scaling of the PDE', 3, None, '___sec165'),
               ('Scaling of displacement boundary conditions',
                3,
                None,
-               '___sec164'),
+               '___sec166'),
               ('Scaling of traction boundary conditions',
                3,
                None,
-               '___sec165'),
+               '___sec167'),
               ('Quasi-static thermo-elasticity',
                2,
                'scale:elasticity:thermo',
@@ -430,59 +441,59 @@ code { color: inherit; background-color: transparent; }
               ('The momentum equation without body forces',
                2,
                None,
-               '___sec168'),
-              ('Scaling', 3, None, '___sec169'),
+               '___sec170'),
+              ('Scaling', 3, None, '___sec171'),
               ('Dimensonless PDEs and the Reynolds number',
                3,
                None,
-               '___sec170'),
+               '___sec172'),
               ('Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec171'),
-              ('Shear stress as pressure scale', 2, None, '___sec172'),
-              ('Gravity force and the Froude number', 2, None, '___sec173'),
+               '___sec173'),
+              ('Shear stress as pressure scale', 2, None, '___sec174'),
+              ('Gravity force and the Froude number', 2, None, '___sec175'),
               ('Oscillating boundary conditions and the Strouhal number',
                2,
                None,
-               '___sec174'),
-              ('Cavitation and the Euler number', 2, None, '___sec175'),
+               '___sec176'),
+              ('Cavitation and the Euler number', 2, None, '___sec177'),
               ('Free surface conditions and the Weber number',
                2,
-               None,
-               '___sec176'),
-              ('Thermal convection', 1, None, '___sec177'),
-              ('Forced convection', 2, None, '___sec178'),
+               'freesurface:Weber',
+               'freesurface:Weber'),
+              ('Thermal convection', 1, None, '___sec179'),
+              ('Forced convection', 2, None, '___sec180'),
               ('Free convection',
                2,
                'scale:fluid:forced_convection',
                'scale:fluid:forced_convection'),
-              ('Governing equations', 3, None, '___sec180'),
-              ('Heating by viscous effects', 3, None, '___sec181'),
+              ('Governing equations', 3, None, '___sec182'),
+              ('Heating by viscous effects', 3, None, '___sec183'),
               ('Relation between density and temperature',
                3,
                None,
-               '___sec182'),
+               '___sec184'),
               ('Comment on the form of the equation of continuity',
                3,
                None,
-               '___sec183'),
-              ('The Boussinesq approximation', 3, None, '___sec184'),
-              ('Scaling', 3, None, '___sec185'),
+               '___sec185'),
+              ('The Boussinesq approximation', 3, None, '___sec186'),
+              ('Scaling', 3, None, '___sec187'),
               ('The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec186'),
-              ('Interpretations of the Grashof number', 3, None, '___sec187'),
+               '___sec188'),
+              ('Interpretations of the Grashof number', 3, None, '___sec189'),
               ('Heat transfer at boundaries and the Nusselt number',
                2,
                None,
-               '___sec188'),
+               '___sec190'),
               ('The bidomain model in electrophysiology',
                1,
                'scale:bidomain',
                'scale:bidomain'),
-              ('Two-phase porous media flow', 1, None, '___sec190'),
+              ('Two-phase porous media flow', 1, None, '___sec192'),
               ('Compressible gas dynamics',
                1,
                'scale:gasdyn',
@@ -491,8 +502,8 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('General isentropic flow', 2, None, '___sec193'),
-              ('Elimination of the pressure', 3, None, '___sec194'),
+              ('General isentropic flow', 2, None, '___sec195'),
+              ('Elimination of the pressure', 3, None, '___sec196'),
               ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
@@ -500,25 +511,35 @@ code { color: inherit; background-color: transparent; }
               ('Wave nature of isentropic flow with small perturbations',
                3,
                None,
-               '___sec196'),
+               '___sec198'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec197'),
-              ('Exercises', 1, None, '___sec198'),
-              ('Exercise 22: Comparison of vibration models for elastic structures',
+               '___sec199'),
+              ('Surface gravity waves',
+               1,
+               'scale:surfacewaves',
+               'scale:surfacewaves'),
+              ('Equations for surface waves',
+               2,
+               'scale:surfacewaves:Eulereq',
+               'scale:surfacewaves:Eulereq'),
+              ('Waves in deep  water', 3, None, '___sec202'),
+              ('Long waves in shallow water', 3, None, '___sec203'),
+              ('Exercises', 1, None, '___sec204'),
+              ('Exercise 24: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
                'scale::exer:elasticity:vibmodels'),
-              ('Exercise 23: Scale the equations of quasi-static poro-elasticity',
+              ('Exercise 25: Scale the equations of quasi-static poro-elasticity',
                2,
                'scale:exer:poroelasticity',
                'scale:exer:poroelasticity'),
-              ('Exercise 24: Suggestions...',
+              ('Exercise 26: Suggestions...',
                2,
                'scale::exer:suggest',
                'scale::exer:suggest'),
-              ('References', 1, None, '___sec202')]}
+              ('References', 1, None, '___sec208')]}
 end of tocinfo -->
 
 <body>
@@ -546,6 +567,7 @@ $$
 \newcommand{\x}{\boldsymbol{x}}
 \renewcommand{\u}{\boldsymbol{u}}
 \renewcommand{\v}{\boldsymbol{v}}
+\newcommand{\w}{\boldsymbol{w}}
 \newcommand{\rpos}{\boldsymbol{r}}
 \newcommand{\f}{\boldsymbol{f}}
 \newcommand{\F}{\boldsymbol{F}}
@@ -586,7 +608,7 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec3" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Base units and dimensions</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit:tables" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensions of common physical quantities</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec5" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Prefixes for units</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec6" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Buckingham Pi theorem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit:Pi" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Buckingham Pi theorem</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec7" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Absolute errors, relative errors, and units</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec8" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Units and computers</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec9" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Unit systems</a></li>
@@ -690,99 +712,105 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:exer:pendulum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 14: Scale the pendulum equation</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: Scale the ODEs for a binary star</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Scale Duffing's equation</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec110" style="font-size: 80%;"><b>Basic PDE models</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:vib:exer:rocket" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Vertical motion in a varying gravity field</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec111" style="font-size: 80%;"><b>Basic PDE models</b></a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec112" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec114" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec115" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec114" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec115" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
      <!-- navigation toc: --> <li><a href="#scale:wave:pde2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time-dependent Dirichlet condition</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec117" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specific case</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec120" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Specific case</a></li>
      <!-- navigation toc: --> <li><a href="#scale:wave:pde2:Vcond" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Velocity initial condition</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec121" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytical insight</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec122" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec123" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonzero initial shape</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec122" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Analytical insight</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec123" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec124" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonzero initial shape</a></li>
      <!-- navigation toc: --> <li><a href="#scale:wave:pde2:cvar" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable wave velocity and forcing</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec125" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Non-dimensionalization</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec126" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing the time scale</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec127" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing the spatial scale</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec128" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling the velocity initial condition</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec126" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Non-dimensionalization</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec127" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing the time scale</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec128" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Choosing the spatial scale</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec129" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling the velocity initial condition</a></li>
      <!-- navigation toc: --> <li><a href="#scale:wave:pde2:damped" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Damped wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec130" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A three-dimensional wave equation problem</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec131" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A three-dimensional wave equation problem</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book008.html#sec:scale:diffu" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The diffusion equation</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book008.html#sec:scale:diffu:homo1D" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homogeneous 1D diffusion equation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec133" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generalized diffusion PDE</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec134" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jump boundary condition</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec135" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating Dirichlet condition</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec136" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec134" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generalized diffusion PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec135" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Jump boundary condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec136" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating Dirichlet condition</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec137" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book008.html#sec:scale:diffu:Fisher" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Reaction-diffusion equations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec138" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fisher's equation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec139" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance of all terms</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec140" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fixed length scale</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec141" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonlinear reaction-diffusion PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec139" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fisher's equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec140" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Balance of all terms</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec141" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fixed length scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book008.html#___sec142" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nonlinear reaction-diffusion PDE</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The convection-diffusion equation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec143" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion without a force term</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec144" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec144" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion without a force term</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec145" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a force term</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec146" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Scale a stationary Couette flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec148" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Scale a starting Couette flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:Couette_wpressure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 19: Scale Couette flow with pressure gradient</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:pipeflow:pulsatile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 20: Scale pulsatile pipeflow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:cable_eq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 21: Scale the linear cable equation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec153" style="font-size: 80%;"><b>Advanced PDE models</b></a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Scale a stationary Couette flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 19: Scale a starting Couette flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:Couette_wpressure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 20: Scale Couette flow with pressure gradient</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:pipeflow:pulsatile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 21: Scale pulsatile pipeflow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:cable_eq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Scale the linear cable equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:twometal" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale a discontinuous heat conduction problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec155" style="font-size: 80%;"><b>Advanced PDE models</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The equations of linear elasticity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:timedep" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The general time-dependent elasticity problem</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec156" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec158" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:PDE1:stress" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensionless stress tensor</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:waves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;When can the acceleration term be neglected?</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec159" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S waves</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec160" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P waves</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec161" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time-varying load</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec161" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec162" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;P waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec163" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time-varying load</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:stationary" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The stationary elasticity problem</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec163" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of the PDE</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec164" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of displacement boundary conditions</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec165" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of traction boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec165" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of the PDE</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec166" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of displacement boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec167" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of traction boundary conditions</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:thermo" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quasi-static thermo-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:ns" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Navier-Stokes equations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec168" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The momentum equation without body forces</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec169" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec170" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensonless PDEs and the Reynolds number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec171" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of time for low Reynolds numbers</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec172" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shear stress as pressure scale</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec173" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gravity force and the Froude number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec174" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating boundary conditions and the Strouhal number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec175" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavitation and the Euler number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec176" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free surface conditions and the Weber number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec177" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Thermal convection</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec178" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec170" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The momentum equation without body forces</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec171" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec172" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensonless PDEs and the Reynolds number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec173" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of time for low Reynolds numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec174" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shear stress as pressure scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec175" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gravity force and the Froude number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec176" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating boundary conditions and the Strouhal number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec177" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavitation and the Euler number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#freesurface:Weber" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free surface conditions and the Weber number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec179" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Thermal convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec180" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:fluid:forced_convection" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free convection</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec180" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Governing equations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec181" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heating by viscous effects</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec182" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relation between density and temperature</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec183" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment on the form of the equation of continuity</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec184" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Boussinesq approximation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec185" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec186" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Grashof, Prandtl, and Eckert numbers</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec187" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interpretations of the Grashof number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec188" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat transfer at boundaries and the Nusselt number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec182" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Governing equations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec183" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heating by viscous effects</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec184" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relation between density and temperature</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec185" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comment on the form of the equation of continuity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec186" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Boussinesq approximation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec187" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec188" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Grashof, Prandtl, and Eckert numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec189" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interpretations of the Grashof number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec190" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat transfer at boundaries and the Nusselt number</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec190" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec192" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec193" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec194" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec195" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Comparison of vibration models for elastic structures</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale the equations of quasi-static poro-elasticity</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Suggestions...</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec202" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Surface gravity waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equations for surface waves</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec202" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec203" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Long waves in shallow water</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec204" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Comparison of vibration models for elastic structures</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 25: Scale the equations of quasi-static poro-elasticity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 26: Suggestions...</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec208" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -798,7 +826,7 @@ $$
 <a name="part0007"></a>
 <!-- !split -->
 
-<center><h1 id="___sec110">Basic PDE models </h1></center> <!-- chapter heading -->
+<center><h1 id="___sec111">Basic PDE models </h1></center> <!-- chapter heading -->
 
 <p>
 This chapter extends the scaling technique to well-known partial differential
@@ -842,7 +870,7 @@ How to scale time depends on the PDE, the spatial scale depends on
 the domain, and the scale of \( u \) usually depends on \( f \) or the
 boundary or initial condition.
 
-<h2 id="___sec112">Simple homogeneous Dirichlet conditions </h2>
+<h2 id="___sec113">Simple homogeneous Dirichlet conditions </h2>
 
 <p>
 Let us first start with homogeneous Dirichlet conditions in space and
@@ -981,56 +1009,42 @@ u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
 \end{equation}
 $$
 
-<h2 id="___sec113">Implementation of the scaled wave equation </h2>
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 14</b>: This must be rewritten and placed in an appendix - or dropped. The basic code from <code>wave1D_u0.py</code> must be shown, otherwise the discussion of avoiding recomputation does not make much sense.)</font>
-<!-- end inline comment -->
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 15</b>: I make a big issue of retrieving data from file, but in more complicated cases, this has little practical value as the number of dimensionless numbers gets large (approaching the number of parameters anyway). In the present simple cases, the computations are so fast that there is little to gain by avoiding them. The text is therefore biased with respect to the practical benefit of reusing old solutions. Does it hurt to document the idea? Need views on this.)</font>
-<!-- end inline comment -->
+<h2 id="___sec114">Implementation of the scaled wave equation </h2>
 
 <p>
 How do we implement <a href="#mjx-eqn-3.8">(3.8)</a>-<a href="#mjx-eqn-3.12">(3.12)</a>?
-As for the simpler mathematical models, I suggest to implement the model
+As for the simpler mathematical models, we suggest to implement the model
 with dimensions and observe how to set parameters to obtain the scaled
 model. In the present case, one must choose \( L=1 \), \( c=1 \), and scale \( I \) by its
 maximum value. That's all!
 
 <p>
 Several implementations of 1D wave equation models with different
-degree of mathematical and software complexity appear in
-the directory <a href="http://tinyurl.com/nm5587k/wave/wave1D" target="_self"><tt>wave/wave1D</tt></a>. The simplest
-version is <a href="http://tinyurl.com/nm5587k/wave/wave1D/wave1D_u0.py" target="_self"><tt>wave1D_u0.py</tt></a>
+degree of mathematical and software complexity come along with this
+book. The simplest
+version is <a href="http://tinyurl.com/o8pb3yy/wave1D_u0.py" target="_self"><tt>wave1D_u0.py</tt></a>
 that implements <a href="#mjx-eqn-3.1">(3.1)</a> and
 <a href="#mjx-eqn-3.3">(3.3)</a>-(ref{scale:wave:pde1:bc:L}.
 This is the code to be used in the following. It is described
 in in
-the document <a href="http://tinyurl.com/k3sdbuv/pub/wave" target="_self">Finite difference methods for wave motion</a>
-<a href="._scaling-book011.html#Langtangen_deqbook_wave">[7]</a>.
+the <a href="http://tinyurl.com/xxx" target="_self">Finite difference computing with PDEs</a>
+<a href="._scaling-book011.html#Langtangen_Linge_fdm">[8]</a>.
 
-<h3 id="___sec114">Waves on a string </h3>
+<h3 id="___sec115">Waves on a string </h3>
 
 <p>
 As example, we may let the original initial-boundary value problem
-<a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a> model
-vibrations of a string on a string instrument. With \( u \) as the
-displacement of the string, the boundary conditions \( u=0 \) at the ends
-are relevant, as well as the zero velocity condition \( \partial u/\partial t=0 \)
-at \( t=0 \).
-The initial condition \( I(x) \) has typically a triangular shape for a picked
-guitar string.
-The physical problem needs parameters for the amplitude of \( I(x) \),
-the length \( L \) of the string, and the value of \( c \) for the string. Only
-the latter is challenging as it involves relating \( c \) to the
-pitch (i.e., time frequency) of the string. In the scaled problem, we
-can forget about all this. We simply set \( L=1 \), \( c=1 \), and let
-\( I(x) \) have a peak of unity at \( x=x_0\in(0,1) \):
+<a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a> model vibrations of
+a string on a string instrument. With \( u \) as the displacement of the
+string, the boundary conditions \( u=0 \) at the ends are relevant, as
+well as the zero velocity condition \( \partial u/\partial t=0 \) at
+\( t=0 \).  The initial condition \( I(x) \) has typically a triangular shape
+for a picked guitar string.  The physical problem needs parameters for
+the amplitude of \( I(x) \), the length \( L \) of the string, and the value
+of \( c \) for the string. Only the latter is challenging as it involves
+relating \( c \) to the pitch (i.e., time frequency) of the string. In the
+scaled problem, we can forget about all this. We simply set \( L=1 \),
+\( c=1 \), and let \( I(x) \) have a peak of unity at \( x=x_0\in(0,1) \):
 
 $$
 \frac{I(x)}{\max_x I(x)} = \left\lbrace
@@ -1045,203 +1059,29 @@ dimensionless parameter in the problem. For fixed \( x_0 \),
 one single simulation will capture all possible solutions with such
 a triangular shape.
 
-<h3 id="___sec115">Detecting an already computed case </h3>
+<h3 id="___sec116">Detecting an already computed case </h3>
 
 <p>
-In the section <a href="._scaling-book005.html#sec:scale:decay:prog">Making software for utilizing the scaled model</a> we demonstrated the use of <code>joblib</code>
-for making a function that detects if a case has already been run and
-in that case the previous solution can be returned from a database.
-It turns out that <code>joblib</code> cannot handle functions with function arguments,
-which we have a lot of in the <code>solver</code> functions for 1D wave equations.
-
-<p>
-A manual strategy taken from <a href="http://tinyurl.com/nm5587k/wave/wave1D/wave1D_dn_vc.py" target="_self"><tt>wave1D_dn_vc.py</tt></a> and explained in
-the document
-<a href="http://tinyurl.com/k3sdbuv/pub/softeng2" target="_self">Scientific software engineering; wave equation model</a> <a href="._scaling-book011.html#Langtangen_deqbook_softeng2">[8]</a>
-is to convert
-all input data to the <code>solver</code> function to a string,
-which is thereafter converted to an SHA1 hash string
-(via <code>hashlib.sha1</code>) and used to recognize the input.
-A SHA1 string is also suitable as part of a file or directory name
-where computed solutions can be stored.
-
-<p>
-We can, in the wave equation solver
-retrieve the solution, rather than computing it, if
-the hash string is the same (because then the computations have already been
-done). This can save a lot of computations if a scaled solution can be
-reused in a number of cases with dimensions. We will sketch the
-code that implements the idea.
-
-<p>
-A solver for the scaled problem is first developed. We limit the
-focus to the simple constant-coefficient wave equation with \( u_t(x,0)=0 \).
-The solver for the unscaled problem is taken from the previously
-mentioned <code>wave1D_u0.py</code> file.
-
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">wave1D_u0</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
-<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">Storage</span> <span style="color: #008000; font-weight: bold">import</span> Storage
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver_scaled</span>(I, dt, C, T):
-    <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
-<span style="color: #BA2121; font-style: italic">    Solve 1D wave equation in dimensionless form.</span>
-<span style="color: #BA2121; font-style: italic">    &quot;&quot;&quot;</span>
-    <span style="color: #408080; font-style: italic"># Make a hash of the arguments</span>
-    <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">inspect</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">hashlib</span>
-    data <span style="color: #666666">=</span> inspect<span style="color: #666666">.</span>getsource(I) <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;_&#39;</span> <span style="color: #666666">+</span> <span style="color: #008000">str</span>(dt) <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;_&#39;</span> <span style="color: #666666">+</span> \ 
-           <span style="color: #008000">str</span>(C) <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;_&#39;</span> <span style="color: #666666">+</span> <span style="color: #008000">str</span>(T)
-    <span style="color: #408080; font-style: italic"># Not fool proof: if x0 changes value, the source code of I</span>
-    <span style="color: #408080; font-style: italic"># is still the same, and no recomputation takes place...</span>
-    hashed_input <span style="color: #666666">=</span> hashlib<span style="color: #666666">.</span>sha1(data)<span style="color: #666666">.</span>hexdigest()
-
-    <span style="color: #408080; font-style: italic"># Use joblib-based tool (class Storage) to store already</span>
-    <span style="color: #408080; font-style: italic"># computed solutions in files</span>
-    cachedir <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;tmp_</span><span style="color: #BB6688; font-weight: bold">%s</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> hashed_input
-    is_computed <span style="color: #666666">=</span> os<span style="color: #666666">.</span>path<span style="color: #666666">.</span>isdir(cachedir)
-    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;cachedir:&#39;</span>, cachedir, is_computed
-    storage <span style="color: #666666">=</span> Storage(cachedir, verbose<span style="color: #666666">=0</span>)
-
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">action</span>(u, x, t, n):
-        <span style="color: #008000; font-weight: bold">if</span> n <span style="color: #666666">==</span> <span style="color: #666666">0</span>:
-            storage<span style="color: #666666">.</span>save(<span style="color: #BA2121">&#39;x&#39;</span>, x)
-            storage<span style="color: #666666">.</span>save(<span style="color: #BA2121">&#39;t&#39;</span>, t)
-        storage<span style="color: #666666">.</span>save(<span style="color: #BA2121">&#39;u</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> n, u)
-
-    <span style="color: #008000; font-weight: bold">if</span> is_computed:
-        <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;No need to compute the numerical solution&#39;</span>
-        <span style="color: #008000; font-weight: bold">return</span> storage
-    <span style="color: #008000; font-weight: bold">else</span>:
-        <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;Computing the numerical solution&#39;</span>
-        solver_unscaled(
-            I<span style="color: #666666">=</span>I, V<span style="color: #666666">=0</span>, f<span style="color: #666666">=0</span>, c<span style="color: #666666">=1</span>, L<span style="color: #666666">=1</span>, dt<span style="color: #666666">=</span>dt, C<span style="color: #666666">=</span>C, T<span style="color: #666666">=</span>T,
-            user_action<span style="color: #666666">=</span>action)
-        <span style="color: #008000; font-weight: bold">return</span> storage
-</pre></div>
-<p>
-This function employs ideas described in
-the document
-<a href="http://tinyurl.com/k3sdbuv/pub/softeng2" target="_self">Scientific software engineering; wave equation model</a> <a href="._scaling-book011.html#Langtangen_deqbook_softeng2">[8]</a> for storing
-arrays on disk with use of <code>joblib</code> (class <code>Storage</code>) and recognizing
-previous input through a hash string. If the input is the same, the
-hash is the same and we can test on the existence of a
-directory whose name contains the hash. If that directory exists, the
-solution for this set of input data is already computed, and we can just
-return the <code>storage</code> object from which one can retrieve the space and time
-mesh as well as all the solutions <code>u0</code>, <code>u1</code>, and so on.
-
-<p>
-Although the partial differential equation model has no physical
-parameters (assuming \( x_0 \) fixed), the corresponding numerical model
-depends on the Courant number \( C=c\Delta t/\Delta x \) and the duration
-\( T \) of the simulations.
-
-<p>
-A specific application of this simple solver is the vibrations of a guitar
-string. The scaled version depends only on \( C \) (if we say \( T \) is fixed
-and \( N_x \) is fixed through \( \Delta t \)). The string vibrations can be
-simulated by the following function:
-
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">guitar_scaled</span>(C, animate<span style="color: #666666">=</span><span style="color: #008000">True</span>):
-    <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Triangular wave (pulled guitar string).&quot;&quot;&quot;</span>
-    L <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
-    x0 <span style="color: #666666">=</span> <span style="color: #666666">0.8*</span>L
-    T <span style="color: #666666">=</span> <span style="color: #666666">2</span>
-    Nx <span style="color: #666666">=</span> <span style="color: #666666">50</span>; dx <span style="color: #666666">=</span> L<span style="color: #666666">/</span><span style="color: #008000">float</span>(Nx)
-    dt <span style="color: #666666">=</span> dx<span style="color: #666666">/1</span>  <span style="color: #408080; font-style: italic"># Choose dt at the stability limit</span>
-
-    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">I</span>(x):
-        <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">/</span>x0 <span style="color: #008000; font-weight: bold">if</span> x <span style="color: #666666">&lt;</span> x0 <span style="color: #008000; font-weight: bold">else</span> (L<span style="color: #666666">-</span>x)<span style="color: #666666">/</span>(L<span style="color: #666666">-</span>x0)
-
-    storage <span style="color: #666666">=</span> solver_scaled(I, dt, C, T)
-    <span style="color: #008000; font-weight: bold">if</span> <span style="color: #AA22FF; font-weight: bold">not</span> animate:
-        <span style="color: #008000; font-weight: bold">return</span> storage
-
-    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">scitools.std</span> <span style="color: #008000; font-weight: bold">import</span> plot
-    x <span style="color: #666666">=</span> storage<span style="color: #666666">.</span>retrieve(<span style="color: #BA2121">&#39;x&#39;</span>)
-    t <span style="color: #666666">=</span> storage<span style="color: #666666">.</span>retrieve(<span style="color: #BA2121">&#39;t&#39;</span>)
-    <span style="color: #008000; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #008000">len</span>(t)):
-        u <span style="color: #666666">=</span> storage<span style="color: #666666">.</span>retrieve(<span style="color: #BA2121">&#39;u</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span>n)
-        plot(x, u, <span style="color: #BA2121">&#39;r-&#39;</span>, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;t=</span><span style="color: #BB6688; font-weight: bold">%.2f</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> t[n],
-             axis<span style="color: #666666">=</span>[x[<span style="color: #666666">0</span>], x[<span style="color: #666666">-1</span>], <span style="color: #666666">-1.2</span>, <span style="color: #666666">1.2</span>])
-    <span style="color: #008000; font-weight: bold">return</span> storage
-</pre></div>
-<p>
-To solve an unscaled problem, we need some unscale functions:
-
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale_u</span>(u, I_max, c, L):
-    <span style="color: #008000; font-weight: bold">return</span> I_max<span style="color: #666666">*</span>u
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale_x</span>(x, I_max, c, L):
-    <span style="color: #008000; font-weight: bold">return</span> x<span style="color: #666666">*</span>L
-
-<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale_t</span>(t, I_max, c, L):
-    <span style="color: #008000; font-weight: bold">return</span> t<span style="color: #666666">*</span>L<span style="color: #666666">**2/</span><span style="color: #008000">float</span>(c)
-</pre></div>
-<p>
-We can now easily solve a range of unscaled cases by
-
-<p>
-
-<!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">guitar</span>(C, I_max, c, L):
-    <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Triangular wave (pulled guitar string). Unscaled version.&quot;&quot;&quot;</span>
-    storage <span style="color: #666666">=</span> guitar_scaled(C, animate<span style="color: #666666">=</span><span style="color: #008000">False</span>)
-    x <span style="color: #666666">=</span> storage<span style="color: #666666">.</span>retrieve(<span style="color: #BA2121">&#39;x&#39;</span>)
-    t <span style="color: #666666">=</span> storage<span style="color: #666666">.</span>retrieve(<span style="color: #BA2121">&#39;t&#39;</span>)
-    x <span style="color: #666666">=</span> unscale_x(x, I_max, c, L)
-    t <span style="color: #666666">=</span> unscale_t(t, I_max, c, L)
-
-    <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">scitools.std</span> <span style="color: #008000; font-weight: bold">import</span> plot
-    <span style="color: #008000; font-weight: bold">for</span> n <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #008000">range</span>(<span style="color: #008000">len</span>(t)):
-        u <span style="color: #666666">=</span> storage<span style="color: #666666">.</span>retrieve(<span style="color: #BA2121">&#39;u</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span>n)
-        u <span style="color: #666666">=</span> unscale_u(u, I_max, c, L)
-        plot(x, u, <span style="color: #BA2121">&#39;r-&#39;</span>, label<span style="color: #666666">=</span><span style="color: #BA2121">&#39;t=</span><span style="color: #BB6688; font-weight: bold">%.2f</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> t[n],
-             axis<span style="color: #666666">=</span>[x[<span style="color: #666666">0</span>], x[<span style="color: #666666">-1</span>], <span style="color: #666666">-</span>I_max<span style="color: #666666">*1.2</span>, <span style="color: #666666">1.2*</span>I_max])
-</pre></div>
-<p>
-If <code>guitar_scaled</code> figures out that the scaled problem is already solved,
-it just returns the <code>storage</code> object, otherwise it performs calculations.
-Anyway, we retrieve the space and time mesh as well as all the solutions.
-The <code>plot</code> function from <a href="https://github.com/hplgit/scitools" target="_self">SciTools</a>
-is used for compact code for
-animation, but Matplotlib can equally well be used (with a bit more coding).
-
-<p>
-Suppose we run three calls to <code>guitar</code> with three different values of
-<code>I_max</code>. The output will be
-
-<p>
-
-<!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Computing the numerical solution
-No need to compute the numerical solution
-No need to compute the numerical solution
-</pre></div>
-<p>
-This indicates that we rely on the scaled solution for the two
-other cases with different <code>I_max</code> parameter. Running such a program again
-will avoid all computations and show movies solely based on
-precomputed file data.
+The file <a href="http://tinyurl.com/o8pb3yy/wave1D_u0_scaled.py" target="_self"><tt>wave1D_u0_scaled.py</tt></a>
+has functionality for detecting whether a simulation corresponds to
+a previously run scaled case, and if so, the solution is retrieved from
+file. The implementation technique makes use of <code>joblib</code>, but is more
+complicated than showed previously in this book since some of the
+arguments to the function that computes the solution are functions,
+and one must recognized if the function has been used as argument
+before or not. There is documentation in the <code>wave1D_u0_scaled.py</code>
+file how this is done.
 
 <h2 id="scale:wave:pde2">Time-dependent Dirichlet condition</h2>
 
 <p>
-A generalization of <a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a> is to
-allow for a time-dependent Dirichlet condition at one end, say
-\( u(0,t)=U_L(t) \). At the other end we may still have \( u=0 \).
-This new condition at \( x=0 \) may model a specified wave that
-enters the domain. For example, if we feed in a monochromatic wave
-\( A\sin(k(x-ct)) \) from the left end, \( U_L(t)=A\sin (kct) \).
-This forcing of the wave motion has its own amplitude and time scale that
+A generalization of <a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a>
+is to allow for a time-dependent Dirichlet condition at one end, say
+\( u(0,t)=U_L(t) \). At the other end we may still have \( u=0 \).  This new
+condition at \( x=0 \) may model a specified wave that enters the
+domain. For example, if we feed in a monochromatic wave
+\( A\sin(k(x-ct)) \) from the left end, \( U_L(t)=A\sin (kct) \).  This
+forcing of the wave motion has its own amplitude and time scale that
 could affect the choice of \( u_c \) and \( t_c \).
 
 <p>
@@ -1252,7 +1092,7 @@ $$ \bar u(0,\bar t) = \frac{U_L(\bar t t_c)}{u_c}$$
 
 in scaled form.
 
-<h3 id="___sec117">Scaling </h3>
+<h3 id="___sec118">Scaling </h3>
 
 <p>
 Regarding the characteristic time scale, it is natural to base this scale on
@@ -1300,7 +1140,7 @@ $$
 Also this problem is free of physical parameters like \( c \) and \( L \).
 The input is completely specified by the shape of \( I(x) \) and \( U_L(t) \).
 
-<h3 id="___sec118">Software </h3>
+<h3 id="___sec119">Software </h3>
 
 <p>
 Software for the original problem with dimensions can be reused for
@@ -1308,7 +1148,7 @@ Software for the original problem with dimensions can be reused for
 setting \( L=1 \), \( c=1 \), and scaling \( U_L(t) \) and \( I(x) \) by
 \( \max_t |U_L(t)| \).
 
-<h3 id="___sec119">Specific case </h3>
+<h3 id="___sec120">Specific case </h3>
 
 <p>
 As an example, consider
@@ -1435,7 +1275,7 @@ if (!!(window.safari)) {
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 16</b>: The HTML version features movies here. Link to them in the LaTeX PDF version as well?)</font>
+<font color="red">(<b>hpl 12</b>: The HTML version features movies here. Link to them in the LaTeX PDF version as well?)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:wave:pde2:Vcond">Velocity initial condition</h2>
@@ -1459,7 +1299,7 @@ $$ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
 \frac{t_c}{u_c}V(\bar x x_c)\tp
 $$
 
-<h3 id="___sec121">Analytical insight </h3>
+<h3 id="___sec122">Analytical insight </h3>
 
 <p>
 From <a href="#mjx-eqn-3.7">(3.7)</a> we now get \( f_L + f_R =0 \) and
@@ -1468,7 +1308,7 @@ is \( -f_L=\frac{1}{2}W \) and \( f_R=\frac{1}{2}W \). Hence,
 
 $$ u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} v(\xi) d\xi\tp$$
 
-<h3 id="___sec122">Scaling </h3>
+<h3 id="___sec123">Scaling </h3>
 
 <p>
 Since \( V \) is the time-derivative of \( u \), the characteristic size of
@@ -1485,7 +1325,7 @@ $$
 
 which by itself looks like a natural scaling of a function \( V \).
 
-<h3 id="___sec123">Nonzero initial shape </h3>
+<h3 id="___sec124">Nonzero initial shape </h3>
 
 <p>
 Suppose we change the initial condition \( u(x,0)=0 \) to \( u(x,0)=I(x) \).
@@ -1549,13 +1389,13 @@ teach us much about the interaction of the various physical effects.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 17</b>: Do experiments. Make exercise or insert here.)</font>
+<font color="red">(<b>hpl 13</b>: Do experiments. Make exercise or insert here.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 18</b>: Could make paradox: small \( I \), big \( V \), but still significant impact of \( I \) in a simulation. Why? Bug? The answer is above. Best as exercise.)</font>
+<font color="red">(<b>hpl 14</b>: Could make paradox: small \( I \), big \( V \), but still significant impact of \( I \) in a simulation. Why? Bug? The answer is above. Best as exercise.)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:wave:pde2:cvar">Variable wave velocity and forcing</h2>
@@ -1596,7 +1436,7 @@ u(x,0) &= I(x),
 \end{align}
 $$
 
-<h3 id="___sec125">Non-dimensionalization </h3>
+<h3 id="___sec126">Non-dimensionalization </h3>
 
 <p>
 We make the coefficient \( \lambda \) non-dimensional by
@@ -1644,7 +1484,7 @@ $$
 
 with \( \bar T = Tc/L \).
 
-<h3 id="___sec126">Choosing the time scale </h3>
+<h3 id="___sec127">Choosing the time scale </h3>
 
 <p>
 The time scale is, as before, chosen as \( t_c
@@ -1660,7 +1500,7 @@ signal speed in the medium, i.e., by \( \sqrt{\lambda_c} \) here and not
 by the time scale of the excitation \( f \) which dictates the
 length of the generated waves and not their propagation speed.
 
-<h3 id="___sec127">Choosing the spatial scale </h3>
+<h3 id="___sec128">Choosing the spatial scale </h3>
 
 <p>
 We may choose \( u_c \) as \( \max_x |I(x)| \), as before,
@@ -1703,7 +1543,7 @@ With \( V=0 \), and \( u=0 \) or \( u_x=0 \) on the boundaries \( x=0,L \), this
 \( |\bar u|\leq 1 \), since initially \( |I|\leq 1 \), and no boundary condition
 can increase the amplitude.
 
-<h3 id="___sec128">Scaling the velocity initial condition </h3>
+<h3 id="___sec129">Scaling the velocity initial condition </h3>
 
 <p>
 The initial condition \( u_t(x,0)=V(x) \) has its dimensionless variant as
@@ -1811,7 +1651,7 @@ To summarize, the effects of \( V \), \( f \), and damping are reflected in
 the dimensionless numbers \( \alpha \), \( \beta \), and \( \gamma \),
 respectively.
 
-<h2 id="___sec130">A three-dimensional wave equation problem </h2>
+<h2 id="___sec131">A three-dimensional wave equation problem </h2>
 
 <p>
 To demonstrate how the scaling extends to and looks like in

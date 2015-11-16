@@ -155,6 +155,10 @@ For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 
 ===== The Buckingham Pi theorem =====
+label{scale:dimunit:Pi}
+
+idx{Pi theorem}
+idx{Buckingham Pi theorem}
 
 Almost all texts on scaling has a treatment of the famous Buckingham Pi
 theorem, which can be used to derive physical laws based on
@@ -1747,20 +1751,18 @@ of $\beta$ we may introduce the period $P=2\pi/\omega$ of the
 oscillations in $T_s$ and the e-folding time $e=1/k$. Then $\beta =
 2\pi e/P$ and measures the e-folding time versus the period.
 
+!bnotice Remark
 The original problem features five physical parameters: $k$, $T_0$,
 $T_m$, $a$, and $\omega$, but only two dimensionless numbers appear in the
 scaled model (ref{scale:decay:cooling:model:scaled}).
-In fact, this is an example where application of the Pi theorem falls
+In fact, this is an example where application of the Pi theorem
+(see Section ref{scale:dimunit:Pi}) falls
 short. Since, only time and temperature are involved as unit types, the
 theorem predicts that the five parameters yields three dimensionless numbers,
-not two. The equations, on the other hand, shows us that the two parameters
+not two. Scaling of the differential equations, on the other hand,
+shows us that the two parameters
 $T_m$ and $T_0$ affect the nature of the problem only through their difference.
-[hpl: Geir, write about the Pi theorem here - it gives three
-parameters and a suboptimal solution compared to the scaling of the
-ODE directly.]
-[Geir: hpl, actually I wrote a little longer text on the PI theorem.
-This is better suited elsewhere.]
-
+!enotice
 
 === Software ===
 
@@ -4716,7 +4718,8 @@ label{scale:vib:exer:rocket}
 file=varying_gravity
 
 A body (e.g., projectile or rocket) is launched at the earth's surface
-at velocity $V$ The height of the body at time $t$ is $h(t)$.
+at velocity $V$. The body's distance (height) from the earth's surface
+at time $t$ is represented by the function $h(t)$.
 Unless $h$ is very much smaller than the earth's radius $R$, the motion
 takes place in a varying gravity field. The governing ODE problem for
 $h(t)$ is then
@@ -4728,12 +4731,12 @@ h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T],
 !et
 where $g$ is the acceleration of gravity at the earth's surface.
 
-The goal is discuss scalings of this problem. First we introduce
+The goal is to discuss three scalings of this problem. First we introduce
 
 !bt
 \[ \bar h = \frac{h}{h_c},\quad \bar t = \frac{t}{t_c},\]
 !et
-which leads to the dimensionless ODE
+which gives the dimensionless ODE
 
 !bt
 \[
@@ -4759,7 +4762,7 @@ reasonable choice. Determine $t_c$ from requiring the initial velocity
 to be unity. Set up the dimensionless ODE problem.
 
 !bsol
-The requirement leads to
+The suggested requirement leads to
 
 !bt
 \[ \frac{t_cV}{h_c} = \frac{t_cV}{R} = 1\quad\Rightarrow\quad
@@ -4770,7 +4773,7 @@ Inserting this $t_c$ in the ODE gives the scaled ODE problem
 !bt
 \[
 \frac{d^2\bar h}{d\bar t^2} =
--\frac{\epsilon^{-1}}{\left(1 + \bar h\right)^2},
+-\frac{1}{\epsilon^{2}\left(1 + \bar h\right)^2},
 \quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=1\tp\]
 !et
 !esol
@@ -4792,7 +4795,7 @@ The initial condition then becomes
 !bt
 \[ \frac{d\bar h}{d\bar t}(0) = \frac{V}{\sqrt{Rg}} = \epsilon\tp\]
 !et
-The scaled ODE problem becomes
+The scaled ODE problem is now
 
 !bt
 \[ \frac{d^2\bar h}{d\bar t^2} = -\frac{1}{\left(1 + \bar h\right)^2},
@@ -4812,35 +4815,97 @@ length scale, and derive a dimensionless ODE problem.
 The solution of $h''=-g$ with $h(0)$ and $h'(0)=V$ is easily obtained
 by integrating twice: $h=-\half gt^2 +Vt$. The maximum height reached
 by the body is found by setting $h'(t)=0$: $V-gt=0$, which suggests
-a corresponding characteristic time $t_c = V/g$. The maximum height
+a corresponding characteristic time $t_c = V/g$. The responding maximum height
 $h(t_c)=\half V^2/g$ can be used as characteristic height: $h_c=\half V^2/g$.
+The factor $\half$ is not important, and the ODE problem looks nicer without
+it, so we simply set $h_c=V^2/g$.
 Inserted in the initial condition, we get
 
 !bt
-\[ \frac{d\bar h}{d\bar t}(0) = \frac{Vt_c}{h_c}= 2\tp\]
+\[ \frac{d\bar h}{d\bar t}(0) = \frac{Vt_c}{h_c}= 1\tp\]
 !et
 The scaled ODE takes the form
 
 !bt
 \[
 \frac{d^2\bar h}{d\bar t^2}
-= -\frac{8\epsilon^{-4}}{\left(\bar h+2\epsilon^{-2}\right)^2}
-= -8\frac{1}{\left(2 + \epsilon^2\bar h\right)^2}\tp
+= -\frac{\epsilon^{-4}}{\left(\bar h+2\epsilon^{-2}\right)^2}
+= -\frac{1}{\left(1 + \epsilon^2\bar h\right)^2}\tp
 \]
 !et
-The factors 8 and 2 can be reduced to one factor 4
-by choosing $t_c$ to be twice the characteristic time above:
-$t_c = 2V/g$, which implies $h_c=V^2/g$ and the scaled ODE
-
-!bt
-\[ \frac{d^2\bar h}{d\bar t^2}
-= -\frac{4\epsilon^{-2}}{\left(1 + \epsilon^{2}\bar h\right)^2}\tp \]
-!et
-The initial condition remains the same: $\bar h'(0)=2$.
-
-[hpl: Problem: zero limit!]
 !esol
 !esubex
+
+!bsubex
+Give an interpretation of the dimensionless parameter $\epsilon$.
+
+!bsol
+We know from c) that the characteristic height in the constant gravity
+limit is $V^2/g$. We can therefore write
+
+!bt
+\[ \epsilon^2 = \frac{V^2/g}{R},\]
+!et
+which shows that $\epsilon^2$
+is the ratio of the height for small $V$, i.e., motion in a constant gravity
+field, and the earth's radius. A small $\epsilon$ means that we can
+neglect varying gravity.
+!esol
+!esubex
+
+!bsubex
+Solve numerically for $\bar h(\bar t)$ in each of the three scalings in
+a), b), and c), with $\epsilon^2 =0.01, 0.1, 0.5, 1, 2$.
+When are the various scalings appropriate? (That is, when are $\bar t$
+and $\bar h$ of size unity or at least not very small or big?)
+
+!bsol
+For numerical solution we rewrite the ODE as a system of two first-order
+ODEs by introducing a new variable $\bar v$ (velocity): $\bar h'=\bar v$,
+$\bar v' = ...$.
+Here is a code that employs "Odespy": "https://github.com/hplgit/odespy"
+to solve the system of first-order ODEs:
+
+@@@CODE exer-scaling/varying_gravity.py fromto: import odespy@if __name
+
+Recall from d) that $\epsilon^2$ is the ratio of the height reached
+in a constant gravity field and the earth's radius.
+The figures below shows the results for $\epsilon^2=0.01,0.1,0.5, 1, 2$,
+respectively.
+
+FIGURE: [fig-scaling/varying_gravity_0_01, width=800 frac=1]
+
+FIGURE: [fig-scaling/varying_gravity_0_1, width=800 frac=1]
+
+FIGURE: [fig-scaling/varying_gravity_0_5, width=800 frac=1]
+
+FIGURE: [fig-scaling/varying_gravity_1, width=800 frac=1]
+
+FIGURE: [fig-scaling/varying_gravity_2, width=800 frac=1]
+
+For $\epsilon$ small ($\epsilon^2 =0.01, 0.1$), we see that the scaling in
+c) is most relevant since the scalings in a) and b) give small
+$\bar h$ and $\bar t$.  For $\epsilon=1$, all
+three scalings are equal.  For larger $\epsilon$, the body does not
+return to the earth. The scalings in a) and c) become equal in the
+limit $\epsilon\rightarrow\infty$, but they are already quite similar
+for $\epsilon = \sqrt{2}$ according to the bottom figure above.
+The scaling in c) is therefore the most appealing one since it works
+for small as well as large $\epsilon$ and become close to the others
+for $\epsilon$ around unity.
+
+__Remark.__
+The present problem is one of the few problems that is
+discussed at length in the literature, see
+Logan cite{Logan_1987} and Lin and Segel cite{Lin_Segel}.
+The standard argument is that the scaling in c) is favorable since
+it is the only scaling that is valid as $\epsilon\rightarrow 0$. However,
+that it is robust also for the larger relevant values of $\epsilon$ is
+something that is only clear when we solve the three problems
+numerically.
+!esol
+!esubex
+
 
 !split
 ========= Basic PDE models =========
@@ -7275,6 +7340,182 @@ Then there are not big differences in these scalings, and the first
 one is to be preferred. The two others are more suitable when
 $\beta$ is small or large, e.g., such that the term with $\beta$ can be
 left out of the PDE.
+!esol
+
+===== Exercise: Scale a discontinuous heat conduction problem =====
+label{scale:exer:twometal}
+file=metal_pieces
+
+Two pieces of metal at different temperature are brought in contact
+at $t=0$. The following initial-boundary value problem governs the
+temperature evolution in the two pieces:
+
+!bt
+\begin{align}
+\frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
+u(\x,0)=I(x), & \x\in Omega,\\
+-\dfc{\partial u}{\partial n} &= h(u-u_S), & x\in\partial\Omega,\ t\in (0,T].
+\end{align}
+!et
+Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
+coefficient (assuming both pieces are homogeneous and of the same type of
+metal), and $u_S$ is the surrounding temperature.
+The domain $\Omega$ consists of the two pieces $\Omega_1$ and $\Omega_2$:
+$\Omega = \Omega_1\cup\Omega_2$. The initial condition can be specified as
+
+!bt
+\[ I(x) = \left\lbrace\begin{array}{ll}
+U_1, & \x\in\Omega_1,\\
+U_2, & \x\in\Omega 2,
+\end{array}\right.
+\]
+!et
+where $U_1$ and $U_2$ are the constant initial temperatures in each piece.
+
+Thinking of two identical pieces $\Omega_1$ and $\Omega_2$ with shapes
+as bricks, it is tempting to develop a one-dimensional model, especially
+if the pieces are somewhat slender. We then expect the main temperature
+variations to take place in the $x$ direction, where the $x$ axis is
+perpendicular to the contact surface between the pieces. The idea is
+to integrate the governing PDE in the two other directions, use the
+Gauss divergence theorem on
+$\dfc\nabla^2u$, and apply the cooling boundary condition. Let $A$ be
+the cross section of the bricks. Integrating over $A$ gives
+
+!bt
+\begin{align*}
+\int\limits_A \frac{\partial u}{\partial t}dydz &=
+\int\limits_A \dfc\left(
+\frac{\partial^2 u}{\partial x^2}
+\frac{\partial^2 u}{\partial y^2}
+\frac{\partial^2 u}{\partial z^2}
+\right)dydz \\
+\int\limits_A \dfc
+\frac{\partial^2 u}{\partial x^2}
+dydz +
+\int\limits_A \dfc\left(
+\frac{\partial^2 u}{\partial y^2}
+\frac{\partial^2 u}{\partial z^2}
+\right)dydz \\
+& =
+\int\limits_A \dfc
+\frac{\partial^2 u}{\partial x^2}
+dydz +
+\dfc\int\limits_{\partial A}\frac{\partial u}{\partial n}\\
+& = \int\limits_A \dfc
+\frac{\partial^2 u}{\partial x^2}
+dydz -h(v(x,t) -u_S)\tp
+\end{align*}
+!et
+The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
+Assuming $u$ to vary little across the cross section $A$, we can
+approximate the integrals by $u$ evaluated at $\partial A$:
+
+!bt
+\[ \int\limits_A \frac{\partial u}{\partial t}dydz\approx A
+\frac{\partial}{\partial t} v(x,t),
+\quad
+\int\limits_A \dfc
+\frac{\partial^2 u}{\partial x^2}
+dydz \approx A \dfc \frac{\partial^2 v}{\partial x^2},
+\]
+!et
+where $A$ now is the cross-section area.
+The result is the 1D initial-boundary value problem
+
+!bt
+\begin{align}
+\frac{\partial v}{\partial t} &=
+\dfc \frac{\partial^2 v}{\partial x^2}
+-\frac{h}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],\\
+v(x,0)=I(x), & x\in (0,L),\\
+ \dfc{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
+-\dfc{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
+\end{align}
+!et
+with
+
+!bt
+\[
+I(x) = \left\lbrace\begin{array}{ll}
+U_1, & x\in [0,L/2),\\
+U_2, & x\in [L/2, L]\tp
+\end{array}\right.
+\]
+!et
+Scale this problem.
+
+!bsol
+We expect the temperature to start from the discontinuous state with
+$U_1$ and $U_2$ and approach the surrounding temperature $u_S$ in
+the cooling law as $t\rightarrow\infty$. A suitable scaling is
+then
+
+!bt
+\[ \bar v = \frac{v - \min (U_1,U_2)}{u_S-\min (U_1, U_2)},\]
+!et
+since this implies that $u$ varies from 0 to 1. Without loss of
+generality we assume $U_1 < U_2$, so
+
+!bt
+\[ \bar v = \frac{v - U_1}{u_S-U_1}\tp\]
+!et
+Furthermore,
+
+!bt
+\[ \bar x = \frac{x}{L},\quad \bar t = \frac{t}{t_c}\tp\]
+!et
+Inserted in the governing PDE, we have
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{t_c\dfc}{L^2}\frac{\partial^2\bar v}{\partial\bar x^2}
+-\frac{t_c h}{A(u_S-U_1)}
+(U_1 + (u_S-U_1) \bar v(x,t) - u_S),\]
+!et
+which simplifies to
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{t_c\dfc}{L^2}\frac{\partial^2\bar v}{\partial\bar x^2}
+-\frac{t_c h}{A}
+(\bar v(x,t) - 1)\tp\]
+!et
+The natural time scale is that of diffusion: $t_c = L^2/dfc$.
+This choice results in the scaled PDE
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{\partial^2\bar v}{\partial\bar x^2}
+-\beta (\bar v(x,t) - 1),\]
+!et
+with the dimensionless number
+
+!bt
+\[ \beta = \frac{L^2 h}{A\dfc}\tp\]
+!et
+
+The scaled initial condition becomes
+
+!bt
+\[
+\bar v(\bar x,0)=0
+\hbox{ if } 0\leq x < 1/2\hbox{ else } \frac{U_2 - U_1}{U_s - U_1}\tp\]
+!et
+The scaled boundary conditions take the form
+
+!bt
+\[
+ \dfc{\partial}{\partial\bar x}\bar v(0,t) = \frac{Lh}
+ (\bar v(0,t)-1),\quad
+-\dfc{\partial}{\partial\bar x}\bar v(L,t) = \frac{Lh}
+(\bar v(L,t)-1)\tp
+\]
+!et
+
 !esol
 
 !split
