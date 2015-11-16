@@ -4741,7 +4741,7 @@ which gives the dimensionless ODE
 !bt
 \[
 \frac{d^2\bar h}{d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
-= -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+\frac{R}{h_c}\right)^2}
+= -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+ R/h_c\right)^2}
 \]
 !et
 and the dimensionless initial condition
