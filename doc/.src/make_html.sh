@@ -33,7 +33,7 @@ system doconce format html $name $opt --html_style=bootswatch_readable --html_co
 system doconce split_html $html.html
 cp password.html ${topicname}-book-sol.html
 doconce replace DESTINATION "$html" ${topicname}-book-sol.html
-doconce replace PASSWORD "d!e!cay" ${topicname}-book-sol.html
+doconce replace PASSWORD "s!c!ale" ${topicname}-book-sol.html
 
 # Compile solarized HTML
 html=${topicname}-book-solarized

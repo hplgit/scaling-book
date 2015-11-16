@@ -5113,7 +5113,7 @@ degree of mathematical and software complexity come along with this
 book. The simplest
 version is "`wave1D_u0.py`": "${src_scaling}/wave1D_u0.py"
 that implements (ref{scale:wave:pde1}) and
-(ref{scale:wave:pde1:ic:u}-(ref{scale:wave:pde1:bc:L}).
+(ref{scale:wave:pde1:ic:u})-(ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
 in ref[Sections ref{wave:pde1:impl}][ in cite{Langtangen_Linge_fdm}][in
 the "Finite difference computing with PDEs":
