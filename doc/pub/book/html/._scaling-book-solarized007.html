@@ -825,10 +825,10 @@ degree of mathematical and software complexity come along with this
 book. The simplest
 version is <a href="http://tinyurl.com/o8pb3yy/wave1D_u0.py" target="_self"><tt>wave1D_u0.py</tt></a>
 that implements <a href="#mjx-eqn-108">(108)</a> and
-<a href="#mjx-eqn-110">(110)</a>-(ref{scale:wave:pde1:bc:L}.
+<a href="#mjx-eqn-110">(110)</a>-<a href="#mjx-eqn-113">(113)</a>.
 This is the code to be used in the following. It is described
 in in
-the <a href="http://tinyurl.com/xxx" target="_self">Finite difference computing with PDEs</a>
+the book <a href="http://tinyurl.com/Langtangen-Linge-FDM-book" target="_self">Finite difference computing with PDEs</a>
 <a href="._scaling-book-solarized011.html#Langtangen_Linge_fdm">[1]</a>.
 
 <h3 id="___sec115">Waves on a string </h3>
@@ -1117,7 +1117,7 @@ Since \( V \) is the time-derivative of \( u \), the characteristic size of
 
 $$ \max_{x\in(0,L)}|V(x)| = \frac{u_c}{t_c},$$
 
-which gives $ u_c = \max_{x\in(0,L)}|V(x)| L/c$. As usual, we base \( t_c \)
+which gives \( u_c = \max_{x\in(0,L)}|V(x)| L/c \). As usual, we base \( t_c \)
 on the wave speed: \( t_c = L/c \). We end up with
 
 $$ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
@@ -1278,7 +1278,7 @@ $$
 \quad &\bar x\in [0,1],\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],\\ 
-\frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t) & = 0,
+\frac{\partial}{\partial \bar x}\bar u(0,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],\\ 
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
@@ -1366,7 +1366,7 @@ $$ \frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
 \bar V(\bar x),
 \hbox{ if } u_c=t_c^2f_c=\frac{L^2}{\lambda_c}\max_{x,t}|f(x,t)|\tp$$
 
-Introducing the dimensionless number \( \alpha \) (cf. The section <a href="#scale:wave:pde2:Vcond">Velocity initial condition</a>),
+Introducing the dimensionless number \( \alpha \) (cf. the section <a href="#scale:wave:pde2:Vcond">Velocity initial condition</a>),
 
 $$ \alpha^{-1} = \frac{\sqrt{\lambda_c}}{L}\frac{\max_{x}|V(x)|}{\max_{x,t}|f(x,t)|},
 $$

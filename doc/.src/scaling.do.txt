@@ -5116,8 +5116,8 @@ that implements (ref{scale:wave:pde1}) and
 (ref{scale:wave:pde1:ic:u})-(ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
 in ref[Sections ref{wave:pde1:impl}][ in cite{Langtangen_Linge_fdm}][in
-the "Finite difference computing with PDEs":
-"http://tinyurl.com/xxx"
+the book "Finite difference computing with PDEs":
+"http://tinyurl.com/Langtangen-Linge-FDM-book"
 cite{Langtangen_Linge_fdm}].
 
 
@@ -5372,7 +5372,7 @@ $V$ is typically $u_c/t_c$, meaning that
 !bt
 \[ \max_{x\in(0,L)}|V(x)| = \frac{u_c}{t_c},\]
 !et
-which gives $ u_c = \max_{x\in(0,L)}|V(x)| L/c$. As usual, we base $t_c$
+which gives $u_c = \max_{x\in(0,L)}|V(x)| L/c$. As usual, we base $t_c$
 on the wave speed: $t_c = L/c$. We end up with
 
 !bt
@@ -5526,13 +5526,14 @@ non-dimensional counterparts yields
 \quad &\bar x\in [0,1],\\
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],\\
-\frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t) & = 0,
+\frac{\partial}{\partial \bar x}\bar u(0,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],\\
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
 \end{align*}
 !et
 with $\bar T = Tc/L$.
+
 
 === Choosing the time scale ===
 

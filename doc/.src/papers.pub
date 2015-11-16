@@ -262,8 +262,8 @@
    key:       Langtangen_Linge_fdm
    author:    H. P. Langtangen, S. Linge
    status:    published
-   note:      \url{http://tinyurl.com/xxx}
-   url:       http://tinyurl.com/xxx
+   note:      \url{http://tinyurl.com/Langtangen-Linge-FDM-book}
+   url:       http://tinyurl.com/Langtangen-Linge-FDM-book
    entrytype: misc
 ** Finite difference methods for vibration ODEs
    key:       Langtangen_deqbook_vib
