@@ -1172,10 +1172,28 @@ convention for scaling within the tools. In fact, this is also goes
 for academic tools for in-house use.
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 3</b>: Geir, can we say something how contents in this book can help? Use of scaled models in software, use of unit conversion tools for input.)</font>
-<!-- end inline comment -->
+The discussion above points to some best practices that this book
+promotes. First, always compute with scaled differential equation
+models. This book tells you how to do that. Second, users of software
+often want to specify input data with dimension and get output data
+with dimension. The software should then apply tools like
+<code>PhysicalQuantity</code> (the section <a href="#scale:PQ">PhysicalQuantity: a tool for computing with units</a>)
+or the more sophisticated Parampool package (the section <a href="#scale:parampool">Parampool: user interfaces with automatic unit conversion</a>) to allow input with explicit dimensions and
+convert the dimensions to the right types if necessary.
+It is trivial to apply these tools if the computational software is
+written in Python, but it is even straightforward if the software is
+written in compiled languages like Fortran, C, or C++. In the latter
+case one just makes an input reading module in Python that grabs data from
+a user interface and feeds them into the computational software, either
+through files or function calls (the relevant functions to be called
+must be wrapped in Python with tools like
+<a href="http://docs.scipy.org/doc/numpy-dev/f2py/" target="_self">f2py</a>,
+<a href="http://cython.org/" target="_self">Cython</a>,
+<a href="http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html" target="_self">Weave</a>,
+<a href="http://www.swig.org/" target="_self">SWIG</a>,
+<a href="https://bitbucket.org/fenics-project/instant" target="_self">Instant</a>,
+or similar, see <a href="._scaling-book011.html#Langtangen_Linge_fdm">[1]</a> (Appendix C) for basic
+examples on f2py and Cython wrapping of C and Fortran code).
 
 <h2 id="scale:PQ">PhysicalQuantity: a tool for computing with units</h2>
 
@@ -1196,7 +1214,7 @@ Readers without knowledge of Python variables, functions, if tests,
 and module import should consult, e.g., a <a href="http://hplgit.github.io/bumpy/doc/web/index.html" target="_self">brief tutorial on scientific
 Python</a>,
 the <a href="http://scipy-lectures.github.com/" target="_self">Python Scientific Lecture Notes</a>,
-or a full textbook <a href="._scaling-book011.html#Langtangen_2012">[1]</a> in parallel with reading about
+or a full textbook <a href="._scaling-book011.html#Langtangen_2012">[2]</a> in parallel with reading about
 Python code in the present book.
 
 <p>
@@ -1217,12 +1235,12 @@ between version 2 and 3.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 4</b>: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?)</font>
+<font color="red">(<b>hpl 3</b>: Geir, is this sufficient intro about Python? Should we be more specific about the expected competence?)</font>
 <!-- end inline comment -->
 
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 5</b>: hpl, no this will do.)</font>
+<font color="red">(<b>Geir 4</b>: hpl, no this will do.)</font>
 <!-- end inline comment -->
 
 <p>
@@ -1659,7 +1677,7 @@ generate(distance_unit2, pool_function<span style="color: #666666">=</span>defin
 </pre></div>
 <p>
 Running <code>generate_distance_GUI.py</code> creates a Flask-based web
-interface <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="You need to have Flask and additional packages installed. This is easy to do with a few pip install commands, see <a href="._scaling-book011.html#parampool">[2]</a> or <a href="._scaling-book011.html#web4sciapps">[3]</a>."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>
+interface <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="You need to have Flask and additional packages installed. This is easy to do with a few pip install commands, see <a href="._scaling-book011.html#parampool">[3]</a> or <a href="._scaling-book011.html#web4sciapps">[4]</a>."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>
 to our <code>distance_unit</code> function, see Figure <a href="#scale:dimunit:fig:GUI">1</a>.
 The text fields in this GUI allow specification of parameters with
 numbers and units, e.g., acceleration with unit yards per minute squared,
@@ -1669,7 +1687,7 @@ of that parameter.
 
 <p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> You need to have Flask and additional packages installed.
 This is easy to do with a few <code>pip install</code> commands,
-see <a href="._scaling-book011.html#parampool">[2]</a> or <a href="._scaling-book011.html#web4sciapps">[3]</a>.</p>
+see <a href="._scaling-book011.html#parampool">[3]</a> or <a href="._scaling-book011.html#web4sciapps">[4]</a>.</p>
 
 <p>
 <center> <!-- figure -->

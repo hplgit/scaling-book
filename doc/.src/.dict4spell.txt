@@ -3,6 +3,7 @@ Biot's
 Boussinesq
 Couette
 Courant
+Cython
 Dimensonless
 Duffing's
 Ec
@@ -21,6 +22,7 @@ Informatics
 Joakim
 KPP
 Karman
+KdV
 Kolmogorov
 Langtangen
 Linearization
@@ -101,6 +103,7 @@ permeabilities
 pipeflow
 poro
 pulsatile
+py
 rad
 recomputations
 shedded

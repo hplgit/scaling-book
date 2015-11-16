@@ -900,7 +900,28 @@ concerning units in input and output with a clear and consistent
 convention for scaling within the tools. In fact, this is also goes
 for academic tools for in-house use.
 
-\longinlinecomment{hpl 3}{ Geir, can we say something how contents in this book can help? Use of scaled models in software, use of unit conversion tools for input. }{ Geir, can we say }
+The discussion above points to some best practices that this book
+promotes. First, always compute with scaled differential equation
+models. This book tells you how to do that. Second, users of software
+often want to specify input data with dimension and get output data
+with dimension. The software should then apply tools like
+\texttt{PhysicalQuantity} (Section~\ref{scale:PQ})
+or the more sophisticated Parampool package (Section~\ref{scale:parampool}) to allow input with explicit dimensions and
+convert the dimensions to the right types if necessary.
+It is trivial to apply these tools if the computational software is
+written in Python, but it is even straightforward if the software is
+written in compiled languages like Fortran, C, or C++. In the latter
+case one just makes an input reading module in Python that grabs data from
+a user interface and feeds them into the computational software, either
+through files or function calls (the relevant functions to be called
+must be wrapped in Python with tools like
+\href{{http://docs.scipy.org/doc/numpy-dev/f2py/}}{f2py},
+\href{{http://cython.org/}}{Cython},
+\href{{http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html}}{Weave},
+\href{{http://www.swig.org/}}{SWIG},
+\href{{https://bitbucket.org/fenics-project/instant}}{Instant},
+or similar, see \cite[Appendix C]{Langtangen_Linge_fdm} for basic
+examples on f2py and Cython wrapping of C and Fortran code).
 
 \subsection{PhysicalQuantity: a tool for computing with units}
 \label{scale:PQ}
@@ -942,8 +963,8 @@ between version 2 and 3.
 
 
 
-\longinlinecomment{hpl 4}{ Geir, is this sufficient intro about Python? Should we be more specific about the expected competence? }{ Geir, is this sufficient }
-\shortinlinecomment{Geir 5}{ hpl, no this will do. }{ hpl, no this will }
+\longinlinecomment{hpl 3}{ Geir, is this sufficient intro about Python? Should we be more specific about the expected competence? }{ Geir, is this sufficient }
+\shortinlinecomment{Geir 4}{ hpl, no this will do. }{ hpl, no this will }
 
 Computations with units in Python are well supported by the
 \texttt{PhysicalQuantity} object from the \href{{https://bitbucket.org/khinsen/scientificpython}}{ScientificPython package} by Konrad
@@ -2722,8 +2743,8 @@ from the disease can be shown to be $\nu^{-1}$, but $\beta$ is much harder
 to estimate, so working with a scaled model where $\beta$ is ``scaled away''
 is advantageous.
 
-\longinlinecomment{hpl 6}{ Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that ``here are the ODEs'' and if understanding of the ``physics'' is necessary, the reader must have the necessary background. Maybe state this in the preface? }{ Geir asked about the }
-\longinlinecomment{Geir 7}{ I will look at the example again. I guess we need to be pragmatic concerning background and explanations. }{ I will look at }
+\longinlinecomment{hpl 5}{ Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that ``here are the ODEs'' and if understanding of the ``physics'' is necessary, the reader must have the necessary background. Maybe state this in the preface? }{ Geir asked about the }
+\longinlinecomment{Geir 6}{ I will look at the example again, but even more on the chemistry example. I guess we need to be pragmatic concerning background and explanations. In short: do not add more references. }{ I will look at }
 \paragraph{Scaling.}
 It is natural to scale $S$, $I$, and $R$ by, e.g., $S(0)$:
 
@@ -3172,7 +3193,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-\shortinlinecomment{hpl 8}{ Include more figures. }{ Include more figures. }
+\shortinlinecomment{hpl 7}{ Include more figures. }{ Include more figures. }
 
 \subsection{Undamped vibrations without forcing}
 \label{sec:scale:vib:undamped}
@@ -4906,7 +4927,7 @@ which gives the dimensionless ODE
 
 \[
 \frac{d^2\bar h}{d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
-= -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+\frac{R}{h_c}\right)^2}
+= -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+ R/h_c\right)^2}
 \]
 and the dimensionless initial condition
 
@@ -5344,7 +5365,7 @@ boundary.
 %\clearpage % flush figures scale:wave:pde2:fig:alpha01
 
 
-\shortinlinecomment{hpl 12}{ The HTML version features movies here. Link to them in the {\LaTeX} PDF version as well? }{ The HTML version features }
+\shortinlinecomment{hpl 11}{ The HTML version features movies here. Link to them in the {\LaTeX} PDF version as well? }{ The HTML version features }
 
 \subsection{Velocity initial condition}
 \label{scale:wave:pde2:Vcond}
@@ -5438,9 +5459,9 @@ regardless of other parameters.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.
 
-\shortinlinecomment{hpl 13}{ Do experiments. Make exercise or insert here. }{ Do experiments. Make exercise }
+\shortinlinecomment{hpl 12}{ Do experiments. Make exercise or insert here. }{ Do experiments. Make exercise }
 
-\longinlinecomment{hpl 14}{ Could make paradox: small $I$, big $V$, but still significant impact of $I$ in a simulation. Why? Bug? The answer is above. Best as exercise. }{ Could make paradox: small }
+\longinlinecomment{hpl 13}{ Could make paradox: small $I$, big $V$, but still significant impact of $I$ in a simulation. Why? Bug? The answer is above. Best as exercise. }{ Could make paradox: small }
 
 \subsection{Variable wave velocity and forcing}
 \label{scale:wave:pde2:cvar}
@@ -5937,11 +5958,11 @@ boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 15}{ Include simulation results. }{ Include simulation results. }
+\shortinlinecomment{hpl 14}{ Include simulation results. }{ Include simulation results. }
 
 \subsection{Oscillating Dirichlet condition}
 
-\shortinlinecomment{hpl 16}{ Do we need paragraph headings here? }{ Do we need paragraph }
+\shortinlinecomment{hpl 15}{ Do we need paragraph headings here? }{ Do we need paragraph }
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -6273,9 +6294,9 @@ equation to obtain the well-known convection-diffusion equation:
 The velocity field $\v$ is prescribed, and its characteristic size $V$
 is normally clear from the problem description.
 
-\longinlinecomment{hpl 17}{ Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated? Geir says no. }{ Drop specification of spatial }
+\longinlinecomment{hpl 16}{ Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated? Geir says no. }{ Drop specification of spatial }
 
-\longinlinecomment{hpl 18}{ Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different $V$ is obvious. }{ Show a sketch of }
+\longinlinecomment{hpl 17}{ Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different $V$ is obvious. }{ Show a sketch of }
 
 Inserting
 
@@ -6727,7 +6748,7 @@ Scale the problem.
 
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 
-\shortinlinecomment{hpl 19}{ Could extend to time-dependent case, but this will involve three time scales... }{ Could extend to time-dependent }
+\shortinlinecomment{hpl 18}{ Could extend to time-dependent case, but this will involve three time scales... }{ Could extend to time-dependent }
 
 \noindent Filename: \Verb!Couette_wpressure!.
 
@@ -7025,7 +7046,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 20}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 19}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -7378,8 +7399,8 @@ large enough for the type of outflow boundary condition used.
 Ideally, $W,L_c\rightarrow\infty$, so none of these parameters are
 useful as length scales.
 
-\shortinlinecomment{hpl 21}{ Geir, check this formulation for choice of length scale. }{ Geir, check this formulation }
-\longinlinecomment{Geir 22}{ $L$ cannot be used as both down-wind length of computational domain and general length scale. Could not change the $L$ on the figure, as it is part of the pdf. A little uncertain concerning the check -- it looks mostly fine. The profile may have a length cale (as implicit in the figur). It may also be beneficial to have a spanwise limit of the computational domain in the figure ? }{ $L$ cannot be used }
+\shortinlinecomment{hpl 20}{ Geir, check this formulation for choice of length scale. }{ Geir, check this formulation }
+\longinlinecomment{Geir 21}{ $L$ cannot be used as both down-wind length of computational domain and general length scale. Could not change the $L$ on the figure, as it is part of the pdf. A little uncertain concerning the check -- it looks mostly fine. The profile may have a length cale (as implicit in the figur). It may also be beneficial to have a spanwise limit of the computational domain in the figure ? }{ $L$ cannot be used }
 
 
 
@@ -8316,7 +8337,7 @@ potentials, and $\beta$ is ratio of the source term with $I_{\rm{app}}$ and the
 time-derivative term of $v$, or the source term and the diffusion term
 in $v$.
 
-\shortinlinecomment{js 23}{ preliminary notes }{ preliminary notes }
+\shortinlinecomment{js 22}{ preliminary notes }{ preliminary notes }
 We can insert typical values for the parameters to get a feel for the
 chosen scaling. We have
 
@@ -8344,7 +8365,7 @@ instance the resting conductance, which is the common choice when
 scaling the cable equation, may increase $t_c, L$ by factors up to 2500 and
 50, respectively.
 
-\shortinlinecomment{hpl 24}{ Joakim, can you say something about the relevance of these scales? A factor of 2500 is quite big... }{ Joakim, can you say }
+\shortinlinecomment{hpl 23}{ Joakim, can you say something about the relevance of these scales? A factor of 2500 is quite big... }{ Joakim, can you say }
 
 The conduction velocity is often a quantity of interest, and we could
 obtain an alternative relation between $t_c$ and $L$ by requiring
@@ -8361,7 +8382,7 @@ standard values of $\Delta x, \Delta t$ required for accurate
 numerical solution. That is, this choice of scaling will give $\Delta x
 \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-\longinlinecomment{hpl 25}{ That sounds a big strange, but if the focus is on a smaller scale, choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+\longinlinecomment{hpl 24}{ That sounds a big strange, but if the focus is on a smaller scale, choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 \section{Two-phase porous media flow}
 
@@ -8564,11 +8585,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 26}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 25}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 27}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 26}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 28}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 27}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8657,7 +8678,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 29}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 28}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
@@ -8887,11 +8908,13 @@ by introducing a new unknown $\bar\v = M\bar\u$.
 \subsection{Equations for surface waves}
 \label{scale:surfacewaves:Eulereq}
 
-For gravity waves on the surface of an fluid it is often a good
-approximation to ignore viscous effects.  If we exclude capillary
-waves (small Weber number, see section~\ref{freesurface:Weber}) the
-flow of an incompressible homogeneous fluid is governed by the Euler
-equations of motion on the form
+Provided the Weber number, see section~\ref{freesurface:Weber}, is
+sufficiently small, capillary effects may omitted and surface waves are
+governed by gravity.  For large Reynolds numbers viscous effects
+may also be ignored (save in boundary layers close to the bottom or
+the surface of the fluid). The flow of an incompressible homogeneous
+fluid under these assumptions
+is governed by the Euler equations of motion on the form
 
 \begin{align}
 \nabla\cdot\u &=0,
@@ -8899,7 +8922,7 @@ equations of motion on the form
 \frac{\partial\u}{\partial t} + \u\cdot\nabla\u + \frac{1}{\rho}\nabla p +g\mathbf{k}&=0\tp
 \label{scale:surfacewave:u}
 \end{align}
-When the free surface position is describes as
+When the free surface position is described as
 $z=\eta(x,y,t)$, with $z$ as the vertical coordinate, the boundary conditions
 at the surface read
 
@@ -8917,31 +8940,34 @@ bottom, $z=-h(x,y)$, there is the no-flux condition
 \frac{\partial h}{\partial x}u+\frac{\partial h}{\partial y}v =-w\tp
 \]
 In addition to $\rho$ and  $g$ we assume that a typical depth $h_c$,
-a typical wavelength $\lambda_c$ and a typical surface elevation $A$, which
+a typical wavelength $\lambda_c$, and a typical surface elevation $A$, which
 then per definition is a scale for $\eta$, are
-the given parameters. From these we must derive scales for the coordinates, then velocity components and the pressure.
+the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
+
 First, it is instructive to define a typical wave celerity, $c_c$, which
 must be linked to the length and time scale according to $c_c=\lambda_c/t_c$.
 Since there is no other given parameter that matches the mass dimension of
 $\rho$ we express $c_c$ in terms of $A$, $\lambda_c$, $h_c$, and $g$.
 Most of the work on waves in any discipline of physics is devoted to linear
 or weakly nonlinear waves and the wave celerity must be presumed to remain
-finite as $A$ goes to zero (see, for instance, Section~\ref{scale:gas:acoustic}). Hence, we may assume  $c_c$ must depend on $g$ and either $h_c$ or $\lambda_c$. Next, the horizontal directions must be treated similarly, implying that
-we have a velocity scale, $U$, for $u$ and $v$, a common length scale $L$ for
-$x$ and $y$. The obvious choice for $L$ is $\lambda_c$.  The "vertical quantities" $w$ and $z$ have scales $W$ and $Z$, respectively.
-We assume that also the length scales $Z$ remains finite
+finite as $A$ goes to zero (see, for instance, Section~\ref{scale:gas:acoustic}).
+Hence, we may assume  that $c_c$ must depend on $g$ and either $h_c$ or $\lambda_c$. Next, the two horizontal directions are equivalent with regard to
+scaling, implying that
+we have a common velocity scale, $U$, for $u$ and $v$, a common length scale $L$
+for $x$ and $y$. The obvious choice for $L$ is $\lambda_c$, while
+the ``vertical quantities'' $w$ and $z$ have scales $W$ and $Z$, respectively, which may differ from the horizontal counterparts.
+However, we assume that also the length scale $Z$ remains finite
 as $A\rightarrow 0$ and hence is independent of $A$. This is less
-obvious for $Z$ than for $c_c$ and $t_c$, but may be confirmed by the existence
+obvious for $Z$ than for $c_c$ and $t_c$, but may eventually
+be confirmed by the existence
 of linear solutions when solving the equation set.
 From the linear part of (\ref{scale:surfacewave:kinsurf}) and (\ref{scale:surfacewaves:cont}) we obtain two relations between velocity and coordinate scales by demanding the non-dimensionalized terms to be of order unity
 
-\begin{align}
-\frac{A}{t_c} &=& W,
-\label{scale:surfacewaves:kinscal}\\ 
-\frac{U}{L}&=&+\frac{W}{Z}\tp
-\label{scale:surfacewave:contscal}
-\end{align}
-These will be useful, but does not suffice to establish the scaling.
+\begin{equation}
+\label{scale:surfacewaves:scalrelations}
+\frac{A}{t_c} = W,\quad \frac{U}{L}=\frac{W}{Z}\tp
+\end{equation}
+These relations are indeed useful, but they do not suffice to establish the scaling.
 
 The pressure may regarded as the sum of a large equilibrium part, balancing
 gravity, and a much smaller dynamic part associated with the presence of
@@ -8960,26 +8986,32 @@ In the further development of the scaling
 we focus on two limiting cases, namely deep and shallow water.
 
 \paragraph{Waves in deep  water.}
-Deep water means that $h_c\gg\lambda_c$. Presumably the waves will not feel the bottom and $h$ as well as $h_c$ are removed from our equations. The bottom boundary condition is replaced by a requirement of vanishing velocity as $z\rightarrow -\infty$. Consequently,
-$c_c$ must depend upon $\lambda_c$ and $g$, leaving us with
+Deep water means that $h_c\gg\lambda_c$. Presumably the waves will not
+feel the bottom, and $h$ as well as $h_c$ are removed from our
+equations. The bottom boundary condition is replaced by a requirement
+of vanishing velocity as $z\rightarrow -\infty$. Consequently, $c_c$
+must depend upon $\lambda_c$ and $g$, leaving us with
 $c_c=\sqrt{g\lambda_c}$ and $Z=\lambda_c=L$ as the only options.
-Then, $t_c=\sqrt{\lambda/c/g}$ and
-(\ref{scale:surfacewaves:kinscal}) and (\ref{scale:surfacewaves:kontscal})
-imply $U=W=c_0\frac{A}{\lambda_c}=\epsilon c_0$, where we have introduced the non-dimensional number
+Then, $t_c=\sqrt{\lambda_c/g}$ and
+(\ref{scale:surfacewaves:scalrelations}) implies
+$U=W=c_0\frac{A}{\lambda_c}=\epsilon c_0$, where we have introduced
+the non-dimensional number
 
 \[\epsilon=\frac{A}{\lambda_c},\]
 which is the wave steepness. The equality of the horizontal and the vertical
 scale is consistent with the common knowledge that the particle orbits in
-surface waves are circular.
+deep water surface waves are circular.
+
 The scaled equation are now expressed with $\epsilon$ as sole dimensionless
 number
+
 \begin{align}
 \bar \nabla\cdot\bar\u &=0,
 \label{scale:surfacewaves:cont:}\\ 
 \frac{\partial\bar\u}{\partial \bar t} + \epsilon\bar \u\cdot\bar\nabla\bar\u + \bar\nabla \bar p_d&=0\tp
 \label{scale:surfacewave:u:s}
 \end{align}
-Surface conditions, at $z=\epsilon \eta$, become
+The surface conditions, at $z=\epsilon \eta$, become
 
 \begin{align}
 \bar p_d &=\bar \eta,
@@ -8987,24 +9019,23 @@ Surface conditions, at $z=\epsilon \eta$, become
 \frac{\partial\bar\eta}{\partial \bar t} + \epsilon \bar \u\cdot\bar\nabla\bar\eta &=\bar w,
 \label{scale:surfacewave:kinsurf:s}
 \end{align}
-bottom condition, as $\bar z \rightarrow -\infty$,
+while the bottom condition is replaced by
 
 \begin{equation}
 \label{scale:surfacewave:kinbott2}
-\bar\u \rightarrow 0\tp
+\bar\u \rightarrow 0,
 \end{equation}
-
+as $\bar z \rightarrow -\infty$.
 
 \paragraph{Long waves in shallow water.}
 In this case the basic assumption is that the wavelength is large
-compared to the depth: $\lambda_c\gg h_c$. In analogy with reasoning
-above we the presume that the speed of the waves remains finite as
+compared to the depth: $\lambda_c\gg h_c$. In analogy with the reasoning
+above, we the presume that the speed of the waves remains finite as
 $\lambda_c\rightarrow \infty$.  Then, $c_c$ must be based on $g$ and
 $h_c$, which leads to $c_c=\sqrt{gh_c}$ and
 $t_c=\lambda_c/\sqrt{gh_c}$. The natural choice for the vertical
 length scale is now the depth; $Z=h_c$.  Application of
-(\ref{scale:surfacewaves:kinscal}) and
-(\ref{scale:surfacewaves:kontscal}) now leads to $W=c_c A/\lambda_c$
+(\ref{scale:surfacewaves:scalrelations}) then leads to $W=c_c A/\lambda_c$
 and $U=c_c A/h_c$.
 
 Introducing the dimensionless numbers
@@ -9016,7 +9047,7 @@ We observe that $W\ll U$ for shallow water and that particle orbits must be elon
 
 The equation set is now most transparently written by introducing the
 horizontal velocity $\bar\u_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
-and the corresponding vertical component of the gradient operator, $\nabla_h$
+and the corresponding vertical component of the gradient operator, $\nabla_h$:
 
 \begin{align}
 \bar \nabla\cdot\bar\u_h +\frac{\partial \bar w}{\partial \bar z}&=0,
@@ -9025,21 +9056,25 @@ and the corresponding vertical component of the gradient operator, $\nabla_h$
 \mu^2\left(\frac{\partial\bar\w}{\partial \bar t} + \alpha\bar \u\cdot\bar\nabla_h\bar\w+\alpha \bar w \frac{\partial \bar w}{\partial \bar z}\right) + \frac{\partial \bar p_d}{\partial \bar z}&=0.\tp
 \label{scale:surfacewave:uh}
 \end{align}
-Surface conditions, at $z=\alpha \eta$, become
+Surface conditions, at $z=\alpha \eta$, now become
 
 \begin{align}
 \bar p_d &=\bar \eta,
 \label{scale:surfacewaves:dynsurf:s2}\\ 
-\frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,\tp
+\frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,
 \label{scale:surfacewave:kinsurf:s2}
 \end{align}
-bottom condition
+while the bottom condition is invariant with respect to the present scaling
 
 \begin{equation}
 \label{scale:surfacewave:kinbott3}
 \bar\nabla_h\cdot\u_h =-\bar w\tp
 \end{equation}
-An immediate consequence is that $\bar p_d$ remains equal to $\bar eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure becomes hydrostatic
+An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure
+is hydrostatic. The above set of equations is the common  starting point for
+perturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water,
+KdV, and Boussinesq type equations.
+
 
 
 \section{Exercises}
@@ -9164,8 +9199,6 @@ Projects:
    oscillating pressure in tube (channel first)
 
  \item Helmholtz
-
- \item two metal pieces in contact
 
  \item boundary layer fluid flow problem, with/without thermal effects
 

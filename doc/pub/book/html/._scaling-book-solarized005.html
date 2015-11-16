@@ -697,7 +697,7 @@ The forthcoming text has the following goals.
 Books covering scaling and non-dimensionalization very often cover
 topics not treated in the present book. One key topic is
 dimensional analysis and the famous Buckingham Pi Theorem
-<a href="._scaling-book-solarized011.html#Douglas_et_al_1979">[4]</a> <a href="._scaling-book-solarized011.html#Logan_1987">[5]</a>.
+<a href="._scaling-book-solarized011.html#Douglas_et_al_1979">[5]</a> <a href="._scaling-book-solarized011.html#Logan_1987">[6]</a>.
 
 <p>
 Other classical topics closely related to scaling and non-dimensionalization
@@ -993,7 +993,7 @@ and explained in
 
 <p>
 Section refaux{softeng1:basic:module} in
-the book <a href="http://tinyurl.com/nclmcng/doc/pub/book" target="_self">Finite Difference Computing with Exponential Decay Models</a> <a href="._scaling-book-solarized011.html#Langtangen_decay">[6]</a>.
+the book <a href="http://tinyurl.com/nclmcng/doc/pub/book" target="_self">Finite Difference Computing with Exponential Decay Models</a> <a href="._scaling-book-solarized011.html#Langtangen_decay">[7]</a>.
 
 <p>
 To solve the dimensionless problem, just fix \( I=1 \) and \( a=1 \):
@@ -1436,9 +1436,9 @@ We may develop a solver for the scaled problem that uses <code>joblib</code>
 to cache solutions with the same \( \beta \), \( \Delta t \), and \( T \).
 For now we fix \( \theta=0.5 \).
 The module <a href="http://tinyurl.com/o8pb3yy/decay_vc.py" target="_self"><tt>decay_vc.py</tt></a>
-(see ref[the section ref{decay:general}][ in <a href="._scaling-book-solarized011.html#Langtangen_decay">[6]</a>[the
+(see ref[the section ref{decay:general}][ in <a href="._scaling-book-solarized011.html#Langtangen_decay">[7]</a>[the
 section <a href="http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem" target="_self">Implementation of the generalized model problem</a>
-<a href="._scaling-book-solarized011.html#Langtangen_decay">[6]</a>] for details)
+<a href="._scaling-book-solarized011.html#Langtangen_decay">[7]</a>] for details)
 has a function
 <code>solver(I, a, b, T, dt, theta)</code> for solving \( u'(t)=-a(t)u(t)+b(t) \) for
 \( t\in (0,T] \), \( u(0)=I \), with time step <code>dt</code>.
@@ -2120,12 +2120,12 @@ is advantageous.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 6</b>: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that &quot;here are the ODEs&quot; and if understanding of the &quot;physics&quot; is necessary, the reader must have the necessary background. Maybe state this in the preface?)</font>
+<font color="red">(<b>hpl 5</b>: Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that &quot;here are the ODEs&quot; and if understanding of the &quot;physics&quot; is necessary, the reader must have the necessary background. Maybe state this in the preface?)</font>
 <!-- end inline comment -->
 
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 7</b>: I will look at the example again. I guess we need to be pragmatic concerning background and explanations.)</font>
+<font color="red">(<b>Geir 6</b>: I will look at the example again, but even more on the chemistry example. I guess we need to be pragmatic concerning background and explanations. In short: do not add more references.)</font>
 <!-- end inline comment -->
 
 <h3 id="___sec55">Scaling </h3>

@@ -328,10 +328,29 @@ concerning units in input and output with a clear and consistent
 convention for scaling within the tools. In fact, this is also goes
 for academic tools for in-house use.
 
-[hpl: Geir, can we say something how contents in this book can help?
-Use of scaled models in software, use of unit conversion tools for input.]
-[Geir: Yes, we should be more specific than say "be aware and be good".
-Bu, exactly how. ]
+The discussion above points to some best practices that this book
+promotes. First, always compute with scaled differential equation
+models. This book tells you how to do that. Second, users of software
+often want to specify input data with dimension and get output data
+with dimension. The software should then apply tools like
+`PhysicalQuantity` (Section ref{scale:PQ})
+or the more sophisticated Parampool package (Section
+ref{scale:parampool}) to allow input with explicit dimensions and
+convert the dimensions to the right types if necessary.
+It is trivial to apply these tools if the computational software is
+written in Python, but it is even straightforward if the software is
+written in compiled languages like Fortran, C, or C++. In the latter
+case one just makes an input reading module in Python that grabs data from
+a user interface and feeds them into the computational software, either
+through files or function calls (the relevant functions to be called
+must be wrapped in Python with tools like
+"f2py": "http://docs.scipy.org/doc/numpy-dev/f2py/",
+"Cython": "http://cython.org/",
+"Weave": "http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html",
+"SWIG": "http://www.swig.org/",
+"Instant": "https://bitbucket.org/fenics-project/instant",
+or similar, see cite[Appendix C]{Langtangen_Linge_fdm} for basic
+examples on f2py and Cython wrapping of C and Fortran code).
 
 ===== PhysicalQuantity: a tool for computing with units =====
 label{scale:PQ}
@@ -9650,12 +9669,13 @@ label{scale:surfacewaves}
 ===== Equations for surface waves =====
 label{scale:surfacewaves:Eulereq}
 
-Provided the Weber number,  see section ref{freesurface:Weber}, is
-suffiecently small capillary effects may omitted and
-surface waves are governed by gravity. 
-For large Reynold numbers also viscous effects may be also be
-ignored, save in boundary layers close to the bottom or the surface of the fluid. The flow of an incompressible homogeneous fluid is governed by the Euler
-equations of motion on the form
+Provided the Weber number, see section ref{freesurface:Weber}, is
+sufficiently small, capillary effects may omitted and surface waves are
+governed by gravity.  For large Reynolds numbers viscous effects
+may also be ignored (save in boundary layers close to the bottom or
+the surface of the fluid). The flow of an incompressible homogeneous
+fluid under these assumptions
+is governed by the Euler equations of motion on the form
 
 !bt
 \begin{align}
@@ -9665,7 +9685,7 @@ label{scale:surfacewaves:cont}\\
 label{scale:surfacewave:u}
 \end{align}
 !et
-When the free surface position is describes as
+When the free surface position is described as
 $z=\eta(x,y,t)$, with $z$ as the vertical coordinate, the boundary conditions
 at the surface read
 
@@ -9687,9 +9707,10 @@ label{scale:surfacewave:kinbott}
 \]
 !et
 In addition to $\rho$ and  $g$ we assume that a typical depth $h_c$,
-a typical wavelength $\lambda_c$ and a typical surface elevation $A$, which
+a typical wavelength $\lambda_c$, and a typical surface elevation $A$, which
 then per definition is a scale for $\eta$, are
-the given parameters. From these we must derive scales for the coordinates, then velocity components and the pressure.
+the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
+
 First, it is instructive to define a typical wave celerity, $c_c$, which
 must be linked to the length and time scale according to $c_c=\lambda_c/t_c$.
 Since there is no other given parameter that matches the mass dimension of
@@ -9699,19 +9720,21 @@ or weakly nonlinear waves and the wave celerity must be presumed to remain
 finite as $A$ goes to zero (see, for instance, Section ref{scale:gas:acoustic}).
 Hence, we may assume  that $c_c$ must depend on $g$ and either $h_c$ or $\lambda_c$. Next, the two horizontal directions are equivalent with regard to
 scaling, implying that
-we have a commen velocity scale, $U$, for $u$ and $v$, a common length scale $L$
-for $x$ and $y$. The obvious choice for $L$ is $\lambda_c$, while  
-the "vertical quantities" $w$ and $z$ have scales $W$ and $Z$, respectively, which may differ from the horizontal counterparts.
+we have a common velocity scale, $U$, for $u$ and $v$, a common length scale $L$
+for $x$ and $y$. The obvious choice for $L$ is $\lambda_c$, while
+the ``vertical quantities'' $w$ and $z$ have scales $W$ and $Z$, respectively, which may differ from the horizontal counterparts.
 However, we assume that also the length scale $Z$ remains finite
 as $A\rightarrow 0$ and hence is independent of $A$. This is less
-obvious for $Z$ than for $c_c$ and $t_c$, but may eventually 
+obvious for $Z$ than for $c_c$ and $t_c$, but may eventually
 be confirmed by the existence
 of linear solutions when solving the equation set.
 From the linear part of (ref{scale:surfacewave:kinsurf}) and (ref{scale:surfacewaves:cont}) we obtain two relations between velocity and coordinate scales by demanding the non-dimensionalized terms to be of order unity
 
 !bt
+\begin{equation}
 label{scale:surfacewaves:scalrelations}
-\frac{A}{t_c} = W,\quad \frac{U}{L}&=&+\frac{W}{Z}\tp
+\frac{A}{t_c} = W,\quad \frac{U}{L}=\frac{W}{Z}\tp
+\end{equation}
 !et
 These relations are indeed useful, but they do not suffice to establish the scaling.
 
@@ -9737,21 +9760,27 @@ we focus on two limiting cases, namely deep and shallow water.
 
 === Waves in deep  water ===
 
-Deep water means that $h_c\gg\lambda_c$. Presumably the waves will not feel the bottom and $h$ as well as $h_c$ are removed from our equations. The bottom boundary condition is replaced by a requirement of vanishing velocity as $z\rightarrow -\infty$. Consequently,
-$c_c$ must depend upon $\lambda_c$ and $g$, leaving us with
+Deep water means that $h_c\gg\lambda_c$. Presumably the waves will not
+feel the bottom, and $h$ as well as $h_c$ are removed from our
+equations. The bottom boundary condition is replaced by a requirement
+of vanishing velocity as $z\rightarrow -\infty$. Consequently, $c_c$
+must depend upon $\lambda_c$ and $g$, leaving us with
 $c_c=\sqrt{g\lambda_c}$ and $Z=\lambda_c=L$ as the only options.
 Then, $t_c=\sqrt{\lambda_c/g}$ and
-(ref{scale:surfacewaves:scalrelations}) 
-imply $U=W=c_0\frac{A}{\lambda_c}=\epsilon c_0$, where we have introduced the non-dimensional number
+(ref{scale:surfacewaves:scalrelations}) implies
+$U=W=c_0\frac{A}{\lambda_c}=\epsilon c_0$, where we have introduced
+the non-dimensional number
 
 !bt
 \[\epsilon=\frac{A}{\lambda_c},\]
 !et
 which is the wave steepness. The equality of the horizontal and the vertical
 scale is consistent with the common knowledge that the particle orbits in
-surface waves are circular.
+deep water surface waves are circular.
+
 The scaled equation are now expressed with $\epsilon$ as sole dimensionless
 number
+
 !bt
 \begin{align}
 \bar \nabla\cdot\bar\u &=0,
@@ -9760,7 +9789,7 @@ label{scale:surfacewaves:cont:}\\
 label{scale:surfacewave:u:s}
 \end{align}
 !et
-Surface conditions, at $z=\epsilon \eta$, become
+The surface conditions, at $z=\epsilon \eta$, become
 
 !bt
 \begin{align}
@@ -9775,21 +9804,21 @@ while the bottom condition is replaced by
 !bt
 \begin{equation}
 label{scale:surfacewave:kinbott2}
-\bar\u \rightarrow 0,\tp
+\bar\u \rightarrow 0,
 \end{equation}
 !et
-as $\bar z \rightarrow -\infty$,
+as $\bar z \rightarrow -\infty$.
 
 === Long waves in shallow water ===
 
 In this case the basic assumption is that the wavelength is large
-compared to the depth: $\lambda_c\gg h_c$. In analogy with reasoning
-above we the presume that the speed of the waves remains finite as
+compared to the depth: $\lambda_c\gg h_c$. In analogy with the reasoning
+above, we the presume that the speed of the waves remains finite as
 $\lambda_c\rightarrow \infty$.  Then, $c_c$ must be based on $g$ and
 $h_c$, which leads to $c_c=\sqrt{gh_c}$ and
 $t_c=\lambda_c/\sqrt{gh_c}$. The natural choice for the vertical
 length scale is now the depth; $Z=h_c$.  Application of
-(ref{scale:surfacewaves:scalrelations})  now leads to $W=c_c A/\lambda_c$
+(ref{scale:surfacewaves:scalrelations}) then leads to $W=c_c A/\lambda_c$
 and $U=c_c A/h_c$.
 
 Introducing the dimensionless numbers
@@ -9805,7 +9834,7 @@ We observe that $W\ll U$ for shallow water and that particle orbits must be elon
 
 The equation set is now most transparently written by introducing the
 horizontal velocity $\bar\u_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
-and the corresponding vertical component of the gradient operator, $\nabla_h$
+and the corresponding vertical component of the gradient operator, $\nabla_h$:
 
 !bt
 \begin{align}
@@ -9822,7 +9851,7 @@ Surface conditions, at $z=\alpha \eta$, now become
 \begin{align}
 \bar p_d &=\bar \eta,
 label{scale:surfacewaves:dynsurf:s2}\\
-\frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,\tp
+\frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,
 label{scale:surfacewave:kinsurf:s2}
 \end{align}
 !et
@@ -9834,10 +9863,10 @@ label{scale:surfacewave:kinbott3}
 \bar\nabla_h\cdot\u_h =-\bar w\tp
 \end{equation}
 !et
-An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure 
-is hydrostatic. The above set of equations is the common  starting point for 
-peturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water, 
-KdV and Boussinesq type equations.
+An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure
+is hydrostatic. The above set of equations is the common  starting point for
+perturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water,
+KdV, and Boussinesq type equations.
 
 
 
@@ -9970,7 +9999,6 @@ Projects:
  * diffusion with oscillating $f(x,t)$,
    oscillating pressure in tube (channel first)
  * Helmholtz
- * two metal pieces in contact
  * boundary layer fluid flow problem, with/without thermal effects
  * Vertical motion in the gravity field, two time scales, discuss
  * sliding box, see `vib` exercise
