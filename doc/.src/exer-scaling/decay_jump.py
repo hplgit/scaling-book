@@ -1,7 +1,6 @@
 import sys, os
-# Enable loading modules in ../../decay/src-decay
-sys.path.insert(0, os.path.join(os.pardir, os.pardir,
-                                'decay', 'src-decay'))
+# Enable loading modules in ../src-scaling
+sys.path.insert(0, os.path.join(os.pardir, 'src-scaling'))
 from decay_vc import solver as solver_unscaled
 from math import pi
 import matplotlib.pyplot as plt
@@ -28,7 +27,7 @@ def main(d,
          I,
          t_1,
          dt=0.04, # Time step, scaled problem
-         T=4,    # Final time, scaled problem
+         T=4,     # Final time, scaled problem
          ):
 
     legends1 = []

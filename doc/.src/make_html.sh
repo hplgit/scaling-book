@@ -31,9 +31,10 @@ hash=82dee82e1274a586571086dca04d00308d3a0d86  # "book with solutions"
 html=.trash${hash}
 system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit --html_output=$html #--without_solutions --without_answers
 system doconce split_html $html.html
-cp password.html ${topicname}-book-sol.html
-doconce replace DESTINATION "$html" ${topicname}-book-sol.html
-doconce replace PASSWORD "s!c!ale" ${topicname}-book-sol.html
+#cp password.html ${topicname}-book-sol.html
+cp $name.html ${topicname}-book-sol.html
+#doconce replace DESTINATION "$html" ${topicname}-book-sol.html
+#doconce replace PASSWORD "s!c!ale" ${topicname}-book-sol.html
 
 # Compile solarized HTML
 html=${topicname}-book-solarized

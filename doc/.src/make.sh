@@ -80,7 +80,8 @@ system pdflatex $name
 compile --device=screen
 newname=${topicname}-book-4screen-sol
 password="s!c!ale"
-pdftk $name.pdf output $newname.pdf owner_pw foo user_pw $password
+#pdftk $name.pdf output $newname.pdf owner_pw foo user_pw $password
+cp $name.pdf $newname.pdf
 
 compile --device=screen --without_solutions --without_answers
 newname=${topicname}-book-4screen

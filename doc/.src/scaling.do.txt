@@ -1902,6 +1902,19 @@ using the temperature scale $T_0-T_m$ enables reuse of the software
 for the unscaled problem and only two dimensionless parameters appear
 in the scaled model.
 
+Let us briefly mention another possible temperature scaling:
+$\bar T = T/T_m$, motivated by the fact that as $t\rightarrow\infty$,
+$T$ will oscillate around $T_m$, so this $\bar T$ will oscillate around
+unity. We get the dimensionless ODE
+
+!bt
+\[ \frac{d\bar T}{d\bar t} = -(\bar T - (1 + \delta\sin(\beta\bar t))),\]
+!et
+with a new dimensionless parameter $\delta = a/T_m$. However, the initial
+condition becomes $\bar T(0)=T_0/T_m$, and the ratio $T_0/T_m$ is
+a third dimensionless parameter, so this scaling is also inferior to the
+one above with only two parameters.
+
 ===== Scaling a nonlinear ODE =====
 label{sec:scale:decay:nonlinear}
 
@@ -3750,7 +3763,7 @@ scaled problem.
 !esol
 !esubex
 
-===== Problem: Scale a nonlinear ODE =====
+===== Problem: A nonlinear ODE for vertical motion with air resistance =====
 label{sec:scale:exer:ball_y_wdrag}
 file=vertical_motion_with_drag
 
@@ -3845,7 +3858,7 @@ the mass of the body, while $\beta$ is the ratio of the initial and
 terminal velocities.
 !esol
 
-===== Exercise: Implement a scaled model with jump =====
+===== Exercise: Solve a decay ODE with discontinuous coefficient =====
 label{sec:scale:exer:decay:jump}
 file=decay_jump
 
@@ -3859,14 +3872,21 @@ engine and modify the
 "`falling_body.py`": "${src_scaling}/falling_body.py" code.
 !ehint
 
+!bsol
+We use `joblib` to avoid unnecessary execution of the scaled problem,
+as explained in Section ref{sec:scale:decay:prog}. A potential code is
+
+@@@CODE exer-scaling/decay_jump.py
+!esol
+
 ===== Exercise: Implement a scaled model for cooling =====
 label{sec:scale:exer:decay:cooling}
 file=cooling1
 
-Make software for the unscaled problem (ref{scale:decay:cooling:model})
-where $T_s$ can be a function of time.
-Use this implementation to compute the solution of the
+Use software for the unscaled problem (ref{scale:decay:cooling:model})
+to compute the solution of the
 scaled problem (ref{scale:decay:cooling:model:scaled}).
+Let $T_s$ be a function of time.
 
 !bhint
 You may use the general software "`decay_vc.py`": "${src_scaling}/decay_vc.py"
@@ -3874,7 +3894,22 @@ for computing with the cooling model.
 See Section ref{sec:scale:decay:body} for more ideas.
 !ehint
 
-===== Problem: Scale variable coefficients =====
+!bsol
+The problem (ref{scale:decay:cooling:model}) is just a special case
+of the general problem $u'=-au + b$ solved by the
+`decay_vc` module. We can make an implementation of
+(ref{scale:decay:cooling:model:scaled}) in terms of the
+model $u'=-au + b$:
+
+@@@CODE exer-scaling/cooling1.py
+Simulations for $\alpha=1$ and $\beta=0.1,1,10$ as well as for
+$\alpha=0.1$ and $\beta=1$ are shown below.
+
+FIGURE: [fig-scaling/cooling1, width=800 frac=1]
+
+!esol
+
+===== Problem: Decay ODE with discontinuous coefficients =====
 label{scale:decay:exer:decay:step}
 file=decay_varcoeff
 
@@ -3887,21 +3922,70 @@ a(t) =\left\lbrace\begin{array}{ll}
 Q, & t < s,\\
 Q - A, & t\geq s,\end{array}\right.
 \quad b = \left\lbrace\begin{array}{ll}
-\gamma t, & t < s,\\
+\epsilon t, & t < s,\\
 0, & t\geq s,\end{array}\right.
 \]
 !et
-Here, $Q,A,\gamma >0$.
+Here, $Q,A,\epsilon >0$.
 
-===== Exercise: Alternative scalings of a cooling model =====
-label{scale:decay:exer:cooling:Ts}
-file=cooling2
+!bsol
+We start by scaling the known functions $a$ and $b$. Since $Q,A.\epsilon >0$,
+$\max |a(t)| = Q$ and $\max |b(t)| = \epsilon s$. Scaled versions of these
+functions are then
 
-Scale the model (ref{scale:decay:cooling:model}), with $T_s$
-given as in (ref{scale:decay:cooling:Tst}), using two alternative
-scalings of $T$: (ref{scale:decay:cooling:Tbar2}) and
-the simpler $\bar T = T/T_0$. Does the type of scaling impact how
-many dimensionless parameters we end up with?
+!bt
+\[ \bar a = \frac{a}{Q},\quad \bar b = \frac{b}{\epsilon s}\tp\]
+!et
+
+As usual, we scale $u$ and $t$ as
+
+!bt
+\[ \bar u = \frac{u}{u_c},\quad \bar t = \frac{t}{t_c}\tp\]
+!et
+The scaled ODE reads
+
+!bt
+\[ \frac{d\bar u}{d\bar t} = -t_c Q\bar a(\bar t) + u_c^{-1}t_c\epsilon s\bar b\tp\]
+!et
+A natural choice of $u_c$ is $u_c=I$. The $a$ term will reduce $\bar u$ from 1,
+while the $b$ term may have a growth effect.
+
+The time scale is best chosen to reflect the dynamics of the process, i.e.,
+the decay with strength $Q$, so we set $t_c=1/Q$. This choice results in
+
+!bt
+\[ \frac{d\bar u}{d\bar t} = -\bar a(\bar t) + \alpha\bar b,\]
+!et
+with
+
+!bt
+\[ \bar a(\bar t) = \left\lbrace\begin{array}{ll}
+1, & \bar t < \gamma,\\
+1 - \beta, & \bar t\geq \gamma,\end{array}\right.
+\]
+!et
+and
+
+!bt
+\[ \bar b(\bar t) = \left\lbrace\begin{array}{ll}
+\gamma^{-1} \bar t, & \bar t < \gamma,\\
+0, & \bar t\geq \gamma,\end{array}\right.
+\]
+!et
+The initial condition is $\bar u(0)=1$.
+We have three dimensionless numbers in the problem:
+
+!bt
+\[ \alpha = \frac{\epsilon s}{QI},\quad \beta = \frac{A}{Q},
+\quad \gamma = Qs\tp\]
+!et
+We realize that $\alpha$ measures the ratio of the $b$ term ($\epsilon s$)
+and the $au$ term ($QI$), $\beta$ reflects the relative jump in $a$,
+while $\gamma$ measures the ratio of the
+transition point $t=s$ and the characteristic time scale.
+
+!esol
+
 
 ===== Exercise: Alternative scalings of a cooling model =====
 label{scale:decay:exer:nonlin:logistic2}
@@ -3922,7 +4006,7 @@ can use an old time value for the nonlinear coefficient:
 !et
 !ehint
 
-===== Exercise: Scale projectile motion =====
+===== Exercise: Projectile motion =====
 label{scale:vib:exer:projectile}
 file=projectile
 
@@ -4111,7 +4195,7 @@ ODE with Odespy.]
 !esol
 !esubex
 
-===== Problem: Scale a predator-prey model =====
+===== Problem: A predator-prey model =====
 label{scale:decay:exer:predpray}
 file=predator_prey
 
@@ -4306,7 +4390,7 @@ we get the same scaling as in b), but with a different motivation.
 !esol
 !esubex
 
-===== Problem: Scale a model for competing species =====
+===== Problem: A model for competing species =====
 label{scale:decay:exer:competing_species}
 file=competing_species
 
@@ -4486,7 +4570,133 @@ measured in Hz.
 The *angular frequency* $\omega$ is then $\omega = 2\pi/P = 2\pi f$.
 !eremarks
 
-===== Problem: Scale the pendulum equation =====
+===== Problem: Oscillating mass with sliding friction =====
+label{scale:vib:exer:sliding}
+file=sliding_box
+
+FIGURE: [fig-scaling/oscillator_sliding, width=500 frac=0.7] Body sliding on a surface. label{scale:vib:exer:sliding:fig}
+
+A mass attached to a spring is sliding on a surface and subject to
+a friction force, see Figure ref{scale:vib:exer:sliding:fig}.
+The spring represents a force $-ku\ii$, where $k$ is the spring stiffness.
+The friction force is proportional to the normal force on the surface,
+$-mg\jj$, and given by $-f(\dot u)\ii$, where
+
+!bt
+\[ f(\dot u) = \left\lbrace\begin{array}{ll}
+-\mu mg,& \dot u < 0,\\
+\mu mg, & \dot u > 0,\\
+0,      & \dot u=0
+\end{array}\right.\]
+!et
+Here, $\mu$ is a friction coefficient. With the signum function
+
+!bt
+\[ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
+-1,& x < 0,\\
+1, & x > 0,\\
+0, & x=0
+\end{array}\right.\]
+!et
+we can simply write $f(\dot u) = \mu mg\,\hbox{sign}(\dot u)$
+(the sign function is implemented by `numpy.sign`).
+
+The ODE problem for this one-dimensional oscillatory motion reads
+
+!bt
+\begin{equation}
+m\ddot u + \mu mg\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
+\end{equation}
+!et
+
+!bsubex
+Scale the problem.
+
+!bsol
+Inserting the dimensionless dependent and independent variables,
+
+!bt
+\[ \bar u = \frac{u}{I},\quad \bar t = \frac{t}{t_c},\]
+!et
+in the problem gives
+
+!bt
+\[ \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2\mu g}{I}\hbox{sign}\left(
+\frac{d\bar u}{d\bar t}\right) + \frac{t_c^2k}{m}\bar u
+= 0,\quad \bar u(0)=1,\ \frac{d\bar u}{d\bar t}(0)=\frac{Vt_c}{I}\tp
+\]
+!et
+As usual, we base the characteristic time on the friction-free
+oscillations, which means a balance of the acceleration term and
+the spring term. That is, $t_c^2k/m = 1$, and consequently
+$t_c = \sqrt{m/k}$.
+
+!bt
+\[ \frac{d^2\bar u}{d\bar t^2} + \frac{\mu mg}{kI}\hbox{sign}\left(
+\frac{d\bar u}{d\bar t}\right) + \bar u
+= 0,\quad \bar u(0)=1,\ \frac{d\bar u}{d\bar t}(0)=\frac{V\sqrt{mk}}{kI}\tp
+\]
+!et
+Introducing the dimensionless variables
+
+!bt
+\[ \alpha = \frac{\mu mg}{kI},\quad
+\beta = \frac{V\sqrt{mk}}{kI},\]
+!et
+the scaled problem can then be written
+
+!bt
+\[ \frac{d^2\bar u}{d\bar t^2} + \alpha\hbox{sign}\left(
+\frac{d\bar u}{d\bar t}\right) + \bar u
+= 0,\quad \bar u(0)=1,\ \frac{d\bar u}{d\bar t}(0)=\beta\tp
+\]
+!et
+The initial set of 6 parameters $(\mu, m, g, k, I, V)$ are
+reduced to 2 dimensionless combinations.
+
+Let us check that the dimensionless parameters really are dimensionless.
+From the original ODE we know that each term has the dimension of
+force, i.e., $[\hbox{MLT}^{-2}]$. Therefore, the friction coefficient
+$\mu$ is dimensionless
+since $mg$ has dimension $[\hbox{MLT}^{-2}]$, and $k$ has dimension
+$[\hbox{MT}^{-2}]$ since $u$ has dimension $[\hbox{L}]$.
+Since $I$ has the same dimension as $u$, $kI$ has the dimension of
+$[\hbox{MLT}^{-2}]$, which is the dimension of $mg$, and $\alpha$ is
+dimensionless. The $\beta$ parameter has dimensions
+$[\hbox{LT}^{-1}\hbox{M}^{1/2}\hbox{M}^{-1/2}\hbox{TL}^{-1}=[1]$.
+!esol
+!esubex
+
+!bsubex
+Implement the scaled model. Simulate for $\alpha = 0, 0.05, 0.1$
+and $\beta =0$.
+
+!bsol
+We can use the package "Odespy": "https://github.com/hplgit/odespy"
+to solve the ODE. This requires rewriting the ODE as a system of two
+first-order ODEs:
+
+!bt
+\begin{align*}
+v' &= - \alpha\hbox{sign}(v) - \bar u,
+u' &= v,
+\end{align*}
+!et
+with initial conditions $v(0)=\beta$ and $u(0)=1$. Here, $u(t)$ corresponds
+to the previous $\bar u(\bar t)$, while $v(t)$ corresponds to
+$d\bar u/\bar t (\bar t)$. Appropriate code is
+
+@@@CODE exer-scaling/sliding_box.py fromto: import matplot@raw_input
+
+We find that simulating for 6 periods is relevant for $\alpha=0, 0.05, 0.1$.
+
+FIGURE: [fig-scaling/sliding_box, width=600 frac=0.8]
+
+!esol
+!esubex
+
+
+===== Problem: Pendulum equations =====
 label{sec:scale:exer:pendulum}
 file=pendulum
 
@@ -4511,6 +4721,7 @@ I\ddot\theta + mgL\sin\theta = 0\tp
 Both equations have the initial conditions $\theta(0)=\Theta$ and
 $\theta'(0)=0$ (start at rest).
 
+!bsubex
 Use $\theta$ as dimensionless unknown, find a proper time scale,
 and scale both differential equations.
 
@@ -4544,8 +4755,52 @@ The dimensionless equations become equal in this case:
 \[ \frac{d^2\theta}{d\bar t^2} + \sin\theta = 0\tp\]
 !et
 !esol
+!esubex
 
-===== Exercise: Scale the ODEs for a binary star =====
+!bsubex
+Some may argue that $\theta$ is not dimensionless since it is measured
+in radians. One may introduce a truly dimensionless angle $\bar\theta
+\in [0,1]$. Set up the scaled ODE problem in this case.
+
+!bsol
+A $\bar\theta
+\in [0,1]$ is obtained by
+$\bar\theta = \theta/\Theta$.
+The resulting equation then becomes
+
+!bt
+\[ \frac{d^2\bar\theta}{d\bar t^2} + \Theta^{-1}\sin(\Theta\bar\theta) = 0,\]
+!et
+with boundary condition $\bar\theta(0)=1$. That is, the only
+parameter $\Theta$ either
+remains in the ODE or in the initial condition.
+!esol
+!esubex
+
+!bsubex
+Simulate the problem in b) for $\Theta = 1,20,45,60$ measure in degrees.
+
+!bsol
+We use "Odespy": "https://github.com/hplgit/odespy"
+to solve the ODE, rewritten as system of first-order ODEs:
+$\bar\omega ' = -\Theta^{-1}\sin(\Theta\bar\theta)$ and
+$\bar\theta' = \bar\omega$. Appropriate code is
+
+@@@CODE exer-scaling/pendulum.py fromto: import matplot@raw_input
+
+FIGURE: [fig-scaling/pendulum, width=600 frac=0.8]
+
+We clearly see that increasing $\Theta$ increases the period of
+the oscillations.
+
+__Remark.__ The scaling in b) is more suitable for comparing
+graphs than the scaling in a) since all the curves have the
+same amplitude, just different frequency/period. With the scaling in
+a), we would also get a major difference in amplitudes.
+!esol
+!esubex
+
+===== Exercise: ODEs for a binary star =====
 label{sec:scale:exer:binary_star}
 file=binary_star
 
@@ -4700,7 +4955,7 @@ FIGURE: [mov-scaling/binary_star/tmp_0100, width=500 frac=0.7] Two rotating star
 !esol
 !esubex
 
-===== Problem: Scale Duffing's equation =====
+===== Problem: Duffing's equation =====
 label{scale:vib:exer:Duffing}
 file=Duffing_eq
 
@@ -5648,7 +5903,7 @@ we can write
 \[
 \frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
 \left\lbrace \begin{array}{ll}
-\alpha^{-1}\bar V(\bar x),& u_c=\max_x|I|,\\
+\alpha^{-1}\bar V(\bar x),& u_c=\max_x|I|\\
 \alpha^{-1}\beta^{-1}\bar V(\bar x), & u_c=t_c^2f_c
 \end{array}\right.
 \]
@@ -6881,7 +7136,7 @@ results as found in the sections on the wave and diffusion PDEs.
 ======= Exercises =======
 
 
-===== Problem: Scale a stationary Couette flow =====
+===== Problem: Stationary Couette flow =====
 label{scale:vib:exer:stationary_Couette}
 file=stationary_Couette
 
@@ -6934,7 +7189,7 @@ The scaled problem is of course the same whether we have flow of
 fluid or heat.
 !eremarks
 
-===== Problem: Scale a starting Couette flow =====
+===== Problem: Starting Couette flow =====
 label{scale:vib:exer:starting_Couette}
 file=starting_Couette
 
@@ -7070,7 +7325,7 @@ $U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
 !esol
 !esubex
 
-===== Exercise: Scale Couette flow with pressure gradient =====
+===== Exercise: Couette flow with pressure gradient =====
 label{scale:vib:exer:Couette_wpressure}
 file=Couette_wpressure
 
@@ -7188,7 +7443,7 @@ we choose $u_c=U_0$ and get instead
 [hpl: Could extend to time-dependent case, but this will involve three time
 scales...]
 
-===== Exercise: Scale pulsatile pipeflow =====
+===== Exercise: Pulsatile pipeflow =====
 label{scale:exer:pipeflow:pulsatile}
 file=pipeflow
 
@@ -7285,7 +7540,7 @@ and $P(\bar t)$ if the time scale is based on the pressure oscillations.
 !esol
 
 
-===== Exercise: Scale the linear cable equation =====
+===== Exercise: The linear cable equation =====
 label{scale:exer:cable_eq}
 file=cable_eq
 
@@ -7365,7 +7620,7 @@ $\beta$ is small or large, e.g., such that the term with $\beta$ can be
 left out of the PDE.
 !esol
 
-===== Exercise: Scale a discontinuous heat conduction problem =====
+===== Exercise: Heat conduction with discontinuous initial condition =====
 label{scale:exer:twometal}
 file=metal_pieces
 
@@ -9951,7 +10206,7 @@ for elastic waves in a three-dimensional body.
 !esol
 !esubex
 
-===== Exercise: Scale the equations of quasi-static poro-elasticity =====
+===== Exercise: A model for quasi-static poro-elasticity =====
 label{scale:exer:poroelasticity}
 file=poroelasticity
 
@@ -10002,4 +10257,3 @@ Projects:
  * Helmholtz
  * boundary layer fluid flow problem, with/without thermal effects
  * Vertical motion in the gravity field, two time scales, discuss
- * sliding box, see `vib` exercise

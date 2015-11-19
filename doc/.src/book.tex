@@ -390,7 +390,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Nov 16, 2015}
+\date{Nov 18, 2015}
 \maketitle
 
 % Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/chapters/wave/main_wave
@@ -2633,6 +2633,17 @@ using the temperature scale $T_0-T_m$ enables reuse of the software
 for the unscaled problem and only two dimensionless parameters appear
 in the scaled model.
 
+Let us briefly mention another possible temperature scaling:
+$\bar T = T/T_m$, motivated by the fact that as $t\rightarrow\infty$,
+$T$ will oscillate around $T_m$, so this $\bar T$ will oscillate around
+unity. We get the dimensionless ODE
+
+\[ \frac{d\bar T}{d\bar t} = -(\bar T - (1 + \delta\sin(\beta\bar t))),\]
+with a new dimensionless parameter $\delta = a/T_m$. However, the initial
+condition becomes $\bar T(0)=T_0/T_m$, and the ratio $T_0/T_m$ is
+a third dimensionless parameter, so this scaling is also inferior to the
+one above with only two parameters.
+
 \subsection{Scaling a nonlinear ODE}
 \label{sec:scale:decay:nonlinear}
 
@@ -4347,7 +4358,7 @@ What is an appropriate scaling of the temperature?
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale a nonlinear ODE}
+\subsection*{Problem \thedoconceexercisecounter: A nonlinear ODE for vertical motion with air resistance}
 
 \label{sec:scale:exer:ball_y_wdrag}
 
@@ -4375,7 +4386,7 @@ and $V$ is the volume of the body. Scale this ODE.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Implement a scaled model with jump}
+\subsection*{Exercise \thedoconceexercisecounter: Solve a decay ODE with discontinuous coefficient}
 
 \label{sec:scale:exer:decay:jump}
 
@@ -4391,6 +4402,9 @@ engine and modify the
 \href{{http://tinyurl.com/o8pb3yy/falling_body.py}}{\nolinkurl{falling_body.py}} code.
 
 % --- end hint in exercise ---
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 \noindent Filename: \Verb!decay_jump!.
 
 \end{doconceexercise}
@@ -4407,10 +4421,10 @@ engine and modify the
 
 \label{sec:scale:exer:decay:cooling}
 
-Make software for the unscaled problem (\ref{scale:decay:cooling:model})
-where $T_s$ can be a function of time.
-Use this implementation to compute the solution of the
+Use software for the unscaled problem (\ref{scale:decay:cooling:model})
+to compute the solution of the
 scaled problem (\ref{scale:decay:cooling:model:scaled}).
+Let $T_s$ be a function of time.
 
 % --- begin hint in exercise ---
 
@@ -4420,6 +4434,9 @@ for computing with the cooling model.
 See Section~\ref{sec:scale:decay:body} for more ideas.
 
 % --- end hint in exercise ---
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 \noindent Filename: \texttt{cooling1}.
 
 \end{doconceexercise}
@@ -4432,7 +4449,7 @@ See Section~\ref{sec:scale:decay:body} for more ideas.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale variable coefficients}
+\subsection*{Problem \thedoconceexercisecounter: Decay ODE with discontinuous coefficients}
 
 \label{scale:decay:exer:decay:step}
 
@@ -4444,32 +4461,14 @@ a(t) =\left\lbrace\begin{array}{ll}
 Q, & t < s,\\ 
 Q - A, & t\geq s,\end{array}\right.
 \quad b = \left\lbrace\begin{array}{ll}
-\gamma t, & t < s,\\ 
+\epsilon t, & t < s,\\ 
 0, & t\geq s,\end{array}\right.
 \]
-Here, $Q,A,\gamma >0$.
+Here, $Q,A,\epsilon >0$.
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 \noindent Filename: \Verb!decay_varcoeff!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Alternative scalings of a cooling model}
-
-\label{scale:decay:exer:cooling:Ts}
-
-Scale the model (\ref{scale:decay:cooling:model}), with $T_s$
-given as in (\ref{scale:decay:cooling:Tst}), using two alternative
-scalings of $T$: (\ref{scale:decay:cooling:Tbar2}) and
-the simpler $\bar T = T/T_0$. Does the type of scaling impact how
-many dimensionless parameters we end up with?
-\noindent Filename: \texttt{cooling2}.
 
 \end{doconceexercise}
 % --- end exercise ---
@@ -4512,7 +4511,7 @@ can use an old time value for the nonlinear coefficient:
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale projectile motion}
+\subsection*{Exercise \thedoconceexercisecounter: Projectile motion}
 
 \label{scale:vib:exer:projectile}
 
@@ -4579,7 +4578,7 @@ $x$) for the two cases.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale a predator-prey model}
+\subsection*{Problem \thedoconceexercisecounter: A predator-prey model}
 
 \label{scale:decay:exer:predpray}
 
@@ -4681,7 +4680,7 @@ and find a time scale. Compare with the result in b).
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale a model for competing species}
+\subsection*{Problem \thedoconceexercisecounter: A model for competing species}
 
 \label{scale:decay:exer:competing_species}
 
@@ -4784,7 +4783,75 @@ The \emph{angular frequency} $\omega$ is then $\omega = 2\pi/P = 2\pi f$.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale the pendulum equation}
+\subsection*{Problem \thedoconceexercisecounter: Oscillating mass with sliding friction}
+
+\label{scale:vib:exer:sliding}
+
+
+\begin{figure}[!ht]  % scale:vib:exer:sliding:fig
+  \centerline{\includegraphics[width=0.7\linewidth]{fig-scaling/oscillator_sliding.pdf}}
+  \caption{
+  Body sliding on a surface. \label{scale:vib:exer:sliding:fig}
+  }
+\end{figure}
+%\clearpage % flush figures scale:vib:exer:sliding:fig
+
+
+A mass attached to a spring is sliding on a surface and subject to
+a friction force, see Figure~\ref{scale:vib:exer:sliding:fig}.
+The spring represents a force $-ku\ii$, where $k$ is the spring stiffness.
+The friction force is proportional to the normal force on the surface,
+$-mg\jj$, and given by $-f(\dot u)\ii$, where
+
+\[ f(\dot u) = \left\lbrace\begin{array}{ll}
+-\mu mg,& \dot u < 0,\\ 
+\mu mg, & \dot u > 0,\\ 
+0,      & \dot u=0
+\end{array}\right.\]
+Here, $\mu$ is a friction coefficient. With the signum function
+
+\[ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
+-1,& x < 0,\\ 
+1, & x > 0,\\ 
+0, & x=0
+\end{array}\right.\]
+we can simply write $f(\dot u) = \mu mg\,\hbox{sign}(\dot u)$
+(the sign function is implemented by \texttt{numpy.sign}).
+
+The ODE problem for this one-dimensional oscillatory motion reads
+
+\begin{equation}
+m\ddot u + \mu mg\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
+\end{equation}
+
+
+\subex{a)}
+Scale the problem.
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+\subex{b)}
+Implement the scaled model. Simulate for $\alpha = 0, 0.05, 0.1$
+and $\beta =0$.
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+
+\noindent Filename: \Verb!sliding_box!.
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\subsection*{Problem \thedoconceexercisecounter: Pendulum equations}
 
 \label{sec:scale:exer:pendulum}
 
@@ -4805,11 +4872,28 @@ I\ddot\theta + mgL\sin\theta = 0\tp
 Both equations have the initial conditions $\theta(0)=\Theta$ and
 $\theta'(0)=0$ (start at rest).
 
+
+\subex{a)}
 Use $\theta$ as dimensionless unknown, find a proper time scale,
 and scale both differential equations.
 
 
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+\subex{b)}
+Some may argue that $\theta$ is not dimensionless since it is measured
+in radians. One may introduce a truly dimensionless angle $\bar\theta
+\in [0,1]$. Set up the scaled ODE problem in this case.
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+\subex{c)}
+Simulate the problem in b) for $\Theta = 1,20,45,60$ measure in degrees.
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
 \noindent Filename: \texttt{pendulum}.
 
 \end{doconceexercise}
@@ -4822,7 +4906,7 @@ and scale both differential equations.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale the ODEs for a binary star}
+\subsection*{Exercise \thedoconceexercisecounter: ODEs for a binary star}
 
 \label{sec:scale:exer:binary_star}
 
@@ -4880,7 +4964,7 @@ Solve the scaled equations numerically for two cases:
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale Duffing's equation}
+\subsection*{Problem \thedoconceexercisecounter: Duffing's equation}
 
 \label{scale:vib:exer:Duffing}
 
@@ -5395,7 +5479,7 @@ Since $V$ is the time-derivative of $u$, the characteristic size of
 $V$ is typically $u_c/t_c$, meaning that
 
 \[ \max_{x\in(0,L)}|V(x)| = \frac{u_c}{t_c},\]
-which gives $ u_c = \max_{x\in(0,L)}|V(x)| L/c$. As usual, we base $t_c$
+which gives $u_c = \max_{x\in(0,L)}|V(x)| L/c$. As usual, we base $t_c$
 on the wave speed: $t_c = L/c$. We end up with
 
 \[ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
@@ -5528,12 +5612,13 @@ non-dimensional counterparts yields
 \quad &\bar x\in [0,1],\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],\\ 
-\frac{\partial}{\partial \bar \bar x}\bar u(0,\bar t) & = 0,
+\frac{\partial}{\partial \bar x}\bar u(0,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],\\ 
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
 \end{align*}
 with $\bar T = Tc/L$.
+
 
 \paragraph{Choosing the time scale.}
 The time scale is, as before, chosen as $t_c
@@ -5608,7 +5693,7 @@ we can write
 \[
 \frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
 \left\lbrace \begin{array}{ll}
-\alpha^{-1}\bar V(\bar x),& u_c=\max_x|I|,\\ 
+\alpha^{-1}\bar V(\bar x),& u_c=\max_x|I|\\ 
 \alpha^{-1}\beta^{-1}\bar V(\bar x), & u_c=t_c^2f_c
 \end{array}\right.
 \]
@@ -6589,7 +6674,7 @@ results as found in the sections on the wave and diffusion PDEs.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale a stationary Couette flow}
+\subsection*{Problem \thedoconceexercisecounter: Stationary Couette flow}
 
 \label{scale:vib:exer:stationary_Couette}
 
@@ -6651,7 +6736,7 @@ fluid or heat.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Scale a starting Couette flow}
+\subsection*{Problem \thedoconceexercisecounter: Starting Couette flow}
 
 \label{scale:vib:exer:starting_Couette}
 
@@ -6716,7 +6801,7 @@ u(L,t) & =U_L(t)\tp
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale Couette flow with pressure gradient}
+\subsection*{Exercise \thedoconceexercisecounter: Couette flow with pressure gradient}
 
 \label{scale:vib:exer:Couette_wpressure}
 
@@ -6762,7 +6847,7 @@ Scale the problem.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale pulsatile pipeflow}
+\subsection*{Exercise \thedoconceexercisecounter: Pulsatile pipeflow}
 
 \label{scale:exer:pipeflow:pulsatile}
 
@@ -6799,7 +6884,7 @@ Discuss how the scaling can be extended to this case.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale the linear cable equation}
+\subsection*{Exercise \thedoconceexercisecounter: The linear cable equation}
 
 \label{scale:exer:cable_eq}
 
@@ -6834,7 +6919,7 @@ reaction, i.e., the $-u$ term.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale a discontinuous heat conduction problem}
+\subsection*{Exercise \thedoconceexercisecounter: Heat conduction with discontinuous initial condition}
 
 \label{scale:exer:twometal}
 
@@ -9136,7 +9221,7 @@ for three-dimensional elasticity.
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Exercise \thedoconceexercisecounter: Scale the equations of quasi-static poro-elasticity}
+\subsection*{Exercise \thedoconceexercisecounter: A model for quasi-static poro-elasticity}
 
 \label{scale:exer:poroelasticity}
 
@@ -9203,8 +9288,6 @@ Projects:
  \item boundary layer fluid flow problem, with/without thermal effects
 
  \item Vertical motion in the gravity field, two time scales, discuss
-
- \item sliding box, see \texttt{vib} exercise
 \end{itemize}
 
 \noindent
