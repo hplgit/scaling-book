@@ -262,11 +262,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:exer:decay:cooling:osc',
                'sec:scale:exer:decay:cooling:osc'),
-              ('Problem 4: Scale a nonlinear ODE',
+              ('Problem 4: A nonlinear ODE for vertical motion with air resistance',
                2,
                'sec:scale:exer:ball_y_wdrag',
                'sec:scale:exer:ball_y_wdrag'),
-              ('Exercise 5: Implement a scaled model with jump',
+              ('Exercise 5: Solve a decay ODE with discontinuous coefficient',
                2,
                'sec:scale:exer:decay:jump',
                'sec:scale:exer:decay:jump'),
@@ -274,44 +274,44 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:exer:decay:cooling',
                'sec:scale:exer:decay:cooling'),
-              ('Problem 7: Scale variable coefficients',
+              ('Problem 7: Decay ODE with discontinuous coefficients',
                2,
                'scale:decay:exer:decay:step',
                'scale:decay:exer:decay:step'),
               ('Exercise 8: Alternative scalings of a cooling model',
                2,
-               'scale:decay:exer:cooling:Ts',
-               'scale:decay:exer:cooling:Ts'),
-              ('Exercise 9: Alternative scalings of a cooling model',
-               2,
                'scale:decay:exer:nonlin:logistic2',
                'scale:decay:exer:nonlin:logistic2'),
-              ('Exercise 10: Scale projectile motion',
+              ('Exercise 9: Projectile motion',
                2,
                'scale:vib:exer:projectile',
                'scale:vib:exer:projectile'),
-              ('Problem 11: Scale a predator-prey model',
+              ('Problem 10: A predator-prey model',
                2,
                'scale:decay:exer:predpray',
                'scale:decay:exer:predpray'),
-              ('Problem 12: Scale a model for competing species',
+              ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
                'scale:decay:exer:competing_species'),
-              ('Problem 13: Find the period of sinusoidal signals',
+              ('Problem 12: Find the period of sinusoidal signals',
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec106'),
-              ('Problem 14: Scale the pendulum equation',
+              ('Remarks', 3, None, '___sec105'),
+              ('Problem 13: Oscillating mass with sliding friction',
+               2,
+               'scale:vib:exer:sliding',
+               'scale:vib:exer:sliding'),
+              ('Problem 14: Pendulum equations',
                2,
                'sec:scale:exer:pendulum',
                'sec:scale:exer:pendulum'),
-              ('Exercise 15: Scale the ODEs for a binary star',
+              ('Exercise 15: ODEs for a binary star',
                2,
                'sec:scale:exer:binary_star',
                'sec:scale:exer:binary_star'),
-              ("Problem 16: Scale Duffing's equation",
+              ("Problem 16: Duffing's equation",
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
@@ -398,28 +398,28 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:convdiff:f',
                'scale:convdiff:f'),
               ('Exercises', 1, None, '___sec147'),
-              ('Problem 18: Scale a stationary Couette flow',
+              ('Problem 18: Stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
               ('Remarks', 3, None, '___sec149'),
-              ('Problem 19: Scale a starting Couette flow',
+              ('Problem 19: Starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 20: Scale Couette flow with pressure gradient',
+              ('Exercise 20: Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 21: Scale pulsatile pipeflow',
+              ('Exercise 21: Pulsatile pipeflow',
                2,
                'scale:exer:pipeflow:pulsatile',
                'scale:exer:pipeflow:pulsatile'),
-              ('Exercise 22: Scale the linear cable equation',
+              ('Exercise 22: The linear cable equation',
                2,
                'scale:exer:cable_eq',
                'scale:exer:cable_eq'),
-              ('Exercise 23: Scale a discontinuous heat conduction problem',
+              ('Exercise 23: Heat conduction with discontinuous initial condition',
                2,
                'scale:exer:twometal',
                'scale:exer:twometal'),
@@ -558,7 +558,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale::exer:elasticity:vibmodels',
                'scale::exer:elasticity:vibmodels'),
-              ('Exercise 25: Scale the equations of quasi-static poro-elasticity',
+              ('Exercise 25: A model for quasi-static poro-elasticity',
                2,
                'scale:exer:poroelasticity',
                'scale:exer:poroelasticity'),
@@ -828,7 +828,7 @@ if we choose \( U=U_L \). The solution of the scaled problem is
 
 $$ \bar u(\bar x) = \frac{1 - e^{\bar x\hbox{Pe}}}{1 - e^{\hbox{Pe}}}\tp$$
 
-Figure <a href="#scale:convdiff:fig:scaled">16</a> indicates how \( \bar u \) depends on
+Figure <a href="#scale:convdiff:fig:scaled">17</a> indicates how \( \bar u \) depends on
 Pe: small Pe values give approximately a straight line while large Pe
 values lead to a <em>boundary layer</em> close to \( x=1 \), where the solution
 changes very rapidly.
@@ -836,7 +836,7 @@ changes very rapidly.
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 16:  Solution of scaled problem for 1D convection-diffusion. <div id="scale:convdiff:fig:scaled"></div> </p></center>
+<center><p class="caption">Figure 17:  Solution of scaled problem for 1D convection-diffusion. <div id="scale:convdiff:fig:scaled"></div> </p></center>
 <p><img src="fig-scaling/boundary_layer1D.png" align="bottom" width=600></p>
 </center>
 
@@ -882,7 +882,7 @@ with solution
 
 $$ \bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\small\mbox{Pe}}}\tp$$
 
-Figure <a href="#scale:convdiff:fig:rescaled">17</a> displays \( \bar u \) for some
+Figure <a href="#scale:convdiff:fig:rescaled">18</a> displays \( \bar u \) for some
 Peclet numbers, and we see that the shape of the graphs are the same
 with this scaling. For large Peclet numbers we realize that \( \bar u \)
 and its derivatives are around unity
@@ -892,7 +892,7 @@ but for small Peclet numbers \( d\bar u/d\bar x \sim \hbox{Pe}^{-1} \).
 <p>
 <center> <!-- figure -->
 <hr class="figure">
-<center><p class="caption">Figure 17:  Solution of scaled problem where the length scale depends on the Peclet number. <div id="scale:convdiff:fig:rescaled"></div> </p></center>
+<center><p class="caption">Figure 18:  Solution of scaled problem where the length scale depends on the Peclet number. <div id="scale:convdiff:fig:rescaled"></div> </p></center>
 <p><img src="fig-scaling/boundary_layer1D_scale2.png" align="bottom" width=600></p>
 </center>
 
@@ -977,7 +977,7 @@ results as found in the sections on the wave and diffusion PDEs.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:stationary_Couette">Problem 18: Scale a stationary Couette flow</h2>
+<h2 id="scale:vib:exer:stationary_Couette">Problem 18: Stationary Couette flow</h2>
 
 <p>
 A fluid flows between two flat plates, with one plate at rest while
@@ -1039,7 +1039,7 @@ fluid or heat.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:starting_Couette">Problem 19: Scale a starting Couette flow</h2>
+<h2 id="scale:vib:exer:starting_Couette">Problem 19: Starting Couette flow</h2>
 
 <p>
 A fluid is confined in a channel with two planar walls \( z=0 \) and \( z=H \).
@@ -1105,7 +1105,7 @@ Filename: <code>starting_Couette</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Couette_wpressure">Exercise 20: Scale Couette flow with pressure gradient</h2>
+<h2 id="scale:vib:exer:Couette_wpressure">Exercise 20: Couette flow with pressure gradient</h2>
 
 <p>
 Viscous fluid flow between two infinite flat plates \( z=0 \) and \( z=H \)
@@ -1158,7 +1158,7 @@ Filename: <code>Couette_wpressure</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:pipeflow:pulsatile">Exercise 21: Scale pulsatile pipeflow</h2>
+<h2 id="scale:exer:pipeflow:pulsatile">Exercise 21: Pulsatile pipeflow</h2>
 
 <p>
 The flow of a viscous fluid in a straight pipe with circular
@@ -1198,7 +1198,7 @@ Discuss how the scaling can be extended to this case.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:cable_eq">Exercise 22: Scale the linear cable equation</h2>
+<h2 id="scale:exer:cable_eq">Exercise 22: The linear cable equation</h2>
 
 <p>
 A key PDE in neuroscience is the <a href="https://en.wikipedia.org/wiki/Cable_theory" target="_self">cable equation</a>, here given in its simplest linear form:
@@ -1232,7 +1232,7 @@ reaction, i.e., the \( -u \) term.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:twometal">Exercise 23: Scale a discontinuous heat conduction problem</h2>
+<h2 id="scale:exer:twometal">Exercise 23: Heat conduction with discontinuous initial condition</h2>
 
 <p>
 Two pieces of metal at different temperature are brought in contact

@@ -390,7 +390,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Nov 18, 2015}
+\date{Nov 24, 2015}
 \maketitle
 
 % Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/chapters/wave/main_wave
@@ -2949,7 +2949,7 @@ substrate S is turned into a product P with aid of an enzyme E.
 S and E react to form a complex ES in the first stage of the reaction.
 In the second stage, ES is turned into E and P.
 Introducing the amount of S, E, ES, and P by $[S]$, $[E]$, $[ES]$, and
-$[P]$, the mathematical model (known as \href{{https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics}}{Michaelis-Menten kinetics}) can be written as
+$[P]$, can be written as
 
 \begin{align}
 \frac{d[ES]}{dt} &= k_+[E][S] - k_v[ES] - k_-[ES],
@@ -2963,6 +2963,7 @@ $[P]$, the mathematical model (known as \href{{https://en.wikipedia.org/wiki/Mic
 \end{align}
 The initial conditions are $[ES](0)=[P](0)=0$, and $[S]=S_0$, $[E]=E_0$.
 Three rate constants are involved: $k_+$, $k_-$, and $k_v$.
+The above mathematical model is known as \href{{https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics}}{Michaelis-Menten kinetics}.
 
 The amount of substance is measured in the unit \href{{https://en.wikipedia.org/wiki/Mole_(unit)}}{mole} (mol). From the equations we can see that
 $k_+$ is measured in $\hbox{s}^{-1}\hbox{mol}^{-1}$, while $k_-$ and
@@ -2972,7 +2973,21 @@ dimensionless quantities, only ratios of the rate constants and not their
 specific values are needed.
 
 \paragraph{Classical analysis.}
-The typical analysis of the present ODE system is to first observe
+A common assumption is that the formation of $[ES]$ is very fast and that
+it quickly reaches an equilibrium state, $[ES]^{\prime}=0$. Equation
+(\ref{scale:MMK:ES1}) then reduces to the algebraic equation
+
+\[ k_+[E][S] - k_v[ES] - k_-[ES] = 0, \]
+which leads to
+
+\begin{equation}
+\frac{[E][S]}{[ES]} = \frac{k_- + k_v}{k_+} = K,
+\label{scale:MMK:K}
+\end{equation}
+where $K$ is the famous Michaelis constant - the equilibrium constant
+between $[E][S]$ and $[ES]$.
+
+Another important observation is that the ODE system implies
 two conservation equations, arising from simply adding the ODEs:
 
 \begin{align}
@@ -2987,30 +3002,24 @@ from which it follows that
 [ES] + [S] + [P] &= S_0\tp
 \label{scale:MMK:cons2}
 \end{align}
-Using (\ref{scale:MMK:cons1}), we can eliminate $[E]$ and obtain a
-system of only two ODEs,
+
+We can use (\ref{scale:MMK:cons1}) and (\ref{scale:MMK:K}) to
+express $[E]$ by $[S]$:
+
+\[ [E] = E_0 - [ES] = E_0 - \frac{[E][S]}{K}\quad\Rightarrow\quad
+[E] = \frac{KE_0}{K + [S]}\tp\]
+Now (\ref{scale:MMK:S1}) can be developed to an equation involving
+$[S]$ only:
 
 \begin{align}
-\frac{d[ES]}{dt} &= k_+([ES]-E_0)[S] - (k_v + k_-)[ES],\\ 
-\frac{d[S]}{dt} &= -k_+([ES]-E_0)[S] + k_-[ES]\tp
-\end{align}
-A common assumption is that the formation of $[ES]$ is very fast and that
-it reaches an equilibrium state, $[ES]^{\prime}=0$. This implies
-
-\[ k_+([ES]-E_0)[S] - (k_v + k_-)[ES]=0\quad\Rightarrow\quad
-[ES] = \frac{E_0[S]}{[S] - K},
-\]
-where
-
-\[ K = \frac{k_- + k_v}{k_+},\]
-is the Michaelis constant. Using the expression for $[ES]$ in the
-equation for $[S]$ gives
-
-\begin{equation}
-\frac{d[S]}{dt} = \frac{k_vE_0[S]}{[S] + K}\tp
+\frac{d[S]}{dt} &= -k_+[E][S] + k_-[ES]\nonumber\\ 
+& = (-k_+ + \frac{k_-}{K})[E][S]\nonumber\\ 
+& = (-k_+ + \frac{k_-}{K})[S]\frac{KE_0}{K + [S]}\nonumber\\ 
+& = - \frac{k_-E_0}{[S] + K}\tp
 \label{scale:MMK:Seq1}
-\end{equation}
+\end{align}
 We see that the parameter $K$ is central.
+
 
 \paragraph{Dimensionless ODE system.}
 Let us reason how to make the original ODE system dimensionless.
@@ -3080,11 +3089,14 @@ The equations then take the form
 + K\frac{Q_c}{E_0^2}\bar Q\tp
 \end{align*}
 The $[ES]$ variable starts and ends at zero, and its maximum value
-can be roughly estimated from the equation for $[ES]^{\prime}$
-by setting $[ES]^{\prime}=0$, which gives an estimate of
+can be roughly estimated from the equation for $[ES]^\prime$
+by setting $[ES]^\prime = 0$, which gives
 
-\[ Q_c = \frac{E_0S_0}{K},\]
-if we approximate $[E][S]$ by $E_0S_0$.
+\[ [ES] = \frac{[E][S]}{K}\approx \frac{E_0S_0}{K},\]
+where we have approximated $[E][S]$ by $E_0S_0$. This estimate of $[ES]$
+at its maximum can be used as the characteristic size $Q_c$:
+
+\[ Q_c = \frac{E_0S_0}{K}\tp\]
 
 The equation for $\bar P$ simplifies if we choose $P_c=Q_c$.
 With these assumptions one gets
@@ -3171,18 +3183,21 @@ Introducing dimensions in (\ref{scale:MMK:Seq2}) leads to
 \frac{t_c}{S_0}\frac{d S}{dt} =
 \frac{d\bar S}{d\bar t}  =
 -\frac{\beta\bar S}{\alpha + \epsilon^{-1}\bar S}
-= \frac{k_v}{k_+E_0}\frac{S}{KE_0^{-1} + E_0^{-1}S_0\bar S}
-= \frac{k_v}{k_+}\frac{\bar S}{K + S},\]
+= -\frac{k_v}{k_+E_0}\frac{S}{KE_0^{-1} + E_0^{-1}S_0\bar S}
+= -\frac{k_v}{k_+}\frac{\bar S}{K + S},\]
 and hence with $t_c^{-1}=k_+E_0$,
 
-\[ \frac{dS}{dt} = \frac{k_vE_0 S}{K + S},\]
+\[ \frac{dS}{dt} = -\frac{k_vE_0 S}{K + S},\]
 which is (\ref{scale:MMK:Seq1}).
 
 Figure~\ref{scale:MMK:fig} shows the impact of $\epsilon$: with a small
 value (0.1) we see that $\bar Q\approx 0$, which justifies the
 simplifications performed above. We also observe that all the unknowns
 vary between 0 and about 1, indicating that the scaling is successful
-for the chosen dimensionless numbers.
+for the chosen dimensionless numbers. The simulations made use of
+a time step $\Delta\bar t=0.1$ with a 4th-order Runge-Kutta method,
+using $\alpha=1$, $\beta=4$ (relevant code is in the
+\Verb!simulate_biochemical_process! function in \href{{http://tinyurl.com/o8pb3yy/session.py}}{\nolinkurl{session.py}}).
 
 
 \begin{figure}[!ht]  % scale:MMK:fig
@@ -3194,6 +3209,14 @@ for the chosen dimensionless numbers.
 %\clearpage % flush figures scale:MMK:fig
 
 
+However, it is of interest to investigate the limit $\epsilon\rightarrow 0$.
+Initially, the equation for $d\bar E/d\bar t$ reads
+$d\bar E/d\bar t = -\epsilon{-1}$, which implies a very fast reduction of
+$\bar E$. Using $\epsilon=0.005$ and $\Delta\bar t = 10^{-3}$. The results
+show that $\bar E$ decays to approximately zero at $t=0.03$ while
+$\bar S\approx 1$ and $\bar Q = \bar P\approx 0$. This is reasonable since with
+very little enzyme in comparison with the substrate ($\epsilon\rightarrow 0$)
+very little will happen.
 
 % !split
 \section{Vibration problems}
@@ -9286,8 +9309,6 @@ Projects:
  \item Helmholtz
 
  \item boundary layer fluid flow problem, with/without thermal effects
-
- \item Vertical motion in the gravity field, two time scales, discuss
 \end{itemize}
 
 \noindent

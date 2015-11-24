@@ -340,7 +340,7 @@ def simulate_Gaussian_and_incoming_wave():
 
 import odespy
 
-def biochemical_solver(f, alpha, beta, epsilon, T, dt=0.1):
+def biochemical_solver(alpha, beta, epsilon, T, dt=0.1):
     def f(u, t):
         Q, P, S, E = u
         return [
@@ -361,20 +361,25 @@ def biochemical_solver(f, alpha, beta, epsilon, T, dt=0.1):
     P = u[:,1]
     S = u[:,2]
     E = u[:,3]
-    return Q, P, S, E
+    return Q, P, S, E, t
 
 def simulate_biochemical_process():
     alpha = 1
     beta = 4
     epsilon = 0.1
+    #epsilon = 0.005
     T = 8
+    T = 0.05
     dt = 0.1
-    Q, P, S, E = biochemical_solver(alpha, beta, epsilon, T, dt)
+    #dt = 0.001
+    Q, P, S, E, t = biochemical_solver(alpha, beta, epsilon, T, dt)
     import matplotlib.pyplot as plt
     plt.plot(t, Q, t, P, t, S, t, E)
     plt.legend(['complex', 'product', 'substrate', 'enzyme'],
-               loc='upper right')
+               loc='center right')
     plt.title('alpha=%g, beta=%g, epsilon=%g' % (alpha, beta, epsilon))
+    if epsilon < 0.05:
+        plt.axis([t[0], t[-1], -0.05, 1.1])
     plt.savefig('tmp.png');  plt.savefig('tmp.pdf')
     plt.show()
 
@@ -443,6 +448,6 @@ if __name__ == '__main__':
     #simulate_forced_vibrations1()
     #simulate_forced_vibrations3()
     #simulate_Gaussian_and_incoming_wave()
-    #simulate_biochemical_process()
+    simulate_biochemical_process()
     #boundary_layer1D()
-    boundary_layer1D_scale2()
+    #boundary_layer1D_scale2()

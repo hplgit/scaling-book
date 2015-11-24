@@ -235,11 +235,11 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:exer:decay:cooling:osc',
                'sec:scale:exer:decay:cooling:osc'),
-              ('Problem 4: Scale a nonlinear ODE',
+              ('Problem 4: A nonlinear ODE for vertical motion with air resistance',
                2,
                'sec:scale:exer:ball_y_wdrag',
                'sec:scale:exer:ball_y_wdrag'),
-              ('Exercise 5: Implement a scaled model with jump',
+              ('Exercise 5: Solve a decay ODE with discontinuous coefficient',
                2,
                'sec:scale:exer:decay:jump',
                'sec:scale:exer:decay:jump'),
@@ -247,44 +247,44 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:exer:decay:cooling',
                'sec:scale:exer:decay:cooling'),
-              ('Problem 7: Scale variable coefficients',
+              ('Problem 7: Decay ODE with discontinuous coefficients',
                2,
                'scale:decay:exer:decay:step',
                'scale:decay:exer:decay:step'),
               ('Exercise 8: Alternative scalings of a cooling model',
                2,
-               'scale:decay:exer:cooling:Ts',
-               'scale:decay:exer:cooling:Ts'),
-              ('Exercise 9: Alternative scalings of a cooling model',
-               2,
                'scale:decay:exer:nonlin:logistic2',
                'scale:decay:exer:nonlin:logistic2'),
-              ('Exercise 10: Scale projectile motion',
+              ('Exercise 9: Projectile motion',
                2,
                'scale:vib:exer:projectile',
                'scale:vib:exer:projectile'),
-              ('Problem 11: Scale a predator-prey model',
+              ('Problem 10: A predator-prey model',
                2,
                'scale:decay:exer:predpray',
                'scale:decay:exer:predpray'),
-              ('Problem 12: Scale a model for competing species',
+              ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
                'scale:decay:exer:competing_species'),
-              ('Problem 13: Find the period of sinusoidal signals',
+              ('Problem 12: Find the period of sinusoidal signals',
                2,
                'scale:decay:exer:sine',
                'scale:decay:exer:sine'),
-              ('Remarks', 3, None, '___sec106'),
-              ('Problem 14: Scale the pendulum equation',
+              ('Remarks', 3, None, '___sec105'),
+              ('Problem 13: Oscillating mass with sliding friction',
+               2,
+               'scale:vib:exer:sliding',
+               'scale:vib:exer:sliding'),
+              ('Problem 14: Pendulum equations',
                2,
                'sec:scale:exer:pendulum',
                'sec:scale:exer:pendulum'),
-              ('Exercise 15: Scale the ODEs for a binary star',
+              ('Exercise 15: ODEs for a binary star',
                2,
                'sec:scale:exer:binary_star',
                'sec:scale:exer:binary_star'),
-              ("Problem 16: Scale Duffing's equation",
+              ("Problem 16: Duffing's equation",
                2,
                'scale:vib:exer:Duffing',
                'scale:vib:exer:Duffing'),
@@ -371,28 +371,28 @@ code { color: inherit; background-color: transparent; }
                'scale:convdiff:f',
                'scale:convdiff:f'),
               ('Exercises', 1, None, '___sec147'),
-              ('Problem 18: Scale a stationary Couette flow',
+              ('Problem 18: Stationary Couette flow',
                2,
                'scale:vib:exer:stationary_Couette',
                'scale:vib:exer:stationary_Couette'),
               ('Remarks', 3, None, '___sec149'),
-              ('Problem 19: Scale a starting Couette flow',
+              ('Problem 19: Starting Couette flow',
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('Exercise 20: Scale Couette flow with pressure gradient',
+              ('Exercise 20: Couette flow with pressure gradient',
                2,
                'scale:vib:exer:Couette_wpressure',
                'scale:vib:exer:Couette_wpressure'),
-              ('Exercise 21: Scale pulsatile pipeflow',
+              ('Exercise 21: Pulsatile pipeflow',
                2,
                'scale:exer:pipeflow:pulsatile',
                'scale:exer:pipeflow:pulsatile'),
-              ('Exercise 22: Scale the linear cable equation',
+              ('Exercise 22: The linear cable equation',
                2,
                'scale:exer:cable_eq',
                'scale:exer:cable_eq'),
-              ('Exercise 23: Scale a discontinuous heat conduction problem',
+              ('Exercise 23: Heat conduction with discontinuous initial condition',
                2,
                'scale:exer:twometal',
                'scale:exer:twometal'),
@@ -531,7 +531,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale::exer:elasticity:vibmodels',
                'scale::exer:elasticity:vibmodels'),
-              ('Exercise 25: Scale the equations of quasi-static poro-elasticity',
+              ('Exercise 25: A model for quasi-static poro-elasticity',
                2,
                'scale:exer:poroelasticity',
                'scale:exer:poroelasticity'),
@@ -698,20 +698,20 @@ $$
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:US2SI1" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 1: Perform unit conversion</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:ball_y" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 2: Scale a simple formula</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:decay:cooling:osc" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 3: Perform alternative scalings</a></li>
-     <!-- navigation toc: --> <li><a href="#sec:scale:exer:ball_y_wdrag" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 4: Scale a nonlinear ODE</a></li>
-     <!-- navigation toc: --> <li><a href="#sec:scale:exer:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 5: Implement a scaled model with jump</a></li>
+     <!-- navigation toc: --> <li><a href="#sec:scale:exer:ball_y_wdrag" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 4: A nonlinear ODE for vertical motion with air resistance</a></li>
+     <!-- navigation toc: --> <li><a href="#sec:scale:exer:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 5: Solve a decay ODE with discontinuous coefficient</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:decay:cooling" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 6: Implement a scaled model for cooling</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:decay:step" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 7: Scale variable coefficients</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:cooling:Ts" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 8: Alternative scalings of a cooling model</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:nonlin:logistic2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 9: Alternative scalings of a cooling model</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:vib:exer:projectile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 10: Scale projectile motion</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: Scale a predator-prey model</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Scale a model for competing species</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 13: Find the period of sinusoidal signals</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec106" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
-     <!-- navigation toc: --> <li><a href="#sec:scale:exer:pendulum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 14: Scale the pendulum equation</a></li>
-     <!-- navigation toc: --> <li><a href="#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: Scale the ODEs for a binary star</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Scale Duffing's equation</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:exer:decay:step" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 7: Decay ODE with discontinuous coefficients</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:exer:nonlin:logistic2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 8: Alternative scalings of a cooling model</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:vib:exer:projectile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 9: Projectile motion</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: A model for competing species</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Find the period of sinusoidal signals</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec105" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:vib:exer:sliding" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 13: Oscillating mass with sliding friction</a></li>
+     <!-- navigation toc: --> <li><a href="#sec:scale:exer:pendulum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 14: Pendulum equations</a></li>
+     <!-- navigation toc: --> <li><a href="#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: ODEs for a binary star</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Duffing's equation</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:rocket" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Vertical motion in a varying gravity field</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book007.html#___sec111" style="font-size: 80%;"><b>Basic PDE models</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book007.html#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
@@ -750,13 +750,13 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec145" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a force term</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Scale a stationary Couette flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Stationary Couette flow</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 19: Scale a starting Couette flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:Couette_wpressure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 20: Scale Couette flow with pressure gradient</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:pipeflow:pulsatile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 21: Scale pulsatile pipeflow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:cable_eq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: Scale the linear cable equation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:twometal" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Scale a discontinuous heat conduction problem</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 19: Starting Couette flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:Couette_wpressure" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 20: Couette flow with pressure gradient</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:pipeflow:pulsatile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 21: Pulsatile pipeflow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:cable_eq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 22: The linear cable equation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:exer:twometal" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 23: Heat conduction with discontinuous initial condition</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec155" style="font-size: 80%;"><b>Advanced PDE models</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The equations of linear elasticity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:timedep" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The general time-dependent elasticity problem</a></li>
@@ -808,7 +808,7 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec203" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Long waves in shallow water</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec204" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Comparison of vibration models for elastic structures</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 25: Scale the equations of quasi-static poro-elasticity</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 25: A model for quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale::exer:suggest" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 26: Suggestions...</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec208" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
@@ -849,7 +849,7 @@ reads
 $$
 \begin{equation}
 mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V\tp
-\tag{2.63}
+\tag{2.62}
 \end{equation}
 $$
 
@@ -870,14 +870,14 @@ and is connected to a spring that exerts a force \( -ku \) on the body.
 <h3 id="___sec66">The first technical steps of scaling </h3>
 
 <p>
-The problem <a href="#mjx-eqn-2.63">(2.63)</a> has one independent
+The problem <a href="#mjx-eqn-2.62">(2.62)</a> has one independent
 variable \( t \) and one dependent variable \( u \). We introduce dimensionless
 versions of these variables:
 
 $$ \bar u =\frac{u}{u_c},\quad\bar t = \frac{t}{t_c},$$
 
 where \( u_c \) and \( t_c \) are characteristic values of \( u \) and \( t \).
-Inserted in <a href="#mjx-eqn-2.63">(2.63)</a>, we get
+Inserted in <a href="#mjx-eqn-2.62">(2.62)</a>, we get
 
 $$ m\frac{u_c}{t_c^2}\frac{d^2\bar u}{d\bar t^2} + ku_c\bar u = 0,
 \quad u_c\bar u(0)=I,\quad \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}(0)=V,$$
@@ -888,7 +888,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u = 0,
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{2.64}
+\tag{2.63}
 \end{equation}
 $$
 
@@ -904,7 +904,7 @@ both terms balance and are of size unity, is a candidate.
 To better see what the proper scales of \( u \) and \( t \) are, we can look
 into the analytical solution of this problem.
 Although the exact solution of
-<a href="#mjx-eqn-2.63">(2.63)</a> is quite straightforward to calculate
+<a href="#mjx-eqn-2.62">(2.62)</a> is quite straightforward to calculate
 by hand, we take the opportunity to make use of SymPy to
 find \( u(t) \). The use of SymPy can later be generalized to vibration
 ODEs that are harder to solve by hand.
@@ -1015,7 +1015,7 @@ compared to the exact amplitude).  It is not very important to have
 
 <p>
 What is an appropriate time scale? Looking at
-<a href="#mjx-eqn-2.64">(2.64)</a> and arguing that
+<a href="#mjx-eqn-2.63">(2.63)</a> and arguing that
 \( \bar u'' \) and \( \bar u \) both should be around unity in size, the
 coefficient \( t_c^2k/m \) must equal unity, implying that \( t_c=\sqrt{m/k} \).
 Also from the analytical solution we see that the solution goes like the
@@ -1032,7 +1032,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + \bar u = 0,
 \quad \bar u(0)=1,\ \bar u'(0)=\alpha,
-\tag{2.65}
+\tag{2.64}
 \end{equation}
 $$
 
@@ -1050,7 +1050,7 @@ The unscaled solution is recovered as
 $$
 \begin{equation}
 u(t) = I\bar u(\sqrt{k/m}\bar t)\tp
-\tag{2.66}
+\tag{2.65}
 \end{equation}
 $$
 
@@ -1074,7 +1074,7 @@ $$
 \begin{equation}
 \frac{d^2\bar u}{d\bar t^2} + 4\pi^2 \bar u = 0,
 \quad \bar u(0)=\alpha^{-1},\ \bar u'(0)=2\pi\tp
-\tag{2.67}
+\tag{2.66}
 \end{equation}
 $$
 
@@ -1083,7 +1083,7 @@ The unscaled solution is in this case recovered by
 $$
 \begin{equation}
 u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t)\tp
-\tag{2.68}
+\tag{2.67}
 \end{equation}
 $$
 
@@ -1106,7 +1106,7 @@ the unit for counts per unit time.
 
 <p>
 For vertical vibrations in the gravity field, the model
-<a href="#mjx-eqn-2.63">(2.63)</a> must also take the gravity force
+<a href="#mjx-eqn-2.62">(2.62)</a> must also take the gravity force
 \( -mg \) into account:
 
 $$ mu'' + ku = -mg\tp$$
@@ -1143,12 +1143,12 @@ gravity, except for an offset \( mg/(kI) \) in the displacement.
 
 <p>
 Now we add a transient forcing term \( F(t) \) to the model
-<a href="#mjx-eqn-2.63">(2.63)</a>:
+<a href="#mjx-eqn-2.62">(2.62)</a>:
 
 $$
 \begin{equation}
 mu'' + ku = F(t),\quad u(0)=I,\ u'(0)=V\tp
-\tag{2.69}
+\tag{2.68}
 \end{equation}
 $$
 
@@ -1164,7 +1164,7 @@ $$
 \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u =
 \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{2.70}
+\tag{2.69}
 \end{equation}
 $$
 
@@ -1263,7 +1263,7 @@ $$
 u(t) = \frac{A}{m(\omega^2 - \psi^2)} 2
 \sin\left(\frac{\psi - \omega}{2}t\right)
 \sin\left(\frac{\psi + \omega}{2}t\right),
-\tag{2.71}
+\tag{2.70}
 \end{equation}
 $$
 
@@ -1305,7 +1305,7 @@ of them when they are distant. In any case, we set
 <h3 id="___sec77">Finding the displacement scale from the differential equation </h3>
 
 <p>
-Going back to <a href="#mjx-eqn-2.70">(2.70)</a>, we
+Going back to <a href="#mjx-eqn-2.69">(2.69)</a>, we
 may demand that all the three terms in the differential equation
 are of size unity. This leads to \( t_c=\sqrt{m/k} \)
 and \( u_c=At_c^2/m = A/k \). The formula for \( u_c \) is a kind of measure
@@ -1314,7 +1314,7 @@ forcing and the spring force (the dimensionless number
 \( A/(ku_c) \) would be this ratio).
 
 <p>
-Looking at <a href="#mjx-eqn-2.71">(2.71)</a>, we see
+Looking at <a href="#mjx-eqn-2.70">(2.70)</a>, we see
 that if \( \psi\ll\omega \), the amplitude can be approximated
 by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
 relevant for small excitation frequency \( \psi \) compared to
@@ -1326,7 +1326,7 @@ the free vibration frequency \( \omega \).
 The next step is to work out the dimensionless ODE for the chosen scales.
 We first select the time scale based on the free oscillations
 with frequency \( \omega \), i.e., \( t_c=1/\omega \). Inserting the expression in
-<a href="#mjx-eqn-2.70">(2.70)</a> results in
+<a href="#mjx-eqn-2.69">(2.69)</a> results in
 
 $$
 \begin{equation}
@@ -1334,7 +1334,7 @@ $$
 \gamma
 \cos(\delta\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta\tp
-\tag{2.72}
+\tag{2.71}
 \end{equation}
 $$
 
@@ -1343,13 +1343,13 @@ Here we have four dimensionless variables
 $$
 \begin{align}
 \alpha &= \frac{I}{u_c},
-\tag{2.73}\\ 
+\tag{2.72}\\ 
 \beta  &= \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},
-\tag{2.74}\\ 
+\tag{2.73}\\ 
 \gamma &= \frac{t_c^2 A}{mu_c} = \frac{A}{ku_c},
-\tag{2.75}\\ 
+\tag{2.74}\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
-\tag{2.76}
+\tag{2.75}
 \end{align}
 $$
 
@@ -1371,8 +1371,8 @@ physical effects:
 <h3 id="___sec79">Software </h3>
 
 <p>
-Any solver for <a href="#mjx-eqn-2.70">(2.70)</a>
-can be used for <a href="#mjx-eqn-2.72">(2.72)</a>.
+Any solver for <a href="#mjx-eqn-2.69">(2.69)</a>
+can be used for <a href="#mjx-eqn-2.71">(2.71)</a>.
 More details are provided at the end of
 the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
@@ -1408,7 +1408,7 @@ forcing, but the state close to resonance brings the amplitude up to
 about unity, see the result of numerical simulations with \( \delta=0.99 \) in
 Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 Neglecting \( \alpha \),
-the solution is given by <a href="#mjx-eqn-2.71">(2.71)</a>,
+the solution is given by <a href="#mjx-eqn-2.70">(2.70)</a>,
 which here means \( A=1-\delta^2 \), \( m=1 \), \( \omega=1 \), \( \psi=\delta \):
 
 $$ \bar u(\bar t) = 2\sin(-0.005\bar t)\sin(0.995\bar t)\tp $$
@@ -1430,7 +1430,7 @@ Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 
 <p>
 Using the displacement scale \( u_c=A/k \) leads to
-<a href="#mjx-eqn-2.72">(2.72)</a> with
+<a href="#mjx-eqn-2.71">(2.71)</a> with
 
 $$
 \begin{align*}
@@ -1474,7 +1474,7 @@ $$
 \gamma
 \cos(\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
-\tag{2.77}
+\tag{2.76}
 \end{equation}
 $$
 
@@ -1495,7 +1495,7 @@ However, if \( \alpha \) and/or \( \beta \) is large,
 the initial condition dominates over the forcing, and will also dominate
 the amplitude of \( u \), thereby making the scaling of \( u \) inappropriate.
 In case \( I=V=0 \) so that \( \alpha=\beta=0 \),
-<a href="#mjx-eqn-2.71">(2.71)</a> predicts
+<a href="#mjx-eqn-2.70">(2.70)</a> predicts
 (\( A=m=1 \), \( \omega=\delta^{-1} \), \( \psi=1 \))
 
 $$ \bar u(\bar t) = (\delta^{-2}-1)^{-1}2
@@ -1540,7 +1540,7 @@ $$
 \frac{d^2\bar u}{d\bar t^2} + \bar u =
 \gamma\cos(\delta\bar t),
 \quad \bar u(0)=1,\ \bar u'(0)=\beta,
-\tag{2.78}
+\tag{2.77}
 \end{equation}
 $$
 
@@ -1549,9 +1549,9 @@ with
 $$
 \begin{align}
 \beta  &= \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},
-\tag{2.79}\\ 
+\tag{2.78}\\ 
 \gamma & = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} \tp
-\tag{2.80}
+\tag{2.79}
 \end{align}
 $$
 
@@ -1565,7 +1565,7 @@ We now introduce a linear damping force \( bu'(t) \) in the equation of motion:
 $$
 \begin{equation}
 mu'' + bu' + ku = A\cos(\psi t),\quad u(0)=I,\ u'(0)=V\tp
-\tag{2.81}
+\tag{2.80}
 \end{equation}
 $$
 
@@ -1589,7 +1589,7 @@ $$
 + \frac{t_c^2 k}{m}\bar u =
 \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
 \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}\tp
-\tag{2.82}
+\tag{2.81}
 \end{equation}
 $$
 
@@ -1598,7 +1598,7 @@ $$
 <p>
 To choose scales, it is (as always)
 a great advantage to look into exact solutions.
-Using SymPy to solve <a href="#mjx-eqn-2.81">(2.81)</a> is, in principle,
+Using SymPy to solve <a href="#mjx-eqn-2.80">(2.80)</a> is, in principle,
 very straightforward:
 
 <p>
@@ -1793,7 +1793,7 @@ u &= \frac{Am^{-1}}{4 B^{2} \psi^{2} +
 \nonumber\\ 
 & = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
 \frac{1}{2}}\cos(\psi t + \phi),
-\tag{2.83}
+\tag{2.82}
 \end{align}
 $$
 
@@ -1808,7 +1808,7 @@ $$ \phi = \tan^{-1}\left(-\frac{2B}{\omega^2 - \psi^2}\right)
 
 \( Q \) is commonly called <em>quality factor</em> and \( \phi \) is the
 <em>phase shift</em>. Dividing
-<a href="#mjx-eqn-2.83">(2.83)</a> by \( A/k \), which is a common
+<a href="#mjx-eqn-2.82">(2.82)</a> by \( A/k \), which is a common
 scale for \( u \), gives the dimensionless relation
 
 $$
@@ -1816,7 +1816,7 @@ $$
 \frac{u}{A/k} = \frac{Q}{\delta} R(Q,\delta)^{\frac{1}{2}}\cos(\psi t + \phi),
 \quad
 R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}\tp
-\tag{2.84}
+\tag{2.83}
 \end{equation}
 $$
 
@@ -1828,7 +1828,7 @@ relevant also when damping is included.  Although the oscillations
 with frequency \( \sqrt{\omega^2-B^2} \) die out for \( t\gg B^{-1} \), we
 start with using this frequency for the time scale.  A highly relevant
 assumption for engineering applications of
-<a href="#mjx-eqn-2.81">(2.81)</a> is that the damping is small.
+<a href="#mjx-eqn-2.80">(2.80)</a> is that the damping is small.
 Therefore, \( \sqrt{\omega^2-B^2} \) is close to \( \omega \) and we simply
 apply \( t_c=1/\omega \) as before (if not the interest in large \( t \) for
 which the oscillations with frequency \( \omega \) has died out).
@@ -1876,7 +1876,7 @@ $$
 \gamma
 \cos(\delta\bar t),
 \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
-\tag{2.85}
+\tag{2.84}
 \end{equation}
 $$
 
@@ -1888,13 +1888,13 @@ with
 $$
 \begin{align}
 \alpha &= \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},
-\tag{2.86}\\ 
+\tag{2.85}\\ 
 \beta  &= \frac{Vt_c}{u_c} = \frac{Vb}{A},
-\tag{2.87}\\ 
+\tag{2.86}\\ 
 \gamma &= \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},
-\tag{2.88}\\ 
+\tag{2.87}\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1\tp
-\tag{2.89}
+\tag{2.88}
 \end{align}
 $$
 
@@ -1938,7 +1938,7 @@ with time steps <code>dt</code>. With <code>damping='linear'</code>, we have \( 
 other value is <code>'quadratic'</code>, meaning \( f(u')=b|u'|u' \).
 Given the dimensionless numbers \( \alpha \), \( \beta \), \( \gamma \), \( \delta \),
 and \( Q \),
-an appropriate call for solving <a href="#mjx-eqn-2.72">(2.72)</a> is
+an appropriate call for solving <a href="#mjx-eqn-2.71">(2.71)</a> is
 
 <p>
 
@@ -2000,7 +2000,7 @@ capacitance \( C \), and overall resistance \( R \), obeys the equation
 $$
 \begin{equation}
 \ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I = \dot V(t),
-\tag{2.90}
+\tag{2.89}
 \end{equation}
 $$
 
@@ -2033,7 +2033,7 @@ $$
 \begin{equation}
 \frac{d^2\bar I}{d\bar t^2} + Q^{-1}\frac{d\bar I}{d\bar t}
 + \bar I = \bar V(t),
-\tag{2.91}
+\tag{2.90}
 \end{equation}
 $$
 
@@ -2124,7 +2124,7 @@ What is an appropriate scaling of the temperature?
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:ball_y_wdrag">Problem 4: Scale a nonlinear ODE</h2>
+<h2 id="sec:scale:exer:ball_y_wdrag">Problem 4: A nonlinear ODE for vertical motion with air resistance</h2>
 
 <p>
 The velocity \( v(t) \)
@@ -2148,7 +2148,7 @@ and \( V \) is the volume of the body. Scale this ODE.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:jump">Exercise 5: Implement a scaled model with jump</h2>
+<h2 id="sec:scale:exer:decay:jump">Exercise 5: Solve a decay ODE with discontinuous coefficient</h2>
 
 <p>
 Make software for the problem in the section <a href="._scaling-book005.html#sec:scale:decay:jump">Variable coefficients</a>
@@ -2177,7 +2177,10 @@ engine and modify the
 
 <p>
 <!-- --- end hint in exercise --- -->
-Filename: <code>decay_jump</code>.
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->Filename: <code>decay_jump</code>.
 
 <p>
 <!-- --- end exercise --- -->
@@ -2188,10 +2191,10 @@ Filename: <code>decay_jump</code>.
 <h2 id="sec:scale:exer:decay:cooling">Exercise 6: Implement a scaled model for cooling</h2>
 
 <p>
-Make software for the unscaled problem <a href="._scaling-book005.html#mjx-eqn-2.16">(2.16)</a>
-where \( T_s \) can be a function of time.
-Use this implementation to compute the solution of the
+Use software for the unscaled problem <a href="._scaling-book005.html#mjx-eqn-2.16">(2.16)</a>
+to compute the solution of the
 scaled problem <a href="._scaling-book005.html#mjx-eqn-2.23">(2.23)</a>.
+Let \( T_s \) be a function of time.
 
 <p>
 <!-- --- begin hint in exercise --- -->
@@ -2215,7 +2218,10 @@ See the section <a href="._scaling-book005.html#sec:scale:decay:body">Scaling a 
 
 <p>
 <!-- --- end hint in exercise --- -->
-Filename: <code>cooling1</code>.
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->Filename: <code>cooling1</code>.
 
 <p>
 <!-- --- end exercise --- -->
@@ -2223,7 +2229,7 @@ Filename: <code>cooling1</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:decay:step">Problem 7: Scale variable coefficients</h2>
+<h2 id="scale:decay:exer:decay:step">Problem 7: Decay ODE with discontinuous coefficients</h2>
 
 <p>
 The goal of this exercise is to scale the problem
@@ -2234,12 +2240,15 @@ a(t) =\left\lbrace\begin{array}{ll}
 Q, & t < s,\\ 
 Q - A, & t\geq s,\end{array}\right.
 \quad b = \left\lbrace\begin{array}{ll}
-\gamma t, & t < s,\\ 
+\epsilon t, & t < s,\\ 
 0, & t\geq s,\end{array}\right.
 $$
 
-Here, \( Q,A,\gamma >0 \).
-Filename: <code>decay_varcoeff</code>.
+Here, \( Q,A,\epsilon >0 \).
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->Filename: <code>decay_varcoeff</code>.
 
 <p>
 <!-- --- end exercise --- -->
@@ -2247,23 +2256,7 @@ Filename: <code>decay_varcoeff</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:cooling:Ts">Exercise 8: Alternative scalings of a cooling model</h2>
-
-<p>
-Scale the model <a href="._scaling-book005.html#mjx-eqn-2.16">(2.16)</a>, with \( T_s \)
-given as in <a href="._scaling-book005.html#mjx-eqn-2.22">(2.22)</a>, using two alternative
-scalings of \( T \): <a href="._scaling-book005.html#mjx-eqn-2.20">(2.20)</a> and
-the simpler \( \bar T = T/T_0 \). Does the type of scaling impact how
-many dimensionless parameters we end up with?
-Filename: <code>cooling2</code>.
-
-<p>
-<!-- --- end exercise --- -->
-
-<p>
-<!-- --- begin exercise --- -->
-
-<h2 id="scale:decay:exer:nonlin:logistic2">Exercise 9: Alternative scalings of a cooling model</h2>
+<h2 id="scale:decay:exer:nonlin:logistic2">Exercise 8: Alternative scalings of a cooling model</h2>
 
 <p>
 Implement the scaled model <a href="._scaling-book005.html#mjx-eqn-2.29">(2.29)</a>
@@ -2275,10 +2268,10 @@ and produce a plot with curves corresponding to various values of
 
 <p>
 <a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_9_1" style="font-size: 80%;"></a>
+ data-target="#exer_8_1" style="font-size: 80%;"></a>
 <b>Hint.</b>
 <div class="collapse-group">
-<p><div class="collapse" id="exer_9_1">
+<p><div class="collapse" id="exer_8_1">
 
 <p>
 A centered Crank-Nicolson-style
@@ -2303,7 +2296,7 @@ Filename: <code>growth</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:projectile">Exercise 10: Scale projectile motion</h2>
+<h2 id="scale:vib:exer:projectile">Exercise 9: Projectile motion</h2>
 
 <p>
 We have the following mathematical model for the motion of a projectile
@@ -2370,7 +2363,7 @@ Filename: <code>projectile</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:predpray">Problem 11: Scale a predator-prey model</h2>
+<h2 id="scale:decay:exer:predpray">Problem 10: A predator-prey model</h2>
 
 <p>
 The evolution of animal populations with a predator and a prey (e.g.,
@@ -2380,13 +2373,13 @@ Lotka-Volterra ODE system
 $$
 \begin{align}
 H^{\prime} &= H(a - bL),
-\tag{2.92}\\ 
+\tag{2.91}\\ 
 L^{\prime} &= L(dH - c),
-\tag{2.93}\\ 
+\tag{2.92}\\ 
 H(0)&=H_0,
-\tag{2.94}\\ 
+\tag{2.93}\\ 
 L(0)&=L_0\tp
-\tag{2.95}
+\tag{2.94}
 \end{align}
 $$
 
@@ -2422,13 +2415,13 @@ in the ODE problem we arrive at
 $$
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\tag{2.96}\\ 
+\tag{2.95}\\ 
 \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-\tag{2.97}\\ 
+\tag{2.96}\\ 
 H_c\bar H(0) &= H_0,
-\tag{2.98}\\ 
+\tag{2.97}\\ 
 L_c\bar H(0) &= L_0\tp
-\tag{2.99}
+\tag{2.98}
 \end{align}
 $$
 
@@ -2473,7 +2466,7 @@ Filename: <code>predator_prey</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:competing_species">Problem 12: Scale a model for competing species</h2>
+<h2 id="scale:decay:exer:competing_species">Problem 11: A model for competing species</h2>
 
 <p>
 Let \( N_1(t) \) and \( N_2(t) \) be the number of animals in two
@@ -2484,9 +2477,9 @@ interaction (cf.&nbsp;ref{scale:decay:exer:predprey}):
 $$
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
-\tag{2.100}\\ 
+\tag{2.99}\\ 
 \frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
-\tag{2.101}
+\tag{2.100}
 \end{align}
 $$
 
@@ -2504,7 +2497,7 @@ Find suitable scales and derive a dimensionless ODE problem.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:sine">Problem 13: Find the period of sinusoidal signals</h2>
+<h2 id="scale:decay:exer:sine">Problem 12: Find the period of sinusoidal signals</h2>
 
 <p>
 <b>a)</b>
@@ -2547,10 +2540,10 @@ period \( P \) as the shortest distance between two peaks of the signal.
 
 <p>
 <a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_13_1" style="font-size: 80%;"></a>
+ data-target="#exer_12_1" style="font-size: 80%;"></a>
 <b>Hint.</b>
 <div class="collapse-group">
-<p><div class="collapse" id="exer_13_1">
+<p><div class="collapse" id="exer_12_1">
 
 <p>
 Use that \( v = p\cos(\omega t) + q\sin (\omega t) \) can be rewritten
@@ -2575,7 +2568,7 @@ Filename: <code>sine_period</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec106">Remarks </h3>
+<h3 id="___sec105">Remarks </h3>
 
 <p>
 The <em>frequency</em> is the number of up and down cycles in one unit time.
@@ -2589,7 +2582,74 @@ The <em>angular frequency</em> \( \omega \) is then \( \omega = 2\pi/P = 2\pi f 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:pendulum">Problem 14: Scale the pendulum equation</h2>
+<h2 id="scale:vib:exer:sliding">Problem 13: Oscillating mass with sliding friction</h2>
+
+<p>
+<center> <!-- figure -->
+<hr class="figure">
+<center><p class="caption">Figure 14:  Body sliding on a surface. <div id="scale:vib:exer:sliding:fig"></div> </p></center>
+<p><img src="fig-scaling/oscillator_sliding.png" align="bottom" width=500></p>
+</center>
+
+<p>
+A mass attached to a spring is sliding on a surface and subject to
+a friction force, see Figure <a href="#scale:vib:exer:sliding:fig">14</a>.
+The spring represents a force \( -ku\ii \), where \( k \) is the spring stiffness.
+The friction force is proportional to the normal force on the surface,
+\( -mg\jj \), and given by \( -f(\dot u)\ii \), where
+
+$$ f(\dot u) = \left\lbrace\begin{array}{ll}
+-\mu mg,& \dot u < 0,\\ 
+\mu mg, & \dot u > 0,\\ 
+0,      & \dot u=0
+\end{array}\right.$$
+
+Here, \( \mu \) is a friction coefficient. With the signum function
+
+$$ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
+-1,& x < 0,\\ 
+1, & x > 0,\\ 
+0, & x=0
+\end{array}\right.$$
+
+we can simply write \( f(\dot u) = \mu mg\,\hbox{sign}(\dot u) \)
+(the sign function is implemented by <code>numpy.sign</code>).
+
+<p>
+The ODE problem for this one-dimensional oscillatory motion reads
+
+$$
+\begin{equation}
+m\ddot u + \mu mg\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
+\tag{2.101}
+\end{equation}
+$$
+
+<p>
+<b>a)</b>
+Scale the problem.
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+<b>b)</b>
+Implement the scaled model. Simulate for \( \alpha = 0, 0.05, 0.1 \)
+and \( \beta =0 \).
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+Filename: <code>sliding_box</code>.
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="sec:scale:exer:pendulum">Problem 14: Pendulum equations</h2>
 
 <p>
 The equation for a so-called simple pendulum with a mass \( m \) at the end is
@@ -2619,12 +2679,31 @@ Both equations have the initial conditions \( \theta(0)=\Theta \) and
 \( \theta'(0)=0 \) (start at rest).
 
 <p>
+<b>a)</b>
 Use \( \theta \) as dimensionless unknown, find a proper time scale,
 and scale both differential equations.
 
 <p>
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
- -->Filename: <code>pendulum</code>.
+ -->
+<p>
+<b>b)</b>
+Some may argue that \( \theta \) is not dimensionless since it is measured
+in radians. One may introduce a truly dimensionless angle \( \bar\theta
+\in [0,1] \). Set up the scaled ODE problem in this case.
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+<b>c)</b>
+Simulate the problem in b) for \( \Theta = 1,20,45,60 \) measure in degrees.
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+Filename: <code>pendulum</code>.
 
 <p>
 <!-- --- end exercise --- -->
@@ -2632,7 +2711,7 @@ and scale both differential equations.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:binary_star">Exercise 15: Scale the ODEs for a binary star</h2>
+<h2 id="sec:scale:exer:binary_star">Exercise 15: ODEs for a binary star</h2>
 
 <p>
 The equations for a <a href="https://en.wikipedia.org/wiki/Binary_star" target="_self">binary star</a>,
@@ -2712,7 +2791,7 @@ Filename: <code>binary_star</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Duffing">Problem 16: Scale Duffing's equation</h2>
+<h2 id="scale:vib:exer:Duffing">Problem 16: Duffing's equation</h2>
 
 <p>
 Duffing's equation is a vibration equation with linear and cubic

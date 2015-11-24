@@ -24,6 +24,7 @@ KPP
 Karman
 KdV
 Kolmogorov
+Kutta
 Langtangen
 Linearization
 Lotka
@@ -51,6 +52,7 @@ PhysicalQuantity
 Piskynov
 Pr
 Prandtl
+Runge
 SHA
 SIRV
 SciTools
