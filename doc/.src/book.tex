@@ -563,15 +563,15 @@ mu'' + bu' + ku = 0,
 \label{scale:dimunit:eq:u}
 \end{equation}
 where $m$ is the mass of the system, $b$ is some damping coefficient,
-$k$ is a spring constant, and $u(t)$ is the displacement of the system.
-This is an equation expressing
-the balance of three physical effects: $mu''$ (mass times
-acceleration), $bu'$ (damping force), and $ku$ (spring force).
-The different physical quantities, such as $m$, $u(t)$, $b$, and $k$,
-have all different \emph{dimensions}, measured in different \emph{units},
-but $mu''$, $bu'$, and $ku$ must all have the same dimension, otherwise
-it would not make sense to add them (you will get the same problem
-as when trying to add one banana, one apple, and one orange).
+$k$ is a spring constant, and $u(t)$ is the displacement of the
+system.  This is an equation expressing the balance of three physical
+effects: $mu''$ (mass times acceleration), $bu'$ (damping force), and
+$ku$ (spring force).  The different physical quantities, such as $m$,
+$u(t)$, $b$, and $k$, have all different \emph{dimensions}, measured in
+different \emph{units}, but $mu''$, $bu'$, and $ku$ must all have the same
+dimension, otherwise it would not make sense to add them (you will get
+the same problem as when trying to add one banana, one apple, and one
+orange).
 
 \section{Fundamental concepts}
 
@@ -610,20 +610,20 @@ is $\hbox{LT}^{-1}$. This results coincides with the interpretation of
 $u'$ as velocity and the fact that velocity is defined as distance
 ([L]) per time ([T]).
 
-Looking at (\ref{scale:dimunit:eq:u}), and interpreting $u(t)$
-as displacement, we realize that the term $mu''$
-(mass times acceleration) has dimension $[\hbox{MLT}^{-2}]$.  The term
-$bu'$ must have the same dimension, and since $u'$ has dimension
+Looking at (\ref{scale:dimunit:eq:u}), and interpreting $u(t)$ as
+displacement, we realize that the term $mu''$ (mass times
+acceleration) has dimension $[\hbox{MLT}^{-2}]$.  The term $bu'$ must
+have the same dimension, and since $u'$ has dimension
 $[\hbox{LT}^{-1}]$, $b$ must have dimension $[\hbox{MT}^{-1}]$.
-Finally, $ku$ must also have dimension $[\hbox{MLT}^{-1}]$, implying that $k$
-is a parameter with dimension $[\hbox{MT}^{-2}]$.
+Finally, $ku$ must also have dimension $[\hbox{MLT}^{-1}]$, implying
+that $k$ is a parameter with dimension $[\hbox{MT}^{-2}]$.
 
 The unit of a physical quantity follows from the dimension expression.
 For example, since velocity has dimension $\hbox{LT}^{-1}$ and length
 is measured in m while time is measured in s, the unit for velocity
 becomes m/s. Similarly, force has dimension $[\hbox{MLT}^{-2}]$ and
-unit $\hbox{kg\, m/s}^2$. The $k$ parameter in (\ref{scale:dimunit:eq:u})
-is measured in $\hbox{kg\,s}^{-2}$.
+unit $\hbox{kg\, m/s}^2$. The $k$ parameter in
+(\ref{scale:dimunit:eq:u}) is measured in $\hbox{kg\,s}^{-2}$.
 
 
 \begin{notice_mdfboxadmon}[Dimension of derivatives]
@@ -3190,7 +3190,7 @@ and hence with $t_c^{-1}=k_+E_0$,
 \[ \frac{dS}{dt} = -\frac{k_vE_0 S}{K + S},\]
 which is (\ref{scale:MMK:Seq1}).
 
-Figure~\ref{scale:MMK:fig} shows the impact of $\epsilon$: with a small
+Figure~\ref{scale:MMK:fig} shows the impact of $\epsilon$: with a moderately small
 value (0.1) we see that $\bar Q\approx 0$, which justifies the
 simplifications performed above. We also observe that all the unknowns
 vary between 0 and about 1, indicating that the scaling is successful
@@ -3211,10 +3211,11 @@ using $\alpha=1$, $\beta=4$ (relevant code is in the
 
 However, it is of interest to investigate the limit $\epsilon\rightarrow 0$.
 Initially, the equation for $d\bar E/d\bar t$ reads
-$d\bar E/d\bar t = -\epsilon{-1}$, which implies a very fast reduction of
-$\bar E$. Using $\epsilon=0.005$ and $\Delta\bar t = 10^{-3}$. The results
-show that $\bar E$ decays to approximately zero at $t=0.03$ while
-$\bar S\approx 1$ and $\bar Q = \bar P\approx 0$. This is reasonable since with
+$d\bar E/d\bar t = -\epsilon^{-1}$, which implies a very fast reduction of
+$\bar E$. Using $\epsilon=0.005$ and $\Delta\bar t = 10^{-3}$, simulation
+results show that $\bar E$ decays to approximately zero at $t=0.03$ while
+$\bar S\approx 1$ and $\bar Q \approx \bar P\approx 0$.
+This is reasonable since with
 very little enzyme in comparison with the substrate ($\epsilon\rightarrow 0$)
 very little will happen.
 

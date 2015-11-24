@@ -2844,7 +2844,7 @@ $$ \frac{dS}{dt} = -\frac{k_vE_0 S}{K + S},$$
 which is <a href="#mjx-eqn-2.56">(2.56)</a>.
 
 <p>
-Figure <a href="#scale:MMK:fig">6</a> shows the impact of \( \epsilon \): with a small
+Figure <a href="#scale:MMK:fig">6</a> shows the impact of \( \epsilon \): with a moderately small
 value (0.1) we see that \( \bar Q\approx 0 \), which justifies the
 simplifications performed above. We also observe that all the unknowns
 vary between 0 and about 1, indicating that the scaling is successful
@@ -2863,10 +2863,11 @@ using \( \alpha=1 \), \( \beta=4 \) (relevant code is in the
 <p>
 However, it is of interest to investigate the limit \( \epsilon\rightarrow 0 \).
 Initially, the equation for \( d\bar E/d\bar t \) reads
-\( d\bar E/d\bar t = -\epsilon{-1} \), which implies a very fast reduction of
-\( \bar E \). Using \( \epsilon=0.005 \) and \( \Delta\bar t = 10^{-3} \). The results
-show that \( \bar E \) decays to approximately zero at \( t=0.03 \) while
-\( \bar S\approx 1 \) and \( \bar Q = \bar P\approx 0 \). This is reasonable since with
+\( d\bar E/d\bar t = -\epsilon^{-1} \), which implies a very fast reduction of
+\( \bar E \). Using \( \epsilon=0.005 \) and \( \Delta\bar t = 10^{-3} \), simulation
+results show that \( \bar E \) decays to approximately zero at \( t=0.03 \) while
+\( \bar S\approx 1 \) and \( \bar Q \approx \bar P\approx 0 \).
+This is reasonable since with
 very little enzyme in comparison with the substrate (\( \epsilon\rightarrow 0 \))
 very little will happen.
 
