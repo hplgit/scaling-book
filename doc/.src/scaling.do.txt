@@ -3641,7 +3641,7 @@ capacitance $C$, and overall resistance $R$, obeys the equation
 
 !bt
 \begin{equation}
-\ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I = \dot V(t),
+\ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I =  V(t),
 \end{equation}
 !et
 where $V(t)$ is the voltage source powering the circuit.
@@ -4287,7 +4287,7 @@ The terms has the following meanings:
    population growth of $H$ due to births and deaths and is governed by
    the access to nutrition,
  * $-bHL$ is the loss of preys because they are eaten by predators,
- * $dHL$ is the increase of preys because they eat predators (but only
+ * $dHL$ is the increase of predators because they eat prays (but only
    a fraction of the eaten preys, $bHL$, contribute to population growth
    of the predator and therefore $d < b$),
  * $-cL$ is the exponential decay in the predator population because of
@@ -4462,7 +4462,7 @@ Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
 interaction (cf.~Problem ref{scale:decay:exer:predprey}):
-
+[Geir: reference to scale:decay:exer:predprey not invoked]
 !bt
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\
@@ -5279,17 +5279,18 @@ In multi dimensions in heterogeneous media we have the generalization
 !bt
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} =
-\nabla\cdot\left(c^2 \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]\tp
+\nabla\cdot\left(c^2 \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T],
 label{scale:wave:pde1:3D}
 \end{equation}
 !et
+where $f$ represents a forcing. 
 How to scale time depends on the PDE, the spatial scale depends on
 the domain, and the scale of $u$ usually depends on $f$ or the
 boundary or initial condition.
 
 ===== Simple homogeneous Dirichlet conditions =====
 
-Let us first start with homogeneous Dirichlet conditions in space and
+Let us first start (ref{scale:wave:pde1}), homogeneous Dirichlet conditions in space and
 no initial velocity $u_t$:
 
 !bt
@@ -5436,7 +5437,7 @@ in ref[Sections ref{wave:pde1:impl}][ in cite{Langtangen_Linge_fdm}][in
 the book "Finite difference computing with PDEs":
 "http://tinyurl.com/Langtangen-Linge-FDM-book"
 cite{Langtangen_Linge_fdm}].
-
+[Geir: section reference not active]
 
 === Waves on a string ===
 
@@ -5504,7 +5505,7 @@ in scaled form.
 === Scaling ===
 
 Regarding the characteristic time scale, it is natural to base this scale on
-the wave propagation velocity and not on the time scale of $U_L(t)$, because
+the wave propagation velocity, togethr with the length scale, and not on the time scale of $U_L(t)$, because
 the time scale of $U_L$ basically determines whether
 short or long waves are fed in at the boundary. All waves, long or short,
 propagate with the same velocity $c$. We therefore continue
@@ -5650,6 +5651,7 @@ MOVIE: [mov-scaling/gaussian_plus_incoming/alpha01.mp4] $\alpha=0.1$
 
 [hpl: The HTML version features movies here. Link to them in the LaTeX
 PDF version as well?]
+[Geir: yes]
 
 ===== Velocity initial condition =====
 label{scale:wave:pde2:Vcond}
@@ -6302,7 +6304,7 @@ which equals 1 as it should.
 A classical one-dimensional heat conduction problem goes as
 follows. An insulated rod at some constant temperature $U_0$ is
 suddenly heated from one end ($x=0$), modeled as a constant Dirichlet
-condition $u(0,t)=U_L\neq U_0$ at that end. That is, the boundary
+condition $u(0,t)=U_1\neq U_0$ at that end. That is, the boundary
 temperature jumps from $U_0$ to $U_1$ at $t=0$. All the other surfaces
 of the rod are insulated such that a one-dimensional model is
 appropriate, but we must explicitly demand $u_x(L,t)=0$ to incorporate
@@ -6334,6 +6336,7 @@ label{scale:heat:pde3:bc:L}
 The diffusion coefficient is related to heat transfer parameters
 by $\dfc = k/(\varrho c)$, where $k$ is the heat conduction coefficient,
 $\varrho$ is the density, and $c$ is a specific heat capacity parameter.
+[Geir: does this paragraph naturally belong here ?]
 
 The natural dimensionless temperature for this problem is
 
@@ -6381,6 +6384,7 @@ boundary temperature can be retrieved by
 ===== Oscillating Dirichlet condition =====
 
 [hpl: Do we need paragraph headings here?]
+[Geir: yes]
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -6949,7 +6953,7 @@ label{scale:convdiff:pde1:d2}
 
 !bnotice Discussion of scales and balance of terms in the PDE
 We see that (ref{scale:convdiff:pde1:d}) and (ref{scale:convdiff:pde1:d2})
-are not equivalent, and they are based on two different time scales.
+are not equal, and they are based on two different time scales.
 For moderate Peclet numbers around 1, all terms have the same size
 in (ref{scale:convdiff:pde1:d}), i.e., a size around unity.
 For large Peclet numbers,
@@ -7694,7 +7698,7 @@ temperature evolution in the two pieces:
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
 u(\x,0)=I(x), & \x\in Omega,\\
--\dfc{\partial u}{\partial n} &= h(u-u_S), & x\in\partial\Omega,\ t\in (0,T].
+-\frac{\partial u}{\partial n} &= h(u-u_S), & x\in\partial\Omega,\ t\in (0,T].
 \end{align}
 !et
 Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
@@ -7706,7 +7710,7 @@ $\Omega = \Omega_1\cup\Omega_2$. The initial condition can be specified as
 !bt
 \[ I(x) = \left\lbrace\begin{array}{ll}
 U_1, & \x\in\Omega_1,\\
-U_2, & \x\in\Omega 2,
+U_2, & \x\in\Omega_2,
 \end{array}\right.
 \]
 !et
@@ -7716,7 +7720,9 @@ Thinking of two identical pieces $\Omega_1$ and $\Omega_2$ with shapes
 as bricks, it is tempting to develop a one-dimensional model, especially
 if the pieces are somewhat slender. We then expect the main temperature
 variations to take place in the $x$ direction, where the $x$ axis is
-perpendicular to the contact surface between the pieces. The idea is
+perpendicular to the contact surface between the pieces. 
+[Geir: Hm??]
+The idea is
 to integrate the governing PDE in the two other directions, use the
 Gauss divergence theorem on
 $\dfc\nabla^2u$, and apply the cooling boundary condition. Let $A$ be
@@ -7727,15 +7733,15 @@ the cross section of the bricks. Integrating over $A$ gives
 \int\limits_A \frac{\partial u}{\partial t}dydz &=
 \int\limits_A \dfc\left(
 \frac{\partial^2 u}{\partial x^2}
-\frac{\partial^2 u}{\partial y^2}
-\frac{\partial^2 u}{\partial z^2}
-\right)dydz \\
++\frac{\partial^2 u}{\partial y^2}
++\frac{\partial^2 u}{\partial z^2}
+\right)dydz =\\
 \int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
 dydz +
 \int\limits_A \dfc\left(
 \frac{\partial^2 u}{\partial y^2}
-\frac{\partial^2 u}{\partial z^2}
++\frac{\partial^2 u}{\partial z^2}
 \right)dydz \\
 & =
 \int\limits_A \dfc
@@ -7747,7 +7753,9 @@ dydz +
 dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 !et
+[Geir: Strange alignment]
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
+[Geir: Hm??]
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$:
 
@@ -7774,7 +7782,7 @@ v(x,0)=I(x), & x\in (0,L),\\
 \end{align}
 !et
 with
-
+[Geir: strange alignment and use of dfc]
 !bt
 \[
 I(x) = \left\lbrace\begin{array}{ll}
@@ -8086,6 +8094,7 @@ The elasticity equation then simplifies to
 
 !bt
 \[\frac{\partial^2 \u}{\partial t^2} = c_S^2\nabla^2\u,\]
+label{scale:elasticity:waves:Sweq}
 !et
 so each component of
 the displacement field in this case also propagates as a wave
@@ -8119,9 +8128,11 @@ Our model equation (ref{scale:elasticity:waves:eq}) then reduces to
 
 !bt
 \[ \frac{\partial^2\u}{\partial t^2} = c_P^2\nabla^2\u,\]
+label{scale:elasticity:waves:Pweq}
 !et
-which is nothing but a wave equation for each component of the
-displacement field.
+which is nothing but a wave equation for the expansion component of the
+displacement field, just as (ref{scale:elasticity:waves:Sweq}) is for the
+shear compoenent.
 
 
 === Time-varying load ===
@@ -9112,7 +9123,7 @@ The Reynolds number with this $U$ now becomes
 where Gr is the Grashof number in free thermal convection:
 
 !bt
-\[ \hbox{Ga} = \hbox{Re}_T^2 =  \frac{g\beta L^3 \Delta T}{\nu^2}\tp\]
+\[ \hbox{Gr} = \hbox{Re}_T^2 =  \frac{g\beta L^3 \Delta T}{\nu^2}\tp\]
 !et
 The Grashof number replaces the Reynolds number in the scaled equations
 of free thermal convection. We shall soon look at its interpretations,
@@ -9170,7 +9181,7 @@ Writing
 shows that the Eckert number can be interpreted as the ratio of
 the kinetic energy of the flow and the thermal energy.
 
-We use Ga instead of $\hbox{Re}_T$ in the momentum equations and also
+We use Gr instead of $\hbox{Re}_T$ in the momentum equations and also
 instead of Pe in the energy equation (recall that $\hbox{Pe} =
 \hbox{Pr}\hbox{Re} =
 \hbox{Pr}\hbox{Re}_T=\hbox{Pr}\hbox{Gr}^{-1/2}$). The resulting scaled
@@ -9607,7 +9618,8 @@ label{scale:Euler_eqs}
 ## http://farside.ph.utexas.edu/teaching/336L/Fluidhtml/node22.html
 
 The fundamental equations for a compressible fluid are based on balance
-of mass, momentum, and energy. The PDE system, known as the Euler
+of mass, momentum, and energy. When molecular diffusion effects are
+negligible, the PDE system, known as the Euler
 equations of gas dynamics, can be written as
 
 !bt
@@ -9754,7 +9766,7 @@ where
 !bt
 \[ c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}\]
 !et
-is the speed of sound in the fluid in the equilibrium state.
+is the speed of sound in the fluid in the equilibrium state (see the subsequent section).
 Equation (ref{scale:gas:acoustic:u}) with eliminated pressure $p$ reads
 
 !bt
@@ -9988,7 +10000,7 @@ label{scale:surfacewaves}
 label{scale:surfacewaves:Eulereq}
 
 Provided the Weber number, see section ref{freesurface:Weber}, is
-sufficiently small, capillary effects may omitted and surface waves are
+sufficiently small, capillary effects may be omitted and surface waves are
 governed by gravity.  For large Reynolds numbers viscous effects
 may also be ignored (save in boundary layers close to the bottom or
 the surface of the fluid). The flow of an incompressible homogeneous
@@ -10056,7 +10068,7 @@ label{scale:surfacewaves:scalrelations}
 !et
 These relations are indeed useful, but they do not suffice to establish the scaling.
 
-The pressure may regarded as the sum of a large equilibrium part, balancing
+The pressure may be regarded as the sum of a large equilibrium part, balancing
 gravity, and a much smaller dynamic part associated with the presence of
 waves. To make the latter appear in the equations we define the
 dynamic pressure, $p_d$, according to
@@ -10152,7 +10164,7 @@ We observe that $W\ll U$ for shallow water and that particle orbits must be elon
 
 The equation set is now most transparently written by introducing the
 horizontal velocity $\bar\u_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
-and the corresponding vertical component of the gradient operator, $\nabla_h$:
+and the corresponding vertical component of the gradient operator, $\bar\nabla_h$:
 
 !bt
 \begin{align}
@@ -10182,7 +10194,7 @@ label{scale:surfacewave:kinbott3}
 \end{equation}
 !et
 An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure
-is hydrostatic. The above set of equations is the common  starting point for
+is hydrostatic. The above set of equations is a common  starting point for
 perturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water,
 KdV, and Boussinesq type equations.
 
