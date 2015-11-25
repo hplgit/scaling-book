@@ -802,9 +802,10 @@ The forthcoming text has the following goals.
 
 !bwarning What this book is and is not
 Books covering scaling and non-dimensionalization very often cover
-topics not treated in the present book. One key topic is
+topics not treated in the present book. One key topic   is
 dimensional analysis and the famous Buckingham Pi Theorem
-cite{Douglas_et_al_1979,Logan_1987}.
+cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
+section ref{Buckingham Pi theorem}.
 
 Other classical topics closely related to scaling and non-dimensionalization
 are analytical solution methods like perturbation techniques and
@@ -1800,7 +1801,7 @@ FIGURE: [fig-scaling/osc_cooling, width=500 frac=0.8]
 For the small $\beta$ value, the oscillations in the surrounding
 temperature are slow enough compared to $k$ for the heating and
 cooling process to follow the surrounding temperature, with a small
-time lag. For larger $\beta$, the heating and cooling requires more
+time lag. For larger $\beta$, the heating and cooling require more
 time, and the oscillations get smaller.
 
 === Discussion of the time scale ===
@@ -2144,7 +2145,7 @@ population $N=S(0)+I(0)+R(0)$:
 
 !bt
 \[ \bar S = \frac{S}{N},\quad \bar I = \frac{I}{N},\quad
-\bar R = \frac{R}{N)}\tp
+\bar R = \frac{R}{N}\tp
 \]
 !et
 With the same time scale, one gets the system (ref{scale:SIR:S2})-(ref{scale:SIR:R2}), but with $R_0$ replaced by the dimensionless number:
