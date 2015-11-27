@@ -7698,7 +7698,7 @@ temperature evolution in the two pieces:
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
 u(\x,0)=I(x), & \x\in Omega,\\
--\frac{\partial u}{\partial n} &= h(u-u_S), & x\in\partial\Omega,\ t\in (0,T].
+-\dfc\frac{\partial u}{\partial n} &= h(u-u_S), & x\in\partial\Omega,\ t\in (0,T].
 \end{align}
 !et
 Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
@@ -9801,11 +9801,12 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \frac{\varrho_c U}{t_c}\bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar\u
-+ \frac{\varrho_c}{L}c_0^2\bar\varrho^{\gamma-1}
++ \frac{\varrho_c}{L}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}c_0^2\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
 !et
+[Geir: The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$.]
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 
@@ -9816,7 +9817,7 @@ $t_c = L/U$. This choice leads to the scaled PDEs
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \bar\varrho\bar\u\cdot\bar\nabla\bar\u
-+ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
++ \hbox{M}^{-2}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0,
 \end{align}
@@ -9908,12 +9909,12 @@ and (ref{scale:gas:acoustic:u2}) results in
 
 !bt
 \begin{align*}
-\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
+\alpha\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
 + \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
 \frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\u
-+ \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
++ \alpha\frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
@@ -9929,38 +9930,40 @@ Using $t_c=L/u_0$ we get
 
 !bt
 \begin{align*}
-\frac{\partial\bar\varrho}{\partial\bar t}
+\alpha \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
 \hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
-\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
+\alpha\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
 !et
 
-With the assumption of small perturbations, M and $\alpha$ are small numbers.
-We can first approximate $1+\alpha$ by 1. Thereafter, we realize
-that multiplying by M in the momentum equation gives
+For small perturbations the linear terms in these equantions must balance.
+This points to $M$ and $\alpha$ being of the same order and we may 
+choose $\alpha=M$ to obtain
 
 !bt
-\[
-\hbox{M}\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u
-+ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
-=0\]
+\begin{align*}
+\frac{\partial\bar\varrho}{\partial\bar t}
++\bar\nabla\cdot((1+\hbox{M}\bar\varrho)\bar\u) &=0,\\
+\frac{\partial\bar\u}{\partial\bar t} +
+\hbox{M}\bar\u\cdot\bar\nabla\bar\u +
+\left(1 + \hbox{M} \bar\varrho\right)^{\gamma-2}\bar\nabla\bar\varrho
+&=0\tp
+\end{align*}
 !et
-The term $\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u$ has size
-$\hbox{M}^2$ and is very smaller than the first and third term,
-suggesting that we omit the nonlinear term.
-We arrive at the following linearized system of PDEs
+
+Now the Mach number,  $\hbox{M}$, appears in the nonlinear terms only.
+Letting $\hbox{M}\rightarrow 0$ we arrive at the following linearized system of PDEs
 
 !bt
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+ \hbox{M}\bar\nabla\cdot\bar\u &=0,
++ \bar\nabla\cdot\bar\u &=0,
 label{scale:gas:acoustic:rho:s}\\
-\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
+\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
 label{scale:gas:acoustic:u2:s}
 \end{align}
 !et
