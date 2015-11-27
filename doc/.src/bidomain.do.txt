@@ -133,7 +133,7 @@ of governing equations becomes
 \frac{\sigma_c u_c}{L^2}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\
 &\quad - \chi g_c \Delta v \bar g (s)(\bar v-\bar v_{eq}(s)) -\chi I_{\rm{app}},
 \\
-0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\
+0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u)\tp
 \end{align*}
 !et
 Multiplying the equations by appropriate factors leads to equations with
@@ -148,7 +148,7 @@ dimensionless terms only:
 &\quad
 \frac{g_c t_c}{C_m} \bar g (s)(\bar v-\bar v_{eq}(s))
 - \frac{t_c}{C_m\Delta v} I_{\rm{app}},\\
-0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u)\tp\\
+0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u)\tp
 \end{align*}
 !et
 

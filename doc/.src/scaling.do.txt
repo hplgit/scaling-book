@@ -5004,6 +5004,9 @@ Solve the scaled equations numerically for two cases:
    $\alpha = \half$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=(0,\half)$,
    $\x_B(0)=0$, $\dot\x_B(0)=(0,-\half)$
 
+An assumption here is that the orbits are co-planar such that they can
+be taken to lie in the $xy$ plane.
+
 # #if FORMAT in ('html', 'sphinx')
 Here is a movie of two rotating stars (point 2 above):
 
@@ -5252,6 +5255,88 @@ something that is only clear when we solve the three problems
 numerically.
 !esol
 !esubex
+
+===== Problem: Schroedinger's equation =====
+label{scale:vib:exer:quantum}
+file=Schroedinger
+
+A simplified stationary
+Schroedinger's equation for one electron, assuming radial symmetry, reads
+
+!bt
+\begin{equation}
+-\frac{\hbar^2}{2m}
+\left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right) R
++ V(r)R = ER,
+label{scale:vib:exer:quantum:Req}
+\end{equation}
+!et
+where $r$ is the radial coordinate, $R$ is the wave function,
+$\hbar$ is Planck's constant, $m$ is the mass of the electron,
+$V=\half kr^2$ is the potential for some constant $k$, and $E$ is
+the eigenvalue, for the energy, to be determined along with $R(r)$.
+
+Show that the scaled version of (ref{scale:vib:exer:quantum:Req}) can be written
+
+!bt
+\begin{equation}
+- \left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right)
+\bar R + \bar r^2\bar R = \lambda\bar R,
+label{scale:vib:exer:quantum:barReq}
+\end{equation}
+!et
+where $\lambda$ is a dimensionless eigenvalue
+
+!bt
+\[ \lambda = \frac{2E}{\hbar}\sqrt{\frac{m}{k}}\tp\]
+!et
+The symbol $\bar r$ is the scaled coordiante, and $\bar R$ is a scaled
+version of $R$ (the scaling factor drops out of the equation).
+
+!bsol
+We introduce
+
+!bt
+\[ \bar r = \frac{r}{r_c},\quad\bar R = \frac{R}{R_c},\]
+!et
+and insert these expressions in the differential equation.
+Multiplying with $2mr_c^2/\hbar^2$ we get
+
+!bt
+\[
+-\left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\left(\bar r^2\frac{d}{d\bar r}
+\right)\right) \bar R
++ \frac{kmrc^4}{\hbar^2}\bar r^2\bar R = \frac{2Emr_c^2}{\hbar^2}R\tp
+\]
+!et
+Note that all the $R_c$ factors cancel.
+
+Balance of the two terms on the left-hand side suggests that the
+length scale $r_c$ can be determined from requiring
+
+!bt
+\[ \frac{kmrc^4}{\hbar^2} = 1,\]
+!et
+i.e.,
+
+!bt
+\[ r_c = \left(\frac{\hbar^2}{km}\right)^{\frac{1}{4}}\tp\]
+!et
+A bit of rewriting in the right-hand side term gives the
+given expression for $\lambda$. We then end up with
+(ref{scale:vib:exer:quantum:barReq}).
+!esol
+
+!bremarks
+Introducing $u=rR$ and renaming $\bar r$ to $x$,
+(ref{scale:vib:exer:quantum:barReq}) can be recast to the simple form
+
+!bt
+\[ -u'' + x^2u = \lambda u,\]
+!et
+which is an easier eigenvalue problem to solve numerically (the boundary
+conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
+!eremarks
 
 
 !split
@@ -7215,7 +7300,7 @@ file=stationary_Couette
 
 A fluid flows between two flat plates, with one plate at rest while
 the other moves with velocity $U_0$. This classical flow case is known as
-stationary Couette flow.
+stationary "Couette flow": "https://en.wikipedia.org/wiki/Couette_flow".
 
 !bsubex
 Directing the $x$ axis in the flow direction and letting $y$ be
@@ -7262,143 +7347,8 @@ The scaled problem is of course the same whether we have flow of
 fluid or heat.
 !eremarks
 
-===== Problem: Starting Couette flow =====
-label{scale:vib:exer:starting_Couette}
-file=starting_Couette
 
-A fluid is confined in a channel with two planar walls $z=0$ and $z=H$.
-The fluid is at rest. At time $t=0$ the upper wall is suddenly set in
-motion with a velocity $U\ii$. We assume that the velocity is
-directed along the $x$ axis: $\u = u(x,z,t)\ii$. From the equation of continuity, $\nabla\cdot\u =0$, we get that $\partial u/\partial x = 0$ such
-that $\u = u(z,t)\ii$. The boundary conditions are $\u=0$ at the lower
-wall $z=0$ and $\u = U\ii$ at the upper wall $z=H$. Assume that the
-pressure is constant everywhere and that there are no body forces.
-
-!bsubex
-Start with the incompressible Navier-Stokes equations and the
-assumption $\u = u(z,t)\ii$. Derive an initial-boundary value problem
-for $u(z,t)$. Scale the problem.
-
-!bsol
-Inserting the simplified velocity in the original Navier-Stokes equations
-makes the convection term $\u\cdot\nabla\u$ vanish and $\nabla p$ vanishes
-since $p$ is assumed constant (only the upper wall drives the flow).
-The result becomes
-
-!bt
-\[ \varrho \frac{\partial u}{\partial t} = \mu
-\frac{\partial^2 u}{\partial z},\]
-!et
-or using $\mu/\varrho =\nu$,
-
-!bt
-\[ \frac{\partial u}{\partial t} = \nu
-\frac{\partial^2 u}{\partial z},\]
-!et
-with $u(z,0)=0$, $u(0,t)=0$ and $u(H,t)=U$. This is a standard
-diffusion problem. The natural length scale is $H$, so
-$\bar z = z/H$. Using the well-established time scale $t_c= H^2/\nu$
-and the velocity scale $u_c=U$, we get the dimensionless problem
-
-!bt
-\[ \frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial^2\bar u}{\partial \bar z},\]
-!et
-with $\bar u(\bar z,0)=0$, $u(0,\bar t)=0$, $u(1,t)=1$.
-There are no physical parameters. Having computed $\bar u(\bar z, \bar t)$,
-the physical solution can be retrieved as
-
-!bt
-\[ u(z,t) = U\bar u(\bar zH, \bar t H^2/\nu)\tp\]
-!et
-!esol
-!esubex
-
-!bsubex
-Start with the dimensionless Navier-Stokes equations and use
-the assumption $\bar\u = \bar u(\bar z,\bar t)\ii$ to reduce
-the problem. The resulting equation now contains a Reynolds
-number, i.e., one more physical parameter than in a).
-Why is this an inferior approach to scaling the problem?
-
-!bsol
-Inserting the simplified velocity in the scaled Navier-Stokes
-equations leads to
-
-!bt
-\[ \frac{\partial \bar u}{\partial \bar t} = \frac{1}{\hbox{Re}}
-\frac{\partial^2\bar u}{\partial \bar z}\tp\]
-!et
-Here we have the Reynolds number as parameter.
-
-The major difference is the scaling used in time: $t_c=H/U$
-(length scale is $H$ here) versus $t_c = H^2/\nu$. The latter
-is much more suitable as it is based on a diffusion problem and
-the present problem is indeed a diffusion problem.
-Normally, $\nu$ is very small, so $t_c$ based on diffusion is usually much
-larger than $H/U$. With an inappropriate time scale,
-$\partial \bar u/\partial\bar t$ is not of unit size, and we need a
-dimensionless number on the right-hand side to adjust the
-spatial derivative term to a non-unity size. The wrong scaling
-thereby introduces an extra (unnecessary) parameter.
-!esol
-!esubex
-
-!bsubex
-Can you construct a heat conduction problem that has the same solution
-$\bar u(\bar z,\bar t)$ as in a)?
-
-!bsol
-Consider a long rod with length $H$ aligned with the $z$ axis.
-The rod is isolated on the curved circular surface and kept
-at fixed temperatures $U_0$ and $U_H$ at the ends $z=0$ and $z=H$,
-respectively. The initial temperature is $U_0$.
-Because of the insulated curved surface, heat can only propagate in
-the $z$ direction, and a one-dimensional
-heat conduction equation is appropriate:
-
-!bt
-\[ \frac{\partial u}{\partial t} = \dfc
-\frac{\partial^2 u}{\partial z},\]
-!et
-with $u(z,0)=U_0$, $u(0,t)=U_0$, and $u(H,t)=U_H$.
-We introduce a dimensionless temperature
-
-!bt
-\[ \bar u = \frac{u - U_0}{U_H - U_0},\]
-!et
-such that $\bar u\in [0,1]$. The standard time scale $t_c=H^2/\dfc$
-is used, notifying that the length scale is $H$. Inserting the
-dimensionless variables in the governing equation results in
-the same problem as in a). It means that we from one solution
-$\bar u(\bar z,\bar t)$ can get solutions for heat conduction
-in rods of all lengths and materials, and with all boundary temperatures,
-as well as flow of any fluid
-between two walls with any gap and any velocity of the upper wall.
-!esol
-!esubex
-
-!bsubex
-Describe how the scaled problem in this exercise can be solved
-by a program that solves the following diffusion problem with dimensions:
-
-!bt
-\begin{align*}
-\frac{\partial u}{\partial t} &=
-\dfc \frac{\partial^2 u}{\partial z} + f(x,t),\\
-u(x,0) &= I(x),\\
-u(0,t) & =U_0(t),\\
-u(L,t) & =U_L(t)\tp
-\end{align*}
-!et
-
-!bsol
-Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
-$U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
-!esol
-!esubex
-
-===== Exercise: Couette flow with pressure gradient =====
+===== Exercise: Couette-Poiseuille flow =====
 label{scale:vib:exer:Couette_wpressure}
 file=Couette_wpressure
 
@@ -7416,7 +7366,10 @@ Here, $u(z)$ is the fluid velocity in $x$ direction (perpendicular to the
 $z$ axis), $\mu$ is the dynamic viscosity of the fluid, $\beta$ is
 a positive constant pressure gradient, and $U_0$ is the
 constant velocity of the upper
-plate $z=H$ in $x$ direction.
+plate $z=H$ in $x$ direction. The model represents
+"Couette flow": "https://en.wikipedia.org/wiki/Couette_flow" for $\beta=0$
+and "Poiseuille flow": "https://en.wikipedia.org/wiki/Hagen–Poiseuille_equation"
+for $U_0=0$.
 
 !bsubex
 Find the exact solution $u(z)$. Point out how $\beta$ and $U_0$
@@ -7480,11 +7433,11 @@ we must have
 The boundary value problem is
 
 !bt
-\begin{align}
+\begin{align*}
 \frac{d^2\bar u}{d\bar z^2} &= -1,\quad &\bar z\in (0,1),\\
 \bar u(0) &= 0,\\
 \bar u(1) &= \alpha,
-\end{align}
+\end{align*}
 !et
 where $\alpha$ is a dimensionless number
 
@@ -7513,8 +7466,8 @@ we choose $u_c=U_0$ and get instead
 !esol
 !esubex
 
-[hpl: Could extend to time-dependent case, but this will involve three time
-scales...]
+## Could extend to time-dependent case, but this will involve three time
+## scales...
 
 ===== Exercise: Pulsatile pipeflow =====
 label{scale:exer:pipeflow:pulsatile}
@@ -7621,7 +7574,7 @@ A key PDE in neuroscience is the "cable equation": "https://en.wikipedia.org/wik
 
 !bt
 \begin{equation}
-\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial t^2}
+\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
 -u\tp
 label{scale:exer:cable_eq:PDE}
 \end{equation}
@@ -7642,7 +7595,7 @@ leads in the first step to
 
 !bt
 \[ \frac{\partial\bar u}{\partial\bar t} =
-\frac{t_c\lambda^2}{\tau x_c^2}\frac{\partial^2\bar u}{\partial\bar t^2}
+\frac{t_c\lambda^2}{\tau x_c^2}\frac{\partial^2\bar u}{\partial\bar x^2}
 - \frac{t_c}{\tau}\bar u\tp\]
 !et
 Assuming that all terms are equally important and of unit size
@@ -7656,7 +7609,7 @@ The scaled cable equation is then
 !bt
 \[
 \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2\bar u}{\partial\bar t^2}
+\frac{\partial^2\bar u}{\partial\bar x^2}
 - \bar u\tp
 \]
 !et
@@ -7666,7 +7619,7 @@ diffusion means $t_c = \tau (L/\lambda)^2$, and the scaled PDE becomes
 
 !bt
 \[ \frac{\partial\bar u}{\partial\bar t} =
-\frac{\partial^2\bar u}{\partial\bar t^2}
+\frac{\partial^2\bar u}{\partial\bar x^2}
 - \beta\bar u,\]
 !et
 where
@@ -7680,7 +7633,7 @@ derivative and the reaction term, gives $t_c=\tau$ and the scaled PDE
 
 !bt
 \[ \frac{\partial\bar u}{\partial\bar t} =
-\beta^{-1}\frac{\partial^2\bar u}{\partial\bar t^2}
+\beta^{-1}\frac{\partial^2\bar u}{\partial\bar x^2}
 - \bar u\tp\]
 !et
 
@@ -7704,7 +7657,7 @@ temperature evolution in the two pieces:
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
-u(\x,0)=I(x), & \x\in Omega,\\
+u(\x,0)&=I(x), & \x\in \Omega,\\
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
 \end{align}
@@ -7740,32 +7693,31 @@ the cross section of the bricks. Integrating over $A$ gives
 \begin{align*}
 \int\limits_A \frac{\partial u}{\partial t}dydz &=
 \int\limits_A \dfc\left(
-\frac{\partial^2 u}{\partial x^2}
-+\frac{\partial^2 u}{\partial y^2}
+\frac{\partial^2 u}{\partial x^2} +
++\frac{\partial^2 u}{\partial y^2} +
 +\frac{\partial^2 u}{\partial z^2}
-\right)dydz =\\
-\int\limits_A \dfc
+\right)dydz \\
+&=\int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
 dydz +
 \int\limits_A \dfc\left(
-\frac{\partial^2 u}{\partial y^2}
+\frac{\partial^2 u}{\partial y^2} +
 +\frac{\partial^2 u}{\partial z^2}
 \right)dydz \\
 & =
 \int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
 dydz +
-\dfc\int\limits_{\partial A}\frac{\partial u}{\partial n}\\
+\dfc\int\limits_{\partial A}\frac{\partial u}{\partial n}ds\\
 & = \int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
 dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 !et
-[Geir: Strange alignment]
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
 [Geir: Hm??]
 Assuming $u$ to vary little across the cross section $A$, we can
-approximate the integrals by $u$ evaluated at $\partial A$:
+approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 
 !bt
 \[ \int\limits_A \frac{\partial u}{\partial t}dydz\approx A
@@ -7784,13 +7736,13 @@ The result is the 1D initial-boundary value problem
 \frac{\partial v}{\partial t} &=
 \dfc \frac{\partial^2 v}{\partial x^2}
 -\frac{h}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],\\
-v(x,0)=I(x), & x\in (0,L),\\
- \dfc{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
--\dfc{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
+v(x,0)&=I(x), & x\in (0,L),\\
+ \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],\\
+-\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
 \end{align}
 !et
 with
-[Geir: strange alignment and use of dfc]
+
 !bt
 \[
 I(x) = \left\lbrace\begin{array}{ll}
@@ -7865,9 +7817,9 @@ The scaled boundary conditions take the form
 
 !bt
 \[
- \dfc{\partial}{\partial\bar x}\bar v(0,t) = \frac{Lh}
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \frac{Lh}{\dfc}
  (\bar v(0,t)-1),\quad
--\dfc{\partial}{\partial\bar x}\bar v(L,t) = \frac{Lh}
+-{\partial}{\partial\bar x}\bar v(L,t) = \frac{Lh}{\dfc}
 (\bar v(L,t)-1)\tp
 \]
 !et
@@ -8429,24 +8381,17 @@ label{scale:fluid:NS:eq:cont_d0}
 \end{align}
 !et
 For the velocity it is common to just introduce some $U$ for
-$u_c$. This $U$ is normally implied by the problem description.
-For example, in the flow configuration below, with flow over a bump,
-we have some incoming
-flow with a profile $v(y)$ and $U$ can typically be chosen as
-$U=\max_y v(y)$. The height of the bump influences the wake behind
-the bump, so a natural length scale is $\alpha$. For numerical
-simulations in a domain of finite extent, $W$ must be
-large enough to avoid feedback on the inlet profile, and $L_c$ must be
-large enough for the type of outflow boundary condition used.
-Ideally, $W,L_c\rightarrow\infty$, so none of these parameters are
-useful as length scales.
-
-[hpl: Geir, check this formulation for choice of length scale.]
-[Geir: $L$ cannot be used as both down-wind length of computational domain
-and general length scale. Could not change the $L$ on the figure, as it is
-part of the pdf. A little uncertain concerning the check -- it looks mostly
-fine. The profile may have a length cale (as implicit in the figur). It may also be beneficial to have a spanwise
-limit of the computational domain in the figure ?]
+$u_c$. This $U$ is normally implied by the problem description.  For
+example, in the flow configuration below, with flow over a bump, we
+have some incoming flow with a profile $v(y)$ and $U$ can typically be
+chosen as $U=\max_y v(y)$. The height of the bump influences the wake
+behind the bump, so a natural length scale is $L=\alpha$. For numerical
+simulations in a domain of finite extent, $[0,c+\ell]$, $c$
+must be large enough to
+avoid feedback on the inlet profile, and $\ell$ must be large enough
+for the type of outflow boundary condition used.  Ideally,
+$c,\ell\rightarrow\infty$, so none of these parameters are useful as
+length scales.
 
 <linebreak>
 <linebreak>
@@ -8461,7 +8406,7 @@ $v(r)$ in a tube, where $r$ is the radial coordinate, and a natural
 choice of characteristic velocity is $U=v(0)$ or the average flow
 
 !bt
-\[ U = \frac{1}{R}\int_0^R v(r)dr,\]
+\[ U = \frac{1}{\pi R^2}\int_0^R 2\pi v(r)rdr,\]
 !et
 if $R$ is the radius of the tube. Other examples may be flow around
 a body, where there is some distant constant inlet flow $\u = U_0\ii$,
@@ -8488,11 +8433,12 @@ idx{Reynolds number}
 
 The discussions so far results in the following dimensionless form of
 (ref{scale:fluid:NS:eq:momentum}) and (ref{scale:fluid:NS:eq:cont}):
+
 !bt
 \begin{align}
 \frac{\partial \bar\u}{\partial \bar t} +
 \bar\u\cdot\bar\nabla\bar\u
-&= -\bar\nabla\bar p + \hbox{Re}^{-1}\nabla^2\u,
+&= -\bar\nabla\bar p + \hbox{Re}^{-1}\bar\nabla^2\bar\u,
 label{scale:fluid:NS:eq:momentum_d1}\\
 \bar\nabla\cdot \bar\u &= 0,
 \end{align}
@@ -8544,7 +8490,7 @@ With this time scale, the dimensionless Navier-Stokes equations look like
 \begin{align}
 \frac{\partial \bar\u}{\partial \bar t} +
 \hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u
-&= -\bar\nabla p + \nabla^2\u,
+&= -\bar\nabla p + \bar\nabla^2\bar\u,
 label{scale:fluid:NS:eq:momentum_d2}\\
 \bar\nabla\cdot\bar\u &= 0\tp
 \end{align}
@@ -8557,7 +8503,7 @@ flow:
 
 !bt
 \begin{align}
--\bar\nabla p + \nabla^2\u &= 0,
+-\bar\nabla p + \bar\nabla^2\bar\u &= 0,
 label{scale:fluid:NS:eq:momentum_d3}\\
 \bar\nabla\cdot\bar\u &= 0\tp
 \end{align}
@@ -8580,7 +8526,7 @@ time scale, and $\mu U/L$ as pressure scale, results in
 \begin{equation}
 \hbox{Re}\left(\frac{\partial \bar\u}{\partial \bar t} +
 \bar\u\cdot\bar\nabla\bar\u\right)
-= -\bar\nabla\bar p + \nabla^2\bar\u\tp
+= -\bar\nabla\bar p + \bar\nabla^2\bar\u\tp
 \end{equation}
 !et
 Low Reynolds number flow now suggests neglecting both acceleration terms.
@@ -8777,8 +8723,8 @@ cold fluid is heavier than hot fluid, the gravity force will induce
 flow due to density differences. This effect is called free thermal
 convection. Forced convection refers to the case where there is no
 feedback from the temperature field to the motion, i.e., temperature
-differences do not create motion, and the temperature distribution
-is only dependent on a given velocity field.
+differences do not create motion. This fact decouples the energy
+equation from the mass and momentum equations.
 
 ===== Forced convection =====
 
@@ -8901,11 +8847,11 @@ coupled to an energy equation governing the temperature:
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
 label{scale:fluid:free_convection:eq:momentum_T}\\
-\nabla\cdot\u & = 0,
+\frac{\partial\rho}{\partial t} + \nabla\cdot(\varrho\u) & = 0,
 label{scale:fluid:free_convection:eq:cont_T}\\
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
-label{scale:fluid:free_convection:eq:energy_T}\\
+label{scale:fluid:free_convection:eq:energy_T}
 \end{align}
 !et
 The symbol $T$ is the temperature, $c$ is a heat capacity, $\kappa$
@@ -8965,22 +8911,6 @@ where
 is known as the thermal expansion coefficient of the fluid,
 and $\varrho_0$ is a reference density when the temperature is at $T_0$.
 
-=== Comment on the form of the equation of continuity ===
-
-It might look strange that the equation of continuity (from the mass
-conservation principle) is $\nabla\cdot\u =0$
-when there are density variations in the flow. The reason for using
-this version of the continuity equation is the assumption that
-the density of each fluid particle remains constant. Consequently,
-from the general equation of continuity,
-
-!bt
-\[ \frac{\partial\varrho}{\partial t} + \nabla\cdot (\varrho \u) =
-\frac{D\varrho}{dt} + \varrho \nabla\cdot\u = 0,\]
-!et
-it follows that if $\varrho$ is constant for a particle,
-the material derivative $D\varrho/dt = \varrho_{t} + \v\cdot\nabla\varrho = 0$,
-and the equation reduces to $\nabla\cdot\u = 0$.
 
 === The Boussinesq approximation ===
 
@@ -9000,7 +8930,7 @@ label{scale:fluid:free_convection:eq:momentum_TB}\\
 label{scale:fluid:free_convection:eq:cont_TB}\\
 \varrho_0 c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
-label{scale:fluid:free_convection:eq:energy_TB}\\
+label{scale:fluid:free_convection:eq:energy_TB}
 \end{align}
 !et
 A good justification of the Boussinesq approximation is provided
@@ -9338,40 +9268,49 @@ heat generation by viscous dissipation.
 idx{Nusselt number}
 
 A common boundary condition, modeling heat transfer to/from the
-surroundings is
+surroundings, is
 
 !bt
 \begin{equation}
--\kappa\frac{\partial T}{\partial n} = h_T(T - T_s),
+-\kappa\frac{\partial T}{\partial n} = h(T - T_s),
 label{scale:fluid:free_convection:fluxcond}
 \end{equation}
 !et
 where $\partial/\partial n$ means the derivative in the normal direction
-($\normalvec\cdot\nabla$), $h_T$ is an experimentally determined
+($\normalvec\cdot\nabla$), $h$ is an experimentally determined
 heat transfer coefficient, and $T_s$ is the temperature of
 the surroundings. Scaling (ref{scale:fluid:free_convection:fluxcond})
 leads to
 
 !bt
-\[ -\frac{\kappa\Delta t}{L}\frac{\partial \bar T}{\partial \bar n} = h_T(\Delta T \bar T + T_0 - T_s),\]
+\[ -\frac{\kappa\Delta t}{L}\frac{\partial \bar T}{\partial \bar n} = h(\Delta T \bar T + T_0 - T_s),\]
 !et
 and further to
 
 !bt
 \[ \frac{\partial \bar T}{\partial \bar n} =
-\frac{h_TL}{\kappa}(\bar T + \frac{T_s - T_0}{\Delta T})
+\frac{hL}{\kappa}(\bar T + \frac{T_s - T_0}{\Delta T})
 = \hbox{Nu}(\bar T - \bar T_s),
 \]
 !et
 where the Nusselt number is defined by
 
 !bt
-\[ \hbox{Nu} = \frac{h_TL}{\kappa},\]
+\[ \hbox{Nu} = \frac{hL}{\kappa},\]
 !et
 and $\bar T_s$ is simply the dimensionless surrounding temperature,
 
 !bt
 \[ \bar T_s = \frac{T_s - T_0}{\Delta T}\tp\]
+!et
+
+The left-hand side of (ref{scale:fluid:free_convection:fluxcond}) represents
+heat conduction, while the right-hand side models convective heat
+transfer at a boundary. The Nusselt number can then be interpreted as
+the ratio of convective and conductive heat transfer a a boundary:
+
+!bt
+\[ \frac{|h(T-T_s)|}{\kappa T/L} \sim \frac{h}{\kappa /L} = \hbox{Nu}\tp\]
 !et
 
 Heat transfer is a huge engineering
@@ -9809,11 +9748,12 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \frac{\varrho_c U}{t_c}\bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar\u
-+ \frac{\varrho_c}{L}c_0^2\bar\varrho^{\gamma-1}
++ \frac{\varrho_c}{L}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}c_0^2\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
 !et
+[Geir: The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$.]
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 
@@ -9824,7 +9764,7 @@ $t_c = L/U$. This choice leads to the scaled PDEs
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \bar\varrho\bar\u\cdot\bar\nabla\bar\u
-+ \hbox{M}^{-2}\bar\varrho^{\gamma-1}
++ \hbox{M}^{-2}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0,
 \end{align}
@@ -9911,20 +9851,17 @@ $\varrho_c$ and $U$ are not known. Usually these
 can be estimated from perturbations (i.e., sound generation)
 applied at the boundary.
 
-[hpl: Geir, something is wrong with the $\varrho$ scaling. Should get
-an $M$ in the $\nabla\varrho$ term.]
-
 Inserting the scaled variables in (ref{scale:gas:acoustic:rho})
 and (ref{scale:gas:acoustic:u2}) results in
 
 !bt
 \begin{align*}
-\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
+\alpha\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
 + \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
 \frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\u
-+ \frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
++ \alpha\frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
@@ -9940,38 +9877,40 @@ Using $t_c=L/u_0$ we get
 
 !bt
 \begin{align*}
-\frac{\partial\bar\varrho}{\partial\bar t}
+\alpha \frac{\partial\bar\varrho}{\partial\bar t}
 + \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
 \hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
-\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
+\alpha\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
 !et
 
-With the assumption of small perturbations, M and $\alpha$ are small numbers.
-We can first approximate $1+\alpha$ by 1. Thereafter, we realize
-that multiplying by M in the momentum equation gives
+For small perturbations the linear terms in these equations must balance.
+This points to $M$ and $\alpha$ being of the same order and we may
+choose $\alpha=M$ to obtain
 
 !bt
-\[
-\hbox{M}\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u
-+ \left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
-=0\]
+\begin{align*}
+\frac{\partial\bar\varrho}{\partial\bar t}
++\bar\nabla\cdot((1+\hbox{M}\bar\varrho)\bar\u) &=0,\\
+\frac{\partial\bar\u}{\partial\bar t} +
+\hbox{M}\bar\u\cdot\bar\nabla\bar\u +
+\left(1 + \hbox{M} \bar\varrho\right)^{\gamma-2}\bar\nabla\bar\varrho
+&=0\tp
+\end{align*}
 !et
-The term $\hbox{M}^2\bar\u\cdot\bar\nabla\bar\u$ has size
-$\hbox{M}^2$ and is very smaller than the first and third term,
-suggesting that we omit the nonlinear term.
-We arrive at the following linearized system of PDEs
+
+Now the Mach number,  $\hbox{M}$, appears in the nonlinear terms only.
+Letting $\hbox{M}\rightarrow 0$ we arrive at the following linearized system of PDEs
 
 !bt
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+ \hbox{M}\bar\nabla\cdot\bar\u &=0,
++ \bar\nabla\cdot\bar\u &=0,
 label{scale:gas:acoustic:rho:s}\\
-\hbox{M}\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
+\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
 label{scale:gas:acoustic:u2:s}
 \end{align}
 !et
@@ -10331,13 +10270,138 @@ The model is very similar to the equations of thermo-elasticity in
 Section ref{scale:elasticity:thermo}.
 !ehint
 
-===== Exercise: Suggestions... =====
-label{scale::exer:suggest}
+===== Problem: Starting Couette flow =====
+label{scale:vib:exer:starting_Couette}
+file=starting_Couette
 
-Projects:
+A fluid is confined in a channel with two planar walls $z=0$ and $z=H$.
+The fluid is at rest. At time $t=0$ the upper wall is suddenly set in
+motion with a velocity $U\ii$. We assume that the velocity is
+directed along the $x$ axis: $\u = u(x,z,t)\ii$. From the equation of continuity, $\nabla\cdot\u =0$, we get that $\partial u/\partial x = 0$ such
+that $\u = u(z,t)\ii$. The boundary conditions are $\u=0$ at the lower
+wall $z=0$ and $\u = U\ii$ at the upper wall $z=H$. Assume that the
+pressure is constant everywhere and that there are no body forces.
 
- * Poisson problem, membrane, see Nayfeh chapter 1, stationary and time
- * diffusion with oscillating $f(x,t)$,
-   oscillating pressure in tube (channel first)
- * Helmholtz
- * boundary layer fluid flow problem, with/without thermal effects
+!bsubex
+Start with the incompressible Navier-Stokes equations and the
+assumption $\u = u(z,t)\ii$. Derive an initial-boundary value problem
+for $u(z,t)$. Scale the problem.
+
+!bsol
+Inserting the simplified velocity in the original Navier-Stokes equations
+makes the convection term $\u\cdot\nabla\u$ vanish and $\nabla p$ vanishes
+since $p$ is assumed constant (only the upper wall drives the flow).
+The result becomes
+
+!bt
+\[ \varrho \frac{\partial u}{\partial t} = \mu
+\frac{\partial^2 u}{\partial z},\]
+!et
+or using $\mu/\varrho =\nu$,
+
+!bt
+\[ \frac{\partial u}{\partial t} = \nu
+\frac{\partial^2 u}{\partial z},\]
+!et
+with $u(z,0)=0$, $u(0,t)=0$ and $u(H,t)=U$. This is a standard
+diffusion problem. The natural length scale is $H$, so
+$\bar z = z/H$. Using the well-established time scale $t_c= H^2/\nu$
+and the velocity scale $u_c=U$, we get the dimensionless problem
+
+!bt
+\[ \frac{\partial \bar u}{\partial \bar t} =
+\frac{\partial^2\bar u}{\partial \bar z},\]
+!et
+with $\bar u(\bar z,0)=0$, $u(0,\bar t)=0$, $u(1,t)=1$.
+There are no physical parameters. Having computed $\bar u(\bar z, \bar t)$,
+the physical solution can be retrieved as
+
+!bt
+\[ u(z,t) = U\bar u(\bar zH, \bar t H^2/\nu)\tp\]
+!et
+!esol
+!esubex
+
+!bsubex
+Start with the dimensionless Navier-Stokes equations and use
+the assumption $\bar\u = \bar u(\bar z,\bar t)\ii$ to reduce
+the problem. The resulting equation now contains a Reynolds
+number, i.e., one more physical parameter than in a).
+Why is this an inferior approach to scaling the problem?
+
+!bsol
+Inserting the simplified velocity in the scaled Navier-Stokes
+equations leads to
+
+!bt
+\[ \frac{\partial \bar u}{\partial \bar t} = \frac{1}{\hbox{Re}}
+\frac{\partial^2\bar u}{\partial \bar z}\tp\]
+!et
+Here we have the Reynolds number as parameter.
+
+The major difference is the scaling used in time: $t_c=H/U$
+(length scale is $H$ here) versus $t_c = H^2/\nu$. The latter
+is much more suitable as it is based on a diffusion problem and
+the present problem is indeed a diffusion problem.
+Normally, $\nu$ is very small, so $t_c$ based on diffusion is usually much
+larger than $H/U$. With an inappropriate time scale,
+$\partial \bar u/\partial\bar t$ is not of unit size, and we need a
+dimensionless number on the right-hand side to adjust the
+spatial derivative term to a non-unity size. The wrong scaling
+thereby introduces an extra (unnecessary) parameter.
+!esol
+!esubex
+
+!bsubex
+Can you construct a heat conduction problem that has the same solution
+$\bar u(\bar z,\bar t)$ as in a)?
+
+!bsol
+Consider a long rod with length $H$ aligned with the $z$ axis.
+The rod is isolated on the curved circular surface and kept
+at fixed temperatures $U_0$ and $U_H$ at the ends $z=0$ and $z=H$,
+respectively. The initial temperature is $U_0$.
+Because of the insulated curved surface, heat can only propagate in
+the $z$ direction, and a one-dimensional
+heat conduction equation is appropriate:
+
+!bt
+\[ \frac{\partial u}{\partial t} = \dfc
+\frac{\partial^2 u}{\partial z},\]
+!et
+with $u(z,0)=U_0$, $u(0,t)=U_0$, and $u(H,t)=U_H$.
+We introduce a dimensionless temperature
+
+!bt
+\[ \bar u = \frac{u - U_0}{U_H - U_0},\]
+!et
+such that $\bar u\in [0,1]$. The standard time scale $t_c=H^2/\dfc$
+is used, notifying that the length scale is $H$. Inserting the
+dimensionless variables in the governing equation results in
+the same problem as in a). It means that we from one solution
+$\bar u(\bar z,\bar t)$ can get solutions for heat conduction
+in rods of all lengths and materials, and with all boundary temperatures,
+as well as flow of any fluid
+between two walls with any gap and any velocity of the upper wall.
+!esol
+!esubex
+
+!bsubex
+Describe how the scaled problem in this exercise can be solved
+by a program that solves the following diffusion problem with dimensions:
+
+!bt
+\begin{align*}
+\frac{\partial u}{\partial t} &=
+\dfc \frac{\partial^2 u}{\partial z} + f(x,t),\\
+u(x,0) &= I(x),\\
+u(0,t) & =U_0(t),\\
+u(L,t) & =U_L(t)\tp
+\end{align*}
+!et
+
+!bsol
+Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
+$U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
+!esol
+!esubex
