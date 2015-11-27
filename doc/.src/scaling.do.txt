@@ -3080,7 +3080,13 @@ Here we have four dimensionless variables
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
 \end{align}
 !et
-These dimensionless variables have interpretations as ratios of
+We remark that the choice of $u_c$ has so far not been made. Several
+different cases will be considered below, and certain choices reduce
+the number of independent dimensionless variables to three.
+
+[hpl: New comment in the paragraph above.]
+
+The four dimensionless variables above have interpretations as ratios of
 physical effects:
 
  * $\alpha$: ratio of the initial displacement and
@@ -3102,8 +3108,7 @@ Section ref{sec:scale:vib:damped:F}.
 
 === Choice of $u_c$ close to resonance ===
 
-We have chosen not to specify $u_c$ in the formulas above. Now we shall
-discuss various choices of $u_c$.
+Now we shall discuss various choices of $u_c$.
 Close to resonance, when $\psi\sim\omega$, we may set
 $u_c=A/(m(\omega^2 - \psi^2))$. The dimensionless numbers
 become in this case
@@ -4461,8 +4466,8 @@ idx{Lotka-Volterra, competing species model}
 Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
-interaction (cf.~Problem ref{scale:decay:exer:predprey}):
-[Geir: reference to scale:decay:exer:predprey not invoked]
+interaction (cf. Problem ref{scale:decay:exer:predpray}):
+
 !bt
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\
@@ -4510,6 +4515,9 @@ ODE, respectively.
 ===== Problem: Find the period of sinusoidal signals =====
 label{scale:decay:exer:sine}
 file=sine_period
+
+This exercise aims at investigating various concepts like period, wave length,
+and frequency in non-damped and damped sinusoidal signals.
 
 !bsubex
 Plot the function
@@ -4840,7 +4848,7 @@ remains in the ODE or in the initial condition.
 !esubex
 
 !bsubex
-Simulate the problem in b) for $\Theta = 1,20,45,60$ measure in degrees.
+Simulate the problem in b) for $\Theta = 1,20,45,60$ measured in degrees.
 
 !bsol
 We use "Odespy": "https://github.com/hplgit/odespy"
@@ -5283,7 +5291,7 @@ In multi dimensions in heterogeneous media we have the generalization
 label{scale:wave:pde1:3D}
 \end{equation}
 !et
-where $f$ represents a forcing. 
+where $f$ represents a forcing.
 How to scale time depends on the PDE, the spatial scale depends on
 the domain, and the scale of $u$ usually depends on $f$ or the
 boundary or initial condition.
@@ -5748,16 +5756,15 @@ idx{dimensionless number}
 
 If $V$ is much larger than $I$, one expects that the influence of $I$
 is small. However, it takes time for the initial velocity $V$ to
-influence the wave motion, so if $c$ is much bigger than $L$, the
+influence the wave motion, so the speed of the waves $c$ and the length
+of the domain $L$ also play a role. That is, $\alpha$ is the
+important parameter. A large $\alpha$ means that the
 initial wave shape $I$
 travels quickly through the domain before the effect of $V$ becomes
-visible. The impact of $I$ may therefore be significant for small $t$.
-This is reflected in an
-$\alpha$ value that is not small since $c/L$ is large and $\max |I|/\max |V|$
-is small, resulting in a scaled initial condition $\bar u(\bar x,0)$
-that is not small.
-With $c/L$ about unity, $\alpha$ becomes small, and $\bar u(\bar x,0)
-\approx 0$ such that not much happens before the effect of $V$ becomes
+visible. The impact of $I$ may therefore be significant for small $t$
+(the numerical value of $c/L$ is very large and $\max |I|/\max |V|$ may still
+be somewhat small).
+With $\alpha$ small, not much happens before the effect of $V$ becomes
 visible. Recall that the dimensionless initial velocity is about unity
 regardless of other parameters.
 Again, the scaling and the resulting dimensionless parameter(s)
@@ -7698,7 +7705,8 @@ temperature evolution in the two pieces:
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
 u(\x,0)=I(x), & \x\in Omega,\\
--\frac{\partial u}{\partial n} &= h(u-u_S), & x\in\partial\Omega,\ t\in (0,T].
+-\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
+& x\in\partial\Omega,\ t\in (0,T].
 \end{align}
 !et
 Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
@@ -7720,7 +7728,7 @@ Thinking of two identical pieces $\Omega_1$ and $\Omega_2$ with shapes
 as bricks, it is tempting to develop a one-dimensional model, especially
 if the pieces are somewhat slender. We then expect the main temperature
 variations to take place in the $x$ direction, where the $x$ axis is
-perpendicular to the contact surface between the pieces. 
+perpendicular to the contact surface between the pieces.
 [Geir: Hm??]
 The idea is
 to integrate the governing PDE in the two other directions, use the
@@ -9393,12 +9401,12 @@ algebraic relations that govern the two primary unknowns $S$ and $P$:
 
 !bt
 \begin{align}
-\nabla\cdot\v_t &= -(Q_n + Q_w),
+\nabla\cdot\v &= -(Q_n + Q_w),
 label{scale:twoph:Peq}\\
-\v_t &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
+\v &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
 + \lambda_n\varrho_n)g\kk,
 label{scale:twoph:v_teq}\\
-\phi\frac{\partial S}{\partial t} + f_w'(S)\v_t\cdot\nabla S &=
+\phi\frac{\partial S}{\partial t} + f_w'(S)\v\cdot\nabla S &=
 \nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\
 &\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
 label{scale:twoph:Seq}\\
@@ -9420,8 +9428,8 @@ f_w(S) &= \frac{\lambda_w}{\lambda_t},
 label{scale:twoph:f_w}\\
 G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
 label{scale:twoph:G_w}\\
-h_w(S) &= -\lambda_n(S)f_w(S),
-label{scale:twoph:h_w}\tp
+h_w(S) &= -\lambda_n(S)f_w(S)\tp
+label{scale:twoph:h_w}
 \end{align}
 !et
 
@@ -9455,7 +9463,7 @@ A popular solution technique is based on operator splitting:
 
 The saturation $S$ is a non-dimensional quantity, and so are $\phi$,
 $k_{rw}$, $k_{rn}$, $K_{wm}$, $K_{nm}$, $f_w$, and $f_w'$.
-The quantity $\v_t$ is the total filtration velocity, i.e., the
+The quantity $\v$ is the total filtration velocity, i.e., the
 sum of the velocities of the wetting and non-wetting fluid.
 An associated velocity scale $v_c$ is convenient to define.
 It is also convenient to introduce dimensionless fractions of
@@ -9496,21 +9504,21 @@ G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
 Furthermore, we introduce dimensionless quantities by
 
 !bt
-\[ \bar\x = \frac{\x}{L},\quad \bar\v_t = \frac{\v_t}{v_c},\quad
+\[ \bar\x = \frac{\x}{L},\quad \bar\v = \frac{\v}{v_c},\quad
 \bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
 !et
 Inserting the above scaled quantities in the governing PDEs results in
 
 !bt
 \begin{align}
-\bar\nabla\cdot\bar\v_t &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
+\bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
 label{scale:twoph:Peq:s0}\\
-\bar\v_t &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
+\bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
 \frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\
 &\quad\quad\frac{g\lambda_c\varrho}{v_c}
 (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
 label{scale:twoph:v_teq:s0}\\
-\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v_t\cdot
+\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
 \bar\nabla S &=
 \frac{t_c P_c\lambda_c}{L^2}
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\
@@ -9575,13 +9583,13 @@ final dimensionless form as
 
 !bt
 \begin{align}
-\bar\nabla\cdot\bar\v_t &= -\epsilon(1 + \alpha^{-1}\gamma),
+\bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
 label{scale:twoph:Peq:s}\\
-\bar\v_t &= -\bar\lambda_t\bar\nabla\bar P +
+\bar\v &= -\bar\lambda_t\bar\nabla\bar P +
 \bar\lambda_w \bar p_c'(S)\bar\nabla S +
 \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
 label{scale:twoph:v_teq:s}\\
-\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v_t\cdot
+\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
 \bar\nabla S &= -
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
 \nonumber\\
@@ -9903,6 +9911,9 @@ $\varrho_c$ and $U$ are not known. Usually these
 can be estimated from perturbations (i.e., sound generation)
 applied at the boundary.
 
+[hpl: Geir, something is wrong with the $\varrho$ scaling. Should get
+an $M$ in the $\nabla\varrho$ term.]
+
 Inserting the scaled variables in (ref{scale:gas:acoustic:rho})
 and (ref{scale:gas:acoustic:u2}) results in
 
@@ -9923,7 +9934,7 @@ Since we now model sound waves, the relevant time scale is not $L/U$
 but the time it takes a wave to travel through the domain: $t_c=L/c_0$.
 This is a much smaller time scale than in the previous section because
 $c_0\gg U$
-(think of speaking: the sound travels very fast but one cannot feel
+(think of humans speaking: the sound travels very fast but one cannot feel
 the corresponding very small flow perturbation in the air!).
 Using $t_c=L/u_0$ we get
 
