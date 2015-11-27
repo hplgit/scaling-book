@@ -44,9 +44,9 @@ fig.draw()  # send all figures to plotting backend
 vx, vy = velprofile(H/2.)
 symbols = {
     'alpha': Distance_wText((W,0), (W,alpha), r'$\alpha$'),
-    'W': Distance_wText((0,-0.5), (W,-0.5), r'$W$',
+    'W': Distance_wText((0,-0.5), (W,-0.5), r'$c$',
                           text_spacing=-1./30),
-    'L': Distance_wText((W,-0.5), (W+L,-0.5), r'$L$',
+    'L': Distance_wText((W,-0.5), (W+L,-0.5), r'$\ell$',
                           text_spacing=-1./30),
     'v(y)': Text('$v(y)$', (H/2., vx)),
     'dashed line': Line((W-2.5*sigma,0), (W+2.5*sigma,0)).\

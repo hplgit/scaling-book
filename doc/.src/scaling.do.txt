@@ -805,7 +805,7 @@ Books covering scaling and non-dimensionalization very often cover
 topics not treated in the present book. One key topic   is
 dimensional analysis and the famous Buckingham Pi Theorem
 cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
-section ref{Buckingham Pi theorem}.
+section ref{scale:dimunit:Pi}.
 
 Other classical topics closely related to scaling and non-dimensionalization
 are analytical solution methods like perturbation techniques and
@@ -3305,7 +3305,7 @@ C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))
 !ec
 This is indeed the correct solution, but it is on a complex
 exponential function form, valid for all $b$, $m$, and $\omega$. We are
-interested in the case with *small damping*, $b< 2m\omega$, where the solution
+interested in the case with *small damping*, $b < 2m\omega$, where the solution
 is an exponentially damped sinusoidal function. Rewriting the expression
 in the right form is tricky with SymPy commands. Instead, we demonstrate
 a common technique when doing symbolic computing: general procedures like
@@ -5290,7 +5290,7 @@ where $\lambda$ is a dimensionless eigenvalue
 !bt
 \[ \lambda = \frac{2E}{\hbar}\sqrt{\frac{m}{k}}\tp\]
 !et
-The symbol $\bar r$ is the scaled coordiante, and $\bar R$ is a scaled
+The symbol $\bar r$ is the scaled coordinate, and $\bar R$ is a scaled
 version of $R$ (the scaling factor drops out of the equation).
 
 !bsol
@@ -5597,22 +5597,22 @@ in scaled form.
 
 === Scaling ===
 
-Regarding the characteristic time scale, it is natural to base this scale on
-the wave propagation velocity, togethr with the length scale, and not on the time scale of $U_L(t)$, because
-the time scale of $U_L$ basically determines whether
-short or long waves are fed in at the boundary. All waves, long or short,
-propagate with the same velocity $c$. We therefore continue
-to use $t_c=L/c$.
+Regarding the characteristic time scale, it is natural to base this
+scale on the wave propagation velocity, together with the length
+scale, and not on the time scale of $U_L(t)$, because the time scale
+of $U_L$ basically determines whether short or long waves are fed in
+at the boundary. All waves, long or short, propagate with the same
+velocity $c$. We therefore continue to use $t_c=L/c$.
 
-The solution $u$ will have
-one wave contribution from the initial condition $I$ and one from the
-feeding of waves at $x=0$. This gives us three choices of $u_c$:
-$\max_x |I| + \max_t |U_L|$, $\max_x |I|$, or $\max_t |U_L|$. The first seems
-relevant if the size of $I$ and $U_L$ are about the same, but then
-we can choose either $\max_x |I|$ or $\max_t |U_L|$ as characteristic size
-of $u$ since a factor of 2 is not important. If $I$ is much less than
-$U_L$, $u_c=\max_t |u_L|$ is relevant, while $u_c=\max_x|I|$ is the choice
-when $I$ has much bigger impact than $U_L$ on $u$.
+The solution $u$ will have one wave contribution from the initial
+condition $I$ and one from the feeding of waves at $x=0$. This gives
+us three choices of $u_c$: $\max_x |I| + \max_t |U_L|$, $\max_x |I|$,
+or $\max_t |U_L|$. The first seems relevant if the size of $I$ and
+$U_L$ are about the same, but then we can choose either $\max_x |I|$
+or $\max_t |U_L|$ as characteristic size of $u$ since a factor of 2 is
+not important. If $I$ is much less than $U_L$, $u_c=\max_t |u_L|$ is
+relevant, while $u_c=\max_x|I|$ is the choice when $I$ has much bigger
+impact than $U_L$ on $u$.
 
 With $u_c=\max_t |U_L(t)|$, we get the scaled problem
 
@@ -7155,7 +7155,7 @@ is multiplied by $\hbox{Pe}^{-1}$.
 For small Pe,
 
 !bt
-\[ \max_{\bar x}\frac{d\bar u}{d\bar x}     \approx 1,\quad
+\[ \max_{\bar x}\frac{d\bar u}{d\bar x}\approx 1,\quad
    \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx 0,\]
 !et
 which is also consistent with the PDE
@@ -7368,7 +7368,7 @@ a positive constant pressure gradient, and $U_0$ is the
 constant velocity of the upper
 plate $z=H$ in $x$ direction. The model represents
 "Couette flow": "https://en.wikipedia.org/wiki/Couette_flow" for $\beta=0$
-and "Poiseuille flow": "https://en.wikipedia.org/wiki/Hagen–Poiseuille_equation"
+and "Poiseuille flow": "https://en.wikipedia.org/wiki/Hagen-Poiseuille_equation"
 for $U_0=0$.
 
 !bsubex
@@ -8092,7 +8092,7 @@ label{scale:elasticity:waves:Pweq}
 !et
 which is nothing but a wave equation for the expansion component of the
 displacement field, just as (ref{scale:elasticity:waves:Sweq}) is for the
-shear compoenent.
+shear component.
 
 
 === Time-varying load ===
@@ -9307,7 +9307,7 @@ and $\bar T_s$ is simply the dimensionless surrounding temperature,
 The left-hand side of (ref{scale:fluid:free_convection:fluxcond}) represents
 heat conduction, while the right-hand side models convective heat
 transfer at a boundary. The Nusselt number can then be interpreted as
-the ratio of convective and conductive heat transfer a a boundary:
+the ratio of convective and conductive heat transfer at a boundary:
 
 !bt
 \[ \frac{|h(T-T_s)|}{\kappa T/L} \sim \frac{h}{\kappa /L} = \hbox{Nu}\tp\]

@@ -50,6 +50,7 @@ Pedersen
 Petrovsky
 PhysicalQuantity
 Piskynov
+Poiseuille
 Pr
 Prandtl
 Runge
@@ -76,6 +77,7 @@ bidomain
 candela
 cavitation
 cd
+co
 convective
 dashpot
 demystify
