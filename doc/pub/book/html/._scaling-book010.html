@@ -371,7 +371,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec146'),
               ('Stationary PDE', 2, None, '___sec147'),
-              ('Convection-diffusion with a force term',
+              ('Convection-diffusion with a source term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
@@ -751,7 +751,7 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The convection-diffusion equation</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec146" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion without a force term</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a force term</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a source term</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 19: Stationary Couette flow</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book009.html#___sec151" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
@@ -967,7 +967,7 @@ we can simulate the dimensionless problem by setting \( \varrho =\bar\varrho \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 25</b>: What about setting boundary conditions?)</font>
+<font color="red">(<b>hpl 19</b>: What about setting boundary conditions?)</font>
 <!-- end inline comment -->
 
 <h2 id="scale:elasticity:PDE1:stress">Dimensionless stress tensor</h2>
@@ -1386,11 +1386,11 @@ For the velocity it is common to just introduce some \( U \) for
 example, in the flow configuration below, with flow over a bump, we
 have some incoming flow with a profile \( v(y) \) and \( U \) can typically be
 chosen as \( U=\max_y v(y) \). The height of the bump influences the wake
-behind the bump, so a natural length scale is \( L=\alpha \). For numerical
-simulations in a domain of finite extent, \( [0,c+\ell] \), \( c \)
-must be large enough to
-avoid feedback on the inlet profile, and \( \ell \) must be large enough
-for the type of outflow boundary condition used.  Ideally,
+behind the bump, and is the length scale that really impacts the flow,
+so it is natural to set \( L=D \). For numerical simulations in a domain
+of finite extent, \( [0,c+\ell] \), \( c \) must be large enough to avoid
+feedback on the inlet profile, and \( \ell \) must be large enough for the
+type of outflow boundary condition used.  Ideally,
 \( c,\ell\rightarrow\infty \), so none of these parameters are useful as
 length scales.
 
@@ -2845,19 +2845,19 @@ There are six remaining dimensionless numbers to be set: \( K_{wm} \),
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 26</b>: Boundary conditions?)</font>
+<font color="red">(<b>hpl 20</b>: Boundary conditions?)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 27</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
+<font color="red">(<b>hpl 21</b>: Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.)</font>
 <!-- end inline comment -->
 
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 28</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
+<font color="red">(<b>hpl 22</b>: Exercises: single-phase flow, with and without thermal effects.)</font>
 <!-- end inline comment -->
 
 <h1 id="scale:gasdyn">Compressible gas dynamics</h1>
@@ -2968,7 +2968,7 @@ the ones with dimension, apart from the \( \alpha \) coefficient.
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 29</b>: Comment on software also for advanced models.)</font>
+<font color="red">(<b>hpl 23</b>: Comment on software also for advanced models.)</font>
 <!-- end inline comment -->
 
 <h2 id="___sec196">General isentropic flow </h2>
@@ -3054,7 +3054,7 @@ $$
 
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 30</b>: The rather ungracious scaling factor will disappear if \( \rho_c=\rho_0 \).)</font>
+<font color="red">(<b>Geir 24</b>: The rather ungracious scaling factor will disappear if \( \rho_c=\rho_0 \).)</font>
 <!-- end inline comment -->
 
 The characteristic flow velocity is \( U \) so a natural time scale is

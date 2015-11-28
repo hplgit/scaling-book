@@ -371,7 +371,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec146'),
               ('Stationary PDE', 2, None, '___sec147'),
-              ('Convection-diffusion with a force term',
+              ('Convection-diffusion with a source term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
@@ -751,7 +751,7 @@ $$
      <!-- navigation toc: --> <li><a href="#scale:convdiff" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The convection-diffusion equation</a></li>
      <!-- navigation toc: --> <li><a href="#___sec146" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion without a force term</a></li>
      <!-- navigation toc: --> <li><a href="#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a force term</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a source term</a></li>
      <!-- navigation toc: --> <li><a href="#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 19: Stationary Couette flow</a></li>
      <!-- navigation toc: --> <li><a href="#___sec151" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
@@ -841,24 +841,28 @@ $$
 \frac{\partial u}{\partial t} + \v\cdot\nabla u =
 \dfc\nabla^2 u,
 \quad  x,y, z\in \Omega,\ t\in (0, T]\tp
-\tag{3.68}
+\tag{3.69}
 \end{equation}
 $$
 
 The velocity field \( \v \) is prescribed, and its characteristic size \( V \)
-is normally clear from the problem description.
+is normally clear from the problem description. In the sketch below,
+we have some given flow over a bump, and \( u \) may be the concentration
+of some substance in the fluid. Here, \( V \) is typically \( \max_y v(y) \).
+The characteristic length \( L \) could be the entire domain, \( L=c+\ell \),
+or the height of the bump, \( L=D \). (The latter is the important length
+scale for the flow.)
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 21</b>: Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated? Geir says no.)</font>
-<!-- end inline comment -->
+<br />
+<br />
 
 <p>
+<center><p><img src="fig-scaling/flow_over_gaussian.png" align="bottom" width=500></p></center>
 
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 22</b>: Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different \( V \) is obvious.)</font>
-<!-- end inline comment -->
+<p>
+<br />
+<br />
 
 <p>
 Inserting
@@ -867,7 +871,7 @@ $$ \bar x = \frac{x}{x_c},\ \bar y = \frac{y}{y_c},\ \bar z = \frac{z}{z_c},
 \ \bar t = \frac{t}{t_c}, \ \bar\v = \frac{\v}{V},
 \ \bar u =\frac{u}{u_c}$$
 
-in <a href="#mjx-eqn-3.68">(3.68)</a> yields
+in <a href="#mjx-eqn-3.69">(3.69)</a> yields
 
 $$
 \frac{u_c}{t_c}
@@ -903,7 +907,7 @@ $$
 \bar\v\cdot\bar\nabla\bar u =
 \hbox{Pe}^{-1}\bar\nabla^2\bar u,
 \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T],
-\tag{3.69}
+\tag{3.70}
 \end{equation}
 $$
 
@@ -930,18 +934,18 @@ $$
 \hbox{Pe}\,\bar\v\cdot\bar\nabla\bar u =
 \bar\nabla^2\bar u,
 \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]\tp
-\tag{3.70}
+\tag{3.71}
 \end{equation}
 $$
 
 <p>
 <div class="alert alert-block alert-success alert-text-normal"><b>Discussion of scales and balance of terms in the PDE.</b>
-We see that <a href="#mjx-eqn-3.69">(3.69)</a> and <a href="#mjx-eqn-3.70">(3.70)</a>
+We see that <a href="#mjx-eqn-3.70">(3.70)</a> and <a href="#mjx-eqn-3.71">(3.71)</a>
 are not equal, and they are based on two different time scales.
 For moderate Peclet numbers around 1, all terms have the same size
-in <a href="#mjx-eqn-3.69">(3.69)</a>, i.e., a size around unity.
+in <a href="#mjx-eqn-3.70">(3.70)</a>, i.e., a size around unity.
 For large Peclet numbers,
-<a href="#mjx-eqn-3.69">(3.69)</a> expresses a balance
+<a href="#mjx-eqn-3.70">(3.70)</a> expresses a balance
 between the time derivative term and the convection term, both of size
 unity, and then there is a very small term
 \( \hbox{Pe}^{-1}\bar\nabla^2\bar u \) term because Pe is large and
@@ -964,7 +968,7 @@ be much larger than unity, but that means we use suboptimal scales,
 since right scales imply that \( \partial\bar u/\partial\bar t \) and
 \( \bar v\cdot\bar\nabla\bar u \) are of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
-<a href="#mjx-eqn-3.70">(3.70)</a>.  For very small Peclet numbers this
+<a href="#mjx-eqn-3.71">(3.71)</a>.  For very small Peclet numbers this
 equation tells that the time-derivative balances the diffusion, while
 the convection \( \bar\v\cdot\bar\nabla\bar\u \) is around
 unity, but multiplied by a very small coefficient Pe, so this term is
@@ -1001,7 +1005,7 @@ $$
 \begin{equation}
 \bar\v\cdot\bar\nabla\bar u =
 \hbox{Pe}^{-1}\bar\nabla^2\bar u\tp
-\tag{3.71}
+\tag{3.72}
 \end{equation}
 $$
 
@@ -1105,16 +1109,16 @@ scaled equation \( \bar u' = \bar u'' \)
 expresses that the terms \( \bar u' \) and \( \bar u'' \) are
 equal and of size around unity.
 
-<h2 id="scale:convdiff:f">Convection-diffusion with a force term</h2>
+<h2 id="scale:convdiff:f">Convection-diffusion with a source term</h2>
 
 <p>
-Let us add a force term \( f(\x,t) \) to the convection-diffusion equation :
+Let us add a force term \( f(\x,t) \) to the convection-diffusion equation:
 
 $$
 \begin{equation}
 \frac{\partial u}{\partial t} + \v\cdot\nabla u =
 \dfc\nabla^2 u + f\tp
-\tag{3.72}
+\tag{3.73}
 \end{equation}
 $$
 
@@ -1247,11 +1251,11 @@ is governed by
 $$
 \begin{align}
 \mu u''(z) &= -\beta
-\tag{3.73}\\ 
-u(0) &= 0,
 \tag{3.74}\\ 
+u(0) &= 0,
+\tag{3.75}\\ 
 u(H) &= U_0\tp
-\tag{3.75}
+\tag{3.76}
 \end{align}
 $$
 
@@ -1406,11 +1410,11 @@ we choose \( u_c=U_0 \) and get instead
 $$
 \begin{align}
 \frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),
-\tag{3.76}\\ 
-\bar u(0) &= 0,
 \tag{3.77}\\ 
+\bar u(0) &= 0,
+\tag{3.78}\\ 
 \bar u(1) &= 1\tp
-\tag{3.78}
+\tag{3.79}
 \end{align}
 $$
 
@@ -1441,13 +1445,13 @@ $$
 \begin{align}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
 \left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{3.79}\\ 
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
 \tag{3.80}\\ 
-u(R,t) &= 0, & t\in (0,T],
+\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
 \tag{3.81}\\ 
+u(R,t) &= 0, & t\in (0,T],
+\tag{3.82}\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{3.82}
+\tag{3.83}
 \end{align}
 $$
 
@@ -1559,7 +1563,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
 -u\tp
-\tag{3.83}
+\tag{3.84}
 \end{equation}
 $$
 
@@ -1568,7 +1572,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale <a href="#mjx-eqn-3.83">(3.83)</a> in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-3.84">(3.84)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
@@ -1659,12 +1663,12 @@ temperature evolution in the two pieces:
 $$
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],
-\tag{3.84}\\ 
-u(\x,0)&=I(x), & \x\in \Omega,
 \tag{3.85}\\ 
+u(\x,0)&=I(x), & \x\in \Omega,
+\tag{3.86}\\ 
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
-\tag{3.86}
+\tag{3.87}
 \end{align}
 $$
 
@@ -1690,7 +1694,7 @@ variations to take place in the \( x \) direction, where the \( x \) axis is
 perpendicular to the contact surface between the pieces.
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 23</b>: Hm??)</font>
+<font color="red">(<b>Geir 17</b>: Hm??)</font>
 <!-- end inline comment -->
 
 The idea is
@@ -1728,7 +1732,7 @@ $$
 The function \( v(x,t) \) means \( u(\x,t) \) evaluated at the boundary \( \partial A \).
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 23</b>: Hm??)</font>
+<font color="red">(<b>Geir 17</b>: Hm??)</font>
 <!-- end inline comment -->
 
 Assuming \( u \) to vary little across the cross section \( A \), we can
@@ -1750,13 +1754,13 @@ $$
 \frac{\partial v}{\partial t} &=
 \dfc \frac{\partial^2 v}{\partial x^2}
 -\frac{h}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
-\tag{3.87}\\ 
-v(x,0)&=I(x), & x\in (0,L),
 \tag{3.88}\\ 
- \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
+v(x,0)&=I(x), & x\in (0,L),
 \tag{3.89}\\ 
+ \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
+\tag{3.90}\\ 
 -\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
-\tag{3.90}
+\tag{3.91}
 \end{align}
 $$
 

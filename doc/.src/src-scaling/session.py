@@ -1,8 +1,4 @@
 from sympy import *
-import sys, os
-sys.path.insert(0, os.path.join(os.pardir, os.pardir, 'vib', 'src-vib'))
-import sys, os
-sys.path.insert(0, os.path.join(os.pardir, os.pardir, 'wave', 'src-wave', 'wave1D'))
 
 # Solutions of various differential equations
 
@@ -318,7 +314,8 @@ def simulate_forced_vibrations3():
 
 def simulate_Gaussian_and_incoming_wave():
     from wave1D_dn import solver, viz
-    from math import pi
+    from math import pi, sin
+    from numpy import exp
     alpha = 0.1
     beta = 10
     gamma = 2*pi*3
@@ -331,10 +328,10 @@ def simulate_Gaussian_and_incoming_wave():
 
     L = 1
     c = 1
-    Nx = 80; dx = L/float(Nx); dt = dx/1
-    #solver(I=I, V=0, f=0, U_0=U_0, U_L=None, L=1, dt=dt, C=1, T=4,
+    Nx = 80; dx = L/float(Nx); dt = dx/c
+    #solver(I=I, V=0, f=0, U_0=U_0, U_L=None, L=L, dt=dt, C=1, T=4,
     #       user_action=myplotter)
-    viz(I=I, V=0, f=0, c=1, U_0=U_0, U_L=None, L=1, dt=dt, C=1,
+    viz(I=I, V=0, f=0, c=c, U_0=U_0, U_L=None, L=L, dt=dt, C=1,
         T=4, umin=-(alpha+1), umax=(alpha+1),
         version='vectorized', animate=True)
 

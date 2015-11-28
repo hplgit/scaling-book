@@ -398,7 +398,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec146'),
               ('Stationary PDE', 2, None, '___sec147'),
-              ('Convection-diffusion with a force term',
+              ('Convection-diffusion with a source term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
@@ -676,7 +676,8 @@ boundary or initial condition.
 <h2 id="___sec115">Simple homogeneous Dirichlet conditions </h2>
 
 <p>
-Let us first start <a href="#mjx-eqn-110">(110)</a>, homogeneous Dirichlet conditions in space and
+Let us first start with <a href="#mjx-eqn-110">(110)</a>,
+homogeneous Dirichlet conditions in space, and
 no initial velocity \( u_t \):
 
 $$
@@ -1054,7 +1055,7 @@ end points. This solver is trivially adapted to the present case.
     <source src='mov-scaling/gaussian_plus_incoming/alpha10.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
 </video>
 </div>
-<p><em>\( \alpha=10 \)</em></p>
+<p><em>\( \alpha=10 \).</em></p>
 
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
@@ -1071,24 +1072,13 @@ if (!!(window.safari)) {
     <source src='mov-scaling/gaussian_plus_incoming/alpha01.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
 </video>
 </div>
-<p><em>\( \alpha=0.1 \)</em></p>
+<p><em>\( \alpha=0.1 \).</em></p>
 
 <!-- Issue warning if in a Safari browser -->
 <script language="javascript">
 if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 13</b>: The HTML version features movies here. Link to them in the LaTeX PDF version as well?)</font>
-<!-- end inline comment -->
-
-
-<!-- begin inline comment -->
-<font color="red">(<b>Geir 14</b>: yes)</font>
-<!-- end inline comment -->
 
 <h2 id="scale:wave:pde2:Vcond">Velocity initial condition</h2>
 
@@ -1116,26 +1106,37 @@ $$
 <p>
 From <a href="#mjx-eqn-116">(116)</a> we now get \( f_L + f_R =0 \) and
 \( cf_L' - cf_R' = V \). Introducing \( W(x) \) such that \( W'(x)=V(x) \), a solution
-is \( -f_L=\frac{1}{2}W \) and \( f_R=\frac{1}{2}W \). Hence,
+is \( f_L=\frac{1}{2}W/c \) and \( -f_R=\frac{1}{2}W/c \). We can express this
+solution through the formula
 
-$$ u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} v(\xi) d\xi\tp$$
+$$
+\begin{equation}
+u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} V(\xi) d\xi
+ = \frac{1}{2c}(W(x+ct) - W(x-ct))\tp
+\tag{132}
+ \end{equation}
+$$
 
 <h3 id="___sec125">Scaling </h3>
 
 <p>
 Since \( V \) is the time-derivative of \( u \), the characteristic size of
-\( V \) is typically \( u_c/t_c \), meaning that
+\( V \), call it \( V_c \), is typically \( u_c/t_c \).  If we, as usual, base
+\( t_c \) on the wave speed, \( t_c = L/c \), we get \( u_c = V_cL/c \).  Looking
+at the solution <a href="#mjx-eqn-132">(132)</a>, we see that \( u_c \)
+has size \( \hbox{mean}(V)L/(2c) \), where \( \hbox{mean}(V) \) is the mean
+value of \( V \) (\( W\sim\hbox{mean}(V)L \)). This result suggests
+\( V_c=\hbox{mean}(V) \) and \( u_c = \hbox{mean}(V)L/(2c) \). One may argue
+that the factor 2 is not important, but if we want \( |\bar u|\in [0,1] \)
+it is convenient to keep it.
 
-$$ \max_{x\in(0,L)}|V(x)| = \frac{u_c}{t_c},$$
-
-which gives \( u_c = \max_{x\in(0,L)}|V(x)| L/c \). As usual, we base \( t_c \)
-on the wave speed: \( t_c = L/c \). We end up with
+<p>
+The scaled initial condition becomes
 
 $$ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
-\frac{V(\bar x x_c)}{\max_x |V(x)|},
+\frac{t_c}{u_c}V(\bar x x_c) =
+\frac{V(\bar x x_c)}{\half\hbox{mean}(V)}\tp
 $$
-
-which by itself looks like a natural scaling of a function \( V \).
 
 <h3 id="___sec126">Nonzero initial shape </h3>
 
@@ -1146,8 +1147,8 @@ based on \( V \) becomes
 
 $$
 \begin{equation}
-\bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}\tp
-\tag{132}
+\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\hbox{mean}(V)}\tp
+\tag{133}
 \end{equation}
 $$
 
@@ -1163,7 +1164,7 @@ The dimension of \( I \) is the same as \( u \), here taken to be displacement:
 Since \( V \) is \( \partial u/\partial t \), its dimension is
 \( [\hbox{LT}^{-1}] \). The dimensions of \( c \) and \( L \) are
 \( [\hbox{LT}^{-1}] \) and \( [\hbox{L}] \). The dimension of the right-hand side
-of <a href="#mjx-eqn-132">(132)</a> is then
+of <a href="#mjx-eqn-133">(133)</a> is then
 
 $$ \frac{[\hbox{LT}^{-1}][L]}{[L][L\hbox{T}^{-1}]}
 = 1,$$
@@ -1180,36 +1181,28 @@ $$ \bar u(\bar x, 0) = \alpha\bar I(\bar x),$$
 
 where \( \alpha \) the dimensionless number
 
-$$ \alpha = \frac{c}{L}\frac{\max_x |I(x)|}{\max_x |V(x)|}\tp$$
+$$ \alpha = \frac{2c}{L}\frac{\max_x |I(x)|}{\hbox{mean}(V)}\tp$$
 
 <p>
 If \( V \) is much larger than \( I \), one expects that the influence of \( I \)
 is small. However, it takes time for the initial velocity \( V \) to
 influence the wave motion, so the speed of the waves \( c \) and the length
-of the domain \( L \) also play a role. That is, \( \alpha \) is the
-important parameter. A large \( \alpha \) means that the
-initial wave shape \( I \)
-travels quickly through the domain before the effect of \( V \) becomes
-visible. The impact of \( I \) may therefore be significant for small \( t \)
-(the numerical value of \( c/L \) is very large and \( \max |I|/\max |V| \) may still
-be somewhat small).
-With \( \alpha \) small, not much happens before the effect of \( V \) becomes
-visible. Recall that the dimensionless initial velocity is about unity
-regardless of other parameters.
+of the domain \( L \) also play a role. This is reflected in \( \alpha \), which is the
+important parameter.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 15</b>: Do experiments. Make exercise or insert here.)</font>
-<!-- end inline comment -->
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 16</b>: Could make paradox: small \( I \), big \( V \), but still significant impact of \( I \) in a simulation. Why? Bug? The answer is above. Best as exercise.)</font>
-<!-- end inline comment -->
+<!-- A large \( \alpha \) means that the -->
+<!-- initial wave shape \( I \) -->
+<!-- travels quickly through the domain before the effect of \( V \) becomes -->
+<!-- visible. The impact of \( I \) may therefore be significant for small \( t \) -->
+<!-- (the numerical value of \( c/L \) is very large and \( \max |I|/\max |V| \) may still -->
+<!-- be somewhat small). -->
+<!-- With \( \alpha \) small, not much happens before the effect of \( V \) becomes -->
+<!-- visible. Recall that the dimensionless initial velocity is about unity -->
+<!-- regardless of other parameters. -->
+<!-- See exer-scaling/wave1D_small_I_big_V.py for experiments. -->
 
 <h2 id="scale:wave:pde2:cvar">Variable wave velocity and forcing</h2>
 
@@ -1223,7 +1216,7 @@ to the PDE, modeling wave generation in the interior of
 the domain. For example, a moving slide at the bottom of a fjord
 will generate surface waves and is modeled by such an \( f(x,t) \) term
 (provided the length of the waves is much larger than the depth so
-that a simple wave equation like <a href="#mjx-eqn-133">(133)</a> applies).
+that a simple wave equation like <a href="#mjx-eqn-134">(134)</a> applies).
 The initial-boundary value problem
 can be then expressed as
 
@@ -1233,19 +1226,19 @@ $$
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
 \quad & x\in (0,L),\ t\in (0,T],
-\tag{133}\\ 
+\tag{134}\\ 
 u(x,0) &= I(x),
 \quad &x\in [0,L],
-\tag{134}\\ 
+\tag{135}\\ 
 {\partial\over\partial t}u(x,0) &= 0,
 \quad & x\in [0,L],
-\tag{135}\\ 
+\tag{136}\\ 
 \frac{\partial}{\partial x}u(0,t) & = 0,
 \quad  &t\in (0,T],
-\tag{136}\\ 
+\tag{137}\\ 
 \frac{\partial}{\partial x}u(L,t) & = 0,
 \quad  &t\in (0,T].
-\tag{137}
+\tag{138}
 \end{align}
 $$
 
@@ -1257,7 +1250,7 @@ We make the coefficient \( \lambda \) non-dimensional by
 $$
 \begin{equation}
 \bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},
-\tag{138}
+\tag{139}
 \end{equation}
 $$
 
@@ -1404,7 +1397,7 @@ $$
 + b\frac{\partial u}{\partial t} =
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t)\tp
-\tag{139}
+\tag{140}
 \end{equation}
 $$
 
@@ -1432,7 +1425,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(
 \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
 \beta\bar f(\bar x,\bar t),
-\tag{140}
+\tag{141}
 \end{equation}
 $$
 
@@ -1451,7 +1444,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(
 \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
 \bar f(\bar x,\bar t)\tp
-\tag{141}
+\tag{142}
 \end{equation}
 $$
 
@@ -1476,7 +1469,7 @@ $$
 \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
 \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
 \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right)\tp
-\tag{142}
+\tag{143}
 \end{equation}
 $$
 
@@ -1507,7 +1500,7 @@ $$
 \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
 \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
 \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right)\tp
-\tag{143}
+\tag{144}
 \end{equation}
 $$
 

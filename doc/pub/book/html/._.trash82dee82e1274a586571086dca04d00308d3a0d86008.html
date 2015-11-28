@@ -371,7 +371,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec146'),
               ('Stationary PDE', 2, None, '___sec147'),
-              ('Convection-diffusion with a force term',
+              ('Convection-diffusion with a source term',
                2,
                'scale:convdiff:f',
                'scale:convdiff:f'),
@@ -751,7 +751,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#scale:convdiff" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The convection-diffusion equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#___sec146" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion without a force term</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Stationary PDE</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a force term</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#scale:convdiff:f" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Convection-diffusion with a source term</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#scale:vib:exer:stationary_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 19: Stationary Couette flow</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#___sec151" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
@@ -837,7 +837,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} =
 \dfc\frac{\partial^2 u}{\partial x^2}, \quad  x\in (0,L),\ t\in (0,T],
-\tag{3.35}
+\tag{3.36}
 \end{equation}
 $$
 
@@ -849,7 +849,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} =
 \nabla\cdot\left(\dfc \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]\tp
-\tag{3.36}
+\tag{3.37}
 \end{equation}
 $$
 
@@ -860,20 +860,20 @@ initial-boundary value problem.
 <h2 id="sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</h2>
 
 <p>
-To make <a href="#mjx-eqn-3.35">(3.35)</a> dimensionless,
+To make <a href="#mjx-eqn-3.36">(3.36)</a> dimensionless,
 we introduce as usual dimensionless dependent and independent variables:
 
 $$ \bar x = \frac{x}{x_c},
 \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}\tp$$
 
 Inserting the dimensionless quantities in the one-dimensional
-PDE <a href="#mjx-eqn-3.35">(3.35)</a> results in
+PDE <a href="#mjx-eqn-3.36">(3.36)</a> results in
 
 $$
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{t_c\dfc}{L^2}
 \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T = T/t_c]\tp
-\tag{3.37}
+\tag{3.38}
 $$
 
 Arguing as for the wave equation that the scaling should result in
@@ -888,7 +888,7 @@ implies \( t_c\dfc/L^2=1 \) and therefore \( t_c = L^2/\dfc \).
 Insight through an analytical solution can alternatively
 help with choosing \( t_c \).
 One can show that \( u=Ae^{-pt}\sin (kx) \) is a solution of
-<a href="#mjx-eqn-3.35">(3.35)</a> if \( p=\dfc k^2 \), for any \( k \).
+<a href="#mjx-eqn-3.36">(3.36)</a> if \( p=\dfc k^2 \), for any \( k \).
 This is the typical solution arising from separation of variables
 and reflects the dynamics of the space and time in the PDE.
 Exponential decay in
@@ -913,8 +913,9 @@ significantly change the solution in the entire domain.
 
 <p>
 Another fundamental solution of the diffusion equation is the
-diffusion of a Gaussian function: \( u(x,t)=(4\pi\dfc
-t)^{-1/2}\exp{(-x^2/(4\dfc t))} \). For the diffusion to be significant
+diffusion of a Gaussian function: \( u(x,t)=K(4\pi\dfc
+t)^{-1/2}\exp{(-x^2/(4\dfc t))} \), for some constant \( K \) with
+the same dimension as \( u \). For the diffusion to be significant
 at a distance \( x=L \), we may demand the exponential factor to have a
 value of \( e^{-1}\approx 0.37 \), which implies \( t=L^2/(4\dfc) \), but the
 factor 4 is not of importance, so again, a relevant time scale is
@@ -936,7 +937,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\tag{3.38}
+\tag{3.39}
 \end{equation}
 $$
 
@@ -944,13 +945,13 @@ with initial condition
 
 $$ \bar u(\bar x, 0) = \bar I(\bar x) = \frac{I(x_c\bar x)}{\max_x |I(x)|}\tp$$
 
-Notice that <a href="#mjx-eqn-3.38">(3.38)</a> is without physical parameters,
+Notice that <a href="#mjx-eqn-3.39">(3.39)</a> is without physical parameters,
 but there may be parameters in \( I(x) \).
 
 <h2 id="___sec136">Generalized diffusion PDE </h2>
 
 <p>
-Turning the attention to <a href="#mjx-eqn-3.36">(3.36)</a>, we introduce
+Turning the attention to <a href="#mjx-eqn-3.37">(3.37)</a>, we introduce
 the dimensionless diffusion coefficient
 
 $$ \bar\dfc(\bar x,\bar y,\bar z) =
@@ -983,7 +984,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
-\tag{3.39}
+\tag{3.40}
 \end{equation}
 $$
 
@@ -1004,7 +1005,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + f,
-\tag{3.40}
+\tag{3.41}
 \end{equation}
 $$
 
@@ -1059,16 +1060,16 @@ $$
 \frac{\partial u}{\partial t} &=
 \dfc \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
-\tag{3.41}\\ 
+\tag{3.42}\\ 
 u(x,0) &= U_0,
 \quad & x\in [0,L],
-\tag{3.42}\\ 
+\tag{3.43}\\ 
 u(0, t) & = U_1,
 \quad  & t\in (0, T],
-\tag{3.43}\\ 
+\tag{3.44}\\ 
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
-\tag{3.44}
+\tag{3.45}
 \end{align}
 $$
 
@@ -1077,7 +1078,7 @@ by \( \dfc = k/(\varrho c) \), where \( k \) is the heat conduction coefficient,
 \( \varrho \) is the density, and \( c \) is a specific heat capacity parameter.
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 17</b>: does this paragraph naturally belong here ?)</font>
+<font color="red">(<b>Geir 13</b>: does this paragraph naturally belong here ?)</font>
 <!-- end inline comment -->
 
 <p>
@@ -1101,16 +1102,16 @@ $$
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{\partial^2 \bar u}{\partial \bar x^2},
 \quad &  \bar x\in (0,1),\ \bar t\in (0, \bar T],
-\tag{3.45}\\ 
+\tag{3.46}\\ 
 \bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\tag{3.46}\\ 
+\tag{3.47}\\ 
 \bar u(0, \bar t) & = 1,
 \quad  & \bar t\in (0, \bar T],
-\tag{3.47}\\ 
+\tag{3.48}\\ 
 \frac{\partial}{\partial \bar x} u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
-\tag{3.48}
+\tag{3.49}
 \end{align}
 $$
 
@@ -1124,7 +1125,7 @@ $$ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp$$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 18</b>: Include simulation results.)</font>
+<font color="red">(<b>hpl 14</b>: Include simulation results.)</font>
 <!-- end inline comment -->
 
 <h2 id="___sec138">Oscillating Dirichlet condition </h2>
@@ -1132,12 +1133,12 @@ $$ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp$$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 19</b>: Do we need paragraph headings here?)</font>
+<font color="red">(<b>hpl 15</b>: Do we need paragraph headings here?)</font>
 <!-- end inline comment -->
 
 
 <!-- begin inline comment -->
-<font color="red">(<b>Geir 14</b>: yes)</font>
+<font color="red">(<b>Geir 16</b>: yes)</font>
 <!-- end inline comment -->
 
 <p>
@@ -1149,16 +1150,16 @@ $$
 \frac{\partial u}{\partial t} &=
 \dfc \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
-\tag{3.49}\\ 
+\tag{3.50}\\ 
 u(x,0) &= U_0,
 \quad & x\in [0,L],
-\tag{3.50}\\ 
+\tag{3.51}\\ 
 u(0, t) & = U_0 + A\sin(\omega t),
 \quad  & t\in (0, T],
-\tag{3.51}\\ 
+\tag{3.52}\\ 
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
-\tag{3.52}
+\tag{3.53}
 \end{align}
 $$
 
@@ -1166,7 +1167,7 @@ One important physical application is temperature oscillations in the
 ground, either day and night variations
 at a short temporal and spatial scale, or seasonal variations in the
 Earth's crust.
-An important modeling assumption is <a href="#mjx-eqn-3.52">(3.52)</a>,
+An important modeling assumption is <a href="#mjx-eqn-3.53">(3.53)</a>,
 which means that the boundary \( x=L \) is placed sufficiently far from \( x=0 \)
 such that the solution is much damped and basically constant so
 \( u_x=0 \) is a reasonable condition.
@@ -1187,18 +1188,22 @@ What is an appropriate time scale? There will be two time scales involved,
 the oscillations \( \sin(\omega t) \) with period \( P=2\pi/\omega \) at
 the boundary and the &quot;speed of diffusion&quot;, or more specifically
 the &quot;speed of heat conduction&quot; in the present context,
-where \( t_c=L^2/\dfc \) is the appropriate scale.
+where \( t_c=x_c^2/\dfc \) is the appropriate scale, \( x_c \) being
+the length scale.
 
 <p>
 As usual, investigating the exact solution of the model problem can
 illuminate the involved scales. For this particular initial-boundary
-value problem the exact solution as \( t\rightarrow\infty \) (such that
-the initial condition \( u(x,0)=U_0 \) is forgotten) can be shown to be
+value problem the exact solution as \( t\rightarrow\infty \)
+(such that
+the initial condition \( u(x,0)=U_0 \) is forgotten)
+and \( L\rightarrow\infty \) (such that <a href="#mjx-eqn-3.53">(3.53)</a>
+is certainly valid) can be shown to be
 
 $$
 \begin{equation}
 u(x,t) = U_0 - Ae^{-bx}\sin (bx - \omega t),\quad b =\sqrt{\frac{\omega}{2\dfc}}\tp
-\tag{3.53}
+\tag{3.54}
 \end{equation}
 $$
 
@@ -1216,7 +1221,7 @@ takes to propagate through the domain, which is \( L/c \), and
 hence \( t_c = L/c = L/\sqrt{2\dfc\omega} \).
 
 <p>
-One may argue that \( L \) is not the appropriate length scale, because
+One can argue that \( L \) is not the appropriate length scale, because
 \( u \) is damped by \( e^{-bx} \) so for \( x > 4/b \), \( u \) is close to zero.
 We may instead use \( 1/b \) as length scale, which is the e-folding distance of the
 damping factor, and base
@@ -1227,7 +1232,10 @@ the &quot;speed of diffusion&quot; changes to
 
 <p>
 To summarize, we have three candidates for the time scale:
-\( t_c=L^2/\dfc \), \( t_c=2/\omega \), and \( t_c=1/\omega \).
+\( t_c=L^2/\dfc \) (diffusion through the entire domain), \( t_c=2/\omega \)
+(diffusion through a distance \( 1/b \) where \( u \) is significantly
+different from zero), and \( t_c=1/\omega \) (wave movement over a
+distance \( 1/b \)).
 
 <p>
 Let us look at the dimensionless exact solution to see if it can help
@@ -1249,7 +1257,7 @@ $$
 2, & t_c = 2/\omega,\\ 
 2\beta^2, & t_c = L^2/\dfc,\ x_c=L
 \end{array}\right.
-\tag{3.54}
+\tag{3.55}
 \end{equation}
 $$
 
@@ -1260,7 +1268,7 @@ are no parameters in the dimensionless solution:
 $$
 \begin{equation}
 \bar u(\bar x, \bar t) = e^{-\bar x}\sin(\bar x - \bar t)\tp
-\tag{3.55}
+\tag{3.56}
 \end{equation}
 $$
 
@@ -1268,13 +1276,13 @@ Therefore, \( x_c=1/b \) and \( t_c=1/\omega \) (or \( t_c=2/\omega \), but the
 factor 2 is of no importance) are the most appropriate scales.
 
 <p>
-To further argue why <a href="#mjx-eqn-3.55">(3.55)</a> demonstrates
+To further argue why <a href="#mjx-eqn-3.56">(3.56)</a> demonstrates
 that these scales are
 preferred, think of
 \( \omega \) as large. Then the wave is damped over a short
 distance and there will be a thin boundary layer of temperature
 oscillations near \( x=0 \) and little changes in \( u \) in the rest of
-the domain. The scaling <a href="#mjx-eqn-3.55">(3.55)</a> resolves
+the domain. The scaling <a href="#mjx-eqn-3.56">(3.56)</a> resolves
 this problem by using \( 1/b \sim \omega^{-1/2} \) as length scale,
 because then the boundary layer thickness is independent of
 \( \omega \). The length of the domain can be chosen as, e.g., \( 4/b \)
@@ -1300,16 +1308,16 @@ $$
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{1}{2}\frac{\partial^2 u}{\partial x^2},
 \quad & \bar x\in (0,4/b),\ \bar t\in (0,\bar T],
-\tag{3.56}\\ 
+\tag{3.57}\\ 
 \bar u(\bar x,0) &= 0,
 \quad &\bar x\in [0,1]
-\tag{3.57}\\ 
+\tag{3.58}\\ 
 \bar u(0,\bar t) & = \sin(\bar t),
 \quad  &\bar t\in (0,\bar T],
-\tag{3.58}\\ 
+\tag{3.59}\\ 
 \frac{\partial}{\partial\bar x}\bar u(1,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
-\tag{3.59}
+\tag{3.60}
 \end{align}
 $$
 
@@ -1319,7 +1327,7 @@ $$ \frac{t_c\dfc}{1/b^2} = \frac{b^2\dfc}{\omega}
 = \frac{1}{2}\tp$$
 
 We may, of course, choose \( t_c=2/\omega \) and get rid of the \( \half \) factor,
-if desired, but then it turns up in <a href="#mjx-eqn-3.58">(3.58)</a> instead,
+if desired, but then it turns up in <a href="#mjx-eqn-3.59">(3.59)</a> instead,
 as \( \sin (2\bar t) \).
 
 <h1 id="sec:scale:diffu:Fisher">Reaction-diffusion equations</h1>
@@ -1336,7 +1344,7 @@ $$
 \frac{\partial u}{\partial t} =
 \dfc\frac{\partial^2 u}{\partial x^2} + \varrho u(1-u/M)
 \tp
-\tag{3.60}
+\tag{3.61}
 \end{equation}
 $$
 
@@ -1379,7 +1387,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u)\tp
-\tag{3.61}
+\tag{3.62}
 \end{equation}
 $$
 
@@ -1409,7 +1417,7 @@ $$
 \frac{\partial \bar u}{\partial \bar t} =
 \beta
 \frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u),
-\tag{3.62}
+\tag{3.63}
 \end{equation}
 $$
 
@@ -1432,7 +1440,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{\partial^2 \bar u}{\partial x^2} + \beta^{-1}\bar u (1 - \bar u),
-\tag{3.63}
+\tag{3.64}
 \end{equation}
 $$
 
@@ -1440,6 +1448,11 @@ showing that a large \( \beta \) encourages omission of the logistic term,
 because the point-wise growth takes place over long time intervals while
 diffusion is rapid. The effect of diffusion is then more prominent
 and it suffices to solve \( \bar u_{\bar t} = \bar u_{\bar x\bar x} \).
+The observant reader will in this latter case notice that \( u_c=M \)
+is an irrelevant scale for \( u \), since logistic growth with its limit is
+not of importance, so we implicitly assume that another scale \( u_c \)
+has been used, but that scale cancels anyway in the simplified PDE
+\( \bar u_{\bar t} = \bar u_{\bar x\bar x} \).
 
 <h2 id="___sec144">Nonlinear reaction-diffusion PDE </h2>
 
@@ -1450,7 +1463,7 @@ $$
 \begin{equation}
 \frac{\partial u}{\partial t} = \dfc\frac{\partial^2 u}{\partial x^2} + f(u)
 \tp
-\tag{3.64}
+\tag{3.65}
 \end{equation}
 $$
 
@@ -1477,7 +1490,7 @@ $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
 \frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u)\tp
-\tag{3.65}
+\tag{3.66}
 \end{equation}
 $$
 
@@ -1499,7 +1512,7 @@ $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
 \beta\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u),
-\tag{3.66}
+\tag{3.67}
 \end{equation}
 $$
 
@@ -1516,7 +1529,7 @@ $$
 \begin{equation}
 \frac{\partial\bar u}{\partial\bar t} =
 \frac{\partial^2\bar u}{\partial \bar x^2} + \beta^{-1}\bar f(u_c\bar u)\tp
-\tag{3.67}
+\tag{3.68}
 \end{equation}
 $$
 

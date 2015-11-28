@@ -31,6 +31,11 @@
 
 \usepackage[pdftex]{graphicx}
 
+% Movies are handled by the href package
+\newenvironment{doconce:movie}{}{}
+\newcounter{doconce:movie:counter}
+
+
 % Packages for typesetting blocks of computer code
 \usepackage{fancyvrb,framed,moreverb}
 
@@ -138,13 +143,13 @@
 %\usepackage[utf8x]{inputenc}
 
 % Hyperlinks in PDF:
-\definecolor{linkcolor}{rgb}{0,0,0.4}
+
 \usepackage{hyperref}
 \hypersetup{
     breaklinks=true,
     colorlinks=true,
-    linkcolor=linkcolor,
-    urlcolor=linkcolor,
+    linkcolor=black,
+    urlcolor=black,
     citecolor=black,
     filecolor=black,
     %filecolor=blue,
@@ -350,7 +355,7 @@
 % References to labels in external documents:
 \usepackage{xr}
 \externaldocument{/home/hpl/vc/decay-book/doc/.src/book/book}
-\externaldocument{/home/hpl/vc/fdm-book/doc/.src/chapters/wave/main_wave}
+\externaldocument{/home/hpl/vc/fdm-book/doc/.src/book/book}
 
 % insert custom LaTeX commands...
 
@@ -390,10 +395,10 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Nov 27, 2015}
+\date{Nov 28, 2015}
 \maketitle
 
-% Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/chapters/wave/main_wave
+% Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/book/book
 
 % !split
 \chapter*{Preface}
@@ -726,7 +731,7 @@ surface tension                      & energy/area                              
 
 \noindent
 \paragraph{Prefixes for units.}
-Units often have \href{{https://en.wikipedia.org/wiki/Metric_prefix}}{prefixes}.
+Units often have \href{{https://en.wikipedia.org/wiki/Metric_prefix}}{prefixes}\footnote{\texttt{https://en.wikipedia.org/wiki/Metric\_prefix}}.
 For example, kilo is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 
@@ -837,7 +842,7 @@ unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables are
 frequently met in school, errors in unit conversions between units
 probably rank highest among all errors committed by scientists and
 engineers (and when a unit conversion error make an \href{{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}}{airplane's fuel
-run out},
+run out}\footnote{\texttt{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}},
 it is serious!).  Having good software tools to assist in unit
 conversion is therefore paramount, and this topic is treated in
 Sections~\ref{scale:PQ} and~\ref{scale:parampool}.  Readers who are
@@ -915,11 +920,11 @@ case one just makes an input reading module in Python that grabs data from
 a user interface and feeds them into the computational software, either
 through files or function calls (the relevant functions to be called
 must be wrapped in Python with tools like
-\href{{http://docs.scipy.org/doc/numpy-dev/f2py/}}{f2py},
-\href{{http://cython.org/}}{Cython},
-\href{{http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html}}{Weave},
-\href{{http://www.swig.org/}}{SWIG},
-\href{{https://bitbucket.org/fenics-project/instant}}{Instant},
+\href{{http://docs.scipy.org/doc/numpy-dev/f2py/}}{f2py}\footnote{\texttt{http://docs.scipy.org/doc/numpy-dev/f2py/}},
+\href{{http://cython.org/}}{Cython}\footnote{\texttt{http://cython.org/}},
+\href{{http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html}}{Weave}\footnote{\texttt{http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html}},
+\href{{http://www.swig.org/}}{SWIG}\footnote{\texttt{http://www.swig.org/}},
+\href{{https://bitbucket.org/fenics-project/instant}}{Instant}\footnote{\texttt{https://bitbucket.org/fenics-project/instant}},
 or similar, see \cite[Appendix C]{Langtangen_Linge_fdm} for basic
 examples on f2py and Cython wrapping of C and Fortran code).
 
@@ -943,8 +948,8 @@ procedural programming in Python.
 
 Readers without knowledge of Python variables, functions, if tests,
 and module import should consult, e.g., a \href{{http://hplgit.github.io/bumpy/doc/web/index.html}}{brief tutorial on scientific
-Python},
-the \href{{http://scipy-lectures.github.com/}}{Python Scientific Lecture Notes},
+Python}\footnote{\texttt{http://hplgit.github.io/bumpy/doc/web/index.html}},
+the \href{{http://scipy-lectures.github.com/}}{Python Scientific Lecture Notes}\footnote{\texttt{http://scipy-lectures.github.com/}},
 or a full textbook \cite{Langtangen_2012} in parallel with reading about
 Python code in the present book.
 
@@ -967,11 +972,11 @@ between version 2 and 3.
 \shortinlinecomment{Geir 4}{ hpl, no this will do. }{ hpl, no this will }
 
 Computations with units in Python are well supported by the
-\texttt{PhysicalQuantity} object from the \href{{https://bitbucket.org/khinsen/scientificpython}}{ScientificPython package} by Konrad
+\texttt{PhysicalQuantity} object from the \href{{https://bitbucket.org/khinsen/scientificpython}}{ScientificPython package}\footnote{\texttt{https://bitbucket.org/khinsen/scientificpython}} by Konrad
 Hinsen. Unfortunately, ScientificPython does not, at the time of this
 writing, work with NumPy version 1.9 or later, so we have isolated the
-\texttt{PhysicalQuantity} object in a module \href{{https://github.com/hplgit/physical-quantities}}{\nolinkurl{PhysicalQuantities}} and made it publicly
-available on GitHub. There is also an alternative package \href{{https://bitbucket.org/kiv/unum/}}{Unum} for computing with numbers with
+\texttt{PhysicalQuantity} object in a module \href{{https://github.com/hplgit/physical-quantities}}{\nolinkurl{PhysicalQuantities}\footnote{\texttt{https://github.com/hplgit/physical-quantities}}} and made it publicly
+available on GitHub. There is also an alternative package \href{{https://bitbucket.org/kiv/unum/}}{Unum}\footnote{\texttt{https://bitbucket.org/kiv/unum/}} for computing with numbers with
 units, but we shall stick to the former module here.
 
 Let us demonstrate the usage of the \texttt{PhysicalQuantity} object by
@@ -1063,7 +1068,7 @@ where joule replaces calorie?
 
 \index{parampool@{\rm\texttt{parampool}}}
 
-The \href{{https://github.com/hplgit/parampool}}{Parampool} package allows
+The \href{{https://github.com/hplgit/parampool}}{Parampool}\footnote{\texttt{https://github.com/hplgit/parampool}} package allows
 creation of user interfaces with support for units and unit
 conversion. Values of parameters can be set as a number with a
 unit. The parameters can be registered beforehand with a preferred
@@ -1109,7 +1114,7 @@ def define_input():
 \noindent
 For each parameter we can define a logical name, such as \texttt{initial velocity},
 a default value, and a unit. Additional properties
-are also allowed, see the \href{{http://hplgit.github.io/parampool/doc/web/index.html}}{Parampool documentation}.
+are also allowed, see the \href{{http://hplgit.github.io/parampool/doc/web/index.html}}{Parampool documentation}\footnote{\texttt{http://hplgit.github.io/parampool/doc/web/index.html}}.
 
 
 \begin{notice_mdfboxadmon}[Tip: specify default values of numbers as float objects]
@@ -2144,7 +2149,7 @@ to cache solutions with the same $\beta$, $\Delta t$, and $T$.
 For now we fix $\theta=0.5$.
 The module \href{{http://tinyurl.com/o8pb3yy/decay_vc.py}}{\nolinkurl{decay_vc.py}}
 (see ref[Section~\ref{decay:general}][ in \cite{Langtangen_decay}[the
-section \href{{http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem}}{Implementation of the generalized model problem}
+section \href{{http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem}}{Implementation of the generalized model problem}\footnote{\texttt{http://hplgit.github.io/decay-book/doc/pub/book/sphinx/.\_book006.html\#implementation-of-the-generalized-model-problem}}
 \cite{Langtangen_decay}] for details)
 has a function
 \texttt{solver(I, a, b, T, dt, theta)} for solving $u'(t)=-a(t)u(t)+b(t)$ for
@@ -2739,7 +2744,7 @@ who can get the disease, infectious (I) who are infected and may
 infect susceptibles, and recovered (R) who have recovered from the
 disease and gained immunity. We introduce $S(t)$, $I(t)$, and $R(t)$
 as the number of people in the categories S, I, and R, respectively.
-The model, naturally known as the \href{{https://en.wikipedia.org/wiki/Epidemic_model}}{SIR model}, takes the form a
+The model, naturally known as the \href{{https://en.wikipedia.org/wiki/Epidemic_model}}{SIR model}\footnote{\texttt{https://en.wikipedia.org/wiki/Epidemic\_model}}, takes the form a
 system of ODEs:
 
 \begin{align}
@@ -2797,7 +2802,7 @@ $d\bar I/d\bar t >0$, and therefore $R_0 S(0) - 1 > 0$ or $R_0 > 1$
 since $S(0)=1$.
 Therefore, $R_0$ reflects the disease's ability to spread and is
 consequently an important dimensionless quantity, known as the \href{{https://en.wikipedia.org/wiki/Basic_reproduction_number}}{basic
-reproduction number}.
+reproduction number}\footnote{\texttt{https://en.wikipedia.org/wiki/Basic\_reproduction\_number}}.
 This number reflects the number of infected people caused by one infectious
 individual during the time period of the disease.
 
@@ -2964,9 +2969,9 @@ $[P]$, can be written as
 \end{align}
 The initial conditions are $[ES](0)=[P](0)=0$, and $[S]=S_0$, $[E]=E_0$.
 Three rate constants are involved: $k_+$, $k_-$, and $k_v$.
-The above mathematical model is known as \href{{https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics}}{Michaelis-Menten kinetics}.
+The above mathematical model is known as \href{{https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics}}{Michaelis-Menten kinetics}\footnote{\texttt{https://en.wikipedia.org/wiki/Michaelis-Menten\_kinetics}}.
 
-The amount of substance is measured in the unit \href{{https://en.wikipedia.org/wiki/Mole_(unit)}}{mole} (mol). From the equations we can see that
+The amount of substance is measured in the unit \href{{https://en.wikipedia.org/wiki/Mole_(unit)}}{mole}\footnote{\texttt{https://en.wikipedia.org/wiki/Mole\_(unit)}} (mol). From the equations we can see that
 $k_+$ is measured in $\hbox{s}^{-1}\hbox{mol}^{-1}$, while $k_-$ and
 $k_v$ are measured in $\hbox{s}^{-1}$. It is convenient to get rid of
 the mole unit for the amount of a substance. When working with
@@ -3914,7 +3919,7 @@ C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))
 \noindent
 This is indeed the correct solution, but it is on a complex
 exponential function form, valid for all $b$, $m$, and $\omega$. We are
-interested in the case with \emph{small damping}, $b< 2m\omega$, where the solution
+interested in the case with \emph{small damping}, $b < 2m\omega$, where the solution
 is an exponentially damped sinusoidal function. Rewriting the expression
 in the right form is tricky with SymPy commands. Instead, we demonstrate
 a common technique when doing symbolic computing: general procedures like
@@ -4943,7 +4948,7 @@ Simulate the problem in b) for $\Theta = 1,20,45,60$ measured in degrees.
 
 \label{sec:scale:exer:binary_star}
 
-The equations for a \href{{https://en.wikipedia.org/wiki/Binary_star}}{binary star},
+The equations for a \href{{https://en.wikipedia.org/wiki/Binary_star}}{binary star}\footnote{\texttt{https://en.wikipedia.org/wiki/Binary\_star}},
 or a planet and a moon, are
 
 \begin{align}
@@ -5201,7 +5206,8 @@ boundary or initial condition.
 
 \subsection{Simple homogeneous Dirichlet conditions}
 
-Let us first start (\ref{scale:wave:pde1}), homogeneous Dirichlet conditions in space and
+Let us first start with (\ref{scale:wave:pde1}),
+homogeneous Dirichlet conditions in space, and
 no initial velocity $u_t$:
 
 \begin{align}
@@ -5542,8 +5548,26 @@ boundary.
 %\clearpage % flush figures scale:wave:pde2:fig:alpha01
 
 
-\shortinlinecomment{hpl 13}{ The HTML version features movies here. Link to them in the {\LaTeX} PDF version as well? }{ The HTML version features }
-\shortinlinecomment{Geir 14}{ yes }{ yes }
+
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to web movie
+Movie \arabic{doconce:movie:counter}: $\alpha=10$. \href{https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/gaussian_plus_incoming/alpha10.mp4}{\nolinkurl{https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/gaussian_plus_incoming/alpha10.mp4}}
+\end{quote}
+\end{doconce:movie}
+
+
+
+\begin{doconce:movie}
+\refstepcounter{doconce:movie:counter}
+\begin{quote}
+% link to web movie
+Movie \arabic{doconce:movie:counter}: $\alpha=0.1$. \href{https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/gaussian_plus_incoming/alpha01.mp4}{\nolinkurl{https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/gaussian_plus_incoming/alpha01.mp4}}
+\end{quote}
+\end{doconce:movie}
+
+
 
 \subsection{Velocity initial condition}
 \label{scale:wave:pde2:Vcond}
@@ -5564,22 +5588,33 @@ The scaled version of $u_t(x,0)=V(x)$ becomes
 \paragraph{Analytical insight.}
 From (\ref{scale:wave:pde:sol:general}) we now get $f_L + f_R =0$ and
 $cf_L' - cf_R' = V$. Introducing $W(x)$ such that $W'(x)=V(x)$, a solution
-is $-f_L=\frac{1}{2}W$ and $f_R=\frac{1}{2}W$. Hence,
+is $f_L=\frac{1}{2}W/c$ and $-f_R=\frac{1}{2}W/c$. We can express this
+solution through the formula
 
-\[ u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} v(\xi) d\xi\tp\]
+\begin{equation}
+u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} V(\xi) d\xi
+ = \frac{1}{2c}(W(x+ct) - W(x-ct))\tp
+ \label{scale:wave:pde2:Vcond:usol}
+ \end{equation}
 
 \paragraph{Scaling.}
 Since $V$ is the time-derivative of $u$, the characteristic size of
-$V$ is typically $u_c/t_c$, meaning that
+$V$, call it $V_c$, is typically $u_c/t_c$.  If we, as usual, base
+$t_c$ on the wave speed, $t_c = L/c$, we get $u_c = V_cL/c$.  Looking
+at the solution (\ref{scale:wave:pde2:Vcond:usol}), we see that $u_c$
+has size $\hbox{mean}(V)L/(2c)$, where $\hbox{mean}(V)$ is the mean
+value of $V$ ($W\sim\hbox{mean}(V)L$). This result suggests
+$V_c=\hbox{mean}(V)$ and $u_c = \hbox{mean}(V)L/(2c)$. One may argue
+that the factor 2 is not important, but if we want $|\bar u|\in [0,1]$
+it is convenient to keep it.
 
-\[ \max_{x\in(0,L)}|V(x)| = \frac{u_c}{t_c},\]
-which gives $u_c = \max_{x\in(0,L)}|V(x)| L/c$. As usual, we base $t_c$
-on the wave speed: $t_c = L/c$. We end up with
+The scaled initial condition becomes
 
 \[ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
-\frac{V(\bar x x_c)}{\max_x |V(x)|},
+\frac{t_c}{u_c}V(\bar x x_c) =
+\frac{V(\bar x x_c)}{\half\hbox{mean}(V)}\tp
 \]
-which by itself looks like a natural scaling of a function $V$.
+
 
 \paragraph{Nonzero initial shape.}
 Suppose we change the initial condition $u(x,0)=0$ to $u(x,0)=I(x)$.
@@ -5587,7 +5622,7 @@ The scaled version of this condition with the above $u_c$
 based on $V$ becomes
 
 \begin{equation}
-\bar u(\bar x, 0) = \frac{cI(\bar x x_c)}{L\max_x |V(x)|}\tp
+\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\hbox{mean}(V)}\tp
 \label{scale:wave:pde2:Vcond:eq}
 \end{equation}
 
@@ -5616,29 +5651,28 @@ shape, $\bar I (\bar x)= I(\bar xL)/\max_x |I|$. Then
 \[ \bar u(\bar x, 0) = \alpha\bar I(\bar x),\]
 where $\alpha$ the dimensionless number
 
-\[ \alpha = \frac{c}{L}\frac{\max_x |I(x)|}{\max_x |V(x)|}\tp\]
+\[ \alpha = \frac{2c}{L}\frac{\max_x |I(x)|}{\hbox{mean}(V)}\tp\]
 
 \index{dimensionless number}
 
 If $V$ is much larger than $I$, one expects that the influence of $I$
 is small. However, it takes time for the initial velocity $V$ to
 influence the wave motion, so the speed of the waves $c$ and the length
-of the domain $L$ also play a role. That is, $\alpha$ is the
-important parameter. A large $\alpha$ means that the
-initial wave shape $I$
-travels quickly through the domain before the effect of $V$ becomes
-visible. The impact of $I$ may therefore be significant for small $t$
-(the numerical value of $c/L$ is very large and $\max |I|/\max |V|$ may still
-be somewhat small).
-With $\alpha$ small, not much happens before the effect of $V$ becomes
-visible. Recall that the dimensionless initial velocity is about unity
-regardless of other parameters.
+of the domain $L$ also play a role. This is reflected in $\alpha$, which is the
+important parameter.
 Again, the scaling and the resulting dimensionless parameter(s)
 teach us much about the interaction of the various physical effects.
 
-\shortinlinecomment{hpl 15}{ Do experiments. Make exercise or insert here. }{ Do experiments. Make exercise }
-
-\longinlinecomment{hpl 16}{ Could make paradox: small $I$, big $V$, but still significant impact of $I$ in a simulation. Why? Bug? The answer is above. Best as exercise. }{ Could make paradox: small }
+% A large $\alpha$ means that the
+% initial wave shape $I$
+% travels quickly through the domain before the effect of $V$ becomes
+% visible. The impact of $I$ may therefore be significant for small $t$
+% (the numerical value of $c/L$ is very large and $\max |I|/\max |V|$ may still
+% be somewhat small).
+% With $\alpha$ small, not much happens before the effect of $V$ becomes
+% visible. Recall that the dimensionless initial velocity is about unity
+% regardless of other parameters.
+% See exer-scaling/wave1D_small_I_big_V.py for experiments.
 
 \subsection{Variable wave velocity and forcing}
 \label{scale:wave:pde2:cvar}
@@ -5964,8 +5998,9 @@ We may say that $t_c$ is the time it takes for the diffusion to
 significantly change the solution in the entire domain.
 
 Another fundamental solution of the diffusion equation is the
-diffusion of a Gaussian function: $u(x,t)=(4\pi\dfc
-t)^{-1/2}\exp{(-x^2/(4\dfc t))}$. For the diffusion to be significant
+diffusion of a Gaussian function: $u(x,t)=K(4\pi\dfc
+t)^{-1/2}\exp{(-x^2/(4\dfc t))}$, for some constant $K$ with
+the same dimension as $u$. For the diffusion to be significant
 at a distance $x=L$, we may demand the exponential factor to have a
 value of $e^{-1}\approx 0.37$, which implies $t=L^2/(4\dfc)$, but the
 factor 4 is not of importance, so again, a relevant time scale is
@@ -6100,7 +6135,7 @@ u(0, t) & = U_1,
 The diffusion coefficient is related to heat transfer parameters
 by $\dfc = k/(\varrho c)$, where $k$ is the heat conduction coefficient,
 $\varrho$ is the density, and $c$ is a specific heat capacity parameter.
-\shortinlinecomment{Geir 17}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
+\shortinlinecomment{Geir 13}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
 
 The natural dimensionless temperature for this problem is
 
@@ -6137,12 +6172,12 @@ boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 18}{ Include simulation results. }{ Include simulation results. }
+\shortinlinecomment{hpl 14}{ Include simulation results. }{ Include simulation results. }
 
 \subsection{Oscillating Dirichlet condition}
 
-\shortinlinecomment{hpl 19}{ Do we need paragraph headings here? }{ Do we need paragraph }
-\shortinlinecomment{Geir 14}{ yes }{ yes }
+\shortinlinecomment{hpl 15}{ Do we need paragraph headings here? }{ Do we need paragraph }
+\shortinlinecomment{Geir 16}{ yes }{ yes }
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -6183,12 +6218,16 @@ What is an appropriate time scale? There will be two time scales involved,
 the oscillations $\sin(\omega t)$ with period $P=2\pi/\omega$ at
 the boundary and the ``speed of diffusion'', or more specifically
 the ``speed of heat conduction'' in the present context,
-where $t_c=L^2/\dfc$ is the appropriate scale.
+where $t_c=x_c^2/\dfc$ is the appropriate scale, $x_c$ being
+the length scale.
 
 As usual, investigating the exact solution of the model problem can
 illuminate the involved scales. For this particular initial-boundary
-value problem the exact solution as $t\rightarrow\infty$ (such that
-the initial condition $u(x,0)=U_0$ is forgotten) can be shown to be
+value problem the exact solution as $t\rightarrow\infty$
+(such that
+the initial condition $u(x,0)=U_0$ is forgotten)
+and $L\rightarrow\infty$ (such that (\ref{scale:heat:pde2:bc:L})
+is certainly valid) can be shown to be
 
 \begin{equation}
 u(x,t) = U_0 - Ae^{-bx}\sin (bx - \omega t),\quad b =\sqrt{\frac{\omega}{2\dfc}}\tp
@@ -6206,7 +6245,7 @@ The speed of the wave suggests another time scale: the time it
 takes to propagate through the domain, which is $L/c$, and
 hence $t_c = L/c = L/\sqrt{2\dfc\omega}$.
 
-One may argue that $L$ is not the appropriate length scale, because
+One can argue that $L$ is not the appropriate length scale, because
 $u$ is damped by $e^{-bx}$ so for $x > 4/b$, $u$ is close to zero.
 We may instead use $1/b$ as length scale, which is the e-folding distance of the
 damping factor, and base
@@ -6216,7 +6255,10 @@ the ``speed of diffusion'' changes to
 $t_c^{-1}= b^2\dfc = \half\omega$ if we employ $1/b$ as length scale.
 
 To summarize, we have three candidates for the time scale:
-$t_c=L^2/\dfc$, $t_c=2/\omega$, and $t_c=1/\omega$.
+$t_c=L^2/\dfc$ (diffusion through the entire domain), $t_c=2/\omega$
+(diffusion through a distance $1/b$ where $u$ is significantly
+different from zero), and $t_c=1/\omega$ (wave movement over a
+distance $1/b$).
 
 Let us look at the dimensionless exact solution to see if it can help
 with the choice of scales.  We introduce the dimensionless parameters
@@ -6391,6 +6433,11 @@ showing that a large $\beta$ encourages omission of the logistic term,
 because the point-wise growth takes place over long time intervals while
 diffusion is rapid. The effect of diffusion is then more prominent
 and it suffices to solve $\bar u_{\bar t} = \bar u_{\bar x\bar x}$.
+The observant reader will in this latter case notice that $u_c=M$
+is an irrelevant scale for $u$, since logistic growth with its limit is
+not of importance, so we implicitly assume that another scale $u_c$
+has been used, but that scale cancels anyway in the simplified PDE
+$\bar u_{\bar t} = \bar u_{\bar x\bar x}$.
 
 
 \subsection{Nonlinear reaction-diffusion PDE}
@@ -6472,11 +6519,41 @@ equation to obtain the well-known convection-diffusion equation:
 \label{scale:convdiff:pde1}
 \end{equation}
 The velocity field $\v$ is prescribed, and its characteristic size $V$
-is normally clear from the problem description.
+is normally clear from the problem description. In the sketch below,
+we have some given flow over a bump, and $u$ may be the concentration
+of some substance in the fluid. Here, $V$ is typically $\max_y v(y)$.
+The characteristic length $L$ could be the entire domain, $L=c+\ell$,
+or the height of the bump, $L=D$. (The latter is the important length
+scale for the flow.)
 
-\longinlinecomment{hpl 21}{ Drop specification of spatial and temporal domain? Is this basically notational noise when the PDE gets more complicated? Geir says no. }{ Drop specification of spatial }
 
-\longinlinecomment{hpl 22}{ Show a sketch of a couple of cases, can be the same as Navier-Stokes, where different $V$ is obvious. }{ Show a sketch of }
+
+\vspace{3mm}
+
+
+
+
+\vspace{3mm}
+
+
+
+
+
+% inline figure
+\centerline{\includegraphics[width=0.9\linewidth]{fig-scaling/flow_over_gaussian.pdf}}
+
+
+
+
+
+\vspace{3mm}
+
+
+
+
+\vspace{3mm}
+
+
 
 Inserting
 
@@ -6647,7 +6724,7 @@ which are consistent results with the PDE since the double derivative term
 is multiplied by $\hbox{Pe}^{-1}$.
 For small Pe,
 
-\[ \max_{\bar x}\frac{d\bar u}{d\bar x}     \approx 1,\quad
+\[ \max_{\bar x}\frac{d\bar u}{d\bar x}\approx 1,\quad
    \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx 0,\]
 which is also consistent with the PDE
 since an almost vanishing second-order derivative
@@ -6704,10 +6781,10 @@ equal and of size around unity.
 \index{dimensionless number}
 \index{Reynolds number}
 
-\subsection{Convection-diffusion with a force term}
+\subsection{Convection-diffusion with a source term}
 \label{scale:convdiff:f}
 
-Let us add a force term $f(\x,t)$ to the convection-diffusion equation :
+Let us add a force term $f(\x,t)$ to the convection-diffusion equation:
 
 \begin{equation}
 \frac{\partial u}{\partial t} + \v\cdot\nabla u =
@@ -6775,7 +6852,7 @@ results as found in the sections on the wave and diffusion PDEs.
 
 A fluid flows between two flat plates, with one plate at rest while
 the other moves with velocity $U_0$. This classical flow case is known as
-stationary \href{{https://en.wikipedia.org/wiki/Couette_flow}}{Couette flow}.
+stationary \href{{https://en.wikipedia.org/wiki/Couette_flow}}{Couette flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Couette\_flow}}.
 
 
 \subex{a)}
@@ -6849,8 +6926,8 @@ $z$ axis), $\mu$ is the dynamic viscosity of the fluid, $\beta$ is
 a positive constant pressure gradient, and $U_0$ is the
 constant velocity of the upper
 plate $z=H$ in $x$ direction. The model represents
-\href{{https://en.wikipedia.org/wiki/Couette_flow}}{Couette flow} for $\beta=0$
-and \href{{https://en.wikipedia.org/wiki/Hagen-Poiseuille_equation}}{Poiseuille flow}
+\href{{https://en.wikipedia.org/wiki/Couette_flow}}{Couette flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Couette\_flow}} for $\beta=0$
+and \href{{https://en.wikipedia.org/wiki/Hagen-Poiseuille_equation}}{Poiseuille flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Hagen-Poiseuille\_equation}}
 for $U_0=0$.
 
 
@@ -6921,7 +6998,7 @@ Discuss how the scaling can be extended to this case.
 
 \label{scale:exer:cable_eq}
 
-A key PDE in neuroscience is the \href{{https://en.wikipedia.org/wiki/Cable_theory}}{cable equation}, here given in its simplest linear form:
+A key PDE in neuroscience is the \href{{https://en.wikipedia.org/wiki/Cable_theory}}{cable equation}\footnote{\texttt{https://en.wikipedia.org/wiki/Cable\_theory}}, here given in its simplest linear form:
 
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
@@ -6984,7 +7061,7 @@ as bricks, it is tempting to develop a one-dimensional model, especially
 if the pieces are somewhat slender. We then expect the main temperature
 variations to take place in the $x$ direction, where the $x$ axis is
 perpendicular to the contact surface between the pieces.
-\shortinlinecomment{Geir 23}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 17}{ Hm?? }{ Hm?? }
 The idea is
 to integrate the governing PDE in the two other directions, use the
 Gauss divergence theorem on
@@ -7015,7 +7092,7 @@ dydz +
 dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
-\shortinlinecomment{Geir 23}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 17}{ Hm?? }{ Hm?? }
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 
@@ -7168,7 +7245,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 25}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 19}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -7233,7 +7310,7 @@ i.e., a wave equation for $\nabla\times\u$. The wave velocity is
 
 \[ c_S = \sqrt{\frac{\mu}{\varrho}}\tp\]
 The corresponding waves are called
-\href{{https://en.wikipedia.org/wiki/S-wave}}{S waves}. The curl of a
+\href{{https://en.wikipedia.org/wiki/S-wave}}{S waves}\footnote{\texttt{https://en.wikipedia.org/wiki/S-wave}}. The curl of a
 displacement field is closely related to rotation of continuum elements.
 S waves are therefore rotation waves, also sometimes referred to as
 shear waves.
@@ -7262,12 +7339,12 @@ with wave velocity
 \[ c_P = \sqrt{\frac{\lambda +2\mu}{\varrho}}\tp\]
 That is, the volume change (expansion/compression)
 propagates as a wave with speed $c_P$.
-These type of waves are called \href{{https://en.wikipedia.org/wiki/P-wave}}{P waves}. Other names are pressure and expansion/compression waves.
+These type of waves are called \href{{https://en.wikipedia.org/wiki/P-wave}}{P waves}\footnote{\texttt{https://en.wikipedia.org/wiki/P-wave}}. Other names are pressure and expansion/compression waves.
 
 Suppose now that $\nabla\times\u =0$, i.e., there is no rotation (``shear'') of
 continuum elements. Mathematically this condition implies that
 $\nabla^2\u = \nabla(\nabla\cdot\u)$ (see any book on vector calculus
-or \href{{https://en.wikipedia.org/wiki/Vector_calculus_identities}}{Wikipedia}).
+or \href{{https://en.wikipedia.org/wiki/Vector_calculus_identities}}{Wikipedia}\footnote{\texttt{https://en.wikipedia.org/wiki/Vector\_calculus\_identities}}).
 Our model equation (\ref{scale:elasticity:waves:eq}) then reduces to
 
 \[ \frac{\partial^2\u}{\partial t^2} = c_P^2\nabla^2\u,\]
@@ -7516,11 +7593,11 @@ $u_c$. This $U$ is normally implied by the problem description.  For
 example, in the flow configuration below, with flow over a bump, we
 have some incoming flow with a profile $v(y)$ and $U$ can typically be
 chosen as $U=\max_y v(y)$. The height of the bump influences the wake
-behind the bump, so a natural length scale is $L=\alpha$. For numerical
-simulations in a domain of finite extent, $[0,c+\ell]$, $c$
-must be large enough to
-avoid feedback on the inlet profile, and $\ell$ must be large enough
-for the type of outflow boundary condition used.  Ideally,
+behind the bump, and is the length scale that really impacts the flow,
+so it is natural to set $L=D$. For numerical simulations in a domain
+of finite extent, $[0,c+\ell]$, $c$ must be large enough to avoid
+feedback on the inlet profile, and $\ell$ must be large enough for the
+type of outflow boundary condition used.  Ideally,
 $c,\ell\rightarrow\infty$, so none of these parameters are useful as
 length scales.
 
@@ -7733,7 +7810,7 @@ of the force on the cylinder hits the free vibration frequency
 of the cylinder such that resonance occurs. The result can be large
 displacements of the cylinder and structural failure. A famous
 case in engineering is the failure of the \href{{https://en.wikipedia.org/wiki/Tacoma_Narrows_Bridge_(1940)}}{Tacoma Narrows suspension
-bridge}
+bridge}\footnote{\texttt{https://en.wikipedia.org/wiki/Tacoma\_Narrows\_Bridge\_(1940)}}
 in 1940, when wind-induced vortex shedding caused resonance
 with the free torsional vibrations of the bridge.
 
@@ -8597,7 +8674,7 @@ where we have introduced the dimensionless numbers
 
 We consider the flow of two incompressible, immiscible fluids in
 a porous medium with porosity $\phi (\x)$. The two fluids are referred to
-as the \href{{https://en.wikipedia.org/wiki/Wetting}}{wetting} and
+as the \href{{https://en.wikipedia.org/wiki/Wetting}}{wetting}\footnote{\texttt{https://en.wikipedia.org/wiki/Wetting}} and
 non-wetting fluid. In an oil-water mixture, water is usually the
 wetting fluid. The fraction of the pore volume occupied by the
 wetting fluid is denoted by $S(\x,t)$. The non-wetting fluid then occupies
@@ -8794,11 +8871,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 26}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 20}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 27}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 21}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 28}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 22}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8888,12 +8965,12 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 29}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 23}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
 Heat transfer can be neglected in
-\href{{https://en.wikipedia.org/wiki/Isentropic_process}}{isentropic flow},
+\href{{https://en.wikipedia.org/wiki/Isentropic_process}}{isentropic flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Isentropic\_process}},
 and there is hence an equation of state involving only $\varrho$ and
 $p$:
 
@@ -8953,7 +9030,7 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
-\shortinlinecomment{Geir 30}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
+\shortinlinecomment{Geir 24}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 
