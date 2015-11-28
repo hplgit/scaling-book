@@ -8394,14 +8394,14 @@ governed by a system of ODEs, see for instance \cite{Sundnes_2006} for
 details. The total
 current $I_{\rm{ion}}$ is often written as a sum of individual
 ionic currents:
-\begin{align} I_{\rm{ion}}(s,v) &= \sum_{j=1}^n I_{j}(s,v),
+\begin{align} I_{\rm{ion}}(s,v) &= \sum_{j=1}^n I_{j}(s,v), 
 \label{scale:bidomain:ion1}
 \end{align}
 where $n$ is typically between 10 and 20 in recent models of cardiac
 cells. Most of the individual currents will be on the form
 $ I_{j}(s,v) = g_j(s)(v-v_j), $
-where $v_j$ is the equlibrium potential of the specific ion, and
-$g_j(s)$ describes the membrane conductance to a specific ion. Without
+where $v_j$ is the equilibrium potential of the specific ion, and
+$g_j(s)$ describes the membrane conductance of the particular ion channel. Without
 much loss of generality we can assume that this formulation is valid
 for all $I_{j}$, and the total ionic current can then be written in the
 general form
@@ -8409,19 +8409,19 @@ general form
 I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{j}(s,v) = g(s)(v-v_{eq}(s)) ,
 \]
 where $g(s) = \sum_{j=1}^n g_j(s)$ and $v_{eq}(s) = (\sum_{j=1}^n g_j
-v_j)/\sum_{j=1}^n g_j$.
+v_j)/(\sum_{j=1}^n g_j)$.
 
 As noted above, the dynamics of $s$ is governed by an ODE system on
 the form
 \[
 \frac{ds}{dt} = f(v,s) \tp
 \]
-and the individual components of $s$ typically typically have very
+and the individual components of $s$ typically have very
 different time scales, making any scaling of this system highly dependent on the
 component under study. For the present text, the focus is on
 tissue-level electrophysiology as described by
 (\ref{scale:bidomain:eqv})-(\ref{scale:bidomain:equ_e}), and we will proceed
-to scale these equations. The bidomain model is a system of
+to scale these equations. The equations are of
 reaction-diffusion type, and the scaling will be based on the general
 non-linear reaction-diffusion equation in Section~\ref{sec:scale:diffu:homo1D}.
 
@@ -8448,21 +8448,22 @@ coordinates and are also scaled:
 For simplicity, we have chosen a common scale $\sigma_c$, but the two tensors
 may employ different scales, and we may also choose different scales
 for different directions, to reflect the anisotropic conductivity of
-the tissue. One typically chooses $\sigma_c$ as a norm of
+the tissue. A typical choice of $\sigma_c$ is a norm of
 $\sigma_i + \sigma_e$, e.g., the maximum value.
 
 Finally, we introduce a scaling of the parameters entering the ionic
 current term
 
 \[ \bar v_{eq} = (v_{eq}-v_r)/\Delta v,\quad\bar g = g/g_c\tp\]
-For the characteristic membrane conductance a common choice is
+For the characteristic membrane conductance, $g_c$,  a common choice is
 $g_c = 1/R_m$, where $R_m$ is the membrane resistance at
 rest, but we will instead set $g_c = g_{\max}$, the maximum conductance
 of the membrane. These choices will ensure $\bar v_{eq}, \bar g \in
 [0,1]$.
 
 
-Inserting the dimensionless variables in the equations, the system
+Inserting the dimensionless variables in 
+(\ref{scale:bidomain:eqv})-(\ref{scale:bidomain:equ_e}), the system
 of governing equations becomes
 
 \begin{align*}
@@ -8471,11 +8472,10 @@ of governing equations becomes
 \frac{\sigma_c u_c}{L^2}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\ 
 &\quad - \chi g_c \Delta v \bar g (s)(\bar v-\bar v_{eq}(s)) -\chi I_{\rm{app}},
 \\ 
-0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u)\tp
+0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \end{align*}
 Multiplying the equations by appropriate factors leads to equations with
 dimensionless terms only:
-
 \begin{align*}
 \frac{\partial \bar v}{\partial \bar t} &=
 \frac{t_c\sigma_c}{\chi C_mL^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
@@ -8484,18 +8484,18 @@ dimensionless terms only:
 &\quad
 \frac{g_c t_c}{C_m} \bar g (s)(\bar v-\bar v_{eq}(s))
 - \frac{t_c}{C_m\Delta v} I_{\rm{app}},\\ 
-0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u)\tp
+0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \end{align*}
 
 The time scale is not so obvious to choose. As noted above, the ODE
 system that governs $s$ and thereby $\bar g(s), \bar v_{eq} (s)$ may
 feature a wide range of spatial scales. Furthermore, even if we focus
 on the tissue equations and on the dynamics of $v$ and $u_e$, the
-choice of natural time and length scales is not obvious.
-The equations are of reaction-diffusion natue, and the
+choice of natural time and length scales is not trivial. 
+The equations are of reaction-diffusion nature, and the
 solution takes the form of a narrow wavefront of activation that
 propagates through the tissue. The region immediately surrounding
-the wavefront is cahracterized by large spatial and temporal
+the wavefront is characterized by large spatial and temporal
 gradients, while in most of the
 domain the variations are quite slow. For now, we choose the time scale
 based on balancing the reaction and diffusion components, as described
@@ -8504,7 +8504,7 @@ set the terms in front of the reaction term and the diffusion term to
 unity, which means
 
 \[ \frac{t_c\sigma_c}{\chi C_mL^2} = 1,\quad \frac{t_cg_c}{C_m} =1,\]
-which determines the time and length scales:
+and determines the time and length scales:
 
 \[ t_c = \frac{C_m}{g_c},\quad L = \sqrt{\frac{\sigma_c}{g_c \chi}}\tp\]
 
@@ -8533,7 +8533,7 @@ The final dimensionless system becomes
 The two dimensionless variables in these equations have
 straightforward
 interpretations: $\beta$ is the ratio of the span in the two electric
-potentials, and $\gamma$ is ratio of the source term with $I_{\rm{app}}$ and the
+potentials, and $\gamma$ is ratio of the source term $I_{\rm{app}}$ and the
 time-derivative term of $v$, or the source term and the diffusion term
 in $v$.
 
@@ -8541,9 +8541,9 @@ We can insert typical parameter values to get a feel for the
 chosen scaling. We have
 \begin{align*}
 C_m &= 1.0\, \mu\hbox{F\,cm}^{-2}, \quad g_c = g_{max} = 13.0
-\hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{ mS\,cm}^{-2}, \\ 
-\chi &= 2000 \hbox{ cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{ mV} ,
-\sigma_c &= 3.0 \hbox{ mS\,cm}^{-1}\tp
+\hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS\,cm}^{-2}, \\ 
+\chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} , 
+\sigma_c = 3.0 \hbox{mS\,cm}^{-1}\tp
 \end{align*}
 
 This gives the following values of $t_c$ and $L$:
@@ -8555,36 +8555,38 @@ L &= \sqrt{\frac{\sigma_c}{\chi g_c}} = \sqrt{\frac{3.0
 \approx 0.087 \hbox{ mm} \tp
 \end{align*}
 These values are both very small, which is related to our
-choice of $g_c = g_{\max}$. This implies that we choose the appropriate
-scaling based on the upstroke phase of the action potential, when both
+choice of $g_c = g_{\max}$. This choice implies that we base the
+scaling on the upstroke phase of the action potential, when both
 spatial and temporal variations are extremely high. This may therefore
 be a ``correct'' scaling exactly at the wavefront of the electrical
 potential, but is less relevant elsewhere. Choosing $g_c$ to be for
 instance the resting conductance, which is the common choice when
 scaling the cable equation, may increase $t_c, L$ by factors up to 2500 and
-50, respectively. The large difference in scales reflect the
+50, respectively. The large difference in scales reflects the
 difference between active, dynamic signal conduction and passive
-signals governed solely by electrodiffusion.
+signals governed solely by electrodiffusion. 
 
 The conduction velocity is often a quantity of interest, and we could
-obtain an alternative relation between $t_c$ and $L$ by requiring
-$v_{c} = L/t_c$. In human cardiac tissue $v_c$ is known to be about
-60 cm/s, while the choices above gives
+obtain an alternative relation between $t_c$ and $L$ by setting
+$CV = L/t_c$, where $CV$ is the conduction velocity. 
+In human cardiac tissue $CV$ is known to be about
+60 cm/s, while the choices above give
 
 \[
-\frac{L}{t_c} =  \frac{0.087\hbox{ mm}}{0.076\hbox{ ms}} \approx 144 \tp
-\hbox{ cm/s}\tp \]
-Enforcing $L/t_c = 60 \hbox{ cm\,s}^-1$ gives the constraint $g_c \approx
-4.8 \hbox{ mS\,cm}^{-2}$, and yields $L \approx 0.17$ mm and
-$t_c=0.21$ ms.
+\frac{L}{t_c} =  \frac{0.087\rm{mm}}{0.076\rm{ms}} \approx 144 \tp
+\hbox{cm/s}\tp \]
+Enforcing $L/t_c = 60 \hbox{cm\,s}^{-1}$ gives the constraint $g_c \approx
+4.8 \hbox{mS\,cm}^{-2}$, and yields $L \approx 0.17$ mm and
+$t_c=0.21$ ms. 
 % These are still small values, but very close to the
 % standard values of $\Delta x, \Delta t$ required for accurate
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
+% \longinlinecomment{hpl 20}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+
 
 \subsection{The bidomain model with an alternative $I_{\rm{ion}}$}
-
 The simplest model that gives a qualitatively realistic description of
 the cardiac action potential is the FitzHugh-Nagumo (FHN) model. In
 contrast to the model (\ref{scale:bidomain:ion1}) discussed above, the
@@ -8593,7 +8595,7 @@ underlying biophysics. However, the model can be parameterized to give
 reasonable values for the voltages, and has the advantage of giving a
 self-contained and relatively simple model that does not depend on
 externally determined variables like the $s$ vector above. As above,
-we have the bidomain model given by
+we have the bidomain model given by 
 \begin{align}
 \chi C_m\frac{\partial v}{\partial t} &=
 \nabla\cdot( \sigma_i\nabla v) + \nabla\cdot (\sigma_i\nabla u_e) - \chi I_{\rm{ion}}
@@ -8602,19 +8604,20 @@ we have the bidomain model given by
 0 &= \nabla\cdot( \sigma_i\nabla v) + \nabla\cdot ((\sigma_i + \sigma_e)\nabla u_e),
 \label{scale:bidomain:equ2}
 \end{align}
-but now with
+but now with 
 \[ I_{\rm{ion}} = -A[(v-v_r)(v-v_{th})(v-v_p) - w(v-v_r)(v_p-v_r)^2], \]
 and $w$ governed by an ODE on the form
 \[ \frac{dw}{dt} = k(v-v_r)-l w \tp\]
-Choosing $A=4.16\cdot 10^{-4} \rm{mS}/(\rm{mV}^2),  v_r=-85\rm{mV},
-v_{th}= -68\rm{mV}, v_p=40\rm{mV}, k = 4.0\cdot10^{-5} \rm{mV}^{-1}\rm{ms}^{-1}, l
-=0.013\rm{ms}^{-1}, $ gives reasonably physiological values for $v$,
-while $w$ is a dimensionless variable.
+Choosing $A=4.16\cdot 10^{-4} \hbox{mS}/(\hbox{mV}^2),  v_r=-85\hbox{mV},
+v_{th}= -68\hbox{mV}, v_p=40\hbox{mV}, k = 4.0\cdot10^{-5} \hbox{mV}^{-1}\hbox{ms}^{-1}, l
+=0.013\hbox{ms}^{-1}, $ gives reasonably physiological values for $v$,
+while $w$ is a dimensionless variable with values in $[0,1]$. 
+The somewhat strange choice of parameter units are
+required because the function is cubic in $v$. 
 Typical initial conditions are $v=v_r, u_e = w=0$,
 and $I_{app}$ is piecewise constant in space and time, with a typical
-value being $I_{app} = -50 mA$ applied for 2 ms in certain regions of
-the domain. The somewhat strange choice of parameter units are
-required because of the cubic nature of the ionic current term.
+value being $I_{app} = -50 \hbox{mA}$ applied for 2 ms in certain regions of
+the domain. 
 
 The equations can be scaled following the same procedure as above. In
 addition to the dimensionless variables introduced above, we introduce
@@ -8630,7 +8633,7 @@ and in terms of the dimensionless variables, we get
 \bar v w) -\chi I_{\rm{app}},
 \\ 
 0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v)
+\nabla \bar v) 
 + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \frac{1}{t_c} \frac{dw}{dt} &= k \Delta v \bar v
 -l w \tp
@@ -8643,7 +8646,7 @@ As above, we multiply with suitable factors to arrive at
 &\quad - \frac{t_c A\Delta v^2}{C_m} (\bar v (\bar v-\alpha)(\bar v -1) - \bar v
 w) -\chi I_{\rm{app}}, \\ 
 0 &= \frac{\sigma_c}{L^2}\bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v)
+\nabla \bar v) 
 + \frac{\sigma_cu_c}{\Delta v L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \frac{dw}{dt}&= k {t_c}{\Delta v} \bar
 v -t_c l w \tp
@@ -8660,7 +8663,7 @@ the reaction and diffusion term, which gives
 &\quad - (\bar v (\bar v-\alpha)(\bar v -1) - \bar v
 w) -\beta, \\ 
 0 &= \bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v)
+\nabla \bar v) 
 + \alpha \nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \frac{dw}{dt}&= \bar k \bar
 v -\bar l w ,
@@ -8871,11 +8874,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 20}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 21}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 21}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 22}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 22}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 23}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8965,7 +8968,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 23}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 24}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
@@ -9030,7 +9033,7 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
-\shortinlinecomment{Geir 24}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
+\shortinlinecomment{Geir 25}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 
