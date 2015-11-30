@@ -231,7 +231,7 @@ regardless of the whether the length is measured in km or mm.
 Nevertheless, rather than relying solely on relative errors, it is in general
 better to scale the problem such that the quantities entering the
 computations are of unit size (or at least moderate) instead of being very
-large or very small. The techniques of this ${APPENDIX} show how this
+large or very small. The techniques of these notes show how this
 can be done.
 
 ===== Units and computers =====
@@ -3320,8 +3320,13 @@ damped oscillations (requiring $b < 2\sqrt{mk}$) can be
 found by the following code. We have divided the differential equation
 by $m$ and introduced $B=\frac{1}{2}b/m$ and let `A1` represent
 $A/m$ to simplify expressions and
-help SymPy with less symbols in the equation (without these simplifications,
-SymPy stalls in the computations due to too many symbols in the equation).
+help SymPy with less symbols in the equation. Without these simplifications,
+SymPy stalls in the computations due to too many symbols in the equation.
+The problem is actually a solid argument for scaling differential equations
+before asking SymPy to solve them since scaling effectively reduces the
+number of parameters in the equations!
+
+The following SymPy steps derives the solution of the homogeneous ODE:
 
 !bc pycod
 u = symbols('u', cls=Function)
@@ -5261,7 +5266,8 @@ label{scale:vib:exer:quantum}
 file=Schroedinger
 
 A simplified stationary
-Schroedinger's equation for one electron, assuming radial symmetry, reads
+Schroedinger's equation for one electron, assuming radial symmetry, takes
+the form
 
 !bt
 \begin{equation}
@@ -5273,7 +5279,10 @@ label{scale:vib:exer:quantum:Req}
 !et
 where $r$ is the radial coordinate, $R$ is the wave function,
 $\hbar$ is Planck's constant, $m$ is the mass of the electron,
-$V=\half kr^2$ is the potential for some constant $k$, and $E$ is
+$V=$ is the force potential, which is here taken as the
+Coulomb potential $V(r) = {e^2}/(8\pi\epsilon_0 r)$
+(where $e$ is the charge of the electron and $\epsilon_0$ is the
+permittivity of free space), and $E$ is
 the eigenvalue, for the energy, to be determined along with $R(r)$.
 
 Show that the scaled version of (ref{scale:vib:exer:quantum:Req}) can be written
@@ -5281,7 +5290,7 @@ Show that the scaled version of (ref{scale:vib:exer:quantum:Req}) can be written
 !bt
 \begin{equation}
 - \left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right)
-\bar R + \bar r^2\bar R = \lambda\bar R,
+\bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
 label{scale:vib:exer:quantum:barReq}
 \end{equation}
 !et
@@ -5292,6 +5301,8 @@ where $\lambda$ is a dimensionless eigenvalue
 !et
 The symbol $\bar r$ is the scaled coordinate, and $\bar R$ is a scaled
 version of $R$ (the scaling factor drops out of the equation).
+The length scale, which arises naturally, is the
+"Bohr radius": "https://en.wikipedia.org/wiki/Bohr_radius".
 
 !bsol
 We introduce
@@ -5306,7 +5317,8 @@ Multiplying with $2mr_c^2/\hbar^2$ we get
 \[
 -\left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\left(\bar r^2\frac{d}{d\bar r}
 \right)\right) \bar R
-+ \frac{kmrc^4}{\hbar^2}\bar r^2\bar R = \frac{2Emr_c^2}{\hbar^2}R\tp
++ \frac{me^2r_c}{4\pi\epsilon_0\hbar^2}\frac{1}{\bar r}\bar R =
+\frac{2Emr_c^2}{\hbar^2}R\tp
 \]
 !et
 Note that all the $R_c$ factors cancel.
@@ -5315,26 +5327,30 @@ Balance of the two terms on the left-hand side suggests that the
 length scale $r_c$ can be determined from requiring
 
 !bt
-\[ \frac{kmrc^4}{\hbar^2} = 1,\]
+\[ \frac{me^2r_c}{4\pi\epsilon_0\hbar^2} = 1,\]
 !et
 i.e.,
 
 !bt
-\[ r_c = \left(\frac{\hbar^2}{km}\right)^{\frac{1}{4}}\tp\]
+\[ r_c = \frac{4\pi\epsilon_0\hbar^2}{me^2},\]
 !et
+which is actually the Bohr radius,
+demonstrating that the balance of the terms on the left-hand side automatically
+determines a very relevant length scale.
+
 A bit of rewriting in the right-hand side term gives the
 given expression for $\lambda$. We then end up with
 (ref{scale:vib:exer:quantum:barReq}).
 !esol
 
 !bremarks
-Introducing $u=rR$ and renaming $\bar r$ to $x$,
+Introducing $u=\bar r\bar R$ and renaming $\bar r$ to $x$,
 (ref{scale:vib:exer:quantum:barReq}) can be recast to the simple form
 
 !bt
-\[ -u'' + x^2u = \lambda u,\]
+\[ -u'' + x^{-2}u = \lambda u,\]
 !et
-which is an easier eigenvalue problem to solve numerically (the boundary
+which is a simpler eigenvalue problem to solve numerically (the boundary
 conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
 !eremarks
 
@@ -6038,11 +6054,11 @@ We should rather not go into details on such issues, anyhow.]
 However, the forcing, $\bar f$, may inherit spatial and temporal scales of its
 own that may complicate the matter. The forcing may, for instance, be
 some disturbance moving with a velocity close to the propagation velocity of
-the free waves. This will have an effect akin to the resonance for the vibration problem discussed in 
-section ref{sec:scale:vib:undamped:mg} and the waves produced by the forcing may be much larger than 
+the free waves. This will have an effect akin to the resonance for the vibration problem discussed in
+section ref{sec:scale:vib:undamped:mg} and the waves produced by the forcing may be much larger than
 indicated by $\beta$. On the other hand, the forcing may also consist
-of alternating positive and negative parts (example: retrogressive slides). These may interfere to 
-reduce the wave generation by an order of magnitude.  
+of alternating positive and negative parts (example: retrogressive slides). These may interfere to
+reduce the wave generation by an order of magnitude.
 === Scaling the velocity initial condition ===
 
 The initial condition $u_t(x,0)=V(x)$ has its dimensionless variant as

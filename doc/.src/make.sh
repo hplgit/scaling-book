@@ -14,7 +14,7 @@ encoding="--encoding=utf-8"
 
 CHAPTER=chapter
 BOOK=book
-APPENDIX=appendix
+APPENDIX=book
 
 function system {
   "$@"

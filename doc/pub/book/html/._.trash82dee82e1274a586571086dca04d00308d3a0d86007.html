@@ -1347,7 +1347,7 @@ based on \( V \) becomes
 
 $$
 \begin{equation}
-\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\hbox{mean}(V)}\tp
+\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\,\hbox{mean}(V)}\tp
 \tag{3.24}
 \end{equation}
 $$
@@ -1405,7 +1405,7 @@ teach us much about the interaction of the various physical effects.
 <h2 id="scale:wave:pde2:cvar">Variable wave velocity and forcing</h2>
 
 <p>
-The next problem generalization regards wave propagation in
+The next generalization regards wave propagation in
 a non-homogeneous medium where the wave velocity \( c \) depends on the
 spatial position: \( c=c(x) \). To simplify the notation we introduce
 \( \lambda (x) = c^2(x) \). We introduce homogeneous Neumann conditions
@@ -1543,9 +1543,22 @@ $$
 + \beta \bar f(\bar x,\bar t)\tp
 $$
 
-With \( V=0 \), and \( u=0 \) or \( u_x=0 \) on the boundaries \( x=0,L \), this scaling gives
+With \( V=0 \), and \( u=0 \) or \( u_x=0 \) on the boundaries \( x=0,L \), this scaling normally gives
 \( |\bar u|\leq 1 \), since initially \( |I|\leq 1 \), and no boundary condition
 can increase the amplitude.
+
+<!-- begin inline comment -->
+<font color="red">(<b>Geir 13</b>: added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow.)</font>
+<!-- end inline comment -->
+
+However, the forcing, \( \bar f \), may inherit spatial and temporal scales of its
+own that may complicate the matter. The forcing may, for instance, be
+some disturbance moving with a velocity close to the propagation velocity of
+the free waves. This will have an effect akin to the resonance for the vibration problem discussed in
+the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#sec:scale:vib:undamped:mg">Undamped vibrations with constant forcing</a> and the waves produced by the forcing may be much larger than
+indicated by \( \beta \). On the other hand, the forcing may also consist
+of alternating positive and negative parts (example: retrogressive slides). These may interfere to
+reduce the wave generation by an order of magnitude.
 
 <h3 id="___sec131">Scaling the velocity initial condition </h3>
 

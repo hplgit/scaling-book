@@ -812,7 +812,7 @@ regardless of the whether the length is measured in km or mm.
 Nevertheless, rather than relying solely on relative errors, it is in general
 better to scale the problem such that the quantities entering the
 computations are of unit size (or at least moderate) instead of being very
-large or very small. The techniques of this appendix show how this
+large or very small. The techniques of these notes show how this
 can be done.
 
 \subsection{Units and computers}
@@ -3934,8 +3934,13 @@ damped oscillations (requiring $b < 2\sqrt{mk}$) can be
 found by the following code. We have divided the differential equation
 by $m$ and introduced $B=\frac{1}{2}b/m$ and let \texttt{A1} represent
 $A/m$ to simplify expressions and
-help SymPy with less symbols in the equation (without these simplifications,
-SymPy stalls in the computations due to too many symbols in the equation).
+help SymPy with less symbols in the equation. Without these simplifications,
+SymPy stalls in the computations due to too many symbols in the equation.
+The problem is actually a solid argument for scaling differential equations
+before asking SymPy to solve them since scaling effectively reduces the
+number of parameters in the equations!
+
+The following SymPy steps derives the solution of the homogeneous ODE:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 u = symbols('u', cls=Function)
@@ -5121,7 +5126,8 @@ and $\bar h$ of size unity or at least not very small or big?)
 \label{scale:vib:exer:quantum}
 
 A simplified stationary
-Schroedinger's equation for one electron, assuming radial symmetry, reads
+Schroedinger's equation for one electron, assuming radial symmetry, takes
+the form
 
 \begin{equation}
 -\frac{\hbar^2}{2m}
@@ -5131,14 +5137,17 @@ Schroedinger's equation for one electron, assuming radial symmetry, reads
 \end{equation}
 where $r$ is the radial coordinate, $R$ is the wave function,
 $\hbar$ is Planck's constant, $m$ is the mass of the electron,
-$V=\half kr^2$ is the potential for some constant $k$, and $E$ is
+$V=$ is the force potential, which is here taken as the
+Coulomb potential $V(r) = {e^2}/(8\pi\epsilon_0 r)$
+(where $e$ is the charge of the electron and $\epsilon_0$ is the
+permittivity of free space), and $E$ is
 the eigenvalue, for the energy, to be determined along with $R(r)$.
 
 Show that the scaled version of (\ref{scale:vib:exer:quantum:Req}) can be written
 
 \begin{equation}
 - \left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right)
-\bar R + \bar r^2\bar R = \lambda\bar R,
+\bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
 \label{scale:vib:exer:quantum:barReq}
 \end{equation}
 where $\lambda$ is a dimensionless eigenvalue
@@ -5146,6 +5155,8 @@ where $\lambda$ is a dimensionless eigenvalue
 \[ \lambda = \frac{2E}{\hbar}\sqrt{\frac{m}{k}}\tp\]
 The symbol $\bar r$ is the scaled coordinate, and $\bar R$ is a scaled
 version of $R$ (the scaling factor drops out of the equation).
+The length scale, which arises naturally, is the
+\href{{https://en.wikipedia.org/wiki/Bohr_radius}}{Bohr radius}\footnote{\texttt{https://en.wikipedia.org/wiki/Bohr\_radius}}.
 
 
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
@@ -5154,11 +5165,11 @@ version of $R$ (the scaling factor drops out of the equation).
 % Closing remarks for this Problem
 
 \paragraph{Remarks.}
-Introducing $u=rR$ and renaming $\bar r$ to $x$,
+Introducing $u=\bar r\bar R$ and renaming $\bar r$ to $x$,
 (\ref{scale:vib:exer:quantum:barReq}) can be recast to the simple form
 
-\[ -u'' + x^2u = \lambda u,\]
-which is an easier eigenvalue problem to solve numerically (the boundary
+\[ -u'' + x^{-2}u = \lambda u,\]
+which is a simpler eigenvalue problem to solve numerically (the boundary
 conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
 
 
@@ -5622,7 +5633,7 @@ The scaled version of this condition with the above $u_c$
 based on $V$ becomes
 
 \begin{equation}
-\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\hbox{mean}(V)}\tp
+\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\,\hbox{mean}(V)}\tp
 \label{scale:wave:pde2:Vcond:eq}
 \end{equation}
 
@@ -5677,7 +5688,7 @@ teach us much about the interaction of the various physical effects.
 \subsection{Variable wave velocity and forcing}
 \label{scale:wave:pde2:cvar}
 
-The next problem generalization regards wave propagation in
+The next generalization regards wave propagation in
 a non-homogeneous medium where the wave velocity $c$ depends on the
 spatial position: $c=c(x)$. To simplify the notation we introduce
 $\lambda (x) = c^2(x)$. We introduce homogeneous Neumann conditions
@@ -5792,10 +5803,18 @@ the $\beta$ parameter appears in the PDE instead:
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
 + \beta \bar f(\bar x,\bar t)\tp
 \]
-With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling gives
+With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling normally gives
 $|\bar u|\leq 1$, since initially $|I|\leq 1$, and no boundary condition
 can increase the amplitude.
-
+\longinlinecomment{Geir 13}{ added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow. }{ added text below. I }
+However, the forcing, $\bar f$, may inherit spatial and temporal scales of its
+own that may complicate the matter. The forcing may, for instance, be
+some disturbance moving with a velocity close to the propagation velocity of
+the free waves. This will have an effect akin to the resonance for the vibration problem discussed in
+section~\ref{sec:scale:vib:undamped:mg} and the waves produced by the forcing may be much larger than
+indicated by $\beta$. On the other hand, the forcing may also consist
+of alternating positive and negative parts (example: retrogressive slides). These may interfere to
+reduce the wave generation by an order of magnitude.
 \paragraph{Scaling the velocity initial condition.}
 The initial condition $u_t(x,0)=V(x)$ has its dimensionless variant as
 
@@ -6135,7 +6154,7 @@ u(0, t) & = U_1,
 The diffusion coefficient is related to heat transfer parameters
 by $\dfc = k/(\varrho c)$, where $k$ is the heat conduction coefficient,
 $\varrho$ is the density, and $c$ is a specific heat capacity parameter.
-\shortinlinecomment{Geir 13}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
+\shortinlinecomment{Geir 14}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
 
 The natural dimensionless temperature for this problem is
 
@@ -6172,12 +6191,12 @@ boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 14}{ Include simulation results. }{ Include simulation results. }
+\shortinlinecomment{hpl 15}{ Include simulation results. }{ Include simulation results. }
 
 \subsection{Oscillating Dirichlet condition}
 
-\shortinlinecomment{hpl 15}{ Do we need paragraph headings here? }{ Do we need paragraph }
-\shortinlinecomment{Geir 16}{ yes }{ yes }
+\shortinlinecomment{hpl 16}{ Do we need paragraph headings here? }{ Do we need paragraph }
+\shortinlinecomment{Geir 17}{ yes }{ yes }
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -7061,7 +7080,7 @@ as bricks, it is tempting to develop a one-dimensional model, especially
 if the pieces are somewhat slender. We then expect the main temperature
 variations to take place in the $x$ direction, where the $x$ axis is
 perpendicular to the contact surface between the pieces.
-\shortinlinecomment{Geir 17}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 18}{ Hm?? }{ Hm?? }
 The idea is
 to integrate the governing PDE in the two other directions, use the
 Gauss divergence theorem on
@@ -7092,7 +7111,7 @@ dydz +
 dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
-\shortinlinecomment{Geir 17}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 18}{ Hm?? }{ Hm?? }
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 
@@ -7245,7 +7264,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 19}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 20}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -8583,7 +8602,7 @@ $t_c=0.21$ ms.
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-% \longinlinecomment{hpl 20}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+% \longinlinecomment{hpl 21}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 
 \subsection{The bidomain model with an alternative $I_{\rm{ion}}$}
@@ -8874,11 +8893,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 21}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 22}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 22}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 23}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 23}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 24}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8968,7 +8987,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 24}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 25}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
@@ -9033,7 +9052,7 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
-\shortinlinecomment{Geir 25}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
+\shortinlinecomment{Geir 26}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 

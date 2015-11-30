@@ -104,6 +104,7 @@ nonhomogeneous
 pascal
 pdfLaTeX
 permeabilities
+permittivity
 pipeflow
 poro
 pulsatile
