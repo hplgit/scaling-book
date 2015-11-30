@@ -6030,10 +6030,19 @@ the $\beta$ parameter appears in the PDE instead:
 + \beta \bar f(\bar x,\bar t)\tp
 \]
 !et
-With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling gives
+With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling normally gives
 $|\bar u|\leq 1$, since initially $|I|\leq 1$, and no boundary condition
 can increase the amplitude.
-
+[Geir: added text below. I am not shure baout mentioning retrogressive slides.
+We should rather not go into details on such issues, anyhow.]
+However, the forcing, $\bar f$, may inherit spatial and temporal scales of its
+own that may complicate the matter. The forcing may, for instance, be
+some disturbance moving with a velocity close to the propagation velocity of
+the free waves. This will have an effect akin to the resonance for the vibration problem discussed in 
+section ref{sec:scale:vib:undamped:mg} and the waves produced by the forcing may be much larger than 
+indicated by $\beta$. On the other hand, the forcing may also consist
+of alternating positive and negative parts (example: retrogressive slides). These may interfere to 
+reduce the wave generation by an order of magnitude.  
 === Scaling the velocity initial condition ===
 
 The initial condition $u_t(x,0)=V(x)$ has its dimensionless variant as
