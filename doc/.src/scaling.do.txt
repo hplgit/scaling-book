@@ -5814,7 +5814,7 @@ based on $V$ becomes
 
 !bt
 \begin{equation}
-\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\hbox{mean}(V)}\tp
+\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\,\hbox{mean}(V)}\tp
 label{scale:wave:pde2:Vcond:eq}
 \end{equation}
 !et
@@ -5873,7 +5873,7 @@ teach us much about the interaction of the various physical effects.
 ===== Variable wave velocity and forcing =====
 label{scale:wave:pde2:cvar}
 
-The next problem generalization regards wave propagation in
+The next generalization regards wave propagation in
 a non-homogeneous medium where the wave velocity $c$ depends on the
 spatial position: $c=c(x)$. To simplify the notation we introduce
 $\lambda (x) = c^2(x)$. We introduce homogeneous Neumann conditions
