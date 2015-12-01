@@ -125,14 +125,14 @@ dimensional analysis and the famous Buckingham Pi Theorem
 cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
 section ref{scale:dimunit:Pi}.
 
-Other classical topics closely related to scaling and non-dimensionalization
-are analytical solution methods like perturbation techniques and
-similarity solutions. These are not addressed in these notes.
-There are numerous texts on perturbation techniques, and these methods build
-on an already scaled differential equations. Similarity solutions do not
-fit within the present scope since these involve non-dimensional
-*combinations of the independent variables* to derive new differential
-equations that are easier to solve.
+Other classical topics closely related to non-dimensionalization and
+scaling are analytical solution methods like perturbation techniques
+and similarity solutions. These are not addressed in these notes.
+There are numerous texts on perturbation techniques, and these methods
+build on an already scaled differential equations. Similarity
+solutions do not fit within the present scope since these involve
+non-dimensional *combinations of the independent variables* to derive
+new differential equations that are easier to solve.
 
 Our scope is to scale differential
 equations to simplify the setting of parameters in numerical simulations,
