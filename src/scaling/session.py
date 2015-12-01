@@ -340,6 +340,22 @@ import odespy
 def biochemical_solver(alpha, beta, epsilon, T, dt=0.1):
     def f(u, t):
         Q, P, S, E = u
+        # Consistency checks
+        conservation1 = abs(Q/(alpha*epsilon) + E - 1)
+        conservation2 = abs(alpha*S + Q + P - alpha)
+        tol = 1E-14
+        if conservation1 > tol or conservation2 > tol:
+            print 't=%g *** conservations:' % t, \
+                  conservation1, conservation2
+        if Q < 0:
+            print 't=%g *** Q=%g < 0' % (t, Q)
+        if P < 0:
+            print 't=%g *** P=%g < 0' % (t, P)
+        if S < 0 or S > 1:
+            print 't=%g *** S=%g' % (t, S)
+        if E < 0 or S > 1:
+            print 't=%g *** E=%g' % (t, E)
+
         return [
             alpha*(E*S - Q),
             beta*Q,
@@ -361,15 +377,20 @@ def biochemical_solver(alpha, beta, epsilon, T, dt=0.1):
     return Q, P, S, E, t
 
 def simulate_biochemical_process():
-    alpha = 1
-    beta = 4
+    alpha = 1.5
+    beta = 1
+
     epsilon = 0.1
-    #epsilon = 0.005
     T = 8
-    T = 0.05
-    dt = 0.1
+    dt = 0.01
+
+    # Very small epsilon:
+    #epsilon = 0.005
     #dt = 0.001
+    #T = 0.05
+
     Q, P, S, E, t = biochemical_solver(alpha, beta, epsilon, T, dt)
+
     import matplotlib.pyplot as plt
     plt.plot(t, Q, t, P, t, S, t, E)
     plt.legend(['complex', 'product', 'substrate', 'enzyme'],

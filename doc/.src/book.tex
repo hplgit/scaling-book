@@ -3127,8 +3127,13 @@ We can now identify the dimensionless numbers
 \[ \alpha = \frac{K}{E_0},\quad \beta = \frac{k_v}{k_+ E_0},
 \quad \gamma = \frac{k_-}{k_+E_0},
 \]
-where we see that $\alpha = \beta + \gamma$, so $\gamma$ can be eliminated,
-leading to the final set of equations:
+where we see that $\alpha = \beta + \gamma$, so $\gamma$ can be eliminated.
+Moreover,
+
+\[ \alpha = \frac{k_-}{k_+E_0} + \beta,\]
+implying that $\alpha > \beta$.
+
+We arrive at the final set of scaled differential equations:
 
 \begin{align}
 \frac{d\bar Q}{d\bar t} &= \alpha (\bar E\bar S
@@ -3142,6 +3147,8 @@ leading to the final set of equations:
 \epsilon\frac{d\bar E}{d\bar t} &= -\bar E\bar S + \bar Q\tp
 \label{scale:MMK:E2}
 \end{align}
+The initial conditions are $\bar S=\bar E =1$ and $\bar Q=\bar P=0$.
+
 The five initial parameters ($S_0$, $E_0$, $k_+$, $k_-$, and $k_v$)
 are reduced to three dimensionless constants:
 
@@ -3162,6 +3169,22 @@ solving (\ref{scale:MMK:ES1})-(\ref{scale:MMK:E1}) cannot be reused
 for solving (\ref{scale:MMK:Q2})-(\ref{scale:MMK:E2}) since the latter
 system has a slightly different structure.
 
+\paragraph{Conservation equations.}
+The counterpart to the conservation equations
+(\ref{scale:MMK:cons1})-(\ref{scale:MMK:cons2}) is obtained by
+adding (\ref{scale:MMK:Q2}) and $\alpha$ times (\ref{scale:MMK:E2}),
+and adding (\ref{scale:MMK:Q2}), (\ref{scale:MMK:P2}), and
+$\alpha$ times (\ref{scale:MMK:S2}):
+
+\begin{align}
+\epsilon^{-1}\alpha^{-1}\bar Q + \bar E &= 1,\\ 
+\alpha\bar S + \bar Q + \bar P &= \alpha\tp
+\end{align}
+
+The scaled quantities, as well as the original concentrations, must be
+positive variables, and $\bar E\in [0,1]$, $\bar S\in [0,1]$. Such checks
+along with the conserved quantities above should be performed at every
+time step in a simulation.
 
 \paragraph{Analysis of the scaled system.}
 In the scaled system, we may assume $\epsilon$ small, which from
