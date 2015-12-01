@@ -501,11 +501,13 @@ code { color: inherit; background-color: transparent; }
                1,
                'scale:bidomain',
                'scale:bidomain'),
+              ('The mathematical model', 2, None, '___sec197'),
+              ('Scaling', 2, None, '___sec198'),
               ('The bidomain model with an alternative $I_{\\rm{ion}}$',
                2,
                None,
-               '___sec197'),
-              ('Two-phase porous media flow', 1, None, '___sec198'),
+               '___sec199'),
+              ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
                'scale:gasdyn',
@@ -514,8 +516,8 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:Euler_eqs',
                'scale:Euler_eqs'),
-              ('General isentropic flow', 2, None, '___sec201'),
-              ('Elimination of the pressure', 3, None, '___sec202'),
+              ('General isentropic flow', 2, None, '___sec203'),
+              ('Elimination of the pressure', 3, None, '___sec204'),
               ('The acoustic approximation for sound waves',
                2,
                'scale:gas:acoustic',
@@ -523,22 +525,23 @@ code { color: inherit; background-color: transparent; }
               ('Wave nature of isentropic flow with small perturbations',
                3,
                None,
-               '___sec204'),
+               '___sec206'),
               ('Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec205'),
+               '___sec207'),
               ('Surface gravity waves',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
-              ('Equations for surface waves',
+              ('The mathematical model',
                2,
                'scale:surfacewaves:Eulereq',
                'scale:surfacewaves:Eulereq'),
-              ('Waves in deep  water', 3, None, '___sec208'),
-              ('Long waves in shallow water', 3, None, '___sec209'),
-              ('Exercises', 1, None, '___sec210'),
+              ('Scaling', 2, None, '___sec210'),
+              ('Waves in deep  water', 2, None, '___sec211'),
+              ('Long waves in shallow water', 2, None, '___sec212'),
+              ('Exercises', 1, None, '___sec213'),
               ('Exercise 24: Comparison of vibration models for elastic structures',
                2,
                'scale::exer:elasticity:vibmodels',
@@ -551,7 +554,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:starting_Couette',
                'scale:vib:exer:starting_Couette'),
-              ('References', 1, None, '___sec214')]}
+              ('References', 1, None, '___sec217')]}
 end of tocinfo -->
 
 <body>
@@ -811,24 +814,27 @@ $$
      <!-- navigation toc: --> <li><a href="#___sec194" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interpretations of the Grashof number</a></li>
      <!-- navigation toc: --> <li><a href="#___sec195" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat transfer at boundaries and the Nusselt number</a></li>
      <!-- navigation toc: --> <li><a href="#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bidomain model with an alternative \( I_{\rm{ion}} \)</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bidomain model with an alternative \( I_{\rm{ion}} \)</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec200" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec201" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec202" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec203" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec204" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
      <!-- navigation toc: --> <li><a href="#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec204" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec205" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec206" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec207" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
      <!-- navigation toc: --> <li><a href="#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Surface gravity waves</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Equations for surface waves</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec208" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec209" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Long waves in shallow water</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec210" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec210" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec211" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec212" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Long waves in shallow water</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec213" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exercises</a></li>
      <!-- navigation toc: --> <li><a href="#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 24: Comparison of vibration models for elastic structures</a></li>
      <!-- navigation toc: --> <li><a href="#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 25: A model for quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 26: Starting Couette flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec214" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book011.html#___sec217" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -2255,11 +2261,14 @@ such as Gr, Pr, and Nu.
 
 <h1 id="scale:bidomain">The bidomain model in electrophysiology</h1>
 
+<h2 id="___sec197">The mathematical model </h2>
+
 <p>
 The mechanical functioning of the heart is crucially dependent on
 correct electric signal propagation through the heart tissue.
 A widely used mathematical
 model for the electric signal propagation is the bidomain equations:
+
 $$
 \begin{align}
 \chi C_m\frac{\partial v}{\partial t} &=
@@ -2299,8 +2308,9 @@ governed by a system of ODEs, see for instance <a href="._scaling-book011.html#S
 details. The total
 current \( I_{\rm{ion}} \) is often written as a sum of individual
 ionic currents:
+
 $$
-\begin{align} I_{\rm{ion}}(s,v) &= \sum_{j=1}^n I_{j}(s,v), 
+\begin{align} I_{\rm{ion}}(s,v) &= \sum_{j=1}^n I_{j}(s,v),
 \tag{4.58}
 \end{align}
 $$
@@ -2313,6 +2323,7 @@ where \( v_j \) is the equilibrium potential of the specific ion, and
 much loss of generality we can assume that this formulation is valid
 for all \( I_{j} \), and the total ionic current can then be written in the
 general form
+
 $$
 I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{j}(s,v) = g(s)(v-v_{eq}(s)) ,
 $$
@@ -2335,6 +2346,8 @@ tissue-level electrophysiology as described by
 to scale these equations. The equations are of
 reaction-diffusion type, and the scaling will be based on the general
 non-linear reaction-diffusion equation in the section <a href="._scaling-book008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>.
+
+<h2 id="___sec198">Scaling </h2>
 
 <p>
 Dimensionless independent variables are introduced by
@@ -2380,7 +2393,7 @@ of the membrane. These choices will ensure \( \bar v_{eq}, \bar g \in
 [0,1] \).
 
 <p>
-Inserting the dimensionless variables in 
+Inserting the dimensionless variables in
 <a href="#mjx-eqn-4.56">(4.56)</a>-<a href="#mjx-eqn-4.57">(4.57)</a>, the system
 of governing equations becomes
 
@@ -2415,7 +2428,7 @@ The time scale is not so obvious to choose. As noted above, the ODE
 system that governs \( s \) and thereby \( \bar g(s), \bar v_{eq} (s) \) may
 feature a wide range of spatial scales. Furthermore, even if we focus
 on the tissue equations and on the dynamics of \( v \) and \( u_e \), the
-choice of natural time and length scales is not trivial. 
+choice of natural time and length scales is not trivial.
 The equations are of reaction-diffusion nature, and the
 solution takes the form of a narrow wavefront of activation that
 propagates through the tissue. The region immediately surrounding
@@ -2477,7 +2490,7 @@ $$
 \begin{align*}
 C_m &= 1.0\, \mu\hbox{F\,cm}^{-2}, \quad g_c = g_{max} = 13.0
 \hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS\,cm}^{-2}, \\ 
-\chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} , 
+\chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} ,
 \sigma_c = 3.0 \hbox{mS\,cm}^{-1}\tp
 \end{align*}
 $$
@@ -2509,7 +2522,7 @@ signals governed solely by electrodiffusion.
 <p>
 The conduction velocity is often a quantity of interest, and we could
 obtain an alternative relation between \( t_c \) and \( L \) by setting
-\( CV = L/t_c \), where \( CV \) is the conduction velocity. 
+\( CV = L/t_c \), where \( CV \) is the conduction velocity.
 In human cardiac tissue \( CV \) is known to be about
 60 cm/s, while the choices above give
 
@@ -2519,7 +2532,7 @@ $$
 
 Enforcing \( L/t_c = 60 \hbox{cm\,s}^{-1} \) gives the constraint \( g_c \approx
 4.8 \hbox{mS\,cm}^{-2} \), and yields \( L \approx 0.17 \) mm and
-\( t_c=0.21 \) ms. 
+\( t_c=0.21 \) ms.
 <!-- These are still small values, but very close to the -->
 <!-- standard values of \( \Delta x, \Delta t \) required for accurate -->
 <!-- numerical solution. That is, this choice of scaling will give \( \Delta x -->
@@ -2532,7 +2545,7 @@ Enforcing \( L/t_c = 60 \hbox{cm\,s}^{-1} \) gives the constraint \( g_c \approx
 <!-- end inline comment -->
  -->
 
-<h2 id="___sec197">The bidomain model with an alternative \( I_{\rm{ion}} \) </h2>
+<h2 id="___sec199">The bidomain model with an alternative \( I_{\rm{ion}} \) </h2>
 The simplest model that gives a qualitatively realistic description of
 the cardiac action potential is the FitzHugh-Nagumo (FHN) model. In
 contrast to the model <a href="#mjx-eqn-4.58">(4.58)</a> discussed above, the
@@ -2541,7 +2554,7 @@ underlying biophysics. However, the model can be parameterized to give
 reasonable values for the voltages, and has the advantage of giving a
 self-contained and relatively simple model that does not depend on
 externally determined variables like the \( s \) vector above. As above,
-we have the bidomain model given by 
+we have the bidomain model given by
 $$
 \begin{align}
 \chi C_m\frac{\partial v}{\partial t} &=
@@ -2553,7 +2566,7 @@ $$
 \end{align}
 $$
 
-but now with 
+but now with
 $$ I_{\rm{ion}} = -A[(v-v_r)(v-v_{th})(v-v_p) - w(v-v_r)(v_p-v_r)^2], $$
 
 and \( w \) governed by an ODE on the form
@@ -2562,9 +2575,9 @@ $$ \frac{dw}{dt} = k(v-v_r)-l w \tp$$
 Choosing \( A=4.16\cdot 10^{-4} \hbox{mS}/(\hbox{mV}^2),  v_r=-85\hbox{mV},
 v_{th}= -68\hbox{mV}, v_p=40\hbox{mV}, k = 4.0\cdot10^{-5} \hbox{mV}^{-1}\hbox{ms}^{-1}, l
 =0.013\hbox{ms}^{-1},  \) gives reasonably physiological values for \( v \),
-while \( w \) is a dimensionless variable with values in \( [0,1] \). 
+while \( w \) is a dimensionless variable with values in \( [0,1] \).
 The somewhat strange choice of parameter units are
-required because the function is cubic in \( v \). 
+required because the function is cubic in \( v \).
 Typical initial conditions are \( v=v_r, u_e = w=0 \),
 and \( I_{app} \) is piecewise constant in space and time, with a typical
 value being \( I_{app} = -50 \hbox{mA} \) applied for 2 ms in certain regions of
@@ -2587,7 +2600,7 @@ $$
 \bar v w) -\chi I_{\rm{app}},
 \\ 
 0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v) 
+\nabla \bar v)
 + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \frac{1}{t_c} \frac{dw}{dt} &= k \Delta v \bar v
 -l w \tp
@@ -2603,7 +2616,7 @@ $$
 &\quad - \frac{t_c A\Delta v^2}{C_m} (\bar v (\bar v-\alpha)(\bar v -1) - \bar v
 w) -\chi I_{\rm{app}}, \\ 
 0 &= \frac{\sigma_c}{L^2}\bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v) 
+\nabla \bar v)
 + \frac{\sigma_cu_c}{\Delta v L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \frac{dw}{dt}&= k {t_c}{\Delta v} \bar
 v -t_c l w \tp
@@ -2624,7 +2637,7 @@ $$
 &\quad - (\bar v (\bar v-\alpha)(\bar v -1) - \bar v
 w) -\beta, \\ 
 0 &= \bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v) 
+\nabla \bar v)
 + \alpha \nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
 \frac{dw}{dt}&= \bar k \bar
 v -\bar l w ,
@@ -2636,7 +2649,7 @@ $$
 \bar k = k {t_c}{\Delta v} , \quad \bar l = t_c l \tp
 $$
 
-<h1 id="___sec198">Two-phase porous media flow </h1>
+<h1 id="___sec200">Two-phase porous media flow </h1>
 
 <p>
 We consider the flow of two incompressible, immiscible fluids in
@@ -2994,7 +3007,7 @@ the ones with dimension, apart from the \( \alpha \) coefficient.
 <font color="red">(<b>hpl 13</b>: Comment on software also for advanced models.)</font>
 <!-- end inline comment -->
 
-<h2 id="___sec201">General isentropic flow </h2>
+<h2 id="___sec203">General isentropic flow </h2>
 
 <p>
 Heat transfer can be neglected in
@@ -3016,7 +3029,7 @@ $$
 \end{align}
 $$
 
-<h3 id="___sec202">Elimination of the pressure </h3>
+<h3 id="___sec204">Elimination of the pressure </h3>
 
 <p>
 A common equation of state is
@@ -3108,7 +3121,7 @@ thereby the Mach number.
 
 <h2 id="scale:gas:acoustic">The acoustic approximation for sound waves</h2>
 
-<h3 id="___sec204">Wave nature of isentropic flow with small perturbations </h3>
+<h3 id="___sec206">Wave nature of isentropic flow with small perturbations </h3>
 
 <p>
 A model for sound waves can be based on <a href="#mjx-eqn-4.89">(4.89)</a>
@@ -3152,7 +3165,7 @@ Similarly, \( \hat\varrho \) can be eliminated and one gets a wave equation for
 \( \hat\u \), also with wave velocity \( c_0 \).
 This means that the sound perturbations travel with velocity \( c_0 \).
 
-<h3 id="___sec205">Basic scaling for small wave perturbations </h3>
+<h3 id="___sec207">Basic scaling for small wave perturbations </h3>
 
 <p>
 Let \( \varrho_c \) and
@@ -3277,7 +3290,7 @@ by introducing a new unknown \( \bar\v = M\bar\u \).
 
 <h1 id="scale:surfacewaves">Surface gravity waves</h1>
 
-<h2 id="scale:surfacewaves:Eulereq">Equations for surface waves</h2>
+<h2 id="scale:surfacewaves:Eulereq">The mathematical model</h2>
 
 <p>
 Provided the Weber number, see the section <a href="#freesurface:Weber">Free surface conditions and the Weber number</a>, is
@@ -3322,6 +3335,8 @@ In addition to \( \rho \) and  \( g \) we assume that a typical depth \( h_c \),
 a typical wavelength \( \lambda_c \), and a typical surface elevation \( A \), which
 then per definition is a scale for \( \eta \), are
 the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
+
+<h2 id="___sec210">Scaling </h2>
 
 <p>
 First, it is instructive to define a typical wave celerity, \( c_c \), which
@@ -3372,7 +3387,7 @@ $$
 In the further development of the scaling
 we focus on two limiting cases, namely deep and shallow water.
 
-<h3 id="___sec208">Waves in deep  water </h3>
+<h2 id="___sec211">Waves in deep  water </h2>
 
 <p>
 Deep water means that \( h_c\gg\lambda_c \). Presumably the waves will not
@@ -3427,7 +3442,7 @@ $$
 
 as \( \bar z \rightarrow -\infty \).
 
-<h3 id="___sec209">Long waves in shallow water </h3>
+<h2 id="___sec212">Long waves in shallow water </h2>
 
 <p>
 In this case the basic assumption is that the wavelength is large
@@ -3491,7 +3506,7 @@ is hydrostatic. The above set of equations is a common  starting point for
 perturbation expansions in \( \epsilon \) and \( \mu^2 \) that lead to shallow water,
 KdV, and Boussinesq type equations.
 
-<h1 id="___sec210">Exercises </h1>
+<h1 id="___sec213">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->

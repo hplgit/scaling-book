@@ -10084,7 +10084,7 @@ by introducing a new unknown $\bar\v = M\bar\u$.
 ======= Surface gravity waves =======
 label{scale:surfacewaves}
 
-===== Equations for surface waves =====
+===== The mathematical model =====
 label{scale:surfacewaves:Eulereq}
 
 Provided the Weber number, see section ref{freesurface:Weber}, is
@@ -10128,6 +10128,8 @@ In addition to $\rho$ and  $g$ we assume that a typical depth $h_c$,
 a typical wavelength $\lambda_c$, and a typical surface elevation $A$, which
 then per definition is a scale for $\eta$, are
 the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
+
+===== Scaling =====
 
 First, it is instructive to define a typical wave celerity, $c_c$, which
 must be linked to the length and time scale according to $c_c=\lambda_c/t_c$.
@@ -10176,7 +10178,7 @@ The equation set will be scaled according to
 In the further development of the scaling
 we focus on two limiting cases, namely deep and shallow water.
 
-=== Waves in deep  water ===
+===== Waves in deep  water =====
 
 Deep water means that $h_c\gg\lambda_c$. Presumably the waves will not
 feel the bottom, and $h$ as well as $h_c$ are removed from our
@@ -10227,7 +10229,7 @@ label{scale:surfacewave:kinbott2}
 !et
 as $\bar z \rightarrow -\infty$.
 
-=== Long waves in shallow water ===
+===== Long waves in shallow water =====
 
 In this case the basic assumption is that the wavelength is large
 compared to the depth: $\lambda_c\gg h_c$. In analogy with the reasoning
