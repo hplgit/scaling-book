@@ -213,7 +213,7 @@ on the Pi theorem.  We do not allude that the Pi theorem is of little
 value.  In a number of contexts, such as in experiments, it may
 provide valuable and even crucial guidance, but in this particular
 textbook we seek to tell the complementary story on scaling.
-Moreover, as will be shown in this book, the dimensionless numbers in
+Moreover, as will be shown in this booklet, the dimensionless numbers in
 a problem also arise, in a very natural way, from scaling the
 differential equation(s).  Provided one has a model based on
 differential equation, there is actually no need for classical
@@ -335,9 +335,9 @@ concerning units in input and output with a clear and consistent
 convention for scaling within the tools. In fact, this is also goes
 for academic tools for in-house use.
 
-The discussion above points to some best practices that this book
+The discussion above points to some best practices that these notes
 promotes. First, always compute with scaled differential equation
-models. This book tells you how to do that. Second, users of software
+models. This booklet tells you how to do that. Second, users of software
 often want to specify input data with dimension and get output data
 with dimension. The software should then apply tools like
 `PhysicalQuantity` (Section ref{scale:PQ})
@@ -366,7 +366,7 @@ idx{`PhysicalQuantity`}
 idx{units!conversion}
 idx{units!software}
 
-This book contains quite some computer code to illustrate how the theory
+These notes contains quite some computer code to illustrate how the theory
 maps in detail to running software. Python is the programming language
 used, primarily because it is an easy-to-read, powerful,
 full-fledged language that can be made very close to popular MATLAB-like code
@@ -374,7 +374,7 @@ as well as class-based code typically used in Java, C#, and C++.
 The Python ecosystem for scientific computing has in recent years grown
 fast in popularity and acts as a replacement for more specialized tools
 like MATLAB, R, and IDL.
-The coding examples in this book requires only familiarity with basic
+The coding examples in this booklet requires only familiarity with basic
 procedural programming in Python.
 
 Readers without knowledge of Python variables, functions, if tests,
@@ -382,9 +382,9 @@ and module import should consult, e.g., a "brief tutorial on scientific
 Python": "http://hplgit.github.io/bumpy/doc/web/index.html",
 the "Python Scientific Lecture Notes": "http://scipy-lectures.github.com/",
 or a full textbook cite{Langtangen_2012} in parallel with reading about
-Python code in the present book.
+Python code in the present notes.
 
-!bwarning This book applies Python 2.7
+!bwarning These notes apply Python 2.7
 Python exists in two incompatible versions, numbered 2 and 3.
 The differences can be made small, and there are tools to write
 code that runs under both versions.
@@ -1012,7 +1012,7 @@ written as
 \tp
 \]
 !et
-Nevertheless, in this book we have decided to stick to bars for all
+Nevertheless, in this booklet we have decided to stick to bars for all
 dimensionless quantities.
 
 
@@ -2034,15 +2034,6 @@ from the disease can be shown to be $\nu^{-1}$, but $\beta$ is much harder
 to estimate, so working with a scaled model where $\beta$ is ``scaled away''
 is advantageous.
 
-[hpl: Geir asked about the background for this model. A link to Wikipedia
-is now inserted, but in general all models in this book are just listed
-without further explanations. Do we need more references? The idea was
-that ``here are the ODEs'' and if understanding of the ``physics'' is
-necessary, the reader must have the necessary background. Maybe state
-this in the preface?]
-[Geir: I will look at the example again, but even more on the chemistry example. I guess we need to be pragmatic
-concerning background and explanations.
-In short: do not add more references.]
 === Scaling ===
 
 It is natural to scale $S$, $I$, and $R$ by, e.g., $S(0)$:
@@ -5578,8 +5569,8 @@ model. In the present case, one must choose $L=1$, $c=1$, and scale $I$ by its
 maximum value. That's all!
 
 Several implementations of 1D wave equation models with different
-degree of mathematical and software complexity come along with this
-book. The simplest
+degree of mathematical and software complexity come along with these
+notes. The simplest
 version is "`wave1D_u0.py`": "${src_scaling}/wave1D_u0.py"
 that implements (ref{scale:wave:pde1}) and
 (ref{scale:wave:pde1:ic:u})-(ref{scale:wave:pde1:bc:L}).
@@ -5626,7 +5617,7 @@ The file "`wave1D_u0_scaled.py`": "${src_scaling}/wave1D_u0_scaled.py"
 has functionality for detecting whether a simulation corresponds to
 a previously run scaled case, and if so, the solution is retrieved from
 file. The implementation technique makes use of `joblib`, but is more
-complicated than showed previously in this book since some of the
+complicated than showed previously in these notes since some of the
 arguments to the function that computes the solution are functions,
 and one must recognized if the function has been used as argument
 before or not. There is documentation in the `wave1D_u0_scaled.py`

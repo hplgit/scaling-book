@@ -822,7 +822,7 @@ on the Pi theorem.  We do not allude that the Pi theorem is of little
 value.  In a number of contexts, such as in experiments, it may
 provide valuable and even crucial guidance, but in this particular
 textbook we seek to tell the complementary story on scaling.
-Moreover, as will be shown in this book, the dimensionless numbers in
+Moreover, as will be shown in this booklet, the dimensionless numbers in
 a problem also arise, in a very natural way, from scaling the
 differential equation(s).  Provided one has a model based on
 differential equation, there is actually no need for classical
@@ -940,9 +940,9 @@ concerning units in input and output with a clear and consistent
 convention for scaling within the tools. In fact, this is also goes
 for academic tools for in-house use.
 
-The discussion above points to some best practices that this book
+The discussion above points to some best practices that these notes
 promotes. First, always compute with scaled differential equation
-models. This book tells you how to do that. Second, users of software
+models. This booklet tells you how to do that. Second, users of software
 often want to specify input data with dimension and get output data
 with dimension. The software should then apply tools like
 \texttt{PhysicalQuantity} (Section~\ref{scale:PQ})
@@ -970,7 +970,7 @@ examples on f2py and Cython wrapping of C and Fortran code).
 \index{units!conversion}
 \index{units!software}
 
-This book contains quite some computer code to illustrate how the theory
+These notes contains quite some computer code to illustrate how the theory
 maps in detail to running software. Python is the programming language
 used, primarily because it is an easy-to-read, powerful,
 full-fledged language that can be made very close to popular MATLAB-like code
@@ -978,7 +978,7 @@ as well as class-based code typically used in Java, C\#, and C++.
 The Python ecosystem for scientific computing has in recent years grown
 fast in popularity and acts as a replacement for more specialized tools
 like MATLAB, R, and IDL.
-The coding examples in this book requires only familiarity with basic
+The coding examples in this booklet requires only familiarity with basic
 procedural programming in Python.
 
 Readers without knowledge of Python variables, functions, if tests,
@@ -986,10 +986,10 @@ and module import should consult, e.g., a \href{{http://hplgit.github.io/bumpy/d
 Python}\footnote{\texttt{http://hplgit.github.io/bumpy/doc/web/index.html}},
 the \href{{http://scipy-lectures.github.com/}}{Python Scientific Lecture Notes}\footnote{\texttt{http://scipy-lectures.github.com/}},
 or a full textbook \cite{Langtangen_2012} in parallel with reading about
-Python code in the present book.
+Python code in the present notes.
 
 
-\begin{warning_mdfboxadmon}[This book applies Python 2.7]
+\begin{warning_mdfboxadmon}[These notes apply Python 2.7]
 Python exists in two incompatible versions, numbered 2 and 3.
 The differences can be made small, and there are tools to write
 code that runs under both versions.
@@ -1688,7 +1688,7 @@ written as
 \frac{du}{dt} = -u,\quad u(0)=1
 \tp
 \]
-Nevertheless, in this book we have decided to stick to bars for all
+Nevertheless, in this booklet we have decided to stick to bars for all
 dimensionless quantities.
 
 
@@ -2768,8 +2768,6 @@ from the disease can be shown to be $\nu^{-1}$, but $\beta$ is much harder
 to estimate, so working with a scaled model where $\beta$ is ``scaled away''
 is advantageous.
 
-\longinlinecomment{hpl 5}{ Geir asked about the background for this model. A link to Wikipedia is now inserted, but in general all models in this book are just listed without further explanations. Do we need more references? The idea was that ``here are the ODEs'' and if understanding of the ``physics'' is necessary, the reader must have the necessary background. Maybe state this in the preface? }{ Geir asked about the }
-\longinlinecomment{Geir 6}{ I will look at the example again, but even more on the chemistry example. I guess we need to be pragmatic concerning background and explanations. In short: do not add more references. }{ I will look at }
 \paragraph{Scaling.}
 It is natural to scale $S$, $I$, and $R$ by, e.g., $S(0)$:
 
@@ -3242,7 +3240,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-\shortinlinecomment{hpl 7}{ Include more figures. }{ Include more figures. }
+\shortinlinecomment{hpl 5}{ Include more figures. }{ Include more figures. }
 
 \subsection{Undamped vibrations without forcing}
 \label{sec:scale:vib:undamped}
@@ -3687,7 +3685,7 @@ We remark that the choice of $u_c$ has so far not been made. Several
 different cases will be considered below, and certain choices reduce
 the number of independent dimensionless variables to three.
 
-\shortinlinecomment{hpl 8}{ New comment in the paragraph above. }{ New comment in the }
+\shortinlinecomment{hpl 6}{ New comment in the paragraph above. }{ New comment in the }
 
 The four dimensionless variables above have interpretations as ratios of
 physical effects:
@@ -5350,14 +5348,14 @@ model. In the present case, one must choose $L=1$, $c=1$, and scale $I$ by its
 maximum value. That's all!
 
 Several implementations of 1D wave equation models with different
-degree of mathematical and software complexity come along with this
-book. The simplest
+degree of mathematical and software complexity come along with these
+notes. The simplest
 version is \href{{http://tinyurl.com/o8pb3yy/wave1D_u0.py}}{\nolinkurl{wave1D_u0.py}}
 that implements (\ref{scale:wave:pde1}) and
 (\ref{scale:wave:pde1:ic:u})-(\ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
 in Sections~\ref{wave:pde1:impl} in \cite{Langtangen_Linge_fdm}.
-\shortinlinecomment{Geir 9}{ section reference not active }{ section reference not active }
+\shortinlinecomment{Geir 7}{ section reference not active }{ section reference not active }
 
 \paragraph{Waves on a string.}
 As example, we may let the original initial-boundary value problem
@@ -5391,7 +5389,7 @@ The file \href{{http://tinyurl.com/o8pb3yy/wave1D_u0_scaled.py}}{\nolinkurl{wave
 has functionality for detecting whether a simulation corresponds to
 a previously run scaled case, and if so, the solution is retrieved from
 file. The implementation technique makes use of \texttt{joblib}, but is more
-complicated than showed previously in this book since some of the
+complicated than showed previously in these notes since some of the
 arguments to the function that computes the solution are functions,
 and one must recognized if the function has been used as argument
 before or not. There is documentation in the \Verb!wave1D_u0_scaled.py!
@@ -5815,7 +5813,7 @@ the $\beta$ parameter appears in the PDE instead:
 With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling normally gives
 $|\bar u|\leq 1$, since initially $|I|\leq 1$, and no boundary condition
 can increase the amplitude.
-\longinlinecomment{Geir 10}{ added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow. }{ added text below. I }
+\longinlinecomment{Geir 8}{ added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow. }{ added text below. I }
 However, the forcing, $\bar f$, may inherit spatial and temporal scales of its
 own that may complicate the matter. The forcing may, for instance, be
 some disturbance moving with a velocity close to the propagation velocity of
@@ -6163,7 +6161,7 @@ u(0, t) & = U_1,
 The diffusion coefficient is related to heat transfer parameters
 by $\dfc = k/(\varrho c)$, where $k$ is the heat conduction coefficient,
 $\varrho$ is the density, and $c$ is a specific heat capacity parameter.
-\shortinlinecomment{Geir 11}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
+\shortinlinecomment{Geir 9}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
 
 The natural dimensionless temperature for this problem is
 
@@ -6200,12 +6198,12 @@ boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 12}{ Include simulation results. }{ Include simulation results. }
+\shortinlinecomment{hpl 10}{ Include simulation results. }{ Include simulation results. }
 
 \subsection{Oscillating Dirichlet condition}
 
-\shortinlinecomment{hpl 13}{ Do we need paragraph headings here? }{ Do we need paragraph }
-\shortinlinecomment{Geir 14}{ yes }{ yes }
+\shortinlinecomment{hpl 11}{ Do we need paragraph headings here? }{ Do we need paragraph }
+\shortinlinecomment{Geir 12}{ yes }{ yes }
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -7089,7 +7087,7 @@ as bricks, it is tempting to develop a one-dimensional model, especially
 if the pieces are somewhat slender. We then expect the main temperature
 variations to take place in the $x$ direction, where the $x$ axis is
 perpendicular to the contact surface between the pieces.
-\shortinlinecomment{Geir 15}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 13}{ Hm?? }{ Hm?? }
 The idea is
 to integrate the governing PDE in the two other directions, use the
 Gauss divergence theorem on
@@ -7120,7 +7118,7 @@ dydz +
 dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
-\shortinlinecomment{Geir 15}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 13}{ Hm?? }{ Hm?? }
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 
@@ -7273,7 +7271,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 17}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 15}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -8611,7 +8609,7 @@ $t_c=0.21$ ms.
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-% \longinlinecomment{hpl 18}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+% \longinlinecomment{hpl 16}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 
 \subsection{The bidomain model with an alternative $I_{\rm{ion}}$}
@@ -8902,11 +8900,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 19}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 17}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 20}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 18}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 21}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 19}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8996,7 +8994,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 22}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 20}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
@@ -9061,7 +9059,7 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
-\shortinlinecomment{Geir 23}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
+\shortinlinecomment{Geir 21}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 
