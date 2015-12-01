@@ -395,7 +395,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Nov 30, 2015}
+\date{Dec 1, 2015}
 \maketitle
 
 % Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/book/book
@@ -430,7 +430,7 @@ well treated in the literature. Most of the times, authors just state
 scales without proper motivation. The choice of scales is highly
 problem-dependent and requires knowledge of the characteristic
 features of the solution or the physics of the problem.  The present
-book aims at explaining ``all nuts and bolts'' of the scaling
+notes aim at explaining ``all nuts and bolts'' of the scaling
 technique, including choice of scales, the algebra, the interpretation
 of dimensionless parameters in scaled models, and how scaling impacts
 software for solving differential equations.
@@ -462,7 +462,7 @@ such numbers are therefore a great help, especially for students, in
 developing a correct physical understanding.
 
 Since we have a special focus on scaling related to numerical
-simulations, the book contains a lot of examples on how to program
+simulations, the notes contain a lot of examples on how to program
 with dimensionless differential equation models. Most numerical models
 feature quantities with dimension, so we show in particular how to
 utilize such existing models to solve the equations in the associated
@@ -511,7 +511,7 @@ the text rises quickly after the first two chapters.
 
 The pedagogy is to saturate the reader with lots of detailed examples to
 provide an understanding for the topic, primarily because the choice
-of scales depends on the problem at hand. One can also view the book
+of scales depends on the problem at hand. One can also view the notes
 as a reference on how to scale many of the most important differential
 equation models in physics.  For the simpler differential equations in
 Chapters 2 and 3, we present computer code for many computational
@@ -523,13 +523,41 @@ a stand-alone exercise without reference to the rest of the text, while
 the former typically extends a topic in the text or refers to sections or
 formulas in the text.
 
-To conclude, the purpose of this book is to demystify the
-techniques of scaling and motivate the use of dimensionless
-differential equations before performing numerical simulations.
+
+\begin{warning_mdfboxadmon}[What this booklet is and is not]
+Books containing material on
+scaling and non-dimensionalization very often cover
+topics not treated in the present notes. One key topic is
+dimensional analysis and the famous Buckingham Pi Theorem
+\cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
+section~\ref{scale:dimunit:Pi}.
+
+Other classical topics closely related to scaling and non-dimensionalization
+are analytical solution methods like perturbation techniques and
+similarity solutions. These are not addressed in these notes.
+There are numerous texts on perturbation techniques, and these methods build
+on an already scaled differential equations. Similarity solutions do not
+fit within the present scope since these involve non-dimensional
+\emph{combinations of the independent variables} to derive new differential
+equations that are easier to solve.
+
+Our scope is to scale differential
+equations to simplify the setting of parameters in numerical simulations,
+and at the same time understand more of the physics
+through interpretation of the dimensionless numbers that automatically
+arise from the scaling procedure.
+\end{warning_mdfboxadmon}
+
+
+
+We these notes we hope to demystify the thinking of determining scales
+and encourage numerical simulations to be performed with a dimensionless
+differential equation model.
 
 \paragraph{Acknowledgments.}
 The authors are thankful to Dr.~Joakim Sundnes who greatly contributed to
-the writing of Section~\ref{scale:bidomain}.
+the writing of Section~\ref{scale:bidomain}. We appreciate
+Yapi Donatien Achou's proof reading.
 
 \shortinlinecomment{hpl 1}{ Thank proof readers, Springer, others, ... }{ Thank proof readers, Springer, }
 
@@ -744,7 +772,7 @@ so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 Almost all texts on scaling has a treatment of the famous Buckingham Pi
 theorem, which can be used to derive physical laws based on
 unit compatibility rather than the underlying physical mechanisms.
-This book has its focus on models where the physical mechanisms are
+This booklet has its focus on models where the physical mechanisms are
 already expressed through differential equations. Nevertheless, the Pi
 theorem has a remarkable position in the literature on scaling, and we
 will occasionally make references to it so the theorem is briefly
@@ -758,13 +786,20 @@ to as Pi's. Secondly, any unit-free relation between the original $n$
 parameters can be transformed into a relation between the $n-m$
 dimensionless numbers.  Such relations may be identities or
 inequalities stating, for instance, whether or not a given effect is
-negligible. Moreover, the transformation an equation set into
+negligible. Moreover, the transformation of an equation set into
 dimensionless form corresponds to expressing the coefficients, as well
 as the free and dependent variables, in terms of Pi's.
 
+As an example, think of a body moving at constant speed $v$. What
+is the distance $s$ traveled in time $t$? The Pi theorem results in
+one dimensionless variable $\pi = vt/s$ and leads to the formula
+$s = Cvt$, where $C$ is an undetermined constant. The result is
+very close to the well-known formula $s=vt$ arising from the differential
+equation $s'=v$ in physics, but with an extra constant.
+
 At first glance the Pi theorem may appear as bordering on the
 trivial. However, it may produce remarkable progress for selected
-problems, such as turbulent jets, nuclear blasts or similarity
+problems, such as turbulent jets, nuclear blasts, or similarity
 solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
 very profound, if not magical.  Anyhow, as one move on to more complex
@@ -1479,33 +1514,6 @@ The forthcoming text has the following goals.
 \end{itemize}
 
 \noindent
-
-\begin{warning_mdfboxadmon}[What this book is and is not]
-Books covering scaling and non-dimensionalization very often cover
-topics not treated in the present book. One key topic   is
-dimensional analysis and the famous Buckingham Pi Theorem
-\cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
-section~\ref{scale:dimunit:Pi}.
-
-Other classical topics closely related to scaling and non-dimensionalization
-are analytical solution methods like perturbation techniques and
-similarity solutions. These are not addressed in this book.
-There are numerous texts on perturbation techniques, and these build
-on an already scaled differential equations. Similarity solutions do not
-fit within the present scope since these involve non-dimensional
-\emph{combinations of the independent variables} to derive new differential
-equations that are easier to solve.
-
-Our scope is to scale differential
-equations to simplify the setting of parameters in numerical simulations,
-and at the same time understand more of the physics
-through interpretation of the dimensionless numbers that automatically
-arise from the scaling procedure.
-\end{warning_mdfboxadmon}
-
-
-
-
 \subsection{The basic model problem}
 \index{exponential decay}
 
@@ -4595,11 +4603,11 @@ the scaled initial velocity is unity in $x$ direction.
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 
 \subex{d)}
-A soccer ball has diameter $R=11$ cm and mass 0.43 kg, the density of air
-is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 10 km/h,
+A soccer ball has diameter 11 cm and mass 0.43 kg, the density of air
+is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 30 km/h,
 while a hard kick may have 120 km/h. Estimate the dimensionless parameter
 in the scaled problem for a soft and a hard kick with
-$\theta$ corresponding to 30 degrees. Solve the scaled
+$\theta$ corresponding to 45 degrees. Solve the scaled
 differential equation for these values and plot the trajectory ($y$ versus
 $x$) for the two cases.
 
@@ -4620,7 +4628,7 @@ $x$) for the two cases.
 
 \subsection*{Problem \thedoconceexercisecounter: A predator-prey model}
 
-\label{scale:decay:exer:predpray}
+\label{scale:decay:exer:predprey}
 
 \index{Lotka-Volterra, predator-prey model}
 
@@ -4649,7 +4657,7 @@ The terms has the following meanings:
 
  \item $-bHL$ is the loss of preys because they are eaten by predators,
 
- \item $dHL$ is the increase of predators because they eat prays (but only
+ \item $dHL$ is the increase of predators because they eat preys (but only
    a fraction of the eaten preys, $bHL$, contribute to population growth
    of the predator and therefore $d < b$),
 
@@ -4729,7 +4737,7 @@ and find a time scale. Compare with the result in b).
 Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
-interaction (cf.~Problem~\ref{scale:decay:exer:predpray}):
+interaction (cf.~Problem~\ref{scale:decay:exer:predprey}):
 
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\ 
@@ -5131,7 +5139,7 @@ the form
 
 \begin{equation}
 -\frac{\hbar^2}{2m}
-\left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right) R
+\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right) R
 + V(r)R = ER,
 \label{scale:vib:exer:quantum:Req}
 \end{equation}
@@ -5146,13 +5154,14 @@ the eigenvalue, for the energy, to be determined along with $R(r)$.
 Show that the scaled version of (\ref{scale:vib:exer:quantum:Req}) can be written
 
 \begin{equation}
-- \left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right)
+- \left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\bar r^2
+\frac{d}{d\bar r}\right)
 \bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
 \label{scale:vib:exer:quantum:barReq}
 \end{equation}
 where $\lambda$ is a dimensionless eigenvalue
 
-\[ \lambda = \frac{2E}{\hbar}\sqrt{\frac{m}{k}}\tp\]
+\[ \lambda = \frac{(4\pi)^2\epsilon_0^2\hbar^2E}{me^4}\tp\]
 The symbol $\bar r$ is the scaled coordinate, and $\bar R$ is a scaled
 version of $R$ (the scaling factor drops out of the equation).
 The length scale, which arises naturally, is the
@@ -5166,9 +5175,9 @@ The length scale, which arises naturally, is the
 
 \paragraph{Remarks.}
 Introducing $u=\bar r\bar R$ and renaming $\bar r$ to $x$,
-(\ref{scale:vib:exer:quantum:barReq}) can be recast to the simple form
+(\ref{scale:vib:exer:quantum:barReq}) can be recast in the simpler form
 
-\[ -u'' + x^{-2}u = \lambda u,\]
+\[ -u''(x) + \frac{1}{x}u(x) = \lambda u(x),\]
 which is a simpler eigenvalue problem to solve numerically (the boundary
 conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
 
@@ -5348,7 +5357,7 @@ that implements (\ref{scale:wave:pde1}) and
 (\ref{scale:wave:pde1:ic:u})-(\ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
 in Sections~\ref{wave:pde1:impl} in \cite{Langtangen_Linge_fdm}.
-\shortinlinecomment{Geir 12}{ section reference not active }{ section reference not active }
+\shortinlinecomment{Geir 9}{ section reference not active }{ section reference not active }
 
 \paragraph{Waves on a string.}
 As example, we may let the original initial-boundary value problem
@@ -5806,7 +5815,7 @@ the $\beta$ parameter appears in the PDE instead:
 With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling normally gives
 $|\bar u|\leq 1$, since initially $|I|\leq 1$, and no boundary condition
 can increase the amplitude.
-\longinlinecomment{Geir 13}{ added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow. }{ added text below. I }
+\longinlinecomment{Geir 10}{ added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow. }{ added text below. I }
 However, the forcing, $\bar f$, may inherit spatial and temporal scales of its
 own that may complicate the matter. The forcing may, for instance, be
 some disturbance moving with a velocity close to the propagation velocity of
@@ -6154,7 +6163,7 @@ u(0, t) & = U_1,
 The diffusion coefficient is related to heat transfer parameters
 by $\dfc = k/(\varrho c)$, where $k$ is the heat conduction coefficient,
 $\varrho$ is the density, and $c$ is a specific heat capacity parameter.
-\shortinlinecomment{Geir 14}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
+\shortinlinecomment{Geir 11}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
 
 The natural dimensionless temperature for this problem is
 
@@ -6191,12 +6200,12 @@ boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 15}{ Include simulation results. }{ Include simulation results. }
+\shortinlinecomment{hpl 12}{ Include simulation results. }{ Include simulation results. }
 
 \subsection{Oscillating Dirichlet condition}
 
-\shortinlinecomment{hpl 16}{ Do we need paragraph headings here? }{ Do we need paragraph }
-\shortinlinecomment{Geir 17}{ yes }{ yes }
+\shortinlinecomment{hpl 13}{ Do we need paragraph headings here? }{ Do we need paragraph }
+\shortinlinecomment{Geir 14}{ yes }{ yes }
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -7080,7 +7089,7 @@ as bricks, it is tempting to develop a one-dimensional model, especially
 if the pieces are somewhat slender. We then expect the main temperature
 variations to take place in the $x$ direction, where the $x$ axis is
 perpendicular to the contact surface between the pieces.
-\shortinlinecomment{Geir 18}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 15}{ Hm?? }{ Hm?? }
 The idea is
 to integrate the governing PDE in the two other directions, use the
 Gauss divergence theorem on
@@ -7111,7 +7120,7 @@ dydz +
 dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
-\shortinlinecomment{Geir 18}{ Hm?? }{ Hm?? }
+\shortinlinecomment{Geir 15}{ Hm?? }{ Hm?? }
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 
@@ -7264,7 +7273,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 20}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 17}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -8602,7 +8611,7 @@ $t_c=0.21$ ms.
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-% \longinlinecomment{hpl 21}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+% \longinlinecomment{hpl 18}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 
 \subsection{The bidomain model with an alternative $I_{\rm{ion}}$}
@@ -8893,11 +8902,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 22}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 19}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 23}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 20}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 24}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 21}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8987,7 +8996,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 25}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 22}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
@@ -9052,7 +9061,7 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
-\shortinlinecomment{Geir 26}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
+\shortinlinecomment{Geir 23}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 

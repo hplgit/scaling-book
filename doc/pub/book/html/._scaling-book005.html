@@ -261,8 +261,8 @@ code { color: inherit; background-color: transparent; }
                'scale:vib:exer:projectile'),
               ('Problem 10: A predator-prey model',
                2,
-               'scale:decay:exer:predpray',
-               'scale:decay:exer:predpray'),
+               'scale:decay:exer:predprey',
+               'scale:decay:exer:predprey'),
               ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
@@ -705,7 +705,7 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:decay:exer:decay:step" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 7: Decay ODE with discontinuous coefficients</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:decay:exer:nonlin:logistic2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 8: Alternative scalings of a cooling model</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:vib:exer:projectile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 9: Projectile motion</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:decay:exer:predprey" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: A model for competing species</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Find the period of sinusoidal signals</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book006.html#___sec105" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
@@ -891,32 +891,6 @@ The forthcoming text has the following goals.
  <li> Explain how to run a dimensionless model with software developed
    for the problem with dimensions.</li>
 </ul>
-
-<div class="alert alert-block alert-danger alert-text-normal"><b>What this book is and is not.</b>
-Books covering scaling and non-dimensionalization very often cover
-topics not treated in the present book. One key topic   is
-dimensional analysis and the famous Buckingham Pi Theorem
-<a href="._scaling-book011.html#Douglas_et_al_1979">[5]</a> <a href="._scaling-book011.html#Logan_1987">[6]</a>, which we discuss only briefly in
-the section <a href="._scaling-book004.html#scale:dimunit:Pi">The Buckingham Pi theorem</a>.
-
-<p>
-Other classical topics closely related to scaling and non-dimensionalization
-are analytical solution methods like perturbation techniques and
-similarity solutions. These are not addressed in this book.
-There are numerous texts on perturbation techniques, and these build
-on an already scaled differential equations. Similarity solutions do not
-fit within the present scope since these involve non-dimensional
-<em>combinations of the independent variables</em> to derive new differential
-equations that are easier to solve.
-
-<p>
-Our scope is to scale differential
-equations to simplify the setting of parameters in numerical simulations,
-and at the same time understand more of the physics
-through interpretation of the dimensionless numbers that automatically
-arise from the scaling procedure.
-</div>
-
 
 <h2 id="___sec23">The basic model problem </h2>
 

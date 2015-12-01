@@ -261,8 +261,8 @@ code { color: inherit; background-color: transparent; }
                'scale:vib:exer:projectile'),
               ('Problem 10: A predator-prey model',
                2,
-               'scale:decay:exer:predpray',
-               'scale:decay:exer:predpray'),
+               'scale:decay:exer:predprey',
+               'scale:decay:exer:predprey'),
               ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
@@ -705,7 +705,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:decay:exer:decay:step" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 7: Decay ODE with discontinuous coefficients</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:decay:exer:nonlin:logistic2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 8: Alternative scalings of a cooling model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:projectile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 9: Projectile motion</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:decay:exer:predprey" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: A model for competing species</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Find the period of sinusoidal signals</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#___sec105" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
@@ -1007,7 +1007,7 @@ so kg is 1000 g. Similarly, GPa means giga pascal or \( 10^9 \) Pa.
 Almost all texts on scaling has a treatment of the famous Buckingham Pi
 theorem, which can be used to derive physical laws based on
 unit compatibility rather than the underlying physical mechanisms.
-This book has its focus on models where the physical mechanisms are
+This booklet has its focus on models where the physical mechanisms are
 already expressed through differential equations. Nevertheless, the Pi
 theorem has a remarkable position in the literature on scaling, and we
 will occasionally make references to it so the theorem is briefly
@@ -1022,14 +1022,22 @@ to as Pi's. Secondly, any unit-free relation between the original \( n \)
 parameters can be transformed into a relation between the \( n-m \)
 dimensionless numbers.  Such relations may be identities or
 inequalities stating, for instance, whether or not a given effect is
-negligible. Moreover, the transformation an equation set into
+negligible. Moreover, the transformation of an equation set into
 dimensionless form corresponds to expressing the coefficients, as well
 as the free and dependent variables, in terms of Pi's.
 
 <p>
+As an example, think of a body moving at constant speed \( v \). What
+is the distance \( s \) traveled in time \( t \)? The Pi theorem results in
+one dimensionless variable \( \pi = vt/s \) and leads to the formula
+\( s = Cvt \), where \( C \) is an undetermined constant. The result is
+very close to the well-known formula \( s=vt \) arising from the differential
+equation \( s'=v \) in physics, but with an extra constant.
+
+<p>
 At first glance the Pi theorem may appear as bordering on the
 trivial. However, it may produce remarkable progress for selected
-problems, such as turbulent jets, nuclear blasts or similarity
+problems, such as turbulent jets, nuclear blasts, or similarity
 solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
 very profound, if not magical.  Anyhow, as one move on to more complex
@@ -1194,7 +1202,7 @@ must be wrapped in Python with tools like
 <a href="http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html" target="_self">Weave</a>,
 <a href="http://www.swig.org/" target="_self">SWIG</a>,
 <a href="https://bitbucket.org/fenics-project/instant" target="_self">Instant</a>,
-or similar, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_Linge_fdm">[1]</a> (Appendix C) for basic
+or similar, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_Linge_fdm">[3]</a> (Appendix C) for basic
 examples on f2py and Cython wrapping of C and Fortran code).
 
 <h2 id="scale:PQ">PhysicalQuantity: a tool for computing with units</h2>
@@ -1216,7 +1224,7 @@ Readers without knowledge of Python variables, functions, if tests,
 and module import should consult, e.g., a <a href="http://hplgit.github.io/bumpy/doc/web/index.html" target="_self">brief tutorial on scientific
 Python</a>,
 the <a href="http://scipy-lectures.github.com/" target="_self">Python Scientific Lecture Notes</a>,
-or a full textbook <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_2012">[2]</a> in parallel with reading about
+or a full textbook <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_2012">[4]</a> in parallel with reading about
 Python code in the present book.
 
 <p>
@@ -1679,7 +1687,7 @@ generate(distance_unit2, pool_function<span style="color: #666666">=</span>defin
 </pre></div>
 <p>
 Running <code>generate_distance_GUI.py</code> creates a Flask-based web
-interface <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="You need to have Flask and additional packages installed. This is easy to do with a few pip install commands, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[3]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[4]</a>."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>
+interface <button type="button" class="btn btn-primary btn-xs" rel="tooltip" data-placement="top" title="You need to have Flask and additional packages installed. This is easy to do with a few pip install commands, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[5]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[6]</a>."><a href="#def_footnote_1" id="link_footnote_1" style="color: white">1</a></button>
 to our <code>distance_unit</code> function, see Figure <a href="#scale:dimunit:fig:GUI">1</a>.
 The text fields in this GUI allow specification of parameters with
 numbers and units, e.g., acceleration with unit yards per minute squared,
@@ -1689,7 +1697,7 @@ of that parameter.
 
 <p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> You need to have Flask and additional packages installed.
 This is easy to do with a few <code>pip install</code> commands,
-see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[3]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[4]</a>.</p>
+see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#parampool">[5]</a> or <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#web4sciapps">[6]</a>.</p>
 
 <p>
 <center> <!-- figure -->

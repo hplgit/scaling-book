@@ -1,3 +1,4 @@
+Achou's
 Bernoulli's
 Biot's
 Boussinesq
@@ -5,6 +6,7 @@ Couette
 Courant
 Cython
 Dimensonless
+Donatien
 Duffing's
 Ec
 Eckert
@@ -71,6 +73,7 @@ Unum
 Vm
 Volterra
 Wikipedia
+Yapi
 advection
 ansatz
 bidomain

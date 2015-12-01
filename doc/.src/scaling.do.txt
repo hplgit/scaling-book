@@ -163,7 +163,7 @@ idx{Buckingham Pi theorem}
 Almost all texts on scaling has a treatment of the famous Buckingham Pi
 theorem, which can be used to derive physical laws based on
 unit compatibility rather than the underlying physical mechanisms.
-This book has its focus on models where the physical mechanisms are
+This booklet has its focus on models where the physical mechanisms are
 already expressed through differential equations. Nevertheless, the Pi
 theorem has a remarkable position in the literature on scaling, and we
 will occasionally make references to it so the theorem is briefly
@@ -177,13 +177,20 @@ to as Pi's. Secondly, any unit-free relation between the original $n$
 parameters can be transformed into a relation between the $n-m$
 dimensionless numbers.  Such relations may be identities or
 inequalities stating, for instance, whether or not a given effect is
-negligible. Moreover, the transformation an equation set into
+negligible. Moreover, the transformation of an equation set into
 dimensionless form corresponds to expressing the coefficients, as well
 as the free and dependent variables, in terms of Pi's.
 
+As an example, think of a body moving at constant speed $v$. What
+is the distance $s$ traveled in time $t$? The Pi theorem results in
+one dimensionless variable $\pi = vt/s$ and leads to the formula
+$s = Cvt$, where $C$ is an undetermined constant. The result is
+very close to the well-known formula $s=vt$ arising from the differential
+equation $s'=v$ in physics, but with an extra constant.
+
 At first glance the Pi theorem may appear as bordering on the
 trivial. However, it may produce remarkable progress for selected
-problems, such as turbulent jets, nuclear blasts or similarity
+problems, such as turbulent jets, nuclear blasts, or similarity
 solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
 very profound, if not magical.  Anyhow, as one move on to more complex
@@ -800,28 +807,6 @@ The forthcoming text has the following goals.
  * Explain how to run a dimensionless model with software developed
    for the problem with dimensions.
 
-!bwarning What this book is and is not
-Books covering scaling and non-dimensionalization very often cover
-topics not treated in the present book. One key topic   is
-dimensional analysis and the famous Buckingham Pi Theorem
-cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
-section ref{scale:dimunit:Pi}.
-
-Other classical topics closely related to scaling and non-dimensionalization
-are analytical solution methods like perturbation techniques and
-similarity solutions. These are not addressed in this book.
-There are numerous texts on perturbation techniques, and these build
-on an already scaled differential equations. Similarity solutions do not
-fit within the present scope since these involve non-dimensional
-*combinations of the independent variables* to derive new differential
-equations that are easier to solve.
-
-Our scope is to scale differential
-equations to simplify the setting of parameters in numerical simulations,
-and at the same time understand more of the physics
-through interpretation of the dimensionless numbers that automatically
-arise from the scaling procedure.
-!ewarning
 
 
 ===== The basic model problem =====
@@ -4144,23 +4129,39 @@ equation:
 !bt
 \[ \frac{mL}{t_c^2}\frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{L^2}{t_c^2}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -mg\jj\tp\]
+\right\vert\frac{d\bar\x}{d\bar t} = -mg\jj\tp\]
 !et
 Dividing by $mL/t_c^2$ gives
 
 !bt
 \[ \frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\frac{gt_c^2}{L}\jj\tp\]
+\right\vert\frac{d\bar\x}{d\bar t} = -\frac{gt_c^2}{L}\jj\tp\]
 !et
 
-The maximum height $y_{\max}$ occurs when $\dot y = 0$:
+It is tempting to determine scales from setting coefficients in this
+equation to unity. However, we expect the effect of air resistance
+to be (much) smaller than gravity, so the primary balance in the
+equation is between the acceleration term and the gravity term.
+Setting the coefficient in the gravity term to unity gives
+$L=gt_c^2$, which provides a relevant length scale. However,
+setting the coefficient in the air resistance term to unity gives a
+length scale only relevant when air resistance is as important as
+gravity and acceleration, and that might be the case for a very
+hard kick of a soccer ball, for instance. Otherwise, the coefficient
+in front of the air resistance term will be a dimensionless number which
+is expected to be small. Of these reasons, we need to determine $L$
+from the insight in a) when we solved the problem using a balance of
+acceleration and gravity only.
+
+The maximum height $y_{\max}$ occurs when $\dot y = 0$, and from the
+solution in a) we get
 
 !bt
 \[ \dot y = v_0\sin\theta - gt = 0\quad\Rightarrow\quad
 t = g^{-1}v_0\sin\theta\tp\]
 !et
-The corresponding value is
+The corresponding $y_{\max}$ value is
 
 !bt
 \[ y_{\max}=g^{-1}v_0^2\sin^2\theta - \frac{1}{2}g^{-1}v_0^2\sin^2\theta =
@@ -4173,31 +4174,41 @@ $t_c=g^{-1}v_0\sin\theta$. Inserted in the scaled problem:
 \[ \frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{v_0^2\sin^2\theta}{2mg}
 \left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\jj\tp\]
+\right\vert\frac{d\bar\x}{d\bar t} = -2\jj\tp\]
 !et
 We can identify a dimensionless parameter
 
 !bt
-\[ \alpha = \frac{1}{4} m^{-1}g^{-1} C_D\varrho A v_0^2\sin^2\theta,\]
+\[ \alpha = \frac{C_D\varrho A v_0^2\sin^2\theta}{4mg},\]
 !et
 and write the scaled equation as
 
 !bt
 \[ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\jj,\]
+\right\vert\frac{d\bar\x}{d\bar t} = -2\jj,\]
 !et
 with initial conditions
 
 !bt
-\[ \bar\x(0)=\bm{0},\quad \frac{d\bar x}{d\bar t}(0) =
+\[ \bar\x(0)=\bm{0},\quad \frac{d\bar\x}{d\bar t}(0) =
 \frac{t_c}{L}(v_0\cos\theta\ii + v_0\sin\theta\jj) =
 2\cot\theta\ii + 2\jj\tp\]
 !et
 
-[hpl: Check that $\alpha$ is dimensionless. Easy: $\varrho$
-goes like $m/L^3$, $A$ cancels $L^2$, $v_0^2$ cancels the
-remaining dimensions... seems to be correct...]
-[hpl: Need to check the final problem. Solve scaled problem without drag.]
+Apart from the factor 4, the $\alpha$ formula as stated above
+is seen to reflect the air resistance
+force in the vertical motion (which has velocity $v_0\sin\theta$) and
+the gravity force. We can compute $\alpha$ for a soft and a hard kick
+of a soccer ball as described in d), and the values are
+0.04 and 0.2, respectively, showing that the balance of acceleration
+and gravity is relevant - even a hard kick only gives $\alpha 0.6$, but
+in that regime it would not be wrong to choose $L$ such that the
+coefficient in the air resistance term becomes unity.
+
+Basing $t_c$ and $L$ on the entire flight back to $y=0$ means
+$t_c = 2g^{-1}v_0\sin\theta$ and $L=2y_{\max}$ (the total vertical
+distance), removes the factor 2 on the right-hand side and reduces
+$\alpha$ by a factor 2.
 !esol
 !esubex
 
@@ -4226,9 +4237,10 @@ The scaled ODE becomes
 !bt
 \[ \frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\frac{g t_c}{v_0\cos\theta}\jj\tp\]
+\right\vert\frac{d\bar\x}{d\bar t} = -\frac{g t_c}{v_0\cos\theta}\jj\tp\]
 !et
-We can choose $t_c$ such that the source term is unity:
+We can choose $t_c$ such that the gravity term is unity and balances
+the acceleration term:
 
 !bt
 \[ t_c = g^{-1}v_0\cos\theta,\]
@@ -4241,34 +4253,59 @@ which makes
 The coefficient in the drag term becomes
 
 !bt
-\[ \alpha = \frac{1}{2}m^{-1}g^{-1}C_D\varrho A v_0^2\cos^2\theta\tp\]
+\[ \alpha = \frac{C_D\varrho A v_0^2\cos^2\theta}{2mg}\tp\]
+!et
+To summarize, we get the scaled problem
+
+!bt
+\[ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
+\right\vert\frac{d\bar\x}{d\bar t} = -\jj,\quad
+\bar\x(0)=\bm{0},\quad \frac{d\bar\x}{d\bar t}(0) =
+\ii + \tan\theta\jj\tp\]
 !et
 !esol
 !esubex
 
 !bsubex
-A soccer ball has diameter $R=11$ cm and mass 0.43 kg, the density of air
-is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 10 km/h,
+A soccer ball has diameter 11 cm and mass 0.43 kg, the density of air
+is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 30 km/h,
 while a hard kick may have 120 km/h. Estimate the dimensionless parameter
 in the scaled problem for a soft and a hard kick with
-$\theta$ corresponding to 30 degrees. Solve the scaled
+$\theta$ corresponding to 45 degrees. Solve the scaled
 differential equation for these values and plot the trajectory ($y$ versus
 $x$) for the two cases.
 
 !bsol
 We need to express $R$, $v_0$, and $\theta$ in standard SI units:
-$R=0.11$ m, $\theta = 30\cdot pi/180 \approx 0.52$,
-$v_0 = 10/3.6 \approx 2.8$ m/s for a soft kick, and
-$v_0=120/3.6\approx 33.33$ m/s for a hard kick.
-Using $\alpha$ from b), we ...
+$A=\pi 0.11^2\hbox{ m}^2$, $\theta = 45\cdot \pi/180$ rad,
+$v_0=30/3.6$ and
+$120/3.6$ m/s.
+The formula for $\alpha$ results in
 
-[hpl: Need to fill in more after $\alpha$ is checked - and solve the
-ODE with Odespy.]
+!bt
+\[ \alpha_{\hbox{soft}} \approx 0.037,\quad
+\alpha_{\hbox{hard}} \approx 0.6\tp\]
+!et
+
+Appropriate computer code appears below
+(using "Odespy": "https://github.com/hplgit/odespy"
+to solve the ODE system as a first-order system).
+
+@@@CODE exer-scaling/projectile.py fromto:import matplotlib@
+For $\theta =45$ degrees we get the plot
+
+FIGURE: [fig-scaling/projectile_45, width=500 frac=0.8]
+
+The blue curve is very close to motion without air resistance. We
+clearly see how significant air resistance is.
+The total length is approximately 6.3 m for a soft kick and
+45 m for a hard kick (multiply the dimensionless lengths by the
+corresponding $L$).
 !esol
 !esubex
 
 ===== Problem: A predator-prey model =====
-label{scale:decay:exer:predpray}
+label{scale:decay:exer:predprey}
 file=predator_prey
 
 idx{Lotka-Volterra, predator-prey model}
@@ -4297,7 +4334,7 @@ The terms has the following meanings:
    population growth of $H$ due to births and deaths and is governed by
    the access to nutrition,
  * $-bHL$ is the loss of preys because they are eaten by predators,
- * $dHL$ is the increase of predators because they eat prays (but only
+ * $dHL$ is the increase of predators because they eat preys (but only
    a fraction of the eaten preys, $bHL$, contribute to population growth
    of the predator and therefore $d < b$),
  * $-cL$ is the exponential decay in the predator population because of
@@ -4471,7 +4508,7 @@ idx{Lotka-Volterra, competing species model}
 Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
-interaction (cf. Problem ref{scale:decay:exer:predpray}):
+interaction (cf. Problem ref{scale:decay:exer:predprey}):
 
 !bt
 \begin{align}
@@ -5025,6 +5062,9 @@ Here is an appropriate program
 for simpler animation code than required by Matplotlib):
 
 @@@CODE exer-scaling/binary_star.py
+We remark that the sequence of unknowns in `u` must be different if the
+`odespy.EulerCromer` solver is to be chosen. In that case, the
+velocity for each degree of freedom must appear before the position.
 
 FIGURE: [fig-scaling/planet_circular, width=500 frac=0.7] Planet in circular motion around a star.
 
@@ -5272,7 +5312,7 @@ the form
 !bt
 \begin{equation}
 -\frac{\hbar^2}{2m}
-\left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right) R
+\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right) R
 + V(r)R = ER,
 label{scale:vib:exer:quantum:Req}
 \end{equation}
@@ -5289,7 +5329,8 @@ Show that the scaled version of (ref{scale:vib:exer:quantum:Req}) can be written
 
 !bt
 \begin{equation}
-- \left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right)
+- \left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\bar r^2
+\frac{d}{d\bar r}\right)
 \bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
 label{scale:vib:exer:quantum:barReq}
 \end{equation}
@@ -5297,7 +5338,7 @@ label{scale:vib:exer:quantum:barReq}
 where $\lambda$ is a dimensionless eigenvalue
 
 !bt
-\[ \lambda = \frac{2E}{\hbar}\sqrt{\frac{m}{k}}\tp\]
+\[ \lambda = \frac{(4\pi)^2\epsilon_0^2\hbar^2E}{me^4}\tp\]
 !et
 The symbol $\bar r$ is the scaled coordinate, and $\bar R$ is a scaled
 version of $R$ (the scaling factor drops out of the equation).
@@ -5338,17 +5379,17 @@ which is actually the Bohr radius,
 demonstrating that the balance of the terms on the left-hand side automatically
 determines a very relevant length scale.
 
-A bit of rewriting in the right-hand side term gives the
+A bit of arithmetics in the right-hand side term gives the
 given expression for $\lambda$. We then end up with
 (ref{scale:vib:exer:quantum:barReq}).
 !esol
 
 !bremarks
 Introducing $u=\bar r\bar R$ and renaming $\bar r$ to $x$,
-(ref{scale:vib:exer:quantum:barReq}) can be recast to the simple form
+(ref{scale:vib:exer:quantum:barReq}) can be recast in the simpler form
 
 !bt
-\[ -u'' + x^{-2}u = \lambda u,\]
+\[ -u''(x) + \frac{1}{x}u(x) = \lambda u(x),\]
 !et
 which is a simpler eigenvalue problem to solve numerically (the boundary
 conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).

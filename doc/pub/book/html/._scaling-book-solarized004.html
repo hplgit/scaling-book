@@ -288,8 +288,8 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:vib:exer:projectile'),
               ('Problem 10: A predator-prey model',
                2,
-               'scale:decay:exer:predpray',
-               'scale:decay:exer:predpray'),
+               'scale:decay:exer:predprey',
+               'scale:decay:exer:predprey'),
               ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
@@ -799,7 +799,7 @@ so kg is 1000 g. Similarly, GPa means giga pascal or \( 10^9 \) Pa.
 Almost all texts on scaling has a treatment of the famous Buckingham Pi
 theorem, which can be used to derive physical laws based on
 unit compatibility rather than the underlying physical mechanisms.
-This book has its focus on models where the physical mechanisms are
+This booklet has its focus on models where the physical mechanisms are
 already expressed through differential equations. Nevertheless, the Pi
 theorem has a remarkable position in the literature on scaling, and we
 will occasionally make references to it so the theorem is briefly
@@ -814,14 +814,22 @@ to as Pi's. Secondly, any unit-free relation between the original \( n \)
 parameters can be transformed into a relation between the \( n-m \)
 dimensionless numbers.  Such relations may be identities or
 inequalities stating, for instance, whether or not a given effect is
-negligible. Moreover, the transformation an equation set into
+negligible. Moreover, the transformation of an equation set into
 dimensionless form corresponds to expressing the coefficients, as well
 as the free and dependent variables, in terms of Pi's.
 
 <p>
+As an example, think of a body moving at constant speed \( v \). What
+is the distance \( s \) traveled in time \( t \)? The Pi theorem results in
+one dimensionless variable \( \pi = vt/s \) and leads to the formula
+\( s = Cvt \), where \( C \) is an undetermined constant. The result is
+very close to the well-known formula \( s=vt \) arising from the differential
+equation \( s'=v \) in physics, but with an extra constant.
+
+<p>
 At first glance the Pi theorem may appear as bordering on the
 trivial. However, it may produce remarkable progress for selected
-problems, such as turbulent jets, nuclear blasts or similarity
+problems, such as turbulent jets, nuclear blasts, or similarity
 solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
 very profound, if not magical.  Anyhow, as one move on to more complex
@@ -986,7 +994,7 @@ must be wrapped in Python with tools like
 <a href="http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html" target="_self">Weave</a>,
 <a href="http://www.swig.org/" target="_self">SWIG</a>,
 <a href="https://bitbucket.org/fenics-project/instant" target="_self">Instant</a>,
-or similar, see <a href="._scaling-book-solarized011.html#Langtangen_Linge_fdm">[1]</a> (Appendix C) for basic
+or similar, see <a href="._scaling-book-solarized011.html#Langtangen_Linge_fdm">[3]</a> (Appendix C) for basic
 examples on f2py and Cython wrapping of C and Fortran code).
 
 <h2 id="scale:PQ">PhysicalQuantity: a tool for computing with units</h2>
@@ -1008,7 +1016,7 @@ Readers without knowledge of Python variables, functions, if tests,
 and module import should consult, e.g., a <a href="http://hplgit.github.io/bumpy/doc/web/index.html" target="_self">brief tutorial on scientific
 Python</a>,
 the <a href="http://scipy-lectures.github.com/" target="_self">Python Scientific Lecture Notes</a>,
-or a full textbook <a href="._scaling-book-solarized011.html#Langtangen_2012">[2]</a> in parallel with reading about
+or a full textbook <a href="._scaling-book-solarized011.html#Langtangen_2012">[4]</a> in parallel with reading about
 Python code in the present book.
 
 <p>
@@ -1471,7 +1479,7 @@ of that parameter.
 
 <p id="def_footnote_1"><a href="#link_footnote_1"><b>1:</b></a> You need to have Flask and additional packages installed.
 This is easy to do with a few <code>pip install</code> commands,
-see <a href="._scaling-book-solarized011.html#parampool">[3]</a> or <a href="._scaling-book-solarized011.html#web4sciapps">[4]</a>.</p>
+see <a href="._scaling-book-solarized011.html#parampool">[5]</a> or <a href="._scaling-book-solarized011.html#web4sciapps">[6]</a>.</p>
 
 <p>
 <center> <!-- figure -->

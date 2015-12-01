@@ -288,8 +288,8 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:vib:exer:projectile'),
               ('Problem 10: A predator-prey model',
                2,
-               'scale:decay:exer:predpray',
-               'scale:decay:exer:predpray'),
+               'scale:decay:exer:predprey',
+               'scale:decay:exer:predprey'),
               ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
@@ -657,7 +657,7 @@ well treated in the literature. Most of the times, authors just state
 scales without proper motivation. The choice of scales is highly
 problem-dependent and requires knowledge of the characteristic
 features of the solution or the physics of the problem.  The present
-book aims at explaining &quot;all nuts and bolts&quot; of the scaling
+notes aim at explaining &quot;all nuts and bolts&quot; of the scaling
 technique, including choice of scales, the algebra, the interpretation
 of dimensionless parameters in scaled models, and how scaling impacts
 software for solving differential equations.
@@ -692,7 +692,7 @@ developing a correct physical understanding.
 
 <p>
 Since we have a special focus on scaling related to numerical
-simulations, the book contains a lot of examples on how to program
+simulations, the notes contain a lot of examples on how to program
 with dimensionless differential equation models. Most numerical models
 feature quantities with dimension, so we show in particular how to
 utilize such existing models to solve the equations in the associated
@@ -745,7 +745,7 @@ the text rises quickly after the first two chapters.
 <p>
 The pedagogy is to saturate the reader with lots of detailed examples to
 provide an understanding for the topic, primarily because the choice
-of scales depends on the problem at hand. One can also view the book
+of scales depends on the problem at hand. One can also view the notes
 as a reference on how to scale many of the most important differential
 equation models in physics.  For the simpler differential equations in
 Chapters 2 and 3, we present computer code for many computational
@@ -759,14 +759,45 @@ the former typically extends a topic in the text or refers to sections or
 formulas in the text.
 
 <p>
-To conclude, the purpose of this book is to demystify the
-techniques of scaling and motivate the use of dimensionless
-differential equations before performing numerical simulations.
+<div class="alert alert-block alert-warning alert-text-normal">
+<b>What this booklet is and is not.</b>
+<p>
+Books containing material on
+scaling and non-dimensionalization very often cover
+topics not treated in the present notes. One key topic is
+dimensional analysis and the famous Buckingham Pi Theorem
+<a href="._scaling-book-solarized011.html#Douglas_et_al_1979">[1]</a> <a href="._scaling-book-solarized011.html#Logan_1987">[2]</a>, which we discuss only briefly in
+the section <a href="._scaling-book-solarized004.html#scale:dimunit:Pi">The Buckingham Pi theorem</a>.
+
+<p>
+Other classical topics closely related to scaling and non-dimensionalization
+are analytical solution methods like perturbation techniques and
+similarity solutions. These are not addressed in these notes.
+There are numerous texts on perturbation techniques, and these methods build
+on an already scaled differential equations. Similarity solutions do not
+fit within the present scope since these involve non-dimensional
+<em>combinations of the independent variables</em> to derive new differential
+equations that are easier to solve.
+
+<p>
+Our scope is to scale differential
+equations to simplify the setting of parameters in numerical simulations,
+and at the same time understand more of the physics
+through interpretation of the dimensionless numbers that automatically
+arise from the scaling procedure.
+</div>
+
+
+<p>
+We these notes we hope to demystify the thinking of determining scales
+and encourage numerical simulations to be performed with a dimensionless
+differential equation model.
 
 <p>
 <b>Acknowledgments.</b>
 The authors are thankful to Dr. Joakim Sundnes who greatly contributed to
-the writing of the section <a href="._scaling-book-solarized010.html#scale:bidomain">The bidomain model in electrophysiology</a>.
+the writing of the section <a href="._scaling-book-solarized010.html#scale:bidomain">The bidomain model in electrophysiology</a>. We appreciate
+Yapi Donatien Achou's proof reading.
 
 <p>
 

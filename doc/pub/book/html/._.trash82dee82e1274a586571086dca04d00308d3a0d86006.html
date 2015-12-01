@@ -261,8 +261,8 @@ code { color: inherit; background-color: transparent; }
                'scale:vib:exer:projectile'),
               ('Problem 10: A predator-prey model',
                2,
-               'scale:decay:exer:predpray',
-               'scale:decay:exer:predpray'),
+               'scale:decay:exer:predprey',
+               'scale:decay:exer:predprey'),
               ('Problem 11: A model for competing species',
                2,
                'scale:decay:exer:competing_species',
@@ -705,7 +705,7 @@ $$
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:decay:step" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 7: Decay ODE with discontinuous coefficients</a></li>
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:nonlin:logistic2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 8: Alternative scalings of a cooling model</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:projectile" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 9: Projectile motion</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:exer:predpray" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:exer:predprey" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 10: A predator-prey model</a></li>
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:competing_species" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 11: A model for competing species</a></li>
      <!-- navigation toc: --> <li><a href="#scale:decay:exer:sine" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 12: Find the period of sinusoidal signals</a></li>
      <!-- navigation toc: --> <li><a href="#___sec105" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
@@ -2847,21 +2847,38 @@ equation:
 
 $$ \frac{mL}{t_c^2}\frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{L^2}{t_c^2}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -mg\jj\tp$$
+\right\vert\frac{d\bar\x}{d\bar t} = -mg\jj\tp$$
 
 Dividing by \( mL/t_c^2 \) gives
 
 $$ \frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\frac{gt_c^2}{L}\jj\tp$$
+\right\vert\frac{d\bar\x}{d\bar t} = -\frac{gt_c^2}{L}\jj\tp$$
 
 <p>
-The maximum height \( y_{\max} \) occurs when \( \dot y = 0 \):
+It is tempting to determine scales from setting coefficients in this
+equation to unity. However, we expect the effect of air resistance
+to be (much) smaller than gravity, so the primary balance in the
+equation is between the acceleration term and the gravity term.
+Setting the coefficient in the gravity term to unity gives
+\( L=gt_c^2 \), which provides a relevant length scale. However,
+setting the coefficient in the air resistance term to unity gives a
+length scale only relevant when air resistance is as important as
+gravity and acceleration, and that might be the case for a very
+hard kick of a soccer ball, for instance. Otherwise, the coefficient
+in front of the air resistance term will be a dimensionless number which
+is expected to be small. Of these reasons, we need to determine \( L \)
+from the insight in a) when we solved the problem using a balance of
+acceleration and gravity only.
+
+<p>
+The maximum height \( y_{\max} \) occurs when \( \dot y = 0 \), and from the
+solution in a) we get
 
 $$ \dot y = v_0\sin\theta - gt = 0\quad\Rightarrow\quad
 t = g^{-1}v_0\sin\theta\tp$$
 
-The corresponding value is
+The corresponding \( y_{\max} \) value is
 
 $$ y_{\max}=g^{-1}v_0^2\sin^2\theta - \frac{1}{2}g^{-1}v_0^2\sin^2\theta =
 \frac{1}{2}g^{-1}v_0^2\sin^2\theta\tp$$
@@ -2872,33 +2889,39 @@ We can take \( L=y_{\max} \) and let \( t_c \) be the corresponding \( t \) valu
 $$ \frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{v_0^2\sin^2\theta}{2mg}
 \left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\jj\tp$$
+\right\vert\frac{d\bar\x}{d\bar t} = -2\jj\tp$$
 
 We can identify a dimensionless parameter
 
-$$ \alpha = \frac{1}{4} m^{-1}g^{-1} C_D\varrho A v_0^2\sin^2\theta,$$
+$$ \alpha = \frac{C_D\varrho A v_0^2\sin^2\theta}{4mg},$$
 
 and write the scaled equation as
 
 $$ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\jj,$$
+\right\vert\frac{d\bar\x}{d\bar t} = -2\jj,$$
 
 with initial conditions
 
-$$ \bar\x(0)=\boldsymbol{0},\quad \frac{d\bar x}{d\bar t}(0) =
+$$ \bar\x(0)=\boldsymbol{0},\quad \frac{d\bar\x}{d\bar t}(0) =
 \frac{t_c}{L}(v_0\cos\theta\ii + v_0\sin\theta\jj) =
 2\cot\theta\ii + 2\jj\tp$$
 
 <p>
+Apart from the factor 4, the \( \alpha \) formula as stated above
+is seen to reflect the air resistance
+force in the vertical motion (which has velocity \( v_0\sin\theta \)) and
+the gravity force. We can compute \( \alpha \) for a soft and a hard kick
+of a soccer ball as described in d), and the values are
+0.04 and 0.2, respectively, showing that the balance of acceleration
+and gravity is relevant - even a hard kick only gives \( \alpha 0.6 \), but
+in that regime it would not be wrong to choose \( L \) such that the
+coefficient in the air resistance term becomes unity.
 
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 9</b>: Check that \( \alpha \) is dimensionless. Easy: \( \varrho \) goes like \( m/L^3 \), \( A \) cancels \( L^2 \), \( v_0^2 \) cancels the remaining dimensions... seems to be correct...)</font>
-<!-- end inline comment -->
-
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 10</b>: Need to check the final problem. Solve scaled problem without drag.)</font>
-<!-- end inline comment -->
+<p>
+Basing \( t_c \) and \( L \) on the entire flight back to \( y=0 \) means
+\( t_c = 2g^{-1}v_0\sin\theta \) and \( L=2y_{\max} \) (the total vertical
+distance), removes the factor 2 on the right-hand side and reduces
+\( \alpha \) by a factor 2.
 
 <p>
 </div></p>
@@ -2940,9 +2963,10 @@ The scaled ODE becomes
 
 $$ \frac{d^2\bar\x}{d\bar t^2} +
 \frac{1}{2} C_D\varrho A\frac{L}{m}\left\vert\frac{d\bar\x}{d\bar t}
-\right\vert = -\frac{g t_c}{v_0\cos\theta}\jj\tp$$
+\right\vert\frac{d\bar\x}{d\bar t} = -\frac{g t_c}{v_0\cos\theta}\jj\tp$$
 
-We can choose \( t_c \) such that the source term is unity:
+We can choose \( t_c \) such that the gravity term is unity and balances
+the acceleration term:
 
 $$ t_c = g^{-1}v_0\cos\theta,$$
 
@@ -2952,7 +2976,14 @@ $$ L = t_cv_0\cos\theta = g^{-1}v_0^2\cos^2\theta\tp$$
 
 The coefficient in the drag term becomes
 
-$$ \alpha = \frac{1}{2}m^{-1}g^{-1}C_D\varrho A v_0^2\cos^2\theta\tp$$
+$$ \alpha = \frac{C_D\varrho A v_0^2\cos^2\theta}{2mg}\tp$$
+
+To summarize, we get the scaled problem
+
+$$ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
+\right\vert\frac{d\bar\x}{d\bar t} = -\jj,\quad
+\bar\x(0)=\boldsymbol{0},\quad \frac{d\bar\x}{d\bar t}(0) =
+\ii + \tan\theta\jj\tp$$
 
 <p>
 </div></p>
@@ -2964,11 +2995,11 @@ $$ \alpha = \frac{1}{2}m^{-1}g^{-1}C_D\varrho A v_0^2\cos^2\theta\tp$$
 
 <p>
 <b>d)</b>
-A soccer ball has diameter \( R=11 \) cm and mass 0.43 kg, the density of air
-is 1.2 \( \hbox{kg}\hbox{m}^{-3} \), a soft kick has velocity 10 km/h,
+A soccer ball has diameter 11 cm and mass 0.43 kg, the density of air
+is 1.2 \( \hbox{kg}\hbox{m}^{-3} \), a soft kick has velocity 30 km/h,
 while a hard kick may have 120 km/h. Estimate the dimensionless parameter
 in the scaled problem for a soft and a hard kick with
-\( \theta \) corresponding to 30 degrees. Solve the scaled
+\( \theta \) corresponding to 45 degrees. Solve the scaled
 differential equation for these values and plot the trajectory (\( y \) versus
 \( x \)) for the two cases.
 
@@ -2984,16 +3015,97 @@ differential equation for these values and plot the trajectory (\( y \) versus
 
 <p>
 We need to express \( R \), \( v_0 \), and \( \theta \) in standard SI units:
-\( R=0.11 \) m, \( \theta = 30\cdot pi/180 \approx 0.52 \),
-\( v_0 = 10/3.6 \approx 2.8 \) m/s for a soft kick, and
-\( v_0=120/3.6\approx 33.33 \) m/s for a hard kick.
-Using \( \alpha \) from b), we ...
+\( A=\pi 0.11^2\hbox{ m}^2 \), \( \theta = 45\cdot \pi/180 \) rad,
+\( v_0=30/3.6 \) and
+\( 120/3.6 \) m/s.
+The formula for \( \alpha \) results in
+
+$$ \alpha_{\hbox{soft}} \approx 0.037,\quad
+\alpha_{\hbox{hard}} \approx 0.6\tp$$
+
+<p>
+Appropriate computer code appears below
+(using <a href="https://github.com/hplgit/odespy" target="_self">Odespy</a>
+to solve the ODE system as a first-order system).
 
 <p>
 
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 11</b>: Need to fill in more after \( \alpha \) is checked - and solve the ODE with Odespy.)</font>
-<!-- end inline comment -->
+<!-- code=python (!bc pycod) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">odespy</span>
+<span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(alpha, ic, T, dt<span style="color: #666666">=0.05</span>):
+    <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">f</span>(u, t):
+        x, vx, y, vy <span style="color: #666666">=</span> u
+        v <span style="color: #666666">=</span> np<span style="color: #666666">.</span>sqrt(vx<span style="color: #666666">**2</span> <span style="color: #666666">+</span> vy<span style="color: #666666">**2</span>)  <span style="color: #408080; font-style: italic"># magnitude of velocity</span>
+        system <span style="color: #666666">=</span> [
+            vx,
+            <span style="color: #666666">-</span>alpha<span style="color: #666666">*</span>np<span style="color: #666666">.</span>abs(v)<span style="color: #666666">*</span>vx,
+            vy,
+            <span style="color: #666666">-2</span> <span style="color: #666666">-</span> alpha<span style="color: #666666">*</span>np<span style="color: #666666">.</span>abs(v)<span style="color: #666666">*</span>vy,
+            ]
+        <span style="color: #008000; font-weight: bold">return</span> system
+
+    Nt <span style="color: #666666">=</span> <span style="color: #008000">int</span>(<span style="color: #008000">round</span>(T<span style="color: #666666">/</span>dt))
+    t_mesh <span style="color: #666666">=</span> np<span style="color: #666666">.</span>linspace(<span style="color: #666666">0</span>, Nt<span style="color: #666666">*</span>dt, Nt<span style="color: #666666">+1</span>)
+
+    solver <span style="color: #666666">=</span> odespy<span style="color: #666666">.</span>RK4(f)
+    solver<span style="color: #666666">.</span>set_initial_condition(ic)
+    u, t <span style="color: #666666">=</span> solver<span style="color: #666666">.</span>solve(t_mesh,
+                        terminate<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">lambda</span> u, t, n: u[n][<span style="color: #666666">2</span>] <span style="color: #666666">&lt;</span> <span style="color: #666666">0</span>)
+    x <span style="color: #666666">=</span> u[:,<span style="color: #666666">0</span>]
+    y<span style="color: #666666">=</span> u[:,<span style="color: #666666">2</span>]
+    <span style="color: #008000; font-weight: bold">return</span> x, y, t
+
+<span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">demo_soccer_ball</span>():
+    <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">math</span>
+    theta_degrees <span style="color: #666666">=</span> <span style="color: #666666">45</span>
+    theta <span style="color: #666666">=</span> math<span style="color: #666666">.</span>radians(theta_degrees)
+    ic <span style="color: #666666">=</span> [<span style="color: #666666">0</span>, <span style="color: #666666">2/</span>math<span style="color: #666666">.</span>tan(theta), <span style="color: #666666">0</span>, <span style="color: #666666">2</span>]
+    g <span style="color: #666666">=</span> <span style="color: #666666">9.81</span>
+    v0_s <span style="color: #666666">=</span> <span style="color: #666666">8.3</span>    <span style="color: #408080; font-style: italic"># soft kick</span>
+    v0_h <span style="color: #666666">=</span> <span style="color: #666666">33.3</span>   <span style="color: #408080; font-style: italic"># hard kick</span>
+    <span style="color: #408080; font-style: italic"># Length scales</span>
+    L_s <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>(v0_s<span style="color: #666666">**2/</span>g)<span style="color: #666666">*</span>math<span style="color: #666666">.</span>sin(theta)<span style="color: #666666">**2</span>
+    L_h <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>(v0_h<span style="color: #666666">**2/</span>g)<span style="color: #666666">*</span>math<span style="color: #666666">.</span>sin(theta)<span style="color: #666666">**2</span>
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;L:&#39;</span>, L_s, L_h
+
+    m <span style="color: #666666">=</span> <span style="color: #666666">0.43</span>
+    a <span style="color: #666666">=</span> <span style="color: #666666">0.11</span>
+    A <span style="color: #666666">=</span> math<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>a<span style="color: #666666">**2</span>
+    rho <span style="color: #666666">=</span> <span style="color: #666666">1.2</span>
+    C_D <span style="color: #666666">=</span> <span style="color: #666666">0.4</span>
+    alpha_s <span style="color: #666666">=</span> C_D<span style="color: #666666">*</span>rho<span style="color: #666666">*</span>A<span style="color: #666666">*</span>v0_s<span style="color: #666666">**2*</span>math<span style="color: #666666">.</span>cos(theta)<span style="color: #666666">**2/</span>(<span style="color: #666666">4*</span>m<span style="color: #666666">*</span>g)
+    alpha_h <span style="color: #666666">=</span> C_D<span style="color: #666666">*</span>rho<span style="color: #666666">*</span>A<span style="color: #666666">*</span>v0_h<span style="color: #666666">**2*</span>math<span style="color: #666666">.</span>cos(theta)<span style="color: #666666">**2/</span>(<span style="color: #666666">4*</span>m<span style="color: #666666">*</span>g)
+    <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;alpha:&#39;</span>, alpha_s, alpha_h
+    x_s, y_s, t <span style="color: #666666">=</span> solver(alpha<span style="color: #666666">=</span>alpha_s, ic<span style="color: #666666">=</span>ic, T<span style="color: #666666">=6</span>, dt<span style="color: #666666">=0.01</span>)
+    x_h, y_h, t <span style="color: #666666">=</span> solver(alpha<span style="color: #666666">=</span>alpha_h, ic<span style="color: #666666">=</span>ic, T<span style="color: #666666">=6</span>, dt<span style="color: #666666">=0.01</span>)
+    plt<span style="color: #666666">.</span>plot(x_s, y_s, x_h, y_h)
+    plt<span style="color: #666666">.</span>legend([<span style="color: #BA2121">&#39;soft, L=</span><span style="color: #BB6688; font-weight: bold">%.2f</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> L_s, <span style="color: #BA2121">&#39;hard, L=</span><span style="color: #BB6688; font-weight: bold">%.2f</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> L_h],
+                loc<span style="color: #666666">=</span><span style="color: #BA2121">&#39;upper left&#39;</span>)
+    <span style="color: #408080; font-style: italic"># Let the y range be [-0.2,2] so we have space for legends</span>
+    plt<span style="color: #666666">.</span>axis([x_s[<span style="color: #666666">0</span>], x_s[<span style="color: #666666">-1</span>], <span style="color: #666666">-0.2</span>, <span style="color: #666666">2</span>])
+    plt<span style="color: #666666">.</span>axes()<span style="color: #666666">.</span>set_aspect(<span style="color: #BA2121">&#39;equal&#39;</span>) <span style="color: #408080; font-style: italic"># x and y axis have same scaling</span>
+    plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">r&#39;$\theta=</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">$ degrees&#39;</span> <span style="color: #666666">%</span> theta_degrees)
+    plt<span style="color: #666666">.</span>savefig(<span style="color: #BA2121">&#39;tmp.png&#39;</span>)
+    plt<span style="color: #666666">.</span>savefig(<span style="color: #BA2121">&#39;tmp.pdf&#39;</span>)
+    plt<span style="color: #666666">.</span>show()
+
+demo_soccer_ball()
+</pre></div>
+<p>
+For \( \theta =45 \) degrees we get the plot
+
+<p>
+<center><p><img src="fig-scaling/projectile_45.png" align="bottom" width=500></p></center>
+
+<p>
+The blue curve is very close to motion without air resistance. We
+clearly see how significant air resistance is.
+The total length is approximately 6.3 m for a soft kick and
+45 m for a hard kick (multiply the dimensionless lengths by the
+corresponding \( L \)).
 
 <p>
 </div></p>
@@ -3012,7 +3124,7 @@ Filename: <code>projectile</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:decay:exer:predpray">Problem 10: A predator-prey model</h2>
+<h2 id="scale:decay:exer:predprey">Problem 10: A predator-prey model</h2>
 
 <p>
 The evolution of animal populations with a predator and a prey (e.g.,
@@ -3044,7 +3156,7 @@ The terms has the following meanings:
    population growth of \( H \) due to births and deaths and is governed by
    the access to nutrition,</li>
  <li> \( -bHL \) is the loss of preys because they are eaten by predators,</li>
- <li> \( dHL \) is the increase of predators because they eat prays (but only
+ <li> \( dHL \) is the increase of predators because they eat preys (but only
    a fraction of the eaten preys, \( bHL \), contribute to population growth
    of the predator and therefore \( d < b \)),</li>
  <li> \( -cL \) is the exponential decay in the predator population because of
@@ -3282,7 +3394,7 @@ Filename: <code>predator_prey</code>.
 Let \( N_1(t) \) and \( N_2(t) \) be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
-interaction (cf. <a href="#scale:decay:exer:predpray">Problem 10: A predator-prey model</a>):
+interaction (cf. <a href="#scale:decay:exer:predprey">Problem 10: A predator-prey model</a>):
 
 $$
 \begin{align}
@@ -4304,6 +4416,11 @@ for simpler animation code than required by Matplotlib):
     <span style="color: #008000">raw_input</span>()
 </pre></div>
 <p>
+We remark that the sequence of unknowns in <code>u</code> must be different if the
+<code>odespy.EulerCromer</code> solver is to be chosen. In that case, the
+velocity for each degree of freedom must appear before the position.
+
+<p>
 <center> <!-- figure -->
 <hr class="figure">
 <center><p class="caption">Figure 15:  Planet in circular motion around a star. </p></center>
@@ -4680,7 +4797,7 @@ for \( \epsilon \) around unity.
 <b>Remark.</b>
 The present problem is one of the few problems that is
 discussed at length in the literature, see
-Logan <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Logan_1987">[6]</a> and Lin and Segel <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Lin_Segel">[8]</a>.
+Logan <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Logan_1987">[2]</a> and Lin and Segel <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Lin_Segel">[8]</a>.
 The standard argument is that the scaling in c) is favorable since
 it is the only scaling that is valid as \( \epsilon\rightarrow 0 \). However,
 that it is robust also for the larger relevant values of \( \epsilon \) is
@@ -4714,7 +4831,7 @@ the form
 $$
 \begin{equation}
 -\frac{\hbar^2}{2m}
-\left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right) R
+\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right) R
 + V(r)R = ER,
 \tag{2.113}
 \end{equation}
@@ -4733,7 +4850,8 @@ Show that the scaled version of <a href="#mjx-eqn-2.113">(2.113)</a> can be writ
 
 $$
 \begin{equation}
-- \left(\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right)\right)
+- \left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\bar r^2
+\frac{d}{d\bar r}\right)
 \bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
 \tag{2.114}
 \end{equation}
@@ -4741,7 +4859,7 @@ $$
 
 where \( \lambda \) is a dimensionless eigenvalue
 
-$$ \lambda = \frac{2E}{\hbar}\sqrt{\frac{m}{k}}\tp$$
+$$ \lambda = \frac{(4\pi)^2\epsilon_0^2\hbar^2E}{me^4}\tp$$
 
 The symbol \( \bar r \) is the scaled coordinate, and \( \bar R \) is a scaled
 version of \( R \) (the scaling factor drops out of the equation).
@@ -4790,7 +4908,7 @@ demonstrating that the balance of the terms on the left-hand side automatically
 determines a very relevant length scale.
 
 <p>
-A bit of rewriting in the right-hand side term gives the
+A bit of arithmetics in the right-hand side term gives the
 given expression for \( \lambda \). We then end up with
 <a href="#mjx-eqn-2.114">(2.114)</a>.
 
@@ -4810,9 +4928,9 @@ Filename: <code>Schroedinger</code>.
 
 <p>
 Introducing \( u=\bar r\bar R \) and renaming \( \bar r \) to \( x \),
-<a href="#mjx-eqn-2.114">(2.114)</a> can be recast to the simple form
+<a href="#mjx-eqn-2.114">(2.114)</a> can be recast in the simpler form
 
-$$ -u'' + x^{-2}u = \lambda u,$$
+$$ -u''(x) + \frac{1}{x}u(x) = \lambda u(x),$$
 
 which is a simpler eigenvalue problem to solve numerically (the boundary
 conditions are \( u(0)=0 \) and \( \lim_{x\rightarrow\infty}u(x)=0 \)).
