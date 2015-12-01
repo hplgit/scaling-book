@@ -738,7 +738,7 @@ and avoid unit conversion so there will be no more use of
 
 
 !split
-========= ODE models =========
+========= Ordinary differential equation models =========
 
 This chapter introduces the basic techniques of scaling and the ways to
 reason about scales. The first class of examples targets exponential
@@ -5409,7 +5409,7 @@ conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
 
 
 !split
-========= Basic PDE models =========
+========= Basic partial differential equation models =========
 
 This chapter extends the scaling technique to well-known partial differential
 equation (PDE) models for waves, diffusion, and transport.
@@ -7817,15 +7817,15 @@ the bricks. Integrating over $A$ gives
 \int\limits_A \frac{\partial u}{\partial t}dydz &=
 \int\limits_A \dfc\left(
 \frac{\partial^2 u}{\partial x^2} +
-+\frac{\partial^2 u}{\partial y^2} +
-+\frac{\partial^2 u}{\partial z^2}
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}
 \right)dydz \\
 &=\int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
 dydz +
 \int\limits_A \dfc\left(
 \frac{\partial^2 u}{\partial y^2} +
-+\frac{\partial^2 u}{\partial z^2}
+\frac{\partial^2 u}{\partial z^2}
 \right)dydz \\
 & =
 \int\limits_A \dfc
@@ -7965,7 +7965,7 @@ MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-
 !esol
 
 !split
-========= Advanced PDE models =========
+========= Advanced partial differential equation models =========
 
 This final chapter addresses more complicated PDE models, including
 linear elasticity, viscous flow, heat transfer, porous media flow,

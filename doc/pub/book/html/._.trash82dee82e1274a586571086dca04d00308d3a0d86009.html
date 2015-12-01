@@ -1712,15 +1712,15 @@ $$
 \int\limits_A \frac{\partial u}{\partial t}dydz &=
 \int\limits_A \dfc\left(
 \frac{\partial^2 u}{\partial x^2} +
-+\frac{\partial^2 u}{\partial y^2} +
-+\frac{\partial^2 u}{\partial z^2}
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}
 \right)dydz \\ 
 &=\int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
 dydz +
 \int\limits_A \dfc\left(
 \frac{\partial^2 u}{\partial y^2} +
-+\frac{\partial^2 u}{\partial z^2}
+\frac{\partial^2 u}{\partial z^2}
 \right)dydz \\ 
 & =
 \int\limits_A \dfc
@@ -1854,7 +1854,9 @@ where Nu is the Nusselt number
 $$ \hbox{Nu} = \frac{Lh}{\dfc}\tp$$
 
 <p>
-Here is a simulation with \( \beta=0.1 \) and \( \hbox{Nu}=2 \).
+Here is a simulation with \( \beta=0.1 \) and \( \hbox{Nu}=2 \)
+(using the <code>diffusion_two_metal_pieces</code> function in
+<a href="http://tinyurl.com/o8pb3yy/session.py" target="_self"><tt>session.py</tt></a>).
 
 <p>
 
