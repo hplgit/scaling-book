@@ -118,7 +118,6 @@ $\hbox{kg/ms}^2$. Below are more derived quantities and their units.
 
 Some common physical quantities and their dimensions are listed next.
 
-[hpl: TODO: Check the tables.]
 
 |-----------------------------------------|
 | Quantity  | relation | unit | dimension |
@@ -396,9 +395,6 @@ and later. In most of our programs, only the `print` statement differs
 between version 2 and 3.
 !ewarning
 
-[hpl: Geir, is this sufficient intro about Python? Should we be more
-specific about the expected competence?]
-[Geir: hpl, no this will do. ]
 
 Computations with units in Python are well supported by the
 `PhysicalQuantity` object from the "ScientificPython package":
@@ -2603,7 +2599,6 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-[hpl: Include more figures.]
 
 ===== Undamped vibrations without forcing =====
 label{sec:scale:vib:undamped}
@@ -3087,8 +3082,6 @@ Here we have four dimensionless variables
 We remark that the choice of $u_c$ has so far not been made. Several
 different cases will be considered below, and certain choices reduce
 the number of independent dimensionless variables to three.
-
-[hpl: New comment in the paragraph above.]
 
 The four dimensionless variables above have interpretations as ratios of
 physical effects:
@@ -6603,7 +6596,7 @@ which means that the boundary $x=L$ is placed sufficiently far from $x=0$
 such that the solution is much damped and basically constant so
 $u_x=0$ is a reasonable condition.
 
-=== Scaling ===
+=== Scaling issues ===
 
 Since the boundary temperature is oscillating around the initial
 condition, we expect $u\in [U_0-A,U_0+A]$.
@@ -6620,6 +6613,8 @@ the boundary and the ``speed of diffusion'', or more specifically
 the ``speed of heat conduction'' in the present context,
 where $t_c=x_c^2/\dfc$ is the appropriate scale, $x_c$ being
 the length scale.
+
+=== Exact solution ===
 
 As usual, investigating the exact solution of the model problem can
 illuminate the involved scales. For this particular initial-boundary
@@ -6643,6 +6638,8 @@ This is perhaps more easily seen if we make a rewrite
 \[ u(x,t) = U_0 - Ae^{-bx}\sin\left(b(x - ct)\right),\quad
 c=\omega/b = \sqrt{2\dfc\omega},\  b =\sqrt{\frac{\omega}{2\dfc}}\tp\]
 !et
+
+=== Time and length scales ===
 
 The boundary oscillations lead to the time scale $t_c=1/\omega$.
 The speed of the wave suggests another time scale: the time it
@@ -6722,18 +6719,21 @@ approximately constant so its derivative vanishes, and this property
 can only be obtained if $L$ is large enough to ensure that the wave
 becomes significantly damped.  Therefore, the length scale is dictated
 by $b$, not $L$, and $L$ should be adapted to $b$, typically $L\geq
-4/b$.
+4/b$. This means that $x\in [0,4/b]$ and then $\bar x\in [0,4]$.
 
-The resulting scaled problem becomes
+=== The scaled problem ===
+
+Based on the discussion of scales above, we arrive at the following
+scaled initial-boundary value problem:
 
 !bt
 \begin{align}
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{1}{2}\frac{\partial^2 u}{\partial x^2},
-\quad & \bar x\in (0,4/b),\ \bar t\in (0,\bar T],
+\quad & \bar x\in (0,4),\ \bar t\in (0,\bar T],
 label{scale:heat:pde2:d}\\
 \bar u(\bar x,0) &= 0,
-\quad &\bar x\in [0,1]
+\quad &\bar x\in [0,1],
 label{scale:heat:pde2:ic:u:d}\\
 \bar u(0,\bar t) & = \sin(\bar t),
 \quad  &\bar t\in (0,\bar T],
@@ -6752,6 +6752,15 @@ The coefficient in front of the second-derivative is $\half$ because
 We may, of course, choose $t_c=2/\omega$ and get rid of the $\half$ factor,
 if desired, but then it turns up in (ref{scale:heat:pde2:bc:0:d}) instead,
 as $\sin (2\bar t)$.
+
+=== Simulations ===
+
+The file "`session.py`": "${src_scaling}/session.py" contains a function
+`solver_diffusion_FE` for solving a diffusion equation in one dimension
+and a function `diffusion_oscillatory_BC` for solving
+(ref{scale:heat:pde2:d})-(ref{scale:heat:pde2:bc:L:d}).
+
+MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/diffusion_osc_BC/movie.mp4] Diffusion wave.
 
 # #ifdef OLD
 ## Already covered!
@@ -7794,16 +7803,14 @@ U_2, & \x\in\Omega_2,
 where $U_1$ and $U_2$ are the constant initial temperatures in each piece.
 
 Thinking of two identical pieces $\Omega_1$ and $\Omega_2$ with shapes
-as bricks, it is tempting to develop a one-dimensional model, especially
-if the pieces are somewhat slender. We then expect the main temperature
-variations to take place in the $x$ direction, where the $x$ axis is
-perpendicular to the contact surface between the pieces.
-[Geir: Hm??]
-The idea is
-to integrate the governing PDE in the two other directions, use the
-Gauss divergence theorem on
-$\dfc\nabla^2u$, and apply the cooling boundary condition. Let $A$ be
-the cross section of the bricks. Integrating over $A$ gives
+as bricks, it is tempting to develop a one-dimensional model,
+especially if the pieces are somewhat slender. We then expect the main
+temperature variations to take place in the $x$ direction, where the
+$x$ axis is perpendicular to the contact surface between the pieces.
+The idea is to integrate the governing PDE in the two other
+directions, use the Gauss divergence theorem on $\dfc\nabla^2u$, and
+apply the cooling boundary condition. Let $A$ be the cross section of
+the bricks. Integrating over $A$ gives
 
 !bt
 \begin{align*}
@@ -7831,7 +7838,6 @@ dydz -h(v(x,t) -u_S)\tp
 \end{align*}
 !et
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
-[Geir: Hm??]
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 
@@ -7927,18 +7933,34 @@ The scaled initial condition becomes
 !bt
 \[
 \bar v(\bar x,0)=0
-\hbox{ if } 0\leq x < 1/2\hbox{ else } \frac{U_2 - U_1}{U_s - U_1}\tp\]
+\hbox{ if } 0\leq x < 1/2\hbox{ else } \gamma,\]
+!et
+where $\gamma$ is the dimensionless number
+
+!bt
+\[ \gamma = \frac{U_2 - U_1}{U_s - U_1}\tp\]
 !et
 The scaled boundary conditions take the form
 
 !bt
 \[
- \frac{\partial}{\partial\bar x}\bar v(0,t) = \frac{Lh}{\dfc}
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Nu}
  (\bar v(0,t)-1),\quad
--{\partial}{\partial\bar x}\bar v(L,t) = \frac{Lh}{\dfc}
-(\bar v(L,t)-1)\tp
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Nu}
+(\bar v(L,t)-1),
 \]
 !et
+where Nu is the Nusselt number
+
+!bt
+\[ \hbox{Nu} = \frac{Lh}{\dfc}\tp\]
+!et
+
+Here is a simulation with $\beta=0.1$ and $\hbox{Nu}=2$
+(using the `diffusion_two_metal_pieces` function in
+"`session.py`": "${src_scaling}/session.py").
+
+MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/beta_01_Nu2/movie.mp4]
 
 !esol
 

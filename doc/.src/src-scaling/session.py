@@ -458,6 +458,147 @@ def boundary_layer1D_scale2():
     plt.axis([0, max(Pe_values), -0.4, 1])
     plt.show()
 
+
+def solver_diffusion_FE(
+    I, a, f, L, Nx, F, T, U_0, U_L, h=None, user_action=None):
+    """
+    Forward Euler scheme for the diffusion equation
+    u_t = a*u_xx + f, u(x,0)=I(x).
+    If U_0 is a function of t: u(0,t)=U_0(t)
+    If U_L is a function of t: u(L,t)=U_L(t)
+    If U_0 is None: du/dx(0,t)=0
+    If U_L is None: du/dx(L,t)=0
+    If U_0 is a number: Robin condition -a*du/dn(0,t)=h*(u-U_0)
+    If U_L is a number: Robin condition -a*du/dn(L,t)=h*(u-U_0)
+    """
+    import numpy as np
+    version = 'scalar'
+    x = np.linspace(0, L, Nx+1)   # mesh points in space
+    dx = x[1] - x[0]
+    dt = F*dx**2/a
+    Nt = int(round(T/float(dt)))
+    t = np.linspace(0, T, Nt+1)   # mesh points in time
+
+    if f is None:
+        f = lambda x, t: 0 if isinstance(x, (float,int)) else np.zero_like(x)
+
+    u   = np.zeros(Nx+1)   # solution array
+    u_1 = np.zeros(Nx+1)   # solution at t-dt
+    u_2 = np.zeros(Nx+1)   # solution at t-2*dt
+
+    # Set initial condition
+    for i in range(0,Nx+1):
+        u_1[i] = I(x[i])
+
+    if user_action is not None:
+        user_action(u_1, x, t, 0)
+
+    for n in range(0, Nt):
+        # Update all inner points
+        if version == 'scalar':
+            for i in range(1, Nx):
+                if callable(f):  # f(x,t)
+                    u[i] = u_1[i] + \
+                           F*(u_1[i-1] - 2*u_1[i] + u_1[i+1])\
+                           + f(x[i], t[n])
+                elif isinstance(f, (float,int)):
+                    # f = f*(u-1)
+                    u[i] = u_1[i] + \
+                           F*(u_1[i-1] - 2*u_1[i] + u_1[i+1])\
+                           + f*(u_1[i] - 1)
+
+        elif version == 'vectorized':
+            if callable(f):
+                u[1:Nx] = u_1[1:Nx] +  \
+                          F*(u_1[0:Nx-1] - 2*u_1[1:Nx] + u_1[2:Nx+1])\
+                          + f(x[1:Nx], t[n])
+            elif isinstance(f, (float,int)):
+                # f = f*(u-1)
+                u[1:Nx] = u_1[1:Nx] +  \
+                          F*(u_1[0:Nx-1] - 2*u_1[1:Nx] + u_1[2:Nx+1])\
+                          + f*(u_1[1:Nx] - 1)
+
+        # Insert boundary conditions
+        if callable(U_0):
+            u[0] = U_0(t[n+1])
+        elif U_0 is None:
+            # Homogeneous Neumann condition
+            i = 0
+            u[i] = u_1[i] + F*(u_1[i+1] - 2*u_1[i] + u_1[i+1])
+        elif isinstance(U_0, (float,int)):
+            # Robin condition
+            # u_-1 = u_1 + 2*dx/a*(u[i] - U_0)
+            i = 0
+            u[i] = u_1[i] + F*(u_1[i+1] + 2*dx*h/a*(u[i] - U_0)
+                               - 2*u_1[i] + u_1[i+1])
+        if callable(U_L):
+            u[Nx] = U_L(t[n+1])
+        elif U_L is None:
+            # Homogeneous Neumann condition
+            i = Nx
+            u[i] = u_1[i] + F*(u_1[i-1] - 2*u_1[i] + u_1[i-1])
+        elif isinstance(U_0, (float,int)):
+            # Robin condition
+            # u_Nx+1 = u_Nx-1 - 2*dx/a*(u[i] - U_0)
+            i = Nx
+            u[i] = u_1[i] + F*(u_1[i-1] - 2*u_1[i] +
+                               u_1[i-1] - 2*dx*h/a*(u[i] - U_0))
+
+        if user_action is not None:
+            user_action(u, x, t, n+1)
+
+        # Update u_1 before next step
+        #u_1[:] = u  # safe, but slow
+        u_1, u = u, u_1  # just switch references
+
+def diffusion_oscillatory_BC():
+    import scitools.std as plt
+
+    def plot(u, x, t, n):
+        plt.plot(x, u, 'r-', legend=['t=%.2f' % t[n]],
+                 axis=[x[0], x[-1], -1.1, 1.1],
+                 xlabel='$x$', ylabel='$u$',
+                 savefig='tmp_%04d.png' % n)
+
+    from math import sin, pi
+    solver_diffusion_FE(
+        I=lambda x: 0,
+        a=0.5,
+        f=None,
+        L=4,
+        Nx=30,
+        F=0.5,
+        T=8*pi,
+        U_0=lambda t: sin(t),
+        U_L=None,  # du/dx=0, x=L
+        h=None,
+        user_action=plot)
+
+def diffusion_two_metal_pieces():
+    import scitools.std as plt
+
+    def plot(u, x, t, n):
+        plt.plot(x, u, 'r-', legend=['t=%.5f' % t[n]],
+                 axis=[x[0], x[-1], -0.1, 2.1],
+                 xlabel='$x$', ylabel='$u$',
+                 savefig='tmp_%04d.png' % n)
+
+    beta = 0.1
+    gamma = 2
+    Nu = 0.1
+    solver_diffusion_FE(
+        I=lambda x: 0 if x < 0.5 else gamma,
+        a=0.5,
+        f=-beta,
+        L=1,
+        Nx=50,
+        F=0.25,
+        T=0.015,
+        U_0=1,  # Robin condition U_s=1
+        U_L=1,
+        h=Nu,
+        user_action=plot)
+
 if __name__ == '__main__':
     #damped_forced_vibrations()
     #cooling_sine_Ts_dsolve()
@@ -466,6 +607,8 @@ if __name__ == '__main__':
     #simulate_forced_vibrations1()
     #simulate_forced_vibrations3()
     #simulate_Gaussian_and_incoming_wave()
-    simulate_biochemical_process()
+    #simulate_biochemical_process()
     #boundary_layer1D()
     #boundary_layer1D_scale2()
+    #diffusion_oscillatory_BC()
+    diffusion_two_metal_pieces()
