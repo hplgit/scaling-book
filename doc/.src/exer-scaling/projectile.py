@@ -39,10 +39,10 @@ def demo_soccer_ball():
     L_h = 0.5*(v0_h**2/g)*math.sin(theta)**2
     print 'L:', L_s, L_h
 
-    m = 0.43
-    a = 0.11
-    A = math.pi*a**2
-    rho = 1.2
+    m = 0.43  # kg
+    R = 0.11  # m
+    A = math.pi*R**2
+    rho = 1.2 # kg/m^3
     C_D = 0.4
     alpha_s = C_D*rho*A*v0_s**2*math.cos(theta)**2/(4*m*g)
     alpha_h = C_D*rho*A*v0_h**2*math.cos(theta)**2/(4*m*g)

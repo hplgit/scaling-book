@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -80,7 +80,7 @@ code { color: inherit; background-color: transparent; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -109,11 +109,11 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -126,7 +126,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -293,7 +293,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -303,7 +303,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -503,10 +503,7 @@ code { color: inherit; background-color: transparent; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -530,7 +527,7 @@ code { color: inherit; background-color: transparent; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -639,7 +636,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generating a graphical user interface</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec20" style="font-size: 80%;"><b>Ordinary differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exponential decay problems</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas of scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec23" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The basic model problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec24" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Population dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec25" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Decay of pressure with altitude</a></li>
@@ -650,15 +647,15 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec30" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Make each term dimensionless</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec31" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 5: Estimate the scales</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:prog" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Making software for utilizing the scaled model</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original problem with dimensions</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avoiding unnecessary computations</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original unscaled problem</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the scaled problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec35" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation with joblib</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:body" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a generalized problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec37" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec38" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Theory</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec39" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable coefficients</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant surroundings</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant temperature in the surroundings</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec42" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec43" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec44" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
@@ -729,11 +726,11 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: ODEs for a binary star</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Duffing's equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:rocket" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Vertical motion in a varying gravity field</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Schroedinger's equation</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: A simplified Schroedinger equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec114" style="font-size: 80%;"><b>Basic partial differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homogeneous Dirichlet conditions in 1D</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec117" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
@@ -816,7 +813,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bidomain model with an alternative \( I_{\rm{ion}} \)</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An alternative \( I_{\rm{ion}} \)</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec200" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
@@ -825,7 +822,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec206" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec207" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Surface gravity waves</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Water surface waves driven by gravity</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec210" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec211" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
@@ -885,7 +882,7 @@ from physics and biology. How to utilize scaled models in simulation
 software is also addressed.
 
 <p>
-<center><h4>Dec 1, 2015</h4></center> 
+<center><h4>Dec 25, 2015</h4></center> 
 <!-- date -->
 <br>
 <p>
@@ -921,7 +918,7 @@ software is also addressed.
 
 
 <center style="font-size:80%">
-<!-- copyright --> &copy; 2015, Geir K. Pedersen, Hans Petter Langtangen. Released under CC Attribution 4.0 license
+<!-- copyright --> &copy; 2015, Hans Petter Langtangen, Geir K. Pedersen. Released under CC Attribution 4.0 license
 </center>
 
 

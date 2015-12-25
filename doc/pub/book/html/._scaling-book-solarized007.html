@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -107,7 +107,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -136,11 +136,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -153,7 +153,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -320,7 +320,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -330,7 +330,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -530,10 +530,7 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -557,7 +554,7 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -672,7 +669,7 @@ the PDE <a href="#mjx-eqn-112">(112)</a> can be written
 used later.
 
 <p>
-In multi dimensions in heterogeneous media we have the generalization
+For any number of dimensions in heterogeneous media we have the generalization
 
 $$
 \begin{equation}
@@ -683,11 +680,11 @@ $$
 $$
 
 where \( f \) represents a forcing.
-How to scale time depends on the PDE, the spatial scale depends on
-the domain, and the scale of \( u \) usually depends on \( f \) or the
-boundary or initial condition.
+<!-- How to scale time depends on the PDE, the spatial scale depends on -->
+<!-- the domain, and the scale of \( u \) usually depends on \( f \) or the -->
+<!-- boundary or initial condition. -->
 
-<h2 id="___sec116">Simple homogeneous Dirichlet conditions </h2>
+<h2 id="___sec116">Homogeneous Dirichlet conditions in 1D </h2>
 
 <p>
 Let us first start with <a href="#mjx-eqn-112">(112)</a>,
@@ -848,19 +845,16 @@ in in
 the book <a href="http://tinyurl.com/Langtangen-Linge-FDM-book" target="_self">Finite difference computing with PDEs</a>
 <a href="._scaling-book-solarized011.html#Langtangen_Linge_fdm">[3]</a>.
 
-<!-- begin inline comment -->
-<font color="red">(<b>Geir 2</b>: section reference not active)</font>
-<!-- end inline comment -->
-
 <h3 id="___sec118">Waves on a string </h3>
 
 <p>
-As example, we may let the original initial-boundary value problem
+As an example, we may let the original initial-boundary value problem
 <a href="#mjx-eqn-112">(112)</a>-<a href="#mjx-eqn-117">(117)</a> model vibrations of
-a string on a string instrument. With \( u \) as the displacement of the
+a string on a string instrument (e.g., a guitar).
+With \( u \) as the displacement of the
 string, the boundary conditions \( u=0 \) at the ends are relevant, as
 well as the zero velocity condition \( \partial u/\partial t=0 \) at
-\( t=0 \).  The initial condition \( I(x) \) has typically a triangular shape
+\( t=0 \).  The initial condition \( I(x) \) typically has a triangular shape
 for a picked guitar string.  The physical problem needs parameters for
 the amplitude of \( I(x) \), the length \( L \) of the string, and the value
 of \( c \) for the string. Only the latter is challenging as it involves
@@ -879,7 +873,7 @@ $$
 The dimensionless coordinate of the peak, \( x_0 \), is the only
 dimensionless parameter in the problem. For fixed \( x_0 \),
 one single simulation will capture all possible solutions with such
-a triangular shape.
+an initial triangular shape.
 
 <h3 id="___sec119">Detecting an already computed case </h3>
 
@@ -888,11 +882,11 @@ The file <a href="http://tinyurl.com/o8pb3yy/wave1D_u0_scaled.py" target="_self"
 has functionality for detecting whether a simulation corresponds to
 a previously run scaled case, and if so, the solution is retrieved from
 file. The implementation technique makes use of <code>joblib</code>, but is more
-complicated than showed previously in these notes since some of the
+complicated than shown previously in these notes since some of the
 arguments to the function that computes the solution are functions,
 and one must recognized if the function has been used as argument
 before or not. There is documentation in the <code>wave1D_u0_scaled.py</code>
-file how this is done.
+file explaining how this is done.
 
 <h2 id="scale:wave:pde2">Time-dependent Dirichlet condition</h2>
 
@@ -1317,7 +1311,7 @@ One could wonder if the time scale of the force term, \( f(x,t) \),
 should influence \( t_c \), but as we reasoned for the boundary condition
 \( u(0,t)=U_L(t) \), we let the characteristic time be governed by the
 signal speed in the medium, i.e., by \( \sqrt{\lambda_c} \) here and not
-by the time scale of the excitation \( f \) which dictates the
+by the time scale of the excitation \( f \), which dictates the
 length of the generated waves and not their propagation speed.
 
 <h3 id="___sec131">Choosing the spatial scale </h3>
@@ -1362,18 +1356,14 @@ $$
 With \( V=0 \), and \( u=0 \) or \( u_x=0 \) on the boundaries \( x=0,L \), this scaling normally gives
 \( |\bar u|\leq 1 \), since initially \( |I|\leq 1 \), and no boundary condition
 can increase the amplitude.
-
-<!-- begin inline comment -->
-<font color="red">(<b>Geir 3</b>: added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow.)</font>
-<!-- end inline comment -->
-
 However, the forcing, \( \bar f \), may inherit spatial and temporal scales of its
 own that may complicate the matter. The forcing may, for instance, be
 some disturbance moving with a velocity close to the propagation velocity of
 the free waves. This will have an effect akin to the resonance for the vibration problem discussed in
 the section <a href="._scaling-book-solarized006.html#sec:scale:vib:undamped:mg">Undamped vibrations with constant forcing</a> and the waves produced by the forcing may be much larger than
 indicated by \( \beta \). On the other hand, the forcing may also consist
-of alternating positive and negative parts (example: retrogressive slides). These may interfere to
+of alternating positive and negative parts (retrogressive slides constitute an
+example). These may interfere to
 reduce the wave generation by an order of magnitude.
 
 <h3 id="___sec132">Scaling the velocity initial condition </h3>
@@ -1416,7 +1406,7 @@ $$
 <p>
 A linear damping term \( b\,\partial u/\partial t \) is often added to
 the wave equation to model energy dissipation and amplitude reduction.
-Our PDE now reads
+Our PDE then reads
 
 $$
 \begin{equation}
@@ -1487,8 +1477,8 @@ respectively.
 <h2 id="___sec134">A three-dimensional wave equation problem </h2>
 
 <p>
-To demonstrate how the scaling extends to and looks like in
-three spatial dimensions, we consider
+To demonstrate how the scaling extends to in three spatial dimensions,
+we consider
 
 $$
 \begin{equation}
@@ -1500,13 +1490,14 @@ $$
 \end{equation}
 $$
 
-We introduce
+Introducing
 
 $$ \bar x = \frac{x}{x_c},\quad \bar y = \frac{y}{y_c},
    \quad \bar z = \frac{z}{z_c},
-   \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}\tp$$
+   \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c},$$
 
-With \( \bar\lambda = \lambda(\bar xx_c, \bar y y_c, \bar z z_c)/\lambda_c \),
+and scaling \( \lambda \) as
+\( \bar\lambda = \lambda(\bar xx_c, \bar y y_c, \bar z z_c)/\lambda_c \),
 we get
 
 $$

@@ -1,3 +1,4 @@
+Achou
 Achou's
 Bernoulli's
 Biot's
@@ -5,11 +6,14 @@ Boussinesq
 Couette
 Courant
 Cython
+Dajani
 Dimensonless
 Donatien
 Duffing's
 Ec
 Eckert
+FOLFIRINOX
+Falch
 FitzHugh
 Froude
 GPa
@@ -19,6 +23,7 @@ Gr
 Grashof
 HIV
 Hinsen
+Hooke's
 IDL
 Informatics
 Joakim
@@ -26,9 +31,11 @@ KPP
 Karman
 KdV
 Kolmogorov
+Koslung
 Kutta
 Langtangen
 Linearization
+Linge
 Lotka
 MATLAB
 Mathematica
@@ -42,6 +49,7 @@ Nicolson
 NumPy
 Nusselt
 ODEs
+OUS
 Odespy
 PDE
 PDEs
@@ -65,6 +73,7 @@ Simula
 Sneyd
 Strouhal
 Sundnes
+Svein
 SymPy
 SymPy's
 TOC
@@ -88,7 +97,6 @@ diffusivities
 diffusivity
 dimensionalization
 dimensionalized
-domining
 electrophysiology
 errorprone
 geodesy

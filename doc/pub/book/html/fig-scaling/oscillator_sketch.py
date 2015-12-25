@@ -39,7 +39,7 @@ wheel2.translate(point(2*H, 0))
 
 fontsize = 18
 text_m = Text('$m$', (2*H, H+2*H), fontsize=fontsize)
-text_kx = Text('$ku$', (-L/2, H+4*H), fontsize=fontsize)
+text_ku = Text('$ku$', (-L/2, H+4*H), fontsize=fontsize)
 text_bv = Text("$bu'$", (-L/2, H), fontsize=fontsize)
 x_axis = Axis((2*H, L), H, '$u(t)$', fontsize=fontsize,
               label_spacing=(0.04, -0.01))
@@ -48,7 +48,7 @@ x_axis_start = Line((2*H, L-H/4), (2*H, L+H/4)).set_linewidth(4)
 fig = Composition({
     'spring': s, 'mass': M, 'left wall': left_wall,
     'ground': ground, 'wheel1': wheel1, 'wheel2': wheel2,
-    'text_m': text_m, 'text_kx': text_kx,
+    'text_m': text_m, 'text_ku': text_ku,
     'x_axis': x_axis, 'x_axis_start': x_axis_start})
 
 fig.draw()
@@ -68,13 +68,13 @@ drawing_tool.savefig('tmp_oscillator')
 
 drawing_tool.erase()
 
-text_kx = Text('$ku$', (-L/2, H+4*H), fontsize=fontsize)
+text_ku = Text('$ku$', (-L/2, H+4*H), fontsize=fontsize)
 text_bv = Text("$bu'$", (-L/2, H), fontsize=fontsize)
 x_axis = Axis((2*H, L), H, '$u(t)$', fontsize=fontsize,
               label_spacing=(0.04, -0.01))
 F_force = Force((4*H, H+2*H), (4*H+H, H+2*H), '$F(t)$',
-                text_spacing=(0.035, -0.01), text_pos='end', fontsize=fontsize)
-fig['text_kx'] = text_kx
+                text_spacing=(0.057, -0.007), text_alignment='left', fontsize=fontsize)
+fig['text_ku'] = text_ku
 fig['text_bv'] = text_bv
 fig['x_axis'] = x_axis
 fig['F_force'] = F_force

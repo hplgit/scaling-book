@@ -27,9 +27,10 @@ $\chi$ is a membrane area to cell volume ratio,
 $\sigma_i$ is an electric conductivity tensor for the intracellular space, and
 $\sigma_e$ is an electric conductivity tensor for the extracellular space.
 
-The boundary conditions are of Neumann type, and we drop these from the discussion.
-The initial condition is typically $u_e=0, v = v_r$, where
-$v_{r}$ is a constant resting potential.
+The boundary conditions are of Neumann type, but we drop these from
+the discussion, just to make things a bit simpler.  The initial
+condition is typically $u_e=0, v = v_r$, where $v_{r}$ is a constant
+resting potential.
 
 The PDE system is driven by $I_{\rm{ion}} + I_{\rm{app}}$, where
 $I_{\rm{ion}}$ is a reaction term describing ionic currents across the

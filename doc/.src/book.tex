@@ -354,8 +354,16 @@
 
 % References to labels in external documents:
 \usepackage{xr}
+
 \externaldocument{/home/hpl/vc/decay-book/doc/.src/book/book}
 \externaldocument{/home/hpl/vc/fdm-book/doc/.src/book/book}
+
+% Add external .aux files to \listfiles list:
+\makeatletter
+\@addtofilelist{/home/hpl/vc/decay-book/doc/.src/book/book.aux}
+\@addtofilelist{/home/hpl/vc/fdm-book/doc/.src/book/book.aux}
+\makeatother
+
 
 % insert custom LaTeX commands...
 
@@ -395,7 +403,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Dec 1, 2015}
+\date{Dec 25, 2015}
 \maketitle
 
 % Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/book/book
@@ -445,7 +453,7 @@ the input data and makes the simulations results more widely
 applicable.  The number of parameters in scaled models may be much
 less than the number of physical parameters in the original model. The
 parameters in scaled models are also dimensionless and express
-\emph{ratios} of physical effects rather than the levels of individual
+\emph{ratios} of physical effects rather than levels of individual
 effects.  Setting meaningful values of a few dimensionless numbers is
 much easier than determining physically relevant values for the
 original physical parameters.
@@ -480,18 +488,21 @@ that can automatically take care of unit conversion (the most frequent
 mathematical mistake in industry and science?).  Section~\ref{sec:scale:decay} introduces the mathematics of scaling and the
 thinking about scales in a simple ODE problem modeling exponential
 decay. The ideas are generalized to nonlinear ODEs and to systems of
-ODEs.  Another ODE example on mechanical vibrations is treated in
+ODEs.  Another ODE example, on mechanical vibrations, is treated in
 Section~\ref{sec:scale:vib}, where we cover many different physical
 contexts and different choices of scales.  Scaling the standard,
 linear wave equation is the topic of Chapter~\ref{sec:scale:wave}, with
 discussion of how boundary and initial conditions influence the choice
 of scales.  Another PDE example, the diffusion equation, appears in
 Chapter~\ref{sec:scale:diffu}. Here we progress from a simple linear
-diffusion equation in 1D to the impact on scales of an oscillating
-boundary condition. Nonlinear diffusion models as well as
-convection-diffusion PDEs are also discussed.  The final Chapter is
+diffusion equation in 1D to a study of how scales are influenced by
+an oscillatory boundary condition. Nonlinear diffusion models, as well as
+convection-diffusion PDEs, are elaborated on.  The final Chapter is
 devoted to many famous PDEs arising from continuum models: elasticity,
 viscous fluid flow, thermal convection, etc.
+
+The mathematics is translated into complete computer codes for the
+ODE and simpler PDE problems.
 
 Experimental fluid mechanics is a field full of relations involving
 dimensionless numbers such as the Grashof and Prandtl
@@ -508,6 +519,12 @@ phenomena, diffusion, and combined convection-diffusion. The final
 chapter is meant for readers with knowledge of the physics and
 mathematics of continuum mechanical models. The mathematical level of
 the text rises quickly after the first two chapters.
+
+In the first two chapters, much of the mathematics is accompanied
+by complete (yet short) computer codes. The programming level requires
+familiarity with procedural programming in Python. As the mathematical
+level rises, the computer codes get much more comprehensive, and we refer
+to some files for computational examples in chapter three.
 
 The pedagogy is to saturate the reader with lots of detailed examples to
 provide an understanding for the topic, primarily because the choice
@@ -527,18 +544,18 @@ formulas in the text.
 \begin{warning_mdfboxadmon}[What this booklet is and is not]
 Books containing material on
 scaling and non-dimensionalization very often cover
-topics not treated in the present notes. One key topic is
+topics not treated in the present notes, e.g., the key topic of
 dimensional analysis and the famous Buckingham Pi Theorem
 \cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
-section~\ref{scale:dimunit:Pi}.
-
-Other classical topics closely related to non-dimensionalization and
-scaling are analytical solution methods like perturbation techniques
-and similarity solutions. These are not addressed in these notes.
+section~\ref{scale:dimunit:Pi}. Similarly,
+analytical solution methods like perturbation techniques
+and similarity solutions, which represent classical methods
+closely related to scaling and non-dimensionalization, are not
+addressed herein.
 There are numerous texts on perturbation techniques, and these methods
 build on an already scaled differential equations. Similarity
 solutions do not fit within the present scope since these involve
-non-dimensional \emph{combinations of the independent variables} to derive
+non-dimensional \emph{combinations} of the unscaled independent variables to derive
 new differential equations that are easier to solve.
 
 Our scope is to scale differential
@@ -550,17 +567,22 @@ arise from the scaling procedure.
 
 
 
-We these notes we hope to demystify the thinking of determining scales
-and encourage numerical simulations to be performed with a dimensionless
-differential equation model.
+With these notes, we hope to demystify the thinking involved in scale
+determination and encourage numerical simulations to be performed with
+dimensionless differential equation models.
 
 \paragraph{Acknowledgments.}
-The authors are thankful to Dr.~Joakim Sundnes who greatly contributed to
-the writing of Section~\ref{scale:bidomain}. We appreciate
-Yapi Donatien Achou's proof reading.
+The authors are thankful to Dr.~Joakim Sundnes who greatly contributed
+to the writing of Section~\ref{scale:bidomain}. Professor Svein Linge
+provided very detailed, constructive comments on the entire manuscript
+and helped improve the reading quality significantly.  We also thank
+Yapi Donatien Achou for his proof reading.  Significant portions of
+the present text were written when the first author was fed with
+FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr.~Olav
+Dajani, and the rest of the OUS team. There would simply be no booklet
+without their efforts.
 
-\shortinlinecomment{hpl 1}{ Thank proof readers, Springer, others, ... }{ Thank proof readers, Springer, }
-
+\shortinlinecomment{hpl 1}{ Springer... }{ Springer... }
 
 \vspace{1cm}
 
@@ -600,11 +622,9 @@ $k$ is a spring constant, and $u(t)$ is the displacement of the
 system.  This is an equation expressing the balance of three physical
 effects: $mu''$ (mass times acceleration), $bu'$ (damping force), and
 $ku$ (spring force).  The different physical quantities, such as $m$,
-$u(t)$, $b$, and $k$, have all different \emph{dimensions}, measured in
+$u(t)$, $b$, and $k$, all have different \emph{dimensions}, measured in
 different \emph{units}, but $mu''$, $bu'$, and $ku$ must all have the same
-dimension, otherwise it would not make sense to add them (you will get
-the same problem as when trying to add one banana, one apple, and one
-orange).
+dimension, otherwise it would not make sense to add them.
 
 \section{Fundamental concepts}
 
@@ -616,30 +636,35 @@ orange).
 \index{time}
 
 
-There are seven fundamental (SI) \emph{base units} and corresponding
+\emph{Base units} have the important property that all other units derive
+from them. In the SI system,
+there are seven such base units and corresponding
 physical quantities:
 meter (m) for length,
 kilogram (kg) for mass,
 second (s) for time,
 kelvin (K) for temperature,
 ampere (A) for electric current,
-candela (cd) for luminous intensity,
+candela (cd) for luminous intensity, and
 mole (mol) for the amount of substance.
 
-The dimension of length is written as [L], the dimension of mass is
-[M], the dimension of time is [T], and the dimension of temperature is
-$[\Theta]$ (the dimensions of the other base units are omitted in
-this introduction). The dimension of a \emph{derived unit} like velocity, which is
-distance (length) divided by time, then becomes $[\hbox{LT}^{-1}]$.
-The dimension of force, another derived unit, is the same as the
-dimension of mass times acceleration, and hence the dimension of force is
-$[\hbox{MLT}^{-2}]$.
+We need some suitable mathematical notation to calculate with
+dimensions like length, mass, time, and so forth.  The dimension of
+length is written as [L], the dimension of mass as [M], the dimension
+of time as [T], and the dimension of temperature as $[\Theta]$ (the
+dimensions of the other base units are simply omitted as we do not make
+much use of them in this text).
+The dimension of a \emph{derived unit} like velocity, which
+is distance (length) divided by time, then becomes $[\hbox{LT}^{-1}]$
+in this notation.  The dimension of force, another derived unit, is
+the same as the dimension of mass times acceleration, and hence the
+dimension of force is $[\hbox{MLT}^{-2}]$.
 
 Let us find the dimensions of the terms in (\ref{scale:dimunit:eq:u}).
 A displacement $u(t)$ has dimension [L]. The derivative $u'(t)$ is
 change of displacement, which has dimension [L], divided by a time
 interval, which has dimension [T], implying that the dimension of $u'$
-is $\hbox{LT}^{-1}$. This results coincides with the interpretation of
+is $[\hbox{LT}^{-1}]$. This result coincides with the interpretation of
 $u'$ as velocity and the fact that velocity is defined as distance
 ([L]) per time ([T]).
 
@@ -648,11 +673,11 @@ displacement, we realize that the term $mu''$ (mass times
 acceleration) has dimension $[\hbox{MLT}^{-2}]$.  The term $bu'$ must
 have the same dimension, and since $u'$ has dimension
 $[\hbox{LT}^{-1}]$, $b$ must have dimension $[\hbox{MT}^{-1}]$.
-Finally, $ku$ must also have dimension $[\hbox{MLT}^{-1}]$, implying
+Finally, $ku$ must also have dimension $[\hbox{MLT}^{-2}]$, implying
 that $k$ is a parameter with dimension $[\hbox{MT}^{-2}]$.
 
 The unit of a physical quantity follows from the dimension expression.
-For example, since velocity has dimension $\hbox{LT}^{-1}$ and length
+For example, since velocity has dimension $[\hbox{LT}^{-1}]$ and length
 is measured in m while time is measured in s, the unit for velocity
 becomes m/s. Similarly, force has dimension $[\hbox{MLT}^{-2}]$ and
 unit $\hbox{kg\, m/s}^2$. The $k$ parameter in
@@ -681,11 +706,13 @@ of $u$ divided by the dimension of $t$.
 
 \index{dimension of physical quantities}
 
-Many derived quantities are measured in derived units. Force is one
-example: Newton (N) is a derived unit for force, equal to $\hbox{kg\,
-m/s}^2$. Another derived unit is Pascal (Pa) for pressure and stress,
-i.e., force per area. The unit of Pa then equals $\hbox{N/m}^2$ or
-$\hbox{kg/ms}^2$. Below are more derived quantities and their units.
+Many derived quantities are measured in derived units that have their
+own name. Force is one example: Newton (N) is a derived unit for
+force, equal to $\hbox{kg\, m/s}^2$. Another derived unit is Pascal
+(Pa) for pressure and stress, i.e., force per area. The unit of Pa
+then equals $\hbox{N/m}^2$ or $\hbox{kg/ms}^2$. Below are more names
+for derived
+quantities, listed with their units.
 
 
 
@@ -695,7 +722,7 @@ $\hbox{kg/ms}^2$. Below are more derived quantities and their units.
 
 \begin{tabular}{llll}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{ Name } & \multicolumn{1}{c}{ Symbol } & \multicolumn{1}{c}{ Physical quantity } & \multicolumn{1}{c}{ unit } \\
+\multicolumn{1}{c}{ Name } & \multicolumn{1}{c}{ Symbol } & \multicolumn{1}{c}{ Physical quantity } & \multicolumn{1}{c}{ Unit } \\
 \noalign{\smallskip}\svhline\noalign{\smallskip}
 radian & rad    & angle              & 1                   \\
 hertz  & Hz     & frequency          & $\hbox{s}^{-1}$     \\
@@ -723,15 +750,15 @@ Some common physical quantities and their dimensions are listed next.
 
 \begin{tabular}{llll}
 \hline\noalign{\smallskip}
-\multicolumn{1}{c}{ Quantity } & \multicolumn{1}{c}{ relation } & \multicolumn{1}{c}{ unit } & \multicolumn{1}{c}{ dimension } \\
+\multicolumn{1}{c}{ Quantity } & \multicolumn{1}{c}{ Relation } & \multicolumn{1}{c}{ Unit } & \multicolumn{1}{c}{ Dimension } \\
 \noalign{\smallskip}\svhline\noalign{\smallskip}
 stress                               & force/area                               & $\hbox{N/m}^2 = \hbox{Pa}$     & $[\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$  \\
 pressure                             & force/area                               & $\hbox{N/m}^2 = \hbox{Pa}$     & $\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$   \\
 density                              & mass/volume                              & $\hbox{kg/m}^3$                & $[\hbox{ML}^{-3}]$                      \\
 strain                               & displacement/length                      & 1                              & $[1]$                                   \\
-Young's modulus                      & stress/strain                            & $\hbox{N/m}^2 = \hbox{Pa}$     & $\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$   \\
+Young's modulus                      & stress/strain                            & $\hbox{N/m}^2 = \hbox{Pa}$     & $[\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$  \\
 Poisson's ratio                      & transverse strain/axial strain           & 1                              & $[1]$                                   \\
-Lame' parameters $\lambda$ and $\mu$ & stress/strain                            & $\hbox{N/m}^2 = \hbox{Pa}$     & $\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$   \\
+Lame' parameters $\lambda$ and $\mu$ & stress/strain                            & $\hbox{N/m}^2 = \hbox{Pa}$     & $[\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]$  \\
 moment (of a force)                  & distance $\times$ force                  & Nm                             & $[\hbox{ML}^2\hbox{T}^{-2}]$            \\
 impulse                              & force $\times$ time                      & $\hbox{Ns}$                    & $[\hbox{MLT}^{-1}]$                     \\
 linear momentum                      & mass $\times$ velocity                   & $\hbox{kg m/s}$                & $[\hbox{ML}\hbox{T}^{-1}]$              \\
@@ -746,8 +773,8 @@ heat capacity                        & heat change/temperature change           
 specific heat capacity               & heat capacity/unit mass                  & $\hbox{JK}^{-1}\hbox{kg}^{-1}$ & $[\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}]$  \\
 thermal conductivity                 & heat flux/temperature gradient           & $\hbox{Wm}^{-1}\hbox{K}^{-1}$  & $[\hbox{MLT}^{-3}\Theta^{-1}]$          \\
 dynamic viscosity                    & shear stress/velocity gradient           & $\hbox{kgm}^{-1}\hbox{s}^{-1}$ & $[\hbox{ML}^{-1}T^{-1}]$                \\
-kinematic viscosity                  & dynamic viscosity/density                & $[\hbox{m}^2/\hbox{s}$         & $\hbox{L}^2\hbox{T}^{-1}]$              \\
-surface tension                      & energy/area                              & $[\hbox{J/m}^2$                & $\hbox{MT}^{-2}]$                       \\
+kinematic viscosity                  & dynamic viscosity/density                & $\hbox{m}^2/\hbox{s}$          & $[\hbox{L}^2\hbox{T}^{-1}]$             \\
+surface tension                      & energy/area                              & $\hbox{J/m}^2$                 & $[\hbox{MT}^{-2}]$                      \\
 \noalign{\smallskip}\hline\noalign{\smallskip}
 \end{tabular}
 
@@ -759,7 +786,7 @@ surface tension                      & energy/area                              
 \noindent
 \paragraph{Prefixes for units.}
 Units often have \href{{https://en.wikipedia.org/wiki/Metric_prefix}}{prefixes}\footnote{\texttt{https://en.wikipedia.org/wiki/Metric\_prefix}}.
-For example, kilo is a prefix for 1000,
+For example, kilo (k) is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 
 \subsection{The Buckingham Pi theorem}
@@ -768,20 +795,20 @@ so kg is 1000 g. Similarly, GPa means giga pascal or $10^9$ Pa.
 \index{Pi theorem}
 \index{Buckingham Pi theorem}
 
-Almost all texts on scaling has a treatment of the famous Buckingham Pi
-theorem, which can be used to derive physical laws based on
-unit compatibility rather than the underlying physical mechanisms.
-This booklet has its focus on models where the physical mechanisms are
+Almost all texts on scaling has a treatment of the famous Buckingham
+Pi theorem, which can be used to derive physical laws based on unit
+compatibility rather than the underlying physical mechanisms.  This
+booklet has its focus on models where the physical mechanisms are
 already expressed through differential equations. Nevertheless, the Pi
-theorem has a remarkable position in the literature on scaling, and we
-will occasionally make references to it so the theorem is briefly
-discussed below.
+theorem has a remarkable position in the literature on scaling, and
+since we will occasionally make references to it, the theorem is
+briefly discussed below.
 
 The theorem itself is simply stated in two parts. First, if a problem
 involves $n$ physical parameters in which $m$ independent unit-types
 (such as length, mass etc.) appear, then the parameters can be
 combined to exactly $n-m$ independent dimensionless numbers, referred
-to as Pi's. Secondly, any unit-free relation between the original $n$
+to as Pi's. Second, any unit-free relation between the original $n$
 parameters can be transformed into a relation between the $n-m$
 dimensionless numbers.  Such relations may be identities or
 inequalities stating, for instance, whether or not a given effect is
@@ -801,21 +828,23 @@ trivial. However, it may produce remarkable progress for selected
 problems, such as turbulent jets, nuclear blasts, or similarity
 solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
-very profound, if not magical.  Anyhow, as one move on to more complex
-problems with many parameters the use of the theorem yields
-comparatively less gain as the number of Pi's become large and they
-may recombined in countless ways. It then requires either a good
-physical insight or information conveyed through an equation set to
+very profound, if not magical.  Anyhow, as one moves on to more complex
+problems with many parameters, the use of the theorem yields
+comparatively less gain as the number of Pi's becomes large.
+Many Pi's may also be
+recombined in many ways. Thus, good
+physical insight, and/or information conveyed through an equation set,
+is required to
 pick the useful dimensionless numbers or the appropriate scaling of
-the said equation set.  Sometimes the scrutiny of the equations also
-reveals that some of Pi's, obtained by applying the theorem, in fact
-may be removed from the problem.  As a consequence, in mathematical
-modeling of a complex physical problem the real assessment of scaling
-and dimensionless numbers will anyhow be an integral part of the
-analysis of the governing equations instead of a separate issue left
-with the Pi theorem. In textbooks and articles alike the discussion of
+the said equation set.  Sometimes scrutiny of the equations also
+reveals that some Pi's, obtained by applying the theorem, in fact
+may be removed from the problem.  As a consequence, when
+modeling a complex physical problem, the real assessment of scaling
+and dimensionless numbers will anyhow be included in the
+analysis of the governing equations instead of being a separate issue left
+with the Pi theorem. In textbooks and articles alike, the discussion of
 scaling in the context of the equations are too often missing or
-presented in an half-hearted fashion. Hence, herein the focus will be
+presented in a half-hearted fashion. Hence, the authors' focus will be
 on this process, while we do not provide much in the way of examples
 on the Pi theorem.  We do not allude that the Pi theorem is of little
 value.  In a number of contexts, such as in experiments, it may
@@ -823,8 +852,8 @@ provide valuable and even crucial guidance, but in this particular
 textbook we seek to tell the complementary story on scaling.
 Moreover, as will be shown in this booklet, the dimensionless numbers in
 a problem also arise, in a very natural way, from scaling the
-differential equation(s).  Provided one has a model based on
-differential equation, there is actually no need for classical
+differential equations.  Provided one has a model based on
+differential equations, there is actually no need for classical
 dimensional analysis.
 
 
@@ -838,10 +867,10 @@ the length scale is typically measured in km and we have an approximation
 Switching units to mm leads to an error of 20,000 mm. A program working
 in mm would report $2\cdot 10^5$ as the error, while a program working
 in km would print 0.02. The absolute error is therefore sensitive to
-the choice of units. This fact motivates for the use of the \emph{relative
-error}: (exact - approximate)/exact since then the unit cancels.
+the choice of units. This fact motivates the use of \emph{relative
+error}: (exact - approximate)/exact, since units then cancel.
 In the present example, one gets a relative error of $1.6\cdot 10^{-3}$
-regardless of the whether the length is measured in km or mm.
+regardless of whether the length is measured in km or mm.
 
 Nevertheless, rather than relying solely on relative errors, it is in general
 better to scale the problem such that the quantities entering the
@@ -852,7 +881,7 @@ can be done.
 \subsection{Units and computers}
 
 Traditional numerical computing involves numbers only and therefore
-require dimensionless mathematical expressions. Usually, an implicit
+requires dimensionless mathematical expressions. Usually, an implicit
 trivial scaling is used. One can, for example, just scale all length
 quantities by 1 m, all time quantities by 1 s, and all mass quantities
 by 1 kg, to obtain the dimensionless numbers needed for calculations.
@@ -873,26 +902,25 @@ Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see Exercise~\ref{sec:scale:exer:US2SI1} for how to safely convert to a standard
 unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables are
-frequently met in school, errors in unit conversions between units
-probably rank highest among all errors committed by scientists and
-engineers (and when a unit conversion error make an \href{{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}}{airplane's fuel
-run out}\footnote{\texttt{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}},
+frequently met in school, errors in unit conversion probably rank
+highest among all errors committed by scientists and engineers (and
+when a unit conversion error makes an \href{{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}}{airplane's fuel run out}\footnote{\texttt{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}},
 it is serious!).  Having good software tools to assist in unit
-conversion is therefore paramount, and this topic is treated in
-Sections~\ref{scale:PQ} and~\ref{scale:parampool}.  Readers who are
-primarily interested in the mathematical scaling technique may safely
-jump over this material and continue with Section~\ref{sec:scale:decay}.
+conversion is therefore paramount, motivating the treatment of this
+topic in Sections~\ref{scale:PQ} and~\ref{scale:parampool}.  Readers who
+are primarily interested in the mathematical scaling technique may
+safely skip this material and jump right to Section~\ref{sec:scale:decay}.
 
 
 \subsection{Example on challenges arising from unit systems}
 
 A slightly elaborated example on scaling in an actual
-science/engineering project may hopefully be useful for further
+science/engineering project may stimulate the reader's
 motivation.  In its full extent, the study of \emph{tsunamis} spans
 geophysics, geology, history, fluid dynamics, statistics, geodesy,
 engineering, and civil protection. This complexity reflects in a
 diversity of practices concerning the use of units, scales, and
-concepts. If we narrow the scope to the modeling of tsunami
+concepts. If we narrow the scope to modeling of tsunami
 propagation, the scaling aspect, at least, may seem simple as we are
 mainly concerned with length and time.  Still, even here the
 non-uniformity concerning physical units is an encumbrance.
@@ -900,18 +928,18 @@ non-uniformity concerning physical units is an encumbrance.
 A minor issue is the occasional use of non-SI units such as inches, or
 in old charts, even fathoms.  More important is the non-uniformity in
 the magnitude of the different variables, and the differences in the
-inherent horizontal and vertical scales in particular.  Typically
-surface elevations are meters or smaller. For far-field deep water
-propagation as well as small tsunamis, which are still of scientific
-interest, surface elevations are often given in $\hbox{cm}$ or even
-$\hbox{mm}$.  In the deep ocean the characteristic depth is orders of
+inherent horizontal and vertical scales in particular.  Typically,
+surface elevations are in meters or smaller. For far-field deep water
+propagation, as well as small tsunamis (which are still of scientific
+interest) surface elevations are often given in cm or even
+mm.  In the deep ocean, the characteristic depth is orders of
 magnitude larger than this, typically $5000\,\hbox{m}$. Propagation
 distances, on the other hand, are hundreds or thousands of
 kilometers. Often locations and computational grids are best described
 in geographical coordinates (longitude/latitude) which are related to
 SI units by 1 latitude minute being roughly one nautical mile
 ($1852\,\hbox{m}$), and 1 longitude minute being this quantity times
-the cosine of the latitude. Wave periods of tsunamis are mostly from
+the cosine of the latitude. Wave periods of tsunamis mostly range from
 minutes to an hour, hopefully sufficiently short to be well separated
 from the half-daily period of the tides. Propagation times are
 typically hours or maybe the better part of a day when the Pacific
@@ -928,7 +956,8 @@ unnecessary duplication, with different units or scaling, should be
 avoided.  In addition, tsunami models are often bench-marked through
 comparison with experimental data. The lab scale is generally
 $\hbox{cm}$ or $\hbox{m}$, at most, which implies that measured data
-are provided in different units than real events, or even in volts,
+are provided in different units (than used in real earth-scale events),
+or even in volts,
 with conversion information, as obtained from the measuring gauges.
 
 All the unit particulars in various file formats is clearly a nuisance
@@ -936,8 +965,8 @@ and give rise to a number of misconceptions and errors that may cause
 loss of precious time or efforts. To reduce such problems, developers
 of computational tools should combine a reasonable flexibility
 concerning units in input and output with a clear and consistent
-convention for scaling within the tools. In fact, this is also goes
-for academic tools for in-house use.
+convention for scaling within the tools. In fact, this also applies to
+academic tools for in-house use.
 
 The discussion above points to some best practices that these notes
 promotes. First, always compute with scaled differential equation
@@ -969,10 +998,10 @@ examples on f2py and Cython wrapping of C and Fortran code).
 \index{units!conversion}
 \index{units!software}
 
-These notes contains quite some computer code to illustrate how the theory
+These notes contain quite some computer code to illustrate how the theory
 maps in detail to running software. Python is the programming language
 used, primarily because it is an easy-to-read, powerful,
-full-fledged language that can be made very close to popular MATLAB-like code
+full-fledged language that allows MATLAB-like code
 as well as class-based code typically used in Java, C\#, and C++.
 The Python ecosystem for scientific computing has in recent years grown
 fast in popularity and acts as a replacement for more specialized tools
@@ -1004,7 +1033,7 @@ between version 2 and 3.
 
 
 Computations with units in Python are well supported by the
-\texttt{PhysicalQuantity} object from the \href{{https://bitbucket.org/khinsen/scientificpython}}{ScientificPython package}\footnote{\texttt{https://bitbucket.org/khinsen/scientificpython}} by Konrad
+very useful tool \texttt{PhysicalQuantity} from the \href{{https://bitbucket.org/khinsen/scientificpython}}{ScientificPython package}\footnote{\texttt{https://bitbucket.org/khinsen/scientificpython}} by Konrad
 Hinsen. Unfortunately, ScientificPython does not, at the time of this
 writing, work with NumPy version 1.9 or later, so we have isolated the
 \texttt{PhysicalQuantity} object in a module \href{{https://github.com/hplgit/physical-quantities}}{\nolinkurl{PhysicalQuantities}\footnote{\texttt{https://github.com/hplgit/physical-quantities}}} and made it publicly
@@ -1019,7 +1048,7 @@ the units are called in \texttt{PhysicalQuantities}.  To this end, run \texttt{p
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]
 Terminal> pydoc Scientific.Physics.PhysicalQuantities
 \end{Verbatim}
-if you have entire ScientificPython package installed. The
+if you have the entire ScientificPython package installed. The
 resulting documentation shows the names of
 the units. In particular,
 yards are specified by \texttt{yd}, minutes by \texttt{min}, and hours
@@ -1113,15 +1142,16 @@ are described next.
 \paragraph{Example application.}
 As case, we want to make software for computing with the simple
 formula $s=v_0t + \frac{1}{2}at^2$. We want $v_0$ to be a velocity
-with unit m/s, $a$ to acceleration with unit $\hbox{m/s}^2$, $t$ to be
-time measured in s, and consequently $s$ is a distance measured in m.
+with unit m/s, $a$ to be acceleration with unit $\hbox{m/s}^2$, $t$ to be
+time measured in s, and consequently $s$ will be a distance measured in m.
 
 \subsection{Pool of parameters}
 
 First, Parampool requires us to define a \emph{pool} of all input
 parameters, which is here simply represented by list of dictionaries, where each
 dictionary holds information about one parameter. It is possible to
-organize input parameters in a tree structure with subpools having
+organize input parameters in a tree structure with subpools that
+themselves may have
 subpools,
 but for our simple application we just need a flat structure with
 three input parameters:
@@ -1150,12 +1180,12 @@ are also allowed, see the \href{{http://hplgit.github.io/parampool/doc/web/index
 
 
 \begin{notice_mdfboxadmon}[Tip: specify default values of numbers as float objects]
-Note that we write 1.0 as default value and not just 1.
-In the latter case, Parampool will interpret that our parameter is
-an integer and actually convert input like \texttt{2.5 m/s} to \texttt{2 m/s}.
+Note that we do not just write 1, but 1.0 as default.
+Had 1 been used, Parampool would have interpreted our parameter as
+an integer and would therefore convert input like \texttt{2.5 m/s} to \texttt{2 m/s}.
 To ensure that a real-valued parameter becomes a \texttt{float} object inside
-the pool, specify the default value as a real number: \texttt{1.} or \texttt{1.0}.
-(The type of an input parameter can alternatively be explicitly set by
+the pool, we must specify the default value as a real number: \texttt{1.} or \texttt{1.0}.
+(The type of an input parameter can alternatively be set \emph{explicitly} by
 the \texttt{str2type} property, e.g., \texttt{str2type=float}.)
 \end{notice_mdfboxadmon}
 
@@ -1211,7 +1241,7 @@ s=10000
 Notice from the answer (\texttt{s}) that 10 km/h gets converted to m/s and 1 h to s.
 
 It is also possible to fetch parameter values as \texttt{PhysicalQuantity}
-objects from the pool through calling
+objects from the pool by calling
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 v_0 = pool.get_value_unit('Initial velocity')
@@ -1223,7 +1253,6 @@ values and units:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 def distance_unit(pool):
-    """Compute distance $s = v_0t + \frac{1}{2}at^2$. (DocOnce)"""
     # Compute with units
     from parampool.PhysicalQuantities import PhysicalQuantity as PQ
     v_0 = pool.get_value_unit('initial velocity')
@@ -1424,9 +1453,9 @@ of that parameter.
 %\clearpage % flush figures scale:dimunit:fig:GUI
 
 
-With examples shown above, you should be able to utilize the
-\texttt{PhysicalQuantity} object and the Parampool package in your programs
-to work safely with units. For the coming text, where we discuss the
+With examples shown above, the reader should be able to make use of the
+\texttt{PhysicalQuantity} object and the Parampool package in programs
+and thereby work safely with units. For the coming text, where we discuss the
 craft of scaling in detail, we shall just work in standard SI units
 and avoid unit conversion so there will be no more use of
 \texttt{PhysicalQuantity} and Parampool.
@@ -1449,7 +1478,7 @@ Various extensions with damping and force terms are discussed in detail.
 \section{Exponential decay problems}
 \label{sec:scale:decay}
 
-\subsection{Fundamental ideas}
+\subsection{Fundamental ideas of scaling}
 
 
 \index{scaling}
@@ -1469,12 +1498,13 @@ numerical simulation.  The purpose of the technique is three-fold:
 \noindent
 \index{dimensionless variable}
 
-The first and second item mean that for any variable, denote it by
+The first two items mean that for any variable, denote it by
 $q$, we introduce a corresponding dimensionless variable
 
 \[ \bar q = \frac{q-q_0}{q_c},\]
 where $q_0$ is a reference value of $q$ ($q_0=0$ is a common choice) and
-$q_c$ is a characteristic size of $|q|$. Since the numerator and denominator
+$q_c$ is a characteristic size of $|q|$, often referred to as ``a scale''.
+Since the numerator and denominator
 have the same dimension, $\bar q$ becomes a dimensionless number.
 
 If $q_c$ is the maximum value of $|q-q_0|$, we see that $0 < |\bar
@@ -1482,7 +1512,8 @@ q|\leq 1$. How to find $q_c$ is sometimes the big challenge of
 scaling. Examples will illustrate various approaches to meet this
 challenge.
 
-The forthcoming text has the following goals.
+The many coming examples on scaling differential equations contain
+the following pedagogical ingredients to meet the desired learning outcomes.
 
 \begin{itemize}
  \item Teach the technical steps of making a mathematical model, based
@@ -1497,14 +1528,8 @@ The forthcoming text has the following goals.
  \item Provide a lot of different examples on making models dimensionless
    with physically correct scales.
 
- \item Demonstrate software tools for computing with numbers with units,
-   including doing unit conversions.
-
- \item Introduce software tools for creating user interfaces that
-   can automatically perform unit conversion.
-
- \item Use symbolic software (SymPy) to derive exact solutions of differential
-   equations.
+ \item Show how symbolic software (SymPy) can be used
+   to derive exact solutions of differential equations.
 
  \item Explain how to run a dimensionless model with software developed
    for the problem with dimensions.
@@ -1521,8 +1546,9 @@ problem
 u'(t) = -au(t),\quad u(0)=I,
 \label{scale:decay:model}
 \end{equation}
-where $a,I>0$ are prescribed constants and $u(t)$ is the unknown function.
-For this particular model, we can easily derive the solution, $u(t)=Ie^{-at}$,
+where $a,I>0$ are prescribed parameters, and $u(t)$ is the unknown function.
+For the particular model with a constant $a$, we can easily derive the exact
+solution, $u(t)=Ie^{-at}$,
 which is helpful to have in mind during the scaling process.
 
 \paragraph{Example: Population dynamics.}
@@ -1536,22 +1562,22 @@ time and per individual.
 
 \paragraph{Example: Decay of pressure with altitude.}
 The simple model (\ref{scale:decay:model}) also governs the pressure
-in the atmosphere (under many assumptions, such as an ideal gas in
+in the atmosphere (under many assumptions, such air is an ideal gas in
 equilibrium). In this case $u$ is the
-pressure, measured in $\hbox{Nm}^{-2}$; $t$ is the hight in meters;
+pressure, measured in $\hbox{Nm}^{-2}$; $t$ is the height in meters;
 and $a=M/(R^*T)$, where
 $M$ is the molar mass of the Earth's air (0.029 kg/mol),
 $R^*$ is the universal
 gas constant ($8.314\,\frac{\hbox{Nm}}{\hbox{mol K}}$),
 and $T$ is the temperature in Kelvin (K).
-The temperature depends on the hight so we have $a=a(t)$.
+The temperature depends on the height so we have $a=a(t)$.
 
 
 \subsection{The technical steps of the scaling procedure}
 \label{sec:scale:decay:steps}
 
 \paragraph{Step 1: Identify independent and dependent variables.}
-There is one independent variable, time $t$, and one dependent variable,
+There is one independent variable, $t$, and one dependent variable,
 $u$.
 
 \index{dimensionless variable}
@@ -1577,7 +1603,7 @@ members in the population, e.g., the initial population $I$.
 The next task is to insert the new dimensionless variables in the
 governing mathematical model. That is, we replace $t$ by $t_c\bar t$
 and $u$ by $u_c\bar u$ in (\ref{scale:decay:model}). The derivative
-with respect to $\bar t$ is derived as
+with respect to $\bar t$ is derived through the chain rule as
 
 \[ \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
 = u_c\frac{d\bar u}{d\bar t}\frac{1}{t_c} =
@@ -1606,7 +1632,8 @@ the coefficient in front of the term with the highest time derivative
 A characteristic quantity like $t_c$ reflects the time scale in the
 problem. Estimating such a time scale is certainly
 the most challenging part of the scaling procedure. There are different
-ways to reason. The first is to aim at a size of $\bar u$ and its derivatives
+ways to reason. The first approach
+is to aim at a size of $\bar u$ and its derivatives
 that is of order unity. If $u_c$ is chosen such that $|\bar u|$ is
 of size unity, we see from (\ref{scale:decay:model:dimless0}) that
 $d\bar u/d\bar t$ is of the size of $\bar u$ (i.e., unity)
@@ -1615,15 +1642,21 @@ if we choose $t_c = 1/a$.
 \index{e-folding time}
 
 Alternatively, we may look at a special case of the model where we have
-analytical insight. In the present problem we are lucky to know the
-exact solution for any value of the input data. For exponential
-decay, $u(t)\sim e^{-at}$, it is common to define a characteristic time
-scale $t_c$ as the time it takes to reduce $u$ by a factor of $1/e$ (also
-called the \emph{e-folding time}):
+analytical insight that can guide the choice of scales.
+In the present problem we are lucky to know the
+exact solution for any value of the input data as long as $a$
+is a constant. For exponential
+decay,
+$u(t)\sim e^{-at}$, it is common to define a characteristic time
+scale $t_c$ as the time it takes to reduce the initial value of
+$u$ by a factor of $1/e$ (also called the \emph{e-folding time}):
 
 \[ e^{-at_c} = \frac{1}{e}e^{-a\cdot 0}\quad\Rightarrow\quad e^{-at_c}=e^{-1},
 \]
 from which it follows that $t_c = 1/a$.
+Note that using an exact solution of the problem to determine
+scales is not a requirement, just a useful help in the few cases where
+we actually have access to an exact solution.
 
 In this example, two different, yet common ways of reasoning, lead to the
 same value of $t_c$. However, instead of using the e-folding time we
@@ -1635,20 +1668,27 @@ processes. The half time is defined as the time it takes to halve $u$:
 \quad\Rightarrow\quad t_c = a^{-1}\ln 2\tp\]
 There is a factor $\ln 2 =0.69$ difference from the other $t_c$ value.
 As long as the factor is not an order of magnitude or more different,
-we do not pay attention to such small differences.
-Although $t_c = a^{-1}\ln 2$ is a fine time scale to be used in this
-problem, it leads to a scaled differential equation $u'=-(\ln 2) u$,
+we do not pay attention factors like $\ln 2$ and skip them, simply to make
+formulas look nicer. Using
+$t_c = a^{-1}\ln 2$ as time scale
+leads to a scaled differential equation $u'=-(\ln 2) u$,
 which is fine, but an unusual form. People tend to prefer the simpler
 ODE $u'=-u$,
 which arises from $t_c=1/a$, and we shall therefore use this
 time scale.
 
-Regarding $u_c$, we may look at the initial condition
-and realize that the choice $u_c=I$ makes $\bar u(0)=1$. For $\bar t>0$
-we know that $\bar u$ is decreasing, so $u_c=I$
-gives us $\bar u\leq 1$, which is always a goal
-(alternatively, we may look to analytical insight, $u(t)=Ie^{-at}$, to
-see that $u\leq I$, such that $u_c=I$ gives $\bar u\leq 1$).
+Regarding $u_c$, we may look at the initial condition and realize that
+the choice $u_c=I$ makes $\bar u(0)=1$. For $t>0$, the differential
+equation expresses explicitly that $u$ decreases, so $u_c=I$ gives
+$\bar u\in (0, 1]$. Scaling a variable $q$ such that $|\bar q|\in
+[0,1]$ is always the ultimate goal, and this goal is in fact obtained
+here! Next best result is to ensure that the magnitude of $|q|$ is not
+``big'' or ``small'', in the sense that the size is neither as large as
+10 or 100, nor as small as
+0.1 or 0.01.  (In the
+present problem, where we are lucky to have an exact solution
+$u(t)=Ie^{-at}$, we may look at this to explicitly see that $u\in
+(0,I]$ such that $u_c=I$ gives $\bar u\in (0,1]$).
 
 With $t_c=1/a$ and $u_c=I$, we have the final dimensionless model
 
@@ -1692,33 +1732,32 @@ dimensionless quantities.
 \subsection{Making software for utilizing the scaled model}
 \label{sec:scale:decay:prog}
 
-Software for solving (\ref{scale:decay:model}) could take advantage
-of the fact that only one simulation of (\ref{scale:decay:model:dimless})
-is necessary. As soon as we have $\bar u(\bar t)$ accessible,
-a simple scaling (\ref{scale:decay:u:dim}) computes the real $u(t)$
-for any given input data $a$ and $I$. Although the numerical computation of
+Software for solving (\ref{scale:decay:model}) could take advantage of
+the fact that only one simulation of (\ref{scale:decay:model:dimless})
+is necessary. As soon as we have $\bar u(\bar t)$ accessible, a simple
+scaling (\ref{scale:decay:u:dim}) computes the real $u(t)$ for any
+given input data $a$ and $I$. Although the numerical computation of
 $u(t)$ from (\ref{scale:decay:model}) is very fast in this simple model
-problem, using (\ref{scale:decay:u:dim}) is very much faster than
-computing a full numerical solution in more complicated
-differential equation problems.
+problem, using (\ref{scale:decay:u:dim}) is very much faster. In
+general, a simple rescaling of a scaled solution is extremely more
+computationally efficient than solving a differential equation
+problem.
 
 We can compute with the dimensionless model (\ref{scale:decay:model:dimless})
-in two ways, either make a solver for (\ref{scale:decay:model:dimless})
-or reuse a solver for (\ref{scale:decay:model}) with the parameters
-appropriately set ($I=1$, $a=1$).
-The latter approach has the advantage of giving us
+in two ways, either make a solver for (\ref{scale:decay:model:dimless}),
+or reuse a solver for (\ref{scale:decay:model}) with
+$I=1$ and $a=1$.
+We will choose the latter approach since it has the advantage of giving us
 software that works both with a dimensionless model and a model
-with dimensions and all the original physical parameters.
+with dimensions (and all the original physical parameters).
 
-\paragraph{Software for the original problem with dimensions.}
-We base our solver for
-(\ref{scale:decay:model:dimless}) on a solver for (\ref{scale:decay:model}).
-Assume that we have some module \texttt{decay.py} that offers the following
-functions:
+\paragraph{Software for the original unscaled problem.}
+Assume that we have some module \texttt{decay.py} that offers the following functions:
 
 \begin{itemize}
   \item \texttt{solver(I, a, T, dt, theta=0.5)} for returning the solution arrays
-    \texttt{u} and \texttt{t} for (\ref{scale:decay:model}) solved by the so-called
+    \texttt{u} and \texttt{t}, over a time interval $[0,T]$,
+    for (\ref{scale:decay:model}) solved by the so-called
     $\theta$ rule. This rule includes the Forward Euler scheme ($\theta=0$),
     the Backward Euler scheme ($\theta=1$), or the Crank-Nicolson
     (centered midpoint) scheme ($\theta=\half$).
@@ -1748,26 +1787,45 @@ The module \href{{http://tinyurl.com/o8pb3yy/decay.py}}{\nolinkurl{decay.py}} is
 and explained in
 Section~\ref{softeng1:basic:module} in \cite{Langtangen_decay}.
 
-To solve the dimensionless problem, just fix $I=1$ and $a=1$:
+To solve the dimensionless problem, just fix $I=1$ and $a=1$,
+and choose $\bar T$ and $\Delta\bar t$:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
-I, a, T, theta, dt_values = read_command_line_argparse()
+_, _, T, theta, dt_values = read_command_line_argparse()
 u, t = solver(I=1, a=1, T=T, dt=dt_values[0], theta=theta)
 \end{Verbatim}
 \end{cod}
 \noindent
+The first two variables returned from \Verb!read_command_line_argparse!
+are \texttt{I} and \texttt{a}, which are ignored here. To indicate that these
+variables are not to be used, we use a
+``dummy name'', often taken to be the underscore symbol in
+Python. The user can set \texttt{--I} and \texttt{--a} on the command line, since
+the \texttt{decay} module allows this, but we hope the code above has a form
+that reminds the user that these options are not to be used.
+Also note that \texttt{T} and \Verb!dt_values[0]! set on the command line are
+the desired parameters for solving the \emph{scaled} problem.
 
 
-\paragraph{Avoiding unnecessary computations.}
-A key observation, as mentioned, is that we need to solve the problem
-(\ref{scale:decay:model:dimless}) only once. All solutions
-corresponding to different $I$ and $a$ values in the original physical
-problem can be recovered by scaling this single solution with formula
-(\ref{scale:decay:u:dim}).  We may therefore want to make software that
-takes advantage of this fact. When requesting a solution, we see if it
-has already been computed and stored in a file, and if so, the data
-can be retrieved from file, otherwise we have to compute a new
-solution and store it in a file.
+\paragraph{Software for the scaled problem.}
+Turning now to the scaled problem, the solver function (originally
+designed for the unscaled problem) will be reused, but it will only
+be run if it is strictly necessary. That is, when the user requests
+a solution, our code should first check whether that solution can be provided
+by simply scaling a solution already computed and available in a file.
+If not, we will compute an appropriate scaled solution, find the
+requested unscaled solution for the user, and also save the new scaled
+solution to file for possible later use.
+
+% A key observation, as mentioned, is that we need to solve the problem
+% (\ref{scale:decay:model:dimless}) only once. All solutions
+% corresponding to different $I$ and $a$ values in the original physical
+% problem can be recovered by scaling this single solution with formula
+% (\ref{scale:decay:u:dim}).  We may therefore want to make software that
+% takes advantage of this fact. When requesting a solution, we see if it
+% has already been computed and stored in a file, and if so, the data
+% can be retrieved from file, otherwise we have to compute a new
+% solution and store it in a file.
 
 A very plain solution to the problem is found in the file
 \href{{http://tinyurl.com/o8pb3yy/decay_scaled_v1.py}}{\nolinkurl{decay_scaled_v1.py}}.
@@ -1786,18 +1844,20 @@ function is called with a set of arguments, the statements in the
 function are executed and the return value is saved to file. If the
 function is called again with the same set of arguments, the
 statements in the function are not executed, but the return value is
-read from file. In computer science, one would say that \texttt{joblib} in
-this way provides \emph{memorization} functionality for Python functions.
-This functionality is particularly aimed at large-scale computations
-with arrays that one would like to avoid being recomputed. We
-illustrate the technique here in a very simple mathematical context.
+read from file (of course, many files may be stored, one for each
+combination of parameter values).  In computer science, one would say
+that \texttt{joblib} in this way provides \emph{memorization} functionality for
+Python functions.  This functionality is particularly aimed at
+large-scale computations with arrays that one would hesitate to
+recompute. We illustrate the technique here in a very simple
+mathematical context.
 
 First we make a \Verb!solver_scaled! function for the scaled
-model that just calls up a \Verb!solver_unscaled! for the problem with
+model that just calls up a \Verb!solver_unscaled! (with $I=a=1$) for the problem with
 dimensions:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
-from decay import solver_unscaled
+from decay import solver as solver_unscaled
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -1826,17 +1886,22 @@ solver_scaled = disk_memory.cache(solver_scaled)
 The solutions are actually stored in files in the cache directory \texttt{temp}.
 
 A typical use case is to read values from the command line,
-solve the unscaled problem (if necessary), scale the solution, and visualize
+solve the scaled problem (if necessary), unscale the solution, and visualize
 the solution with dimension:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
-from decay import unscale, read_command_line_argparse
+def unscale(u_scaled, t_scaled, I, a):
+    return I*u_scaled, a*t_scaled
+
+from decay import read_command_line_argparse
 
 def main():
-    # Read parameters, solve and plot
+    # Read unscaled parameters, solve and plot
     I, a, T, theta, dt_values = read_command_line_argparse()
     dt = dt_values[0]  # use only the first dt value
-    u_scaled, t_scaled = solver_scaled(T, dt, theta)
+    T_bar = a*T
+    dt_bar = a*dt
+    u_scaled, t_scaled = solver_scaled(T_bar, dt_bar, theta)
     u, t = unscale(u_scaled, t_scaled, I, a)
 
     plt.figure()
@@ -1856,6 +1921,14 @@ def main():
 \noindent
 The complete code resides in the file
 \href{{http://tinyurl.com/o8pb3yy/decay_scaled.py}}{\nolinkurl{decay_scaled.py}}.
+Note from the code above that \Verb!read_command_line_argparse! is supposed
+to read parameters with dimensions (but technically, we solve the
+scaled problem, if strictly necessary, and unscale the solution).
+Let us run
+
+\begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]
+Terminal> python decay_scaled.py --I 8 --a 0.1 --dt 0.01 --T 50
+\end{Verbatim}
 A plot of the scaled and unscaled solution appears in Figure~\ref{sec:decay:fig:simplest}.
 
 
@@ -1871,7 +1944,8 @@ A plot of the scaled and unscaled solution appears in Figure~\ref{sec:decay:fig:
 
 Note that we write a message \texttt{Computing the numerical solution} inside
 the \Verb!solver_scaled! function. We can then easily detect when
-the solution is actually computed and when it is simply read from file.
+the solution is actually computed from scratch
+and when it is simply read from file (followed by the unscaling procedure).
 Here is a demo:
 
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]
@@ -1896,7 +1970,7 @@ Terminal> python decay_scaled.py --T 7 --a 0.5 --I 1 --dt 0.2
 
 We realize that \texttt{joblib} has access to all previous runs and does not
 recompute unless it is strictly required. Our previous implementation
-without \texttt{joblib}
+without \texttt{joblib} (in \Verb!decay_scaled_v1.py!)
 used only one file (for one numerical case)
 and will therefore perform many more calls to
 \Verb!solver_unscaled!.
@@ -1909,7 +1983,7 @@ of arguments is encountered. That is, the function caches its results.
 A simple implementation stores the arguments in a function call and
 the returned results in a
 dictionary, and if the arguments are seen again, one looks up
-in the dictionary and return previously computed results:
+in the dictionary and returns previously computed results:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 class Memoize:
@@ -1948,7 +2022,7 @@ u'(t) = -au(t) + b,\quad u(0)=I
 \tp
 \end{equation}
 One particular model, with constant $a$ and $b$,
-is a spherical micro-organism falling in air,
+is a spherical small-sized organism falling in air,
 
 \begin{equation}
 u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),
@@ -2052,6 +2126,14 @@ for inclusion in reports.
 
 
 
+The reader may wonder why we bother with scaling of differential
+equations if SymPy can solved the problem in a nice, closed
+formula. This is true in the present introductory problem, but in a
+more general problem setting, we have some differential equation where
+SymPy perhaps can help with finding an exact solution only in a
+special case. We can use this special-case solution to control our
+reasoning about scales in the more general setting.
+
 \paragraph{Theory.}
 The challenges in our scaling is to find the right $u_c$ and $t_c$
 scales. From (\ref{scale:decay:model:g}) we see that if $u'\rightarrow 0$
@@ -2093,7 +2175,7 @@ therefore choose
 $t_c = 1/a$, resulting in the scaled ODE problem
 
 \begin{equation}
-\frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,
+\frac{d\bar u}{d\bar t} = -\bar u + 1,\quad \bar u(0)=\beta,
 \label{scale:decay:model:g:dimless}
 \end{equation}
 where $\beta$ is a dimensionless number,
@@ -2102,7 +2184,7 @@ where $\beta$ is a dimensionless number,
 \end{equation}
 reflecting the ratio of the initial velocity and the
 terminal ($t\rightarrow \infty$) velocity $b/a$.
-Scaling normally ends up with one or more dimensionless parameters,
+Scaled equations normally end up with one or more dimensionless parameters,
 such as $\beta$ here, containing ratios of physical effects in
 the model. Many more examples on dimensionless parameters will appear
 in later sections.
@@ -2365,7 +2447,7 @@ Figure~\ref{sec:scale:decay:jump:fig}.
 
 
 
-\subsection{Scaling a cooling problem with constant surroundings}
+\subsection{Scaling a cooling problem with constant temperature in the surroundings}
 \label{scale:decay:cooling:const}
 
 The heat exchange between a body at temperature $T(t)$ and the
@@ -2385,11 +2467,12 @@ is by standard methods for ODEs found to be
 $T(t) = T_s + (T_0 - T_s)e^{-kt}$.
 
 \paragraph{Scaling.}
-Physically, we expect the temperature to start at $T_0$ and then
-to move toward the surroundings ($T_s$). We therefore expect
-that $T$ lies between $T_0$ and $T_s$. This is mathematically
-demonstrated by the analytical solution as well. A proper scaling
-is therefore to scale and translate $T$ according to
+Physically, we expect the temperature to start at $T_0$ and then to
+move toward the temperature of the surroundings ($T_s$). We therefore
+expect that $T$ lies between $T_0$ and $T_s$. This is mathematically
+demonstrated by the analytical solution as well. A proper scaling is
+therefore to scale and translate $T$ according to
+
 \begin{equation}
 \bar T = \frac{T-T_0}{T_s-T_0}
 \label{scale:decay:cooling:Tbar}
@@ -2444,20 +2527,24 @@ The resulting scaled ODE problem then becomes
 \subsection{Scaling a cooling problem with time-dependent surroundings}
 \label{scale:decay:cooling:osc}
 
-Let us apply the model (\ref{scale:decay:cooling:model}) in
-case the surrounding temperature varies in time. Say we have
+Let us apply the model (\ref{scale:decay:cooling:model}) to the case when
+the surrounding temperature varies in time. Say we have
 an oscillating temperature environment according to
 
 \begin{equation}
-T_s(t) = T_m + a\sin(\omega t)
+T_s(t) = T_m + a\sin(\omega t),
 \label{scale:decay:cooling:Tst}
-\tp
 \end{equation}
+where $T_m$ is the mean temperature in the surroundings, $a$ is
+the amplitude of the variations around $T_m$, and $2\pi/\omega$ is
+the period of the temperature oscillations.
 
 \paragraph{Exact solution.}
-It is possible to solve the differential equation problem analytically,
-and such a solution is a good help to see what scales are.
-In general, using the method of integrating factors for the
+Also in this relatively simple problem
+it is possible to solve the differential equation problem analytically.
+Such a solution may be a good help to see what the scales are, and
+especially to control other forms for reasoning about the scales.
+Using the method of integrating factors for the
 original differential equation, we have
 
 \[ T(t) = T_0e^{-kt} + e^{-kt}k\int_0^t e^{k\tau}T_s(\tau)d\tau\tp\]
@@ -2493,9 +2580,11 @@ fixed scale, where we take the characteristic temperature variation to
 be $T_m - T_0$:
 
 \[ \bar T = \frac{T-T_0}{T_m-T_0}\tp\]
-We see from the analytical solution, and realize also by physical
-reasoning, that $T$ sets out at $T_0$, but with time, it will oscillate
-around $T_m$. The typical average temperature span is therefore
+We realize by physical
+reasoning that $T$ sets out at $T_0$, but with time, it will oscillate
+around $T_m$. (This reasoning can be controlled by looking at the exact
+solution we produced above.)
+The typical average temperature span is therefore
 $|T_m-T_0|$, unless $a$ is much larger than $|T_m-T_0|$ or $T_0$ is
 very close to $T_m$ (see Exercise~\ref{sec:scale:exer:decay:cooling:osc} for
 a discussion of these cases).
@@ -2563,17 +2652,23 @@ time lag. For larger $\beta$, the heating and cooling require more
 time, and the oscillations get smaller.
 
 \paragraph{Discussion of the time scale.}
-Looking at the analytical insight we have obtained, we
-observe that $T(t)$ has two characteristic
-terms in time: $e^{-kt}$ and $\sin(\omega t)$. The former points to a time
-scale $t_c=1/k$, while the latter to $t_c=1/\omega$.
-Which one should be chosen? Bringing the temperature from $T_0$ to
-the level of the surroundings, $T_m$, goes like $e^{-kt}$, so
-in this process $t_c=1/k$ is the characteristic time. Thereafter,
-the body's temperature just responds to the oscillations and the
-$\sin (\omega t)$ (and $\cos(\omega t)$) term dominates. For these large times,
-$t_c=1/\omega$ is the appropriate time scale. Choosing $t_c=1/\omega$
-results in
+There are two time variations of importance in the present problem:
+heat is transferred to the surroundings at a rate $k$, and the
+surroundings have a temperature variation with a period that goes like
+$1/\omega$. (We can, when we are so lucky that we have an analytical
+solution at hand, inspect this solution to see that $k$ impacts the
+problem through a decay factor $e^{-kt}$, and $\omega$ impacts the problem
+through oscillations $\sin(\omega t)$.)  The $k$ parameter related to
+temperature decay points to a time scale $t_c=1/k$, while the
+temperature oscillations of the surroundings point to a time scale
+$t_c=1/\omega$.  Which one should be chosen?
+
+Bringing the temperature from $T_0$ to the level of the surroundings,
+$T_m$, goes like $e^{-kt}$, so in this process $t_c=1/k$ is the
+characteristic time. Thereafter, the body's temperature just responds
+to the oscillations and the $\sin (\omega t)$ (and $\cos(\omega t)$)
+term dominates. For these large times, $t_c=1/\omega$ is the
+appropriate time scale. Choosing $t_c=1/\omega$ results in
 
 \begin{equation}
 \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
@@ -2661,24 +2756,30 @@ one above with only two parameters.
 \index{logistic equation}
 
 Exponential growth models, $u'=au$, are not realistic in environments
-with limited resources. The idea is then to assume that
-the growth rate $a$ decreases with $u$ and vanishes when we reach the maximum
-value $M$ of $u$ the environment can sustain. The initial growth rate
-is set to $r$: $a(0)=\varrho$.
-In general, this reasoning gives rise to models
+with limited resources. However, by letting $a$ depend on $u$, the effect
+of limited resources can well be captured by such a simple differential
+equation model:
 
 \begin{equation}
-u' = a(u)u,\quad u(0)=I,
+u' = a(u)u,\quad u(0)=I\tp
 \label{sec:scale:decay:nonlinear:model1}
 \end{equation}
-with the logistic model, corresponding to $a(u)=\varrho(1-u/M)$,
-as the simplest:
+If the maximum value of $u$ is denoted by $M$, we have that $a(M)=0$.
+A simple choice fulfilling this requirement is $a(u)=\varrho(1-u/M)$.
+The parameter $\varrho$ can be interpreted as the initial exponential
+growth rate if we assume that $I/M\ll 1$, since at $t=0$ the model then
+approximates $u'=\varrho u$.
+
+The choice $a(u)=\varrho(1-u/M)$ is known as the logistic model for
+population growth:
 
 \begin{equation}
 u' = \varrho u(1-u/M),\quad u(0)=I\tp
 \label{sec:scale:decay:nonlinear:model2}
 \end{equation}
-A general choice of $a$ may be $a(u)=\varrho(1-u/M)^p$ for some exponent $p$.
+A more complicated choice of $a$ may be $a(u)=\varrho(1-u/M)^p$ for
+some exponent $p$ (this function also fulfills $a(M)=0$ and $a\approx\varrho$
+for $t=0$).
 
 \index{dimensionless number}
 
@@ -2702,8 +2803,9 @@ resulting in
 \bar u(0) =\frac{I}{M}\tp\]
 A natural choice is $t_c =1/\varrho$ as in other exponential growth models
 since it leads to the term on the right-hand side to be about unity,
-as the left-hand side, if the scaling is physically correct.
-Introducing the dimensionless parameter
+just as the left-hand side. (If the scaling is correct, $\bar u$ and its
+derivatives are of order unity, so the coefficients must also be of order
+unity.) Introducing also the dimensionless parameter
 
 \[ \alpha = \frac{I}{M},\]
 measuring the fraction of the initial population compared to the maximum
@@ -2749,8 +2851,8 @@ who can get the disease, infectious (I) who are infected and may
 infect susceptibles, and recovered (R) who have recovered from the
 disease and gained immunity. We introduce $S(t)$, $I(t)$, and $R(t)$
 as the number of people in the categories S, I, and R, respectively.
-The model, naturally known as the \href{{https://en.wikipedia.org/wiki/Epidemic_model}}{SIR model}\footnote{\texttt{https://en.wikipedia.org/wiki/Epidemic\_model}}, takes the form a
-system of ODEs:
+The model, naturally known as the \href{{https://en.wikipedia.org/wiki/Epidemic_model}}{SIR model}\footnote{\texttt{https://en.wikipedia.org/wiki/Epidemic\_model}}, can be expressed as a
+system of three ODEs:
 
 \begin{align}
 \frac{dS}{dt} &= - \beta SI,
@@ -2778,7 +2880,7 @@ Introducing $\bar t = t/t_c$, we arrive at the equations
 \\ 
 \frac{d\bar I}{d\bar t} &= t_c S(0) \beta \bar S\bar I - t_c \nu \bar I,
 \\ 
-\frac{d\bar R}{d\bar t} &= t_c \nu I,
+\frac{d\bar R}{d\bar t} &= t_c \nu \bar I,
 \end{align*}
 with initial conditions $\bar S(0)=1$, $\bar I(0)=I_0/S(0)=\alpha$, and
 $\bar R(0)=R(0)/S(0)$. Normally, $R(0)=0$.
@@ -2791,7 +2893,7 @@ to recover from the disease, we end up with the scaled model
 \label{scale:SIR:S2}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S\bar I - \bar I,
 \label{scale:SIR:I2}\\ 
-\frac{d\bar R}{d\bar t} &= I,
+\frac{d\bar R}{d\bar t} &= \bar I,
 \label{scale:SIR:R2}
 \end{align}
 with $\bar S(0)=1$, $\bar I(0)=\alpha$, $\bar R(0)=0$, and $R_0$ as
@@ -2801,8 +2903,8 @@ the dimensionless number
 R_0 = \frac{S(0)\beta}{\nu}\tp
 \end{equation}
 We see from (\ref{scale:SIR:I2}) that to make the disease spreading,
-$d\bar I/d\bar t >0$, and therefore $R_0 S(0) - 1 > 0$ or $R_0 > 1$
-since $S(0)=1$.
+$d\bar I/d\bar t >0$, and therefore $R_0 \bar S(0) - 1 > 0$ or $R_0 > 1$
+since $\bar S(0)=1$.
 Therefore, $R_0$ reflects the disease's ability to spread and is
 consequently an important dimensionless quantity, known as the \href{{https://en.wikipedia.org/wiki/Basic_reproduction_number}}{basic
 reproduction number}\footnote{\texttt{https://en.wikipedia.org/wiki/Basic\_reproduction\_number}}.
@@ -2912,7 +3014,7 @@ Using $t_c=1/\nu$ and scaling the unknowns by $S(0)$, we arrive at
 the dimensionless model
 
 \begin{align}
-\frac{d\bar S}{d\bar t} &= - R_0 \bar S \bar I - \delta S + \gamma \bar R,
+\frac{d\bar S}{d\bar t} &= - R_0 \bar S \bar I - \delta \bar S + \gamma \bar R,
 \label{scale:SIRV:S2}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S \bar I - \bar I,
 \label{scale:SIRV:I2}\\ 
@@ -2958,7 +3060,7 @@ substrate S is turned into a product P with aid of an enzyme E.
 S and E react to form a complex ES in the first stage of the reaction.
 In the second stage, ES is turned into E and P.
 Introducing the amount of S, E, ES, and P by $[S]$, $[E]$, $[ES]$, and
-$[P]$, can be written as
+$[P]$, the mathematical model can be written as
 
 \begin{align}
 \frac{d[ES]}{dt} &= k_+[E][S] - k_v[ES] - k_-[ES],
@@ -3031,7 +3133,8 @@ We see that the parameter $K$ is central.
 
 
 \paragraph{Dimensionless ODE system.}
-Let us reason how to make the original ODE system dimensionless.
+Let us reason how to make the original ODE system
+(\ref{scale:MMK:ES1})-(\ref{scale:MMK:E1}) dimensionless.
 Aiming at $[S]$ and $[E]$ of unit size, two obvious dimensionless
 unknowns are
 
@@ -3268,12 +3371,12 @@ The simplest differential equation model for mechanical vibrations
 reads
 
 \begin{equation}
-mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V\tp
+mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V,
 \label{sec:scale:vib:undamped:model}
 \end{equation}
+where unknown $u(t)$ measures the displacement of the body,
 This is a common model for a vibrating body  with mass $m$ attached
 to a linear spring with spring constant $k$ (and force $-ku$).
-The quantity $u(t)$ measures the displacement of the body.
 Figure~\ref{sec:scale:vib:undamped:sketch} shows a typical mechanical
 sketch of such a system: some mass can move horizontally without friction
 and is connected to a spring that exerts a force $-ku$ on the body.
@@ -3321,7 +3424,7 @@ by hand, we take the opportunity to make use of SymPy to
 find $u(t)$. The use of SymPy can later be generalized to vibration
 ODEs that are harder to solve by hand.
 
-SymPy need all mathematical symbols to be explicitly created:
+SymPy requires all mathematical symbols to be explicitly created:
 
 \begin{pro}{cbg_gray}{bar_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 from sympy import *
@@ -3343,7 +3446,7 @@ diffeq = ode(u(t))
 \end{Verbatim}
 \end{cod}
 \noindent
-The \texttt{diffeq} variable, defining the ODE, can be passed to a SymPy
+The \texttt{diffeq} variable, defining the ODE, can be passed to the SymPy
 function \texttt{dsolve} to find the symbolic solution of the ODE:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
@@ -3402,7 +3505,12 @@ $A\cos(wt - \phi)$:
 \phi = \tan^{-1}(V/(\omega I))\tp
 \]
 Now we see that the $u$ corresponds to cosine oscillations with a
-phase shift $\phi$ and amplitude $\sqrt{I^2 + (V/\omega)^2}$.
+frequency shift $\phi$ and amplitude $\sqrt{I^2 + (V/\omega)^2}$.
+
+The forthcoming text relies on a good understanding of concepts
+like period, frequency, and amplitude of oscillating signals, so
+readers who need to refresh these concepts are recommended to
+do Exercise~\ref{scale:decay:exer:sine} before continuing.
 
 \paragraph{Discussion of the displacement scale.}
 The amplitude of $u$ is $\sqrt{I^2 + V^2/\omega^2}$, and this
@@ -3418,8 +3526,8 @@ What is an appropriate time scale? Looking at
 $\bar u''$ and $\bar u$ both should be around unity in size, the
 coefficient $t_c^2k/m$ must equal unity, implying that $t_c=\sqrt{m/k}$.
 Also from the analytical solution we see that the solution goes like the
-sine or cosine of $\omega t$ so $1/\omega = \sqrt{m/k}$ can be a characteristic
-time scale. Likewise, one period of the oscillations, $P=2\pi/\omega$ can
+sine or cosine of $\omega t$, so $1/\omega = \sqrt{m/k}$ can be a characteristic
+time scale. Likewise, one period of the oscillations, $P=2\pi/\omega$, can
 be the characteristic time, leading to $t_c=2\pi/\omega$.
 
 \paragraph{The dimensionless solution.}
@@ -3548,14 +3656,20 @@ Moreover, there are two time scales, one for the free vibrations of
 the systems and one for the forced vibrations $F(t)$.
 
 \paragraph{Investigating scales via analytical solutions.}
-We may look into the exact solution to see what the scales are.  We
+As we have seen already several times, having access to
+an exact solution is very fortunate as it allows us to directly
+examine the scales. Also in the present problem it is possible
+to derive an exact solution. We
 continue the SymPy session from the previous section and perform much
 of the same steps. Note that we use \texttt{w} for $\omega = \sqrt{k/m}$
 in the computer code (to obtain a more direct visual counterpart to
 $\omega$).
 SymPy may get confused when coefficients in differential equations
 contain several symbols. We therefore rewrite the equation with
-at most one symbol in each coefficient.
+at most one symbol in each coefficient (i.e., symbolic software is
+in general
+more successful when applied to scaled differential equations than the
+unscaled counterparts, but right now our task is to solve the unscaled version).
 The amplitude $A/m$ in the forcing term is of this reason
 replaced by the symbol \texttt{A1}.
 
@@ -3608,7 +3722,7 @@ phenomenon known as resonance. The amplitude becomes finite when
 damping is included,
 see Section~\ref{sec:scale:vib:damped:F}.
 
-For the case the system starts from rest, $I=V=0$, and the
+When the system starts from rest, $I=V=0$, and the
 forcing is the only driving mechanism, we can simplify:
 
 \begin{align*}
@@ -3676,7 +3790,7 @@ $A/(ku_c)$ would be this ratio).
 Looking at (\ref{sec:scale:vib:undamped:F:model:sinsin}), we see
 that if $\psi\ll\omega$, the amplitude can be approximated
 by $A/(m\omega^2)=A/k$, showing that the scale $u_c=A/k$ is
-relevant for small excitation frequency $\psi$ compared to
+relevant for an excitation frequency $\psi$ that is small compared to
 the free vibration frequency $\omega$.
 
 \paragraph{Scaling with free vibrations as time scale.}
@@ -3701,8 +3815,9 @@ Here we have four dimensionless variables
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
 \end{align}
 We remark that the choice of $u_c$ has so far not been made. Several
-different cases will be considered below, and certain choices reduce
-the number of independent dimensionless variables to three.
+different cases will be considered below, and we will see that certain
+choices reduce the number of independent dimensionless variables to
+three.
 
 The four dimensionless variables above have interpretations as ratios of
 physical effects:
@@ -3926,8 +4041,9 @@ The standard scaling procedure results in
 \end{equation}
 
 \paragraph{The exact solution.}
-To choose scales, it is (as always)
-a great advantage to look into exact solutions.
+As always, it is
+a great advantage to look into exact solutions for controlling our
+choice of scales.
 Using SymPy to solve (\ref{sec:scale:vib:damped:F:model}) is, in principle,
 very straightforward:
 
@@ -4105,6 +4221,7 @@ V\Omega^2}{
 
 The most important feature of this solution is that there are
 two time scales with frequencies $\psi$ and $\sqrt{\omega^2 - B^2}$,
+respectively,
 but the latter appears in terms that decay as $e^{-Bt}$ in time.
 The attention is usually on longer periods of time, so in that
 case the solution simplifies to
@@ -4161,7 +4278,7 @@ formulas depend on the choices of $t_c$ and $u_c$.
 \paragraph{Choice of $u_c$ at resonance.}
 The relevant scale for $u_c$ at or nearby resonance ($\psi = \omega$)
 becomes different from the previous section, since with damping,
-the maximum amplitude is a finite value. For $t\gg B^{-1}$ when the
+the maximum amplitude is a finite value. For $t\gg B^{-1}$, when the
 $\sin\psi t$ term is dominating, we have for $\psi = \omega$:
 
 \[ u = \frac{Am^{-1}2B\psi}{4B^2\psi^2}\sin (\psi t) =
@@ -4175,7 +4292,7 @@ This motivates the choice
 (It is wise during computations like this to stop and check the
 dimensions: $A$ must be $[\hbox{MLT}^{-2}]$ from the original
 equation ($F(t)$ must have the same dimension as $mu''$),
-$bu'$ also has dimension $[\hbox{MLT}^{-2}]$, implying that
+$bu'$ must also have dimension $[\hbox{MLT}^{-2}]$, implying that
 $b$ has dimension $[\hbox{MT}^{-1}]$. $A/b$ then has dimension
 $LT^{-1}$, and $A/(b\psi)$ gets dimension $[L]$, which matches
 what we want for $u_c$.)
@@ -4284,7 +4401,7 @@ mechanical vibrations, and their
 dimensionless form is identical. This fact will now be demonstrated.
 
 The current $I(t)$ in a
-circuit with an inductor with inductance $L$, a capacitor with
+circuit having an inductor with inductance $L$, a capacitor with
 capacitance $C$, and overall resistance $R$, obeys the equation
 
 \begin{equation}
@@ -4427,7 +4544,7 @@ What is an appropriate scaling of the temperature?
 
 The velocity $v(t)$
 of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by ODE
+with fluid drag and buoyancy, is governed by the ODE
 
 \[ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,\]
 where $t$ is time, $m$ is the mass of the body, $C_D$ is a drag coefficient,
@@ -4618,7 +4735,7 @@ the scaled initial velocity is unity in $x$ direction.
 % removed !bsol ... !esol environment (because of the command-line option --without_solutions)
 
 \subex{d)}
-A soccer ball has diameter 11 cm and mass 0.43 kg, the density of air
+A soccer ball has radius 11 cm and mass 0.43 kg, the density of air
 is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 30 km/h,
 while a hard kick may have 120 km/h. Estimate the dimensionless parameter
 in the scaled problem for a soft and a hard kick with
@@ -4663,7 +4780,7 @@ Here, $H$ is the number of animals of the prey (say hares)
 and $L$ is the corresponding measure of the predator population (say lynx).
 There are six parameters: $a$, $b$, $c$, $d$, $H_0$, and $L_0$.
 
-The terms has the following meanings:
+The terms have the following meanings:
 
 \begin{itemize}
  \item $aH$ is the exponential
@@ -4780,7 +4897,8 @@ Find suitable scales and derive a dimensionless ODE problem.
 
 \label{scale:decay:exer:sine}
 
-This exercise aims at investigating various concepts like period, wave length,
+This exercise aims at investigating various fundamental
+concepts like period, wave length,
 and frequency in non-damped and damped sinusoidal signals.
 
 
@@ -4874,7 +4992,7 @@ $-mg\jj$, and given by $-f(\dot u)\ii$, where
 \mu mg, & \dot u > 0,\\ 
 0,      & \dot u=0
 \end{array}\right.\]
-Here, $\mu$ is a friction coefficient. With the signum function
+Here, $\mu \geq 0$ is a friction coefficient. With the signum function
 
 \[ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
 -1,& x < 0,\\ 
@@ -4887,7 +5005,7 @@ we can simply write $f(\dot u) = \mu mg\,\hbox{sign}(\dot u)$
 The ODE problem for this one-dimensional oscillatory motion reads
 
 \begin{equation}
-m\ddot u + \mu mg\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
+m\ddot u + \mu mg\,\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
 \end{equation}
 
 
@@ -5062,8 +5180,9 @@ Scale this problem.
 
 \label{scale:vib:exer:rocket}
 
-A body (e.g., projectile or rocket) is launched at the earth's surface
-at velocity $V$. The body's distance (height) from the earth's surface
+A body (e.g., projectile or rocket) is launched vertically
+from the surface of the earth with
+velocity $V$. The body's distance (height) from the earth's surface
 at time $t$ is represented by the function $h(t)$.
 Unless $h$ is very much smaller than the earth's radius $R$, the motion
 takes place in a varying gravity field. The governing ODE problem for
@@ -5144,7 +5263,7 @@ and $\bar h$ of size unity or at least not very small or big?)
 \begin{doconceexercise}
 \refstepcounter{doconceexercisecounter}
 
-\subsection*{Problem \thedoconceexercisecounter: Schroedinger's equation}
+\subsection*{Problem \thedoconceexercisecounter: A simplified Schroedinger equation}
 
 \label{scale:vib:exer:quantum}
 
@@ -5227,7 +5346,7 @@ the PDE (\ref{scale:wave:pde1}) can be written
 $u_{tt}=c^2u_{xx}$. This subscript notation will occasionally be
 used later.
 
-In multi dimensions in heterogeneous media we have the generalization
+For any number of dimensions in heterogeneous media we have the generalization
 
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2} =
@@ -5235,11 +5354,11 @@ In multi dimensions in heterogeneous media we have the generalization
 \label{scale:wave:pde1:3D}
 \end{equation}
 where $f$ represents a forcing.
-How to scale time depends on the PDE, the spatial scale depends on
-the domain, and the scale of $u$ usually depends on $f$ or the
-boundary or initial condition.
+% How to scale time depends on the PDE, the spatial scale depends on
+% the domain, and the scale of $u$ usually depends on $f$ or the
+% boundary or initial condition.
 
-\subsection{Simple homogeneous Dirichlet conditions}
+\subsection{Homogeneous Dirichlet conditions in 1D}
 
 Let us first start with (\ref{scale:wave:pde1}),
 homogeneous Dirichlet conditions in space, and
@@ -5371,16 +5490,17 @@ version is \href{{http://tinyurl.com/o8pb3yy/wave1D_u0.py}}{\nolinkurl{wave1D_u0
 that implements (\ref{scale:wave:pde1}) and
 (\ref{scale:wave:pde1:ic:u})-(\ref{scale:wave:pde1:bc:L}).
 This is the code to be used in the following. It is described
-in Sections~\ref{wave:pde1:impl} in \cite{Langtangen_Linge_fdm}.
-\shortinlinecomment{Geir 2}{ section reference not active }{ section reference not active }
+in Section~\ref{wave:pde1:impl} in \cite{Langtangen_Linge_fdm}.
+
 
 \paragraph{Waves on a string.}
-As example, we may let the original initial-boundary value problem
+As an example, we may let the original initial-boundary value problem
 (\ref{scale:wave:pde1})-(\ref{scale:wave:pde1:bc:L}) model vibrations of
-a string on a string instrument. With $u$ as the displacement of the
+a string on a string instrument (e.g., a guitar).
+With $u$ as the displacement of the
 string, the boundary conditions $u=0$ at the ends are relevant, as
 well as the zero velocity condition $\partial u/\partial t=0$ at
-$t=0$.  The initial condition $I(x)$ has typically a triangular shape
+$t=0$.  The initial condition $I(x)$ typically has a triangular shape
 for a picked guitar string.  The physical problem needs parameters for
 the amplitude of $I(x)$, the length $L$ of the string, and the value
 of $c$ for the string. Only the latter is challenging as it involves
@@ -5398,7 +5518,7 @@ x/x_0, & x < x_0,\\
 The dimensionless coordinate of the peak, $x_0$, is the only
 dimensionless parameter in the problem. For fixed $x_0$,
 one single simulation will capture all possible solutions with such
-a triangular shape.
+an initial triangular shape.
 
 
 \paragraph{Detecting an already computed case.}
@@ -5406,11 +5526,11 @@ The file \href{{http://tinyurl.com/o8pb3yy/wave1D_u0_scaled.py}}{\nolinkurl{wave
 has functionality for detecting whether a simulation corresponds to
 a previously run scaled case, and if so, the solution is retrieved from
 file. The implementation technique makes use of \texttt{joblib}, but is more
-complicated than showed previously in these notes since some of the
+complicated than shown previously in these notes since some of the
 arguments to the function that computes the solution are functions,
 and one must recognized if the function has been used as argument
 before or not. There is documentation in the \Verb!wave1D_u0_scaled.py!
-file how this is done.
+file explaining how this is done.
 
 
 \subsection{Time-dependent Dirichlet condition}
@@ -5792,7 +5912,7 @@ One could wonder if the time scale of the force term, $f(x,t)$,
 should influence $t_c$, but as we reasoned for the boundary condition
 $u(0,t)=U_L(t)$, we let the characteristic time be governed by the
 signal speed in the medium, i.e., by $\sqrt{\lambda_c}$ here and not
-by the time scale of the excitation $f$ which dictates the
+by the time scale of the excitation $f$, which dictates the
 length of the generated waves and not their propagation speed.
 
 \paragraph{Choosing the spatial scale.}
@@ -5830,15 +5950,16 @@ the $\beta$ parameter appears in the PDE instead:
 With $V=0$, and $u=0$ or $u_x=0$ on the boundaries $x=0,L$, this scaling normally gives
 $|\bar u|\leq 1$, since initially $|I|\leq 1$, and no boundary condition
 can increase the amplitude.
-\longinlinecomment{Geir 3}{ added text below. I am not shure baout mentioning retrogressive slides. We should rather not go into details on such issues, anyhow. }{ added text below. I }
 However, the forcing, $\bar f$, may inherit spatial and temporal scales of its
 own that may complicate the matter. The forcing may, for instance, be
 some disturbance moving with a velocity close to the propagation velocity of
 the free waves. This will have an effect akin to the resonance for the vibration problem discussed in
 section~\ref{sec:scale:vib:undamped:mg} and the waves produced by the forcing may be much larger than
 indicated by $\beta$. On the other hand, the forcing may also consist
-of alternating positive and negative parts (example: retrogressive slides). These may interfere to
+of alternating positive and negative parts (retrogressive slides constitute an
+example). These may interfere to
 reduce the wave generation by an order of magnitude.
+
 \paragraph{Scaling the velocity initial condition.}
 The initial condition $u_t(x,0)=V(x)$ has its dimensionless variant as
 
@@ -5873,7 +5994,7 @@ we can write
 
 A linear damping term $b\,\partial u/\partial t$ is often added to
 the wave equation to model energy dissipation and amplitude reduction.
-Our PDE now reads
+Our PDE then reads
 
 \begin{equation}
 \frac{\partial^2 u}{\partial t^2}
@@ -5928,8 +6049,8 @@ respectively.
 
 \subsection{A three-dimensional wave equation problem}
 
-To demonstrate how the scaling extends to and looks like in
-three spatial dimensions, we consider
+To demonstrate how the scaling extends to in three spatial dimensions,
+we consider
 
 \begin{equation}
 \frac{\partial^2 \bar u}{\partial \bar t^2} =
@@ -5937,12 +6058,13 @@ three spatial dimensions, we consider
 \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
 \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right)\tp
 \end{equation}
-We introduce
+Introducing
 
 \[ \bar x = \frac{x}{x_c},\quad \bar y = \frac{y}{y_c},
    \quad \bar z = \frac{z}{z_c},
-   \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}\tp\]
-With $\bar\lambda = \lambda(\bar xx_c, \bar y y_c, \bar z z_c)/\lambda_c$,
+   \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c},\]
+and scaling $\lambda$ as
+$\bar\lambda = \lambda(\bar xx_c, \bar y y_c, \bar z z_c)/\lambda_c$,
 we get
 
 \[
@@ -5985,7 +6107,7 @@ and a source term takes the form
 \nabla\cdot\left(\dfc \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]\tp
 \label{sec:scale:diffu:pde1:3D}
 \end{equation}
-We first look at scaling the PDE itself, and thereafter we discuss
+We first look at scaling of the PDE itself, and thereafter we discuss
 some types of boundary conditions and how to scale the complete
 initial-boundary value problem.
 
@@ -5994,7 +6116,7 @@ initial-boundary value problem.
 \label{sec:scale:diffu:homo1D}
 
 To make (\ref{sec:scale:diffu:pde1}) dimensionless,
-we introduce as usual dimensionless dependent and independent variables:
+we introduce, as usual, dimensionless dependent and independent variables:
 
 \[ \bar x = \frac{x}{x_c},
 \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}\tp\]
@@ -6007,7 +6129,7 @@ PDE (\ref{sec:scale:diffu:pde1}) results in
 \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T = T/t_c]\tp
 \label{sec:scale:diffu:pde1:d0}
 \]
-Arguing as for the wave equation that the scaling should result in
+Arguing, as for the wave equation, that the scaling should result in
 
 \[ \frac{\partial \bar u}{\partial \bar t}\hbox{ and }
 \frac{\partial^2 \bar u}{\partial \bar x^2}\]
@@ -6161,8 +6283,8 @@ as $t\rightarrow\infty$.
 The initial-boundary value problem reads
 
 \begin{align}
-\frac{\partial u}{\partial t} &=
-\dfc \frac{\partial^2 u}{\partial x^2},
+\varrho c \frac{\partial u}{\partial t} &=
+k \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
 \label{scale:heat:pde3}\\ 
 u(x,0) &= U_0,
@@ -6175,10 +6297,13 @@ u(0, t) & = U_1,
 \quad & t\in (0, T].
 \label{scale:heat:pde3:bc:L}
 \end{align}
-The diffusion coefficient is related to heat transfer parameters
-by $\dfc = k/(\varrho c)$, where $k$ is the heat conduction coefficient,
-$\varrho$ is the density, and $c$ is a specific heat capacity parameter.
-\shortinlinecomment{Geir 4}{ does this paragraph naturally belong here ? }{ does this paragraph naturally }
+The PDE (\ref{scale:heat:pde3}) arises from the energy equation in
+solids and involves three physical parameters: the density $\varrho$,
+the specific heat capacity parameter $c$,a nd the heat conduction
+coefficient (from Fourier's law). Dividing by $\varrho c$ and
+introducing $\dfc = k/(\varrho c)$ brings (\ref{scale:heat:pde3}) on
+the standard form (\ref{sec:scale:diffu:pde1}). We just use the
+$\dfc$ parameter in the following.
 
 The natural dimensionless temperature for this problem is
 
@@ -6215,12 +6340,9 @@ boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 5}{ Include simulation results. }{ Include simulation results. }
+\shortinlinecomment{hpl 2}{ Include simulation results. }{ Include simulation results. }
 
 \subsection{Oscillating Dirichlet condition}
-
-\shortinlinecomment{hpl 6}{ Do we need paragraph headings here? }{ Do we need paragraph }
-\shortinlinecomment{Geir 7}{ yes }{ yes }
 
 Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
@@ -6262,7 +6384,12 @@ the oscillations $\sin(\omega t)$ with period $P=2\pi/\omega$ at
 the boundary and the ``speed of diffusion'', or more specifically
 the ``speed of heat conduction'' in the present context,
 where $t_c=x_c^2/\dfc$ is the appropriate scale, $x_c$ being
-the length scale.
+the length scale. Choosing the right length scale is not obvious. As
+we shall see, the standard choice $x_c=L$ is not a good candidate, but
+to understand why, we need to examine the solution, either through
+simulations or through a closed-form formula. We are so lucky in this
+relatively simple pedagogical problem that one can find an exact solution
+of a related problem.
 
 \paragraph{Exact solution.}
 As usual, investigating the exact solution of the model problem can
@@ -6291,7 +6418,7 @@ takes to propagate through the domain, which is $L/c$, and
 hence $t_c = L/c = L/\sqrt{2\dfc\omega}$.
 
 One can argue that $L$ is not the appropriate length scale, because
-$u$ is damped by $e^{-bx}$ so for $x > 4/b$, $u$ is close to zero.
+$u$ is damped by $e^{-bx}$. So, for $x > 4/b$, $u$ is close to zero.
 We may instead use $1/b$ as length scale, which is the e-folding distance of the
 damping factor, and base
 $t_c$ on the time it takes a signal to propagate one length scale,
@@ -6323,7 +6450,7 @@ The three choices of $\gamma$, implied by the three choices of $t_c$, are
 \end{array}\right.
 \label{scale:heat:daynight:gamma3}
 \end{equation}
-The former two choices leaves only $\beta$ as parameter in $\bar u$,
+The former two choices leave only $\beta$ as parameter in $\bar u$,
 and with $x_c=1/b$ as length scale, $\beta$ becomes unity, and there
 are no parameters in the dimensionless solution:
 
@@ -6363,7 +6490,7 @@ scaled initial-boundary value problem:
 
 \begin{align}
 \frac{\partial \bar u}{\partial \bar t} &=
-\frac{1}{2}\frac{\partial^2 u}{\partial x^2},
+\frac{1}{2}\frac{\partial^2\bar u}{\partial x^2},
 \quad & \bar x\in (0,4),\ \bar t\in (0,\bar T],
 \label{scale:heat:pde2:d}\\ 
 \bar u(\bar x,0) &= 0,
@@ -6430,7 +6557,7 @@ results in
 \[
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{t_c\dfc}{x_c^2}
-\frac{\partial^2 u}{\partial x^2} + t_c \varrho \bar u (1 - u_c\bar u/M)\tp
+\frac{\partial^2\bar u}{\partial\bar x^2} + t_c \varrho \bar u (1 - u_c\bar u/M)\tp
 \]
 
 \paragraph{Balance of all terms.}
@@ -6449,7 +6576,7 @@ and the scaled PDE becomes
 
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u)\tp
+\frac{\partial^2 \bar u}{\partial\bar x^2} + \bar u (1 - \bar u)\tp
 \end{equation}
 With this scaling, the length scale $x_c=\sqrt{\dfc/\varrho}$
 is not related to the domain size, so the scale is particularly relevant for
@@ -6472,7 +6599,7 @@ $u_c=M$, we get
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \beta
-\frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u),
+\frac{\partial^2 \bar u}{\partial\bar x^2} + \bar u (1 - \bar u),
 \end{equation}
 where $\beta$ is a dimensionless number
 
@@ -6520,7 +6647,8 @@ value, one gets a non-dimensional PDE like
 \frac{\partial^2\bar u}{\partial\bar x^2} +
 \frac{t_cf_c}{u_c}\bar f(u_c\bar u)\tp
 \]
-The characteristic size of $u$ can often be derived so we first assume
+The characteristic size of $u$ can often be derived from boundary or
+initial conditions, so we first assume
 that $u_c$ is given. This fact uniquely determines the space and time
 scales by demanding that all three terms are equally important and
 of unit size:
@@ -6633,21 +6761,22 @@ in (\ref{scale:convdiff:pde1}) yields
 \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]\tp
 \]
 For $u_c$ we simply introduce the symbol $U$, which we may estimate
-from an initial condition. It is not critical here since it vanishes
-from the scaled equation anyway as long as there is no source term
+from an initial condition. It is not critical here, since it vanishes
+from the scaled equation anyway, as long as there is no source term
 present.
 With some velocity measure $V$ and length measure $L$, it is
 tempting to just let $t_c = L/V$. This is the characteristic time it takes to
 transport a signal by convection through the domain.
 The alternative is to use the
-diffusion length scale $t_c=L^2/\dfc$. Very often in these kind of
-problems, the convection term $\v\cdot\nabla u$ dominates over the
-diffusion term $\dfc\nabla^2 u$, so the time scale for convection,
-which is $L/V$,
+diffusion length scale $t_c=L^2/\dfc$. A common physical scenario in
+convection-diffusion problems is that
+the convection term $\v\cdot\nabla u$ dominates over the
+diffusion term $\dfc\nabla^2 u$. Therefore, the time scale for convection
+($L/V$)
 is most appropriate of the two. Only when
 the diffusion term is very much larger than the convection
 term (corresponding to very small Peclet numbers, see below)
-we would apply $t_c=L^2/\dfc$.
+$t_c=L^2/\dfc$ is the right time scale.
 
 The non-dimensional form of the PDE with $t_c=L/V$ becomes
 
@@ -6690,7 +6819,7 @@ in (\ref{scale:convdiff:pde1:d}), i.e., a size around unity.
 For large Peclet numbers,
 (\ref{scale:convdiff:pde1:d}) expresses a balance
 between the time derivative term and the convection term, both of size
-unity, and then there is a very small term
+unity, and then there is a very small
 $\hbox{Pe}^{-1}\bar\nabla^2\bar u$ term because Pe is large and
 $\bar\nabla^2\bar u$ should be of size unity.
 That the convection term dominates over the diffusion term is
@@ -6711,9 +6840,9 @@ since right scales imply that $\partial\bar u/\partial\bar t$ and
 $\bar v\cdot\bar\nabla\bar u$ are of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
 (\ref{scale:convdiff:pde1:d2}).  For very small Peclet numbers this
-equation tells that the time-derivative balances the diffusion, while
-the convection $\bar\v\cdot\bar\nabla\bar\u$ is around
-unity, but multiplied by a very small coefficient Pe, so this term is
+equation tells that the time-derivative balances the diffusion.
+The convection term $\bar\v\cdot\bar\nabla\bar\u$ is around
+unity in size, but multiplied by a very small coefficient Pe, so this term is
 negligible in the PDE. An approximate PDE for small Peclet numbers is
 therefore
 
@@ -6722,7 +6851,7 @@ therefore
 = \bar\nabla^2\bar u\tp
 \]
 
-Scaling can with the above type of reasoning be used
+Scaling can, with the above type of reasoning, be used
 to neglect terms from a differential equation under precise mathematical
 conditions.
 \end{notice_mdfboxadmon}
@@ -6763,7 +6892,7 @@ Scaling results in
 \bar x\in (0,1),\quad \bar u(0)=0,\ \bar u(1) = 1,\]
 if we choose $U=U_L$. The solution of the scaled problem is
 
-\[ \bar u(\bar x) = \frac{1 - e^{\bar x\hbox{Pe}}}{1 - e^{\hbox{Pe}}}\tp\]
+\[ \bar u(\bar x) = \frac{1 - e^{\bar x\hbox{\footnotesize Pe}}}{1 - e^{\hbox{\footnotesize Pe}}}\tp\]
 Figure~\ref{scale:convdiff:fig:scaled} indicates how $\bar u$ depends on
 Pe: small Pe values give approximately a straight line while large Pe
 values lead to a \emph{boundary layer} close to $x=1$, where the solution
@@ -6783,13 +6912,13 @@ We realize that for large Pe,
 
 \[ \max_{\bar x}\frac{d\bar u}{d\bar x} \approx \hbox{Pe},\quad
 \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx \hbox{Pe}^{2},\]
-which are consistent results with the PDE since the double derivative term
+which are consistent results with the PDE, since the double derivative term
 is multiplied by $\hbox{Pe}^{-1}$.
 For small Pe,
 
 \[ \max_{\bar x}\frac{d\bar u}{d\bar x}\approx 1,\quad
    \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx 0,\]
-which is also consistent with the PDE
+which is also consistent with the PDE,
 since an almost vanishing second-order derivative
 is multiplied by a very large coefficient $\hbox{Pe}^{-1}$.
 However, we have a problem with very large
@@ -6818,7 +6947,7 @@ Figure~\ref{scale:convdiff:fig:rescaled} displays $\bar u$ for some
 Peclet numbers, and we see that the shape of the graphs are the same
 with this scaling. For large Peclet numbers we realize that $\bar u$
 and its derivatives are around unity
-($1-e^{\hbox{Pe}}\approx -e^{\hbox{\footnotesize Pe}}$),
+($1-e^{\hbox{\footnotesize Pe}}\approx -e^{\hbox{\footnotesize Pe}}$),
 but for small Peclet numbers $d\bar u/d\bar x \sim \hbox{Pe}^{-1}$.
 
 
@@ -6857,15 +6986,19 @@ Let us add a force term $f(\x,t)$ to the convection-diffusion equation:
 The scaled version reads
 
 \[
-\frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\v\cdot\bar\nabla \bar u =
-\frac{t_c\dfc}{L^2}\bar\nabla^2 \bar u + \frac{t_cf_c}{u_c}\bar f\tp
+\frac{\partial\bar u}{\partial\bar t} +
+\frac{t_cV}{L}\bar\v\cdot\bar\nabla \bar u =
+\frac{t_c\dfc}{L^2}\bar\nabla^2 \bar u +
+\frac{t_cf_c}{u_c}\bar f\tp
 \]
 We can base $t_c$ on convective transport: $t_c = L/V$. Now,
 $u_c$ could be chosen to make the coefficient in the source term unity:
 $u_c = t_cf_c = Lf_c/V$.
 This leaves us with
 
-\[ \frac{\partial u}{\partial t} + \bar\v\cdot\bar \nabla\bar u =
+\[
+\frac{\partial\bar u}{\partial\bar t} +
+\bar\v\cdot\bar \nabla\bar u =
 \hbox{Pe}^{-1}\bar \nabla^2 \bar u + \bar f\tp
 \]
 
@@ -6876,7 +7009,9 @@ determines $u_c$ according to
 \[ \frac{L^2 f_c}{\dfc u_c} = 1\quad\Rightarrow\quad u_c = \frac{L^2 f_c}{\dfc}\tp\]
 The corresponding PDE reads
 
-\[ \frac{\partial u}{\partial t} + \hbox{Pe}\,\bar\v\cdot\bar \nabla\bar u =
+\[
+\frac{\partial\bar u}{\partial\bar t} +
+\hbox{Pe}\,\bar\v\cdot\bar \nabla\bar u =
 \bar\nabla^2 \bar u + \bar f,
 \]
 so for small Peclet numbers, which we have, the convective term can
@@ -6893,7 +7028,7 @@ or
 
 \[
 \bar\v\cdot\bar \nabla \bar u =
-\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f,
+\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f\tp
 \]
 Again, choosing $u_c$ such that the source term coefficient is unity leads
 to $u_c= f_c L/V$.
@@ -7039,7 +7174,7 @@ pressure gradient, $\varrho$ is the fluid density, and $\mu$ is the
 dynamic viscosity.
 
 Assume $P(t) = A\cos\omega t$. Scale the problem and identify
-appropriate dimensionless numbers. The assume $P(t)$ is a more
+appropriate dimensionless numbers. Thereafter, assume $P(t)$ is a more
 complicated function, but still period with period $p$.
 Discuss how the scaling can be extended to this case.
 
@@ -7211,12 +7346,13 @@ this scientific field.
 
 We start out with the general, time-dependent elasticity PDE with
 variable material properties. Analysis based on scaling is used to
-determine with the acceleration term can be neglected. The stationary
-elasticity PDE is then discussed, including the simplification to
-homogeneous media. Scaling of different types of boundary conditions is
+determine under what circumstances the acceleration term can be neglected
+and we end up with the widely used stationary
+elasticity PDE. Scaling of different types of boundary conditions is
 also treated.  At the end, we scale the equations of coupled
 thermo-elasticity. All the models make the assumption of small
-displacement gradients.
+displacement gradients and Hooke's generalized constitutive law
+such that linear elasticity theory applies.
 
 \subsection{The general time-dependent elasticity problem}
 \label{scale:elasticity:timedep}
@@ -7237,8 +7373,10 @@ centrifugal force, or similar).
 
 We introduce dimensionless variables:
 
-\[ \bar\u = u_c^{-1}\u,\quad \bar x = \frac{x}{L},\quad \bar t = \frac{f}{t_c},\]
-where $L$ is some length scale we used to scale $y$ and $z$ as well.
+\[ \bar\u = u_c^{-1}\u,\quad \bar x = \frac{x}{L}
+\quad \bar y = \frac{y}{L}
+\quad \bar z = \frac{z}{L},
+\quad \bar t = \frac{f}{t_c}\tp\]
 Also the elasticity parameters and the density can be scaled, if they
 are not constants,
 
@@ -7305,7 +7443,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 8}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 3}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -7343,7 +7481,7 @@ and we have the dimensionless stress-displacement relation
 \subsection{When can the acceleration term be neglected?}
 \label{scale:elasticity:waves}
 
-A lot of applications of the elasticity equation involves static or
+A lot of applications of the elasticity equation involve static or
 quasi-static deformations where the acceleration term
 $\varrho\u_{tt}$ is neglected. Now we shall see under which conditions
 the quasi-static approximation holds.
@@ -7399,7 +7537,7 @@ with wave velocity
 \[ c_P = \sqrt{\frac{\lambda +2\mu}{\varrho}}\tp\]
 That is, the volume change (expansion/compression)
 propagates as a wave with speed $c_P$.
-These type of waves are called \href{{https://en.wikipedia.org/wiki/P-wave}}{P waves}\footnote{\texttt{https://en.wikipedia.org/wiki/P-wave}}. Other names are pressure and expansion/compression waves.
+These types of waves are called \href{{https://en.wikipedia.org/wiki/P-wave}}{P waves}\footnote{\texttt{https://en.wikipedia.org/wiki/P-wave}}. Other names are pressure and expansion/compression waves.
 
 Suppose now that $\nabla\times\u =0$, i.e., there is no rotation (``shear'') of
 continuum elements. Mathematically this condition implies that
@@ -7416,8 +7554,8 @@ shear component.
 
 \paragraph{Time-varying load.}
 Suppose we have some time-varying boundary condition on $\u$ or the
-stress vector (traction) that has time scale $\omega$ (some
-oscillating movement that goes like $\sin\omega t$ is an example). We
+stress vector (traction), with a time scale $1/\omega$ (some
+oscillating movement that goes like $\sin\omega t$, for instance). We
 choose $t_c=1/\omega$.  The scaling now leads to
 
 \[
@@ -7499,8 +7637,8 @@ It shows that in standard, stationary elasticity, $\lambda/\mu$ is the
 only significant physical parameter.
 
 \paragraph{Scaling of displacement boundary conditions.}
-A typical boundary condition on a part of the boundary is a prescribed
-displacement. For simplicity we set $\u = \U_0$ for a constant vector
+A typical boundary condition on some part of the boundary is a prescribed
+displacement. For simplicity, we set $\u = \U_0$ for a constant vector
 $\U_0$ as boundary condition. With $u_c=\varrho L^2f_c/\mu$, we get
 the dimensionless condition
 
@@ -7518,10 +7656,10 @@ is present, to the dimensionless number
 
 \paragraph{Scaling of traction boundary conditions.}
 The other type of common boundary condition in elasticity is a
-prescribed traction (stress vector) on a part of the boundary:
+prescribed traction (stress vector) on some part of the boundary:
 
 \[ \stress\cdot\normalvec = \bm{T}_0,\]
-where for simplicity we take $\bm{T}_0$ as a constant vector.
+where, to make it simple, we take $\bm{T}_0$ as a constant vector.
 From Section~\ref{scale:elasticity:PDE1:stress} we have a stress scale
 $\sigma_c = \mu u_c/L$, but we may alternatively use $|\bm{T}_0|$
 as stress scale. In that case,
@@ -7542,7 +7680,7 @@ stress if displacements are constrained. The time scale of temperature
 changes are usually much larger than the time scales of elastic waves,
 so the stationary equations of elasticity can be used, but a term
 depends on the temperature, so the equations must be coupled to
-a PDE for heat transfer in solids. The resulting system of PDE is
+a PDE for heat transfer in solids. The resulting system of PDEs is
 known as the equations of \emph{thermo-elasticity} and reads
 
 \begin{align}
@@ -7555,7 +7693,7 @@ and $\f_T$ is some heat source. The density $\varrho$ is strictly speaking
 a function of $T$ and the stress state, but a widely used approximation
 is to consider $\varrho$ as a constant.
 Most thermo-elasticity applications have
-$\f_T=0$ so we drop this term. Most applications also involve some heating
+$\f_T=0$, so we drop this term. Most applications also involve some heating
 from a temperature level $T_0$ to some level $T_0 +\Delta T$.
 A suitable scaling for $T$ is therefore
 
@@ -7605,7 +7743,7 @@ Section~\ref{sec:scale:diffu} and~\ref{scale:elasticity:stationary}.
 
 \index{Navier-Stokes equations}
 
-This section presents scalings of various versions of the
+This section shows how to scale various versions of the
 equations governing incompressible viscous fluid flow. We start
 with the plain Navier-Stokes equations without body forces and
 progress with adding the gravity force and a free surface. We
@@ -7616,8 +7754,8 @@ also look at scaling low Reynolds number flow and oscillating flows.
 \index{dimensionless number}
 \index{Reynolds number}
 
-The Navier-Stokes equations for incompressible viscous fluid flow
-without body forces take the form
+The Navier-Stokes equations for incompressible viscous fluid flow,
+without body forces, take the form
 
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
@@ -7631,14 +7769,15 @@ velocity $\u$ and the pressure $p$. Moreover,
 $\varrho$ is the fluid density, and $\mu$ is the dynamic viscosity.
 
 \paragraph{Scaling.}
-We introduce as usual dimensionless independent and dependent variables:
+We start, as usual, by introducing a notation for
+dimensionless independent and dependent variables:
 
 \[ \bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad
 \bar z= \frac{z}{L},\quad \bar t = \frac{t}{t_c},\quad
 \bar\u = \frac{\u}{u_c},\quad \bar p = \frac{p}{p_c},\]
 where $L$ is some characteristic distance,
 $t_c$ is some characteristic time, $u_c$ is a characteristic
-velocity, and $p_c$ is a characteristic pressure.
+velocity, while $p_c$ is a characteristic pressure.
 Inserted in the equations,
 
 \begin{align}
@@ -7691,14 +7830,15 @@ length scales.
 
 
 For flow in a channel or tube, we also have some inlet profile, e.g.,
-$v(r)$ in a tube, where $r$ is the radial coordinate, and a natural
-choice of characteristic velocity is $U=v(0)$ or the average flow
+$v(r)$ in a tube, where $r$ is the radial coordinate. A natural
+choice of characteristic velocity is $U=v(0)$ or to let $U$ be
+the average flow, i.e.,
 
 \[ U = \frac{1}{\pi R^2}\int_0^R 2\pi v(r)rdr,\]
 if $R$ is the radius of the tube. Other examples may be flow around
 a body, where there is some distant constant inlet flow $\u = U_0\ii$,
 for instance, and $U=U_0$ is an obvious choice. We therefore
-assume that the flow problem comes with a natural candidate for $U$.
+assume that the flow problem itself brings a natural candidate for $U$.
 
 Having a characteristic distance $L$ and velocity $U$, an obvious
 time measure is $L/U$ so we set $t_c=L/U$. Dividing by the
@@ -7709,8 +7849,13 @@ term
 The coefficient suggest a choice $p_c=\varrho U^2$ if the pressure
 gradient term is to have the same size as the acceleration terms.
 This $p_c$ is a very common pressure scale in fluid mechanics,
-arising from Bernoulli's equation $p + \frac{1}{2}\varrho \u\cdot\u =
-\hbox{const}$ for stationary flow.
+arising from Bernoulli's equation
+
+\index{Bernoulli's equation}
+
+\[ p + \frac{1}{2}\varrho \u\cdot\u =
+\hbox{const}\]
+for stationary flow.
 
 \index{Reynolds number}
 
@@ -7755,10 +7900,14 @@ $\varrho\u\cdot\nabla\u$
 is much smaller
 than the viscosity term $\mu\nabla^2\u$, i.e., the Reynolds number
 is small, the viscosity term is dominating. However,
-if the scaling is suitable, the other terms are of order unity, and
-$\hbox{Re}^{-1}\nabla^2\bar\u$ must then also be of unit size,
-implying that $\nabla^2\bar\u$ is small, but then the scaling is
-not suitable. In the low-Reynolds number regime, the diffusion effect
+if the scaling is right, the other terms are of order unity, and
+$\hbox{Re}^{-1}\nabla^2\bar\u$ must then also be of unit size. This fact
+implies that $\nabla^2\bar\u$ must be small, but then the scaling is
+not right (since a right scaling will lead to $\bar u$ and its derivatives
+around unity). Such reasoning around inconsistent size of terms clearly points
+to the need for other scales.
+
+In the low-Reynolds number regime, the diffusion effect
 of $\nabla^2\bar\u$ is dominating, and we should use a time scale
 based on diffusion rather than convection. Such a time scale is
 $t_c = L^2/(\mu/\varrho) = L^2/\nu$.
@@ -7834,8 +7983,8 @@ This quantity reflects the ratio of inertia and gravity forces:
 \index{Strouhal number}
 
 Many flows have an oscillating nature, often arising from some
-oscillating boundary condition. Suppose such a condition at some
-boundary $x=\hbox{const}$ takes the specific form
+oscillating boundary condition. Suppose such a condition, at some
+boundary $x=\hbox{const}$, takes the specific form
 
 \[ \u = U\sin(\omega t)\ii\tp\]
 The dimensionless counterpart becomes
@@ -7965,7 +8114,8 @@ has size $\sigma/L$.
 Temperature differences in fluid flow cause density differences, and since
 cold fluid is heavier than hot fluid, the gravity force will induce
 flow due to density differences. This effect is called free thermal
-convection. Forced convection refers to the case where there is no
+convection and is key to our weather and heating of rooms.
+Forced convection refers to the case where there is no
 feedback from the temperature field to the motion, i.e., temperature
 differences do not create motion. This fact decouples the energy
 equation from the mass and momentum equations.
@@ -7986,8 +8136,8 @@ equations and the energy equation for the temperature:
 \nabla\cdot\u & = 0,
 \label{scale:fluid:forced_convection:eq:cont_T_forced}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
-&= \kappa\nabla^2 T \tp
-\label{scale:fluid:forced_convection:eq:energy_T_forced}\\ 
+&= \kappa\nabla^2 T\tp
+\label{scale:fluid:forced_convection:eq:energy_T_forced}
 \end{align}
 The symbol $T$ is the temperature, $c$ is a heat capacity, and $\kappa$
 is the heat conduction coefficient for the fluid. The PDE system
@@ -8082,9 +8232,11 @@ coupled to an energy equation governing the temperature:
 \frac{\partial\rho}{\partial t} + \nabla\cdot(\varrho\u) & = 0,
 \label{scale:fluid:free_convection:eq:cont_T}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
-&= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
+&= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij},
 \label{scale:fluid:free_convection:eq:energy_T}
 \end{align}
+where Einstein's summation convention is implied for the
+$\varepsilon_{ij}\varepsilon_{ij}$ term.[[[
 The symbol $T$ is the temperature, $c$ is a heat capacity, $\kappa$
 is the heat conduction coefficient for the fluid. In free convection,
 the gravity term $-\varrho(T) g\kk$ is essential since the flow is driven
@@ -8104,15 +8256,14 @@ $\varepsilon_{ij}$ is the strain-rate tensor in the flow, defined by
 + \frac{\partial u_j}{\partial x_i}\right) = \frac{1}{2}(\nabla\u + (\nabla\u)^T),\]
 where $u_i$ is the velocity in direction of $x_i$ ($i=1,2,3$ measures
 the space directions). The term $2\mu\varepsilon_{ij}\varepsilon_{ij}$
-is written with Einstein's summation convention in mind such that
-there is an implicit sum over $i$ and $j$.  This term is actually much
+is actually much
 more relevant for forced convection, but was left out in Section~\ref{scale:fluid:forced_convection} for mathematical simplicity.
 Heating by the work of viscous forces is often a very small effect and
 can be neglected, although it plays a major role in forging and
-extrusion of metals where the viscosity is very large, and those
-processes require large external forces to drive the flow.  The reason
-behind the inclusion of the work by viscous forces under the heading
-of free convection is more that we want to scale a more complete,
+extrusion of metals where the viscosity is very large (such
+processes require large external forces to drive the flow).  The reason
+for including the work by viscous forces under the heading
+of free convection, is that we want to scale a more complete,
 general mathematical model for mixed force and free convection, and
 arrive at dimensionless numbers that can tell if this extra term is
 important or not.
@@ -8349,7 +8500,7 @@ Now,
 \[ \frac{|\varrho_0\u\cdot\nabla\u|}{|\mu\nabla^2\u|} \sim \frac{UL}{\nu}
 = \frac{g\beta L^3 \Delta T}{\nu} = \hbox{Gr}\tp\]
 The result means that $\hbox{Gr}^{1/2}$ measures the ratio of convection and
-viscous forces when convection dominates, but Gr measures this ratio when
+viscous forces when convection dominates, whereas Gr measures this ratio when
 viscous forces dominate.
 
 The product of Gr and Pr is the Rayleigh number,
@@ -8367,7 +8518,7 @@ since
 \]
 The Rayleigh number is the preferred dimensionless number when studying
 free convection in horizontal layers \cite{Drazin_Reid,Tritton}. Otherwise,
-Gr and Pr are dominate.
+Gr and Pr are used.
 
 
 \subsection{Heat transfer at boundaries and the Nusselt number}
@@ -8440,9 +8591,10 @@ $\chi$ is a membrane area to cell volume ratio,
 $\sigma_i$ is an electric conductivity tensor for the intracellular space, and
 $\sigma_e$ is an electric conductivity tensor for the extracellular space.
 
-The boundary conditions are of Neumann type, and we drop these from the discussion.
-The initial condition is typically $u_e=0, v = v_r$, where
-$v_{r}$ is a constant resting potential.
+The boundary conditions are of Neumann type, but we drop these from
+the discussion, just to make things a bit simpler.  The initial
+condition is typically $u_e=0, v = v_r$, where $v_{r}$ is a constant
+resting potential.
 
 The PDE system is driven by $I_{\rm{ion}} + I_{\rm{app}}$, where
 $I_{\rm{ion}}$ is a reaction term describing ionic currents across the
@@ -8650,10 +8802,10 @@ $t_c=0.21$ ms.
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-% \longinlinecomment{hpl 9}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+% \longinlinecomment{hpl 4}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 
-\subsection{The bidomain model with an alternative $I_{\rm{ion}}$}
+\subsection{An alternative $I_{\rm{ion}}$}
 The simplest model that gives a qualitatively realistic description of
 the cardiac action potential is the FitzHugh-Nagumo (FHN) model. In
 contrast to the model (\ref{scale:bidomain:ion1}) discussed above, the
@@ -8941,11 +9093,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 10}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 5}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 11}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 6}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 12}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 7}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -8968,7 +9120,7 @@ equations of gas dynamics, can be written as
 \frac{\partial E}{\partial t} + \nabla\cdot(\u(E+p)) &= 0,
 \label{scale:Euler_eqs:energy}
 \end{align}
-where the total energy is given by
+with $E$ being
 
 \begin{equation}
 E = \varrho e + \frac{1}{2}\varrho\u\cdot\u\tp
@@ -9035,7 +9187,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 13}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 8}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 
@@ -9068,7 +9220,7 @@ F'(\varrho)= c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1},\]
 where
 
 \[ c_0 = \sqrt{\frac{\gamma p_0}{\varrho_0}}\]
-is the speed of sound in the fluid in the equilibrium state (see the subsequent section).
+is the speed of sound within the fluid in the equilibrium state (see the subsequent section).
 Equation (\ref{scale:gas:acoustic:u}) with eliminated pressure $p$ reads
 
 \begin{equation}
@@ -9079,7 +9231,7 @@ c_0^2\left(\frac{\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\varrho =0\tp
 
 The governing equations are now (\ref{scale:gas:acoustic:rho})
 and (\ref{scale:gas:acoustic:u2}).
-Space and time are scaled as usual as
+Space and time are scaled in the usual way as
 
 \[ \bar x = \frac{x}{L},\quad\bar y = \frac{y}{L},\quad\bar z = \frac{z}{L},
 \quad\bar t = \frac{t}{t_c}\tp\]
@@ -9100,26 +9252,28 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 \bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
-\shortinlinecomment{Geir 14}{ The rather ungracious scaling factor will disappear if $\rho_c=\rho_0$. }{ The rather ungracious scaling }
 The characteristic flow velocity is $U$ so a natural time scale is
 $t_c = L/U$. This choice leads to the scaled PDEs
 
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\ 
++ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
+\label{scale:gas:acoustic:isentropic:cont:s}\\ 
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \bar\varrho\bar\u\cdot\bar\nabla\bar\u
 + \hbox{M}^{-2}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0,
+\label{scale:gas:acoustic:isentropic:mom:s}
 \end{align}
 where the dimensionless number
 
 \[ \hbox{M} = \frac{U}{c_0},\]
 is known as the \emph{Mach number}.
 The boundary conditions specify the characteristic velocity $U$ and
-thereby the Mach number.
+thereby the Mach number. Observe that (\ref{scale:gas:acoustic:isentropic:mom:s})
+simplifies if $\varrho_c=\varrho_0$ is an appropriate choice.
 
 \index{Mach number}
 
@@ -9216,7 +9370,7 @@ Using $t_c=L/u_0$ we get
 
 For small perturbations the linear terms in these equations must balance.
 This points to $M$ and $\alpha$ being of the same order and we may
-choose $\alpha=M$ to obtain
+choose $\alpha=M$ (implying $\varrho_c = \varrho_0\hbox{M}$) to obtain
 
 \begin{align*}
 \frac{\partial\bar\varrho}{\partial\bar t}
@@ -9257,21 +9411,19 @@ we can eliminate $\varrho$ by taking the divergence of
 \bar\nabla^2\bar\u\tp
 \end{equation}
 We also observe that there are no physical parameters in the scaled
-wave equations. The M parameter can be eliminated from
-(\ref{scale:gas:acoustic:rho:s})-(\ref{scale:gas:acoustic:u2:s}) as well
-by introducing a new unknown $\bar\v = M\bar\u$.
+wave equations.
 
 
-\section{Surface gravity waves}
+\section{Water surface waves driven by gravity}
 \label{scale:surfacewaves}
 
 \subsection{The mathematical model}
 \label{scale:surfacewaves:Eulereq}
 
-Provided the Weber number, see section~\ref{freesurface:Weber}, is
-sufficiently small, capillary effects may be omitted and surface waves are
-governed by gravity.  For large Reynolds numbers viscous effects
-may also be ignored (save in boundary layers close to the bottom or
+Provided the Weber number (see section~\ref{freesurface:Weber}) is
+sufficiently small, capillary effects may be omitted and water surface waves are
+governed by gravity.  For large Reynolds numbers, viscous effects
+may also be ignored (except in boundary layers close to the bottom or
 the surface of the fluid). The flow of an incompressible homogeneous
 fluid under these assumptions
 is governed by the Euler equations of motion on the form
@@ -9301,7 +9453,7 @@ bottom, $z=-h(x,y)$, there is the no-flux condition
 \]
 In addition to $\rho$ and  $g$ we assume that a typical depth $h_c$,
 a typical wavelength $\lambda_c$, and a typical surface elevation $A$, which
-then per definition is a scale for $\eta$, are
+then by definition is a scale for $\eta$, are
 the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
 
 \subsection{Scaling}
@@ -9309,9 +9461,9 @@ the given parameters. From these we must derive scales for the coordinates, the 
 First, it is instructive to define a typical wave celerity, $c_c$, which
 must be linked to the length and time scale according to $c_c=\lambda_c/t_c$.
 Since there is no other given parameter that matches the mass dimension of
-$\rho$ we express $c_c$ in terms of $A$, $\lambda_c$, $h_c$, and $g$.
+$\rho$, we express $c_c$ in terms of $A$, $\lambda_c$, $h_c$, and $g$.
 Most of the work on waves in any discipline of physics is devoted to linear
-or weakly nonlinear waves and the wave celerity must be presumed to remain
+or weakly nonlinear waves, and the wave celerity must be presumed to remain
 finite as $A$ goes to zero (see, for instance, Section~\ref{scale:gas:acoustic}).
 Hence, we may assume  that $c_c$ must depend on $g$ and either $h_c$ or $\lambda_c$. Next, the two horizontal directions are equivalent with regard to
 scaling, implying that
@@ -9365,7 +9517,7 @@ which is the wave steepness. The equality of the horizontal and the vertical
 scale is consistent with the common knowledge that the particle orbits in
 deep water surface waves are circular.
 
-The scaled equation are now expressed with $\epsilon$ as sole dimensionless
+The scaled equations are now expressed with $\epsilon$ as sole dimensionless
 number
 
 \begin{align}
@@ -9392,9 +9544,9 @@ as $\bar z \rightarrow -\infty$.
 
 \subsection{Long waves in shallow water}
 
-In this case the basic assumption is that the wavelength is large
+Long waves imply that the wavelength is large
 compared to the depth: $\lambda_c\gg h_c$. In analogy with the reasoning
-above, we the presume that the speed of the waves remains finite as
+above, we presume that the speed of the waves remains finite as
 $\lambda_c\rightarrow \infty$.  Then, $c_c$ must be based on $g$ and
 $h_c$, which leads to $c_c=\sqrt{gh_c}$ and
 $t_c=\lambda_c/\sqrt{gh_c}$. The natural choice for the vertical
@@ -9411,13 +9563,13 @@ We observe that $W\ll U$ for shallow water and that particle orbits must be elon
 
 The equation set is now most transparently written by introducing the
 horizontal velocity $\bar\u_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
-and the corresponding vertical component of the gradient operator, $\bar\nabla_h$:
+and the corresponding horizontal components of the gradient operator, $\bar\nabla_h$:
 
 \begin{align}
 \bar \nabla\cdot\bar\u_h +\frac{\partial \bar w}{\partial \bar z}&=0,
 \label{scale:surfacewaves:contskalert}\\ 
-\frac{\partial\bar\u}{\partial \bar t} + \alpha\bar \u\cdot\bar\nabla_h\bar\u_h+\alpha \bar w \frac{\partial \bar \u_h}{\partial \bar z} + \bar\nabla_h \bar p_d&=0,\\ 
-\mu^2\left(\frac{\partial\bar\w}{\partial \bar t} + \alpha\bar \u\cdot\bar\nabla_h\bar\w+\alpha \bar w \frac{\partial \bar w}{\partial \bar z}\right) + \frac{\partial \bar p_d}{\partial \bar z}&=0.\tp
+\frac{\partial\bar\u_h}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\u_h+\alpha \bar w \frac{\partial \bar \u_h}{\partial \bar z} + \bar\nabla_h \bar p_d&=0,\\ 
+\mu^2\left(\frac{\partial\bar\w}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\w+\alpha \bar w \frac{\partial \bar w}{\partial \bar z}\right) + \frac{\partial \bar p_d}{\partial \bar z}&=0.\tp
 \label{scale:surfacewave:uh}
 \end{align}
 Surface conditions, at $z=\alpha \eta$, now become
@@ -9434,7 +9586,7 @@ while the bottom condition is invariant with respect to the present scaling
 \label{scale:surfacewave:kinbott3}
 \bar\nabla_h\cdot\u_h =-\bar w\tp
 \end{equation}
-An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which imply that the pressure
+An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which implies that the pressure
 is hydrostatic. The above set of equations is a common  starting point for
 perturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water,
 KdV, and Boussinesq type equations.

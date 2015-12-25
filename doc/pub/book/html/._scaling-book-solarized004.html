@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -107,7 +107,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -136,11 +136,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -153,7 +153,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -320,7 +320,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -330,7 +330,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -530,10 +530,7 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -557,7 +554,7 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -660,43 +657,46 @@ where \( m \) is the mass of the system, \( b \) is some damping coefficient,
 system.  This is an equation expressing the balance of three physical
 effects: \( mu'' \) (mass times acceleration), \( bu' \) (damping force), and
 \( ku \) (spring force).  The different physical quantities, such as \( m \),
-\( u(t) \), \( b \), and \( k \), have all different <em>dimensions</em>, measured in
+\( u(t) \), \( b \), and \( k \), all have different <em>dimensions</em>, measured in
 different <em>units</em>, but \( mu'' \), \( bu' \), and \( ku \) must all have the same
-dimension, otherwise it would not make sense to add them (you will get
-the same problem as when trying to add one banana, one apple, and one
-orange).
+dimension, otherwise it would not make sense to add them.
 
 <h1 id="___sec2">Fundamental concepts </h1>
 
 <h2 id="___sec3">Base units and dimensions </h2>
 
 <p>
-There are seven fundamental (SI) <em>base units</em> and corresponding
+<em>Base units</em> have the important property that all other units derive
+from them. In the SI system,
+there are seven such base units and corresponding
 physical quantities:
 meter (m) for length,
 kilogram (kg) for mass,
 second (s) for time,
 kelvin (K) for temperature,
 ampere (A) for electric current,
-candela (cd) for luminous intensity,
+candela (cd) for luminous intensity, and
 mole (mol) for the amount of substance.
 
 <p>
-The dimension of length is written as [L], the dimension of mass is
-[M], the dimension of time is [T], and the dimension of temperature is
-\( [\Theta] \) (the dimensions of the other base units are omitted in
-this introduction). The dimension of a <em>derived unit</em> like velocity, which is
-distance (length) divided by time, then becomes \( [\hbox{LT}^{-1}] \).
-The dimension of force, another derived unit, is the same as the
-dimension of mass times acceleration, and hence the dimension of force is
-\( [\hbox{MLT}^{-2}] \).
+We need some suitable mathematical notation to calculate with
+dimensions like length, mass, time, and so forth.  The dimension of
+length is written as [L], the dimension of mass as [M], the dimension
+of time as [T], and the dimension of temperature as \( [\Theta] \) (the
+dimensions of the other base units are simply omitted as we do not make
+much use of them in this text).
+The dimension of a <em>derived unit</em> like velocity, which
+is distance (length) divided by time, then becomes \( [\hbox{LT}^{-1}] \)
+in this notation.  The dimension of force, another derived unit, is
+the same as the dimension of mass times acceleration, and hence the
+dimension of force is \( [\hbox{MLT}^{-2}] \).
 
 <p>
 Let us find the dimensions of the terms in <a href="#mjx-eqn-1">(1)</a>.
 A displacement \( u(t) \) has dimension [L]. The derivative \( u'(t) \) is
 change of displacement, which has dimension [L], divided by a time
 interval, which has dimension [T], implying that the dimension of \( u' \)
-is \( \hbox{LT}^{-1} \). This results coincides with the interpretation of
+is \( [\hbox{LT}^{-1}] \). This result coincides with the interpretation of
 \( u' \) as velocity and the fact that velocity is defined as distance
 ([L]) per time ([T]).
 
@@ -706,12 +706,12 @@ displacement, we realize that the term \( mu'' \) (mass times
 acceleration) has dimension \( [\hbox{MLT}^{-2}] \).  The term \( bu' \) must
 have the same dimension, and since \( u' \) has dimension
 \( [\hbox{LT}^{-1}] \), \( b \) must have dimension \( [\hbox{MT}^{-1}] \).
-Finally, \( ku \) must also have dimension \( [\hbox{MLT}^{-1}] \), implying
+Finally, \( ku \) must also have dimension \( [\hbox{MLT}^{-2}] \), implying
 that \( k \) is a parameter with dimension \( [\hbox{MT}^{-2}] \).
 
 <p>
 The unit of a physical quantity follows from the dimension expression.
-For example, since velocity has dimension \( \hbox{LT}^{-1} \) and length
+For example, since velocity has dimension \( [\hbox{LT}^{-1}] \) and length
 is measured in m while time is measured in s, the unit for velocity
 becomes m/s. Similarly, force has dimension \( [\hbox{MLT}^{-2}] \) and
 unit \( \hbox{kg\, m/s}^2 \). The \( k \) parameter in
@@ -739,16 +739,18 @@ of \( u \) divided by the dimension of \( t \).
 <h2 id="scale:dimunit:tables">Dimensions of common physical quantities</h2>
 
 <p>
-Many derived quantities are measured in derived units. Force is one
-example: Newton (N) is a derived unit for force, equal to \( \hbox{kg\,
-m/s}^2 \). Another derived unit is Pascal (Pa) for pressure and stress,
-i.e., force per area. The unit of Pa then equals \( \hbox{N/m}^2 \) or
-\( \hbox{kg/ms}^2 \). Below are more derived quantities and their units.
+Many derived quantities are measured in derived units that have their
+own name. Force is one example: Newton (N) is a derived unit for
+force, equal to \( \hbox{kg\, m/s}^2 \). Another derived unit is Pascal
+(Pa) for pressure and stress, i.e., force per area. The unit of Pa
+then equals \( \hbox{N/m}^2 \) or \( \hbox{kg/ms}^2 \). Below are more names
+for derived
+quantities, listed with their units.
 
 <p>
 <table border="1">
 <thead>
-<tr><th align="center"> Name </th> <th align="center">Symbol</th> <th align="center">Physical quantity </th> <th align="center">          unit         </th> </tr>
+<tr><th align="center"> Name </th> <th align="center">Symbol</th> <th align="center">Physical quantity </th> <th align="center">          Unit         </th> </tr>
 </thead>
 <tbody>
 <tr><td align="left">   radian    </td> <td align="left">   rad       </td> <td align="left">   angle                 </td> <td align="left">   1                          </td> </tr>
@@ -765,16 +767,16 @@ Some common physical quantities and their dimensions are listed next.
 <p>
 <table border="1">
 <thead>
-<tr><th align="center">                  Quantity                  </th> <th align="center">                    relation                    </th> <th align="center">               unit               </th> <th align="center">                 dimension                 </th> </tr>
+<tr><th align="center">                  Quantity                  </th> <th align="center">                    Relation                    </th> <th align="center">               Unit               </th> <th align="center">                 Dimension                 </th> </tr>
 </thead>
 <tbody>
 <tr><td align="left">   stress                                          </td> <td align="left">   force/area                                          </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( [\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)     </td> </tr>
 <tr><td align="left">   pressure                                        </td> <td align="left">   force/area                                          </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
 <tr><td align="left">   density                                         </td> <td align="left">   mass/volume                                         </td> <td align="left">   \( \hbox{kg/m}^3 \)                   </td> <td align="left">   \( [\hbox{ML}^{-3}] \)                         </td> </tr>
 <tr><td align="left">   strain                                          </td> <td align="left">   displacement/length                                 </td> <td align="left">   1                                     </td> <td align="left">   \( [1] \)                                      </td> </tr>
-<tr><td align="left">   Young's modulus                                 </td> <td align="left">   stress/strain                                       </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
+<tr><td align="left">   Young's modulus                                 </td> <td align="left">   stress/strain                                       </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( [\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)     </td> </tr>
 <tr><td align="left">   Poisson's ratio                                 </td> <td align="left">   transverse strain/axial strain                      </td> <td align="left">   1                                     </td> <td align="left">   \( [1] \)                                      </td> </tr>
-<tr><td align="left">   Lame' parameters \( \lambda \) and \( \mu \)    </td> <td align="left">   stress/strain                                       </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( \hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)      </td> </tr>
+<tr><td align="left">   Lame' parameters \( \lambda \) and \( \mu \)    </td> <td align="left">   stress/strain                                       </td> <td align="left">   \( \hbox{N/m}^2 = \hbox{Pa} \)        </td> <td align="left">   \( [\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}] \)     </td> </tr>
 <tr><td align="left">   moment (of a force)                             </td> <td align="left">   distance \( \times \) force                         </td> <td align="left">   Nm                                    </td> <td align="left">   \( [\hbox{ML}^2\hbox{T}^{-2}] \)               </td> </tr>
 <tr><td align="left">   impulse                                         </td> <td align="left">   force \( \times \) time                             </td> <td align="left">   \( \hbox{Ns} \)                       </td> <td align="left">   \( [\hbox{MLT}^{-1}] \)                        </td> </tr>
 <tr><td align="left">   linear momentum                                 </td> <td align="left">   mass \( \times \) velocity                          </td> <td align="left">   \( \hbox{kg m/s} \)                   </td> <td align="left">   \( [\hbox{ML}\hbox{T}^{-1}] \)                 </td> </tr>
@@ -789,8 +791,8 @@ Some common physical quantities and their dimensions are listed next.
 <tr><td align="left">   specific heat capacity                          </td> <td align="left">   heat capacity/unit mass                             </td> <td align="left">   \( \hbox{JK}^{-1}\hbox{kg}^{-1} \)    </td> <td align="left">   \( [\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}] \)     </td> </tr>
 <tr><td align="left">   thermal conductivity                            </td> <td align="left">   heat flux/temperature gradient                      </td> <td align="left">   \( \hbox{Wm}^{-1}\hbox{K}^{-1} \)     </td> <td align="left">   \( [\hbox{MLT}^{-3}\Theta^{-1}] \)             </td> </tr>
 <tr><td align="left">   dynamic viscosity                               </td> <td align="left">   shear stress/velocity gradient                      </td> <td align="left">   \( \hbox{kgm}^{-1}\hbox{s}^{-1} \)    </td> <td align="left">   \( [\hbox{ML}^{-1}T^{-1}] \)                   </td> </tr>
-<tr><td align="left">   kinematic viscosity                             </td> <td align="left">   dynamic viscosity/density                           </td> <td align="left">   \( [\hbox{m}^2/\hbox{s} \)            </td> <td align="left">   \( \hbox{L}^2\hbox{T}^{-1}] \)                 </td> </tr>
-<tr><td align="left">   surface tension                                 </td> <td align="left">   energy/area                                         </td> <td align="left">   \( [\hbox{J/m}^2 \)                   </td> <td align="left">   \( \hbox{MT}^{-2}] \)                          </td> </tr>
+<tr><td align="left">   kinematic viscosity                             </td> <td align="left">   dynamic viscosity/density                           </td> <td align="left">   \( \hbox{m}^2/\hbox{s} \)             </td> <td align="left">   \( [\hbox{L}^2\hbox{T}^{-1}] \)                </td> </tr>
+<tr><td align="left">   surface tension                                 </td> <td align="left">   energy/area                                         </td> <td align="left">   \( \hbox{J/m}^2 \)                    </td> <td align="left">   \( [\hbox{MT}^{-2}] \)                         </td> </tr>
 </tbody>
 </table>
 
@@ -798,27 +800,27 @@ Some common physical quantities and their dimensions are listed next.
 
 <p>
 Units often have <a href="https://en.wikipedia.org/wiki/Metric_prefix" target="_self">prefixes</a>.
-For example, kilo is a prefix for 1000,
+For example, kilo (k) is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or \( 10^9 \) Pa.
 
 <h2 id="scale:dimunit:Pi">The Buckingham Pi theorem</h2>
 
 <p>
-Almost all texts on scaling has a treatment of the famous Buckingham Pi
-theorem, which can be used to derive physical laws based on
-unit compatibility rather than the underlying physical mechanisms.
-This booklet has its focus on models where the physical mechanisms are
+Almost all texts on scaling has a treatment of the famous Buckingham
+Pi theorem, which can be used to derive physical laws based on unit
+compatibility rather than the underlying physical mechanisms.  This
+booklet has its focus on models where the physical mechanisms are
 already expressed through differential equations. Nevertheless, the Pi
-theorem has a remarkable position in the literature on scaling, and we
-will occasionally make references to it so the theorem is briefly
-discussed below.
+theorem has a remarkable position in the literature on scaling, and
+since we will occasionally make references to it, the theorem is
+briefly discussed below.
 
 <p>
 The theorem itself is simply stated in two parts. First, if a problem
 involves \( n \) physical parameters in which \( m \) independent unit-types
 (such as length, mass etc.) appear, then the parameters can be
 combined to exactly \( n-m \) independent dimensionless numbers, referred
-to as Pi's. Secondly, any unit-free relation between the original \( n \)
+to as Pi's. Second, any unit-free relation between the original \( n \)
 parameters can be transformed into a relation between the \( n-m \)
 dimensionless numbers.  Such relations may be identities or
 inequalities stating, for instance, whether or not a given effect is
@@ -840,21 +842,23 @@ trivial. However, it may produce remarkable progress for selected
 problems, such as turbulent jets, nuclear blasts, or similarity
 solutions, without the detailed knowledge of mathematical or physical
 models. Hence, to a novice in scaling it may stand out as something
-very profound, if not magical.  Anyhow, as one move on to more complex
-problems with many parameters the use of the theorem yields
-comparatively less gain as the number of Pi's become large and they
-may recombined in countless ways. It then requires either a good
-physical insight or information conveyed through an equation set to
+very profound, if not magical.  Anyhow, as one moves on to more complex
+problems with many parameters, the use of the theorem yields
+comparatively less gain as the number of Pi's becomes large.
+Many Pi's may also be
+recombined in many ways. Thus, good
+physical insight, and/or information conveyed through an equation set,
+is required to
 pick the useful dimensionless numbers or the appropriate scaling of
-the said equation set.  Sometimes the scrutiny of the equations also
-reveals that some of Pi's, obtained by applying the theorem, in fact
-may be removed from the problem.  As a consequence, in mathematical
-modeling of a complex physical problem the real assessment of scaling
-and dimensionless numbers will anyhow be an integral part of the
-analysis of the governing equations instead of a separate issue left
-with the Pi theorem. In textbooks and articles alike the discussion of
+the said equation set.  Sometimes scrutiny of the equations also
+reveals that some Pi's, obtained by applying the theorem, in fact
+may be removed from the problem.  As a consequence, when
+modeling a complex physical problem, the real assessment of scaling
+and dimensionless numbers will anyhow be included in the
+analysis of the governing equations instead of being a separate issue left
+with the Pi theorem. In textbooks and articles alike, the discussion of
 scaling in the context of the equations are too often missing or
-presented in an half-hearted fashion. Hence, herein the focus will be
+presented in a half-hearted fashion. Hence, the authors' focus will be
 on this process, while we do not provide much in the way of examples
 on the Pi theorem.  We do not allude that the Pi theorem is of little
 value.  In a number of contexts, such as in experiments, it may
@@ -862,8 +866,8 @@ provide valuable and even crucial guidance, but in this particular
 textbook we seek to tell the complementary story on scaling.
 Moreover, as will be shown in this booklet, the dimensionless numbers in
 a problem also arise, in a very natural way, from scaling the
-differential equation(s).  Provided one has a model based on
-differential equation, there is actually no need for classical
+differential equations.  Provided one has a model based on
+differential equations, there is actually no need for classical
 dimensional analysis.
 
 <h2 id="___sec7">Absolute errors, relative errors, and units </h2>
@@ -877,10 +881,10 @@ the length scale is typically measured in km and we have an approximation
 Switching units to mm leads to an error of 20,000 mm. A program working
 in mm would report \( 2\cdot 10^5 \) as the error, while a program working
 in km would print 0.02. The absolute error is therefore sensitive to
-the choice of units. This fact motivates for the use of the <em>relative
-error</em>: (exact - approximate)/exact since then the unit cancels.
+the choice of units. This fact motivates the use of <em>relative
+error</em>: (exact - approximate)/exact, since units then cancel.
 In the present example, one gets a relative error of \( 1.6\cdot 10^{-3} \)
-regardless of the whether the length is measured in km or mm.
+regardless of whether the length is measured in km or mm.
 
 <p>
 Nevertheless, rather than relying solely on relative errors, it is in general
@@ -893,7 +897,7 @@ can be done.
 
 <p>
 Traditional numerical computing involves numbers only and therefore
-require dimensionless mathematical expressions. Usually, an implicit
+requires dimensionless mathematical expressions. Usually, an implicit
 trivial scaling is used. One can, for example, just scale all length
 quantities by 1 m, all time quantities by 1 s, and all mass quantities
 by 1 kg, to obtain the dimensionless numbers needed for calculations.
@@ -912,26 +916,25 @@ Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per teaspoon (see <a href="._scaling-book-solarized006.html#sec:scale:exer:US2SI1">Exercise 1: Perform unit conversion</a> for how to safely convert to a standard
 unit like \( \hbox{kg\,m}^{-3} \)).  Although unit conversion tables are
-frequently met in school, errors in unit conversions between units
-probably rank highest among all errors committed by scientists and
-engineers (and when a unit conversion error make an <a href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html" target="_self">airplane's fuel
-run out</a>,
+frequently met in school, errors in unit conversion probably rank
+highest among all errors committed by scientists and engineers (and
+when a unit conversion error makes an <a href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html" target="_self">airplane's fuel run out</a>,
 it is serious!).  Having good software tools to assist in unit
-conversion is therefore paramount, and this topic is treated in
-the sections <a href="#scale:PQ">PhysicalQuantity: a tool for computing with units</a> and <a href="#scale:parampool">Parampool: user interfaces with automatic unit conversion</a>.  Readers who are
-primarily interested in the mathematical scaling technique may safely
-jump over this material and continue with the section <a href="._scaling-book-solarized005.html#sec:scale:decay">Exponential decay problems</a>.
+conversion is therefore paramount, motivating the treatment of this
+topic in the sections <a href="#scale:PQ">PhysicalQuantity: a tool for computing with units</a> and <a href="#scale:parampool">Parampool: user interfaces with automatic unit conversion</a>.  Readers who
+are primarily interested in the mathematical scaling technique may
+safely skip this material and jump right to the section <a href="._scaling-book-solarized005.html#sec:scale:decay">Exponential decay problems</a>.
 
 <h2 id="___sec10">Example on challenges arising from unit systems </h2>
 
 <p>
 A slightly elaborated example on scaling in an actual
-science/engineering project may hopefully be useful for further
+science/engineering project may stimulate the reader's
 motivation.  In its full extent, the study of <em>tsunamis</em> spans
 geophysics, geology, history, fluid dynamics, statistics, geodesy,
 engineering, and civil protection. This complexity reflects in a
 diversity of practices concerning the use of units, scales, and
-concepts. If we narrow the scope to the modeling of tsunami
+concepts. If we narrow the scope to modeling of tsunami
 propagation, the scaling aspect, at least, may seem simple as we are
 mainly concerned with length and time.  Still, even here the
 non-uniformity concerning physical units is an encumbrance.
@@ -940,18 +943,18 @@ non-uniformity concerning physical units is an encumbrance.
 A minor issue is the occasional use of non-SI units such as inches, or
 in old charts, even fathoms.  More important is the non-uniformity in
 the magnitude of the different variables, and the differences in the
-inherent horizontal and vertical scales in particular.  Typically
-surface elevations are meters or smaller. For far-field deep water
-propagation as well as small tsunamis, which are still of scientific
-interest, surface elevations are often given in \( \hbox{cm} \) or even
-\( \hbox{mm} \).  In the deep ocean the characteristic depth is orders of
+inherent horizontal and vertical scales in particular.  Typically,
+surface elevations are in meters or smaller. For far-field deep water
+propagation, as well as small tsunamis (which are still of scientific
+interest) surface elevations are often given in cm or even
+mm.  In the deep ocean, the characteristic depth is orders of
 magnitude larger than this, typically \( 5000\,\hbox{m} \). Propagation
 distances, on the other hand, are hundreds or thousands of
 kilometers. Often locations and computational grids are best described
 in geographical coordinates (longitude/latitude) which are related to
 SI units by 1 latitude minute being roughly one nautical mile
 (\( 1852\,\hbox{m} \)), and 1 longitude minute being this quantity times
-the cosine of the latitude. Wave periods of tsunamis are mostly from
+the cosine of the latitude. Wave periods of tsunamis mostly range from
 minutes to an hour, hopefully sufficiently short to be well separated
 from the half-daily period of the tides. Propagation times are
 typically hours or maybe the better part of a day when the Pacific
@@ -969,7 +972,8 @@ unnecessary duplication, with different units or scaling, should be
 avoided.  In addition, tsunami models are often bench-marked through
 comparison with experimental data. The lab scale is generally
 \( \hbox{cm} \) or \( \hbox{m} \), at most, which implies that measured data
-are provided in different units than real events, or even in volts,
+are provided in different units (than used in real earth-scale events),
+or even in volts,
 with conversion information, as obtained from the measuring gauges.
 
 <p>
@@ -978,8 +982,8 @@ and give rise to a number of misconceptions and errors that may cause
 loss of precious time or efforts. To reduce such problems, developers
 of computational tools should combine a reasonable flexibility
 concerning units in input and output with a clear and consistent
-convention for scaling within the tools. In fact, this is also goes
-for academic tools for in-house use.
+convention for scaling within the tools. In fact, this also applies to
+academic tools for in-house use.
 
 <p>
 The discussion above points to some best practices that these notes
@@ -1008,10 +1012,10 @@ examples on f2py and Cython wrapping of C and Fortran code).
 <h2 id="scale:PQ">PhysicalQuantity: a tool for computing with units</h2>
 
 <p>
-These notes contains quite some computer code to illustrate how the theory
+These notes contain quite some computer code to illustrate how the theory
 maps in detail to running software. Python is the programming language
 used, primarily because it is an easy-to-read, powerful,
-full-fledged language that can be made very close to popular MATLAB-like code
+full-fledged language that allows MATLAB-like code
 as well as class-based code typically used in Java, C#, and C++.
 The Python ecosystem for scientific computing has in recent years grown
 fast in popularity and acts as a replacement for more specialized tools
@@ -1046,7 +1050,7 @@ between version 2 and 3.
 
 <p>
 Computations with units in Python are well supported by the
-<code>PhysicalQuantity</code> object from the <a href="https://bitbucket.org/khinsen/scientificpython" target="_self">ScientificPython package</a> by Konrad
+very useful tool <code>PhysicalQuantity</code> from the <a href="https://bitbucket.org/khinsen/scientificpython" target="_self">ScientificPython package</a> by Konrad
 Hinsen. Unfortunately, ScientificPython does not, at the time of this
 writing, work with NumPy version 1.9 or later, so we have isolated the
 <code>PhysicalQuantity</code> object in a module <a href="https://github.com/hplgit/physical-quantities" target="_self"><tt>PhysicalQuantities</tt></a> and made it publicly
@@ -1065,7 +1069,7 @@ PhysicalQuantities</code>, or
 <pre><code>Terminal&gt; pydoc Scientific.Physics.PhysicalQuantities
 </code></pre>
 <!-- end verbatim block -->
-if you have entire ScientificPython package installed. The
+if you have the entire ScientificPython package installed. The
 resulting documentation shows the names of
 the units. In particular,
 yards are specified by <code>yd</code>, minutes by <code>min</code>, and hours
@@ -1161,8 +1165,8 @@ are described next.
 <p>
 As case, we want to make software for computing with the simple
 formula \( s=v_0t + \frac{1}{2}at^2 \). We want \( v_0 \) to be a velocity
-with unit m/s, \( a \) to acceleration with unit \( \hbox{m/s}^2 \), \( t \) to be
-time measured in s, and consequently \( s \) is a distance measured in m.
+with unit m/s, \( a \) to be acceleration with unit \( \hbox{m/s}^2 \), \( t \) to be
+time measured in s, and consequently \( s \) will be a distance measured in m.
 
 <h2 id="___sec14">Pool of parameters </h2>
 
@@ -1170,7 +1174,8 @@ time measured in s, and consequently \( s \) is a distance measured in m.
 First, Parampool requires us to define a <em>pool</em> of all input
 parameters, which is here simply represented by list of dictionaries, where each
 dictionary holds information about one parameter. It is possible to
-organize input parameters in a tree structure with subpools having
+organize input parameters in a tree structure with subpools that
+themselves may have
 subpools,
 but for our simple application we just need a flat structure with
 three input parameters:
@@ -1201,12 +1206,12 @@ are also allowed, see the <a href="http://hplgit.github.io/parampool/doc/web/ind
 <div class="alert alert-block alert-notice alert-text-normal">
 <b>Tip: specify default values of numbers as float objects.</b>
 <p>
-Note that we write 1.0 as default value and not just 1.
-In the latter case, Parampool will interpret that our parameter is
-an integer and actually convert input like <code>2.5 m/s</code> to <code>2 m/s</code>.
+Note that we do not just write 1, but 1.0 as default.
+Had 1 been used, Parampool would have interpreted our parameter as
+an integer and would therefore convert input like <code>2.5 m/s</code> to <code>2 m/s</code>.
 To ensure that a real-valued parameter becomes a <code>float</code> object inside
-the pool, specify the default value as a real number: <code>1.</code> or <code>1.0</code>.
-(The type of an input parameter can alternatively be explicitly set by
+the pool, we must specify the default value as a real number: <code>1.</code> or <code>1.0</code>.
+(The type of an input parameter can alternatively be set <em>explicitly</em> by
 the <code>str2type</code> property, e.g., <code>str2type=float</code>.)
 </div>
 
@@ -1267,7 +1272,7 @@ Notice from the answer (<code>s</code>) that 10 km/h gets converted to m/s and 1
 
 <p>
 It is also possible to fetch parameter values as <code>PhysicalQuantity</code>
-objects from the pool through calling
+objects from the pool by calling
 
 <p>
 <!-- begin verbatim block  pycod-->
@@ -1280,7 +1285,6 @@ values and units:
 <p>
 <!-- begin verbatim block  pycod-->
 <pre><code>def distance_unit(pool):
-    &quot;&quot;&quot;Compute distance $s = v_0t + \frac{1}{2}at^2$. (DocOnce)&quot;&quot;&quot;
     # Compute with units
     from parampool.PhysicalQuantities import PhysicalQuantity as PQ
     v_0 = pool.get_value_unit('initial velocity')
@@ -1486,9 +1490,9 @@ see <a href="._scaling-book-solarized011.html#parampool">[5]</a> or <a href="._s
 </center>
 
 <p>
-With examples shown above, you should be able to utilize the
-<code>PhysicalQuantity</code> object and the Parampool package in your programs
-to work safely with units. For the coming text, where we discuss the
+With examples shown above, the reader should be able to make use of the
+<code>PhysicalQuantity</code> object and the Parampool package in programs
+and thereby work safely with units. For the coming text, where we discuss the
 craft of scaling in detail, we shall just work in standard SI units
 and avoid unit conversion so there will be no more use of
 <code>PhysicalQuantity</code> and Parampool.

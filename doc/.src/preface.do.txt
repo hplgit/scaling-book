@@ -38,7 +38,7 @@ the input data and makes the simulations results more widely
 applicable.  The number of parameters in scaled models may be much
 less than the number of physical parameters in the original model. The
 parameters in scaled models are also dimensionless and express
-*ratios* of physical effects rather than the levels of individual
+*ratios* of physical effects rather than levels of individual
 effects.  Setting meaningful values of a few dimensionless numbers is
 much easier than determining physically relevant values for the
 original physical parameters.
@@ -74,18 +74,21 @@ mathematical mistake in industry and science?).  Section
 ref{sec:scale:decay} introduces the mathematics of scaling and the
 thinking about scales in a simple ODE problem modeling exponential
 decay. The ideas are generalized to nonlinear ODEs and to systems of
-ODEs.  Another ODE example on mechanical vibrations is treated in
+ODEs.  Another ODE example, on mechanical vibrations, is treated in
 Section ref{sec:scale:vib}, where we cover many different physical
 contexts and different choices of scales.  Scaling the standard,
 linear wave equation is the topic of Chapter ref{sec:scale:wave}, with
 discussion of how boundary and initial conditions influence the choice
 of scales.  Another PDE example, the diffusion equation, appears in
 Chapter ref{sec:scale:diffu}. Here we progress from a simple linear
-diffusion equation in 1D to the impact on scales of an oscillating
-boundary condition. Nonlinear diffusion models as well as
-convection-diffusion PDEs are also discussed.  The final Chapter is
+diffusion equation in 1D to a study of how scales are influenced by
+an oscillatory boundary condition. Nonlinear diffusion models, as well as
+convection-diffusion PDEs, are elaborated on.  The final Chapter is
 devoted to many famous PDEs arising from continuum models: elasticity,
 viscous fluid flow, thermal convection, etc.
+
+The mathematics is translated into complete computer codes for the
+ODE and simpler PDE problems.
 
 Experimental fluid mechanics is a field full of relations involving
 dimensionless numbers such as the Grashof and Prandtl
@@ -102,6 +105,12 @@ phenomena, diffusion, and combined convection-diffusion. The final
 chapter is meant for readers with knowledge of the physics and
 mathematics of continuum mechanical models. The mathematical level of
 the text rises quickly after the first two chapters.
+
+In the first two chapters, much of the mathematics is accompanied
+by complete (yet short) computer codes. The programming level requires
+familiarity with procedural programming in Python. As the mathematical
+level rises, the computer codes get much more comprehensive, and we refer
+to some files for computational examples in chapter three.
 
 The pedagogy is to saturate the reader with lots of detailed examples to
 provide an understanding for the topic, primarily because the choice
@@ -120,18 +129,18 @@ formulas in the text.
 !bwarning What this booklet is and is not
 Books containing material on
 scaling and non-dimensionalization very often cover
-topics not treated in the present notes. One key topic is
+topics not treated in the present notes, e.g., the key topic of
 dimensional analysis and the famous Buckingham Pi Theorem
 cite{Douglas_et_al_1979,Logan_1987}, which we discuss only briefly in
-section ref{scale:dimunit:Pi}.
-
-Other classical topics closely related to non-dimensionalization and
-scaling are analytical solution methods like perturbation techniques
-and similarity solutions. These are not addressed in these notes.
+section ref{scale:dimunit:Pi}. Similarly,
+analytical solution methods like perturbation techniques
+and similarity solutions, which represent classical methods
+closely related to scaling and non-dimensionalization, are not
+addressed herein.
 There are numerous texts on perturbation techniques, and these methods
 build on an already scaled differential equations. Similarity
 solutions do not fit within the present scope since these involve
-non-dimensional *combinations of the independent variables* to derive
+non-dimensional *combinations* of the unscaled independent variables to derive
 new differential equations that are easier to solve.
 
 Our scope is to scale differential
@@ -141,17 +150,22 @@ through interpretation of the dimensionless numbers that automatically
 arise from the scaling procedure.
 !ewarning
 
-We these notes we hope to demystify the thinking of determining scales
-and encourage numerical simulations to be performed with a dimensionless
-differential equation model.
+With these notes, we hope to demystify the thinking involved in scale
+determination and encourage numerical simulations to be performed with
+dimensionless differential equation models.
 
 __Acknowledgments.__
-The authors are thankful to Dr. Joakim Sundnes who greatly contributed to
-the writing of Section ref{scale:bidomain}. We appreciate
-Yapi Donatien Achou's proof reading.
+The authors are thankful to Dr. Joakim Sundnes who greatly contributed
+to the writing of Section ref{scale:bidomain}. Professor Svein Linge
+provided very detailed, constructive comments on the entire manuscript
+and helped improve the reading quality significantly.  We also thank
+Yapi Donatien Achou for his proof reading.  Significant portions of
+the present text were written when the first author was fed with
+FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr. Olav
+Dajani, and the rest of the OUS team. There would simply be no booklet
+without their efforts.
 
-[hpl: Thank proof readers, Springer, others, ...]
-
+[hpl: Springer...]
 
 # #if FORMAT in ("latex", "pdflatex")
 \vspace{1cm}

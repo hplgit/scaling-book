@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -80,7 +80,7 @@ code { color: inherit; background-color: transparent; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -109,11 +109,11 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -126,7 +126,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -293,7 +293,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -303,7 +303,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -503,10 +503,7 @@ code { color: inherit; background-color: transparent; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -530,7 +527,7 @@ code { color: inherit; background-color: transparent; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -639,7 +636,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generating a graphical user interface</a></li>
      <!-- navigation toc: --> <li><a href="#___sec20" style="font-size: 80%;"><b>Ordinary differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:decay" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exponential decay problems</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas of scaling</a></li>
      <!-- navigation toc: --> <li><a href="#___sec23" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The basic model problem</a></li>
      <!-- navigation toc: --> <li><a href="#___sec24" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Population dynamics</a></li>
      <!-- navigation toc: --> <li><a href="#___sec25" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Decay of pressure with altitude</a></li>
@@ -650,15 +647,15 @@ $$
      <!-- navigation toc: --> <li><a href="#___sec30" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Make each term dimensionless</a></li>
      <!-- navigation toc: --> <li><a href="#___sec31" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 5: Estimate the scales</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:decay:prog" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Making software for utilizing the scaled model</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original problem with dimensions</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avoiding unnecessary computations</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original unscaled problem</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the scaled problem</a></li>
      <!-- navigation toc: --> <li><a href="#___sec35" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation with joblib</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:decay:body" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a generalized problem</a></li>
      <!-- navigation toc: --> <li><a href="#___sec37" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="#___sec38" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Theory</a></li>
      <!-- navigation toc: --> <li><a href="#___sec39" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
      <!-- navigation toc: --> <li><a href="#sec:scale:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable coefficients</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant surroundings</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant temperature in the surroundings</a></li>
      <!-- navigation toc: --> <li><a href="#___sec42" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="#___sec43" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="#___sec44" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
@@ -729,11 +726,11 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: ODEs for a binary star</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Duffing's equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:rocket" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Vertical motion in a varying gravity field</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Schroedinger's equation</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: A simplified Schroedinger equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec114" style="font-size: 80%;"><b>Basic partial differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homogeneous Dirichlet conditions in 1D</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec117" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
@@ -816,7 +813,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bidomain model with an alternative \( I_{\rm{ion}} \)</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An alternative \( I_{\rm{ion}} \)</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec200" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
@@ -825,7 +822,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec206" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec207" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Surface gravity waves</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Water surface waves driven by gravity</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec210" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec211" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
@@ -865,7 +862,7 @@ Various extensions with damping and force terms are discussed in detail.
 
 <h1 id="sec:scale:decay">Exponential decay problems</h1>
 
-<h2 id="___sec22">Fundamental ideas </h2>
+<h2 id="___sec22">Fundamental ideas of scaling </h2>
 
 <p>
 Scaling is an extremely useful technique in mathematical modeling and
@@ -877,13 +874,14 @@ numerical simulation.  The purpose of the technique is three-fold:
 <li> Reduce the number of independent physical parameters in the model.</li>
 </ol>
 
-The first and second item mean that for any variable, denote it by
+The first two items mean that for any variable, denote it by
 \( q \), we introduce a corresponding dimensionless variable
 
 $$ \bar q = \frac{q-q_0}{q_c},$$
 
 where \( q_0 \) is a reference value of \( q \) (\( q_0=0 \) is a common choice) and
-\( q_c \) is a characteristic size of \( |q| \). Since the numerator and denominator
+\( q_c \) is a characteristic size of \( |q| \), often referred to as &quot;a scale&quot;.
+Since the numerator and denominator
 have the same dimension, \( \bar q \) becomes a dimensionless number.
 
 <p>
@@ -893,7 +891,8 @@ scaling. Examples will illustrate various approaches to meet this
 challenge.
 
 <p>
-The forthcoming text has the following goals.
+The many coming examples on scaling differential equations contain
+the following pedagogical ingredients to meet the desired learning outcomes.
 
 <ul>
  <li> Teach the technical steps of making a mathematical model, based
@@ -904,12 +903,8 @@ The forthcoming text has the following goals.
    from the scaling process.</li>
  <li> Provide a lot of different examples on making models dimensionless
    with physically correct scales.</li>
- <li> Demonstrate software tools for computing with numbers with units,
-   including doing unit conversions.</li>
- <li> Introduce software tools for creating user interfaces that
-   can automatically perform unit conversion.</li>
- <li> Use symbolic software (SymPy) to derive exact solutions of differential
-   equations.</li>
+ <li> Show how symbolic software (SymPy) can be used
+   to derive exact solutions of differential equations.</li>
  <li> Explain how to run a dimensionless model with software developed
    for the problem with dimensions.</li>
 </ul>
@@ -927,8 +922,9 @@ u'(t) = -au(t),\quad u(0)=I,
 \end{equation}
 $$
 
-where \( a,I>0 \) are prescribed constants and \( u(t) \) is the unknown function.
-For this particular model, we can easily derive the solution, \( u(t)=Ie^{-at} \),
+where \( a,I>0 \) are prescribed parameters, and \( u(t) \) is the unknown function.
+For the particular model with a constant \( a \), we can easily derive the exact
+solution, \( u(t)=Ie^{-at} \),
 which is helpful to have in mind during the scaling process.
 
 <h3 id="___sec24">Example: Population dynamics </h3>
@@ -946,22 +942,22 @@ time and per individual.
 
 <p>
 The simple model <a href="#mjx-eqn-2.1">(2.1)</a> also governs the pressure
-in the atmosphere (under many assumptions, such as an ideal gas in
+in the atmosphere (under many assumptions, such air is an ideal gas in
 equilibrium). In this case \( u \) is the
-pressure, measured in \( \hbox{Nm}^{-2} \); \( t \) is the hight in meters;
+pressure, measured in \( \hbox{Nm}^{-2} \); \( t \) is the height in meters;
 and \( a=M/(R^*T) \), where
 \( M \) is the molar mass of the Earth's air (0.029 kg/mol),
 \( R^* \) is the universal
 gas constant (\( 8.314\,\frac{\hbox{Nm}}{\hbox{mol K}} \)),
 and \( T \) is the temperature in Kelvin (K).
-The temperature depends on the hight so we have \( a=a(t) \).
+The temperature depends on the height so we have \( a=a(t) \).
 
 <h2 id="sec:scale:decay:steps">The technical steps of the scaling procedure</h2>
 
 <h3 id="___sec27">Step 1: Identify independent and dependent variables </h3>
 
 <p>
-There is one independent variable, time \( t \), and one dependent variable,
+There is one independent variable, \( t \), and one dependent variable,
 \( u \).
 
 <h3 id="___sec28">Step 2: Make independent and dependent variables dimensionless </h3>
@@ -996,7 +992,7 @@ members in the population, e.g., the initial population \( I \).
 The next task is to insert the new dimensionless variables in the
 governing mathematical model. That is, we replace \( t \) by \( t_c\bar t \)
 and \( u \) by \( u_c\bar u \) in <a href="#mjx-eqn-2.1">(2.1)</a>. The derivative
-with respect to \( \bar t \) is derived as
+with respect to \( \bar t \) is derived through the chain rule as
 
 $$ \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
 = u_c\frac{d\bar u}{d\bar t}\frac{1}{t_c} =
@@ -1034,7 +1030,8 @@ $$
 A characteristic quantity like \( t_c \) reflects the time scale in the
 problem. Estimating such a time scale is certainly
 the most challenging part of the scaling procedure. There are different
-ways to reason. The first is to aim at a size of \( \bar u \) and its derivatives
+ways to reason. The first approach
+is to aim at a size of \( \bar u \) and its derivatives
 that is of order unity. If \( u_c \) is chosen such that \( |\bar u| \) is
 of size unity, we see from <a href="#mjx-eqn-2.5">(2.5)</a> that
 \( d\bar u/d\bar t \) is of the size of \( \bar u \) (i.e., unity)
@@ -1042,16 +1039,22 @@ if we choose \( t_c = 1/a \).
 
 <p>
 Alternatively, we may look at a special case of the model where we have
-analytical insight. In the present problem we are lucky to know the
-exact solution for any value of the input data. For exponential
-decay, \( u(t)\sim e^{-at} \), it is common to define a characteristic time
-scale \( t_c \) as the time it takes to reduce \( u \) by a factor of \( 1/e \) (also
-called the <em>e-folding time</em>):
+analytical insight that can guide the choice of scales.
+In the present problem we are lucky to know the
+exact solution for any value of the input data as long as \( a \)
+is a constant. For exponential
+decay,
+\( u(t)\sim e^{-at} \), it is common to define a characteristic time
+scale \( t_c \) as the time it takes to reduce the initial value of
+\( u \) by a factor of \( 1/e \) (also called the <em>e-folding time</em>):
 
 $$ e^{-at_c} = \frac{1}{e}e^{-a\cdot 0}\quad\Rightarrow\quad e^{-at_c}=e^{-1},
 $$
 
 from which it follows that \( t_c = 1/a \).
+Note that using an exact solution of the problem to determine
+scales is not a requirement, just a useful help in the few cases where
+we actually have access to an exact solution.
 
 <p>
 In this example, two different, yet common ways of reasoning, lead to the
@@ -1065,21 +1068,28 @@ $$ e^{-at_c} = \frac{1}{2}e^{-a\cdot 0}
 
 There is a factor \( \ln 2 =0.69 \) difference from the other \( t_c \) value.
 As long as the factor is not an order of magnitude or more different,
-we do not pay attention to such small differences.
-Although \( t_c = a^{-1}\ln 2 \) is a fine time scale to be used in this
-problem, it leads to a scaled differential equation \( u'=-(\ln 2) u \),
+we do not pay attention factors like \( \ln 2 \) and skip them, simply to make
+formulas look nicer. Using
+\( t_c = a^{-1}\ln 2 \) as time scale
+leads to a scaled differential equation \( u'=-(\ln 2) u \),
 which is fine, but an unusual form. People tend to prefer the simpler
 ODE \( u'=-u \),
 which arises from \( t_c=1/a \), and we shall therefore use this
 time scale.
 
 <p>
-Regarding \( u_c \), we may look at the initial condition
-and realize that the choice \( u_c=I \) makes \( \bar u(0)=1 \). For \( \bar t>0 \)
-we know that \( \bar u \) is decreasing, so \( u_c=I \)
-gives us \( \bar u\leq 1 \), which is always a goal
-(alternatively, we may look to analytical insight, \( u(t)=Ie^{-at} \), to
-see that \( u\leq I \), such that \( u_c=I \) gives \( \bar u\leq 1 \)).
+Regarding \( u_c \), we may look at the initial condition and realize that
+the choice \( u_c=I \) makes \( \bar u(0)=1 \). For \( t>0 \), the differential
+equation expresses explicitly that \( u \) decreases, so \( u_c=I \) gives
+\( \bar u\in (0, 1] \). Scaling a variable \( q \) such that \( |\bar q|\in
+[0,1] \) is always the ultimate goal, and this goal is in fact obtained
+here! Next best result is to ensure that the magnitude of \( |q| \) is not
+&quot;big&quot; or &quot;small&quot;, in the sense that the size is neither as large as
+10 or 100, nor as small as
+0.1 or 0.01.  (In the
+present problem, where we are lucky to have an exact solution
+\( u(t)=Ie^{-at} \), we may look at this to explicitly see that \( u\in
+(0,I] \) such that \( u_c=I \) gives \( \bar u\in (0,1] \)).
 
 <p>
 With \( t_c=1/a \) and \( u_c=I \), we have the final dimensionless model
@@ -1131,36 +1141,35 @@ dimensionless quantities.
 <h2 id="sec:scale:decay:prog">Making software for utilizing the scaled model</h2>
 
 <p>
-Software for solving <a href="#mjx-eqn-2.1">(2.1)</a> could take advantage
-of the fact that only one simulation of <a href="#mjx-eqn-2.6">(2.6)</a>
-is necessary. As soon as we have \( \bar u(\bar t) \) accessible,
-a simple scaling <a href="#mjx-eqn-2.7">(2.7)</a> computes the real \( u(t) \)
-for any given input data \( a \) and \( I \). Although the numerical computation of
+Software for solving <a href="#mjx-eqn-2.1">(2.1)</a> could take advantage of
+the fact that only one simulation of <a href="#mjx-eqn-2.6">(2.6)</a>
+is necessary. As soon as we have \( \bar u(\bar t) \) accessible, a simple
+scaling <a href="#mjx-eqn-2.7">(2.7)</a> computes the real \( u(t) \) for any
+given input data \( a \) and \( I \). Although the numerical computation of
 \( u(t) \) from <a href="#mjx-eqn-2.1">(2.1)</a> is very fast in this simple model
-problem, using <a href="#mjx-eqn-2.7">(2.7)</a> is very much faster than
-computing a full numerical solution in more complicated
-differential equation problems.
+problem, using <a href="#mjx-eqn-2.7">(2.7)</a> is very much faster. In
+general, a simple rescaling of a scaled solution is extremely more
+computationally efficient than solving a differential equation
+problem.
 
 <p>
 We can compute with the dimensionless model <a href="#mjx-eqn-2.6">(2.6)</a>
-in two ways, either make a solver for <a href="#mjx-eqn-2.6">(2.6)</a>
-or reuse a solver for <a href="#mjx-eqn-2.1">(2.1)</a> with the parameters
-appropriately set (\( I=1 \), \( a=1 \)).
-The latter approach has the advantage of giving us
+in two ways, either make a solver for <a href="#mjx-eqn-2.6">(2.6)</a>,
+or reuse a solver for <a href="#mjx-eqn-2.1">(2.1)</a> with
+\( I=1 \) and \( a=1 \).
+We will choose the latter approach since it has the advantage of giving us
 software that works both with a dimensionless model and a model
-with dimensions and all the original physical parameters.
+with dimensions (and all the original physical parameters).
 
-<h3 id="___sec33">Software for the original problem with dimensions </h3>
+<h3 id="___sec33">Software for the original unscaled problem </h3>
 
 <p>
-We base our solver for
-<a href="#mjx-eqn-2.6">(2.6)</a> on a solver for <a href="#mjx-eqn-2.1">(2.1)</a>.
-Assume that we have some module <code>decay.py</code> that offers the following
-functions:
+Assume that we have some module <code>decay.py</code> that offers the following functions:
 
 <ul>
   <li> <code>solver(I, a, T, dt, theta=0.5)</code> for returning the solution arrays
-    <code>u</code> and <code>t</code> for <a href="#mjx-eqn-2.1">(2.1)</a> solved by the so-called
+    <code>u</code> and <code>t</code>, over a time interval \( [0,T] \),
+    for <a href="#mjx-eqn-2.1">(2.1)</a> solved by the so-called
     \( \theta \) rule. This rule includes the Forward Euler scheme (\( \theta=0 \)),
     the Backward Euler scheme (\( \theta=1 \)), or the Crank-Nicolson
     (centered midpoint) scheme (\( \theta=\half \)).</li>
@@ -1193,27 +1202,48 @@ Section refaux{softeng1:basic:module} in
 the book <a href="http://tinyurl.com/nclmcng/doc/pub/book" target="_self">Finite Difference Computing with Exponential Decay Models</a> <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_decay">[7]</a>.
 
 <p>
-To solve the dimensionless problem, just fix \( I=1 \) and \( a=1 \):
+To solve the dimensionless problem, just fix \( I=1 \) and \( a=1 \),
+and choose \( \bar T \) and \( \Delta\bar t \):
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">I, a, T, theta, dt_values <span style="color: #666666">=</span> read_command_line_argparse()
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">_, _, T, theta, dt_values <span style="color: #666666">=</span> read_command_line_argparse()
 u, t <span style="color: #666666">=</span> solver(I<span style="color: #666666">=1</span>, a<span style="color: #666666">=1</span>, T<span style="color: #666666">=</span>T, dt<span style="color: #666666">=</span>dt_values[<span style="color: #666666">0</span>], theta<span style="color: #666666">=</span>theta)
 </pre></div>
+<p>
+The first two variables returned from <code>read_command_line_argparse</code>
+are <code>I</code> and <code>a</code>, which are ignored here. To indicate that these
+variables are not to be used, we use a
+&quot;dummy name&quot;, often taken to be the underscore symbol in
+Python. The user can set <code>--I</code> and <code>--a</code> on the command line, since
+the <code>decay</code> module allows this, but we hope the code above has a form
+that reminds the user that these options are not to be used.
+Also note that <code>T</code> and <code>dt_values[0]</code> set on the command line are
+the desired parameters for solving the <em>scaled</em> problem.
 
-<h3 id="___sec34">Avoiding unnecessary computations </h3>
+<h3 id="___sec34">Software for the scaled problem </h3>
 
 <p>
-A key observation, as mentioned, is that we need to solve the problem
-<a href="#mjx-eqn-2.6">(2.6)</a> only once. All solutions
-corresponding to different \( I \) and \( a \) values in the original physical
-problem can be recovered by scaling this single solution with formula
-<a href="#mjx-eqn-2.7">(2.7)</a>.  We may therefore want to make software that
-takes advantage of this fact. When requesting a solution, we see if it
-has already been computed and stored in a file, and if so, the data
-can be retrieved from file, otherwise we have to compute a new
-solution and store it in a file.
+Turning now to the scaled problem, the solver function (originally
+designed for the unscaled problem) will be reused, but it will only
+be run if it is strictly necessary. That is, when the user requests
+a solution, our code should first check whether that solution can be provided
+by simply scaling a solution already computed and available in a file.
+If not, we will compute an appropriate scaled solution, find the
+requested unscaled solution for the user, and also save the new scaled
+solution to file for possible later use.
+
+<p>
+<!-- A key observation, as mentioned, is that we need to solve the problem -->
+<!-- <a href="#mjx-eqn-2.6">(2.6)</a> only once. All solutions -->
+<!-- corresponding to different \( I \) and \( a \) values in the original physical -->
+<!-- problem can be recovered by scaling this single solution with formula -->
+<!-- <a href="#mjx-eqn-2.7">(2.7)</a>.  We may therefore want to make software that -->
+<!-- takes advantage of this fact. When requesting a solution, we see if it -->
+<!-- has already been computed and stored in a file, and if so, the data -->
+<!-- can be retrieved from file, otherwise we have to compute a new -->
+<!-- solution and store it in a file. -->
 
 <p>
 A very plain solution to the problem is found in the file
@@ -1232,21 +1262,23 @@ function is called with a set of arguments, the statements in the
 function are executed and the return value is saved to file. If the
 function is called again with the same set of arguments, the
 statements in the function are not executed, but the return value is
-read from file. In computer science, one would say that <code>joblib</code> in
-this way provides <em>memorization</em> functionality for Python functions.
-This functionality is particularly aimed at large-scale computations
-with arrays that one would like to avoid being recomputed. We
-illustrate the technique here in a very simple mathematical context.
+read from file (of course, many files may be stored, one for each
+combination of parameter values).  In computer science, one would say
+that <code>joblib</code> in this way provides <em>memorization</em> functionality for
+Python functions.  This functionality is particularly aimed at
+large-scale computations with arrays that one would hesitate to
+recompute. We illustrate the technique here in a very simple
+mathematical context.
 
 <p>
 First we make a <code>solver_scaled</code> function for the scaled
-model that just calls up a <code>solver_unscaled</code> for the problem with
+model that just calls up a <code>solver_unscaled</code> (with \( I=a=1 \)) for the problem with
 dimensions:
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> solver_unscaled
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 
@@ -1276,19 +1308,24 @@ The solutions are actually stored in files in the cache directory <code>temp</co
 
 <p>
 A typical use case is to read values from the command line,
-solve the unscaled problem (if necessary), scale the solution, and visualize
+solve the scaled problem (if necessary), unscale the solution, and visualize
 the solution with dimension:
 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> unscale, read_command_line_argparse
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale</span>(u_scaled, t_scaled, I, a):
+    <span style="color: #008000; font-weight: bold">return</span> I<span style="color: #666666">*</span>u_scaled, a<span style="color: #666666">*</span>t_scaled
+
+<span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> read_command_line_argparse
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">main</span>():
-    <span style="color: #408080; font-style: italic"># Read parameters, solve and plot</span>
+    <span style="color: #408080; font-style: italic"># Read unscaled parameters, solve and plot</span>
     I, a, T, theta, dt_values <span style="color: #666666">=</span> read_command_line_argparse()
     dt <span style="color: #666666">=</span> dt_values[<span style="color: #666666">0</span>]  <span style="color: #408080; font-style: italic"># use only the first dt value</span>
-    u_scaled, t_scaled <span style="color: #666666">=</span> solver_scaled(T, dt, theta)
+    T_bar <span style="color: #666666">=</span> a<span style="color: #666666">*</span>T
+    dt_bar <span style="color: #666666">=</span> a<span style="color: #666666">*</span>dt
+    u_scaled, t_scaled <span style="color: #666666">=</span> solver_scaled(T_bar, dt_bar, theta)
     u, t <span style="color: #666666">=</span> unscale(u_scaled, t_scaled, I, a)
 
     plt<span style="color: #666666">.</span>figure()
@@ -1307,6 +1344,17 @@ the solution with dimension:
 <p>
 The complete code resides in the file
 <a href="http://tinyurl.com/o8pb3yy/decay_scaled.py" target="_self"><tt>decay_scaled.py</tt></a>.
+Note from the code above that <code>read_command_line_argparse</code> is supposed
+to read parameters with dimensions (but technically, we solve the
+scaled problem, if strictly necessary, and unscale the solution).
+Let us run
+
+<p>
+
+<!-- code=text (!bc sys) typeset with pygments style "default" -->
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python decay_scaled.py --I 8 --a 0.1 --dt 0.01 --T 50
+</pre></div>
+<p>
 A plot of the scaled and unscaled solution appears in Figure
 <a href="#sec:decay:fig:simplest">2</a>.
 
@@ -1320,7 +1368,8 @@ A plot of the scaled and unscaled solution appears in Figure
 <p>
 Note that we write a message <code>Computing the numerical solution</code> inside
 the <code>solver_scaled</code> function. We can then easily detect when
-the solution is actually computed and when it is simply read from file.
+the solution is actually computed from scratch
+and when it is simply read from file (followed by the unscaling procedure).
 Here is a demo:
 
 <p>
@@ -1347,7 +1396,7 @@ Terminal&gt; python decay_scaled.py --T 7 --a 0.5 --I 1 --dt 0.2
 <p>
 We realize that <code>joblib</code> has access to all previous runs and does not
 recompute unless it is strictly required. Our previous implementation
-without <code>joblib</code>
+without <code>joblib</code> (in <code>decay_scaled_v1.py</code>)
 used only one file (for one numerical case)
 and will therefore perform many more calls to
 <code>solver_unscaled</code>.
@@ -1360,7 +1409,7 @@ of arguments is encountered. That is, the function caches its results.
 A simple implementation stores the arguments in a function call and
 the returned results in a
 dictionary, and if the arguments are seen again, one looks up
-in the dictionary and return previously computed results:
+in the dictionary and returns previously computed results:
 
 <p>
 
@@ -1402,7 +1451,7 @@ u'(t) = -au(t) + b,\quad u(0)=I
 $$
 
 One particular model, with constant \( a \) and \( b \),
-is a spherical micro-organism falling in air,
+is a spherical small-sized organism falling in air,
 
 $$
 \begin{equation}
@@ -1516,6 +1565,15 @@ for inclusion in reports.
 </div>
 
 
+<p>
+The reader may wonder why we bother with scaling of differential
+equations if SymPy can solved the problem in a nice, closed
+formula. This is true in the present introductory problem, but in a
+more general problem setting, we have some differential equation where
+SymPy perhaps can help with finding an exact solution only in a
+special case. We can use this special-case solution to control our
+reasoning about scales in the more general setting.
+
 <h3 id="___sec38">Theory </h3>
 
 <p>
@@ -1562,7 +1620,7 @@ therefore choose
 
 $$
 \begin{equation}
-\frac{d\bar u}{d\bar t} = -\bar u + 1,\quad u(0)=\beta,
+\frac{d\bar u}{d\bar t} = -\bar u + 1,\quad \bar u(0)=\beta,
 \tag{2.11}
 \end{equation}
 $$
@@ -1577,7 +1635,7 @@ $$
 
 reflecting the ratio of the initial velocity and the
 terminal (\( t\rightarrow \infty \)) velocity \( b/a \).
-Scaling normally ends up with one or more dimensionless parameters,
+Scaled equations normally end up with one or more dimensionless parameters,
 such as \( \beta \) here, containing ratios of physical effects in
 the model. Many more examples on dimensionless parameters will appear
 in later sections.
@@ -1853,7 +1911,7 @@ Figure <a href="#sec:scale:decay:jump:fig">4</a>.
 <p><img src="fig-scaling/decay_jump.png" align="bottom" width=800></p>
 </center>
 
-<h2 id="scale:decay:cooling:const">Scaling a cooling problem with constant surroundings</h2>
+<h2 id="scale:decay:cooling:const">Scaling a cooling problem with constant temperature in the surroundings</h2>
 
 <p>
 The heat exchange between a body at temperature \( T(t) \) and the
@@ -1880,11 +1938,12 @@ is by standard methods for ODEs found to be
 <h3 id="___sec43">Scaling </h3>
 
 <p>
-Physically, we expect the temperature to start at \( T_0 \) and then
-to move toward the surroundings (\( T_s \)). We therefore expect
-that \( T \) lies between \( T_0 \) and \( T_s \). This is mathematically
-demonstrated by the analytical solution as well. A proper scaling
-is therefore to scale and translate \( T \) according to
+Physically, we expect the temperature to start at \( T_0 \) and then to
+move toward the temperature of the surroundings (\( T_s \)). We therefore
+expect that \( T \) lies between \( T_0 \) and \( T_s \). This is mathematically
+demonstrated by the analytical solution as well. A proper scaling is
+therefore to scale and translate \( T \) according to
+
 $$
 \begin{equation}
 \bar T = \frac{T-T_0}{T_s-T_0}
@@ -1958,24 +2017,29 @@ $$
 <h2 id="scale:decay:cooling:osc">Scaling a cooling problem with time-dependent surroundings</h2>
 
 <p>
-Let us apply the model <a href="#mjx-eqn-2.16">(2.16)</a> in
-case the surrounding temperature varies in time. Say we have
+Let us apply the model <a href="#mjx-eqn-2.16">(2.16)</a> to the case when
+the surrounding temperature varies in time. Say we have
 an oscillating temperature environment according to
 
 $$
 \begin{equation}
-T_s(t) = T_m + a\sin(\omega t)
+T_s(t) = T_m + a\sin(\omega t),
 \tag{2.22}
-\tp
 \end{equation}
 $$
+
+where \( T_m \) is the mean temperature in the surroundings, \( a \) is
+the amplitude of the variations around \( T_m \), and \( 2\pi/\omega \) is
+the period of the temperature oscillations.
 
 <h3 id="___sec47">Exact solution </h3>
 
 <p>
-It is possible to solve the differential equation problem analytically,
-and such a solution is a good help to see what scales are.
-In general, using the method of integrating factors for the
+Also in this relatively simple problem
+it is possible to solve the differential equation problem analytically.
+Such a solution may be a good help to see what the scales are, and
+especially to control other forms for reasoning about the scales.
+Using the method of integrating factors for the
 original differential equation, we have
 
 $$ T(t) = T_0e^{-kt} + e^{-kt}k\int_0^t e^{k\tau}T_s(\tau)d\tau\tp$$
@@ -2014,9 +2078,11 @@ be \( T_m - T_0 \):
 
 $$ \bar T = \frac{T-T_0}{T_m-T_0}\tp$$
 
-We see from the analytical solution, and realize also by physical
-reasoning, that \( T \) sets out at \( T_0 \), but with time, it will oscillate
-around \( T_m \). The typical average temperature span is therefore
+We realize by physical
+reasoning that \( T \) sets out at \( T_0 \), but with time, it will oscillate
+around \( T_m \). (This reasoning can be controlled by looking at the exact
+solution we produced above.)
+The typical average temperature span is therefore
 \( |T_m-T_0| \), unless \( a \) is much larger than \( |T_m-T_0| \) or \( T_0 \) is
 very close to \( T_m \) (see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#sec:scale:exer:decay:cooling:osc">Exercise 3: Perform alternative scalings</a> for
 a discussion of these cases).
@@ -2090,17 +2156,24 @@ time, and the oscillations get smaller.
 <h3 id="___sec50">Discussion of the time scale </h3>
 
 <p>
-Looking at the analytical insight we have obtained, we
-observe that \( T(t) \) has two characteristic
-terms in time: \( e^{-kt} \) and \( \sin(\omega t) \). The former points to a time
-scale \( t_c=1/k \), while the latter to \( t_c=1/\omega \).
-Which one should be chosen? Bringing the temperature from \( T_0 \) to
-the level of the surroundings, \( T_m \), goes like \( e^{-kt} \), so
-in this process \( t_c=1/k \) is the characteristic time. Thereafter,
-the body's temperature just responds to the oscillations and the
-\( \sin (\omega t) \) (and \( \cos(\omega t) \)) term dominates. For these large times,
-\( t_c=1/\omega \) is the appropriate time scale. Choosing \( t_c=1/\omega \)
-results in
+There are two time variations of importance in the present problem:
+heat is transferred to the surroundings at a rate \( k \), and the
+surroundings have a temperature variation with a period that goes like
+\( 1/\omega \). (We can, when we are so lucky that we have an analytical
+solution at hand, inspect this solution to see that \( k \) impacts the
+problem through a decay factor \( e^{-kt} \), and \( \omega \) impacts the problem
+through oscillations \( \sin(\omega t) \).)  The \( k \) parameter related to
+temperature decay points to a time scale \( t_c=1/k \), while the
+temperature oscillations of the surroundings point to a time scale
+\( t_c=1/\omega \).  Which one should be chosen?
+
+<p>
+Bringing the temperature from \( T_0 \) to the level of the surroundings,
+\( T_m \), goes like \( e^{-kt} \), so in this process \( t_c=1/k \) is the
+characteristic time. Thereafter, the body's temperature just responds
+to the oscillations and the \( \sin (\omega t) \) (and \( \cos(\omega t) \))
+term dominates. For these large times, \( t_c=1/\omega \) is the
+appropriate time scale. Choosing \( t_c=1/\omega \) results in
 
 $$
 \begin{equation}
@@ -2202,21 +2275,26 @@ one above with only two parameters.
 
 <p>
 Exponential growth models, \( u'=au \), are not realistic in environments
-with limited resources. The idea is then to assume that
-the growth rate \( a \) decreases with \( u \) and vanishes when we reach the maximum
-value \( M \) of \( u \) the environment can sustain. The initial growth rate
-is set to \( r \): \( a(0)=\varrho \).
-In general, this reasoning gives rise to models
+with limited resources. However, by letting \( a \) depend on \( u \), the effect
+of limited resources can well be captured by such a simple differential
+equation model:
 
 $$
 \begin{equation}
-u' = a(u)u,\quad u(0)=I,
+u' = a(u)u,\quad u(0)=I\tp
 \tag{2.27}
 \end{equation}
 $$
 
-with the logistic model, corresponding to \( a(u)=\varrho(1-u/M) \),
-as the simplest:
+If the maximum value of \( u \) is denoted by \( M \), we have that \( a(M)=0 \).
+A simple choice fulfilling this requirement is \( a(u)=\varrho(1-u/M) \).
+The parameter \( \varrho \) can be interpreted as the initial exponential
+growth rate if we assume that \( I/M\ll 1 \), since at \( t=0 \) the model then
+approximates \( u'=\varrho u \).
+
+<p>
+The choice \( a(u)=\varrho(1-u/M) \) is known as the logistic model for
+population growth:
 
 $$
 \begin{equation}
@@ -2225,7 +2303,9 @@ u' = \varrho u(1-u/M),\quad u(0)=I\tp
 \end{equation}
 $$
 
-A general choice of \( a \) may be \( a(u)=\varrho(1-u/M)^p \) for some exponent \( p \).
+A more complicated choice of \( a \) may be \( a(u)=\varrho(1-u/M)^p \) for
+some exponent \( p \) (this function also fulfills \( a(M)=0 \) and \( a\approx\varrho \)
+for \( t=0 \)).
 
 <h3 id="___sec52">Scaling </h3>
 
@@ -2252,8 +2332,9 @@ $$ \frac{d\bar u}{d\bar t} = t_c \varrho (1 - \bar u)^p \bar u,\quad
 
 A natural choice is \( t_c =1/\varrho \) as in other exponential growth models
 since it leads to the term on the right-hand side to be about unity,
-as the left-hand side, if the scaling is physically correct.
-Introducing the dimensionless parameter
+just as the left-hand side. (If the scaling is correct, \( \bar u \) and its
+derivatives are of order unity, so the coefficients must also be of order
+unity.) Introducing also the dimensionless parameter
 
 $$ \alpha = \frac{I}{M},$$
 
@@ -2311,8 +2392,8 @@ who can get the disease, infectious (I) who are infected and may
 infect susceptibles, and recovered (R) who have recovered from the
 disease and gained immunity. We introduce \( S(t) \), \( I(t) \), and \( R(t) \)
 as the number of people in the categories S, I, and R, respectively.
-The model, naturally known as the <a href="https://en.wikipedia.org/wiki/Epidemic_model" target="_self">SIR model</a>, takes the form a
-system of ODEs:
+The model, naturally known as the <a href="https://en.wikipedia.org/wiki/Epidemic_model" target="_self">SIR model</a>, can be expressed as a
+system of three ODEs:
 
 $$
 \begin{align}
@@ -2347,7 +2428,7 @@ $$
 \\ 
 \frac{d\bar I}{d\bar t} &= t_c S(0) \beta \bar S\bar I - t_c \nu \bar I,
 \\ 
-\frac{d\bar R}{d\bar t} &= t_c \nu I,
+\frac{d\bar R}{d\bar t} &= t_c \nu \bar I,
 \end{align*}
 $$
 
@@ -2364,7 +2445,7 @@ $$
 \tag{2.34}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S\bar I - \bar I,
 \tag{2.35}\\ 
-\frac{d\bar R}{d\bar t} &= I,
+\frac{d\bar R}{d\bar t} &= \bar I,
 \tag{2.36}
 \end{align}
 $$
@@ -2380,8 +2461,8 @@ R_0 = \frac{S(0)\beta}{\nu}\tp
 $$
 
 We see from <a href="#mjx-eqn-2.35">(2.35)</a> that to make the disease spreading,
-\( d\bar I/d\bar t >0 \), and therefore \( R_0 S(0) - 1 > 0 \) or \( R_0 > 1 \)
-since \( S(0)=1 \).
+\( d\bar I/d\bar t >0 \), and therefore \( R_0 \bar S(0) - 1 > 0 \) or \( R_0 > 1 \)
+since \( \bar S(0)=1 \).
 Therefore, \( R_0 \) reflects the disease's ability to spread and is
 consequently an important dimensionless quantity, known as the <a href="https://en.wikipedia.org/wiki/Basic_reproduction_number" target="_self">basic
 reproduction number</a>.
@@ -2492,7 +2573,7 @@ the dimensionless model
 
 $$
 \begin{align}
-\frac{d\bar S}{d\bar t} &= - R_0 \bar S \bar I - \delta S + \gamma \bar R,
+\frac{d\bar S}{d\bar t} &= - R_0 \bar S \bar I - \delta \bar S + \gamma \bar R,
 \tag{2.43}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S \bar I - \bar I,
 \tag{2.44}\\ 
@@ -2538,7 +2619,7 @@ substrate S is turned into a product P with aid of an enzyme E.
 S and E react to form a complex ES in the first stage of the reaction.
 In the second stage, ES is turned into E and P.
 Introducing the amount of S, E, ES, and P by \( [S] \), \( [E] \), \( [ES] \), and
-\( [P] \), can be written as
+\( [P] \), the mathematical model can be written as
 
 $$
 \begin{align}
@@ -2635,7 +2716,8 @@ We see that the parameter \( K \) is central.
 <h3 id="___sec61">Dimensionless ODE system </h3>
 
 <p>
-Let us reason how to make the original ODE system dimensionless.
+Let us reason how to make the original ODE system
+<a href="#mjx-eqn-2.47">(2.47)</a>-<a href="#mjx-eqn-2.50">(2.50)</a> dimensionless.
 Aiming at \( [S] \) and \( [E] \) of unit size, two obvious dimensionless
 unknowns are
 

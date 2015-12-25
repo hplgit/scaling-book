@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -107,7 +107,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -136,11 +136,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -153,7 +153,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -320,7 +320,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -330,7 +330,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -530,10 +530,7 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -557,7 +554,7 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -658,14 +655,14 @@ reads
 
 $$
 \begin{equation}
-mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V\tp
+mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V,
 \tag{65}
 \end{equation}
 $$
 
+where unknown \( u(t) \) measures the displacement of the body,
 This is a common model for a vibrating body  with mass \( m \) attached
 to a linear spring with spring constant \( k \) (and force \( -ku \)).
-The quantity \( u(t) \) measures the displacement of the body.
 Figure <a href="#sec:scale:vib:undamped:sketch">7</a> shows a typical mechanical
 sketch of such a system: some mass can move horizontally without friction
 and is connected to a spring that exerts a force \( -ku \) on the body.
@@ -720,7 +717,7 @@ find \( u(t) \). The use of SymPy can later be generalized to vibration
 ODEs that are harder to solve by hand.
 
 <p>
-SymPy need all mathematical symbols to be explicitly created:
+SymPy requires all mathematical symbols to be explicitly created:
 
 <p>
 <!-- begin verbatim block  pypro-->
@@ -742,7 +739,7 @@ def ode(u):
 diffeq = ode(u(t))
 </code></pre>
 <!-- end verbatim block -->
-The <code>diffeq</code> variable, defining the ODE, can be passed to a SymPy
+The <code>diffeq</code> variable, defining the ODE, can be passed to the SymPy
 function <code>dsolve</code> to find the symbolic solution of the ODE:
 
 <p>
@@ -804,7 +801,13 @@ $$ u(t) = \sqrt{I^2 + \frac{V^2}{\omega^2}}\cos(wt - \phi),\quad
 $$
 
 Now we see that the \( u \) corresponds to cosine oscillations with a
-phase shift \( \phi \) and amplitude \( \sqrt{I^2 + (V/\omega)^2} \).
+frequency shift \( \phi \) and amplitude \( \sqrt{I^2 + (V/\omega)^2} \).
+
+<p>
+The forthcoming text relies on a good understanding of concepts
+like period, frequency, and amplitude of oscillating signals, so
+readers who need to refresh these concepts are recommended to
+do <a href="#scale:decay:exer:sine">Problem 12: Find the period of sinusoidal signals</a> before continuing.
 
 <h3 id="___sec69">Discussion of the displacement scale </h3>
 
@@ -824,8 +827,8 @@ What is an appropriate time scale? Looking at
 \( \bar u'' \) and \( \bar u \) both should be around unity in size, the
 coefficient \( t_c^2k/m \) must equal unity, implying that \( t_c=\sqrt{m/k} \).
 Also from the analytical solution we see that the solution goes like the
-sine or cosine of \( \omega t \) so \( 1/\omega = \sqrt{m/k} \) can be a characteristic
-time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \) can
+sine or cosine of \( \omega t \), so \( 1/\omega = \sqrt{m/k} \) can be a characteristic
+time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \), can
 be the characteristic time, leading to \( t_c=2\pi/\omega \).
 
 <h3 id="___sec71">The dimensionless solution </h3>
@@ -982,14 +985,20 @@ the systems and one for the forced vibrations \( F(t) \).
 <h3 id="___sec76">Investigating scales via analytical solutions </h3>
 
 <p>
-We may look into the exact solution to see what the scales are.  We
+As we have seen already several times, having access to
+an exact solution is very fortunate as it allows us to directly
+examine the scales. Also in the present problem it is possible
+to derive an exact solution. We
 continue the SymPy session from the previous section and perform much
 of the same steps. Note that we use <code>w</code> for \( \omega = \sqrt{k/m} \)
 in the computer code (to obtain a more direct visual counterpart to
 \( \omega \)).
 SymPy may get confused when coefficients in differential equations
 contain several symbols. We therefore rewrite the equation with
-at most one symbol in each coefficient.
+at most one symbol in each coefficient (i.e., symbolic software is
+in general
+more successful when applied to scaled differential equations than the
+unscaled counterparts, but right now our task is to solve the unscaled version).
 The amplitude \( A/m \) in the forcing term is of this reason
 replaced by the symbol <code>A1</code>.
 
@@ -1045,7 +1054,7 @@ damping is included,
 see the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
 <p>
-For the case the system starts from rest, \( I=V=0 \), and the
+When the system starts from rest, \( I=V=0 \), and the
 forcing is the only driving mechanism, we can simplify:
 
 $$
@@ -1120,7 +1129,7 @@ forcing and the spring force (the dimensionless number
 Looking at <a href="#mjx-eqn-73">(73)</a>, we see
 that if \( \psi\ll\omega \), the amplitude can be approximated
 by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
-relevant for small excitation frequency \( \psi \) compared to
+relevant for an excitation frequency \( \psi \) that is small compared to
 the free vibration frequency \( \omega \).
 
 <h3 id="___sec79">Scaling with free vibrations as time scale </h3>
@@ -1157,8 +1166,9 @@ $$
 $$
 
 We remark that the choice of \( u_c \) has so far not been made. Several
-different cases will be considered below, and certain choices reduce
-the number of independent dimensionless variables to three.
+different cases will be considered below, and we will see that certain
+choices reduce the number of independent dimensionless variables to
+three.
 
 <p>
 The four dimensionless variables above have interpretations as ratios of
@@ -1403,8 +1413,9 @@ $$
 <h3 id="___sec86">The exact solution </h3>
 
 <p>
-To choose scales, it is (as always)
-a great advantage to look into exact solutions.
+As always, it is
+a great advantage to look into exact solutions for controlling our
+choice of scales.
 Using SymPy to solve <a href="#mjx-eqn-83">(83)</a> is, in principle,
 very straightforward:
 
@@ -1585,6 +1596,7 @@ $$
 <p>
 The most important feature of this solution is that there are
 two time scales with frequencies \( \psi \) and \( \sqrt{\omega^2 - B^2} \),
+respectively,
 but the latter appears in terms that decay as \( e^{-Bt} \) in time.
 The attention is usually on longer periods of time, so in that
 case the solution simplifies to
@@ -1653,7 +1665,7 @@ formulas depend on the choices of \( t_c \) and \( u_c \).
 <p>
 The relevant scale for \( u_c \) at or nearby resonance (\( \psi = \omega \))
 becomes different from the previous section, since with damping,
-the maximum amplitude is a finite value. For \( t\gg B^{-1} \) when the
+the maximum amplitude is a finite value. For \( t\gg B^{-1} \), when the
 \( \sin\psi t \) term is dominating, we have for \( \psi = \omega \):
 
 $$ u = \frac{Am^{-1}2B\psi}{4B^2\psi^2}\sin (\psi t) =
@@ -1669,7 +1681,7 @@ $$ u_c = \frac{A}{b\psi} = \frac{A}{b\omega}\tp$$
 (It is wise during computations like this to stop and check the
 dimensions: \( A \) must be \( [\hbox{MLT}^{-2}] \) from the original
 equation (\( F(t) \) must have the same dimension as \( mu'' \)),
-\( bu' \) also has dimension \( [\hbox{MLT}^{-2}] \), implying that
+\( bu' \) must also have dimension \( [\hbox{MLT}^{-2}] \), implying that
 \( b \) has dimension \( [\hbox{MT}^{-1}] \). \( A/b \) then has dimension
 \( LT^{-1} \), and \( A/(b\psi) \) gets dimension \( [L] \), which matches
 what we want for \( u_c \).)
@@ -1798,7 +1810,7 @@ dimensionless form is identical. This fact will now be demonstrated.
 
 <p>
 The current \( I(t) \) in a
-circuit with an inductor with inductance \( L \), a capacitor with
+circuit having an inductor with inductance \( L \), a capacitor with
 capacitance \( C \), and overall resistance \( R \), obeys the equation
 
 $$
@@ -1933,7 +1945,7 @@ What is an appropriate scaling of the temperature?
 <p>
 The velocity \( v(t) \)
 of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by ODE
+with fluid drag and buoyancy, is governed by the ODE
 
 $$ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,$$
 
@@ -2114,7 +2126,7 @@ the scaled initial velocity is unity in \( x \) direction.
  -->
 <p>
 <b>d)</b>
-A soccer ball has diameter 11 cm and mass 0.43 kg, the density of air
+A soccer ball has radius 11 cm and mass 0.43 kg, the density of air
 is 1.2 \( \hbox{kg}\hbox{m}^{-3} \), a soft kick has velocity 30 km/h,
 while a hard kick may have 120 km/h. Estimate the dimensionless parameter
 in the scaled problem for a soft and a hard kick with
@@ -2159,7 +2171,7 @@ and \( L \) is the corresponding measure of the predator population (say lynx).
 There are six parameters: \( a \), \( b \), \( c \), \( d \), \( H_0 \), and \( L_0 \).
 
 <p>
-The terms has the following meanings:
+The terms have the following meanings:
 
 <ul>
  <li> \( aH \) is the exponential
@@ -2271,7 +2283,8 @@ Find suitable scales and derive a dimensionless ODE problem.
 <h2 id="scale:decay:exer:sine">Problem 12: Find the period of sinusoidal signals</h2>
 
 <p>
-This exercise aims at investigating various concepts like period, wave length,
+This exercise aims at investigating various fundamental
+concepts like period, wave length,
 and frequency in non-damped and damped sinusoidal signals.
 
 <p>
@@ -2368,7 +2381,7 @@ $$ f(\dot u) = \left\lbrace\begin{array}{ll}
 0,      & \dot u=0
 \end{array}\right.$$
 
-Here, \( \mu \) is a friction coefficient. With the signum function
+Here, \( \mu \geq 0 \) is a friction coefficient. With the signum function
 
 $$ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
 -1,& x < 0,\\ 
@@ -2384,7 +2397,7 @@ The ODE problem for this one-dimensional oscillatory motion reads
 
 $$
 \begin{equation}
-m\ddot u + \mu mg\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
+m\ddot u + \mu mg\,\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
 \tag{104}
 \end{equation}
 $$
@@ -2582,8 +2595,9 @@ Scale this problem.
 <h2 id="scale:vib:exer:rocket">Problem 17: Vertical motion in a varying gravity field</h2>
 
 <p>
-A body (e.g., projectile or rocket) is launched at the earth's surface
-at velocity \( V \). The body's distance (height) from the earth's surface
+A body (e.g., projectile or rocket) is launched vertically
+from the surface of the earth with
+velocity \( V \). The body's distance (height) from the earth's surface
 at time \( t \) is represented by the function \( h(t) \).
 Unless \( h \) is very much smaller than the earth's radius \( R \), the motion
 takes place in a varying gravity field. The governing ODE problem for
@@ -2673,7 +2687,7 @@ Filename: <code>varying_gravity</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:quantum">Problem 18: Schroedinger's equation</h2>
+<h2 id="scale:vib:exer:quantum">Problem 18: A simplified Schroedinger equation</h2>
 
 <p>
 A simplified stationary

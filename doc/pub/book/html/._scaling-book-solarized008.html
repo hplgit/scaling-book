@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -107,7 +107,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -136,11 +136,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -153,7 +153,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -320,7 +320,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -330,7 +330,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -530,10 +530,7 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -557,7 +554,7 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -667,7 +664,7 @@ $$
 \end{equation}
 $$
 
-We first look at scaling the PDE itself, and thereafter we discuss
+We first look at scaling of the PDE itself, and thereafter we discuss
 some types of boundary conditions and how to scale the complete
 initial-boundary value problem.
 
@@ -675,7 +672,7 @@ initial-boundary value problem.
 
 <p>
 To make <a href="#mjx-eqn-147">(147)</a> dimensionless,
-we introduce as usual dimensionless dependent and independent variables:
+we introduce, as usual, dimensionless dependent and independent variables:
 
 $$ \bar x = \frac{x}{x_c},
 \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}\tp$$
@@ -690,7 +687,7 @@ $$
 \tag{149}
 $$
 
-Arguing as for the wave equation that the scaling should result in
+Arguing, as for the wave equation, that the scaling should result in
 
 $$ \frac{\partial \bar u}{\partial \bar t}\hbox{ and }
 \frac{\partial^2 \bar u}{\partial \bar x^2}$$
@@ -871,8 +868,8 @@ The initial-boundary value problem reads
 
 $$
 \begin{align}
-\frac{\partial u}{\partial t} &=
-\dfc \frac{\partial^2 u}{\partial x^2},
+\varrho c \frac{\partial u}{\partial t} &=
+k \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
 \tag{153}\\ 
 u(x,0) &= U_0,
@@ -887,13 +884,13 @@ u(0, t) & = U_1,
 \end{align}
 $$
 
-The diffusion coefficient is related to heat transfer parameters
-by \( \dfc = k/(\varrho c) \), where \( k \) is the heat conduction coefficient,
-\( \varrho \) is the density, and \( c \) is a specific heat capacity parameter.
-
-<!-- begin inline comment -->
-<font color="red">(<b>Geir 4</b>: does this paragraph naturally belong here ?)</font>
-<!-- end inline comment -->
+The PDE <a href="#mjx-eqn-153">(153)</a> arises from the energy equation in
+solids and involves three physical parameters: the density \( \varrho \),
+the specific heat capacity parameter \( c \),a nd the heat conduction
+coefficient (from Fourier's law). Dividing by \( \varrho c \) and
+introducing \( \dfc = k/(\varrho c) \) brings <a href="#mjx-eqn-153">(153)</a> on
+the standard form <a href="#mjx-eqn-147">(147)</a>. We just use the
+\( \dfc \) parameter in the following.
 
 <p>
 The natural dimensionless temperature for this problem is
@@ -939,21 +936,10 @@ $$ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp$$
 <p>
 
 <!-- begin inline comment -->
-<font color="red">(<b>hpl 5</b>: Include simulation results.)</font>
+<font color="red">(<b>hpl 2</b>: Include simulation results.)</font>
 <!-- end inline comment -->
 
 <h2 id="___sec139">Oscillating Dirichlet condition </h2>
-
-<p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 6</b>: Do we need paragraph headings here?)</font>
-<!-- end inline comment -->
-
-
-<!-- begin inline comment -->
-<font color="red">(<b>Geir 7</b>: yes)</font>
-<!-- end inline comment -->
 
 <p>
 Now we address a heat equation problem where the temperature is
@@ -1003,7 +989,12 @@ the oscillations \( \sin(\omega t) \) with period \( P=2\pi/\omega \) at
 the boundary and the &quot;speed of diffusion&quot;, or more specifically
 the &quot;speed of heat conduction&quot; in the present context,
 where \( t_c=x_c^2/\dfc \) is the appropriate scale, \( x_c \) being
-the length scale.
+the length scale. Choosing the right length scale is not obvious. As
+we shall see, the standard choice \( x_c=L \) is not a good candidate, but
+to understand why, we need to examine the solution, either through
+simulations or through a closed-form formula. We are so lucky in this
+relatively simple pedagogical problem that one can find an exact solution
+of a related problem.
 
 <h3 id="___sec141">Exact solution </h3>
 
@@ -1040,7 +1031,7 @@ hence \( t_c = L/c = L/\sqrt{2\dfc\omega} \).
 
 <p>
 One can argue that \( L \) is not the appropriate length scale, because
-\( u \) is damped by \( e^{-bx} \) so for \( x > 4/b \), \( u \) is close to zero.
+\( u \) is damped by \( e^{-bx} \). So, for \( x > 4/b \), \( u \) is close to zero.
 We may instead use \( 1/b \) as length scale, which is the e-folding distance of the
 damping factor, and base
 \( t_c \) on the time it takes a signal to propagate one length scale,
@@ -1079,7 +1070,7 @@ $$
 \end{equation}
 $$
 
-The former two choices leaves only \( \beta \) as parameter in \( \bar u \),
+The former two choices leave only \( \beta \) as parameter in \( \bar u \),
 and with \( x_c=1/b \) as length scale, \( \beta \) becomes unity, and there
 are no parameters in the dimensionless solution:
 
@@ -1127,7 +1118,7 @@ scaled initial-boundary value problem:
 $$
 \begin{align}
 \frac{\partial \bar u}{\partial \bar t} &=
-\frac{1}{2}\frac{\partial^2 u}{\partial x^2},
+\frac{1}{2}\frac{\partial^2\bar u}{\partial x^2},
 \quad & \bar x\in (0,4),\ \bar t\in (0,\bar T],
 \tag{168}\\ 
 \bar u(\bar x,0) &= 0,
@@ -1209,7 +1200,7 @@ results in
 $$
 \frac{\partial \bar u}{\partial \bar t} =
 \frac{t_c\dfc}{x_c^2}
-\frac{\partial^2 u}{\partial x^2} + t_c \varrho \bar u (1 - u_c\bar u/M)\tp
+\frac{\partial^2\bar u}{\partial\bar x^2} + t_c \varrho \bar u (1 - u_c\bar u/M)\tp
 $$
 
 <h3 id="___sec147">Balance of all terms </h3>
@@ -1232,7 +1223,7 @@ and the scaled PDE becomes
 $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u)\tp
+\frac{\partial^2 \bar u}{\partial\bar x^2} + \bar u (1 - \bar u)\tp
 \tag{173}
 \end{equation}
 $$
@@ -1262,7 +1253,7 @@ $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
 \beta
-\frac{\partial^2 \bar u}{\partial x^2} + \bar u (1 - \bar u),
+\frac{\partial^2 \bar u}{\partial\bar x^2} + \bar u (1 - \bar u),
 \tag{174}
 \end{equation}
 $$
@@ -1323,7 +1314,8 @@ $$
 \frac{t_cf_c}{u_c}\bar f(u_c\bar u)\tp
 $$
 
-The characteristic size of \( u \) can often be derived so we first assume
+The characteristic size of \( u \) can often be derived from boundary or
+initial conditions, so we first assume
 that \( u_c \) is given. This fact uniquely determines the space and time
 scales by demanding that all three terms are equally important and
 of unit size:

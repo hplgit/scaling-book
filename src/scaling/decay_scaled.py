@@ -1,4 +1,4 @@
-from decay import solver_unscaled
+from decay import solver as solver_unscaled
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -13,13 +13,18 @@ import joblib
 disk_memory = joblib.Memory(cachedir='temp')
 solver_scaled = disk_memory.cache(solver_scaled)
 
-from decay import unscale, read_command_line_argparse
+def unscale(u_scaled, t_scaled, I, a):
+    return I*u_scaled, a*t_scaled
+
+from decay import read_command_line_argparse
 
 def main():
-    # Read parameters, solve and plot
+    # Read unscaled parameters, solve and plot
     I, a, T, theta, dt_values = read_command_line_argparse()
     dt = dt_values[0]  # use only the first dt value
-    u_scaled, t_scaled = solver_scaled(T, dt, theta)
+    T_bar = a*T
+    dt_bar = a*dt
+    u_scaled, t_scaled = solver_scaled(T_bar, dt_bar, theta)
     u, t = unscale(u_scaled, t_scaled, I, a)
 
     plt.figure()

@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -107,7 +107,7 @@ div { text-align: justify; text-justify: inter-word; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -136,11 +136,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -153,7 +153,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -320,7 +320,7 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -330,7 +330,7 @@ div { text-align: justify; text-justify: inter-word; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -530,10 +530,7 @@ div { text-align: justify; text-justify: inter-word; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -557,7 +554,7 @@ div { text-align: justify; text-justify: inter-word; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -696,21 +693,22 @@ $$
 $$
 
 For \( u_c \) we simply introduce the symbol \( U \), which we may estimate
-from an initial condition. It is not critical here since it vanishes
-from the scaled equation anyway as long as there is no source term
+from an initial condition. It is not critical here, since it vanishes
+from the scaled equation anyway, as long as there is no source term
 present.
 With some velocity measure \( V \) and length measure \( L \), it is
 tempting to just let \( t_c = L/V \). This is the characteristic time it takes to
 transport a signal by convection through the domain.
 The alternative is to use the
-diffusion length scale \( t_c=L^2/\dfc \). Very often in these kind of
-problems, the convection term \( \v\cdot\nabla u \) dominates over the
-diffusion term \( \dfc\nabla^2 u \), so the time scale for convection,
-which is \( L/V \),
+diffusion length scale \( t_c=L^2/\dfc \). A common physical scenario in
+convection-diffusion problems is that
+the convection term \( \v\cdot\nabla u \) dominates over the
+diffusion term \( \dfc\nabla^2 u \). Therefore, the time scale for convection
+(\( L/V \))
 is most appropriate of the two. Only when
 the diffusion term is very much larger than the convection
 term (corresponding to very small Peclet numbers, see below)
-we would apply \( t_c=L^2/\dfc \).
+\( t_c=L^2/\dfc \) is the right time scale.
 
 <p>
 The non-dimensional form of the PDE with \( t_c=L/V \) becomes
@@ -763,7 +761,7 @@ in <a href="#mjx-eqn-181">(181)</a>, i.e., a size around unity.
 For large Peclet numbers,
 <a href="#mjx-eqn-181">(181)</a> expresses a balance
 between the time derivative term and the convection term, both of size
-unity, and then there is a very small term
+unity, and then there is a very small
 \( \hbox{Pe}^{-1}\bar\nabla^2\bar u \) term because Pe is large and
 \( \bar\nabla^2\bar u \) should be of size unity.
 That the convection term dominates over the diffusion term is
@@ -785,9 +783,9 @@ since right scales imply that \( \partial\bar u/\partial\bar t \) and
 \( \bar v\cdot\bar\nabla\bar u \) are of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
 <a href="#mjx-eqn-182">(182)</a>.  For very small Peclet numbers this
-equation tells that the time-derivative balances the diffusion, while
-the convection \( \bar\v\cdot\bar\nabla\bar\u \) is around
-unity, but multiplied by a very small coefficient Pe, so this term is
+equation tells that the time-derivative balances the diffusion.
+The convection term \( \bar\v\cdot\bar\nabla\bar\u \) is around
+unity in size, but multiplied by a very small coefficient Pe, so this term is
 negligible in the PDE. An approximate PDE for small Peclet numbers is
 therefore
 
@@ -797,7 +795,7 @@ $$
 $$
 
 <p>
-Scaling can with the above type of reasoning be used
+Scaling can, with the above type of reasoning, be used
 to neglect terms from a differential equation under precise mathematical
 conditions.
 </div>
@@ -845,8 +843,8 @@ $$ \frac{d\bar u}{d\bar x} = \hbox{Pe}^{-1}\frac{d^2\bar u}{d\bar x^2},\quad
 
 if we choose \( U=U_L \). The solution of the scaled problem is
 
-$$ \bar u(\bar x) = \frac{1 - e^{\bar x\hbox{Pe}}}{1 - e^{\hbox{Pe}}}\tp$$
-
+<p>
+\[ \bar u(\bar x) = \frac{1 - e^{\bar x{\small\hbox{Pe}}}}{1 - e^{\small\hbox{Pe}}}\tp\]
 Figure <a href="#scale:convdiff:fig:scaled">17</a> indicates how \( \bar u \) depends on
 Pe: small Pe values give approximately a straight line while large Pe
 values lead to a <em>boundary layer</em> close to \( x=1 \), where the solution
@@ -865,14 +863,14 @@ We realize that for large Pe,
 $$ \max_{\bar x}\frac{d\bar u}{d\bar x} \approx \hbox{Pe},\quad
 \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx \hbox{Pe}^{2},$$
 
-which are consistent results with the PDE since the double derivative term
+which are consistent results with the PDE, since the double derivative term
 is multiplied by \( \hbox{Pe}^{-1} \).
 For small Pe,
 
 $$ \max_{\bar x}\frac{d\bar u}{d\bar x}\approx 1,\quad
    \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx 0,$$
 
-which is also consistent with the PDE
+which is also consistent with the PDE,
 since an almost vanishing second-order derivative
 is multiplied by a very large coefficient \( \hbox{Pe}^{-1} \).
 However, we have a problem with very large
@@ -941,8 +939,10 @@ $$
 The scaled version reads
 
 $$
-\frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\v\cdot\bar\nabla \bar u =
-\frac{t_c\dfc}{L^2}\bar\nabla^2 \bar u + \frac{t_cf_c}{u_c}\bar f\tp
+\frac{\partial\bar u}{\partial\bar t} +
+\frac{t_cV}{L}\bar\v\cdot\bar\nabla \bar u =
+\frac{t_c\dfc}{L^2}\bar\nabla^2 \bar u +
+\frac{t_cf_c}{u_c}\bar f\tp
 $$
 
 We can base \( t_c \) on convective transport: \( t_c = L/V \). Now,
@@ -950,7 +950,9 @@ We can base \( t_c \) on convective transport: \( t_c = L/V \). Now,
 \( u_c = t_cf_c = Lf_c/V \).
 This leaves us with
 
-$$ \frac{\partial u}{\partial t} + \bar\v\cdot\bar \nabla\bar u =
+$$
+\frac{\partial\bar u}{\partial\bar t} +
+\bar\v\cdot\bar \nabla\bar u =
 \hbox{Pe}^{-1}\bar \nabla^2 \bar u + \bar f\tp
 $$
 
@@ -963,7 +965,9 @@ $$ \frac{L^2 f_c}{\dfc u_c} = 1\quad\Rightarrow\quad u_c = \frac{L^2 f_c}{\dfc}\
 
 The corresponding PDE reads
 
-$$ \frac{\partial u}{\partial t} + \hbox{Pe}\,\bar\v\cdot\bar \nabla\bar u =
+$$
+\frac{\partial\bar u}{\partial\bar t} +
+\hbox{Pe}\,\bar\v\cdot\bar \nabla\bar u =
 \bar\nabla^2 \bar u + \bar f,
 $$
 
@@ -983,7 +987,7 @@ or
 
 $$
 \bar\v\cdot\bar \nabla \bar u =
-\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f,
+\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f\tp
 $$
 
 Again, choosing \( u_c \) such that the source term coefficient is unity leads
@@ -1134,7 +1138,7 @@ dynamic viscosity.
 
 <p>
 Assume \( P(t) = A\cos\omega t \). Scale the problem and identify
-appropriate dimensionless numbers. The assume \( P(t) \) is a more
+appropriate dimensionless numbers. Thereafter, assume \( P(t) \) is a more
 complicated function, but still period with period \( p \).
 Discuss how the scaling can be extended to this case.
 

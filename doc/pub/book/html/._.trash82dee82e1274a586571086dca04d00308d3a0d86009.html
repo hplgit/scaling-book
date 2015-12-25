@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -80,7 +80,7 @@ code { color: inherit; background-color: transparent; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -109,11 +109,11 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -126,7 +126,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -293,7 +293,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -303,7 +303,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -503,10 +503,7 @@ code { color: inherit; background-color: transparent; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -530,7 +527,7 @@ code { color: inherit; background-color: transparent; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -639,7 +636,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generating a graphical user interface</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec20" style="font-size: 80%;"><b>Ordinary differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exponential decay problems</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas of scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec23" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The basic model problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec24" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Population dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec25" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Decay of pressure with altitude</a></li>
@@ -650,15 +647,15 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec30" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Make each term dimensionless</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec31" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 5: Estimate the scales</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:prog" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Making software for utilizing the scaled model</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original problem with dimensions</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avoiding unnecessary computations</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original unscaled problem</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the scaled problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec35" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation with joblib</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:body" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a generalized problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec37" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec38" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Theory</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec39" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable coefficients</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant surroundings</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant temperature in the surroundings</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec42" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec43" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec44" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
@@ -729,11 +726,11 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: ODEs for a binary star</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Duffing's equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:rocket" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Vertical motion in a varying gravity field</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Schroedinger's equation</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: A simplified Schroedinger equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86006.html#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec114" style="font-size: 80%;"><b>Basic partial differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homogeneous Dirichlet conditions in 1D</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec117" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
@@ -816,7 +813,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bidomain model with an alternative \( I_{\rm{ion}} \)</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An alternative \( I_{\rm{ion}} \)</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec200" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
@@ -825,7 +822,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec206" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec207" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Surface gravity waves</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Water surface waves driven by gravity</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec210" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec211" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
@@ -904,21 +901,22 @@ $$
 $$
 
 For \( u_c \) we simply introduce the symbol \( U \), which we may estimate
-from an initial condition. It is not critical here since it vanishes
-from the scaled equation anyway as long as there is no source term
+from an initial condition. It is not critical here, since it vanishes
+from the scaled equation anyway, as long as there is no source term
 present.
 With some velocity measure \( V \) and length measure \( L \), it is
 tempting to just let \( t_c = L/V \). This is the characteristic time it takes to
 transport a signal by convection through the domain.
 The alternative is to use the
-diffusion length scale \( t_c=L^2/\dfc \). Very often in these kind of
-problems, the convection term \( \v\cdot\nabla u \) dominates over the
-diffusion term \( \dfc\nabla^2 u \), so the time scale for convection,
-which is \( L/V \),
+diffusion length scale \( t_c=L^2/\dfc \). A common physical scenario in
+convection-diffusion problems is that
+the convection term \( \v\cdot\nabla u \) dominates over the
+diffusion term \( \dfc\nabla^2 u \). Therefore, the time scale for convection
+(\( L/V \))
 is most appropriate of the two. Only when
 the diffusion term is very much larger than the convection
 term (corresponding to very small Peclet numbers, see below)
-we would apply \( t_c=L^2/\dfc \).
+\( t_c=L^2/\dfc \) is the right time scale.
 
 <p>
 The non-dimensional form of the PDE with \( t_c=L/V \) becomes
@@ -969,7 +967,7 @@ in <a href="#mjx-eqn-3.70">(3.70)</a>, i.e., a size around unity.
 For large Peclet numbers,
 <a href="#mjx-eqn-3.70">(3.70)</a> expresses a balance
 between the time derivative term and the convection term, both of size
-unity, and then there is a very small term
+unity, and then there is a very small
 \( \hbox{Pe}^{-1}\bar\nabla^2\bar u \) term because Pe is large and
 \( \bar\nabla^2\bar u \) should be of size unity.
 That the convection term dominates over the diffusion term is
@@ -991,9 +989,9 @@ since right scales imply that \( \partial\bar u/\partial\bar t \) and
 \( \bar v\cdot\bar\nabla\bar u \) are of order unity. Switching to a time
 scale based on diffusion as the dominating physical effect gives
 <a href="#mjx-eqn-3.71">(3.71)</a>.  For very small Peclet numbers this
-equation tells that the time-derivative balances the diffusion, while
-the convection \( \bar\v\cdot\bar\nabla\bar\u \) is around
-unity, but multiplied by a very small coefficient Pe, so this term is
+equation tells that the time-derivative balances the diffusion.
+The convection term \( \bar\v\cdot\bar\nabla\bar\u \) is around
+unity in size, but multiplied by a very small coefficient Pe, so this term is
 negligible in the PDE. An approximate PDE for small Peclet numbers is
 therefore
 
@@ -1003,7 +1001,7 @@ $$
 $$
 
 <p>
-Scaling can with the above type of reasoning be used
+Scaling can, with the above type of reasoning, be used
 to neglect terms from a differential equation under precise mathematical
 conditions.
 </div>
@@ -1051,8 +1049,8 @@ $$ \frac{d\bar u}{d\bar x} = \hbox{Pe}^{-1}\frac{d^2\bar u}{d\bar x^2},\quad
 
 if we choose \( U=U_L \). The solution of the scaled problem is
 
-$$ \bar u(\bar x) = \frac{1 - e^{\bar x\hbox{Pe}}}{1 - e^{\hbox{Pe}}}\tp$$
-
+<p>
+\[ \bar u(\bar x) = \frac{1 - e^{\bar x{\small\hbox{Pe}}}}{1 - e^{\small\hbox{Pe}}}\tp\]
 Figure <a href="#scale:convdiff:fig:scaled">17</a> indicates how \( \bar u \) depends on
 Pe: small Pe values give approximately a straight line while large Pe
 values lead to a <em>boundary layer</em> close to \( x=1 \), where the solution
@@ -1071,14 +1069,14 @@ We realize that for large Pe,
 $$ \max_{\bar x}\frac{d\bar u}{d\bar x} \approx \hbox{Pe},\quad
 \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx \hbox{Pe}^{2},$$
 
-which are consistent results with the PDE since the double derivative term
+which are consistent results with the PDE, since the double derivative term
 is multiplied by \( \hbox{Pe}^{-1} \).
 For small Pe,
 
 $$ \max_{\bar x}\frac{d\bar u}{d\bar x}\approx 1,\quad
    \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx 0,$$
 
-which is also consistent with the PDE
+which is also consistent with the PDE,
 since an almost vanishing second-order derivative
 is multiplied by a very large coefficient \( \hbox{Pe}^{-1} \).
 However, we have a problem with very large
@@ -1147,8 +1145,10 @@ $$
 The scaled version reads
 
 $$
-\frac{\partial u}{\partial t} + \frac{t_cV}{L}\bar\v\cdot\bar\nabla \bar u =
-\frac{t_c\dfc}{L^2}\bar\nabla^2 \bar u + \frac{t_cf_c}{u_c}\bar f\tp
+\frac{\partial\bar u}{\partial\bar t} +
+\frac{t_cV}{L}\bar\v\cdot\bar\nabla \bar u =
+\frac{t_c\dfc}{L^2}\bar\nabla^2 \bar u +
+\frac{t_cf_c}{u_c}\bar f\tp
 $$
 
 We can base \( t_c \) on convective transport: \( t_c = L/V \). Now,
@@ -1156,7 +1156,9 @@ We can base \( t_c \) on convective transport: \( t_c = L/V \). Now,
 \( u_c = t_cf_c = Lf_c/V \).
 This leaves us with
 
-$$ \frac{\partial u}{\partial t} + \bar\v\cdot\bar \nabla\bar u =
+$$
+\frac{\partial\bar u}{\partial\bar t} +
+\bar\v\cdot\bar \nabla\bar u =
 \hbox{Pe}^{-1}\bar \nabla^2 \bar u + \bar f\tp
 $$
 
@@ -1169,7 +1171,9 @@ $$ \frac{L^2 f_c}{\dfc u_c} = 1\quad\Rightarrow\quad u_c = \frac{L^2 f_c}{\dfc}\
 
 The corresponding PDE reads
 
-$$ \frac{\partial u}{\partial t} + \hbox{Pe}\,\bar\v\cdot\bar \nabla\bar u =
+$$
+\frac{\partial\bar u}{\partial\bar t} +
+\hbox{Pe}\,\bar\v\cdot\bar \nabla\bar u =
 \bar\nabla^2 \bar u + \bar f,
 $$
 
@@ -1189,7 +1193,7 @@ or
 
 $$
 \bar\v\cdot\bar \nabla \bar u =
-\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f,
+\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f\tp
 $$
 
 Again, choosing \( u_c \) such that the source term coefficient is unity leads
@@ -1355,7 +1359,7 @@ $$ \max_z u =
 \frac{U_{0}^{2} \mu}{2 H^{2} \beta}\tp
 $$
 
-If the pressure gradient is the domining driving force, we can neglect
+If the pressure gradient is the dominating driving force, we can neglect
 the \( U_0 \) terms: \( \max_z u = H^2\beta/(8\mu) \). In case the movement
 of the upper plate is much more important than the pressure gradient
 for driving the flow, we can neglect the \( \beta \) terms. However, we must
@@ -1483,7 +1487,7 @@ dynamic viscosity.
 
 <p>
 Assume \( P(t) = A\cos\omega t \). Scale the problem and identify
-appropriate dimensionless numbers. The assume \( P(t) \) is a more
+appropriate dimensionless numbers. Thereafter, assume \( P(t) \) is a more
 complicated function, but still period with period \( p \).
 Discuss how the scaling can be extended to this case.
 
@@ -1518,13 +1522,13 @@ The scale for \( u \) can be explored by seeking an analytical solution
 of the problem. Such solutions do exist, they are typically series
 expansions of Bessel functions, and it is not so easy to extract
 a simple expression for the maximum value of \( |u(r,t)| \).
-A simpler approach is to estimate \( u_c \) be demanding the coefficient
+A simpler approach is to estimate \( u_c \) by demanding the coefficient
 in the pressure term to be of unit size:
 
 $$ u_c = \frac{t_cA}{\varrho}\tp$$
 
 There are two choices of time scales: the pressure time scale \( t_c=1/\omega \)
-and the viscosity (or diffusion) time scale \( t_c=R^2/nu \). With the latter
+and the viscosity (or diffusion) time scale \( t_c=R^2/nu \). With the latter,
 we get \( u_c = R^2 A/\mu \) and
 
 $$ \frac{\partial\bar u}{\partial\bar t} = \frac{1}{\bar r}\frac{\partial}{\partial\bar r}

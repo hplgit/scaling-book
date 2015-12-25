@@ -7,7 +7,7 @@ Automatically generated HTML file from DocOnce source
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="DocOnce: https://github.com/hplgit/doconce/" />
 <meta name="description" content="Scaling of Differential Equations">
-<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
+<meta name="keywords" content="units,base unit,length,mass,time,dimension of physical quantities,Pi theorem,Buckingham Pi theorem,units US,units British,units conversion,units software,multiple software runs,web interface (Parampool),graphical web interface,scaling,non-dimensionalization,dimensionless variable,exponential decay,dimensionless variable,characteristic time,e-folding time,memoize function,dimensionless number,dimensionless number,dimensionless number,logistic equation,dimensionless number,frequency,frequency, angular,period (of oscillations),radians,angular frequency,quality factor $Q$,phase shift,Lotka-Volterra, predator-prey model,Lotka-Volterra, competing species model,dimensionless number,Peclet number,dimensionless number,Reynolds number,thermo-elasticity,Navier-Stokes equations,dimensionless number,Reynolds number,Bernoulli's equation,Reynolds number,low Reynolds number flow,Stokes problem,Stokes' flow,Froude number,creeping flow,Strouhal number,vortex shedding,Euler number,Weber number,forced convection,Peclet number,Reynolds number,free convection,Grashof number,Reynolds number,Peclet number,Eckert number,Nusselt number,Mach number">
 
 <title>Scaling of Differential Equations</title>
 
@@ -80,7 +80,7 @@ code { color: inherit; background-color: transparent; }
                1,
                'sec:scale:decay',
                'sec:scale:decay'),
-              ('Fundamental ideas', 2, None, '___sec22'),
+              ('Fundamental ideas of scaling', 2, None, '___sec22'),
               ('The basic model problem', 2, None, '___sec23'),
               ('Example: Population dynamics', 3, None, '___sec24'),
               ('Example: Decay of pressure with altitude',
@@ -109,11 +109,11 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:prog',
                'sec:scale:decay:prog'),
-              ('Software for the original problem with dimensions',
+              ('Software for the original unscaled problem',
                3,
                None,
                '___sec33'),
-              ('Avoiding unnecessary computations', 3, None, '___sec34'),
+              ('Software for the scaled problem', 3, None, '___sec34'),
               ('Implementation with joblib', 3, None, '___sec35'),
               ('Scaling a generalized problem',
                2,
@@ -126,7 +126,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'sec:scale:decay:jump',
                'sec:scale:decay:jump'),
-              ('Scaling a cooling problem with constant surroundings',
+              ('Scaling a cooling problem with constant temperature in the surroundings',
                2,
                'scale:decay:cooling:const',
                'scale:decay:cooling:const'),
@@ -293,7 +293,7 @@ code { color: inherit; background-color: transparent; }
                2,
                'scale:vib:exer:rocket',
                'scale:vib:exer:rocket'),
-              ("Problem 18: Schroedinger's equation",
+              ('Problem 18: A simplified Schroedinger equation',
                2,
                'scale:vib:exer:quantum',
                'scale:vib:exer:quantum'),
@@ -303,7 +303,7 @@ code { color: inherit; background-color: transparent; }
                None,
                '___sec114'),
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
-              ('Simple homogeneous Dirichlet conditions',
+              ('Homogeneous Dirichlet conditions in 1D',
                2,
                None,
                '___sec116'),
@@ -503,10 +503,7 @@ code { color: inherit; background-color: transparent; }
                'scale:bidomain'),
               ('The mathematical model', 2, None, '___sec197'),
               ('Scaling', 2, None, '___sec198'),
-              ('The bidomain model with an alternative $I_{\\rm{ion}}$',
-               2,
-               None,
-               '___sec199'),
+              ('An alternative $I_{\\rm{ion}}$', 2, None, '___sec199'),
               ('Two-phase porous media flow', 1, None, '___sec200'),
               ('Compressible gas dynamics',
                1,
@@ -530,7 +527,7 @@ code { color: inherit; background-color: transparent; }
                3,
                None,
                '___sec207'),
-              ('Surface gravity waves',
+              ('Water surface waves driven by gravity',
                1,
                'scale:surfacewaves',
                'scale:surfacewaves'),
@@ -639,7 +636,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec19" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Generating a graphical user interface</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec20" style="font-size: 80%;"><b>Ordinary differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Exponential decay problems</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec22" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fundamental ideas of scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec23" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The basic model problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec24" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Population dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec25" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Example: Decay of pressure with altitude</a></li>
@@ -650,15 +647,15 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec30" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 4: Make each term dimensionless</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec31" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Step 5: Estimate the scales</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:prog" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Making software for utilizing the scaled model</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original problem with dimensions</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avoiding unnecessary computations</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec33" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the original unscaled problem</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec34" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software for the scaled problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec35" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation with joblib</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:body" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a generalized problem</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec37" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec38" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Theory</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec39" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:jump" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Variable coefficients</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant surroundings</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:decay:cooling:const" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling a cooling problem with constant temperature in the surroundings</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec42" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exact solution</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec43" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#___sec44" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Software</a></li>
@@ -729,11 +726,11 @@ $$
      <!-- navigation toc: --> <li><a href="#sec:scale:exer:binary_star" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 15: ODEs for a binary star</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:Duffing" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 16: Duffing's equation</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:rocket" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 17: Vertical motion in a varying gravity field</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: Schroedinger's equation</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:vib:exer:quantum" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 18: A simplified Schroedinger equation</a></li>
      <!-- navigation toc: --> <li><a href="#___sec113" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec114" style="font-size: 80%;"><b>Basic partial differential equation models</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#sec:scale:wave" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The wave equation</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simple homogeneous Dirichlet conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec116" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Homogeneous Dirichlet conditions in 1D</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec117" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Implementation of the scaled wave equation</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec118" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves on a string</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86007.html#___sec119" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Detecting an already computed case</a></li>
@@ -816,7 +813,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:bidomain" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The bidomain model in electrophysiology</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec197" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec198" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The bidomain model with an alternative \( I_{\rm{ion}} \)</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec199" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;An alternative \( I_{\rm{ion}} \)</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec200" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
@@ -825,7 +822,7 @@ $$
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec206" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec207" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Surface gravity waves</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Water surface waves driven by gravity</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec210" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86010.html#___sec211" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
@@ -866,14 +863,14 @@ reads
 
 $$
 \begin{equation}
-mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V\tp
+mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V,
 \tag{2.64}
 \end{equation}
 $$
 
+where unknown \( u(t) \) measures the displacement of the body,
 This is a common model for a vibrating body  with mass \( m \) attached
 to a linear spring with spring constant \( k \) (and force \( -ku \)).
-The quantity \( u(t) \) measures the displacement of the body.
 Figure <a href="#sec:scale:vib:undamped:sketch">7</a> shows a typical mechanical
 sketch of such a system: some mass can move horizontally without friction
 and is connected to a spring that exerts a force \( -ku \) on the body.
@@ -928,7 +925,7 @@ find \( u(t) \). The use of SymPy can later be generalized to vibration
 ODEs that are harder to solve by hand.
 
 <p>
-SymPy need all mathematical symbols to be explicitly created:
+SymPy requires all mathematical symbols to be explicitly created:
 
 <p>
 
@@ -952,7 +949,7 @@ all the terms in the ODE:
 diffeq <span style="color: #666666">=</span> ode(u(t))
 </pre></div>
 <p>
-The <code>diffeq</code> variable, defining the ODE, can be passed to a SymPy
+The <code>diffeq</code> variable, defining the ODE, can be passed to the SymPy
 function <code>dsolve</code> to find the symbolic solution of the ODE:
 
 <p>
@@ -1017,7 +1014,13 @@ $$ u(t) = \sqrt{I^2 + \frac{V^2}{\omega^2}}\cos(wt - \phi),\quad
 $$
 
 Now we see that the \( u \) corresponds to cosine oscillations with a
-phase shift \( \phi \) and amplitude \( \sqrt{I^2 + (V/\omega)^2} \).
+frequency shift \( \phi \) and amplitude \( \sqrt{I^2 + (V/\omega)^2} \).
+
+<p>
+The forthcoming text relies on a good understanding of concepts
+like period, frequency, and amplitude of oscillating signals, so
+readers who need to refresh these concepts are recommended to
+do <a href="#scale:decay:exer:sine">Problem 12: Find the period of sinusoidal signals</a> before continuing.
 
 <h3 id="___sec69">Discussion of the displacement scale </h3>
 
@@ -1037,8 +1040,8 @@ What is an appropriate time scale? Looking at
 \( \bar u'' \) and \( \bar u \) both should be around unity in size, the
 coefficient \( t_c^2k/m \) must equal unity, implying that \( t_c=\sqrt{m/k} \).
 Also from the analytical solution we see that the solution goes like the
-sine or cosine of \( \omega t \) so \( 1/\omega = \sqrt{m/k} \) can be a characteristic
-time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \) can
+sine or cosine of \( \omega t \), so \( 1/\omega = \sqrt{m/k} \) can be a characteristic
+time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \), can
 be the characteristic time, leading to \( t_c=2\pi/\omega \).
 
 <h3 id="___sec71">The dimensionless solution </h3>
@@ -1195,14 +1198,20 @@ the systems and one for the forced vibrations \( F(t) \).
 <h3 id="___sec76">Investigating scales via analytical solutions </h3>
 
 <p>
-We may look into the exact solution to see what the scales are.  We
+As we have seen already several times, having access to
+an exact solution is very fortunate as it allows us to directly
+examine the scales. Also in the present problem it is possible
+to derive an exact solution. We
 continue the SymPy session from the previous section and perform much
 of the same steps. Note that we use <code>w</code> for \( \omega = \sqrt{k/m} \)
 in the computer code (to obtain a more direct visual counterpart to
 \( \omega \)).
 SymPy may get confused when coefficients in differential equations
 contain several symbols. We therefore rewrite the equation with
-at most one symbol in each coefficient.
+at most one symbol in each coefficient (i.e., symbolic software is
+in general
+more successful when applied to scaled differential equations than the
+unscaled counterparts, but right now our task is to solve the unscaled version).
 The amplitude \( A/m \) in the forcing term is of this reason
 replaced by the symbol <code>A1</code>.
 
@@ -1260,7 +1269,7 @@ damping is included,
 see the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
 <p>
-For the case the system starts from rest, \( I=V=0 \), and the
+When the system starts from rest, \( I=V=0 \), and the
 forcing is the only driving mechanism, we can simplify:
 
 $$
@@ -1335,7 +1344,7 @@ forcing and the spring force (the dimensionless number
 Looking at <a href="#mjx-eqn-2.72">(2.72)</a>, we see
 that if \( \psi\ll\omega \), the amplitude can be approximated
 by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
-relevant for small excitation frequency \( \psi \) compared to
+relevant for an excitation frequency \( \psi \) that is small compared to
 the free vibration frequency \( \omega \).
 
 <h3 id="___sec79">Scaling with free vibrations as time scale </h3>
@@ -1372,8 +1381,9 @@ $$
 $$
 
 We remark that the choice of \( u_c \) has so far not been made. Several
-different cases will be considered below, and certain choices reduce
-the number of independent dimensionless variables to three.
+different cases will be considered below, and we will see that certain
+choices reduce the number of independent dimensionless variables to
+three.
 
 <p>
 The four dimensionless variables above have interpretations as ratios of
@@ -1618,8 +1628,9 @@ $$
 <h3 id="___sec86">The exact solution </h3>
 
 <p>
-To choose scales, it is (as always)
-a great advantage to look into exact solutions.
+As always, it is
+a great advantage to look into exact solutions for controlling our
+choice of scales.
 Using SymPy to solve <a href="#mjx-eqn-2.82">(2.82)</a> is, in principle,
 very straightforward:
 
@@ -1806,6 +1817,7 @@ $$
 <p>
 The most important feature of this solution is that there are
 two time scales with frequencies \( \psi \) and \( \sqrt{\omega^2 - B^2} \),
+respectively,
 but the latter appears in terms that decay as \( e^{-Bt} \) in time.
 The attention is usually on longer periods of time, so in that
 case the solution simplifies to
@@ -1874,7 +1886,7 @@ formulas depend on the choices of \( t_c \) and \( u_c \).
 <p>
 The relevant scale for \( u_c \) at or nearby resonance (\( \psi = \omega \))
 becomes different from the previous section, since with damping,
-the maximum amplitude is a finite value. For \( t\gg B^{-1} \) when the
+the maximum amplitude is a finite value. For \( t\gg B^{-1} \), when the
 \( \sin\psi t \) term is dominating, we have for \( \psi = \omega \):
 
 $$ u = \frac{Am^{-1}2B\psi}{4B^2\psi^2}\sin (\psi t) =
@@ -1890,7 +1902,7 @@ $$ u_c = \frac{A}{b\psi} = \frac{A}{b\omega}\tp$$
 (It is wise during computations like this to stop and check the
 dimensions: \( A \) must be \( [\hbox{MLT}^{-2}] \) from the original
 equation (\( F(t) \) must have the same dimension as \( mu'' \)),
-\( bu' \) also has dimension \( [\hbox{MLT}^{-2}] \), implying that
+\( bu' \) must also have dimension \( [\hbox{MLT}^{-2}] \), implying that
 \( b \) has dimension \( [\hbox{MT}^{-1}] \). \( A/b \) then has dimension
 \( LT^{-1} \), and \( A/(b\psi) \) gets dimension \( [L] \), which matches
 what we want for \( u_c \).)
@@ -2022,7 +2034,7 @@ dimensionless form is identical. This fact will now be demonstrated.
 
 <p>
 The current \( I(t) \) in a
-circuit with an inductor with inductance \( L \), a capacitor with
+circuit having an inductor with inductance \( L \), a capacitor with
 capacitance \( C \), and overall resistance \( R \), obeys the equation
 
 $$
@@ -2297,7 +2309,7 @@ scaled problem.
 <p>
 The velocity \( v(t) \)
 of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by ODE
+with fluid drag and buoyancy, is governed by the ODE
 
 $$ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,$$
 
@@ -2441,7 +2453,8 @@ engine and modify the
 
 <p>
 We use <code>joblib</code> to avoid unnecessary execution of the scaled problem,
-as explained in the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:prog">Making software for utilizing the scaled model</a>. A potential code is
+as explained in the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:decay:prog">Making software for utilizing the scaled model</a>. A potential
+complete program is listed below.
 
 <p>
 
@@ -3005,7 +3018,7 @@ $$ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
 
 <p>
 <b>d)</b>
-A soccer ball has diameter 11 cm and mass 0.43 kg, the density of air
+A soccer ball has radius 11 cm and mass 0.43 kg, the density of air
 is 1.2 \( \hbox{kg}\hbox{m}^{-3} \), a soft kick has velocity 30 km/h,
 while a hard kick may have 120 km/h. Estimate the dimensionless parameter
 in the scaled problem for a soft and a hard kick with
@@ -3081,10 +3094,10 @@ to solve the ODE system as a first-order system).
     L_h <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>(v0_h<span style="color: #666666">**2/</span>g)<span style="color: #666666">*</span>math<span style="color: #666666">.</span>sin(theta)<span style="color: #666666">**2</span>
     <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;L:&#39;</span>, L_s, L_h
 
-    m <span style="color: #666666">=</span> <span style="color: #666666">0.43</span>
-    a <span style="color: #666666">=</span> <span style="color: #666666">0.11</span>
-    A <span style="color: #666666">=</span> math<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>a<span style="color: #666666">**2</span>
-    rho <span style="color: #666666">=</span> <span style="color: #666666">1.2</span>
+    m <span style="color: #666666">=</span> <span style="color: #666666">0.43</span>  <span style="color: #408080; font-style: italic"># kg</span>
+    R <span style="color: #666666">=</span> <span style="color: #666666">0.11</span>  <span style="color: #408080; font-style: italic"># m</span>
+    A <span style="color: #666666">=</span> math<span style="color: #666666">.</span>pi<span style="color: #666666">*</span>R<span style="color: #666666">**2</span>
+    rho <span style="color: #666666">=</span> <span style="color: #666666">1.2</span> <span style="color: #408080; font-style: italic"># kg/m^3</span>
     C_D <span style="color: #666666">=</span> <span style="color: #666666">0.4</span>
     alpha_s <span style="color: #666666">=</span> C_D<span style="color: #666666">*</span>rho<span style="color: #666666">*</span>A<span style="color: #666666">*</span>v0_s<span style="color: #666666">**2*</span>math<span style="color: #666666">.</span>cos(theta)<span style="color: #666666">**2/</span>(<span style="color: #666666">4*</span>m<span style="color: #666666">*</span>g)
     alpha_h <span style="color: #666666">=</span> C_D<span style="color: #666666">*</span>rho<span style="color: #666666">*</span>A<span style="color: #666666">*</span>v0_h<span style="color: #666666">**2*</span>math<span style="color: #666666">.</span>cos(theta)<span style="color: #666666">**2/</span>(<span style="color: #666666">4*</span>m<span style="color: #666666">*</span>g)
@@ -3112,10 +3125,11 @@ For \( \theta =45 \) degrees we get the plot
 
 <p>
 The blue curve is very close to motion without air resistance. We
-clearly see how significant air resistance is.
+clearly see how significant air resistance is once the velocity is
+large enough.
 The total length is approximately 6.3 m for a soft kick and
-45 m for a hard kick (multiply the dimensionless lengths by the
-corresponding \( L \)).
+45 m for a hard kick (multiply the dimensionless lengths in the
+plot by the corresponding \( L \)).
 
 <p>
 </div></p>
@@ -3159,7 +3173,7 @@ and \( L \) is the corresponding measure of the predator population (say lynx).
 There are six parameters: \( a \), \( b \), \( c \), \( d \), \( H_0 \), and \( L_0 \).
 
 <p>
-The terms has the following meanings:
+The terms have the following meanings:
 
 <ul>
  <li> \( aH \) is the exponential
@@ -3453,8 +3467,8 @@ where the dimensionless numbers are given by
 $$ \alpha = \frac{r_2}{r_1},\quad \beta=\frac{M_2}{M_1},
 \quad \gamma = \frac{b_{12}}{b_{21}}\tp$$
 
-We have introduced to separate numbers \( \beta \) and \( \gamma \) since they
-related to different parameters, but only their product matters.
+We have introduced two separate numbers \( \beta \) and \( \gamma \) since they
+are related to different parameters, but only their product matters.
 Alternatively, we could introduce the numbers \( \mu = b_{12}\gamma \)
 and \( \nu = b_{21}\gamma^{-1} \) in the last term of the first and second
 ODE, respectively.
@@ -3477,7 +3491,8 @@ Filename: <code>competing_species</code>.
 <h2 id="scale:decay:exer:sine">Problem 12: Find the period of sinusoidal signals</h2>
 
 <p>
-This exercise aims at investigating various concepts like period, wave length,
+This exercise aims at investigating various fundamental
+concepts like period, wave length,
 and frequency in non-damped and damped sinusoidal signals.
 
 <p>
@@ -3759,7 +3774,7 @@ $$ f(\dot u) = \left\lbrace\begin{array}{ll}
 0,      & \dot u=0
 \end{array}\right.$$
 
-Here, \( \mu \) is a friction coefficient. With the signum function
+Here, \( \mu \geq 0 \) is a friction coefficient. With the signum function
 
 $$ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
 -1,& x < 0,\\ 
@@ -3775,7 +3790,7 @@ The ODE problem for this one-dimensional oscillatory motion reads
 
 $$
 \begin{equation}
-m\ddot u + \mu mg\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
+m\ddot u + \mu mg\,\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
 \tag{2.107}
 \end{equation}
 $$
@@ -3801,7 +3816,7 @@ $$ \bar u = \frac{u}{I},\quad \bar t = \frac{t}{t_c},$$
 
 in the problem gives
 
-$$ \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2\mu g}{I}\hbox{sign}\left(
+$$ \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2\mu g}{I}\,\hbox{sign}\left(
 \frac{d\bar u}{d\bar t}\right) + \frac{t_c^2k}{m}\bar u
 = 0,\quad \bar u(0)=1,\ \frac{d\bar u}{d\bar t}(0)=\frac{Vt_c}{I}\tp
 $$
@@ -3811,7 +3826,7 @@ oscillations, which means a balance of the acceleration term and
 the spring term. That is, \( t_c^2k/m = 1 \), and consequently
 \( t_c = \sqrt{m/k} \).
 
-$$ \frac{d^2\bar u}{d\bar t^2} + \frac{\mu mg}{kI}\hbox{sign}\left(
+$$ \frac{d^2\bar u}{d\bar t^2} + \frac{\mu mg}{kI}\,\hbox{sign}\left(
 \frac{d\bar u}{d\bar t}\right) + \bar u
 = 0,\quad \bar u(0)=1,\ \frac{d\bar u}{d\bar t}(0)=\frac{V\sqrt{mk}}{kI}\tp
 $$
@@ -3823,7 +3838,7 @@ $$ \alpha = \frac{\mu mg}{kI},\quad
 
 the scaled problem can then be written
 
-$$ \frac{d^2\bar u}{d\bar t^2} + \alpha\hbox{sign}\left(
+$$ \frac{d^2\bar u}{d\bar t^2} + \alpha\,\hbox{sign}\left(
 \frac{d\bar u}{d\bar t}\right) + \bar u
 = 0,\quad \bar u(0)=1,\ \frac{d\bar u}{d\bar t}(0)=\beta\tp
 $$
@@ -3873,7 +3888,7 @@ first-order ODEs:
 
 $$
 \begin{align*}
-v' &= - \alpha\hbox{sign}(v) - \bar u,
+v' &= - \alpha\,\hbox{sign}(v) - \bar u,\\ 
 u' &= v,
 \end{align*}
 $$
@@ -4079,7 +4094,7 @@ Simulate the problem in b) for \( \Theta = 1,20,45,60 \) measured in degrees.
 
 <p>
 We use <a href="https://github.com/hplgit/odespy" target="_self">Odespy</a>
-to solve the ODE, rewritten as system of first-order ODEs:
+to solve the ODE, rewritten as a system of first-order ODEs:
 \( \bar\omega ' = -\Theta^{-1}\sin(\Theta\bar\theta) \) and
 \( \bar\theta' = \bar\omega \). Appropriate code is
 
@@ -4128,7 +4143,7 @@ to solve the ODE, rewritten as system of first-order ODEs:
 <center><p><img src="fig-scaling/pendulum.png" align="bottom" width=600></p></center>
 
 <p>
-We clearly see that increasing \( \Theta \) increases the period of
+We clearly see that increasing the amplitude \( \Theta \) increases the period of
 the oscillations.
 
 <p>
@@ -4518,8 +4533,9 @@ Filename: <code>Duffing_eq</code>.
 <h2 id="scale:vib:exer:rocket">Problem 17: Vertical motion in a varying gravity field</h2>
 
 <p>
-A body (e.g., projectile or rocket) is launched at the earth's surface
-at velocity \( V \). The body's distance (height) from the earth's surface
+A body (e.g., projectile or rocket) is launched vertically
+from the surface of the earth with
+velocity \( V \). The body's distance (height) from the earth's surface
 at time \( t \) is represented by the function \( h(t) \).
 Unless \( h \) is very much smaller than the earth's radius \( R \), the motion
 takes place in a varying gravity field. The governing ODE problem for
@@ -4773,7 +4789,7 @@ to solve the system of first-order ODEs:
 <p>
 Recall from d) that \( \epsilon^2 \) is the ratio of the height reached
 in a constant gravity field and the earth's radius.
-The figures below shows the results for \( \epsilon^2=0.01,0.1,0.5, 1, 2 \),
+The figures below show the results for \( \epsilon^2=0.01,0.1,0.5, 1, 2 \),
 respectively.
 
 <p>
@@ -4807,7 +4823,7 @@ for \( \epsilon \) around unity.
 <b>Remark.</b>
 The present problem is one of the few problems that is
 discussed at length in the literature, see
-Logan <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Logan_1987">[2]</a> and Lin and Segel <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Lin_Segel">[8]</a>.
+Logan <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Logan_1987">[2]</a> or Lin and Segel <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Lin_Segel">[8]</a>.
 The standard argument is that the scaling in c) is favorable since
 it is the only scaling that is valid as \( \epsilon\rightarrow 0 \). However,
 that it is robust also for the larger relevant values of \( \epsilon \) is
@@ -4831,7 +4847,7 @@ Filename: <code>varying_gravity</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:quantum">Problem 18: Schroedinger's equation</h2>
+<h2 id="scale:vib:exer:quantum">Problem 18: A simplified Schroedinger equation</h2>
 
 <p>
 A simplified stationary
