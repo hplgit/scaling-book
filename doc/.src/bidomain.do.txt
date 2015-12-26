@@ -298,7 +298,7 @@ but now with
 !bt
 \[ I_{\rm{ion}} = -A[(v-v_r)(v-v_{th})(v-v_p) - w(v-v_r)(v_p-v_r)^2], \]
 !et
-and $w$ governed by an ODE on the form
+where $w$ is governed by an ODE on the form
 !bt
 \[ \frac{dw}{dt} = k(v-v_r)-l w \tp\]
 !et
@@ -310,7 +310,7 @@ The somewhat strange choice of parameter units are
 required because the function is cubic in $v$.
 Typical initial conditions are $v=v_r, u_e = w=0$,
 and $I_{app}$ is piecewise constant in space and time, with a typical
-value being $I_{app} = -50 \hbox{mA}$ applied for 2 ms in certain regions of
+value being $I_{app} = -50\, \hbox{mA}$ applied for 2 ms in certain regions of
 the domain.
 
 The equations can be scaled following the same procedure as above. In
