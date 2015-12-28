@@ -403,7 +403,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Dec 25, 2015}
+\date{Dec 28, 2015}
 \maketitle
 
 % Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/book/book
@@ -5359,6 +5359,7 @@ where $f$ represents a forcing.
 % boundary or initial condition.
 
 \subsection{Homogeneous Dirichlet conditions in 1D}
+\label{sec:scale:wave:bc_u0}
 
 Let us first start with (\ref{scale:wave:pde1}),
 homogeneous Dirichlet conditions in space, and
@@ -5476,6 +5477,7 @@ u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
 \end{equation}
 
 \subsection{Implementation of the scaled wave equation}
+\label{sec:scale:wave:impl}
 
 How do we implement (\ref{scale:wave:pde1:d})-(\ref{scale:wave:pde1:bc:L:d})?
 As for the simpler mathematical models, we suggest to implement the model
@@ -8825,7 +8827,7 @@ we have the bidomain model given by
 \end{align}
 but now with
 \[ I_{\rm{ion}} = -A[(v-v_r)(v-v_{th})(v-v_p) - w(v-v_r)(v_p-v_r)^2], \]
-and $w$ governed by an ODE on the form
+where $w$ is governed by an ODE on the form
 \[ \frac{dw}{dt} = k(v-v_r)-l w \tp\]
 Choosing $A=4.16\cdot 10^{-4} \hbox{mS}/(\hbox{mV}^2),  v_r=-85\hbox{mV},
 v_{th}= -68\hbox{mV}, v_p=40\hbox{mV}, k = 4.0\cdot10^{-5} \hbox{mV}^{-1}\hbox{ms}^{-1}, l
@@ -8835,7 +8837,7 @@ The somewhat strange choice of parameter units are
 required because the function is cubic in $v$.
 Typical initial conditions are $v=v_r, u_e = w=0$,
 and $I_{app}$ is piecewise constant in space and time, with a typical
-value being $I_{app} = -50 \hbox{mA}$ applied for 2 ms in certain regions of
+value being $I_{app} = -50\, \hbox{mA}$ applied for 2 ms in certain regions of
 the domain.
 
 The equations can be scaled following the same procedure as above. In

@@ -332,12 +332,12 @@ div { text-align: justify; text-justify: inter-word; }
               ('The wave equation', 1, 'sec:scale:wave', 'sec:scale:wave'),
               ('Homogeneous Dirichlet conditions in 1D',
                2,
-               None,
-               '___sec116'),
+               'sec:scale:wave:bc_u0',
+               'sec:scale:wave:bc_u0'),
               ('Implementation of the scaled wave equation',
                2,
-               None,
-               '___sec117'),
+               'sec:scale:wave:impl',
+               'sec:scale:wave:impl'),
               ('Waves on a string', 3, None, '___sec118'),
               ('Detecting an already computed case', 3, None, '___sec119'),
               ('Time-dependent Dirichlet condition',
@@ -684,7 +684,7 @@ where \( f \) represents a forcing.
 <!-- the domain, and the scale of \( u \) usually depends on \( f \) or the -->
 <!-- boundary or initial condition. -->
 
-<h2 id="___sec116">Homogeneous Dirichlet conditions in 1D </h2>
+<h2 id="sec:scale:wave:bc_u0">Homogeneous Dirichlet conditions in 1D</h2>
 
 <p>
 Let us first start with <a href="#mjx-eqn-112">(112)</a>,
@@ -824,7 +824,7 @@ u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
 \end{equation}
 $$
 
-<h2 id="___sec117">Implementation of the scaled wave equation </h2>
+<h2 id="sec:scale:wave:impl">Implementation of the scaled wave equation</h2>
 
 <p>
 How do we implement <a href="#mjx-eqn-119">(119)</a>-<a href="#mjx-eqn-123">(123)</a>?

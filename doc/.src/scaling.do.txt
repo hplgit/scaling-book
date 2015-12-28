@@ -5557,6 +5557,7 @@ where $f$ represents a forcing.
 #boundary or initial condition.
 
 ===== Homogeneous Dirichlet conditions in 1D =====
+label{sec:scale:wave:bc_u0}
 
 Let us first start with (ref{scale:wave:pde1}),
 homogeneous Dirichlet conditions in space, and
@@ -5688,6 +5689,7 @@ u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
 !et
 
 ===== Implementation of the scaled wave equation =====
+label{sec:scale:wave:impl}
 
 How do we implement (ref{scale:wave:pde1:d})-(ref{scale:wave:pde1:bc:L:d})?
 As for the simpler mathematical models, we suggest to implement the model
