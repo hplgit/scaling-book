@@ -29,8 +29,8 @@ doconce subst '\{fig-.+?/' '{figs/' $book.tex
 cp ../README_Springer_dir.txt 00README.txt
 
 # Copy .bib file and newcommands
-cp ../../chapters/papers.bib .
-doconce replace '{../chapters/papers}' '{papers}' $book.tex
+cp ../papers.bib .
+#doconce replace '{../chapters/papers}' '{papers}' $book.tex
 cp ../newcommands_keep.tex .
 
 # Test that the book can be compiled in this subdir
@@ -51,16 +51,17 @@ doconce latex_problems book_last_run.log > book_last_run.log.summary
 # to find each style file (the script creates a new script tmpcp.sh
 # for copying the style files from their various locations).
 doconce grab --from- '\*File List\*' --to- '\*\*\*\*' tmp.txt > tmp2.txt
-python ../grab_stylefiles.py tmp2.txt  # make script tmpcp.sh
-mkdir stylefiles
-cd stylefiles
-sh ../tmpcp.sh  # copy all style files
-cd ..
+python ../grab_stylefiles.py tmp2.txt book.tex  # make script tmpcp.sh
+if [ ! -d stylefiles ]; then
+    mkdir stylefiles
+fi
+sh ./tmpcp.sh  # copy all style files
 rm tmpcp.sh
 rm *~ tmp*
 
 # Use most recently compiled PDF in the parent dir as official PDF
-cp ${name}.pdf $author_name
+cd ..
+cp ${name}.pdf $author_name/${name}.pdf
 
 # Make tarfile of the directory tree
 tarfile=tutorial.tar.gz

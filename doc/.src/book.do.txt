@@ -32,7 +32,7 @@ doc_scale = 'http://hplgit.github.io/scaling-book/doc'
 doc_scale = 'http://tinyurl.com/qfjgxmf'
 %>
 
-# Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/book/book
+# Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
 
 !split
 ========= Preface  =========
