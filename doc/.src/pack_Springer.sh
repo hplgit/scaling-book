@@ -1,5 +1,7 @@
 #!/bin/bash
-# Pack a book project for Springer
+# Pack a latex book project for Springer:
+# Make subdirectory $author_name with all relevant latex files,
+# including all style files.
 set -x
 
 author_name=langtangen
@@ -18,19 +20,12 @@ cp ../${name}.tex $book.tex
 
 # Copy all figures to one directory
 mkdir figs
-for dir in ../fig-*; do
+for dir in ../fig-*; do  # Assume all figures in ../fig-* directories
   cp $dir/* figs
 done
 doconce subst '\{fig-.+?/' '{figs/' $book.tex
 
-# Copy my hacked style files and give them new name with my initials
-cp ~/texmf/tex/latex/misc/t2do.sty t2_hpl.sty
-cp ~/texmf/tex/latex/misc/svmonodo.cls svmono_hpl.cls
-doconce replace '{t2do}' '{t2_hpl}' $book.tex
-doconce replace '{svmonodo}' '{svmono_hpl}' $book.tex
-doconce subst '% Use .+ with doconce modifications.*' '' book.tex
-
-# Copy ready-made discription of how this dir is organized
+# Copy ready-made discription of how this directory is organized
 cp ../README_Springer_dir.txt 00README.txt
 
 # Copy .bib file and newcommands
@@ -41,7 +36,7 @@ cp ../newcommands_keep.tex .
 # Test that the book can be compiled in this subdir
 rm -rf tmp.txt
 pdflatex book | tee tmp.txt   # output of command in tmp.txt
-rm -rf *.dvi *.aux *.out *.log *.loe *.toc
+rm -rf *.dvi *.aux *.out *.log *.loe *.toc *.idx
 
 # Copy the log file from last run in the parent directory
 # and analyze potential problems (too long lines, etc.) with the script
@@ -65,27 +60,10 @@ rm tmpcp.sh
 rm *~ tmp*
 
 # Use most recently compiled PDF in the parent dir as official PDF
-cp ../${name}.pdf $book.pdf
+cp ${name}.pdf $author_name
 
-echo 'Pause before sending tar file to Springer...'
-sleep 2
-cd ..
-# Springer's FTP site info
-user=b3143
-passwd=spvb3143
-url=213.71.6.142
-#--------------------------------------------
-# Mark name of tar file with the date
-file=TCSE6_Mar4_2031.tar.gz
-#--------------------------------------------
-tar czf $file $author_name
-ftp -n $url <<EOF
-quote $user
-quote $passwd
-cd langtangen
-put $file
-EOF
-
-# cp a copy of the tex file and the tar file to my Google Drive
-# in case Springer wants to get the files from there
-#cp langtangen/$book.tex $file "/mnt/hgfs/hpl/Google Drive/Springer-TCSE6"
+# Make tarfile of the directory tree
+tarfile=tutorial.tar.gz
+tar czf $tarfile $author_name
+#cp ${author_name}/${book}_*.tex $tarfile "~/Dropbox/Springer/Scaling"
+exit
