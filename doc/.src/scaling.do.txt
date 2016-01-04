@@ -8058,27 +8058,30 @@ This choice results in the scaled PDE
 \[
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}(\bar v(x,t) - 1),\]
+-\hbox{Bi}\,(\bar v(x,t) - 1),\]
 !et
 with the dimensionless number
 
 !bt
 \[ \hbox{Bi} = \frac{Lh}{\dfc},\]
 !et
-where we have approximated the length measure $A/P$ simply by
+if we approximate the length measure $A/P$ simply by
 $L$. The quantity Bi is the "Biot number": "https://en.wikipedia.org/wiki/Biot_number".
 #For a circular cross section, $A=\pi R^2$, $P=2\pi R$, $A/P=R/2$ and $L$
 #is usually quite much larger than $R/2$. For a rectangular cross section,
 #$A=ab$, $P=2(a+b)$, $A/P=ab/(a+b)=a/2$ if $a=b$. We think of a slender
 # body perhaps, but the point is that the temperature is already uniform
 # in y and z, only differences in x exist at t=0.
+[hpl: Should we use $\overline{\hbox{Bi}}^{} = L^2LhP/(A\dfc)$ instead,
+which is always right? The dimensionless numbers in the PDE and the
+boundary conditions are then different (three numbers in total).]
 
 The scaled initial condition becomes
 
 !bt
 \[
 \bar v(\bar x,0)=0
-\hbox{ if } 0\leq x < 1/2\hbox{ else } \gamma,\]
+\hbox{ if } 0\leq x < 1/2\hbox{ else } \beta,\]
 !et
 where $\beta$ is the dimensionless number
 
@@ -8089,13 +8092,13 @@ The scaled boundary conditions take the form
 
 !bt
 \[
- \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}\,
  (\bar v(0,t)-1),\quad
--\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}\,
 (\bar v(L,t)-1),
 \]
 !et
-where Bi is the Biot number as above.
+where Bi is the Biot number $Lh/\dfc$.
 
 Here is a simulation with $\hbox{Bi}=0.1$
 (using the `diffusion_two_metal_pieces` function in
@@ -8129,15 +8132,15 @@ The PDE now becomes homogeneous,
 \[
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}\bar v(x,t),\]
+-\hbox{Bi}\,\bar v(x,t),\]
 !et
 and the boundary conditions take the form
 
 !bt
 \[
- \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}\,
  \bar v(0,t),\quad
--\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}\,
 \bar v(L,t)\tp
 \]
 !et
@@ -8147,7 +8150,7 @@ scaling attractive, especially for analytical solution of the problem.
 !esol
 
 !bremarks
-We can derive (ref{scale:exer:twometal:eq1:1D})-(ref{scale:exer:twometal:eq3:1D}) from (ref{scale:exer:twometal:eq1:3D})-(ref{scale:exer:twometal:eq1:3D}).
+We can derive (ref{scale:exer:twometal:eq1:1D})-(ref{scale:exer:twometal:eq3:1D}) from (ref{scale:exer:twometal:eq1:3D})-(ref{scale:exer:twometal:eq2:3D}).
 The idea is to integrate the governing PDE
 (ref{scale:exer:twometal:eq1:1D}) in the two directions where we
 expect negligible variations,

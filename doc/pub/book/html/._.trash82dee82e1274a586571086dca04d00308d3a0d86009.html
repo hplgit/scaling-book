@@ -1805,13 +1805,13 @@ This choice results in the scaled PDE
 $$
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}(\bar v(x,t) - 1),$$
+-\hbox{Bi}\,(\bar v(x,t) - 1),$$
 
 with the dimensionless number
 
 $$ \hbox{Bi} = \frac{Lh}{\dfc},$$
 
-where we have approximated the length measure \( A/P \) simply by
+if we approximate the length measure \( A/P \) simply by
 \( L \). The quantity Bi is the <a href="https://en.wikipedia.org/wiki/Biot_number" target="_self">Biot number</a>.
 <!-- For a circular cross section, \( A=\pi R^2 \), \( P=2\pi R \), \( A/P=R/2 \) and \( L \) -->
 <!-- is usually quite much larger than \( R/2 \). For a rectangular cross section, -->
@@ -1819,12 +1819,16 @@ where we have approximated the length measure \( A/P \) simply by
 <!-- body perhaps, but the point is that the temperature is already uniform -->
 <!-- in y and z, only differences in x exist at t=0. -->
 
+<!-- begin inline comment -->
+<font color="red">(<b>hpl 3</b>: Should we use \( \overline{\hbox{Bi}}^{} = L^2LhP/(A\dfc) \) instead, which is always right? The dimensionless numbers in the PDE and the boundary conditions are then different (three numbers in total).)</font>
+<!-- end inline comment -->
+
 <p>
 The scaled initial condition becomes
 
 $$
 \bar v(\bar x,0)=0
-\hbox{ if } 0\leq x < 1/2\hbox{ else } \gamma,$$
+\hbox{ if } 0\leq x < 1/2\hbox{ else } \beta,$$
 
 where \( \beta \) is the dimensionless number
 
@@ -1833,13 +1837,13 @@ $$ \beta = \frac{U_2 - U_1}{U_s - U_1}\tp$$
 The scaled boundary conditions take the form
 
 $$
- \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}\,
  (\bar v(0,t)-1),\quad
--\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}\,
 (\bar v(L,t)-1),
 $$
 
-where Bi is the Biot number as above.
+where Bi is the Biot number \( Lh/\dfc \).
 
 <p>
 Here is a simulation with \( \hbox{Bi}=0.1 \)
@@ -1885,14 +1889,14 @@ The PDE now becomes homogeneous,
 $$
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}\bar v(x,t),$$
+-\hbox{Bi}\,\bar v(x,t),$$
 
 and the boundary conditions take the form
 
 $$
- \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}\,
  \bar v(0,t),\quad
--\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}\,
 \bar v(L,t)\tp
 $$
 
@@ -1914,7 +1918,7 @@ Filename: <code>metal_pieces</code>.
 <h3 id="___sec164">Remarks </h3>
 
 <p>
-We can derive <a href="#mjx-eqn-3.88">(3.88)</a>-<a href="#mjx-eqn-3.91">(3.91)</a> from <a href="#mjx-eqn-3.86">(3.86)</a>-<a href="#mjx-eqn-3.86">(3.86)</a>.
+We can derive <a href="#mjx-eqn-3.88">(3.88)</a>-<a href="#mjx-eqn-3.91">(3.91)</a> from <a href="#mjx-eqn-3.86">(3.86)</a>-<a href="#mjx-eqn-3.87">(3.87)</a>.
 The idea is to integrate the governing PDE
 <a href="#mjx-eqn-3.88">(3.88)</a> in the two directions where we
 expect negligible variations,
