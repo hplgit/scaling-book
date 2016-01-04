@@ -2395,6 +2395,30 @@ label{scale:MMK:Seq1}
 !et
 We see that the parameter $K$ is central.
 
+[Geir: From above expression for $[E]$ and (ref{scale:MMK:cons1}) it now follows
+!bt
+\[
+[E]=\frac{K E_0}{K+[S]},\quad [ES]=\frac{E_0[S]}{K+[S]}.
+\]
+!et
+If $K$ is comparable to $S_0$ these indicate
+!bt
+\[
+[E]\sim E_0,\quad [ES]\sim \frac{E_0 S_0}{K},
+\]
+!et
+as is used for scaling $[E]$ and $Q_c$, subsequently. However, with much 
+substrate we may (?) have $[S]\gg K$ and  
+!bt
+\[
+[E]\sim \frac{K}{[S]}E_0,\quad [ES]\sim E_0,
+\]
+!et
+where that latter simply expresses that all enzyme is turned into the 
+intermediate compound $ES$. The scaling of the whole system will thus be different. Is this realistic, in the sense that sufficient concentrations of $S$ are
+feasible ? I don't know. I suggest writing the following
+]
+Furthermore, provided we exclude the case $[S]\gg K$ we may infer that $[E]$ will be of magnitude $E_0$, while $[ES]$ will be of magnitude $E_0 S_0/K$.
 # #ifdef EXTRA
 ## This is classical analysis taken from somewhere:
 
@@ -2518,11 +2542,11 @@ can be roughly estimated from the equation for $[ES]^\prime$
 by setting $[ES]^\prime = 0$, which gives
 
 !bt
-\[ [ES] = \frac{[E][S]}{K}\approx \frac{E_0S_0}{K},\]
+\[ [ES] = \frac{[E][S]}{K}\sim \frac{E_0S_0}{K},\]
 !et
-where we have approximated $[E][S]$ by $E_0S_0$. This estimate of $[ES]$
+where we have replaced $[E][S]$ by $E_0S_0$. This estimate of $[ES]$
 at its maximum can be used as the characteristic size $Q_c$:
-
+[Geir: It is an identification of magnitude, not an approximation]
 !bt
 \[ Q_c = \frac{E_0S_0}{K}\tp\]
 !et
