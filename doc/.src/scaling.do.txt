@@ -1672,6 +1672,7 @@ problem (ref{scale:decay:cooling:model}) gives
 !et
 A natural choice, as argued in other exponential decay problems,
 is to choose $t_ck=1$, which leaves us with the scaled problem
+
 !bt
 \begin{equation}
 \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
@@ -1711,11 +1712,12 @@ The resulting scaled ODE problem then becomes
 
 !bt
 \begin{equation}
-\frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1
+\frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1,
 label{scale:decay:cooling:Tbar:eq2}
 \tp
 \end{equation}
 !et
+with solution $\bar T = e^{-\bar t}$.
 
 ===== Scaling a cooling problem with time-dependent surroundings =====
 label{scale:decay:cooling:osc}
@@ -7909,9 +7911,11 @@ temperature evolution in the two pieces:
 !bt
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
-u(\x,0)&=I(x), & \x\in \Omega,\\
+u(\x,0)&=I(x), & \x\in \Omega,
+label{scale:exer:twometal:eq1:3D}\\
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
+label{scale:exer:twometal:eq2:3D}
 \end{align}
 !et
 Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
@@ -7934,8 +7938,176 @@ as bricks, it is tempting to develop a one-dimensional model,
 especially if the pieces are somewhat slender. We then expect the main
 temperature variations to take place in the $x$ direction, where the
 $x$ axis is perpendicular to the contact surface between the pieces.
-The idea is to integrate the governing PDE in the two other
-directions, use the Gauss divergence theorem on $\dfc\nabla^2u$, and
+A simplified PDE problem, neglecting variations in the $y$ and $z$
+directions, takes the form
+
+!bt
+\begin{align}
+\frac{\partial v}{\partial t} &=
+\dfc \frac{\partial^2 v}{\partial x^2}
+-\frac{hP}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
+label{scale:exer:twometal:eq1:1D}\\
+v(x,0)&=I(x), & x\in (0,L),\\
+ \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
+ label{scale:exer:twometal:eq2:1D}\\
+-\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
+label{scale:exer:twometal:eq3:1D}
+\end{align}
+!et
+with
+
+!bt
+\[
+I(x) = \left\lbrace\begin{array}{ll}
+U_1, & x\in [0,L/2),\\
+U_2, & x\in [L/2, L]\tp
+\end{array}\right.
+\]
+!et
+The parameter $P$ is the perimeter of the cross section and $A$ is the
+area of the cross section. Scale this problem.
+
+!bsol
+idx{Biot number}
+
+We expect the temperature to start from the discontinuous state with
+$U_1$ and $U_2$ and approach the surrounding temperature $u_S$ in
+the cooling law as $t\rightarrow\infty$. One suitable scaling is
+then
+
+!bt
+\[ \bar v = \frac{v - \min (U_1,U_2)}{u_S-\min (U_1, U_2)},\]
+!et
+since this implies that $u$ varies from 0 to 1. Without loss of
+generality we assume $U_1 < U_2$, so
+
+!bt
+\[ \bar v = \frac{v - U_1}{u_S-U_1}\tp\]
+!et
+Furthermore,
+
+!bt
+\[ \bar x = \frac{x}{L},\quad \bar t = \frac{t}{t_c}\tp\]
+!et
+Inserted in the governing PDE, we have
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{t_c\dfc}{L^2}\frac{\partial^2\bar v}{\partial\bar x^2}
+-\frac{t_c hP}{A(u_S-U_1)}
+(U_1 + (u_S-U_1) \bar v(x,t) - u_S),\]
+!et
+which simplifies to
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{t_c\dfc}{L^2}\frac{\partial^2\bar v}{\partial\bar x^2}
+-\frac{t_c hP}{A}
+(\bar v(x,t) - 1)\tp\]
+!et
+The natural time scale is that of diffusion: $t_c = L^2/\dfc$.
+This choice results in the scaled PDE
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{\partial^2\bar v}{\partial\bar x^2}
+-\hbox{Bi}(\bar v(x,t) - 1),\]
+!et
+with the dimensionless number
+
+!bt
+\[ \hbox{Bi} = \frac{Lh}{\dfc},\]
+!et
+where we have approximated the length measure $A/P$ simply by
+$L$. The quantity Bi is the "Biot number": "https://en.wikipedia.org/wiki/Biot_number".
+#For a circular cross section, $A=\pi R^2$, $P=2\pi R$, $A/P=R/2$ and $L$
+#is usually quite much larger than $R/2$. For a rectangular cross section,
+#$A=ab$, $P=2(a+b)$, $A/P=ab/(a+b)=a/2$ if $a=b$. We think of a slender
+# body perhaps, but the point is that the temperature is already uniform
+# in y and z, only differences in x exist at t=0.
+
+The scaled initial condition becomes
+
+!bt
+\[
+\bar v(\bar x,0)=0
+\hbox{ if } 0\leq x < 1/2\hbox{ else } \gamma,\]
+!et
+where $\beta$ is the dimensionless number
+
+!bt
+\[ \beta = \frac{U_2 - U_1}{U_s - U_1}\tp\]
+!et
+The scaled boundary conditions take the form
+
+!bt
+\[
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}
+ (\bar v(0,t)-1),\quad
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}
+(\bar v(L,t)-1),
+\]
+!et
+where Bi is the Biot number as above.
+
+Here is a simulation with $\hbox{Bi}=0.1$
+(using the `diffusion_two_metal_pieces` function in
+"`session.py`": "${src_scaling}/session.py").
+
+MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/Bi01/movie.mp4]
+
+
+Another temperature scaling is also possible:
+
+!bt
+\[ \bar v = \frac{v - U_s}{U_2-U_s}\tp\]
+!et
+The initial condition is then
+
+!bt
+\[
+\bar v(\bar x,0)=\gamma
+\hbox{ if } 0\leq x < 1/2\hbox{ else } 1,\]
+!et
+where $\gamma$ is the dimensionless number
+
+!bt
+\[ \gamma = \frac{U_1 - U_s}{U_2 - U_s}\tp\]
+!et
+Note that $\gamma < 1$ if $U_1 < U_2$, and we expect $\bar v\in [0, 1]$
+($\bar v\rightarrow 0$ as $\bar t\rightarrow\infty$).
+The PDE now becomes homogeneous,
+
+!bt
+\[
+\frac{\partial\bar v}{\partial\bar t} =
+\frac{\partial^2\bar v}{\partial\bar x^2}
+-\hbox{Bi}\bar v(x,t),\]
+!et
+and the boundary conditions take the form
+
+!bt
+\[
+ \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Bi}
+ \bar v(0,t),\quad
+-\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Bi}
+\bar v(L,t)\tp
+\]
+!et
+Many will find the homogeneous PDE and boundary conditions of the latter
+scaling attractive, especially for analytical solution of the problem.
+
+!esol
+
+!bremarks
+We can derive (ref{scale:exer:twometal:eq1:1D})-(ref{scale:exer:twometal:eq3:1D}) from (ref{scale:exer:twometal:eq1:3D})-(ref{scale:exer:twometal:eq1:3D}).
+The idea is to integrate the governing PDE
+(ref{scale:exer:twometal:eq1:1D}) in the two directions where we
+expect negligible variations,
+use the Gauss divergence theorem in these directions, and
 apply the cooling boundary condition. Let $A$ be the cross section of
 the bricks. Integrating over $A$ gives
 
@@ -7961,9 +8133,10 @@ dydz +
 \dfc\int\limits_{\partial A}\frac{\partial u}{\partial n}ds\\
 & = \int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
-dydz -h(v(x,t) -u_S)\tp
+dydz -h(v(x,t) -u_S)P\tp
 \end{align*}
 !et
+The parameter $P$ is the perimeter of the cross section $A$.
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
@@ -7977,119 +8150,10 @@ approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 dydz \approx A \dfc \frac{\partial^2 v}{\partial x^2},
 \]
 !et
-where $A$ now is the cross-section area.
+where $A$ now is the cross-section *area*.
 The result is the 1D initial-boundary value problem
-
-!bt
-\begin{align}
-\frac{\partial v}{\partial t} &=
-\dfc \frac{\partial^2 v}{\partial x^2}
--\frac{h}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],\\
-v(x,0)&=I(x), & x\in (0,L),\\
- \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],\\
--\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
-\end{align}
-!et
-with
-
-!bt
-\[
-I(x) = \left\lbrace\begin{array}{ll}
-U_1, & x\in [0,L/2),\\
-U_2, & x\in [L/2, L]\tp
-\end{array}\right.
-\]
-!et
-Scale this problem.
-
-!bsol
-We expect the temperature to start from the discontinuous state with
-$U_1$ and $U_2$ and approach the surrounding temperature $u_S$ in
-the cooling law as $t\rightarrow\infty$. A suitable scaling is
-then
-
-!bt
-\[ \bar v = \frac{v - \min (U_1,U_2)}{u_S-\min (U_1, U_2)},\]
-!et
-since this implies that $u$ varies from 0 to 1. Without loss of
-generality we assume $U_1 < U_2$, so
-
-!bt
-\[ \bar v = \frac{v - U_1}{u_S-U_1}\tp\]
-!et
-Furthermore,
-
-!bt
-\[ \bar x = \frac{x}{L},\quad \bar t = \frac{t}{t_c}\tp\]
-!et
-Inserted in the governing PDE, we have
-
-!bt
-\[
-\frac{\partial\bar v}{\partial\bar t} =
-\frac{t_c\dfc}{L^2}\frac{\partial^2\bar v}{\partial\bar x^2}
--\frac{t_c h}{A(u_S-U_1)}
-(U_1 + (u_S-U_1) \bar v(x,t) - u_S),\]
-!et
-which simplifies to
-
-!bt
-\[
-\frac{\partial\bar v}{\partial\bar t} =
-\frac{t_c\dfc}{L^2}\frac{\partial^2\bar v}{\partial\bar x^2}
--\frac{t_c h}{A}
-(\bar v(x,t) - 1)\tp\]
-!et
-The natural time scale is that of diffusion: $t_c = L^2/dfc$.
-This choice results in the scaled PDE
-
-!bt
-\[
-\frac{\partial\bar v}{\partial\bar t} =
-\frac{\partial^2\bar v}{\partial\bar x^2}
--\beta (\bar v(x,t) - 1),\]
-!et
-with the dimensionless number
-
-!bt
-\[ \beta = \frac{L^2 h}{A\dfc}\tp\]
-!et
-
-The scaled initial condition becomes
-
-!bt
-\[
-\bar v(\bar x,0)=0
-\hbox{ if } 0\leq x < 1/2\hbox{ else } \gamma,\]
-!et
-where $\gamma$ is the dimensionless number
-
-!bt
-\[ \gamma = \frac{U_2 - U_1}{U_s - U_1}\tp\]
-!et
-The scaled boundary conditions take the form
-
-!bt
-\[
- \frac{\partial}{\partial\bar x}\bar v(0,t) = \hbox{Nu}
- (\bar v(0,t)-1),\quad
--\frac{\partial}{\partial\bar x}\bar v(L,t) = \hbox{Nu}
-(\bar v(L,t)-1),
-\]
-!et
-where Nu is the Nusselt number
-
-!bt
-\[ \hbox{Nu} = \frac{Lh}{\dfc}\tp\]
-!et
-
-Here is a simulation with $\beta=0.1$ and $\hbox{Nu}=2$
-(using the `diffusion_two_metal_pieces` function in
-"`session.py`": "${src_scaling}/session.py").
-
-MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/beta_01_Nu2/movie.mp4]
-
-!esol
+(ref{scale:exer:twometal:eq1:1D})-(ref{scale:exer:twometal:eq3:1D}).
+!eremarks
 
 !split
 ========= Advanced partial differential equation models =========
@@ -9546,9 +9610,10 @@ by conduction, while $\hbox{Ec}\hbox{Re}^{-1}\ll 1$ suggest neglecting
 heat generation by viscous dissipation.
 # #endif
 
-===== Heat transfer at boundaries and the Nusselt number =====
+===== Heat transfer at boundaries and the Nusselt and Biot numbers =====
 
 idx{Nusselt number}
+idx{Biot number}
 
 A common boundary condition, modeling heat transfer to/from the
 surroundings, is
@@ -9573,13 +9638,13 @@ and further to
 !bt
 \[ \frac{\partial \bar T}{\partial \bar n} =
 \frac{hL}{\kappa}(\bar T + \frac{T_s - T_0}{\Delta T})
-= \hbox{Nu}(\bar T - \bar T_s),
+= \delta(\bar T - \bar T_s),
 \]
 !et
-where the Nusselt number is defined by
+where the dimensionless number $\delta$ is defined by
 
 !bt
-\[ \hbox{Nu} = \frac{hL}{\kappa},\]
+\[ \delta = \frac{hL}{\kappa},\]
 !et
 and $\bar T_s$ is simply the dimensionless surrounding temperature,
 
@@ -9587,19 +9652,35 @@ and $\bar T_s$ is simply the dimensionless surrounding temperature,
 \[ \bar T_s = \frac{T_s - T_0}{\Delta T}\tp\]
 !et
 
-The left-hand side of (ref{scale:fluid:free_convection:fluxcond}) represents
+When studying heat transfer in a fluid, with solid surroundings,
+$\delta$ is known as the "Nusselt number":
+"https://en.wikipedia.org/wiki/Nusselt_number" Nu.  The left-hand side
+of (ref{scale:fluid:free_convection:fluxcond}) represents in this case
 heat conduction, while the right-hand side models convective heat
 transfer at a boundary. The Nusselt number can then be interpreted as
-the ratio of convective and conductive heat transfer at a boundary:
+the ratio of convective and conductive heat transfer at a solid
+boundary:
 
 !bt
 \[ \frac{|h(T-T_s)|}{\kappa T/L} \sim \frac{h}{\kappa /L} = \hbox{Nu}\tp\]
 !et
 
+The case with heat transfer in a solid with a fluid as surroundings
+gives the same dimensionless $\delta$, but the number is now known as
+the "Biot number": "https://en.wikipedia.org/wiki/Biot_number". It
+describes the ratio of heat loss/gain with the surroundings at the
+solid body's boundary and conduction inside the body. A small Biot
+number indicates that conduction is a fast process and one can use
+Newton's law of cooling (see Section ref{scale:decay:cooling:const})
+instead of a detailed caclulation of the
+spatio-temporal temperature variation in the body. The Biot number
+also arises in simplified models of heat conduction in solids,
+see Exercise ref{scale:exer:twometal}.
+
 Heat transfer is a huge engineering
 field with lots of experimental investigations
 that are summarized by curves relating various dimensionless numbers
-such as Gr, Pr, and Nu.
+such as Gr, Pr, Nu, and Bi.
 
 # #include "bidomain.do.txt"
 
