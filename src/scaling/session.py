@@ -583,20 +583,19 @@ def diffusion_two_metal_pieces():
                  xlabel='$x$', ylabel='$u$',
                  savefig='tmp_%04d.png' % n)
 
-    beta = 0.1
-    gamma = 2
-    Nu = 0.1
+    Bi = 0.1
+    beta = 2
     solver_diffusion_FE(
-        I=lambda x: 0 if x < 0.5 else gamma,
+        I=lambda x: 0 if x < 0.5 else beta,
         a=0.5,
-        f=-beta,
+        f=-Bi,
         L=1,
         Nx=50,
         F=0.25,
         T=0.015,
         U_0=1,  # Robin condition U_s=1
         U_L=1,
-        h=Nu,
+        h=Bi,
         user_action=plot)
 
 if __name__ == '__main__':

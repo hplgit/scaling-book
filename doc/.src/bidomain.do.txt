@@ -1,12 +1,23 @@
 ======= The bidomain model in electrophysiology =======
 label{scale:bidomain}
 
-===== The mathematical model =====
-
 The mechanical functioning of the heart is crucially dependent on
 correct electric signal propagation through the heart tissue.
-A widely used mathematical
-model for the electric signal propagation is the bidomain equations:
+Understanding this signal propagation via mathematical modeling has
+therefore been a topic of increasing interest in the medical research
+on heart failure, stroke, and other heart-related diseases
+cite{Sundnes_2006}.  Below we list a common mathematical model,
+consisting of two PDEs coupled to a system of ODEs at each spatial
+point in the domain, and show how this model can be brought to a
+dimensionless form.
+
+
+===== The mathematical model =====
+
+idx{bidomain equations}
+
+A widely used mathematical model for the electric signal propagation
+in the heart tissue is the bidomain equations:
 
 !bt
 \begin{align}
@@ -162,7 +173,7 @@ dimensionless terms only:
 
 The time scale is not so obvious to choose. As noted above, the ODE
 system that governs $s$ and thereby $\bar g(s), \bar v_{eq} (s)$ may
-feature a wide range of spatial scales. Furthermore, even if we focus
+feature a wide range of temporal scales. Furthermore, even if we focus
 on the tissue equations and on the dynamics of $v$ and $u_e$, the
 choice of natural time and length scales is not trivial.
 The equations are of reaction-diffusion nature, and the
@@ -170,16 +181,18 @@ solution takes the form of a narrow wavefront of activation that
 propagates through the tissue. The region immediately surrounding
 the wavefront is characterized by large spatial and temporal
 gradients, while in most of the
-domain the variations are quite slow. For now, we choose the time scale
+domain the variations are quite slow. The primary interest is
+usually on the wavefront phenomenon, so
+for now, we choose the time scale
 based on balancing the reaction and diffusion components, as described
-in Section ref{sec:scale:diffu:homo1D}.  We therefore
+in Section ref{sec:scale:diffu:homo1D}.  We consequently
 set the terms in front of the reaction term and the diffusion term to
 unity, which means
 
 !bt
 \[ \frac{t_c\sigma_c}{\chi C_mL^2} = 1,\quad \frac{t_cg_c}{C_m} =1,\]
 !et
-and determines the time and length scales:
+and this principle determines the time and length scales as
 
 !bt
 \[ t_c = \frac{C_m}{g_c},\quad L = \sqrt{\frac{\sigma_c}{g_c \chi}}\tp\]
@@ -187,6 +200,7 @@ and determines the time and length scales:
 
 Two natural dimensionless variables then arise from the second diffusion
 term and the applied current term:
+
 !bt
 \[ \beta = \frac{u_c}{\Delta v}, \quad \gamma =
 \frac{I_{\rm{app}}}{g_c \Delta v} \tp\]
@@ -199,14 +213,14 @@ some specified characteristic size of $u_e$ (i.e., $u_c$ is not a
 problem).
 
 The final dimensionless system becomes
+
 !bt
 \begin{align}
 \frac{\partial \bar v}{\partial \bar t} &=
 \nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
 \beta\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) \\
 & \quad -\bar g (s)(\bar v-\bar v_{eq}(s))
-- \gamma
-\\
+- \gamma\\
 0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) +
 \beta\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u) \tp
 \end{align}

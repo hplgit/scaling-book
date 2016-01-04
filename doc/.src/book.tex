@@ -355,13 +355,13 @@
 % References to labels in external documents:
 \usepackage{xr}
 
-\externaldocument{/home/hpl/vc/decay-book/doc/.src/book/book}
-\externaldocument{/home/hpl/vc/fdm-book/doc/.src/book/book}
+\externaldocument{../../../decay-book/doc/.src/book/book}
+\externaldocument{../../../fdm-book/doc/.src/book/book}
 
 % Add external .aux files to \listfiles list:
 \makeatletter
-\@addtofilelist{/home/hpl/vc/decay-book/doc/.src/book/book.aux}
-\@addtofilelist{/home/hpl/vc/fdm-book/doc/.src/book/book.aux}
+\@addtofilelist{../../../decay-book/doc/.src/book/book.aux}
+\@addtofilelist{../../../fdm-book/doc/.src/book/book.aux}
 \makeatother
 
 
@@ -403,10 +403,10 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Dec 28, 2015}
+\date{Jan 4, 2016}
 \maketitle
 
-% Externaldocuments: /home/hpl/vc/decay-book/doc/.src/book/book, /home/hpl/vc/fdm-book/doc/.src/book/book
+% Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
 
 % !split
 \chapter*{Preface}
@@ -2489,6 +2489,7 @@ problem (\ref{scale:decay:cooling:model}) gives
 \]
 A natural choice, as argued in other exponential decay problems,
 is to choose $t_ck=1$, which leaves us with the scaled problem
+
 \begin{equation}
 \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
 \label{scale:decay:cooling:Tbar:eq}
@@ -2519,10 +2520,11 @@ Now $\bar T=1$ initially and approaches zero as $t\rightarrow\infty$.
 The resulting scaled ODE problem then becomes
 
 \begin{equation}
-\frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1
+\frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1,
 \label{scale:decay:cooling:Tbar:eq2}
 \tp
 \end{equation}
+with solution $\bar T = e^{-\bar t}$.
 
 \subsection{Scaling a cooling problem with time-dependent surroundings}
 \label{scale:decay:cooling:osc}
@@ -3131,6 +3133,18 @@ $[S]$ only:
 \end{align}
 We see that the parameter $K$ is central.
 
+From above expression for $[E]$ and (\ref{scale:MMK:cons1}) it now follows
+
+\[
+[E]=\frac{K E_0}{K+[S]},\quad [ES]=\frac{E_0[S]}{K+[S]}.
+\]
+If $K$ is comparable to $S_0$ these indicate
+
+\[
+[E]\sim E_0,\quad [ES]\sim \frac{E_0 S_0}{K},
+\]
+as is used for scaling $[E]$ and $Q_c$, subsequently.
+Provided we exclude the case $[S]\gg K$, we may infer that $[E]$ will be of magnitude $E_0$, while $[ES]$ will be of magnitude $E_0 S_0/K$.
 
 \paragraph{Dimensionless ODE system.}
 Let us reason how to make the original ODE system
@@ -3204,8 +3218,9 @@ The $[ES]$ variable starts and ends at zero, and its maximum value
 can be roughly estimated from the equation for $[ES]^\prime$
 by setting $[ES]^\prime = 0$, which gives
 
-\[ [ES] = \frac{[E][S]}{K}\approx \frac{E_0S_0}{K},\]
-where we have approximated $[E][S]$ by $E_0S_0$. This estimate of $[ES]$
+\[ [ES] = \frac{[E][S]}{K}\sim \frac{E_0S_0}{K},\]
+where we have replaced $[E][S]$ by $E_0S_0$ as an identification
+of magnitude. This magnitude of $[ES]$
 at its maximum can be used as the characteristic size $Q_c$:
 
 \[ Q_c = \frac{E_0S_0}{K}\tp\]
@@ -6117,6 +6132,7 @@ initial-boundary value problem.
 \subsection{Homogeneous 1D diffusion equation}
 \label{sec:scale:diffu:homo1D}
 
+\paragraph{Choosing the time scale.}
 To make (\ref{sec:scale:diffu:pde1}) dimensionless,
 we introduce, as usual, dimensionless dependent and independent variables:
 
@@ -6138,8 +6154,17 @@ Arguing, as for the wave equation, that the scaling should result in
 of the same size (about unity),
 implies $t_c\dfc/L^2=1$ and therefore $t_c = L^2/\dfc$.
 
-Insight through an analytical solution can alternatively
-help with choosing $t_c$.
+\paragraph{Analytical insight.}
+The best way to obtain the scales inherent in a problem is to obtain
+an exact analytic solution, as we have done in many of the ODE
+examples in this booklet. However, as a rule this is not possible.
+Still, often highly
+simplified analytic solutions can be found for parts of the problem,
+or for some closely related problem. Such solutions may provide
+crucial guidance to the nature of the complete solution and to the
+appropriate scaling of the full problem. We will employ such solutions
+now to learn about scales in diffusion problems.
+
 One can show that $u=Ae^{-pt}\sin (kx)$ is a solution of
 (\ref{sec:scale:diffu:pde1}) if $p=\dfc k^2$, for any $k$.
 This is the typical solution arising from separation of variables
@@ -6173,6 +6198,7 @@ value of $e^{-1}\approx 0.37$, which implies $t=L^2/(4\dfc)$, but the
 factor 4 is not of importance, so again, a relevant time scale is
 $t_c=L^2/\dfc$.
 
+\paragraph{Choosing other scales.}
 The scale $u_c$ is chosen according to the initial condition:
 $u_c=\max_{x\in(0,L)}|I(x)|$. For a diffusion equation $u_t=\dfc u_{xx}$
 with $u=0$ at the boundaries $x=0,L$, the solution is bounded by
@@ -7239,9 +7265,11 @@ temperature evolution in the two pieces:
 
 \begin{align}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\ 
-u(\x,0)&=I(x), & \x\in \Omega,\\ 
+u(\x,0)&=I(x), & \x\in \Omega,
+\label{scale:exer:twometal:eq1:3D}\\ 
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
+\label{scale:exer:twometal:eq2:3D}
 \end{align}
 Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
 coefficient (assuming both pieces are homogeneous and of the same type of
@@ -7261,8 +7289,43 @@ as bricks, it is tempting to develop a one-dimensional model,
 especially if the pieces are somewhat slender. We then expect the main
 temperature variations to take place in the $x$ direction, where the
 $x$ axis is perpendicular to the contact surface between the pieces.
-The idea is to integrate the governing PDE in the two other
-directions, use the Gauss divergence theorem on $\dfc\nabla^2u$, and
+A simplified PDE problem, neglecting variations in the $y$ and $z$
+directions, takes the form
+
+\begin{align}
+\frac{\partial v}{\partial t} &=
+\dfc \frac{\partial^2 v}{\partial x^2}
+-\frac{hP}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
+\label{scale:exer:twometal:eq1:1D}\\ 
+v(x,0)&=I(x), & x\in (0,L),\\ 
+ \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
+ \label{scale:exer:twometal:eq2:1D}\\ 
+-\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
+\label{scale:exer:twometal:eq3:1D}
+\end{align}
+with
+
+\[
+I(x) = \left\lbrace\begin{array}{ll}
+U_1, & x\in [0,L/2),\\ 
+U_2, & x\in [L/2, L]\tp
+\end{array}\right.
+\]
+The parameter $P$ is the perimeter of the cross section and $A$ is the
+area of the cross section. Scale this problem.
+
+
+% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+\noindent Filename: \Verb!metal_pieces!.
+
+% Closing remarks for this Exercise
+
+\paragraph{Remarks.}
+We can derive (\ref{scale:exer:twometal:eq1:1D})-(\ref{scale:exer:twometal:eq3:1D}) from (\ref{scale:exer:twometal:eq1:3D})-(\ref{scale:exer:twometal:eq1:3D}).
+The idea is to integrate the governing PDE
+(\ref{scale:exer:twometal:eq1:1D}) in the two directions where we
+expect negligible variations,
+use the Gauss divergence theorem in these directions, and
 apply the cooling boundary condition. Let $A$ be the cross section of
 the bricks. Integrating over $A$ gives
 
@@ -7287,8 +7350,9 @@ dydz +
 \dfc\int\limits_{\partial A}\frac{\partial u}{\partial n}ds\\ 
 & = \int\limits_A \dfc
 \frac{\partial^2 u}{\partial x^2}
-dydz -h(v(x,t) -u_S)\tp
+dydz -h(v(x,t) -u_S)P\tp
 \end{align*}
+The parameter $P$ is the perimeter of the cross section $A$.
 The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
 Assuming $u$ to vary little across the cross section $A$, we can
 approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
@@ -7300,30 +7364,10 @@ approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
 \frac{\partial^2 u}{\partial x^2}
 dydz \approx A \dfc \frac{\partial^2 v}{\partial x^2},
 \]
-where $A$ now is the cross-section area.
+where $A$ now is the cross-section \emph{area}.
 The result is the 1D initial-boundary value problem
+(\ref{scale:exer:twometal:eq1:1D})-(\ref{scale:exer:twometal:eq3:1D}).
 
-\begin{align}
-\frac{\partial v}{\partial t} &=
-\dfc \frac{\partial^2 v}{\partial x^2}
--\frac{h}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],\\ 
-v(x,0)&=I(x), & x\in (0,L),\\ 
- \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],\\ 
--\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
-\end{align}
-with
-
-\[
-I(x) = \left\lbrace\begin{array}{ll}
-U_1, & x\in [0,L/2),\\ 
-U_2, & x\in [L/2, L]\tp
-\end{array}\right.
-\]
-Scale this problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!metal_pieces!.
 
 \end{doconceexercise}
 % --- end exercise ---
@@ -8523,9 +8567,10 @@ free convection in horizontal layers \cite{Drazin_Reid,Tritton}. Otherwise,
 Gr and Pr are used.
 
 
-\subsection{Heat transfer at boundaries and the Nusselt number}
+\subsection{Heat transfer at boundaries and the Nusselt and Biot numbers}
 
 \index{Nusselt number}
+\index{Biot number}
 
 A common boundary condition, modeling heat transfer to/from the
 surroundings, is
@@ -8545,36 +8590,62 @@ and further to
 
 \[ \frac{\partial \bar T}{\partial \bar n} =
 \frac{hL}{\kappa}(\bar T + \frac{T_s - T_0}{\Delta T})
-= \hbox{Nu}(\bar T - \bar T_s),
+= \delta(\bar T - \bar T_s),
 \]
-where the Nusselt number is defined by
+where the dimensionless number $\delta$ is defined by
 
-\[ \hbox{Nu} = \frac{hL}{\kappa},\]
+\[ \delta = \frac{hL}{\kappa},\]
 and $\bar T_s$ is simply the dimensionless surrounding temperature,
 
 \[ \bar T_s = \frac{T_s - T_0}{\Delta T}\tp\]
 
-The left-hand side of (\ref{scale:fluid:free_convection:fluxcond}) represents
+When studying heat transfer in a fluid, with solid surroundings,
+$\delta$ is known as the \href{{https://en.wikipedia.org/wiki/Nusselt_number}}{Nusselt number}\footnote{\texttt{https://en.wikipedia.org/wiki/Nusselt\_number}} Nu.  The left-hand side
+of (\ref{scale:fluid:free_convection:fluxcond}) represents in this case
 heat conduction, while the right-hand side models convective heat
 transfer at a boundary. The Nusselt number can then be interpreted as
-the ratio of convective and conductive heat transfer at a boundary:
+the ratio of convective and conductive heat transfer at a solid
+boundary:
 
 \[ \frac{|h(T-T_s)|}{\kappa T/L} \sim \frac{h}{\kappa /L} = \hbox{Nu}\tp\]
+
+The case with heat transfer in a solid with a fluid as surroundings
+gives the same dimensionless $\delta$, but the number is now known as
+the \href{{https://en.wikipedia.org/wiki/Biot_number}}{Biot number}\footnote{\texttt{https://en.wikipedia.org/wiki/Biot\_number}}. It
+describes the ratio of heat loss/gain with the surroundings at the
+solid body's boundary and conduction inside the body. A small Biot
+number indicates that conduction is a fast process and one can use
+Newton's law of cooling (see Section~\ref{scale:decay:cooling:const})
+instead of a detailed calculation of the
+spatio-temporal temperature variation in the body. The Biot number
+also arises in simplified models of heat conduction in solids,
+see Exercise~\ref{scale:exer:twometal}.
 
 Heat transfer is a huge engineering
 field with lots of experimental investigations
 that are summarized by curves relating various dimensionless numbers
-such as Gr, Pr, and Nu.
+such as Gr, Pr, Nu, and Bi.
 
 \section{The bidomain model in electrophysiology}
 \label{scale:bidomain}
 
-\subsection{The mathematical model}
-
 The mechanical functioning of the heart is crucially dependent on
 correct electric signal propagation through the heart tissue.
-A widely used mathematical
-model for the electric signal propagation is the bidomain equations:
+Understanding this signal propagation via mathematical modeling has
+therefore been a topic of increasing interest in the medical research
+on heart failure, stroke, and other heart-related diseases
+\cite{Sundnes_2006}.  Below we list a common mathematical model,
+consisting of two PDEs coupled to a system of ODEs at each spatial
+point in the domain, and show how this model can be brought to a
+dimensionless form.
+
+
+\subsection{The mathematical model}
+
+\index{bidomain equations}
+
+A widely used mathematical model for the electric signal propagation
+in the heart tissue is the bidomain equations:
 
 \begin{align}
 \chi C_m\frac{\partial v}{\partial t} &=
@@ -8710,7 +8781,7 @@ dimensionless terms only:
 
 The time scale is not so obvious to choose. As noted above, the ODE
 system that governs $s$ and thereby $\bar g(s), \bar v_{eq} (s)$ may
-feature a wide range of spatial scales. Furthermore, even if we focus
+feature a wide range of temporal scales. Furthermore, even if we focus
 on the tissue equations and on the dynamics of $v$ and $u_e$, the
 choice of natural time and length scales is not trivial.
 The equations are of reaction-diffusion nature, and the
@@ -8718,19 +8789,22 @@ solution takes the form of a narrow wavefront of activation that
 propagates through the tissue. The region immediately surrounding
 the wavefront is characterized by large spatial and temporal
 gradients, while in most of the
-domain the variations are quite slow. For now, we choose the time scale
+domain the variations are quite slow. The primary interest is
+usually on the wavefront phenomenon, so
+for now, we choose the time scale
 based on balancing the reaction and diffusion components, as described
-in Section~\ref{sec:scale:diffu:homo1D}.  We therefore
+in Section~\ref{sec:scale:diffu:homo1D}.  We consequently
 set the terms in front of the reaction term and the diffusion term to
 unity, which means
 
 \[ \frac{t_c\sigma_c}{\chi C_mL^2} = 1,\quad \frac{t_cg_c}{C_m} =1,\]
-and determines the time and length scales:
+and this principle determines the time and length scales as
 
 \[ t_c = \frac{C_m}{g_c},\quad L = \sqrt{\frac{\sigma_c}{g_c \chi}}\tp\]
 
 Two natural dimensionless variables then arise from the second diffusion
 term and the applied current term:
+
 \[ \beta = \frac{u_c}{\Delta v}, \quad \gamma =
 \frac{I_{\rm{app}}}{g_c \Delta v} \tp\]
 In many cases it will be natural to set $u_c=\Delta v$, which of
@@ -8741,13 +8815,13 @@ some specified characteristic size of $u_e$ (i.e., $u_c$ is not a
 problem).
 
 The final dimensionless system becomes
+
 \begin{align}
 \frac{\partial \bar v}{\partial \bar t} &=
 \nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
 \beta\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) \\ 
 & \quad -\bar g (s)(\bar v-\bar v_{eq}(s))
-- \gamma
-\\ 
+- \gamma\\ 
 0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) +
 \beta\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u) \tp
 \end{align}

@@ -2395,30 +2395,35 @@ label{scale:MMK:Seq1}
 !et
 We see that the parameter $K$ is central.
 
-[Geir: From above expression for $[E]$ and (ref{scale:MMK:cons1}) it now follows
+From above expression for $[E]$ and (ref{scale:MMK:cons1}) it now follows
+
 !bt
 \[
 [E]=\frac{K E_0}{K+[S]},\quad [ES]=\frac{E_0[S]}{K+[S]}.
 \]
 !et
 If $K$ is comparable to $S_0$ these indicate
+
 !bt
 \[
 [E]\sim E_0,\quad [ES]\sim \frac{E_0 S_0}{K},
 \]
 !et
-as is used for scaling $[E]$ and $Q_c$, subsequently. However, with much 
-substrate we may (?) have $[S]\gg K$ and  
+as is used for scaling $[E]$ and $Q_c$, subsequently.
+# #ifdef EXTRA
+However, with much
+substrate we may (?) have $[S]\gg K$ and
+
 !bt
 \[
 [E]\sim \frac{K}{[S]}E_0,\quad [ES]\sim E_0,
 \]
 !et
-where that latter simply expresses that all enzyme is turned into the 
+where that latter simply expresses that all enzyme is turned into the
 intermediate compound $ES$. The scaling of the whole system will thus be different. Is this realistic, in the sense that sufficient concentrations of $S$ are
 feasible ? I don't know. I suggest writing the following
-]
-Furthermore, provided we exclude the case $[S]\gg K$ we may infer that $[E]$ will be of magnitude $E_0$, while $[ES]$ will be of magnitude $E_0 S_0/K$.
+# #endif
+Provided we exclude the case $[S]\gg K$, we may infer that $[E]$ will be of magnitude $E_0$, while $[ES]$ will be of magnitude $E_0 S_0/K$.
 # #ifdef EXTRA
 ## This is classical analysis taken from somewhere:
 
@@ -2544,9 +2549,10 @@ by setting $[ES]^\prime = 0$, which gives
 !bt
 \[ [ES] = \frac{[E][S]}{K}\sim \frac{E_0S_0}{K},\]
 !et
-where we have replaced $[E][S]$ by $E_0S_0$. This estimate of $[ES]$
+where we have replaced $[E][S]$ by $E_0S_0$ as an identification
+of magnitude. This magnitude of $[ES]$
 at its maximum can be used as the characteristic size $Q_c$:
-[Geir: It is an identification of magnitude, not an approximation]
+
 !bt
 \[ Q_c = \frac{E_0S_0}{K}\tp\]
 !et
@@ -6436,6 +6442,8 @@ initial-boundary value problem.
 ===== Homogeneous 1D diffusion equation =====
 label{sec:scale:diffu:homo1D}
 
+=== Choosing the time scale ===
+
 To make (ref{sec:scale:diffu:pde1}) dimensionless,
 we introduce, as usual, dimensionless dependent and independent variables:
 
@@ -6463,8 +6471,18 @@ Arguing, as for the wave equation, that the scaling should result in
 of the same size (about unity),
 implies $t_c\dfc/L^2=1$ and therefore $t_c = L^2/\dfc$.
 
-Insight through an analytical solution can alternatively
-help with choosing $t_c$.
+=== Analytical insight ===
+
+The best way to obtain the scales inherent in a problem is to obtain
+an exact analytic solution, as we have done in many of the ODE
+examples in this booklet. However, as a rule this is not possible.
+Still, often highly
+simplified analytic solutions can be found for parts of the problem,
+or for some closely related problem. Such solutions may provide
+crucial guidance to the nature of the complete solution and to the
+appropriate scaling of the full problem. We will employ such solutions
+now to learn about scales in diffusion problems.
+
 One can show that $u=Ae^{-pt}\sin (kx)$ is a solution of
 (ref{sec:scale:diffu:pde1}) if $p=\dfc k^2$, for any $k$.
 This is the typical solution arising from separation of variables
@@ -6497,6 +6515,8 @@ at a distance $x=L$, we may demand the exponential factor to have a
 value of $e^{-1}\approx 0.37$, which implies $t=L^2/(4\dfc)$, but the
 factor 4 is not of importance, so again, a relevant time scale is
 $t_c=L^2/\dfc$.
+
+=== Choosing other scales ===
 
 The scale $u_c$ is chosen according to the initial condition:
 $u_c=\max_{x\in(0,L)}|I(x)|$. For a diffusion equation $u_t=\dfc u_{xx}$
@@ -9696,7 +9716,7 @@ describes the ratio of heat loss/gain with the surroundings at the
 solid body's boundary and conduction inside the body. A small Biot
 number indicates that conduction is a fast process and one can use
 Newton's law of cooling (see Section ref{scale:decay:cooling:const})
-instead of a detailed caclulation of the
+instead of a detailed calculation of the
 spatio-temporal temperature variation in the body. The Biot number
 also arises in simplified models of heat conduction in solids,
 see Exercise ref{scale:exer:twometal}.

@@ -1,6 +1,7 @@
 Achou
 Achou's
 Bernoulli's
+Biot
 Biot's
 Boussinesq
 Couette
@@ -124,6 +125,7 @@ rad
 recomputations
 shedded
 signum
+spatio
 submenues
 subpool
 subpools
