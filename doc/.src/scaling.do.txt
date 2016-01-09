@@ -284,6 +284,9 @@ are primarily interested in the mathematical scaling technique may
 safely skip this material and jump right to Section
 ref{sec:scale:decay}.
 
+# Example on metric conversion error:
+# https://en.wikipedia.org/wiki/Mars_Climate_Orbiter
+
 
 ===== Example on challenges arising from unit systems =====
 
