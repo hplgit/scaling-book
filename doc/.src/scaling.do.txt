@@ -8078,6 +8078,9 @@ $L$. The quantity Bi is the "Biot number": "https://en.wikipedia.org/wiki/Biot_n
 [hpl: Should we use $\overline{\hbox{Bi}}^{} = L^2LhP/(A\dfc)$ instead,
 which is always right? The dimensionless numbers in the PDE and the
 boundary conditions are then different (three numbers in total).]
+[Geir: Yes, indeed!: $L$ is not a measure of the radius of the rod.
+But, you have one $L$ too much? It should read $\overline{\hbox{Bi}}^{} = L^2hP/(A\dfc)$. The number $\hbox{Bi}$ then coverns the
+significane of lateral heat loss/gain to/from the environment.]
 
 The scaled initial condition becomes
 
