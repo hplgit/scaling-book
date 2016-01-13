@@ -505,7 +505,7 @@ def solver_diffusion_FE(
                     # f = f*(u-1)
                     u[i] = u_1[i] + \
                            F*(u_1[i-1] - 2*u_1[i] + u_1[i+1])\
-                           + f*(u_1[i] - 1)
+                           + f*(u_1[i] - 1)  # special source
 
         elif version == 'vectorized':
             if callable(f):
@@ -583,16 +583,19 @@ def diffusion_two_metal_pieces():
                  xlabel='$x$', ylabel='$u$',
                  savefig='tmp_%04d.png' % n)
 
-    Bi = 0.1
-    beta = 2
+    Bi = 0.01       # Ordinary Biot number from cooling conditions
+    # Bi_mod = Bi * L*P/A
+    # Square bricks with side a: Bi*4L/a
+    Bi_mod = 0.2
+    beta = 1.5
     solver_diffusion_FE(
         I=lambda x: 0 if x < 0.5 else beta,
-        a=0.5,
-        f=-Bi,
+        a=1,
+        f=-Bi_mod,
         L=1,
-        Nx=50,
-        F=0.25,
-        T=0.015,
+        Nx=40,
+        F=0.1,
+        T=0.003,
         U_0=1,  # Robin condition U_s=1
         U_L=1,
         h=Bi,

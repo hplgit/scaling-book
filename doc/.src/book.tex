@@ -403,7 +403,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Jan 4, 2016}
+\date{Jan 13, 2016}
 \maketitle
 
 % Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
@@ -910,6 +910,9 @@ conversion is therefore paramount, motivating the treatment of this
 topic in Sections~\ref{scale:PQ} and~\ref{scale:parampool}.  Readers who
 are primarily interested in the mathematical scaling technique may
 safely skip this material and jump right to Section~\ref{sec:scale:decay}.
+
+% Example on metric conversion error:
+% \href{{https://en.wikipedia.org/wiki/Mars_Climate_Orbiter}}{\nolinkurl{https://en.wikipedia.org/wiki/Mars_Climate_Orbiter}}
 
 
 \subsection{Example on challenges arising from unit systems}
@@ -7489,7 +7492,7 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 4}{ What about setting boundary conditions? }{ What about setting boundary }
+\shortinlinecomment{hpl 3}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -8878,7 +8881,7 @@ $t_c=0.21$ ms.
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-% \longinlinecomment{hpl 5}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+% \longinlinecomment{hpl 4}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 
 \subsection{An alternative $I_{\rm{ion}}$}
@@ -9169,11 +9172,11 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 6}{ Boundary conditions? }{ Boundary conditions? }
+\shortinlinecomment{hpl 5}{ Boundary conditions? }{ Boundary conditions? }
 
-\shortinlinecomment{hpl 7}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
+\shortinlinecomment{hpl 6}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
 
-\shortinlinecomment{hpl 8}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
+\shortinlinecomment{hpl 7}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -9263,7 +9266,7 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 9}{ Comment on software also for advanced models. }{ Comment on software also }
+\shortinlinecomment{hpl 8}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 

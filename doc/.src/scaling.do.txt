@@ -8026,7 +8026,7 @@ then
 \[ \bar v = \frac{v - \min (U_1,U_2)}{u_S-\min (U_1, U_2)},\]
 !et
 since this implies that $u$ varies from 0 to 1. Without loss of
-generality we assume $U_1 < U_2$, so
+generality we number the bricks such that $U_1 < U_2$, so
 
 !bt
 \[ \bar v = \frac{v - U_1}{u_S-U_1}\tp\]
@@ -8061,26 +8061,20 @@ This choice results in the scaled PDE
 \[
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}\,(\bar v(x,t) - 1),\]
+-\overline{\hbox{Bi}}^{}\,(\bar v(x,t) - 1),\]
 !et
-with the dimensionless number
+where the dimensionless number
 
 !bt
-\[ \hbox{Bi} = \frac{Lh}{\dfc},\]
+\[ \overline{\hbox{Bi}}^{} = \frac{hL^2P}{\dfc A}\]
 !et
-if we approximate the length measure $A/P$ simply by
-$L$. The quantity Bi is the "Biot number": "https://en.wikipedia.org/wiki/Biot_number".
-#For a circular cross section, $A=\pi R^2$, $P=2\pi R$, $A/P=R/2$ and $L$
-#is usually quite much larger than $R/2$. For a rectangular cross section,
-#$A=ab$, $P=2(a+b)$, $A/P=ab/(a+b)=a/2$ if $a=b$. We think of a slender
-# body perhaps, but the point is that the temperature is already uniform
-# in y and z, only differences in x exist at t=0.
-[hpl: Should we use $\overline{\hbox{Bi}}^{} = L^2LhP/(A\dfc)$ instead,
-which is always right? The dimensionless numbers in the PDE and the
-boundary conditions are then different (three numbers in total).]
-[Geir: Yes, indeed!: $L$ is not a measure of the radius of the rod.
-But, you have one $L$ too much? It should read $\overline{\hbox{Bi}}^{} = L^2hP/(A\dfc)$. The number $\hbox{Bi}$ then coverns the
-significane of lateral heat loss/gain to/from the environment.]
+can be interpreted as a modified "Biot number":
+"https://en.wikipedia.org/wiki/Biot_number" (if $A/P=L$, it would an
+ordinary Biot number, but here this is not an appropriate
+approximation: for bricks with square cross section of length $a$, $A/P=a/4$,
+and for a circular cross section, $A/P=R/2$).
+This modified Biot number governs the significance of
+lateral heat loss/gain to/from the environment.
 
 The scaled initial condition becomes
 
@@ -8104,13 +8098,19 @@ The scaled boundary conditions take the form
 (\bar v(L,t)-1),
 \]
 !et
-where Bi is the Biot number $Lh/\dfc$.
+where Bi is the standard Biot number for heat conduction from solids:
 
-Here is a simulation with $\hbox{Bi}=0.1$
+!bt
+\[ \hbox{Bi} = \frac{Lh}{\dfc}\tp\]
+!et
+
+
+Here is a simulation with $\hbox{Bi}=0.01$, $\overline{\hbox{Bi}}^{} = 0.2$,
+and $\beta =1.5$
 (using the `diffusion_two_metal_pieces` function in
 "`session.py`": "${src_scaling}/session.py").
 
-MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/Bi01/movie.mp4]
+MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/movie.mp4]
 
 
 Another temperature scaling is also possible:
@@ -8138,7 +8138,7 @@ The PDE now becomes homogeneous,
 \[
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}\,\bar v(x,t),\]
+-\overline{\hbox{Bi}}^{}\,\bar v(x,t),\]
 !et
 and the boundary conditions take the form
 
