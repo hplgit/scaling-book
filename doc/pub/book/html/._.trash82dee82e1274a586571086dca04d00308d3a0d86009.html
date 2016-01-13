@@ -1775,7 +1775,7 @@ then
 $$ \bar v = \frac{v - \min (U_1,U_2)}{u_S-\min (U_1, U_2)},$$
 
 since this implies that \( u \) varies from 0 to 1. Without loss of
-generality we assume \( U_1 < U_2 \), so
+generality we number the bricks such that \( U_1 < U_2 \), so
 
 $$ \bar v = \frac{v - U_1}{u_S-U_1}\tp$$
 
@@ -1805,23 +1805,18 @@ This choice results in the scaled PDE
 $$
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}\,(\bar v(x,t) - 1),$$
+-\overline{\hbox{Bi}}^{}\,(\bar v(x,t) - 1),$$
 
-with the dimensionless number
+where the dimensionless number
 
-$$ \hbox{Bi} = \frac{Lh}{\dfc},$$
+$$ \overline{\hbox{Bi}}^{} = \frac{hL^2P}{\dfc A}$$
 
-if we approximate the length measure \( A/P \) simply by
-\( L \). The quantity Bi is the <a href="https://en.wikipedia.org/wiki/Biot_number" target="_self">Biot number</a>.
-<!-- For a circular cross section, \( A=\pi R^2 \), \( P=2\pi R \), \( A/P=R/2 \) and \( L \) -->
-<!-- is usually quite much larger than \( R/2 \). For a rectangular cross section, -->
-<!-- \( A=ab \), \( P=2(a+b) \), \( A/P=ab/(a+b)=a/2 \) if \( a=b \). We think of a slender -->
-<!-- body perhaps, but the point is that the temperature is already uniform -->
-<!-- in y and z, only differences in x exist at t=0. -->
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 3</b>: Should we use \( \overline{\hbox{Bi}}^{} = L^2LhP/(A\dfc) \) instead, which is always right? The dimensionless numbers in the PDE and the boundary conditions are then different (three numbers in total).)</font>
-<!-- end inline comment -->
+can be interpreted as a modified <a href="https://en.wikipedia.org/wiki/Biot_number" target="_self">Biot number</a> (if \( A/P=L \), it would an
+ordinary Biot number, but here this is not an appropriate
+approximation: for bricks with square cross section of length \( a \), \( A/P=a/4 \),
+and for a circular cross section, \( A/P=R/2 \)).
+This modified Biot number governs the significance of
+lateral heat loss/gain to/from the environment.
 
 <p>
 The scaled initial condition becomes
@@ -1843,10 +1838,13 @@ $$
 (\bar v(L,t)-1),
 $$
 
-where Bi is the Biot number \( Lh/\dfc \).
+where Bi is the standard Biot number for heat conduction from solids:
+
+$$ \hbox{Bi} = \frac{Lh}{\dfc}\tp$$
 
 <p>
-Here is a simulation with \( \hbox{Bi}=0.1 \)
+Here is a simulation with \( \hbox{Bi}=0.01 \), \( \overline{\hbox{Bi}}^{} = 0.2 \),
+and \( \beta =1.5 \)
 (using the <code>diffusion_two_metal_pieces</code> function in
 <a href="http://tinyurl.com/o8pb3yy/session.py" target="_self"><tt>session.py</tt></a>).
 
@@ -1854,9 +1852,9 @@ Here is a simulation with \( \hbox{Bi}=0.1 \)
 
 <div>
 <video  loop controls width='640' height='365' preload='none'>
-    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/Bi01/movie.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
-    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/Bi01/movie.webm' type='video/webm; codecs="vp8, vorbis"'>
-    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/Bi01/movie.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/movie.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/movie.webm' type='video/webm; codecs="vp8, vorbis"'>
+    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/metal_pieces/movie.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
 </video>
 </div>
 <p><em></em></p>
@@ -1889,7 +1887,7 @@ The PDE now becomes homogeneous,
 $$
 \frac{\partial\bar v}{\partial\bar t} =
 \frac{\partial^2\bar v}{\partial\bar x^2}
--\hbox{Bi}\,\bar v(x,t),$$
+-\overline{\hbox{Bi}}^{}\,\bar v(x,t),$$
 
 and the boundary conditions take the form
 
