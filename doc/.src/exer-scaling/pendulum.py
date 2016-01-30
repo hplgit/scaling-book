@@ -2,7 +2,8 @@ import scitools.std as plt
 import matplotlib.pyplot as plt
 import numpy as np
 
-def simulate(Theta, num_periods=8, time_steps_per_period=60):
+def simulate(Theta, num_periods=8, time_steps_per_period=60,
+             scaling=1):
     # Use oscillations for small Theta to set dt and T
     P = 2*np.pi
     dt = P/time_steps_per_period

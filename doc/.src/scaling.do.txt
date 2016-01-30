@@ -2697,8 +2697,8 @@ value (0.1) we see that $\bar Q\approx 0$, which justifies the
 simplifications performed above. We also observe that all the unknowns
 vary between 0 and about 1, indicating that the scaling is successful
 for the chosen dimensionless numbers. The simulations made use of
-a time step $\Delta\bar t=0.1$ with a 4th-order Runge-Kutta method,
-using $\alpha=1$, $\beta=4$ (relevant code is in the
+a time step $\Delta\bar t=0.01$ with a 4th-order Runge-Kutta method,
+using $\alpha=1.5$, $\beta=1$ (relevant code is in the
 `simulate_biochemical_process` function in "`session.py`": "${src_scaling}/session.py").
 
 FIGURE: [fig-scaling/biochem, width=700 frac=1] Simulation of a biochemical process. label{scale:MMK:fig}
@@ -5030,7 +5030,7 @@ in radians. One may introduce a truly dimensionless angle $\bar\theta
 A $\bar\theta
 \in [0,1]$ is obtained by
 $\bar\theta = \theta/\Theta$.
-The resulting equation then becomes
+The resulting equation, keeping the time scale as in a), then becomes
 
 !bt
 \[ \frac{d^2\bar\theta}{d\bar t^2} + \Theta^{-1}\sin(\Theta\bar\theta) = 0,\]
@@ -5038,6 +5038,26 @@ The resulting equation then becomes
 with boundary condition $\bar\theta(0)=1$. That is, the only
 parameter $\Theta$ either
 remains in the ODE or in the initial condition.
+
+There is another line of arguing here too, namely that one should choose
+the time scale such that the two terms (acceleration and gravity)
+balances. First we get
+
+!bt
+\[ \frac{d^2\bar\theta}{d\bar t^2} +
+\frac{t_c^2g}{L\Theta}\sin(\Theta\bar\theta) = 0\tp\]
+!et
+Demanding that the coefficient in the second term is also unity, makes
+$\Theta$ part of the time scale:
+
+!bt
+\[ t_c = \sqrt{\frac{L\Theta}{g}}\tp\]
+!et
+However, we know that in the limit of small $\theta$, doubling the initial
+condition has no effect on the characteristic time, it only depends on
+$L/g$. Therefore this second line of thought will lead to in an appropriate
+variation of $\bar\theta$ with $\bar t$. This conclusion can easily
+be tested through simulations with the two scalings.
 !esol
 !esubex
 

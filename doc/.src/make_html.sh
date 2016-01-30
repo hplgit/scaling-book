@@ -19,7 +19,7 @@ function system {
 pwd
 preprocess -DFORMAT=html newcommands_keep.p.tex > newcommands_keep.tex
 
-opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --allow_refs_to_external_docs --exercise_numbering=chapter"
+opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --exercise_numbering=chapter"
 
 # Compile Bootstrap HTML
 html=${topicname}-book
