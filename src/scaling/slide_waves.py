@@ -1,9 +1,15 @@
+"""Unfinished case with slide-generated waves.
+Something is wrong with the simulation: too large amplitudes generated
+by the bottom disturbance."""
+
 from wave1D_dn_vc import solver, PlotAndStoreSolution, np
+from numpy import exp
+import time
 
 def B(x, a, L, B0):
     """
-    B is linear between - and -B0 on [0, a*L] andx<=a*L) and
-    constant -B0 on [a*L, L].
+    B is linear between 0 and -B0 on [0, a*L] and
+    constant -B0 on [a*L, L]. a < 1.
     """
     if isinstance(x, (float,int)):
         return -B0*x/(a*L) if x <= a*L else -B0
@@ -41,7 +47,8 @@ class PlotSurfaceAndBottom(PlotAndStoreSolution):
         title = 'Nx=%d' % (x.size-1)
         if self.title:
             title = self.title + ' ' + title
-        bottom = self.B(x, a, L, B0) + self.S(x, A, x0(t), sigma)
+        bottom = self.B(x, self.a, self.L, self.B0) + \
+                 self.S(x, self.A, self.x0(t[n]), self.sigma)
         if self.backend is None:
             # native matplotlib animation
             if n == 0:
@@ -82,13 +89,38 @@ class PlotSurfaceAndBottom(PlotAndStoreSolution):
         self.plt.savefig('frame_%04d.png' % (n))
 
 def slides_waves():
-    L = 10
-    a = 3
-    A = 0.3
-    t0 = 3
-    v = 1
-    x0 = lambda t: v*t if t < t0 else v*t0
+    L = 10.
+    a = 0.5
+    B0 = 1.
+    A = B0/5
+    t0 = 3.
+    v = 1.
+    x0 = lambda t: L/4 + v*t if t < t0 else L/4 + v*t0
     sigma = 1.0
 
     def bottom(x, t):
-        return 0 - ???
+        return (B(x, a, L, B0) + S(x, A, x0(t), sigma))
+
+    def depth(x, t):
+        return -bottom(x, t)
+
+    import scitools.std as plt
+    x = np.linspace(0, L, 101)
+    plt.plot(x, bottom(x, 0), x, depth(x, 0), legend=['bottom', 'depth'])
+    plt.show()
+    raw_input()
+    plt.figure()
+    dt_b = 0.01
+    solver(I=0, V=0,
+           f=lambda x, t: -(depth(x, t-dt_b) - 2*depth(x, t) + depth(x, t+dt_b))/dt_b**2,
+           c=lambda x, t: np.sqrt(np.abs(depth(x, t))),
+           U_0=None,
+           U_L=None,
+           L=L,
+           dt=0.1,
+           C=0.9,
+           T=20,
+           user_action=PlotSurfaceAndBottom(B, S, a, L, B0, A, x0, sigma, umin=-2, umax=2),
+           stability_safety_factor=0.9)
+
+slides_waves()

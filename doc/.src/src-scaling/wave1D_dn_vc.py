@@ -43,22 +43,21 @@ def solver(I, V, f, c, U_0, U_L, L, dt, C, T,
     if isinstance(c, (float,int)):
         c_max = c
     elif callable(c):
-        c_max = max([c(x_) for x_ in np.linspace(0, L, 101)])
+        c_max = max([c(x_, 0) for x_ in np.linspace(0, L, 101)])
     dx = dt*c_max/(stability_safety_factor*C)
     Nx = int(round(L/dx))
     x = np.linspace(0, L, Nx+1)          # Mesh points in space
 
     # Treat c(x) as array
     if isinstance(c, (float,int)):
-        c = np.zeros(x.shape) + c
+        c_array = np.zeros(x.shape) + c
     elif callable(c):
         # Call c(x) and fill array c
-        c_ = np.zeros(x.shape)
+        c_array = np.zeros(x.shape)
         for i in range(Nx+1):
-            c_[i] = c(x[i])
-        c = c_
+            c_array[i] = c(x[i], 0)
 
-    q = c**2
+    q = c_array**2
     C2 = (dt/dx)**2; dt2 = dt*dt    # Help variables in the scheme
 
     # Wrap user-given f, I, V, U_0, U_L if None or 0
@@ -146,6 +145,8 @@ def solver(I, V, f, c, U_0, U_L, L, dt, C, T,
     u_2, u_1, u = u_1, u, u_2
 
     for n in It[1:-1]:
+        c_array = c(x, t[n])
+        q = c_array**2
         # Update all inner points
         if version == 'scalar':
             for i in Ix[1:-1]:

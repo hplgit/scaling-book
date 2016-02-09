@@ -154,6 +154,10 @@ With these notes, we hope to demystify the thinking involved in scale
 determination and encourage numerical simulations to be performed with
 dimensionless differential equation models.
 
+All program and data files referred to in this book are available
+from the book's primary web site:
+URL: http://hplgit.github.io/scaling-book/doc/web/.
+
 __Acknowledgments.__
 The authors are thankful to Dr. Joakim Sundnes who greatly contributed
 to the writing of Section ref{scale:bidomain}. Professor Svein Linge
@@ -163,9 +167,10 @@ Yapi Donatien Achou for his proof reading.  Significant portions of
 the present text were written when the first author was fed with
 FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr. Olav
 Dajani, and the rest of the OUS team. There would simply be no booklet
-without their efforts.
-
-[hpl: Springer...]
+without their efforts. It is also a great pleasure to express my
+sincere thanks to the Springer and Simula team that handled the prompt
+editing and production of the text: Martin Peters, Ruth Allewelt,
+Aslak Tveito, and Åsmund Ødegård.
 
 # #if FORMAT in ("latex", "pdflatex")
 \vspace{1cm}

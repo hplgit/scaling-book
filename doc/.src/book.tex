@@ -159,7 +159,7 @@
     }
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
-\setcounter{tocdepth}{2}  % number chapter, section, subsection
+\setcounter{tocdepth}{3}  % levels in table of contents
 
 % newcommands for typesetting inline (doconce) comments
 \newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
@@ -403,7 +403,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Jan 13, 2016}
+\date{Feb 9, 2016}
 \maketitle
 
 % Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
@@ -571,6 +571,10 @@ With these notes, we hope to demystify the thinking involved in scale
 determination and encourage numerical simulations to be performed with
 dimensionless differential equation models.
 
+All program and data files referred to in this book are available
+from the book's primary web site:
+URL: \href{{http://hplgit.github.io/scaling-book/doc/web/.}}{\nolinkurl{http://hplgit.github.io/scaling-book/doc/web/.}}
+
 \paragraph{Acknowledgments.}
 The authors are thankful to Dr.~Joakim Sundnes who greatly contributed
 to the writing of Section~\ref{scale:bidomain}. Professor Svein Linge
@@ -580,9 +584,10 @@ Yapi Donatien Achou for his proof reading.  Significant portions of
 the present text were written when the first author was fed with
 FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr.~Olav
 Dajani, and the rest of the OUS team. There would simply be no booklet
-without their efforts.
-
-\shortinlinecomment{hpl 1}{ Springer... }{ Springer... }
+without their efforts. It is also a great pleasure to express my
+sincere thanks to the Springer and Simula team that handled the prompt
+editing and production of the text: Martin Peters, Ruth Allewelt,
+Aslak Tveito, and Åsmund Ødegård.
 
 \vspace{1cm}
 
@@ -1547,7 +1552,7 @@ problem
 
 \begin{equation}
 u'(t) = -au(t),\quad u(0)=I,
-\label{scale:decay:model}
+\label{scale:model}
 \end{equation}
 where $a,I>0$ are prescribed parameters, and $u(t)$ is the unknown function.
 For the particular model with a constant $a$, we can easily derive the exact
@@ -1557,14 +1562,14 @@ which is helpful to have in mind during the scaling process.
 \paragraph{Example: Population dynamics.}
 The evolution of a population of humans, animals, cells, etc.,
 under unlimited access to resources, can be
-modeled by (\ref{scale:decay:model}). Then $u$ is the number of
+modeled by (\ref{scale:model}). Then $u$ is the number of
 individuals in the population, strictly speaking an integer, but well
 modeled by a real number in large populations.
 The parameter $a$ is the increase in the number of individuals per
 time and per individual.
 
 \paragraph{Example: Decay of pressure with altitude.}
-The simple model (\ref{scale:decay:model}) also governs the pressure
+The simple model (\ref{scale:model}) also governs the pressure
 in the atmosphere (under many assumptions, such air is an ideal gas in
 equilibrium). In this case $u$ is the
 pressure, measured in $\hbox{Nm}^{-2}$; $t$ is the height in meters;
@@ -1577,7 +1582,7 @@ The temperature depends on the height so we have $a=a(t)$.
 
 
 \subsection{The technical steps of the scaling procedure}
-\label{sec:scale:decay:steps}
+\label{sec:scale:steps}
 
 \paragraph{Step 1: Identify independent and dependent variables.}
 There is one independent variable, $t$, and one dependent variable,
@@ -1597,7 +1602,7 @@ we introduce a dimensionless $u$, named $\bar u$, according to
 \bar u = \frac{u}{u_c},
 \end{equation}
 where $u_c$ is a constant \emph{characteristic size} of $u$. When $u$ has a specific
-interpretation, say when (\ref{scale:decay:model}) models pressure
+interpretation, say when (\ref{scale:model}) models pressure
 in an atmospheric layer, $u_c$ would be referred to as characteristic pressure.
 For a decaying population, $u_c$ may be a characteristic number of
 members in the population, e.g., the initial population $I$.
@@ -1605,22 +1610,22 @@ members in the population, e.g., the initial population $I$.
 \paragraph{Step 3: Derive the model involving only dimensionless variables.}
 The next task is to insert the new dimensionless variables in the
 governing mathematical model. That is, we replace $t$ by $t_c\bar t$
-and $u$ by $u_c\bar u$ in (\ref{scale:decay:model}). The derivative
+and $u$ by $u_c\bar u$ in (\ref{scale:model}). The derivative
 with respect to $\bar t$ is derived through the chain rule as
 
 \[ \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
 = u_c\frac{d\bar u}{d\bar t}\frac{1}{t_c} =
 \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}\tp
 \]
-The model (\ref{scale:decay:model}) now becomes
+The model (\ref{scale:model}) now becomes
 
 \begin{equation}
 \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I\tp
-\label{scale:decay:model:scaled0}
+\label{scale:model:scaled0}
 \end{equation}
 
 \paragraph{Step 4: Make each term dimensionless.}
-Equation (\ref{scale:decay:model:scaled0}) still has terms with
+Equation (\ref{scale:model:scaled0}) still has terms with
 dimensions. To make each term dimensionless, we usually divide by
 the coefficient in front of the term with the highest time derivative
 (but dividing by any coefficient in any term will do). The result is
@@ -1628,7 +1633,7 @@ the coefficient in front of the term with the highest time derivative
 \begin{equation}
 \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
 \tp
-\label{scale:decay:model:dimless0}
+\label{scale:model:dimless0}
 \end{equation}
 
 \paragraph{Step 5: Estimate the scales.}
@@ -1638,7 +1643,7 @@ the most challenging part of the scaling procedure. There are different
 ways to reason. The first approach
 is to aim at a size of $\bar u$ and its derivatives
 that is of order unity. If $u_c$ is chosen such that $|\bar u|$ is
-of size unity, we see from (\ref{scale:decay:model:dimless0}) that
+of size unity, we see from (\ref{scale:model:dimless0}) that
 $d\bar u/d\bar t$ is of the size of $\bar u$ (i.e., unity)
 if we choose $t_c = 1/a$.
 
@@ -1698,30 +1703,30 @@ With $t_c=1/a$ and $u_c=I$, we have the final dimensionless model
 \begin{equation}
 \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
 \tp
-\label{scale:decay:model:dimless}
+\label{scale:model:dimless}
 \end{equation}
 This is a remarkable result in the sense that \emph{all physical parameters}
 ($a$ and $I$)
 are removed from the model! Or more precisely, there are no physical input
 parameters to assign
 before using the model. In particular, numerical investigations of the original
-model (\ref{scale:decay:model}) would need experiments with different
+model (\ref{scale:model}) would need experiments with different
 $a$ and $I$ values, while numerical investigations of
-(\ref{scale:decay:model:dimless}) can be limited to \emph{a single run}! As soon
+(\ref{scale:model:dimless}) can be limited to \emph{a single run}! As soon
 as we have computed the curve $\bar u(\bar t)$, we can find the
-solution $u(t)$ of (\ref{scale:decay:model}) by
+solution $u(t)$ of (\ref{scale:model}) by
 
 \begin{equation}
 u(t) = u_c\bar u(t/t_c) = I\bar u(at)
 \tp
-\label{scale:decay:u:dim}
+\label{scale:u:dim}
 \end{equation}
 This particular transformation actually means stretching the $\bar t$ and
 $\bar u$ axes in a plot of $\bar u(\bar t)$ by the factors $a$ and $I$,
 respectively.
 
 It is very common to drop the bars when the scaled problem has been
-derived and work further with (\ref{scale:decay:model:dimless}) simply
+derived and work further with (\ref{scale:model:dimless}) simply
 written as
 
 \[
@@ -1733,22 +1738,22 @@ dimensionless quantities.
 
 
 \subsection{Making software for utilizing the scaled model}
-\label{sec:scale:decay:prog}
+\label{sec:scale:prog}
 
-Software for solving (\ref{scale:decay:model}) could take advantage of
-the fact that only one simulation of (\ref{scale:decay:model:dimless})
+Software for solving (\ref{scale:model}) could take advantage of
+the fact that only one simulation of (\ref{scale:model:dimless})
 is necessary. As soon as we have $\bar u(\bar t)$ accessible, a simple
-scaling (\ref{scale:decay:u:dim}) computes the real $u(t)$ for any
+scaling (\ref{scale:u:dim}) computes the real $u(t)$ for any
 given input data $a$ and $I$. Although the numerical computation of
-$u(t)$ from (\ref{scale:decay:model}) is very fast in this simple model
-problem, using (\ref{scale:decay:u:dim}) is very much faster. In
+$u(t)$ from (\ref{scale:model}) is very fast in this simple model
+problem, using (\ref{scale:u:dim}) is very much faster. In
 general, a simple rescaling of a scaled solution is extremely more
 computationally efficient than solving a differential equation
 problem.
 
-We can compute with the dimensionless model (\ref{scale:decay:model:dimless})
-in two ways, either make a solver for (\ref{scale:decay:model:dimless}),
-or reuse a solver for (\ref{scale:decay:model}) with
+We can compute with the dimensionless model (\ref{scale:model:dimless})
+in two ways, either make a solver for (\ref{scale:model:dimless}),
+or reuse a solver for (\ref{scale:model}) with
 $I=1$ and $a=1$.
 We will choose the latter approach since it has the advantage of giving us
 software that works both with a dimensionless model and a model
@@ -1760,7 +1765,7 @@ Assume that we have some module \texttt{decay.py} that offers the following func
 \begin{itemize}
   \item \texttt{solver(I, a, T, dt, theta=0.5)} for returning the solution arrays
     \texttt{u} and \texttt{t}, over a time interval $[0,T]$,
-    for (\ref{scale:decay:model}) solved by the so-called
+    for (\ref{scale:model}) solved by the so-called
     $\theta$ rule. This rule includes the Forward Euler scheme ($\theta=0$),
     the Backward Euler scheme ($\theta=1$), or the Crank-Nicolson
     (centered midpoint) scheme ($\theta=\half$).
@@ -1772,7 +1777,7 @@ Assume that we have some module \texttt{decay.py} that offers the following func
 \end{itemize}
 
 \noindent
-The basic statements for solving (\ref{scale:decay:model}) are
+The basic statements for solving (\ref{scale:model}) are
 then
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
@@ -1821,10 +1826,10 @@ requested unscaled solution for the user, and also save the new scaled
 solution to file for possible later use.
 
 % A key observation, as mentioned, is that we need to solve the problem
-% (\ref{scale:decay:model:dimless}) only once. All solutions
+% (\ref{scale:model:dimless}) only once. All solutions
 % corresponding to different $I$ and $a$ values in the original physical
 % problem can be recovered by scaling this single solution with formula
-% (\ref{scale:decay:u:dim}).  We may therefore want to make software that
+% (\ref{scale:u:dim}).  We may therefore want to make software that
 % takes advantage of this fact. When requesting a solution, we see if it
 % has already been computed and stored in a file, and if so, the data
 % can be retrieved from file, otherwise we have to compute a new
@@ -2014,14 +2019,14 @@ immutable).
 
 
 \subsection{Scaling a generalized problem}
-\label{sec:scale:decay:body}
+\label{sec:scale:body}
 
 Now we consider an extension of the exponential decay ODE to the
 form
 
 \begin{equation}
 u'(t) = -au(t) + b,\quad u(0)=I
-\label{scale:decay:model:g}
+\label{scale:model:g}
 \tp
 \end{equation}
 One particular model, with constant $a$ and $b$,
@@ -2029,7 +2034,7 @@ is a spherical small-sized organism falling in air,
 
 \begin{equation}
 u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),
-\label{scale:decay:model:g:spec}
+\label{scale:model:g:spec}
 \end{equation}
 where $d$, $\mu$, $\varrho_b$, $\varrho$, $V$, and $g$ are physical
 parameters. The function $u(t)$ represents the vertical velocity,
@@ -2139,7 +2144,7 @@ reasoning about scales in the more general setting.
 
 \paragraph{Theory.}
 The challenges in our scaling is to find the right $u_c$ and $t_c$
-scales. From (\ref{scale:decay:model:g}) we see that if $u'\rightarrow 0$
+scales. From (\ref{scale:model:g}) we see that if $u'\rightarrow 0$
 as $t\rightarrow\infty$, $u$ approaches the constant value $b/a$. It can be
 convenient to let the scaled $\bar u\rightarrow 1$ as
 we approach the $d\bar u/d\bar t = 0$ state. This idea points to choosing
@@ -2164,7 +2169,7 @@ negative, but the scaled velocity $u/u_c$, becomes positive.
 \index{dimensionless number}
 
 Inserting $u = u_c\bar u = b\bar u/a$ and $t=t_c\bar t$ in
-(\ref{scale:decay:model:g}) leads to
+(\ref{scale:model:g}) leads to
 
 \[
 \frac{d\bar u}{d\bar t} = -t_c a\bar u + \frac{t_c}{u_c}b,
@@ -2179,7 +2184,7 @@ $t_c = 1/a$, resulting in the scaled ODE problem
 
 \begin{equation}
 \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad \bar u(0)=\beta,
-\label{scale:decay:model:g:dimless}
+\label{scale:model:g:dimless}
 \end{equation}
 where $\beta$ is a dimensionless number,
 \begin{equation}
@@ -2193,17 +2198,17 @@ the model. Many more examples on dimensionless parameters will appear
 in later sections.
 
 The analytical solution of the scaled model
-(\ref{scale:decay:model:g:dimless}) reads
+(\ref{scale:model:g:dimless}) reads
 
 \begin{equation}
 \bar\uex(t) =
 e^{-t}\left( e^{t}-1 + \beta\right) = 1 + (\beta -1)e^{-t}\tp
-\label{scale:decay:model:g:exact_scaled}
+\label{scale:model:g:exact_scaled}
 \end{equation}
 
-The result (\ref{scale:decay:model:g:dimless}) with the
-solution (\ref{scale:decay:model:g:exact_scaled}) is actually
-astonishing if $a$ and $b$ are as in (\ref{scale:decay:model:g:spec}):
+The result (\ref{scale:model:g:dimless}) with the
+solution (\ref{scale:model:g:exact_scaled}) is actually
+astonishing if $a$ and $b$ are as in (\ref{scale:model:g:spec}):
 the six parameters $d$, $\mu$, $\varrho_b$, $\varrho$, $V$, and $g$
 are conjured to one:
 \[ \beta = I\frac{3\pi d\mu}{\varrho_b V}
@@ -2216,7 +2221,7 @@ In particular, if the motion starts from rest, $\beta=0$, and
 there are no physical parameters in the scaled model!
 We can then perform a single simulation and recover all physical
 cases by the unscaling procedure. More precisely,
-having computed $\bar u(\bar t)$ from (\ref{scale:decay:model:g:dimless}),
+having computed $\bar u(\bar t)$ from (\ref{scale:model:g:dimless}),
 we can use
 
 \begin{equation}
@@ -2224,9 +2229,9 @@ u(t) = \frac{b}{a}\bar u(at),
 \end{equation}
 to scale back to the original
 problem again.
-We observe that (\ref{scale:decay:model:g:dimless}) can utilize a solver
-for (\ref{scale:decay:model:g}) by setting $a=1$, $b=1$, and $I=\beta$.
-Given some implementation of a solver for (\ref{scale:decay:model:g}),
+We observe that (\ref{scale:model:g:dimless}) can utilize a solver
+for (\ref{scale:model:g}) by setting $a=1$, $b=1$, and $I=\beta$.
+Given some implementation of a solver for (\ref{scale:model:g}),
 say \texttt{solver(I, a, b, T, dt, theta)},
 the scaled model is run by \texttt{solver(beta, 1, 1, T, dt, theta)}.
 
@@ -2238,9 +2243,7 @@ We may develop a solver for the scaled problem that uses \texttt{joblib}
 to cache solutions with the same $\beta$, $\Delta t$, and $T$.
 For now we fix $\theta=0.5$.
 The module \href{{http://tinyurl.com/o8pb3yy/decay_vc.py}}{\nolinkurl{decay_vc.py}}
-(see ref[Section~\ref{decay:general}][ in \cite{Langtangen_decay}[the
-section \href{{http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem}}{Implementation of the generalized model problem}\footnote{\texttt{http://hplgit.github.io/decay-book/doc/pub/book/sphinx/.\_book006.html\#implementation-of-the-generalized-model-problem}}
-\cite{Langtangen_decay}] for details)
+(see Section~\ref{decay:general} in \cite{Langtangen_decay} for details)
 has a function
 \texttt{solver(I, a, b, T, dt, theta)} for solving $u'(t)=-a(t)u(t)+b(t)$ for
 $t\in (0,T]$, $u(0)=I$, with time step \texttt{dt}.
@@ -2351,25 +2354,25 @@ starts from rest.
 From the scaling, we see that $u_c = b/a\sim d^{-2}$ and
 also that $t_c=1/a \sim d^{-2}$, so plotting of $u(t)$ with dimensions
 for various $d$ values will involve significant variations in the time
-and velocity scales. Figure~\ref{sec:scale:decay:body:fig}
+and velocity scales. Figure~\ref{sec:scale:body:fig}
 has an example with $d=1,2,3$ mm, where we clearly see the different
 time and velocity scales in the figure with unscaled variables.
 Note that the scaled velocity is positive because of the sign of $u_c$
 (see the box above).
 
 
-\begin{figure}[!ht]  % sec:scale:decay:body:fig
+\begin{figure}[!ht]  % sec:scale:body:fig
   \centerline{\includegraphics[width=1.0\linewidth]{fig-scaling/falling_body.pdf}}
   \caption{
-  Velocity of falling body: scaled (left) and with dimensions (right). \label{sec:scale:decay:body:fig}
+  Velocity of falling body: scaled (left) and with dimensions (right). \label{sec:scale:body:fig}
   }
 \end{figure}
-%\clearpage % flush figures sec:scale:decay:body:fig
+%\clearpage % flush figures sec:scale:body:fig
 
 
 
 \subsection{Variable coefficients}
-\label{sec:scale:decay:jump}
+\label{sec:scale:jump}
 
 When a prescribed coefficient like $a(t)$ in $u'(t) = -a(t)u(t)$
 varies with time one usually also
@@ -2418,7 +2421,7 @@ With $t_c=1/d$ we get
 1, & \bar t < \gamma\\ 
 5, & \bar t \geq \gamma
 \end{array}\right.
-\label{sec:scale:decay:jump:eq1}
+\label{sec:scale:jump:eq1}
 \end{equation}
 where
 
@@ -2435,23 +2438,23 @@ the definition of $\bar a$. Both problems involve $\gamma$, which
 is the ratio between the time when the environmental change happens
 and the typical time for the decay ($1/d$).
 
-A computation with the scaled model (\ref{sec:scale:decay:jump:eq1})
+A computation with the scaled model (\ref{sec:scale:jump:eq1})
 and the original model with dimensions appears in
-Figure~\ref{sec:scale:decay:jump:fig}.
+Figure~\ref{sec:scale:jump:fig}.
 
 
-\begin{figure}[!ht]  % sec:scale:decay:jump:fig
+\begin{figure}[!ht]  % sec:scale:jump:fig
   \centerline{\includegraphics[width=1.0\linewidth]{fig-scaling/decay_jump.pdf}}
   \caption{
-  Exponential decay with jump: scaled model (left) and unscaled model (right). \label{sec:scale:decay:jump:fig}
+  Exponential decay with jump: scaled model (left) and unscaled model (right). \label{sec:scale:jump:fig}
   }
 \end{figure}
-%\clearpage % flush figures sec:scale:decay:jump:fig
+%\clearpage % flush figures sec:scale:jump:fig
 
 
 
 \subsection{Scaling a cooling problem with constant temperature in the surroundings}
-\label{scale:decay:cooling:const}
+\label{scale:cooling:const}
 
 The heat exchange between a body at temperature $T(t)$ and the
 surroundings at constant temperature $T_s$
@@ -2459,13 +2462,13 @@ can be modeled by Newton's law of cooling:
 
 \begin{equation}
 T'(t) = -k(T-T_s),\quad T(0)=T_0,
-\label{scale:decay:cooling:model}
+\label{scale:cooling:model}
 \end{equation}
 where $k$ is a prescribed heat transfer coefficient.
 
 \paragraph{Exact solution.}
 An analytical solution is always handy to have as a control of the
-choice of scales. The solution of (\ref{scale:decay:cooling:model})
+choice of scales. The solution of (\ref{scale:cooling:model})
 is by standard methods for ODEs found to be
 $T(t) = T_s + (T_0 - T_s)e^{-kt}$.
 
@@ -2478,14 +2481,14 @@ therefore to scale and translate $T$ according to
 
 \begin{equation}
 \bar T = \frac{T-T_0}{T_s-T_0}
-\label{scale:decay:cooling:Tbar}
+\label{scale:cooling:Tbar}
 \tp
 \end{equation}
 Now, $0\leq \bar T\leq 1$.
 
 Scaling time by $\bar t = t/t_c$ and inserting
 $T= T_0 + (T_s-T_0)\bar T$ and $t=t_c\bar t$ in the
-problem (\ref{scale:decay:cooling:model}) gives
+problem (\ref{scale:cooling:model}) gives
 
 \[ \frac{d\bar T}{d\bar t} = - t_ck(\bar T - 1),\quad \bar T(0) = 0
 \tp
@@ -2495,7 +2498,7 @@ is to choose $t_ck=1$, which leaves us with the scaled problem
 
 \begin{equation}
 \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
-\label{scale:decay:cooling:Tbar:eq}
+\label{scale:cooling:Tbar:eq}
 \tp
 \end{equation}
 No physical parameter enters this problem!
@@ -2504,19 +2507,19 @@ Our scaling implies that $\bar T$ starts at
 $T_s < T_0$. The physical temperature is always recovered as
 \begin{equation}
 T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)
-\label{scale:decay:cooling:T}
+\label{scale:cooling:T}
 \tp
 \end{equation}
 
 \paragraph{Software.}
-An implementation for (\ref{scale:decay:cooling:model}) works for
-(\ref{scale:decay:cooling:Tbar:eq}) by setting $k=1$, $T_s=1$, and $T_0=0$.
+An implementation for (\ref{scale:cooling:model}) works for
+(\ref{scale:cooling:Tbar:eq}) by setting $k=1$, $T_s=1$, and $T_0=0$.
 
 \paragraph{Alternative scaling.}
 An alternative temperature scaling is to choose
 \begin{equation}
 \bar T = \frac{T-T_s}{T_0-T_s}
-\label{scale:decay:cooling:Tbar2}
+\label{scale:cooling:Tbar2}
 \tp
 \end{equation}
 Now $\bar T=1$ initially and approaches zero as $t\rightarrow\infty$.
@@ -2524,21 +2527,21 @@ The resulting scaled ODE problem then becomes
 
 \begin{equation}
 \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1,
-\label{scale:decay:cooling:Tbar:eq2}
+\label{scale:cooling:Tbar:eq2}
 \tp
 \end{equation}
 with solution $\bar T = e^{-\bar t}$.
 
 \subsection{Scaling a cooling problem with time-dependent surroundings}
-\label{scale:decay:cooling:osc}
+\label{scale:cooling:osc}
 
-Let us apply the model (\ref{scale:decay:cooling:model}) to the case when
+Let us apply the model (\ref{scale:cooling:model}) to the case when
 the surrounding temperature varies in time. Say we have
 an oscillating temperature environment according to
 
 \begin{equation}
 T_s(t) = T_m + a\sin(\omega t),
-\label{scale:decay:cooling:Tst}
+\label{scale:cooling:Tst}
 \end{equation}
 where $T_m$ is the mean temperature in the surroundings, $a$ is
 the amplitude of the variations around $T_m$, and $2\pi/\omega$ is
@@ -2579,7 +2582,7 @@ Reordering the result, we get
 \index{dimensionless number}
 
 \paragraph{Scaling.}
-The scaling (\ref{scale:decay:cooling:Tbar}) brings in a time-dependent
+The scaling (\ref{scale:cooling:Tbar}) brings in a time-dependent
 characteristic temperature scale $T_s-T_0$. Let us start with a
 fixed scale, where we take the characteristic temperature variation to
 be $T_m - T_0$:
@@ -2604,7 +2607,7 @@ resulting in
 \begin{equation}
 \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
 \bar T(0)=0,
-\label{scale:decay:cooling:model:scaled}
+\label{scale:cooling:model:scaled}
 \end{equation}
 where we have two dimensionless numbers:
 
@@ -2622,7 +2625,7 @@ oscillations in $T_s$ and the e-folding time $e=1/k$. Then $\beta =
 \begin{notice_mdfboxadmon}[Remark]
 The original problem features five physical parameters: $k$, $T_0$,
 $T_m$, $a$, and $\omega$, but only two dimensionless numbers appear in the
-scaled model (\ref{scale:decay:cooling:model:scaled}).
+scaled model (\ref{scale:cooling:model:scaled}).
 In fact, this is an example where application of the Pi theorem
 (see Section~\ref{scale:dimunit:Pi}) falls
 short. Since, only time and temperature are involved as unit types, the
@@ -2635,7 +2638,7 @@ $T_m$ and $T_0$ affect the nature of the problem only through their difference.
 
 
 \paragraph{Software.}
-Implementations of the unscaled problem (\ref{scale:decay:cooling:model})
+Implementations of the unscaled problem (\ref{scale:cooling:model})
 can be reused for the scaled model by setting $k=1$, $T_0=0$, and
 $T_s(t) = 1 + \alpha\sin (\beta \bar t)$ ($T_m=1$, $a=\alpha$, $\omega =\beta$).
 The file \href{{http://tinyurl.com/o8pb3yy/osc_cooling.py}}{\nolinkurl{osc_cooling.py}} contains
@@ -2678,13 +2681,13 @@ appropriate time scale. Choosing $t_c=1/\omega$ results in
 \begin{equation}
 \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
 \bar T(0)=0\tp
-\label{scale:decay:cooling:model:scaled2}
+\label{scale:cooling:model:scaled2}
 \end{equation}
 
 
 Let us illustrate another, less effective, scaling.
 The temperature scale in
-(\ref{scale:decay:cooling:Tbar}) looks natural, so we apply this
+(\ref{scale:cooling:Tbar}) looks natural, so we apply this
 choice of scale. The characteristic temperature $T_0-T_s$
 now involves
 a time-dependent term $T_s(t)$. The mathematical steps become a bit
@@ -2725,7 +2728,7 @@ left with
 \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
 \alpha\beta \frac{\cos(\beta \bar t)}{1 + \alpha\sin(\beta\bar t) - \gamma}
 \bar T,
-\label{scale:decay:cooling:Tbar:eq3}
+\label{scale:cooling:Tbar:eq3}
 \end{equation}
 where $\alpha$, $\beta$, and $\gamma$ are dimensionless numbers
 characterizing the relative importance of parameters in the problem:
@@ -2734,9 +2737,9 @@ characterizing the relative importance of parameters in the problem:
 \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
 \tp
 \end{equation}
-We notice that (\ref{scale:decay:cooling:Tbar:eq3})
+We notice that (\ref{scale:cooling:Tbar:eq3})
 is not a special case of the original problem
-(\ref{scale:decay:cooling:model}). Furthermore, the original five
+(\ref{scale:cooling:model}). Furthermore, the original five
 parameters $k$, $T_m$, $a$, $\omega$, and
 $T_0$ are reduced to three dimensionless parameters.
 We conclude that this scaling is inferior, because
@@ -2756,7 +2759,7 @@ a third dimensionless parameter, so this scaling is also inferior to the
 one above with only two parameters.
 
 \subsection{Scaling a nonlinear ODE}
-\label{sec:scale:decay:nonlinear}
+\label{sec:scale:nonlinear}
 
 \index{logistic equation}
 
@@ -2767,7 +2770,7 @@ equation model:
 
 \begin{equation}
 u' = a(u)u,\quad u(0)=I\tp
-\label{sec:scale:decay:nonlinear:model1}
+\label{sec:scale:nonlinear:model1}
 \end{equation}
 If the maximum value of $u$ is denoted by $M$, we have that $a(M)=0$.
 A simple choice fulfilling this requirement is $a(u)=\varrho(1-u/M)$.
@@ -2780,7 +2783,7 @@ population growth:
 
 \begin{equation}
 u' = \varrho u(1-u/M),\quad u(0)=I\tp
-\label{sec:scale:decay:nonlinear:model2}
+\label{sec:scale:nonlinear:model2}
 \end{equation}
 A more complicated choice of $a$ may be $a(u)=\varrho(1-u/M)^p$ for
 some exponent $p$ (this function also fulfills $a(M)=0$ and $a\approx\varrho$
@@ -2789,7 +2792,7 @@ for $t=0$).
 \index{dimensionless number}
 
 \paragraph{Scaling.}
-Let us scale (\ref{sec:scale:decay:nonlinear:model1}) with
+Let us scale (\ref{sec:scale:nonlinear:model1}) with
 $a(u)=\varrho (1-u/M)^p$.
 The natural scale for $u$ is $M$ ($u_c=M$), since we know that
 $0 < u\leq M$, and this makes the dimensionless $\bar u = u/M \in (0,1]$.
@@ -2799,7 +2802,7 @@ typically varying between 0 and $\varrho$, so it can be scaled as
 \[ \bar a(\bar u) = \frac{a(u)}{\varrho} = (1 - \frac{u}{M})^p =
 (1 - \bar u)^p\tp\]
 Time is scaled as $\bar t = t/t_c$ for some suitable characteristic time $t_c$.
-Inserted in (\ref{sec:scale:decay:nonlinear:model1}), we get
+Inserted in (\ref{sec:scale:nonlinear:model1}), we get
 
 \[ \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = \varrho\bar a u_c\bar u,\quad u_c\bar u(0)=I,\]
 resulting in
@@ -2819,7 +2822,7 @@ one, we get the dimensionless model
 \begin{equation}
 \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
 \bar u(0) =\alpha\tp
-\label{sec:scale:decay:nonlinear:model1:scaled}
+\label{sec:scale:nonlinear:model1:scaled}
 \end{equation}
 Here, we have two dimensionless parameters: $\alpha$ and $p$. A classical
 logistic model with $p=1$ has only one dimensionless variable.
@@ -2833,13 +2836,13 @@ This choice of $\bar u$ results in
 \begin{equation}
 \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
 \bar u(0) =0\tp
-\label{sec:scale:decay:nonlinear:model1:scaled2}
+\label{sec:scale:nonlinear:model1:scaled2}
 \end{equation}
-The essential difference between (\ref{sec:scale:decay:nonlinear:model1:scaled})
-and (\ref{sec:scale:decay:nonlinear:model1:scaled2}) is that
+The essential difference between (\ref{sec:scale:nonlinear:model1:scaled})
+and (\ref{sec:scale:nonlinear:model1:scaled2}) is that
 $\bar u\in [\alpha, 1]$ in the former and $\bar u \in [0, 1-\alpha]$ in
 the latter. Both models involve the dimensionless numbers $\alpha$ and $p$.
-An advantage of (\ref{sec:scale:decay:nonlinear:model1:scaled})
+An advantage of (\ref{sec:scale:nonlinear:model1:scaled})
 is that software for the unscaled model can easily be used for the
 scaled model by choosing $I=\alpha$, $M=1$, and $\varrho=1$.
 
@@ -3348,8 +3351,8 @@ value (0.1) we see that $\bar Q\approx 0$, which justifies the
 simplifications performed above. We also observe that all the unknowns
 vary between 0 and about 1, indicating that the scaling is successful
 for the chosen dimensionless numbers. The simulations made use of
-a time step $\Delta\bar t=0.1$ with a 4th-order Runge-Kutta method,
-using $\alpha=1$, $\beta=4$ (relevant code is in the
+a time step $\Delta\bar t=0.01$ with a 4th-order Runge-Kutta method,
+using $\alpha=1.5$, $\beta=1$ (relevant code is in the
 \Verb!simulate_biochemical_process! function in \href{{http://tinyurl.com/o8pb3yy/session.py}}{\nolinkurl{session.py}}).
 
 
@@ -3528,7 +3531,7 @@ frequency shift $\phi$ and amplitude $\sqrt{I^2 + (V/\omega)^2}$.
 The forthcoming text relies on a good understanding of concepts
 like period, frequency, and amplitude of oscillating signals, so
 readers who need to refresh these concepts are recommended to
-do Exercise~\ref{scale:decay:exer:sine} before continuing.
+do Exercise~\ref{scale:exer:sine} before continuing.
 
 \paragraph{Discussion of the displacement scale.}
 The amplitude of $u$ is $\sqrt{I^2 + V^2/\omega^2}$, and this
@@ -4380,7 +4383,7 @@ of periods to be simulated.
 We way wrap this call in a \Verb!solver_scaled! function and wrap it furthermore
 with \texttt{joblib} to avoid repeated calls,
 as we explained in
-Section~\ref{sec:scale:decay:prog}:
+Section~\ref{sec:scale:prog}:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 from vib import solver as solver_unscaled
@@ -4514,7 +4517,7 @@ maximum $y$ value and the time it takes to return to $y=0$.
 
 \label{sec:scale:exer:decay:cooling:osc}
 
-The problem in Section~\ref{scale:decay:cooling:osc} applies a
+The problem in Section~\ref{scale:cooling:osc} applies a
 temperature scaling
 
 \[ \bar T = \frac{T-T_0}{T_m-T_0},\]
@@ -4588,13 +4591,13 @@ and $V$ is the volume of the body. Scale this ODE.
 
 \label{sec:scale:exer:decay:jump}
 
-Make software for the problem in Section~\ref{sec:scale:decay:jump}
-so that you can produce Figure~\ref{sec:scale:decay:jump:fig}.
+Make software for the problem in Section~\ref{sec:scale:jump}
+so that you can produce Figure~\ref{sec:scale:jump:fig}.
 
 % --- begin hint in exercise ---
 
 \paragraph{Hint.}
-Follow the ideas for software in Section~\ref{sec:scale:decay:body}: use the
+Follow the ideas for software in Section~\ref{sec:scale:body}: use the
 \href{{http://tinyurl.com/o8pb3yy/decay_vc.py}}{\nolinkurl{decay_vc.py}} module as computational
 engine and modify the
 \href{{http://tinyurl.com/o8pb3yy/falling_body.py}}{\nolinkurl{falling_body.py}} code.
@@ -4619,9 +4622,9 @@ engine and modify the
 
 \label{sec:scale:exer:decay:cooling}
 
-Use software for the unscaled problem (\ref{scale:decay:cooling:model})
+Use software for the unscaled problem (\ref{scale:cooling:model})
 to compute the solution of the
-scaled problem (\ref{scale:decay:cooling:model:scaled}).
+scaled problem (\ref{scale:cooling:model:scaled}).
 Let $T_s$ be a function of time.
 
 % --- begin hint in exercise ---
@@ -4629,7 +4632,7 @@ Let $T_s$ be a function of time.
 \paragraph{Hint.}
 You may use the general software \href{{http://tinyurl.com/o8pb3yy/decay_vc.py}}{\nolinkurl{decay_vc.py}}
 for computing with the cooling model.
-See Section~\ref{sec:scale:decay:body} for more ideas.
+See Section~\ref{sec:scale:body} for more ideas.
 
 % --- end hint in exercise ---
 
@@ -4649,7 +4652,7 @@ See Section~\ref{sec:scale:decay:body} for more ideas.
 
 \subsection*{Problem \thedoconceexercisecounter: Decay ODE with discontinuous coefficients}
 
-\label{scale:decay:exer:decay:step}
+\label{scale:exer:decay:step}
 
 The goal of this exercise is to scale the problem
 $u^{\prime}(t) = -a(t)u(t) + b(t)$, $u(0)=I$, when
@@ -4680,9 +4683,9 @@ Here, $Q,A,\epsilon >0$.
 
 \subsection*{Exercise \thedoconceexercisecounter: Alternative scalings of a cooling model}
 
-\label{scale:decay:exer:nonlin:logistic2}
+\label{scale:exer:nonlin:logistic2}
 
-Implement the scaled model (\ref{sec:scale:decay:nonlinear:model1:scaled})
+Implement the scaled model (\ref{sec:scale:nonlinear:model1:scaled})
 and produce a plot with curves corresponding to various values of
 $\alpha$ and $p$ to summarize how $\bar u(\bar t)$ looks like.
 
@@ -4690,7 +4693,7 @@ $\alpha$ and $p$ to summarize how $\bar u(\bar t)$ looks like.
 
 \paragraph{Hint.}
 A centered Crank-Nicolson-style
-scheme for (\ref{sec:scale:decay:nonlinear:model1:scaled})
+scheme for (\ref{sec:scale:nonlinear:model1:scaled})
 can use an old time value for the nonlinear coefficient:
 
 \[ \frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
@@ -4778,7 +4781,7 @@ $x$) for the two cases.
 
 \subsection*{Problem \thedoconceexercisecounter: A predator-prey model}
 
-\label{scale:decay:exer:predprey}
+\label{scale:exer:predprey}
 
 \index{Lotka-Volterra, predator-prey model}
 
@@ -4788,9 +4791,9 @@ Lotka-Volterra ODE system
 
 \begin{align}
 H^{\prime} &= H(a - bL),
-\label{scale:decay:exer:predprey:eqH}\\ 
+\label{scale:exer:predprey:eqH}\\ 
 L^{\prime} &= L(dH - c),
-\label{scale:decay:exer:predprey:eqL}\\ 
+\label{scale:exer:predprey:eqL}\\ 
 H(0)&=H_0,\\ 
 L(0)&=L_0\tp
 \end{align}
@@ -4827,13 +4830,13 @@ in the ODE problem we arrive at
 
 \begin{align}
 \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\label{scale:decay:exer:predprey:eqH:s}\\ 
+\label{scale:exer:predprey:eqH:s}\\ 
 \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-\label{scale:decay:exer:predprey:eqL:s}\\ 
+\label{scale:exer:predprey:eqL:s}\\ 
 H_c\bar H(0) &= H_0,
-\label{scale:decay:exer:predprey:eqH0:s}\\ 
+\label{scale:exer:predprey:eqH0:s}\\ 
 L_c\bar H(0) &= L_0\tp
-\label{scale:decay:exer:predprey:eqL0:s}
+\label{scale:exer:predprey:eqL0:s}
 \end{align}
 
 
@@ -4880,14 +4883,14 @@ and find a time scale. Compare with the result in b).
 
 \subsection*{Problem \thedoconceexercisecounter: A model for competing species}
 
-\label{scale:decay:exer:competing_species}
+\label{scale:exer:competing_species}
 
 \index{Lotka-Volterra, competing species model}
 
 Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
 competing species. A generalized Lotka-Volterra model
 is based on a logistic growth of each specie and a predator-prey like
-interaction (cf.~Problem~\ref{scale:decay:exer:predprey}):
+interaction (cf.~Problem~\ref{scale:exer:predprey}):
 
 \begin{align}
 \frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\ 
@@ -4913,7 +4916,7 @@ Find suitable scales and derive a dimensionless ODE problem.
 
 \subsection*{Problem \thedoconceexercisecounter: Find the period of sinusoidal signals}
 
-\label{scale:decay:exer:sine}
+\label{scale:exer:sine}
 
 This exercise aims at investigating various fundamental
 concepts like period, wave length,
@@ -6366,12 +6369,22 @@ the dimensionless initial-boundary value problem
 \end{align}
 The striking feature is that there are no physical parameters left in
 this problem. One simulation can be carried out for $\bar u(\bar x,\bar t)$,
+see Figure~\ref{scale:heat:pde3:fig},
 and the temperature in a rod of any material and any constant initial and
 boundary temperature can be retrieved by
 
 \[ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp\]
 
-\shortinlinecomment{hpl 2}{ Include simulation results. }{ Include simulation results. }
+
+\begin{figure}[!ht]  % scale:heat:pde3:fig
+  \centerline{\includegraphics[width=0.8\linewidth]{fig-scaling/diffusion_jump_BC.pdf}}
+  \caption{
+  Scaled temperature in an isolated rod suddenly heated from the end. \label{scale:heat:pde3:fig}
+  }
+\end{figure}
+%\clearpage % flush figures scale:heat:pde3:fig
+
+
 
 \subsection{Oscillating Dirichlet condition}
 
@@ -6566,7 +6579,7 @@ Movie \arabic{doconce:movie:counter}: Diffusion wave. \href{https://github.com/h
 \subsection{Fisher's equation}
 
 Fisher's equation is essentially the logistic equation at each point
-for population dynamics (see Section~\ref{sec:scale:decay:nonlinear})
+for population dynamics (see Section~\ref{sec:scale:nonlinear})
 combined with spatial movement through ordinary diffusion:
 
 \begin{equation}
@@ -6594,7 +6607,7 @@ results in
 \paragraph{Balance of all terms.}
 If all terms are equally important, the scales can be determined from
 demanding the coefficients to be unity.
-Reasoning as for the logistic ODE in Section~\ref{sec:scale:decay:nonlinear},
+Reasoning as for the logistic ODE in Section~\ref{sec:scale:nonlinear},
 we may choose $t_c=1/\varrho$. Then
 the coefficient in the diffusion term dictates the length scale $x_c =
 \sqrt{t_c\dfc}$.
@@ -7492,7 +7505,6 @@ Given software for (\ref{scale:elasticity:PDE1}),
 we can simulate the dimensionless problem by setting $\varrho =\bar\varrho$,
 $\lambda =\beta\bar\lambda$, and $\mu = \bar\mu$.
 
-\shortinlinecomment{hpl 3}{ What about setting boundary conditions? }{ What about setting boundary }
 
 \subsection{Dimensionless stress tensor}
 \label{scale:elasticity:PDE1:stress}
@@ -8618,7 +8630,7 @@ the \href{{https://en.wikipedia.org/wiki/Biot_number}}{Biot number}\footnote{\te
 describes the ratio of heat loss/gain with the surroundings at the
 solid body's boundary and conduction inside the body. A small Biot
 number indicates that conduction is a fast process and one can use
-Newton's law of cooling (see Section~\ref{scale:decay:cooling:const})
+Newton's law of cooling (see Section~\ref{scale:cooling:const})
 instead of a detailed calculation of the
 spatio-temporal temperature variation in the body. The Biot number
 also arises in simplified models of heat conduction in solids,
@@ -8881,7 +8893,7 @@ $t_c=0.21$ ms.
 % numerical solution. That is, this choice of scaling will give $\Delta x
 % \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-% \longinlinecomment{hpl 4}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
+% \longinlinecomment{hpl 1}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
 
 
 \subsection{An alternative $I_{\rm{ion}}$}
@@ -9172,11 +9184,6 @@ parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
 There are six remaining dimensionless numbers to be set: $K_{wm}$,
 $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
-\shortinlinecomment{hpl 5}{ Boundary conditions? }{ Boundary conditions? }
-
-\shortinlinecomment{hpl 6}{ Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities. }{ Simplifications: skip gravity, sources, }
-
-\shortinlinecomment{hpl 7}{ Exercises: single-phase flow, with and without thermal effects. }{ Exercises: single-phase flow, with }
 
 \section{Compressible gas dynamics}
 \label{scale:gasdyn}
@@ -9266,7 +9273,6 @@ where $\alpha$ is a dimensionless number:
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the $\alpha$ coefficient.
 
-\shortinlinecomment{hpl 8}{ Comment on software also for advanced models. }{ Comment on software also }
 
 \subsection{General isentropic flow}
 

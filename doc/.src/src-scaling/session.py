@@ -601,6 +601,37 @@ def diffusion_two_metal_pieces():
         h=Bi,
         user_action=plot)
 
+def diffusion_jump_BC():
+    import scitools.std as plt
+    selected_times = [0.0010, 0.0080, 0.02, 0.06, 0.2, 0.6, 1]
+
+    def plot(u, x, t, n):
+        tol = 1E-8
+        for t_ in selected_times:
+            if abs(t[n] - t_) < tol:
+                # u.copy() is important, otherwise we get a lot of
+                # copies of the latest u...
+                plt.plot(x, u.copy(), legend=['t=%.4f' % t[n]],
+                 axis=[x[0], x[-1], -0.1, 1.1],
+                 xlabel='$x$', ylabel='$u$')
+                 #savefig='tmp_%04d.pdf' % n)
+                plt.hold('on')
+
+    solver_diffusion_FE(
+        I=lambda x: 0,
+        a=1,
+        f=None,
+        L=1,
+        Nx=150,
+        F=0.5,
+        T=1,
+        U_0=lambda t: 1.0,
+        U_L=None,
+        h=None,
+        user_action=plot)
+    plt.savefig('tmp.pdf')
+    plt.savefig('tmp.png')
+
 if __name__ == '__main__':
     #damped_forced_vibrations()
     #cooling_sine_Ts_dsolve()
@@ -613,4 +644,5 @@ if __name__ == '__main__':
     #boundary_layer1D()
     #boundary_layer1D_scale2()
     #diffusion_oscillatory_BC()
-    diffusion_two_metal_pieces()
+    #diffusion_two_metal_pieces()
+    diffusion_jump_BC()

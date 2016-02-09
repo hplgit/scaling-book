@@ -1,5 +1,7 @@
 Achou
 Achou's
+Allewelt
+Aslak
 Bernoulli's
 Biot
 Biot's
@@ -79,6 +81,7 @@ SymPy
 SymPy's
 TOC
 Tritton
+Tveito
 Unum
 Vm
 Volterra
@@ -93,6 +96,7 @@ cd
 co
 convective
 dashpot
+deg
 demystify
 diffusivities
 diffusivity
@@ -104,6 +108,7 @@ geodesy
 giga
 immiscible
 intracellular
+io
 isentropic
 joblib
 kelvin
@@ -125,6 +130,7 @@ rad
 recomputations
 shedded
 signum
+smund
 spatio
 submenues
 subpool
