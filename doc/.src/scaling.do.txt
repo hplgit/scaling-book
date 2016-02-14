@@ -6857,7 +6857,7 @@ with the choice of scales.  We introduce the dimensionless parameters
 The scaled solution becomes
 
 !bt
-\[ \bar u(\bar x, \bar t; \beta,\gamma) = e^{-\beta\bar x}\sin(\beta\bar x - \gamma\bar t)\tp\]
+\[ \bar u(\bar x, \bar t; \beta,\gamma) = e^{-\beta\bar x}\sin(\gamma\bar t- \beta\bar x)\tp\]
 !et
 The three choices of $\gamma$, implied by the three choices of $t_c$, are
 
@@ -6877,7 +6877,7 @@ are no parameters in the dimensionless solution:
 
 !bt
 \begin{equation}
-\bar u(\bar x, \bar t) = e^{-\bar x}\sin(\bar x - \bar t)\tp
+\bar u(\bar x, \bar t) = e^{-\bar x}\sin(\bar t - \bar x)\tp
 label{scale:heat:daynight:xcb}
 \end{equation}
 !et
@@ -6905,7 +6905,11 @@ approximately constant so its derivative vanishes, and this property
 can only be obtained if $L$ is large enough to ensure that the wave
 becomes significantly damped.  Therefore, the length scale is dictated
 by $b$, not $L$, and $L$ should be adapted to $b$, typically $L\geq
-4/b$. This means that $x\in [0,4/b]$ and then $\bar x\in [0,4]$.
+4/b$ if $e^{-4}\approx 0.018$ is considered enough damping to
+consider $\bar u\approx 0$ for the boundary condition.
+This means that $x\in [0,4/b]$ and then $\bar x\in [0,4]$.
+Increasing the spatial domain to $[0,6]$ implies a damping $e^{-6}\approx
+0.0025$, if more accuracy is desired in the boundary condition.
 
 === The scaled problem ===
 
@@ -6924,7 +6928,7 @@ label{scale:heat:pde2:ic:u:d}\\
 \bar u(0,\bar t) & = \sin(\bar t),
 \quad  &\bar t\in (0,\bar T],
 label{scale:heat:pde2:bc:0:d}\\
-\frac{\partial}{\partial\bar x}\bar u(1,\bar t) & = 0,
+\frac{\partial}{\partial\bar x}\bar u(\bar L,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
 label{scale:heat:pde2:bc:L:d}
 \end{align}
@@ -6939,12 +6943,19 @@ We may, of course, choose $t_c=2/\omega$ and get rid of the $\half$ factor,
 if desired, but then it turns up in (ref{scale:heat:pde2:bc:0:d}) instead,
 as $\sin (2\bar t)$.
 
+The boundary condition at $\bar x=\bar L$ is only an approximation and
+relies on sufficient damping of $\bar u$ to consider it constant
+$(\partial/\partial\bar x =0)$ in
+space. We could, therefore, assign the condition $\bar u = 0$ instead
+at $\bar x=\bar L$.
+
 === Simulations ===
 
 The file "`session.py`": "${src_scaling}/session.py" contains a function
-`solver_diffusion_FE` for solving a diffusion equation in one dimension
-and a function `diffusion_oscillatory_BC` for solving
-(ref{scale:heat:pde2:d})-(ref{scale:heat:pde2:bc:L:d}).
+`solver_diffusion_FE` for solving a diffusion equation in one dimension.
+This function can be used to solve the
+system (ref{scale:heat:pde2:d})-(ref{scale:heat:pde2:bc:L:d}),
+see `diffusion_oscillatory_BC`.
 
 MOVIE: [https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/diffusion_osc_BC/movie.mp4] Diffusion wave.
 

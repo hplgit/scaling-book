@@ -66,5 +66,5 @@ cp ${name}.pdf $author_name/${name}.pdf
 # Make tarfile of the directory tree
 tarfile=scaling.tar.gz
 tar czf $tarfile $author_name
-#cp ${author_name}/${book}_*.tex $tarfile "~/Dropbox/Springer/Scaling"
+#cp ${author_name}/${book}.tex $tarfile "~/Dropbox/Springer/Scaling Briefs"
 exit
