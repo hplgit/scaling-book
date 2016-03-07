@@ -74,24 +74,28 @@ system pdflatex $name
 # for the book, referred to by other documents, uses the .aux
 # file corresponding to a version without solutions.
 
-# With solutions, password protected
-compile --device=screen
+# With solutions, PDF for screen, password protected
+compile --device=screen EXV=True
 newname=${topicname}-book-4screen-sol
 password="s!c!ale"
 #pdftk $name.pdf output $newname.pdf owner_pw foo user_pw $password
 cp $name.pdf $newname.pdf
+cp $name.log ${newname}.log
 
-compile --device=screen --without_solutions --without_answers
+# Without solutions, PDF for screen
+compile --device=screen --without_solutions --without_answers EXV=True
 newname=${topicname}-book-4screen
 cp $name.pdf $newname.pdf
+cp $name.log ${newname}.log
 
-#--latex_index_in_margin
-compile --device=paper --without_solutions --without_answers
+# Printed book without exercises and extra material
+compile --device=paper --without_solutions --without_answers EXV=False --allow_refs_to_external_docs
 newname=${topicname}-book-4print
 cp $name.pdf $newname.pdf
 pdfnup --frame true --outfile ${newname}-2up.pdf $newname.pdf
 cp $name.aux ${newname}.aux-final
 cp $name.tex ${newname}.tex
+cp $name.log ${newname}.log
 
 # Report typical problems with the book (too long lines,
 # undefined labels, etc.). Here we report lines that are more than 10pt

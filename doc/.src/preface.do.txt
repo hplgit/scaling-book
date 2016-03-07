@@ -157,13 +157,22 @@ dimensionless differential equation models.
 All program and data files referred to in this book are available
 from the book's primary web site:
 URL: http://hplgit.github.io/scaling-book/doc/web/.
+% if not EXV:
+This site also features a version of the book with exercises.
+% endif
 
 __Acknowledgments.__
-The authors are thankful to Dr. Joakim Sundnes who greatly contributed
-to the writing of Section ref{scale:bidomain}. Professor Svein Linge
+Professor Svein Linge
 provided very detailed, constructive comments on the entire manuscript
-and helped improve the reading quality significantly.  We also thank
-Yapi Donatien Achou for his proof reading.  Significant portions of
+and helped improve the reading quality significantly.
+Yapi Donatien Achou assisted with proof reading.
+% if EXV:
+The authors are thankful to Dr. Joakim Sundnes who contributed a section on
+scaling of the bidomain
+model in electrophysiology in the extended version of this booklet,
+found in Section ref{scale:bidomain}.
+% endif
+Significant portions of
 the present text were written when the first author was fed with
 FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr. Olav
 Dajani, and the rest of the OUS team. There would simply be no booklet

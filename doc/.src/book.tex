@@ -13,8 +13,8 @@
 %\pagestyle{headings}
 \usepackage{mathptmx}
 \usepackage{helvet}
-%\usepackage{courier} % note: courier monospace font is too wide
 \usepackage{lmodern}   % not svmono style, but gives prettier math symbols
+%\usepackage{courier} % note: courier monospace font is too wide
 \usepackage{type1cm}
 \usepackage{framed}
 \usepackage{booktabs}
@@ -160,10 +160,6 @@
 %\hyperbaseurl{}   % hyperlinks are relative to this root
 
 \setcounter{tocdepth}{3}  % levels in table of contents
-
-% newcommands for typesetting inline (doconce) comments
-\newcommand{\shortinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
-\newcommand{\longinlinecomment}[3]{{\color{red}{\bf #1}: #2}}
 
 \usepackage[framemethod=TikZ]{mdframed}
 
@@ -315,38 +311,6 @@
 \clubpenalty = 10000
 \widowpenalty = 10000
 
-\newenvironment{doconceexercise}{}{}
-\newcounter{doconceexercisecounter}
-% --- begin definition of \listofexercises command ---
-\makeatletter
-\newcommand\listofexercises{
-\chapter*{List of Exercises and Problems
-          \@mkboth{List of Exercises and Problems}{List of Exercises and Problems}}
-\markboth{List of Exercises and Problems}{List of Exercises and Problems}
-\@starttoc{loe}
-}
-\newcommand*{\l@doconceexercise}{\@dottedtocline{0}{0pt}{6.5em}}
-\makeatother
-% --- end definition of \listofexercises command ---
-
-
-% Let exercises, problems, and projects be numbered per chapter:
-\usepackage{chngcntr}
-\counterwithin{doconceexercisecounter}{chapter}
-
-
-% ------ header in subexercises ------
-%\newcommand{\subex}[1]{\paragraph{#1}}
-%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
-\makeatletter
-% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
-\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
-                  {1.5ex\@plus1ex \@minus.2ex}%
-                  {-0.5em}%
-                  {\normalfont\normalsize\bfseries}}
-\makeatother
-
-
 % --- end of standard preamble for documents ---
 
 
@@ -403,7 +367,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Feb 13, 2016}
+\date{Mar 6, 2016}
 \maketitle
 
 % Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
@@ -574,13 +538,14 @@ dimensionless differential equation models.
 All program and data files referred to in this book are available
 from the book's primary web site:
 URL: \href{{http://hplgit.github.io/scaling-book/doc/web/.}}{\nolinkurl{http://hplgit.github.io/scaling-book/doc/web/.}}
+This site also features a version of the book with exercises.
 
 \paragraph{Acknowledgments.}
-The authors are thankful to Dr.~Joakim Sundnes who greatly contributed
-to the writing of Section~\ref{scale:bidomain}. Professor Svein Linge
+Professor Svein Linge
 provided very detailed, constructive comments on the entire manuscript
-and helped improve the reading quality significantly.  We also thank
-Yapi Donatien Achou for his proof reading.  Significant portions of
+and helped improve the reading quality significantly.
+Yapi Donatien Achou assisted with proof reading.
+Significant portions of
 the present text were written when the first author was fed with
 FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr.~Olav
 Dajani, and the rest of the OUS team. There would simply be no booklet
@@ -905,8 +870,9 @@ in popular computer languages used for numerical computing (Section~\ref{scale:P
 
 Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
-for instance, be given in unit of ounce per teaspoon (see Exercise~\ref{sec:scale:exer:US2SI1} for how to safely convert to a standard
-unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables are
+for instance, be given in unit of ounce per
+teaspoon.
+Although unit conversion tables are
 frequently met in school, errors in unit conversion probably rank
 highest among all errors committed by scientists and engineers (and
 when a unit conversion error makes an \href{{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}}{airplane's fuel run out}\footnote{\texttt{http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html}},
@@ -1984,6 +1950,7 @@ and will therefore perform many more calls to
 \Verb!solver_unscaled!.
 
 
+
 \begin{notice_mdfboxadmon}[On the implementation of a simple memoize function]
 A memoized function recalls
 previous results when the same set
@@ -2594,8 +2561,8 @@ around $T_m$. (This reasoning can be controlled by looking at the exact
 solution we produced above.)
 The typical average temperature span is therefore
 $|T_m-T_0|$, unless $a$ is much larger than $|T_m-T_0|$ or $T_0$ is
-very close to $T_m$ (see Exercise~\ref{sec:scale:exer:decay:cooling:osc} for
-a discussion of these cases).
+very close to
+$T_m$.
 
 We get from the differential equation, with $t_c=1/k$ as in the former
 case,
@@ -3528,10 +3495,6 @@ $A\cos(wt - \phi)$:
 Now we see that the $u$ corresponds to cosine oscillations with a
 frequency shift $\phi$ and amplitude $\sqrt{I^2 + (V/\omega)^2}$.
 
-The forthcoming text relies on a good understanding of concepts
-like period, frequency, and amplitude of oscillating signals, so
-readers who need to refresh these concepts are recommended to
-do Exercise~\ref{scale:exer:sine} before continuing.
 
 \paragraph{Discussion of the displacement scale.}
 The amplitude of $u$ is $\sqrt{I^2 + V^2/\omega^2}$, and this
@@ -3929,6 +3892,7 @@ amplitude is about $10^2$ because of the moderate size of $u_c$.
 The present scaling is therefore most suitable away from resonance,
 and when the terms containing $\cos\omega t$ and $\sin\omega t$
 are important (e.g., $\omega\gg\psi$).
+
 
 
 \begin{figure}[!ht]  % sec:scale:vib:fig:Fcos_b0:2
@@ -4456,889 +4420,6 @@ we get the scaled equation
 which is basically the same as we derived for mechanical vibrations.
 (Two additional dimensionless variables will arise from the initial
 conditions for $I$, just as in the mechanics cases.)
-
-\section{Exercises}
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Perform unit conversion}
-
-\label{sec:scale:exer:US2SI1}
-
-Density (mass per volume: $[\hbox{ML}^{-3}]$) of water is
-given as 1.05 ounce per fluid ounce. Use the \texttt{PhysicalQuantity} object
-to convert to $\hbox{kg\,m}^{-3}$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!density_conversion!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Scale a simple formula}
-
-\label{sec:scale:exer:ball_y}
-
-The height $y$ of a body thrown up in the air is given by
-
-\[ y = v_0t - \frac{1}{2}gt^2,\]
-where $t$ is time, $v_0$ is the initial velocity of the body at $t=0$,
-and $g$ is the acceleration of gravity. Scale this formula. Use
-two choices of the characteristic time: the time it takes to reach the
-maximum $y$ value and the time it takes to return to $y=0$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!vertical_motion!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Perform alternative scalings}
-
-\label{sec:scale:exer:decay:cooling:osc}
-
-The problem in Section~\ref{scale:cooling:osc} applies a
-temperature scaling
-
-\[ \bar T = \frac{T-T_0}{T_m-T_0},\]
-which is not always suitable.
-
-
-\subex{a)}
-Consider the case $T_0=T_m$ and the fact that $|T_m-T_0|$ does not
-represent the characteristic temperature scale since it
-collapses to zero. Formulate a suitable
-scaling in this case. The figure below corresponds to $T_m=25$ C,
-$T_0=24.9$ C, and $a=2.5$ C. We clearly see that $\bar T$ is
-not of size unity.
-
-
-
-% inline figure
-\centerline{\includegraphics[width=0.8\linewidth]{fig-scaling/osc_cooling_wrong_scale.pdf}}
-
-
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Consider the case where $a$ is much larger than $|T_m-T_0|$.
-What is an appropriate scaling of the temperature?
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: A nonlinear ODE for vertical motion with air resistance}
-
-\label{sec:scale:exer:ball_y_wdrag}
-
-The velocity $v(t)$
-of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by the ODE
-
-\[ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,\]
-where $t$ is time, $m$ is the mass of the body, $C_D$ is a drag coefficient,
-$\varrho$ is the density of the fluid, $A$ is the cross-sectional area
-perpendicular to the motion, $g$ is the acceleration of gravity,
-and $V$ is the volume of the body. Scale this ODE.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!vertical_motion_with_drag!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Solve a decay ODE with discontinuous coefficient}
-
-\label{sec:scale:exer:decay:jump}
-
-Make software for the problem in Section~\ref{sec:scale:jump}
-so that you can produce Figure~\ref{sec:scale:jump:fig}.
-
-% --- begin hint in exercise ---
-
-\paragraph{Hint.}
-Follow the ideas for software in Section~\ref{sec:scale:body}: use the
-\href{{http://tinyurl.com/o8pb3yy/decay_vc.py}}{\nolinkurl{decay_vc.py}} module as computational
-engine and modify the
-\href{{http://tinyurl.com/o8pb3yy/falling_body.py}}{\nolinkurl{falling_body.py}} code.
-
-% --- end hint in exercise ---
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!decay_jump!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Implement a scaled model for cooling}
-
-\label{sec:scale:exer:decay:cooling}
-
-Use software for the unscaled problem (\ref{scale:cooling:model})
-to compute the solution of the
-scaled problem (\ref{scale:cooling:model:scaled}).
-Let $T_s$ be a function of time.
-
-% --- begin hint in exercise ---
-
-\paragraph{Hint.}
-You may use the general software \href{{http://tinyurl.com/o8pb3yy/decay_vc.py}}{\nolinkurl{decay_vc.py}}
-for computing with the cooling model.
-See Section~\ref{sec:scale:body} for more ideas.
-
-% --- end hint in exercise ---
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \texttt{cooling1}.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Decay ODE with discontinuous coefficients}
-
-\label{scale:exer:decay:step}
-
-The goal of this exercise is to scale the problem
-$u^{\prime}(t) = -a(t)u(t) + b(t)$, $u(0)=I$, when
-
-\[
-a(t) =\left\lbrace\begin{array}{ll}
-Q, & t < s,\\ 
-Q - A, & t\geq s,\end{array}\right.
-\quad b = \left\lbrace\begin{array}{ll}
-\epsilon t, & t < s,\\ 
-0, & t\geq s,\end{array}\right.
-\]
-Here, $Q,A,\epsilon >0$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!decay_varcoeff!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Alternative scalings of a cooling model}
-
-\label{scale:exer:nonlin:logistic2}
-
-Implement the scaled model (\ref{sec:scale:nonlinear:model1:scaled})
-and produce a plot with curves corresponding to various values of
-$\alpha$ and $p$ to summarize how $\bar u(\bar t)$ looks like.
-
-% --- begin hint in exercise ---
-
-\paragraph{Hint.}
-A centered Crank-Nicolson-style
-scheme for (\ref{sec:scale:nonlinear:model1:scaled})
-can use an old time value for the nonlinear coefficient:
-
-\[ \frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
-(1 - \alpha\bar u^n)^p\frac{1}{2}(\bar u^n + \bar u^{n+1})\tp\]
-
-% --- end hint in exercise ---
-\noindent Filename: \texttt{growth}.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Projectile motion}
-
-\label{scale:vib:exer:projectile}
-
-We have the following mathematical model for the motion of a projectile
-in two dimensions:
-
-\[ m\ddot\x + \frac{1}{2}C_D\varrho A|\dot\x|\dot\x
-= -mg\jj,\quad \x(0)=\bm{0},\ \dot\x(0)=v_0\cos\theta\ii +
-v_0\sin\theta\jj\tp\]
-Here, $m$ is the mass of the projectile, $\x=x\ii + y\jj$ is
-the position vector of the projectile, $\ii$ and $\jj$
-are unit vectors along the $x$ and $y$ axes, respectively,
-$\ddot\x$ and $\dot\x$ is the second- and first-order
-time derivative of $\x(t)$, $C_D$ is a drag coefficient
-depending on the shape of the projectile (can be taken as 0.4 for a sphere),
-$\varrho$ is the density of the air, $A$ is the cross section area
-(can be taken as $\pi R^2$ for a sphere of radius $R$), $g$ is gravity,
-$v_0$ is the initial velocity of the projectile in a direction that makes
-the angle $\theta$ with the ground.
-
-
-\subex{a)}
-Neglect the air resistance term proportional to $\dot\x$ and solve
-analytically for $\x(t)$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Make the model for projectile motion with air resistance non-dimensional.
-Use the maximum height from the simplification in a) as length scale.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{c)}
-Make the model dimensionless again, but this time by demanding that
-the scaled initial velocity is unity in $x$ direction.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{d)}
-A soccer ball has radius 11 cm and mass 0.43 kg, the density of air
-is 1.2 $\hbox{kg}\hbox{m}^{-3}$, a soft kick has velocity 30 km/h,
-while a hard kick may have 120 km/h. Estimate the dimensionless parameter
-in the scaled problem for a soft and a hard kick with
-$\theta$ corresponding to 45 degrees. Solve the scaled
-differential equation for these values and plot the trajectory ($y$ versus
-$x$) for the two cases.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\noindent Filename: \texttt{projectile}.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: A predator-prey model}
-
-\label{scale:exer:predprey}
-
-\index{Lotka-Volterra, predator-prey model}
-
-The evolution of animal populations with a predator and a prey (e.g.,
-lynx and hares, or foxes and rabbits) can be described by the
-Lotka-Volterra ODE system
-
-\begin{align}
-H^{\prime} &= H(a - bL),
-\label{scale:exer:predprey:eqH}\\ 
-L^{\prime} &= L(dH - c),
-\label{scale:exer:predprey:eqL}\\ 
-H(0)&=H_0,\\ 
-L(0)&=L_0\tp
-\end{align}
-Here, $H$ is the number of animals of the prey (say hares)
-and $L$ is the corresponding measure of the predator population (say lynx).
-There are six parameters: $a$, $b$, $c$, $d$, $H_0$, and $L_0$.
-
-The terms have the following meanings:
-
-\begin{itemize}
- \item $aH$ is the exponential
-   population growth of $H$ due to births and deaths and is governed by
-   the access to nutrition,
-
- \item $-bHL$ is the loss of preys because they are eaten by predators,
-
- \item $dHL$ is the increase of predators because they eat preys (but only
-   a fraction of the eaten preys, $bHL$, contribute to population growth
-   of the predator and therefore $d < b$),
-
- \item $-cL$ is the exponential decay in the predator population because of
-   deaths (the increase is modeled by $dHL$).
-\end{itemize}
-
-\noindent
-Dimensionless independent and dependent variables are introduced as usual
-by
-
-\[ \bar t = \frac{t}{t_c},\quad
-\bar H = \frac{H}{H_c},\quad \bar L = \frac{L}{L_c},
-\]
-where $t_c$, $H_c$, and $L_c$ are scales to be determined. Inserted
-in the ODE problem we arrive at
-
-\begin{align}
-\frac{H_0}{t_c}\frac{d\bar H}{d\bar t} &= H_0\bar H(a - bH_0\bar L),
-\label{scale:exer:predprey:eqH:s}\\ 
-\frac{H_0}{t_c}\frac{d\bar L}{d\bar t} &= H_0\bar L(dH_0\bar H - c),
-\label{scale:exer:predprey:eqL:s}\\ 
-H_c\bar H(0) &= H_0,
-\label{scale:exer:predprey:eqH0:s}\\ 
-L_c\bar H(0) &= L_0\tp
-\label{scale:exer:predprey:eqL0:s}
-\end{align}
-
-
-\subex{a)}
-Consider first a simple, intuitive scaling of $H$ and $L$ based on
-initial conditions $H_c=H_0$
-and $L_c=H_c$. This means that $\bar H$ starts out at unity and $\bar L$
-starts out as the fraction $L_0/H_0$. Find a time scale and identify
-dimensionless parameters in the scaled ODE problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Try a different scaling where the aim is to adjust the scales such that
-the ODEs become as simple as possible, i.e, have as few dimensionless
-parameters as possible. Compare with the scaling in a).
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{c)}
-A more mathematical approach to determining suitable scales for $H$ and $L$
-consists in finding the stationary points $(H,L)$ of the ODE system,
-where $H^{\prime}=L^{\prime}=0$, and use such points as characteristic
-sizes of the dependent variables. Show that $H^{\prime}=L^{\prime}=0$
-implies $H=L=0$ or $L=a/b$ and $H=c/d$. Use $H_c=a/b$, $L_c=c/d$,
-and find a time scale. Compare with the result in b).
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\noindent Filename: \Verb!predator_prey!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: A model for competing species}
-
-\label{scale:exer:competing_species}
-
-\index{Lotka-Volterra, competing species model}
-
-Let $N_1(t)$ and $N_2(t)$ be the number of animals in two
-competing species. A generalized Lotka-Volterra model
-is based on a logistic growth of each specie and a predator-prey like
-interaction (cf.~Problem~\ref{scale:exer:predprey}):
-
-\begin{align}
-\frac{dN_1}{dt} &= r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),\\ 
-\frac{dN_2}{dt} &= r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
-\end{align}
-where $r_1$, $r_2$, $M_1$, $M_2$, $s_{12}$, and $s_{21}$ are given constants.
-The initial conditions specify $N_1$ and $N_2$ at $t=0$.
-Find suitable scales and derive a dimensionless ODE problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!competing_species!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Find the period of sinusoidal signals}
-
-\label{scale:exer:sine}
-
-This exercise aims at investigating various fundamental
-concepts like period, wave length,
-and frequency in non-damped and damped sinusoidal signals.
-
-
-\subex{a)}
-Plot the function
-
-\[ u(t) = A\sin(\omega t), \]
-for $t\in [0, 8\pi/\omega]$. Choose $\omega$ and $A$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-The \emph{period} $P$ of $u$ is the shortest distance between two peaks (where
-$u=A$). Show mathematically that
-
-\[ P = \frac{2\pi}{\omega}\tp\]
-Frequently, $P$ is also referred to as the \emph{wave length} of $u$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{c)}
-Plot the damped signal $u(t)=e^{-at}\sin (\omega t)$ over four periods
-of $sin(\omega t)$. Choose $\omega$, $A$, and $a$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{d)}
-What is the period of $u(t)=e^{-at}\sin (\omega t)$? We define the
-period $P$ as the shortest distance between two peaks of the signal.
-
-% --- begin hint in exercise ---
-
-\paragraph{Hint.}
-Use that $v = p\cos(\omega t) + q\sin (\omega t)$ can be rewritten
-as $v = B\cos(\omega t - \phi)$ with $B=\sqrt{p^2 + q^2}$ and
-$\phi = \tan^{-1}(p/q)$. Use such a rewrite of $u'$ to find the peaks of
-$u$ and then the period.
-
-% --- end hint in exercise ---
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-
-\noindent Filename: \Verb!sine_period!.
-
-% Closing remarks for this Problem
-
-\paragraph{Remarks.}
-The \emph{frequency} is the number of up and down cycles in one unit time.
-Since there is one cycle in a period $P$, the frequency is $f =1/P$,
-measured in Hz.
-The \emph{angular frequency} $\omega$ is then $\omega = 2\pi/P = 2\pi f$.
-
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Oscillating mass with sliding friction}
-
-\label{scale:vib:exer:sliding}
-
-
-\begin{figure}[!ht]  % scale:vib:exer:sliding:fig
-  \centerline{\includegraphics[width=0.7\linewidth]{fig-scaling/oscillator_sliding.pdf}}
-  \caption{
-  Body sliding on a surface. \label{scale:vib:exer:sliding:fig}
-  }
-\end{figure}
-%\clearpage % flush figures scale:vib:exer:sliding:fig
-
-
-A mass attached to a spring is sliding on a surface and subject to
-a friction force, see Figure~\ref{scale:vib:exer:sliding:fig}.
-The spring represents a force $-ku\ii$, where $k$ is the spring stiffness.
-The friction force is proportional to the normal force on the surface,
-$-mg\jj$, and given by $-f(\dot u)\ii$, where
-
-\[ f(\dot u) = \left\lbrace\begin{array}{ll}
--\mu mg,& \dot u < 0,\\ 
-\mu mg, & \dot u > 0,\\ 
-0,      & \dot u=0
-\end{array}\right.\]
-Here, $\mu \geq 0$ is a friction coefficient. With the signum function
-
-\[ \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
--1,& x < 0,\\ 
-1, & x > 0,\\ 
-0, & x=0
-\end{array}\right.\]
-we can simply write $f(\dot u) = \mu mg\,\hbox{sign}(\dot u)$
-(the sign function is implemented by \texttt{numpy.sign}).
-
-The ODE problem for this one-dimensional oscillatory motion reads
-
-\begin{equation}
-m\ddot u + \mu mg\,\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V\tp
-\end{equation}
-
-
-\subex{a)}
-Scale the problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Implement the scaled model. Simulate for $\alpha = 0, 0.05, 0.1$
-and $\beta =0$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-
-\noindent Filename: \Verb!sliding_box!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Pendulum equations}
-
-\label{sec:scale:exer:pendulum}
-
-The equation for a so-called simple pendulum with a mass $m$ at the end is
-
-\begin{equation}
-mL\ddot\theta + mg\sin\theta = 0,
-\end{equation}
-where $\theta(t)$ is the angle with the vertical, $L$ is the length of
-the pendulum, and $g$ is the acceleration of gravity.
-
-A physical pendulum with moment of inertia $I$ is governed by
-a similar equation,
-
-\begin{equation}
-I\ddot\theta + mgL\sin\theta = 0\tp
-\end{equation}
-Both equations have the initial conditions $\theta(0)=\Theta$ and
-$\theta'(0)=0$ (start at rest).
-
-
-\subex{a)}
-Use $\theta$ as dimensionless unknown, find a proper time scale,
-and scale both differential equations.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Some may argue that $\theta$ is not dimensionless since it is measured
-in radians. One may introduce a truly dimensionless angle $\bar\theta
-\in [0,1]$. Set up the scaled ODE problem in this case.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{c)}
-Simulate the problem in b) for $\Theta = 1,20,45,60$ measured in degrees.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\noindent Filename: \texttt{pendulum}.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: ODEs for a binary star}
-
-\label{sec:scale:exer:binary_star}
-
-The equations for a \href{{https://en.wikipedia.org/wiki/Binary_star}}{binary star}\footnote{\texttt{https://en.wikipedia.org/wiki/Binary\_star}},
-or a planet and a moon, are
-
-\begin{align}
-m_A\ddot\x_A &= \F,\\ 
-m_B\ddot\x_B &= -\F,
-\end{align}
-where $\x_A$ is the position of object (star) A, and $\x_B$ is the position
-object B. The corresponding masses are $m_A$ and $m_B$.
-The only force is the gravity force
-
-\[ \F = \frac{Gm_Am_B}{||\rpos||^3}\rpos,\]
-where
-
-\[ \rpos(t) = \x_B(t) - \x_A(t),\]
-and $G$ is the gravitational constant: $G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2$. A problem with these equations is that the parameters are very large
-($m_A$, $m_B$, $||\rpos||$) or very small ($G$). The rotation time
-for binary stars can be very small and large as well.
-
-
-\subex{a)}
-Scale the equations.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Solve the scaled equations numerically for two cases:
-
-\begin{enumerate}
-\item a planet around a star:
-   $\alpha = 10^{-3}$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=(0,1)$,
-   $\x_B(0)=0$, $\dot\x_B(0)=0$
-
-\item two stars:
-   $\alpha = \half$, $\x_A(0)=(1,0)$, $\dot\x_A(0)=(0,\half)$,
-   $\x_B(0)=0$, $\dot\x_B(0)=(0,-\half)$
-\end{enumerate}
-
-\noindent
-An assumption here is that the orbits are co-planar such that they can
-be taken to lie in the $xy$ plane.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\noindent Filename: \Verb!binary_star!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Duffing's equation}
-
-\label{scale:vib:exer:Duffing}
-
-Duffing's equation is a vibration equation with linear and cubic
-spring terms:
-
-\[ mu'' + k_0u + k_1u^3 = 0,\quad u(0)=U_0,\ u'(0)=0\tp\]
-Scale this problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!Duffing_eq!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Vertical motion in a varying gravity field}
-
-\label{scale:vib:exer:rocket}
-
-A body (e.g., projectile or rocket) is launched vertically
-from the surface of the earth with
-velocity $V$. The body's distance (height) from the earth's surface
-at time $t$ is represented by the function $h(t)$.
-Unless $h$ is very much smaller than the earth's radius $R$, the motion
-takes place in a varying gravity field. The governing ODE problem for
-$h(t)$ is then
-
-\begin{equation}
-h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T],
-\end{equation}
-where $g$ is the acceleration of gravity at the earth's surface.
-
-The goal is to discuss three scalings of this problem. First we introduce
-
-\[ \bar h = \frac{h}{h_c},\quad \bar t = \frac{t}{t_c},\]
-which gives the dimensionless ODE
-
-\[
-\frac{d^2\bar h}{d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
-= -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+ R/h_c\right)^2}
-\]
-and the dimensionless initial condition
-
-\[ \frac{d\bar h}{d\bar t}(0) = \frac{t_cV}{h_c}\tp\]
-The key dimensionless variable in this problem turns out to be
-
-\[ \epsilon = \frac{V}{\sqrt{Rg}}\tp\]
-
-
-\subex{a)}
-Assume we study the motion over long distances such that
-$h$ may be of the same size as $R$. In this case, $h_c=R$ is a
-reasonable choice. Determine $t_c$ from requiring the initial velocity
-to be unity. Set up the dimensionless ODE problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-As a), but determine $t_c$ by demanding both terms in the scaled ODE to
-have unit coefficients.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{c)}
-For small initial velocity $V$, $h$ will be small compared to $R$.
-In the limit $h/R\rightarrow 0$,
-the governing equation simplifies to the well-known motion in a
-constant gravity field: $h''=-g$. Use this model to suggest a time and
-length scale, and derive a dimensionless ODE problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{d)}
-Give an interpretation of the dimensionless parameter $\epsilon$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{e)}
-Solve numerically for $\bar h(\bar t)$ in each of the three scalings in
-a), b), and c), with $\epsilon^2 =0.01, 0.1, 0.5, 1, 2$.
-When are the various scalings appropriate? (That is, when are $\bar t$
-and $\bar h$ of size unity or at least not very small or big?)
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\noindent Filename: \Verb!varying_gravity!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: A simplified Schroedinger equation}
-
-\label{scale:vib:exer:quantum}
-
-A simplified stationary
-Schroedinger's equation for one electron, assuming radial symmetry, takes
-the form
-
-\begin{equation}
--\frac{\hbar^2}{2m}
-\frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right) R
-+ V(r)R = ER,
-\label{scale:vib:exer:quantum:Req}
-\end{equation}
-where $r$ is the radial coordinate, $R$ is the wave function,
-$\hbar$ is Planck's constant, $m$ is the mass of the electron,
-$V=$ is the force potential, which is here taken as the
-Coulomb potential $V(r) = {e^2}/(8\pi\epsilon_0 r)$
-(where $e$ is the charge of the electron and $\epsilon_0$ is the
-permittivity of free space), and $E$ is
-the eigenvalue, for the energy, to be determined along with $R(r)$.
-
-Show that the scaled version of (\ref{scale:vib:exer:quantum:Req}) can be written
-
-\begin{equation}
-- \left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\bar r^2
-\frac{d}{d\bar r}\right)
-\bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
-\label{scale:vib:exer:quantum:barReq}
-\end{equation}
-where $\lambda$ is a dimensionless eigenvalue
-
-\[ \lambda = \frac{(4\pi)^2\epsilon_0^2\hbar^2E}{me^4}\tp\]
-The symbol $\bar r$ is the scaled coordinate, and $\bar R$ is a scaled
-version of $R$ (the scaling factor drops out of the equation).
-The length scale, which arises naturally, is the
-\href{{https://en.wikipedia.org/wiki/Bohr_radius}}{Bohr radius}\footnote{\texttt{https://en.wikipedia.org/wiki/Bohr\_radius}}.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \texttt{Schroedinger}.
-
-% Closing remarks for this Problem
-
-\paragraph{Remarks.}
-Introducing $u=\bar r\bar R$ and renaming $\bar r$ to $x$,
-(\ref{scale:vib:exer:quantum:barReq}) can be recast in the simpler form
-
-\[ -u''(x) + \frac{1}{x}u(x) = \lambda u(x),\]
-which is a simpler eigenvalue problem to solve numerically (the boundary
-conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
-
-
-\end{doconceexercise}
-% --- end exercise ---
 
 
 % !split
@@ -7090,315 +6171,6 @@ to $u_c= f_c L/V$.
 Alternatively, $u_c$ can be based on the initial condition, with similar
 results as found in the sections on the wave and diffusion PDEs.
 
-\section{Exercises}
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Stationary Couette flow}
-
-\label{scale:vib:exer:stationary_Couette}
-
-A fluid flows between two flat plates, with one plate at rest while
-the other moves with velocity $U_0$. This classical flow case is known as
-stationary \href{{https://en.wikipedia.org/wiki/Couette_flow}}{Couette flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Couette\_flow}}.
-
-
-\subex{a)}
-Directing the $x$ axis in the flow direction and letting $y$ be
-a coordinate perpendicular to the walls, one can assume that
-the velocity field simplifies to $\u = u(y)\ii$.
-Show from the Navier-Stokes equations that the boundary-value problem
-for $u(y)$ is
-
-\[ u^{\prime\prime}(u) = 0,\quad u(0)=0,\ u(H)=U_0\tp\]
-We have here assumed at $y=0$ corresponds to the plate at rest and
-that $y=H$ represents the plate that moves. There are no pressure
-gradients present in the flow.
-
-\subex{b)}
-Scale the problem in a) and show that the result has no physical parameters
-left in the model:
-
-\[ \frac{d^2\bar u}{d\bar y^2} = 0,\quad \bar u(0)=0,\ \bar u(1)=1\tp\]
-
-\subex{c)}
-We can compute $\bar u(\bar y)$ from one numerical simulation (or a
-straightforward integration of the differential equation). Set up
-the formula that finds $u(y; H, u_0)$ from $\bar u(\bar y)$ for any
-values of $H$ and $U_0$.
-
-
-
-\noindent Filename: \Verb!stationary_Couette!.
-
-% Closing remarks for this Problem
-
-\paragraph{Remarks.}
-The problem for $u$ is a classical two-point boundary-value problem
-in applied mathematics and arises in a number of applications, where
-Couette flow is just one example. Heat conduction is another
-example: $u$ is temperature, and the heat conduction equation for
-an insulated rod reduces to $u^{\prime\prime}=0$ under stationary
-conditions and no heat source.
-Controlling the end $x=0$ at 0 degrees Celsius the other end $x=L$
-at $U_0$ degrees
-Celsius, gives the same boundary conditions as in the above flow problem.
-The scaled problem is of course the same whether we have flow of
-fluid or heat.
-
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Couette-Poiseuille flow}
-
-\label{scale:vib:exer:Couette_wpressure}
-
-Viscous fluid flow between two infinite flat plates $z=0$ and $z=H$
-is governed by
-
-\begin{align}
-\mu u''(z) &= -\beta\\ 
-u(0) &= 0,\\ 
-u(H) &= U_0\tp
-\end{align}
-Here, $u(z)$ is the fluid velocity in $x$ direction (perpendicular to the
-$z$ axis), $\mu$ is the dynamic viscosity of the fluid, $\beta$ is
-a positive constant pressure gradient, and $U_0$ is the
-constant velocity of the upper
-plate $z=H$ in $x$ direction. The model represents
-\href{{https://en.wikipedia.org/wiki/Couette_flow}}{Couette flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Couette\_flow}} for $\beta=0$
-and \href{{https://en.wikipedia.org/wiki/Hagen-Poiseuille_equation}}{Poiseuille flow}\footnote{\texttt{https://en.wikipedia.org/wiki/Hagen-Poiseuille\_equation}}
-for $U_0=0$.
-
-
-\subex{a)}
-Find the exact solution $u(z)$. Point out how $\beta$ and $U_0$
-influence the magnitude of $u$.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Scale the problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-
-\noindent Filename: \Verb!Couette_wpressure!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Pulsatile pipeflow}
-
-\label{scale:exer:pipeflow:pulsatile}
-
-The flow of a viscous fluid in a straight pipe with circular
-cross section with radius $R$ is governed by
-
-\begin{align}
-\varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
-\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],\\ 
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],\\ 
-u(R,t) &= 0, & t\in (0,T],\\ 
-u(r,0) &= 0, & r\in [0,R].
-\end{align}
-The quantity $u(r,t)$ is the fluid velocity, $P(t)$ is a given
-pressure gradient, $\varrho$ is the fluid density, and $\mu$ is the
-dynamic viscosity.
-
-Assume $P(t) = A\cos\omega t$. Scale the problem and identify
-appropriate dimensionless numbers. Thereafter, assume $P(t)$ is a more
-complicated function, but still period with period $p$.
-Discuss how the scaling can be extended to this case.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \texttt{pipeflow}.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: The linear cable equation}
-
-\label{scale:exer:cable_eq}
-
-A key PDE in neuroscience is the \href{{https://en.wikipedia.org/wiki/Cable_theory}}{cable equation}\footnote{\texttt{https://en.wikipedia.org/wiki/Cable\_theory}}, here given in its simplest linear form:
-
-\begin{equation}
-\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
--u\tp
-\label{scale:exer:cable_eq:PDE}
-\end{equation}
-The unknown $u$ is the voltage (measured in volt) associated with
-an electric current along one-dimensional dendrites (``cables'')
-in neural networks, while $\tau$ and $\lambda$ are given parameters.
-
-Scale (\ref{scale:exer:cable_eq:PDE}) in three ways: 1) let all terms in
-the scaled equation have unit coefficients, 2) use the domain size
-$L$ as spatial scale and base the time scale on diffusion, 3) use the
-domain size $L$ as spatial scale and base the time scale on
-reaction, i.e., the $-u$ term.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!cable_eq!.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Heat conduction with discontinuous initial condition}
-
-\label{scale:exer:twometal}
-
-Two pieces of metal at different temperature are brought in contact
-at $t=0$. The following initial-boundary value problem governs the
-temperature evolution in the two pieces:
-
-\begin{align}
-\frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\ 
-u(\x,0)&=I(x), & \x\in \Omega,
-\label{scale:exer:twometal:eq1:3D}\\ 
--\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
-& x\in\partial\Omega,\ t\in (0,T].
-\label{scale:exer:twometal:eq2:3D}
-\end{align}
-Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
-coefficient (assuming both pieces are homogeneous and of the same type of
-metal), and $u_S$ is the surrounding temperature.
-The domain $\Omega$ consists of the two pieces $\Omega_1$ and $\Omega_2$:
-$\Omega = \Omega_1\cup\Omega_2$. The initial condition can be specified as
-
-\[ I(x) = \left\lbrace\begin{array}{ll}
-U_1, & \x\in\Omega_1,\\ 
-U_2, & \x\in\Omega_2,
-\end{array}\right.
-\]
-where $U_1$ and $U_2$ are the constant initial temperatures in each piece.
-
-Thinking of two identical pieces $\Omega_1$ and $\Omega_2$ with shapes
-as bricks, it is tempting to develop a one-dimensional model,
-especially if the pieces are somewhat slender. We then expect the main
-temperature variations to take place in the $x$ direction, where the
-$x$ axis is perpendicular to the contact surface between the pieces.
-A simplified PDE problem, neglecting variations in the $y$ and $z$
-directions, takes the form
-
-\begin{align}
-\frac{\partial v}{\partial t} &=
-\dfc \frac{\partial^2 v}{\partial x^2}
--\frac{hP}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
-\label{scale:exer:twometal:eq1:1D}\\ 
-v(x,0)&=I(x), & x\in (0,L),\\ 
- \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
- \label{scale:exer:twometal:eq2:1D}\\ 
--\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
-\label{scale:exer:twometal:eq3:1D}
-\end{align}
-with
-
-\[
-I(x) = \left\lbrace\begin{array}{ll}
-U_1, & x\in [0,L/2),\\ 
-U_2, & x\in [L/2, L]\tp
-\end{array}\right.
-\]
-The parameter $P$ is the perimeter of the cross section and $A$ is the
-area of the cross section. Scale this problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-\noindent Filename: \Verb!metal_pieces!.
-
-% Closing remarks for this Exercise
-
-\paragraph{Remarks.}
-We can derive (\ref{scale:exer:twometal:eq1:1D})-(\ref{scale:exer:twometal:eq3:1D}) from (\ref{scale:exer:twometal:eq1:3D})-(\ref{scale:exer:twometal:eq2:3D}).
-The idea is to integrate the governing PDE
-(\ref{scale:exer:twometal:eq1:1D}) in the two directions where we
-expect negligible variations,
-use the Gauss divergence theorem in these directions, and
-apply the cooling boundary condition. Let $A$ be the cross section of
-the bricks. Integrating over $A$ gives
-
-\begin{align*}
-\int\limits_A \frac{\partial u}{\partial t}dydz &=
-\int\limits_A \dfc\left(
-\frac{\partial^2 u}{\partial x^2} +
-\frac{\partial^2 u}{\partial y^2} +
-\frac{\partial^2 u}{\partial z^2}
-\right)dydz \\ 
-&=\int\limits_A \dfc
-\frac{\partial^2 u}{\partial x^2}
-dydz +
-\int\limits_A \dfc\left(
-\frac{\partial^2 u}{\partial y^2} +
-\frac{\partial^2 u}{\partial z^2}
-\right)dydz \\ 
-& =
-\int\limits_A \dfc
-\frac{\partial^2 u}{\partial x^2}
-dydz +
-\dfc\int\limits_{\partial A}\frac{\partial u}{\partial n}ds\\ 
-& = \int\limits_A \dfc
-\frac{\partial^2 u}{\partial x^2}
-dydz -h(v(x,t) -u_S)P\tp
-\end{align*}
-The parameter $P$ is the perimeter of the cross section $A$.
-The function $v(x,t)$ means $u(\x,t)$ evaluated at the boundary $\partial A$.
-Assuming $u$ to vary little across the cross section $A$, we can
-approximate the integrals by $u$ evaluated at $\partial A$ as $v$:
-
-\[ \int\limits_A \frac{\partial u}{\partial t}dydz\approx A
-\frac{\partial}{\partial t} v(x,t),
-\quad
-\int\limits_A \dfc
-\frac{\partial^2 u}{\partial x^2}
-dydz \approx A \dfc \frac{\partial^2 v}{\partial x^2},
-\]
-where $A$ now is the cross-section \emph{area}.
-The result is the 1D initial-boundary value problem
-(\ref{scale:exer:twometal:eq1:1D})-(\ref{scale:exer:twometal:eq3:1D}).
-
-
-\end{doconceexercise}
-% --- end exercise ---
-
 
 % !split
 \chapter{Advanced partial differential equation models}
@@ -7654,9 +6426,6 @@ takes for the S waves to travel through the domain.
 Since the velocity of S waves in solids is very large and
 the time scale correspondingly small, $\gamma\ll 1$
 is very often the case in applications involving structural analysis.
-Exercise~\ref{scale::exer:elasticity:vibmodels} explores related
-models and asks for comparisons of time scales for waves and
-mechanical vibrations in structures.
 
 
 \subsection{The stationary elasticity problem}
@@ -8643,557 +7412,12 @@ solid body's boundary and conduction inside the body. A small Biot
 number indicates that conduction is a fast process and one can use
 Newton's law of cooling (see Section~\ref{scale:cooling:const})
 instead of a detailed calculation of the
-spatio-temporal temperature variation in the body. The Biot number
-also arises in simplified models of heat conduction in solids,
-see Exercise~\ref{scale:exer:twometal}.
+spatio-temporal temperature variation in the body.
 
 Heat transfer is a huge engineering
 field with lots of experimental investigations
 that are summarized by curves relating various dimensionless numbers
 such as Gr, Pr, Nu, and Bi.
-
-\section{The bidomain model in electrophysiology}
-\label{scale:bidomain}
-
-The mechanical functioning of the heart is crucially dependent on
-correct electric signal propagation through the heart tissue.
-Understanding this signal propagation via mathematical modeling has
-therefore been a topic of increasing interest in the medical research
-on heart failure, stroke, and other heart-related diseases
-\cite{Sundnes_2006}.  Below we list a common mathematical model,
-consisting of two PDEs coupled to a system of ODEs at each spatial
-point in the domain, and show how this model can be brought to a
-dimensionless form.
-
-
-\subsection{The mathematical model}
-
-\index{bidomain equations}
-
-A widely used mathematical model for the electric signal propagation
-in the heart tissue is the bidomain equations:
-
-\begin{align}
-\chi C_m\frac{\partial v}{\partial t} &=
-\nabla\cdot( \sigma_i\nabla v) + \nabla\cdot (\sigma_i\nabla u_e) - \chi I_{\rm{ion}}
-- \chi I_{\rm{app}},
-\label{scale:bidomain:eqv}\\ 
-0 &= \nabla\cdot( \sigma_i\nabla v) + \nabla\cdot ((\sigma_i + \sigma_e)\nabla u_e)\tp
-\label{scale:bidomain:equ_e}
-\end{align}
-These PDEs are posed in a spatial domain $H$ for $t\in (0, T]$, and the symbols have the following meaning:
-$u_e$ is the extracellular electric potential,
-$v$ is the transmembrane potential (difference between the extracellular
-and intracellular potential),
-$C_m$ is the capacitance of the cell membrane,
-$\chi$ is a membrane area to cell volume ratio,
-$\sigma_i$ is an electric conductivity tensor for the intracellular space, and
-$\sigma_e$ is an electric conductivity tensor for the extracellular space.
-
-The boundary conditions are of Neumann type, but we drop these from
-the discussion, just to make things a bit simpler.  The initial
-condition is typically $u_e=0, v = v_r$, where $v_{r}$ is a constant
-resting potential.
-
-The PDE system is driven by $I_{\rm{ion}} + I_{\rm{app}}$, where
-$I_{\rm{ion}}$ is a reaction term describing ionic currents across the
-cell membrane, and $ I_{\rm{app}}$ is an externally applied stimulus
-current. The applied current is a prescribed function,
-typically piecewise constant in time and space, while
-$I_{\rm{ion}} = I_{\rm{ion}}(v,s)$, where $s$ is a state vector
-describing the electro-chemical state of the cells. Typical components
-of $s$ are intracellular ionic concentrations and so-called gate variables that
-describe the permeability of the cell membrane. The dynamics of $s$ is
-governed by a system of ODEs, see for instance \cite{Sundnes_2006} for
-details. The total
-current $I_{\rm{ion}}$ is often written as a sum of individual
-ionic currents:
-
-\begin{align} I_{\rm{ion}}(s,v) &= \sum_{j=1}^n I_{j}(s,v),
-\label{scale:bidomain:ion1}
-\end{align}
-where $n$ is typically between 10 and 20 in recent models of cardiac
-cells. Most of the individual currents will be on the form
-$ I_{j}(s,v) = g_j(s)(v-v_j), $
-where $v_j$ is the equilibrium potential of the specific ion, and
-$g_j(s)$ describes the membrane conductance of the particular ion channel. Without
-much loss of generality we can assume that this formulation is valid
-for all $I_{j}$, and the total ionic current can then be written in the
-general form
-
-\[
-I_{\rm{ion}}(s,v) = \sum_{j=1}^n I_{j}(s,v) = g(s)(v-v_{eq}(s)) ,
-\]
-where $g(s) = \sum_{j=1}^n g_j(s)$ and $v_{eq}(s) = (\sum_{j=1}^n g_j
-v_j)/(\sum_{j=1}^n g_j)$.
-
-As noted above, the dynamics of $s$ is governed by an ODE system on
-the form
-\[
-\frac{ds}{dt} = f(v,s) \tp
-\]
-and the individual components of $s$ typically have very
-different time scales, making any scaling of this system highly dependent on the
-component under study. For the present text, the focus is on
-tissue-level electrophysiology as described by
-(\ref{scale:bidomain:eqv})-(\ref{scale:bidomain:equ_e}), and we will proceed
-to scale these equations. The equations are of
-reaction-diffusion type, and the scaling will be based on the general
-non-linear reaction-diffusion equation in Section~\ref{sec:scale:diffu:homo1D}.
-
-\subsection{Scaling}
-
-Dimensionless independent variables are introduced by
-\[ \bar x = \frac{x}{L},\quad
-\bar y = \frac{y}{L},\quad \bar z = \frac{z}{L},\quad
-\bar t = \frac{t}{t_c},\]
-where $L$ is the characteristic length scale, and $t_c$ is the
-characteristic time scale. Dimensionless dependent variables are
-expressed as
-
-\[ \bar v = \frac{v-v_r}{v_p-v_r},\quad \bar u = \frac{u_e}{u_c} \tp\]
-As noted above, $v_r$ is the resting potential, and $v_p$ is the peak
-transmembrane potential.
-The scaling of $v$ ensures $\bar v\in [0,1]$. We introduce the symbol
-$\Delta v = v_p-v_r$ to save space in the formulas: $\bar v = (v-v_r)/\Delta v$.
-The scale for $u_e$ is $u_c$, to be
-determined either from simplicity of the equations or from available analysis of
-its magnitude.
-
-The variable tensor coefficients $\sigma_i$ and $\sigma_e$ depend on the spatial
-coordinates and are also scaled:
-\[ \bar \sigma_i = \frac{\sigma_i}{\sigma_c},\quad \bar \sigma_e = \frac{\sigma_e}{\sigma_c}\tp\]
-For simplicity, we have chosen a common scale $\sigma_c$, but the two tensors
-may employ different scales, and we may also choose different scales
-for different directions, to reflect the anisotropic conductivity of
-the tissue. A typical choice of $\sigma_c$ is a norm of
-$\sigma_i + \sigma_e$, e.g., the maximum value.
-
-Finally, we introduce a scaling of the parameters entering the ionic
-current term
-
-\[ \bar v_{eq} = (v_{eq}-v_r)/\Delta v,\quad\bar g = g/g_c\tp\]
-For the characteristic membrane conductance, $g_c$,  a common choice is
-$g_c = 1/R_m$, where $R_m$ is the membrane resistance at
-rest, but we will instead set $g_c = g_{\max}$, the maximum conductance
-of the membrane. These choices will ensure $\bar v_{eq}, \bar g \in
-[0,1]$.
-
-
-Inserting the dimensionless variables in
-(\ref{scale:bidomain:eqv})-(\ref{scale:bidomain:equ_e}), the system
-of governing equations becomes
-
-\begin{align*}
-\frac{\Delta v}{t_c}\chi C_m\frac{\partial \bar v}{\partial \bar t} &=
-\frac{\sigma_c\Delta v }{L^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
-\frac{\sigma_c u_c}{L^2}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\ 
-&\quad - \chi g_c \Delta v \bar g (s)(\bar v-\bar v_{eq}(s)) -\chi I_{\rm{app}},
-\\ 
-0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
-\end{align*}
-Multiplying the equations by appropriate factors leads to equations with
-dimensionless terms only:
-\begin{align*}
-\frac{\partial \bar v}{\partial \bar t} &=
-\frac{t_c\sigma_c}{\chi C_mL^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
-\frac{t_c\sigma_c u_c}{\Delta v \chi C_mL^2}\nabla\cdot (\bar
-\sigma_i\bar \nabla \bar u) - \\ 
-&\quad
-\frac{g_c t_c}{C_m} \bar g (s)(\bar v-\bar v_{eq}(s))
-- \frac{t_c}{C_m\Delta v} I_{\rm{app}},\\ 
-0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) + \frac{u_c}{\Delta v}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
-\end{align*}
-
-The time scale is not so obvious to choose. As noted above, the ODE
-system that governs $s$ and thereby $\bar g(s), \bar v_{eq} (s)$ may
-feature a wide range of temporal scales. Furthermore, even if we focus
-on the tissue equations and on the dynamics of $v$ and $u_e$, the
-choice of natural time and length scales is not trivial.
-The equations are of reaction-diffusion nature, and the
-solution takes the form of a narrow wavefront of activation that
-propagates through the tissue. The region immediately surrounding
-the wavefront is characterized by large spatial and temporal
-gradients, while in most of the
-domain the variations are quite slow. The primary interest is
-usually on the wavefront phenomenon, so
-for now, we choose the time scale
-based on balancing the reaction and diffusion components, as described
-in Section~\ref{sec:scale:diffu:homo1D}.  We consequently
-set the terms in front of the reaction term and the diffusion term to
-unity, which means
-
-\[ \frac{t_c\sigma_c}{\chi C_mL^2} = 1,\quad \frac{t_cg_c}{C_m} =1,\]
-and this principle determines the time and length scales as
-
-\[ t_c = \frac{C_m}{g_c},\quad L = \sqrt{\frac{\sigma_c}{g_c \chi}}\tp\]
-
-Two natural dimensionless variables then arise from the second diffusion
-term and the applied current term:
-
-\[ \beta = \frac{u_c}{\Delta v}, \quad \gamma =
-\frac{I_{\rm{app}}}{g_c \Delta v} \tp\]
-In many cases it will be natural to set $u_c=\Delta v$, which of
-course removes the need for $\beta$, but we
-include the freedom to have $u_c$ as
-some specified characteristic size of $u_e$ (i.e., $u_c$ is not a
-``free parameter'', but is expressed by the other parameters in the
-problem).
-
-The final dimensionless system becomes
-
-\begin{align}
-\frac{\partial \bar v}{\partial \bar t} &=
-\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
-\beta\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) \\ 
-& \quad -\bar g (s)(\bar v-\bar v_{eq}(s))
-- \gamma\\ 
-0 &= \bar \nabla\cdot( \bar \sigma_i\bar \nabla \bar v) +
-\beta\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u) \tp
-\end{align}
-The two dimensionless variables in these equations have
-straightforward
-interpretations: $\beta$ is the ratio of the span in the two electric
-potentials, and $\gamma$ is ratio of the source term $I_{\rm{app}}$ and the
-time-derivative term of $v$, or the source term and the diffusion term
-in $v$.
-
-We can insert typical parameter values to get a feel for the
-chosen scaling. We have
-\begin{align*}
-C_m &= 1.0\, \mu\hbox{F\,cm}^{-2}, \quad g_c = g_{max} = 13.0
-\hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS\,cm}^{-2}, \\ 
-\chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} ,
-\sigma_c = 3.0 \hbox{mS\,cm}^{-1}\tp
-\end{align*}
-
-This gives the following values of $t_c$ and $L$:
-\begin{align*}
-t_c &= \frac{1.0 \mu\hbox{ F\,cm}^{-2}}{13.0 \mu\hbox{ F\,cm}^{-2}} =
-\frac{1.0}{13.0}\frac{\mu\hbox{ F}}{\hbox{mS}} \approx 0.076 \hbox{ ms}, \\ 
-L &= \sqrt{\frac{\sigma_c}{\chi g_c}} = \sqrt{\frac{3.0
-\hbox{ mS\,cm}^{-2}}{2000\hbox{ cm}^{-1} \mu\hbox{ F\,cm}^-2}}
-\approx 0.087 \hbox{ mm} \tp
-\end{align*}
-These values are both very small, which is related to our
-choice of $g_c = g_{\max}$. This choice implies that we base the
-scaling on the upstroke phase of the action potential, when both
-spatial and temporal variations are extremely high. This may therefore
-be a ``correct'' scaling exactly at the wavefront of the electrical
-potential, but is less relevant elsewhere. Choosing $g_c$ to be for
-instance the resting conductance, which is the common choice when
-scaling the cable equation, may increase $t_c, L$ by factors up to 2500 and
-50, respectively. The large difference in scales reflects the
-difference between active, dynamic signal conduction and passive
-signals governed solely by electrodiffusion.
-
-The conduction velocity is often a quantity of interest, and we could
-obtain an alternative relation between $t_c$ and $L$ by setting
-$CV = L/t_c$, where $CV$ is the conduction velocity.
-In human cardiac tissue $CV$ is known to be about
-60 cm/s, while the choices above give
-
-\[
-\frac{L}{t_c} =  \frac{0.087\rm{mm}}{0.076\rm{ms}} \approx 144 \tp
-\hbox{cm/s}\tp \]
-Enforcing $L/t_c = 60 \hbox{cm\,s}^{-1}$ gives the constraint $g_c \approx
-4.8 \hbox{mS\,cm}^{-2}$, and yields $L \approx 0.17$ mm and
-$t_c=0.21$ ms.
-% These are still small values, but very close to the
-% standard values of $\Delta x, \Delta t$ required for accurate
-% numerical solution. That is, this choice of scaling will give $\Delta x
-% \approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
-
-% \longinlinecomment{hpl 1}{ That sounds a big strange, but if the focus is on a smaller scale, % choosing $L$ and $t_c$ from this scale leads to that conclusion. }{ That sounds a big }
-
-
-\subsection{An alternative $I_{\rm{ion}}$}
-The simplest model that gives a qualitatively realistic description of
-the cardiac action potential is the FitzHugh-Nagumo (FHN) model. In
-contrast to the model (\ref{scale:bidomain:ion1}) discussed above, the
-FHN model is completely phenomenological, with no relation to the
-underlying biophysics. However, the model can be parameterized to give
-reasonable values for the voltages, and has the advantage of giving a
-self-contained and relatively simple model that does not depend on
-externally determined variables like the $s$ vector above. As above,
-we have the bidomain model given by
-\begin{align}
-\chi C_m\frac{\partial v}{\partial t} &=
-\nabla\cdot( \sigma_i\nabla v) + \nabla\cdot (\sigma_i\nabla u_e) - \chi I_{\rm{ion}}
-- \chi I_{\rm{app}},
-\label{scale:bidomain:eqv2}\\ 
-0 &= \nabla\cdot( \sigma_i\nabla v) + \nabla\cdot ((\sigma_i + \sigma_e)\nabla u_e),
-\label{scale:bidomain:equ2}
-\end{align}
-but now with
-\[ I_{\rm{ion}} = -A[(v-v_r)(v-v_{th})(v-v_p) - w(v-v_r)(v_p-v_r)^2], \]
-where $w$ is governed by an ODE on the form
-\[ \frac{dw}{dt} = k(v-v_r)-l w \tp\]
-Choosing $A=4.16\cdot 10^{-4} \hbox{mS}/(\hbox{mV}^2),  v_r=-85\hbox{mV},
-v_{th}= -68\hbox{mV}, v_p=40\hbox{mV}, k = 4.0\cdot10^{-5} \hbox{mV}^{-1}\hbox{ms}^{-1}, l
-=0.013\hbox{ms}^{-1}, $ gives reasonably physiological values for $v$,
-while $w$ is a dimensionless variable with values in $[0,1]$.
-The somewhat strange choice of parameter units are
-required because the function is cubic in $v$.
-Typical initial conditions are $v=v_r, u_e = w=0$,
-and $I_{app}$ is piecewise constant in space and time, with a typical
-value being $I_{app} = -50\, \hbox{mA}$ applied for 2 ms in certain regions of
-the domain.
-
-The equations can be scaled following the same procedure as above. In
-addition to the dimensionless variables introduced above, we introduce
-\[
-\alpha = \frac{v_{th}-v_r}{\Delta v} ,
-\]
-and in terms of the dimensionless variables, we get
-\begin{align*}
-\frac{\Delta v}{t_c}\chi C_m\frac{\partial \bar v}{\partial \bar t} &=
-\frac{\sigma_c\Delta v }{L^2}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
-\frac{\sigma_c u_c}{L^2}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\ 
-&\quad - \chi A\Delta v^3 (\bar v (\bar  v-\alpha)(\bar v -1) -
-\bar v w) -\chi I_{\rm{app}},
-\\ 
-0 &= \frac{\sigma_c\Delta v }{L^2}\bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v)
-+ \frac{\sigma_cu_c}{L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
-\frac{1}{t_c} \frac{dw}{dt} &= k \Delta v \bar v
--l w \tp
-\end{align*}
-As above, we multiply with suitable factors to arrive at
-\begin{align*}
-\frac{\partial \bar v}{\partial \bar t} &=
-\frac{\sigma_c t_c}{L^2 C_m \chi}\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
-\frac{\sigma_c t_c u_c}{\Delta v L^2 C_m \chi}\nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\ 
-&\quad - \frac{t_c A\Delta v^2}{C_m} (\bar v (\bar v-\alpha)(\bar v -1) - \bar v
-w) -\chi I_{\rm{app}}, \\ 
-0 &= \frac{\sigma_c}{L^2}\bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v)
-+ \frac{\sigma_cu_c}{\Delta v L^2}\nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
-\frac{dw}{dt}&= k {t_c}{\Delta v} \bar
-v -t_c l w \tp
-\end{align*}
-The time and length scales are again chosen by requiring balance of
-the reaction and diffusion term, which gives
-\[ t_c = \frac{C_m}{A \Delta v^2},\quad L = \sqrt{\frac{\sigma_c}{A
-\Delta v^2 \chi}},\tp\]
- and we arrive at the final dimensionless system
-\begin{align*}
-\frac{\partial \bar v}{\partial \bar t} &=
-\nabla\cdot( \bar \sigma_i\bar\nabla\bar v) +
-\alpha \nabla\cdot (\bar \sigma_i\bar \nabla \bar u) -\\ 
-&\quad - (\bar v (\bar v-\alpha)(\bar v -1) - \bar v
-w) -\beta, \\ 
-0 &= \bar \nabla\cdot( \bar \sigma_i\bar
-\nabla \bar v)
-+ \alpha \nabla\cdot ((\bar \sigma_i + \bar \sigma_e)\bar \nabla \bar u),\\ 
-\frac{dw}{dt}&= \bar k \bar
-v -\bar l w ,
-\end{align*}
-where we have introduced the dimensionless numbers
-\[
-\bar k = k {t_c}{\Delta v} , \quad \bar l = t_c l \tp
-\]
-
-\section{Two-phase porous media flow}
-
-We consider the flow of two incompressible, immiscible fluids in
-a porous medium with porosity $\phi (\x)$. The two fluids are referred to
-as the \href{{https://en.wikipedia.org/wiki/Wetting}}{wetting}\footnote{\texttt{https://en.wikipedia.org/wiki/Wetting}} and
-non-wetting fluid. In an oil-water mixture, water is usually the
-wetting fluid. The fraction of the pore volume occupied by the
-wetting fluid is denoted by $S(\x,t)$. The non-wetting fluid then occupies
-$1-S$ of the pore volume (or $(1-S)\phi$ of the total volume).
-The variable $P(\x,t)$ represents the pressure in the non-wetting fluid.
-It is related to the pressure $P_n$ in the non-wetting fluid through
-the capillary pressure $p_c=P_n-P$, which is an empirically determined
-function of $S$.
-
-From mass conservation of the two fluids and from Darcy's law for
-each fluid, one can derive the following system of PDEs and
-algebraic relations that govern the two primary unknowns $S$ and $P$:
-
-\begin{align}
-\nabla\cdot\v &= -(Q_n + Q_w),
-\label{scale:twoph:Peq}\\ 
-\v &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
-+ \lambda_n\varrho_n)g\kk,
-\label{scale:twoph:v_teq}\\ 
-\phi\frac{\partial S}{\partial t} + f_w'(S)\v\cdot\nabla S &=
-\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\ 
-&\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
-\label{scale:twoph:Seq}\\ 
-Q_w &= \frac{q_w}{\varrho_w},
-\label{scale:twoph:Q_w}\\ 
-Q_n &= \frac{q_n}{\varrho_n},
-\label{scale:twoph:Q_n}\\ 
-\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
-\label{scale:twoph:lambda_w}\\ 
-\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
-\label{scale:twoph:lambda_n}\\ 
-\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
-\label{scale:twoph:lambda_t}\\ 
-k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
-\label{scale:twoph:k_rw}\\ 
-k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
-\label{scale:twoph:k_rn}\\ 
-f_w(S) &= \frac{\lambda_w}{\lambda_t},
-\label{scale:twoph:f_w}\\ 
-G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
-\label{scale:twoph:G_w}\\ 
-h_w(S) &= -\lambda_n(S)f_w(S)\tp
-\label{scale:twoph:h_w}
-\end{align}
-
-The permeability of the porous medium is $K$
-(usually a tensor, but here taken as a
-scalar for simplicity); $\mu_w$ and $\mu_n$ are the dynamic viscosities
-of the wetting and non-wetting fluid, respectively;
-$\varrho_w$ and $\varrho_n$ are the densities
-of the wetting and non-wetting fluid, respectively;
-$q_w$ and $q_n$ are the injection rates of the wetting and non-wetting
-fluid through wells, respectively;
-$S_{wr}$ is the irreducible saturation of
-the wetting fluid (i.e., $S\geq S_{wr}$); $S_{nr}$ is the corresponding
-irreducible saturation of the non-wetting fluid (i.e., $(1-S)\geq S_{nr}$),
-$K_{wn}$ and $K_{nr}$ are the maximum values of the
-relative permeabilities $k_{rw}$ and $k_{rn}$, respectively, and
-$a$ and $b$ are given (Corey) exponents in the expressions for the
-relative permeabilities.
-
-The two PDEs are of elliptic and hyperbolic/parabolic nature:
-(\ref{scale:twoph:Peq}) is elliptic since it is the divergence of a
-vector field, while (\ref{scale:twoph:Seq}) is parabolic ($h_w\geq 0$
-because $p_c'(S)\geq 0$ and $\lambda_n$ as well as $f_w$ are positive
-since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
-(\ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
-steep gradients that become shocks in the limit $p_c'\rightarrow 0$
-and (\ref{scale:twoph:Seq}) is purely hyperbolic.
-A popular solution technique is based on operator splitting:
-(\ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
-(\ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
-
-The saturation $S$ is a non-dimensional quantity, and so are $\phi$,
-$k_{rw}$, $k_{rn}$, $K_{wm}$, $K_{nm}$, $f_w$, and $f_w'$.
-The quantity $\v$ is the total filtration velocity, i.e., the
-sum of the velocities of the wetting and non-wetting fluid.
-An associated velocity scale $v_c$ is convenient to define.
-It is also convenient to introduce dimensionless fractions of
-wetting and non-wetting fluid properties:
-
-\begin{align*}
-\varrho &\equiv \varrho_w,\\ 
-\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\ 
-\mu &\equiv\mu_w,\\ 
-\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\ 
-Q &\equiv Q_w = \frac{q_w}{\varrho},\\ 
-Q_n &= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}\tp
-\end{align*}
-We will benefit from making $\lambda_w$, $\lambda_n$, and $\lambda_t$
-dimensionless:
-
-\begin{align*}
-\lambda_w(S) &= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
-\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\ 
-\lambda_n(S) &= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
-\quad\bar\lambda_n = k_{rn},\\ 
-\lambda_t(S) &= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
-\bar\lambda_t = \bar \lambda_w +
-\beta^{-1}\bar\lambda_n\tp
-\end{align*}
-As we see, $\lambda_c$ is the characteristic size of any ``lambda''
-quantity, and a bar indicates as always a dimensionless variable.
-The above formulas imply
-
-\[ h_w(S) = -\lambda_c\beta^{-1}\bar\lambda_n(S)f_w(S),\quad
-G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
-Furthermore, we introduce dimensionless quantities by
-
-\[ \bar\x = \frac{\x}{L},\quad \bar\v = \frac{\v}{v_c},\quad
-\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
-Inserting the above scaled quantities in the governing PDEs results in
-
-\begin{align}
-\bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
-\label{scale:twoph:Peq:s0}\\ 
-\bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
-\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\ 
-&\quad\quad\frac{g\lambda_c\varrho}{v_c}
-(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\label{scale:twoph:v_teq:s0}\\ 
-\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
-\bar\nabla S &=
-\frac{t_c P_c\lambda_c}{L^2}
-\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\ 
-&\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
-\label{scale:twoph:Seq:s0}
-\end{align}
-As usual, $L$ is taken as the characteristic length of the spatial domain.
-Since $v_c$ is a velocity scale, a natural time scale is the time it
-takes to transport a signal with velocity $v_c$ through the domain:
-$t_c = L/v_c$. The diffusion term in the equation
-(\ref{scale:twoph:Seq:s}) then gets
-a dimensionless fraction
-
-\[ \frac{L P_c\lambda_c}{v_c L^2}\tp\]
-Forcing this fraction to be unity gives
-
-\[ v_c = \lambda_c\frac{P_c}{L}\tp\]
-We realize that this is indeed a natural velocity scale if the
-velocity is given by the pressure term in Darcy's law. This term
-is $K/\mu$ times the pressure gradient:
-
-\[ \frac{K}{\mu}|\nabla P| \sim \frac{K}{\mu}\frac{P_c}{L} =
-\lambda_c\frac{P_c}{L} = v_c\tp\]
-We have here dropped the impact of the
-relative permeabilities $\bar\lambda_w$ or
-$\bar\lambda_n$ since these are quantities that are less than or equal
-to unity.
-
-The other term in Darcy's law is the gravity term that goes like
-$\lambda_c \varrho g$ (again dropping relative permeabilities).
-The ratio of the gravity term and the pressure gradient term in Darcy's
-law is an interesting dimensionless number:
-
-\[ \delta = \frac{\lambda_c \varrho g}{\lambda_c P_c/L} =
-\frac{L\varrho g}{P_c}\tp\]
-This number naturally arises when we discuss
-the term
-
-\[ \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} =
--(\alpha -1)\beta^{-1}\delta
-(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
-\frac{\partial S}{\partial\bar z}
-\]
-Introducing another dimensionless variable,
-
-\[ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},\]
-we can write (\ref{scale:twoph:Peq:s0})-(\ref{scale:twoph:Seq:s0}) in the
-final dimensionless form as
-
-\begin{align}
-\bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
-\label{scale:twoph:Peq:s}\\ 
-\bar\v &= -\bar\lambda_t\bar\nabla\bar P +
-\bar\lambda_w \bar p_c'(S)\bar\nabla S +
-\delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\label{scale:twoph:v_teq:s}\\ 
-\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
-\bar\nabla S &= -
-\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
-\nonumber\\ 
-&\quad\quad (\alpha -1)\beta^{-1}\delta
-(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
-\frac{\partial S}{\partial\bar z} +\nonumber\\ 
-&\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
-\epsilon\tp
-\label{scale:twoph:Seq:s}
-\end{align}
-
-The eight input parameters $L$, $q_w$, $q_n$, $\mu_w$, $\mu_n$,
-$\varrho_w$, $\varrho_n$, and $K$ are reduced to five dimensionless
-parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
-There are six remaining dimensionless numbers to be set: $K_{wm}$,
-$K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
 
 \section{Compressible gas dynamics}
@@ -9688,173 +7912,208 @@ perturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water,
 KdV, and Boussinesq type equations.
 
 
+\section{Two-phase porous media flow}
 
-\section{Exercises}
+We consider the flow of two incompressible, immiscible fluids in
+a porous medium with porosity $\phi (\x)$. The two fluids are referred to
+as the \href{{https://en.wikipedia.org/wiki/Wetting}}{wetting}\footnote{\texttt{https://en.wikipedia.org/wiki/Wetting}} and
+non-wetting fluid. In an oil-water mixture, water is usually the
+wetting fluid. The fraction of the pore volume occupied by the
+wetting fluid is denoted by $S(\x,t)$. The non-wetting fluid then occupies
+$1-S$ of the pore volume (or $(1-S)\phi$ of the total volume).
+The variable $P(\x,t)$ represents the pressure in the non-wetting fluid.
+It is related to the pressure $P_n$ in the non-wetting fluid through
+the capillary pressure $p_c=P_n-P$, which is an empirically determined
+function of $S$.
 
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: Comparison of vibration models for elastic structures}
-
-\label{scale::exer:elasticity:vibmodels}
-
-The time scale for displacement in elastic structures is, according to
-Section~\ref{scale:elasticity:timedep}, $t_c=L\sqrt{\varrho/\mu}$ if we
-assume constant density $\varrho$ and constant shear modulus $\mu$ for
-the structure. The purpose of this exercise is to compare this time
-scale with the time scales of related models.
-
-
-\subex{a)}
-Longitudinal waves in a bar can be modeled approximately by the PDE
-
-\[ \varrho\frac{\partial^2 u}{\partial t^2} + E\frac{\partial^2 u}{\partial x^2} = 0,\]
-where $u(x,t)$ is the displacement along the bar, and $E$ is Young's modulus,
-related to the shear modulus $\mu$ through
-
-\[ E = 2\mu (1+\nu),\]
-where $\nu\in (0,0.5]$ is Poisson's ratio.
-Find the time scale for the longitudinal waves and compare with the $t_c$
-for displacements in a three-dimensional body.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Vertical vibrations of a beam are governed by the PDE
-
-\[ \rho\frac{\partial^2 u}{\partial t^2} + EI\frac{\partial^4 u}{\partial x^4} = 0,\]
-where $u(x,t)$ is the vertical displacement along the beam,
-$\rho$ is the mass per length of the beam,
-$E$ is Young's modulus, and $I$ is the moment of inertia. For a
-rectangular cross section of width $b$ and height $h$, $I=\frac{1}{12}bh^3$.
-Compare the time scale for these vibrations with the time scale $t_c$
-for three-dimensional elasticity.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Exercise \thedoconceexercisecounter: A model for quasi-static poro-elasticity}
-
-\label{scale:exer:poroelasticity}
-
-Flow through a porous elastic medium may induce stress and deformation.
-This process is known as poro-elasticity and is governed by the
-following equations for a homogeneous medium:
+From mass conservation of the two fluids and from Darcy's law for
+each fluid, one can derive the following system of PDEs and
+algebraic relations that govern the two primary unknowns $S$ and $P$:
 
 \begin{align}
-(\lambda + \mu)\nabla (\nabla\cdot\u) + \mu\nabla^2\u &= -\alpha\nabla p -
-\varrho\f,\\ 
-S\frac{\partial p}{\partial t} &= \frac{K}{\mu_f}\nabla^2 p +
-\alpha \frac{\partial}{\partial t}\nabla\cdot\u,
+\nabla\cdot\v &= -(Q_n + Q_w),
+\label{scale:twoph:Peq}\\ 
+\v &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
++ \lambda_n\varrho_n)g\kk,
+\label{scale:twoph:v_teq}\\ 
+\phi\frac{\partial S}{\partial t} + f_w'(S)\v\cdot\nabla S &=
+\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\ 
+&\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
+\label{scale:twoph:Seq}\\ 
+Q_w &= \frac{q_w}{\varrho_w},
+\label{scale:twoph:Q_w}\\ 
+Q_n &= \frac{q_n}{\varrho_n},
+\label{scale:twoph:Q_n}\\ 
+\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
+\label{scale:twoph:lambda_w}\\ 
+\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
+\label{scale:twoph:lambda_n}\\ 
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
+\label{scale:twoph:lambda_t}\\ 
+k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
+\label{scale:twoph:k_rw}\\ 
+k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
+\label{scale:twoph:k_rn}\\ 
+f_w(S) &= \frac{\lambda_w}{\lambda_t},
+\label{scale:twoph:f_w}\\ 
+G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
+\label{scale:twoph:G_w}\\ 
+h_w(S) &= -\lambda_n(S)f_w(S)\tp
+\label{scale:twoph:h_w}
 \end{align}
-where $\u(\x,t)$ is the displacement field, $\lambda$ and $\mu$ are
-Lame's elasticity parameters, $\alpha\in [0,1]$, $\f$ is the body
-force, here assumed constant (usually gravity, $\f = -g\kk$,
-$S$ is a so-called storage coefficient, $p(\x,t)$ is the fluid pressure,
-$K$ is the medium's permeability, $\mu_f$ is the dynamic viscosity of
-the fluid, and $\varrho$ is the density of the fluid-solid mixture:
 
-\[ \varrho = (1-\phi) \varrho_s + \phi\varrho_f, \]
-with $\varrho_f$ being the density of the fluid, $\varrho_s$ the density
-of the solid, and $\phi$ the porosity of the elastic medium.
-The equations are known as Biot's equations of poro-elasticity and written
-here in a quasi-static form where elastic waves are neglected.
+The permeability of the porous medium is $K$
+(usually a tensor, but here taken as a
+scalar for simplicity); $\mu_w$ and $\mu_n$ are the dynamic viscosities
+of the wetting and non-wetting fluid, respectively;
+$\varrho_w$ and $\varrho_n$ are the densities
+of the wetting and non-wetting fluid, respectively;
+$q_w$ and $q_n$ are the injection rates of the wetting and non-wetting
+fluid through wells, respectively;
+$S_{wr}$ is the irreducible saturation of
+the wetting fluid (i.e., $S\geq S_{wr}$); $S_{nr}$ is the corresponding
+irreducible saturation of the non-wetting fluid (i.e., $(1-S)\geq S_{nr}$),
+$K_{wn}$ and $K_{nr}$ are the maximum values of the
+relative permeabilities $k_{rw}$ and $k_{rn}$, respectively, and
+$a$ and $b$ are given (Corey) exponents in the expressions for the
+relative permeabilities.
 
-Scale this partial differential equation model, assuming that
-$\lambda$, $\mu$, $\alpha$, $\f$, $\varrho$, $\phi$, $\varrho_s$,
-$\varrho_f$, $S$, $\mu_f$, and $K$ are all constants.
+The two PDEs are of elliptic and hyperbolic/parabolic nature:
+(\ref{scale:twoph:Peq}) is elliptic since it is the divergence of a
+vector field, while (\ref{scale:twoph:Seq}) is parabolic ($h_w\geq 0$
+because $p_c'(S)\geq 0$ and $\lambda_n$ as well as $f_w$ are positive
+since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
+(\ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
+steep gradients that become shocks in the limit $p_c'\rightarrow 0$
+and (\ref{scale:twoph:Seq}) is purely hyperbolic.
+A popular solution technique is based on operator splitting:
+(\ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
+(\ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
 
-% --- begin hint in exercise ---
-
-\paragraph{Hint.}
-The model is very similar to the equations of thermo-elasticity in
-Section~\ref{scale:elasticity:thermo}.
-
-% --- end hint in exercise ---
-\noindent Filename: \texttt{poroelasticity}.
-
-\end{doconceexercise}
-% --- end exercise ---
-
-
-
-
-% --- begin exercise ---
-\begin{doconceexercise}
-\refstepcounter{doconceexercisecounter}
-
-\subsection*{Problem \thedoconceexercisecounter: Starting Couette flow}
-
-\label{scale:vib:exer:starting_Couette}
-
-A fluid is confined in a channel with two planar walls $z=0$ and $z=H$.
-The fluid is at rest. At time $t=0$ the upper wall is suddenly set in
-motion with a velocity $U\ii$. We assume that the velocity is
-directed along the $x$ axis: $\u = u(x,z,t)\ii$. From the equation of continuity, $\nabla\cdot\u =0$, we get that $\partial u/\partial x = 0$ such
-that $\u = u(z,t)\ii$. The boundary conditions are $\u=0$ at the lower
-wall $z=0$ and $\u = U\ii$ at the upper wall $z=H$. Assume that the
-pressure is constant everywhere and that there are no body forces.
-
-
-\subex{a)}
-Start with the incompressible Navier-Stokes equations and the
-assumption $\u = u(z,t)\ii$. Derive an initial-boundary value problem
-for $u(z,t)$. Scale the problem.
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{b)}
-Start with the dimensionless Navier-Stokes equations and use
-the assumption $\bar\u = \bar u(\bar z,\bar t)\ii$ to reduce
-the problem. The resulting equation now contains a Reynolds
-number, i.e., one more physical parameter than in a).
-Why is this an inferior approach to scaling the problem?
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{c)}
-Can you construct a heat conduction problem that has the same solution
-$\bar u(\bar z,\bar t)$ as in a)?
-
-
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\subex{d)}
-Describe how the scaled problem in this exercise can be solved
-by a program that solves the following diffusion problem with dimensions:
+The saturation $S$ is a non-dimensional quantity, and so are $\phi$,
+$k_{rw}$, $k_{rn}$, $K_{wm}$, $K_{nm}$, $f_w$, and $f_w'$.
+The quantity $\v$ is the total filtration velocity, i.e., the
+sum of the velocities of the wetting and non-wetting fluid.
+An associated velocity scale $v_c$ is convenient to define.
+It is also convenient to introduce dimensionless fractions of
+wetting and non-wetting fluid properties:
 
 \begin{align*}
-\frac{\partial u}{\partial t} &=
-\dfc \frac{\partial^2 u}{\partial z} + f(x,t),\\ 
-u(x,0) &= I(x),\\ 
-u(0,t) & =U_0(t),\\ 
-u(L,t) & =U_L(t)\tp
+\varrho &\equiv \varrho_w,\\ 
+\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\ 
+\mu &\equiv\mu_w,\\ 
+\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\ 
+Q &\equiv Q_w = \frac{q_w}{\varrho},\\ 
+Q_n &= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}\tp
 \end{align*}
+We will benefit from making $\lambda_w$, $\lambda_n$, and $\lambda_t$
+dimensionless:
+
+\begin{align*}
+\lambda_w(S) &= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
+\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\ 
+\lambda_n(S) &= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
+\quad\bar\lambda_n = k_{rn},\\ 
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
+\bar\lambda_t = \bar \lambda_w +
+\beta^{-1}\bar\lambda_n\tp
+\end{align*}
+As we see, $\lambda_c$ is the characteristic size of any ``lambda''
+quantity, and a bar indicates as always a dimensionless variable.
+The above formulas imply
+
+\[ h_w(S) = -\lambda_c\beta^{-1}\bar\lambda_n(S)f_w(S),\quad
+G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
+Furthermore, we introduce dimensionless quantities by
+
+\[ \bar\x = \frac{\x}{L},\quad \bar\v = \frac{\v}{v_c},\quad
+\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
+Inserting the above scaled quantities in the governing PDEs results in
+
+\begin{align}
+\bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
+\label{scale:twoph:Peq:s0}\\ 
+\bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
+\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\ 
+&\quad\quad\frac{g\lambda_c\varrho}{v_c}
+(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+\label{scale:twoph:v_teq:s0}\\ 
+\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
+\bar\nabla S &=
+\frac{t_c P_c\lambda_c}{L^2}
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\ 
+&\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
+\label{scale:twoph:Seq:s0}
+\end{align}
+As usual, $L$ is taken as the characteristic length of the spatial domain.
+Since $v_c$ is a velocity scale, a natural time scale is the time it
+takes to transport a signal with velocity $v_c$ through the domain:
+$t_c = L/v_c$. The diffusion term in the equation
+(\ref{scale:twoph:Seq:s}) then gets
+a dimensionless fraction
+
+\[ \frac{L P_c\lambda_c}{v_c L^2}\tp\]
+Forcing this fraction to be unity gives
+
+\[ v_c = \lambda_c\frac{P_c}{L}\tp\]
+We realize that this is indeed a natural velocity scale if the
+velocity is given by the pressure term in Darcy's law. This term
+is $K/\mu$ times the pressure gradient:
+
+\[ \frac{K}{\mu}|\nabla P| \sim \frac{K}{\mu}\frac{P_c}{L} =
+\lambda_c\frac{P_c}{L} = v_c\tp\]
+We have here dropped the impact of the
+relative permeabilities $\bar\lambda_w$ or
+$\bar\lambda_n$ since these are quantities that are less than or equal
+to unity.
+
+The other term in Darcy's law is the gravity term that goes like
+$\lambda_c \varrho g$ (again dropping relative permeabilities).
+The ratio of the gravity term and the pressure gradient term in Darcy's
+law is an interesting dimensionless number:
+
+\[ \delta = \frac{\lambda_c \varrho g}{\lambda_c P_c/L} =
+\frac{L\varrho g}{P_c}\tp\]
+This number naturally arises when we discuss
+the term
+
+\[ \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} =
+-(\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z}
+\]
+Introducing another dimensionless variable,
+
+\[ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},\]
+we can write (\ref{scale:twoph:Peq:s0})-(\ref{scale:twoph:Seq:s0}) in the
+final dimensionless form as
+
+\begin{align}
+\bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
+\label{scale:twoph:Peq:s}\\ 
+\bar\v &= -\bar\lambda_t\bar\nabla\bar P +
+\bar\lambda_w \bar p_c'(S)\bar\nabla S +
+\delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+\label{scale:twoph:v_teq:s}\\ 
+\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
+\bar\nabla S &= -
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
+\nonumber\\ 
+&\quad\quad (\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z} +\nonumber\\ 
+&\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
+\epsilon\tp
+\label{scale:twoph:Seq:s}
+\end{align}
+
+The eight input parameters $L$, $q_w$, $q_n$, $\mu_w$, $\mu_n$,
+$\varrho_w$, $\varrho_n$, and $K$ are reduced to five dimensionless
+parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
+There are six remaining dimensionless numbers to be set: $K_{wm}$,
+$K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
 
-% removed !bsol ... !esol environment (because of the command-line option --without_solutions)
-
-\noindent Filename: \Verb!starting_Couette!.
-
-\end{doconceexercise}
-% --- end exercise ---
 
 
 % !split
@@ -9865,6 +8124,7 @@ u(L,t) & =U_L(t)\tp
 
 \bibliographystyle{plain}
 \bibliography{papers}
+
 
 % ------------------- end of main content ---------------
 

@@ -270,9 +270,14 @@ idx{units!British}
 
 Confusion arises quickly when some physical quantities are expressed
 in SI units while others are in US or British units.  Density could,
-for instance, be given in unit of ounce per teaspoon (see Exercise
-ref{sec:scale:exer:US2SI1} for how to safely convert to a standard
-unit like $\hbox{kg\,m}^{-3}$).  Although unit conversion tables are
+for instance, be given in unit of ounce per
+% if EXV:
+teaspoon (see Exercise ref{sec:scale:exer:US2SI1} for how to safely
+convert to a standard unit like $\hbox{kg\,m}^{-3}$).
+% else:
+teaspoon.
+% endif
+Although unit conversion tables are
 frequently met in school, errors in unit conversion probably rank
 highest among all errors committed by scientists and engineers (and
 when a unit conversion error makes an "airplane's fuel run out":
@@ -1234,6 +1239,8 @@ used only one file (for one numerical case)
 and will therefore perform many more calls to
 `solver_unscaled`.
 
+##short: box out?
+
 !bnotice On the implementation of a simple memoize function
 A memoized function recalls
 previous results when the same set
@@ -1800,8 +1807,13 @@ around $T_m$. (This reasoning can be controlled by looking at the exact
 solution we produced above.)
 The typical average temperature span is therefore
 $|T_m-T_0|$, unless $a$ is much larger than $|T_m-T_0|$ or $T_0$ is
-very close to $T_m$ (see Exercise ref{sec:scale:exer:decay:cooling:osc} for
+very close to
+% if EXV:
+$T_m$ (see Exercise ref{sec:scale:exer:decay:cooling:osc} for
 a discussion of these cases).
+% else:
+$T_m$.
+% endif
 
 We get from the differential equation, with $t_c=1/k$ as in the former
 case,
@@ -2862,10 +2874,12 @@ $A\cos(wt - \phi)$:
 Now we see that the $u$ corresponds to cosine oscillations with a
 frequency shift $\phi$ and amplitude $\sqrt{I^2 + (V/\omega)^2}$.
 
+% if EXV:
 The forthcoming text relies on a good understanding of concepts
 like period, frequency, and amplitude of oscillating signals, so
 readers who need to refresh these concepts are recommended to
 do Exercise ref{scale:exer:sine} before continuing.
+% endif
 
 === Discussion of the displacement scale ===
 
@@ -3304,6 +3318,16 @@ amplitude is about $10^2$ because of the moderate size of $u_c$.
 The present scaling is therefore most suitable away from resonance,
 and when the terms containing $\cos\omega t$ and $\sin\omega t$
 are important (e.g., $\omega\gg\psi$).
+
+##short: could leave all exercises out (careful with references from text)
+##short: Combine Fig 2.9, 2.10 and 2.11 to three in a row? 1 page...?
+##short: same with Fig 3.4 and 3.5
+##short: may leave Fig. 2.7 out (yes)
+##short: 2.2.2 is not very important
+##short: many insertions of dimless variables lists the Bvp again but
+##that can be left out in compact version, see p 82, can easily get 1/2 p
+##on p 90 by if-else
+##short: align to \[ e.g. alpha-delta in Damped vibr
 
 FIGURE: [fig-scaling/vib_delta05_b0_Fcos, width=600 frac=1] Forced undamped vibrations away from resonance. label{sec:scale:vib:fig:Fcos_b0:2}
 
@@ -3827,6 +3851,7 @@ which is basically the same as we derived for mechanical vibrations.
 (Two additional dimensionless variables will arise from the initial
 conditions for $I$, just as in the mechanics cases.)
 
+% if EXV:
 ======= Exercises =======
 
 ===== Exercise: Perform unit conversion =====
@@ -5567,7 +5592,7 @@ Introducing $u=\bar r\bar R$ and renaming $\bar r$ to $x$,
 which is a simpler eigenvalue problem to solve numerically (the boundary
 conditions are $u(0)=0$ and $\lim_{x\rightarrow\infty}u(x)=0$).
 !eremarks
-
+% endif
 
 !split
 ========= Basic partial differential equation models =========
@@ -7625,6 +7650,7 @@ to $u_c= f_c L/V$.
 Alternatively, $u_c$ can be based on the initial condition, with similar
 results as found in the sections on the wave and diffusion PDEs.
 
+% if EXV:
 ======= Exercises =======
 
 
@@ -8240,6 +8266,7 @@ where $A$ now is the cross-section *area*.
 The result is the 1D initial-boundary value problem
 (ref{scale:exer:twometal:eq1:1D})-(ref{scale:exer:twometal:eq3:1D}).
 !eremarks
+% endif
 
 !split
 ========= Advanced partial differential equation models =========
@@ -8549,9 +8576,11 @@ takes for the S waves to travel through the domain.
 Since the velocity of S waves in solids is very large and
 the time scale correspondingly small, $\gamma\ll 1$
 is very often the case in applications involving structural analysis.
+% if EXV:
 Exercise ref{scale::exer:elasticity:vibmodels} explores related
 models and asks for comparisons of time scales for waves and
 mechanical vibrations in structures.
+% endif
 
 
 ===== The stationary elasticity problem =====
@@ -9758,247 +9787,17 @@ solid body's boundary and conduction inside the body. A small Biot
 number indicates that conduction is a fast process and one can use
 Newton's law of cooling (see Section ref{scale:cooling:const})
 instead of a detailed calculation of the
-spatio-temporal temperature variation in the body. The Biot number
-also arises in simplified models of heat conduction in solids,
+spatio-temporal temperature variation in the body.
+% if EXV:
+The Biot number also arises in simplified models of heat conduction in solids,
 see Exercise ref{scale:exer:twometal}.
+% endif
 
 Heat transfer is a huge engineering
 field with lots of experimental investigations
 that are summarized by curves relating various dimensionless numbers
 such as Gr, Pr, Nu, and Bi.
 
-# #include "bidomain.do.txt"
-
-======= Two-phase porous media flow =======
-
-We consider the flow of two incompressible, immiscible fluids in
-a porous medium with porosity $\phi (\x)$. The two fluids are referred to
-as the "wetting": "https://en.wikipedia.org/wiki/Wetting" and
-non-wetting fluid. In an oil-water mixture, water is usually the
-wetting fluid. The fraction of the pore volume occupied by the
-wetting fluid is denoted by $S(\x,t)$. The non-wetting fluid then occupies
-$1-S$ of the pore volume (or $(1-S)\phi$ of the total volume).
-The variable $P(\x,t)$ represents the pressure in the non-wetting fluid.
-It is related to the pressure $P_n$ in the non-wetting fluid through
-the capillary pressure $p_c=P_n-P$, which is an empirically determined
-function of $S$.
-
-From mass conservation of the two fluids and from Darcy's law for
-each fluid, one can derive the following system of PDEs and
-algebraic relations that govern the two primary unknowns $S$ and $P$:
-
-!bt
-\begin{align}
-\nabla\cdot\v &= -(Q_n + Q_w),
-label{scale:twoph:Peq}\\
-\v &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
-+ \lambda_n\varrho_n)g\kk,
-label{scale:twoph:v_teq}\\
-\phi\frac{\partial S}{\partial t} + f_w'(S)\v\cdot\nabla S &=
-\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\
-&\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
-label{scale:twoph:Seq}\\
-Q_w &= \frac{q_w}{\varrho_w},
-label{scale:twoph:Q_w}\\
-Q_n &= \frac{q_n}{\varrho_n},
-label{scale:twoph:Q_n}\\
-\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
-label{scale:twoph:lambda_w}\\
-\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
-label{scale:twoph:lambda_n}\\
-\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
-label{scale:twoph:lambda_t}\\
-k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
-label{scale:twoph:k_rw}\\
-k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
-label{scale:twoph:k_rn}\\
-f_w(S) &= \frac{\lambda_w}{\lambda_t},
-label{scale:twoph:f_w}\\
-G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
-label{scale:twoph:G_w}\\
-h_w(S) &= -\lambda_n(S)f_w(S)\tp
-label{scale:twoph:h_w}
-\end{align}
-!et
-
-The permeability of the porous medium is $K$
-(usually a tensor, but here taken as a
-scalar for simplicity); $\mu_w$ and $\mu_n$ are the dynamic viscosities
-of the wetting and non-wetting fluid, respectively;
-$\varrho_w$ and $\varrho_n$ are the densities
-of the wetting and non-wetting fluid, respectively;
-$q_w$ and $q_n$ are the injection rates of the wetting and non-wetting
-fluid through wells, respectively;
-$S_{wr}$ is the irreducible saturation of
-the wetting fluid (i.e., $S\geq S_{wr}$); $S_{nr}$ is the corresponding
-irreducible saturation of the non-wetting fluid (i.e., $(1-S)\geq S_{nr}$),
-$K_{wn}$ and $K_{nr}$ are the maximum values of the
-relative permeabilities $k_{rw}$ and $k_{rn}$, respectively, and
-$a$ and $b$ are given (Corey) exponents in the expressions for the
-relative permeabilities.
-
-The two PDEs are of elliptic and hyperbolic/parabolic nature:
-(ref{scale:twoph:Peq}) is elliptic since it is the divergence of a
-vector field, while (ref{scale:twoph:Seq}) is parabolic ($h_w\geq 0$
-because $p_c'(S)\geq 0$ and $\lambda_n$ as well as $f_w$ are positive
-since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
-(ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
-steep gradients that become shocks in the limit $p_c'\rightarrow 0$
-and (ref{scale:twoph:Seq}) is purely hyperbolic.
-A popular solution technique is based on operator splitting:
-(ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
-(ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
-
-The saturation $S$ is a non-dimensional quantity, and so are $\phi$,
-$k_{rw}$, $k_{rn}$, $K_{wm}$, $K_{nm}$, $f_w$, and $f_w'$.
-The quantity $\v$ is the total filtration velocity, i.e., the
-sum of the velocities of the wetting and non-wetting fluid.
-An associated velocity scale $v_c$ is convenient to define.
-It is also convenient to introduce dimensionless fractions of
-wetting and non-wetting fluid properties:
-
-!bt
-\begin{align*}
-\varrho &\equiv \varrho_w,\\
-\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\
-\mu &\equiv\mu_w,\\
-\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\
-Q &\equiv Q_w = \frac{q_w}{\varrho},\\
-Q_n &= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}\tp
-\end{align*}
-!et
-We will benefit from making $\lambda_w$, $\lambda_n$, and $\lambda_t$
-dimensionless:
-
-!bt
-\begin{align*}
-\lambda_w(S) &= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
-\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\
-\lambda_n(S) &= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
-\quad\bar\lambda_n = k_{rn},\\
-\lambda_t(S) &= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
-\bar\lambda_t = \bar \lambda_w +
-\beta^{-1}\bar\lambda_n\tp
-\end{align*}
-!et
-As we see, $\lambda_c$ is the characteristic size of any ``lambda''
-quantity, and a bar indicates as always a dimensionless variable.
-The above formulas imply
-
-!bt
-\[ h_w(S) = -\lambda_c\beta^{-1}\bar\lambda_n(S)f_w(S),\quad
-G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
-!et
-Furthermore, we introduce dimensionless quantities by
-
-!bt
-\[ \bar\x = \frac{\x}{L},\quad \bar\v = \frac{\v}{v_c},\quad
-\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
-!et
-Inserting the above scaled quantities in the governing PDEs results in
-
-!bt
-\begin{align}
-\bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
-label{scale:twoph:Peq:s0}\\
-\bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
-\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\
-&\quad\quad\frac{g\lambda_c\varrho}{v_c}
-(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-label{scale:twoph:v_teq:s0}\\
-\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
-\bar\nabla S &=
-\frac{t_c P_c\lambda_c}{L^2}
-\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\
-&\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
-label{scale:twoph:Seq:s0}
-\end{align}
-!et
-As usual, $L$ is taken as the characteristic length of the spatial domain.
-Since $v_c$ is a velocity scale, a natural time scale is the time it
-takes to transport a signal with velocity $v_c$ through the domain:
-$t_c = L/v_c$. The diffusion term in the equation
-(ref{scale:twoph:Seq:s}) then gets
-a dimensionless fraction
-
-!bt
-\[ \frac{L P_c\lambda_c}{v_c L^2}\tp\]
-!et
-Forcing this fraction to be unity gives
-
-!bt
-\[ v_c = \lambda_c\frac{P_c}{L}\tp\]
-!et
-We realize that this is indeed a natural velocity scale if the
-velocity is given by the pressure term in Darcy's law. This term
-is $K/\mu$ times the pressure gradient:
-
-!bt
-\[ \frac{K}{\mu}|\nabla P| \sim \frac{K}{\mu}\frac{P_c}{L} =
-\lambda_c\frac{P_c}{L} = v_c\tp\]
-!et
-We have here dropped the impact of the
-relative permeabilities $\bar\lambda_w$ or
-$\bar\lambda_n$ since these are quantities that are less than or equal
-to unity.
-
-The other term in Darcy's law is the gravity term that goes like
-$\lambda_c \varrho g$ (again dropping relative permeabilities).
-The ratio of the gravity term and the pressure gradient term in Darcy's
-law is an interesting dimensionless number:
-
-!bt
-\[ \delta = \frac{\lambda_c \varrho g}{\lambda_c P_c/L} =
-\frac{L\varrho g}{P_c}\tp\]
-!et
-This number naturally arises when we discuss
-the term
-
-!bt
-\[ \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} =
--(\alpha -1)\beta^{-1}\delta
-(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
-\frac{\partial S}{\partial\bar z}
-\]
-!et
-Introducing another dimensionless variable,
-
-!bt
-\[ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},\]
-!et
-we can write (ref{scale:twoph:Peq:s0})-(ref{scale:twoph:Seq:s0}) in the
-final dimensionless form as
-
-!bt
-\begin{align}
-\bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
-label{scale:twoph:Peq:s}\\
-\bar\v &= -\bar\lambda_t\bar\nabla\bar P +
-\bar\lambda_w \bar p_c'(S)\bar\nabla S +
-\delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-label{scale:twoph:v_teq:s}\\
-\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
-\bar\nabla S &= -
-\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
-\nonumber\\
-&\quad\quad (\alpha -1)\beta^{-1}\delta
-(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
-\frac{\partial S}{\partial\bar z} +\nonumber\\
-&\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
-\epsilon\tp
-label{scale:twoph:Seq:s}
-\end{align}
-!et
-
-The eight input parameters $L$, $q_w$, $q_n$, $\mu_w$, $\mu_n$,
-$\varrho_w$, $\varrho_n$, and $K$ are reduced to five dimensionless
-parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
-There are six remaining dimensionless numbers to be set: $K_{wm}$,
-$K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
-
-## Boundary conditions?
-## Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.
-## Exercises: single-phase flow, with and without thermal effects.
 
 ======= Compressible gas dynamics =======
 label{scale:gasdyn}
@@ -10597,7 +10396,243 @@ perturbation expansions in $\epsilon$ and $\mu^2$ that lead to shallow water,
 KdV, and Boussinesq type equations.
 
 
+======= Two-phase porous media flow =======
 
+We consider the flow of two incompressible, immiscible fluids in
+a porous medium with porosity $\phi (\x)$. The two fluids are referred to
+as the "wetting": "https://en.wikipedia.org/wiki/Wetting" and
+non-wetting fluid. In an oil-water mixture, water is usually the
+wetting fluid. The fraction of the pore volume occupied by the
+wetting fluid is denoted by $S(\x,t)$. The non-wetting fluid then occupies
+$1-S$ of the pore volume (or $(1-S)\phi$ of the total volume).
+The variable $P(\x,t)$ represents the pressure in the non-wetting fluid.
+It is related to the pressure $P_n$ in the non-wetting fluid through
+the capillary pressure $p_c=P_n-P$, which is an empirically determined
+function of $S$.
+
+From mass conservation of the two fluids and from Darcy's law for
+each fluid, one can derive the following system of PDEs and
+algebraic relations that govern the two primary unknowns $S$ and $P$:
+
+!bt
+\begin{align}
+\nabla\cdot\v &= -(Q_n + Q_w),
+label{scale:twoph:Peq}\\
+\v &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
++ \lambda_n\varrho_n)g\kk,
+label{scale:twoph:v_teq}\\
+\phi\frac{\partial S}{\partial t} + f_w'(S)\v\cdot\nabla S &=
+\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\
+&\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
+label{scale:twoph:Seq}\\
+Q_w &= \frac{q_w}{\varrho_w},
+label{scale:twoph:Q_w}\\
+Q_n &= \frac{q_n}{\varrho_n},
+label{scale:twoph:Q_n}\\
+\lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
+label{scale:twoph:lambda_w}\\
+\lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
+label{scale:twoph:lambda_n}\\
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
+label{scale:twoph:lambda_t}\\
+k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
+label{scale:twoph:k_rw}\\
+k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
+label{scale:twoph:k_rn}\\
+f_w(S) &= \frac{\lambda_w}{\lambda_t},
+label{scale:twoph:f_w}\\
+G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
+label{scale:twoph:G_w}\\
+h_w(S) &= -\lambda_n(S)f_w(S)\tp
+label{scale:twoph:h_w}
+\end{align}
+!et
+
+The permeability of the porous medium is $K$
+(usually a tensor, but here taken as a
+scalar for simplicity); $\mu_w$ and $\mu_n$ are the dynamic viscosities
+of the wetting and non-wetting fluid, respectively;
+$\varrho_w$ and $\varrho_n$ are the densities
+of the wetting and non-wetting fluid, respectively;
+$q_w$ and $q_n$ are the injection rates of the wetting and non-wetting
+fluid through wells, respectively;
+$S_{wr}$ is the irreducible saturation of
+the wetting fluid (i.e., $S\geq S_{wr}$); $S_{nr}$ is the corresponding
+irreducible saturation of the non-wetting fluid (i.e., $(1-S)\geq S_{nr}$),
+$K_{wn}$ and $K_{nr}$ are the maximum values of the
+relative permeabilities $k_{rw}$ and $k_{rn}$, respectively, and
+$a$ and $b$ are given (Corey) exponents in the expressions for the
+relative permeabilities.
+
+The two PDEs are of elliptic and hyperbolic/parabolic nature:
+(ref{scale:twoph:Peq}) is elliptic since it is the divergence of a
+vector field, while (ref{scale:twoph:Seq}) is parabolic ($h_w\geq 0$
+because $p_c'(S)\geq 0$ and $\lambda_n$ as well as $f_w$ are positive
+since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
+(ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
+steep gradients that become shocks in the limit $p_c'\rightarrow 0$
+and (ref{scale:twoph:Seq}) is purely hyperbolic.
+A popular solution technique is based on operator splitting:
+(ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
+(ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
+
+The saturation $S$ is a non-dimensional quantity, and so are $\phi$,
+$k_{rw}$, $k_{rn}$, $K_{wm}$, $K_{nm}$, $f_w$, and $f_w'$.
+The quantity $\v$ is the total filtration velocity, i.e., the
+sum of the velocities of the wetting and non-wetting fluid.
+An associated velocity scale $v_c$ is convenient to define.
+It is also convenient to introduce dimensionless fractions of
+wetting and non-wetting fluid properties:
+
+!bt
+\begin{align*}
+\varrho &\equiv \varrho_w,\\
+\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\
+\mu &\equiv\mu_w,\\
+\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\
+Q &\equiv Q_w = \frac{q_w}{\varrho},\\
+Q_n &= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}\tp
+\end{align*}
+!et
+We will benefit from making $\lambda_w$, $\lambda_n$, and $\lambda_t$
+dimensionless:
+
+!bt
+\begin{align*}
+\lambda_w(S) &= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
+\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\
+\lambda_n(S) &= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
+\quad\bar\lambda_n = k_{rn},\\
+\lambda_t(S) &= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
+\bar\lambda_t = \bar \lambda_w +
+\beta^{-1}\bar\lambda_n\tp
+\end{align*}
+!et
+As we see, $\lambda_c$ is the characteristic size of any ``lambda''
+quantity, and a bar indicates as always a dimensionless variable.
+The above formulas imply
+
+!bt
+\[ h_w(S) = -\lambda_c\beta^{-1}\bar\lambda_n(S)f_w(S),\quad
+G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
+!et
+Furthermore, we introduce dimensionless quantities by
+
+!bt
+\[ \bar\x = \frac{\x}{L},\quad \bar\v = \frac{\v}{v_c},\quad
+\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
+!et
+Inserting the above scaled quantities in the governing PDEs results in
+
+!bt
+\begin{align}
+\bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
+label{scale:twoph:Peq:s0}\\
+\bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
+\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\
+&\quad\quad\frac{g\lambda_c\varrho}{v_c}
+(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+label{scale:twoph:v_teq:s0}\\
+\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
+\bar\nabla S &=
+\frac{t_c P_c\lambda_c}{L^2}
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\
+&\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
+label{scale:twoph:Seq:s0}
+\end{align}
+!et
+As usual, $L$ is taken as the characteristic length of the spatial domain.
+Since $v_c$ is a velocity scale, a natural time scale is the time it
+takes to transport a signal with velocity $v_c$ through the domain:
+$t_c = L/v_c$. The diffusion term in the equation
+(ref{scale:twoph:Seq:s}) then gets
+a dimensionless fraction
+
+!bt
+\[ \frac{L P_c\lambda_c}{v_c L^2}\tp\]
+!et
+Forcing this fraction to be unity gives
+
+!bt
+\[ v_c = \lambda_c\frac{P_c}{L}\tp\]
+!et
+We realize that this is indeed a natural velocity scale if the
+velocity is given by the pressure term in Darcy's law. This term
+is $K/\mu$ times the pressure gradient:
+
+!bt
+\[ \frac{K}{\mu}|\nabla P| \sim \frac{K}{\mu}\frac{P_c}{L} =
+\lambda_c\frac{P_c}{L} = v_c\tp\]
+!et
+We have here dropped the impact of the
+relative permeabilities $\bar\lambda_w$ or
+$\bar\lambda_n$ since these are quantities that are less than or equal
+to unity.
+
+The other term in Darcy's law is the gravity term that goes like
+$\lambda_c \varrho g$ (again dropping relative permeabilities).
+The ratio of the gravity term and the pressure gradient term in Darcy's
+law is an interesting dimensionless number:
+
+!bt
+\[ \delta = \frac{\lambda_c \varrho g}{\lambda_c P_c/L} =
+\frac{L\varrho g}{P_c}\tp\]
+!et
+This number naturally arises when we discuss
+the term
+
+!bt
+\[ \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} =
+-(\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z}
+\]
+!et
+Introducing another dimensionless variable,
+
+!bt
+\[ \epsilon = t_cQ = \frac{L^2Q}{\lambda_cP_c},\]
+!et
+we can write (ref{scale:twoph:Peq:s0})-(ref{scale:twoph:Seq:s0}) in the
+final dimensionless form as
+
+!bt
+\begin{align}
+\bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
+label{scale:twoph:Peq:s}\\
+\bar\v &= -\bar\lambda_t\bar\nabla\bar P +
+\bar\lambda_w \bar p_c'(S)\bar\nabla S +
+\delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+label{scale:twoph:v_teq:s}\\
+\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
+\bar\nabla S &= -
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
+\nonumber\\
+&\quad\quad (\alpha -1)\beta^{-1}\delta
+(\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
+\frac{\partial S}{\partial\bar z} +\nonumber\\
+&\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
+\epsilon\tp
+label{scale:twoph:Seq:s}
+\end{align}
+!et
+
+The eight input parameters $L$, $q_w$, $q_n$, $\mu_w$, $\mu_n$,
+$\varrho_w$, $\varrho_n$, and $K$ are reduced to five dimensionless
+parameters $\alpha$, $\beta$, $\gamma$, $\delta$, and $\epsilon$.
+There are six remaining dimensionless numbers to be set: $K_{wm}$,
+$K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
+
+## Boundary conditions?
+## Simplifications: skip gravity, sources, capillary pressure, simplify relative permeabilities.
+## Exercises: single-phase flow, with and without thermal effects.
+
+% if EXV:
+# #include "bidomain.do.txt"
+% endif
+
+
+% if EXV:
 ======= Exercises =======
 
 
@@ -10853,3 +10888,4 @@ Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
 $U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
 !esol
 !esubex
+% endif

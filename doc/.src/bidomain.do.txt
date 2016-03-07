@@ -236,20 +236,20 @@ We can insert typical parameter values to get a feel for the
 chosen scaling. We have
 !bt
 \begin{align*}
-C_m &= 1.0\, \mu\hbox{F\,cm}^{-2}, \quad g_c = g_{max} = 13.0
-\hbox{m\,S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS\,cm}^{-2}, \\
+C_m &= 1.0\, \mu\hbox{F cm}^{-2}, \quad g_c = g_{max} = 13.0
+\hbox{m S}\mu\hbox{F}^{-1} = 13.0 \hbox{mS cm}^{-2}, \\
 \chi &= 2000 \hbox{cm}^{-1} , \quad u_c = \Delta v = 100 \hbox{mV} ,
-\sigma_c = 3.0 \hbox{mS\,cm}^{-1}\tp
+\sigma_c = 3.0 \hbox{mS cm}^{-1}\tp
 \end{align*}
 !et
 
 This gives the following values of $t_c$ and $L$:
 !bt
 \begin{align*}
-t_c &= \frac{1.0 \mu\hbox{ F\,cm}^{-2}}{13.0 \mu\hbox{ F\,cm}^{-2}} =
+t_c &= \frac{1.0 \mu\hbox{ F cm}^{-2}}{13.0 \mu\hbox{ F cm}^{-2}} =
 \frac{1.0}{13.0}\frac{\mu\hbox{ F}}{\hbox{mS}} \approx 0.076 \hbox{ ms}, \\
 L &= \sqrt{\frac{\sigma_c}{\chi g_c}} = \sqrt{\frac{3.0
-\hbox{ mS\,cm}^{-2}}{2000\hbox{ cm}^{-1} \mu\hbox{ F\,cm}^-2}}
+\hbox{ mS cm}^{-2}}{2000\hbox{ cm}^{-1} \mu\hbox{ F cm}^-2}}
 \approx 0.087 \hbox{ mm} \tp
 \end{align*}
 !et
@@ -276,16 +276,14 @@ In human cardiac tissue $CV$ is known to be about
 \frac{L}{t_c} =  \frac{0.087\rm{mm}}{0.076\rm{ms}} \approx 144 \tp
 \hbox{cm/s}\tp \]
 !et
-Enforcing $L/t_c = 60 \hbox{cm\,s}^{-1}$ gives the constraint $g_c \approx
-4.8 \hbox{mS\,cm}^{-2}$, and yields $L \approx 0.17$ mm and
+Enforcing $L/t_c = 60 \hbox{cm s}^{-1}$ gives the constraint $g_c \approx
+4.8 \hbox{mS cm}^{-2}$, and yields $L \approx 0.17$ mm and
 $t_c=0.21$ ms.
 #These are still small values, but very close to the
 #standard values of $\Delta x, \Delta t$ required for accurate
 #numerical solution. That is, this choice of scaling will give $\Delta x
 #\approx \Delta t \approx 1$, instead of $\bar t, \bar x \approx 1$?
 
-#[hpl: That sounds a big strange, but if the focus is on a smaller scale,
-#choosing $L$ and $t_c$ from this scale leads to that conclusion.]
 
 
 ===== An alternative $I_{\rm{ion}}$ =====

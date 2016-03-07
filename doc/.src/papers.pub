@@ -40,12 +40,20 @@
 ** A Primer on Scientific Programming with {P}ython
    key:       Langtangen_2012
    author:    H. P. Langtangen
-   year:      2014
+   year:      2016
    publisher: Springer
    status:    published
    series:    Texts in Computational Science and Engineering
-   edition:   Fourth
+   edition:   Fifth
    entrytype: book
+** Finite Difference Computing with Partial Differential Equation
+   key:       Langtangen_Linge_fdm
+   author:    H. P. Langtangen, S. Linge
+   year:      2016
+   status:    published
+   note:      \url{http://tinyurl.com/Langtangen-Linge-FDM-book}
+   url:       http://tinyurl.com/Langtangen-Linge-FDM-book
+   entrytype: misc
 ** Fluid Mechanics
    key:       Douglas_et_al_1979
    author:    J. F. Douglas, J. M. Gasiorek, J. A. Swaffield
@@ -129,7 +137,7 @@
 ** Finite Difference Computing with Exponential Decay Models
    key:       Langtangen_decay
    author:    H. P. Langtangen
-   year:      2015
+   year:      2016
    publisher: Springer
    status:    published
    note:      \url{http://tinyurl.com/nclmcng/web}
@@ -137,8 +145,8 @@
    entrytype: book
 ** Scaling of Differential Equations
    key:       Langtangen_scaling
-   author:    H. P. Langtangen
-   year:      2015
+   author:    H. P. Langtangen, G. K. Pedersen
+   year:      2016
    publisher: Springer
    series:    SimulaSpringerBrief
    status:    published
@@ -258,13 +266,6 @@
    status:    published
    sortkey:   Odespy
    note:      \url{https://github.com/hplgit/odespy}
-   entrytype: misc
-** Finite Difference Computing with Partial Differential Equation
-   key:       Langtangen_Linge_fdm
-   author:    H. P. Langtangen, S. Linge
-   status:    published
-   note:      \url{http://tinyurl.com/Langtangen-Linge-FDM-book}
-   url:       http://tinyurl.com/Langtangen-Linge-FDM-book
    entrytype: misc
 ** Finite difference methods for vibration ODEs
    key:       Langtangen_deqbook_vib

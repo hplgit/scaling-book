@@ -63,10 +63,8 @@ def experiment_compare_schemes():
     plt.savefig(plotfile + '.png');  plt.savefig(plotfile + '.pdf')
 
 import logging
-logging.basicConfig(
-    filename='decay.log', filemode='w', level=logging.DEBUG,
-    format='%(asctime)s - %(levelname)s - %(message)s',
-    datefmt='%Y.%m.%d %I:%M:%S %p')
+# Define a default logger that does nothing
+logging.getLogger('decay').addHandler(logging.NullHandler())
 
 def solver_with_logging(I, a, T, dt, theta):
     """Solve u'=-a*u, u(0)=I, for t in (0,T] with steps of dt."""
@@ -89,6 +87,12 @@ def solver_with_logging(I, a, T, dt, theta):
                       (1 + theta*dt*a,
                        str(type(1 + theta*dt*a))[7:-2]))
     return u, t
+
+def configure_basic_logger():
+    logging.basicConfig(
+        filename='decay.log', filemode='w', level=logging.DEBUG,
+        format='%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%Y.%m.%d %I:%M:%S %p')
 
 import sys
 
@@ -400,5 +404,6 @@ def experiment_classes():
     plt.show()
 
 if __name__ == '__main__':
+    configure_logger()
     experiment_compare_dt(True)
     plt.show()

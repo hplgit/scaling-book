@@ -4,6 +4,10 @@
 # including all style files.
 set -x
 
+# Run make.sh prior to this script!
+# The printed (shortened) version of the book must be the last version
+# compiled in make.sh such that we copy the right file to $author_name.
+
 author_name=langtangen
 # Name of main text file in this directory
 name=book
@@ -67,4 +71,3 @@ cp ${name}.pdf $author_name/${name}.pdf
 tarfile=scaling.tar.gz
 tar czf $tarfile $author_name
 #cp ${author_name}/${book}.tex $tarfile "~/Dropbox/Springer/Scaling Briefs"
-exit
