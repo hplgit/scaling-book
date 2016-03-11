@@ -74,6 +74,10 @@ system pdflatex $name
 # for the book, referred to by other documents, uses the .aux
 # file corresponding to a version without solutions.
 
+# EXV: Extended version
+# Printed book has EXV False, all other versions on github has
+# EXV True
+
 # With solutions, PDF for screen, password protected
 compile --device=screen EXV=True
 newname=${topicname}-book-4screen-sol
