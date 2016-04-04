@@ -8380,8 +8380,11 @@ making the coefficient in front of the $\bar\f$ term unity. The latter
 means
 
 !bt
-\[ u_c = \mu_c^{-1}f_cL^2\varrho_c\tp\]
+\[ u_c = \mu_c^{-1}\varrho_cf_cL^2\tp\]
 !et
+As discussed later, in Section ref{scale:elasticity:stationary},
+this might not be the desired $u_c$ in applications.
+
 The resulting dimensionless PDE becomes
 
 !bt
@@ -8613,7 +8616,7 @@ Dividing by $L^2u_c\mu_c$ gives
 \frac{L^2\varrho_cf_c}{u_c\mu_c}\bar\varrho\bar\f\tp
 \]
 !et
-Choosing $u_c = \varrho L^2f_c/\mu_c$ as before leads to
+Choosing $u_c = \varrho L^2f_c/\mu_c$ leads to
 
 !bt
 \begin{equation}
@@ -8642,6 +8645,21 @@ Now $\beta$ is defined as
 !et
 It shows that in standard, stationary elasticity, $\lambda/\mu$ is the
 only significant physical parameter.
+
+=== Remark on the characteristic displacement ===
+
+The choice of $u_c$ may require a comment. If we end up with
+$\bar\u$ and a geometry of order one, it means that plotting the
+deformation (typically the deformed mesh used in a simulation) will
+look very strange.  We usually want the characteristic displacement to
+be a small fraction of the characteristic size of the elastic
+body. Consider, as an example, a cantilever beam of length $L$ and
+square-shaped cross section of width $W$, deformed under its own
+weight.  From beam theory one can derive $u_c = \frac{3}{2}\varrho g
+L^2\delta^2/E$, where $\delta = L/W$. If we consider $E$ to be of the
+same size as $\lambda$, this implies that $\gamma\sim\delta^{-2}$. So,
+it may be wise to prescribe a $u_c$ in elasticity problems, perhaps
+from formulas as shown, and keep $\gamma$ in the PDE.
 
 === Scaling of displacement boundary conditions ===
 
