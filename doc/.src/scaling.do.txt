@@ -8656,7 +8656,8 @@ be a small fraction of the characteristic size of the elastic
 body. Consider, as an example, a cantilever beam of length $L$ and
 square-shaped cross section of width $W$, deformed under its own
 weight.  From beam theory one can derive $u_c = \frac{3}{2}\varrho g
-L^2\delta^2/E$, where $\delta = L/W$. If we consider $E$ to be of the
+L^2\delta^2/E$, where $\delta = L/W$ ($g$ is the acceleration of
+gravity). If we consider $E$ to be of the
 same size as $\lambda$, this implies that $\gamma\sim\delta^{-2}$. So,
 it may be wise to prescribe a $u_c$ in elasticity problems, perhaps
 from formulas as shown, and keep $\gamma$ in the PDE.

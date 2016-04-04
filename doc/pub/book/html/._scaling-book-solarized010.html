@@ -370,14 +370,18 @@ div { text-align: justify; text-justify: inter-word; }
                u'scale:elasticity:stationary',
                u'scale:elasticity:stationary'),
               (u'Scaling of the PDE', 3, None, '___sec146'),
-              (u'Scaling of displacement boundary conditions',
+              (u'Remark on the characteristic displacement',
                3,
                None,
                '___sec147'),
-              (u'Scaling of traction boundary conditions',
+              (u'Scaling of displacement boundary conditions',
                3,
                None,
                '___sec148'),
+              (u'Scaling of traction boundary conditions',
+               3,
+               None,
+               '___sec149'),
               (u'Quasi-static thermo-elasticity',
                2,
                u'scale:elasticity:thermo',
@@ -389,53 +393,53 @@ div { text-align: justify; text-justify: inter-word; }
               (u'The momentum equation without body forces',
                2,
                None,
-               '___sec151'),
-              (u'Scaling', 3, None, '___sec152'),
+               '___sec152'),
+              (u'Scaling', 3, None, '___sec153'),
               (u'Dimensonless PDEs and the Reynolds number',
                3,
                None,
-               '___sec153'),
+               '___sec154'),
               (u'Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec154'),
-              (u'Shear stress as pressure scale', 2, None, '___sec155'),
-              (u'Gravity force and the Froude number', 2, None, '___sec156'),
+               '___sec155'),
+              (u'Shear stress as pressure scale', 2, None, '___sec156'),
+              (u'Gravity force and the Froude number', 2, None, '___sec157'),
               (u'Oscillating boundary conditions and the Strouhal number',
                2,
                None,
-               '___sec157'),
-              (u'Cavitation and the Euler number', 2, None, '___sec158'),
+               '___sec158'),
+              (u'Cavitation and the Euler number', 2, None, '___sec159'),
               (u'Free surface conditions and the Weber number',
                2,
                u'freesurface:Weber',
                u'freesurface:Weber'),
-              (u'Thermal convection', 1, None, '___sec160'),
-              (u'Forced convection', 2, None, '___sec161'),
+              (u'Thermal convection', 1, None, '___sec161'),
+              (u'Forced convection', 2, None, '___sec162'),
               (u'Free convection',
                2,
                u'scale:fluid:forced_convection',
                u'scale:fluid:forced_convection'),
-              (u'Governing equations', 3, None, '___sec163'),
-              (u'Heating by viscous effects', 3, None, '___sec164'),
+              (u'Governing equations', 3, None, '___sec164'),
+              (u'Heating by viscous effects', 3, None, '___sec165'),
               (u'Relation between density and temperature',
                3,
                None,
-               '___sec165'),
-              (u'The Boussinesq approximation', 3, None, '___sec166'),
-              (u'Scaling', 3, None, '___sec167'),
+               '___sec166'),
+              (u'The Boussinesq approximation', 3, None, '___sec167'),
+              (u'Scaling', 3, None, '___sec168'),
               (u'The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec168'),
+               '___sec169'),
               (u'Interpretations of the Grashof number',
                3,
                None,
-               '___sec169'),
+               '___sec170'),
               (u'Heat transfer at boundaries and the Nusselt and Biot numbers',
                2,
                None,
-               '___sec170'),
+               '___sec171'),
               (u'Compressible gas dynamics',
                1,
                u'scale:gasdyn',
@@ -444,8 +448,8 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                u'scale:Euler_eqs',
                u'scale:Euler_eqs'),
-              (u'General isentropic flow', 2, None, '___sec173'),
-              (u'Elimination of the pressure', 3, None, '___sec174'),
+              (u'General isentropic flow', 2, None, '___sec174'),
+              (u'Elimination of the pressure', 3, None, '___sec175'),
               (u'The acoustic approximation for sound waves',
                2,
                u'scale:gas:acoustic',
@@ -453,11 +457,11 @@ div { text-align: justify; text-justify: inter-word; }
               (u'Wave nature of isentropic flow with small perturbations',
                3,
                None,
-               '___sec176'),
+               '___sec177'),
               (u'Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec177'),
+               '___sec178'),
               (u'Water surface waves driven by gravity',
                1,
                u'scale:surfacewaves',
@@ -466,11 +470,11 @@ div { text-align: justify; text-justify: inter-word; }
                2,
                u'scale:surfacewaves:Eulereq',
                u'scale:surfacewaves:Eulereq'),
-              (u'Scaling', 2, None, '___sec180'),
-              (u'Waves in deep  water', 2, None, '___sec181'),
-              (u'Long waves in shallow water', 2, None, '___sec182'),
-              (u'Two-phase porous media flow', 1, None, '___sec183'),
-              (u'References', 1, None, '___sec184')]}
+              (u'Scaling', 2, None, '___sec181'),
+              (u'Waves in deep  water', 2, None, '___sec182'),
+              (u'Long waves in shallow water', 2, None, '___sec183'),
+              (u'Two-phase porous media flow', 1, None, '___sec184'),
+              (u'References', 1, None, '___sec185')]}
 end of tocinfo -->
 
 <body>
@@ -636,8 +640,12 @@ The scale for \( \u \) can be chosen from an initial displacement or by
 making the coefficient in front of the \( \bar\f \) term unity. The latter
 means
 
-$$ u_c = \mu_c^{-1}f_cL^2\varrho_c\tp$$
+$$ u_c = \mu_c^{-1}\varrho_cf_cL^2\tp$$
 
+As discussed later, in the section <a href="#scale:elasticity:stationary">The stationary elasticity problem</a>,
+this might not be the desired \( u_c \) in applications.
+
+<p>
 The resulting dimensionless PDE becomes
 
 $$
@@ -860,7 +868,7 @@ $$
 \frac{L^2\varrho_cf_c}{u_c\mu_c}\bar\varrho\bar\f\tp
 $$
 
-Choosing \( u_c = \varrho L^2f_c/\mu_c \) as before leads to
+Choosing \( u_c = \varrho L^2f_c/\mu_c \) leads to
 
 $$
 \begin{equation}
@@ -893,7 +901,23 @@ $$ \beta = \frac{\lambda}{\mu} = \left(\frac{c_p}{c_s}\right)^2 - 2\tp$$
 It shows that in standard, stationary elasticity, \( \lambda/\mu \) is the
 only significant physical parameter.
 
-<h3 id="___sec147">Scaling of displacement boundary conditions </h3>
+<h3 id="___sec147">Remark on the characteristic displacement </h3>
+
+<p>
+The choice of \( u_c \) may require a comment. If we end up with
+\( \bar\u \) and a geometry of order one, it means that plotting the
+deformation (typically the deformed mesh used in a simulation) will
+look very strange.  We usually want the characteristic displacement to
+be a small fraction of the characteristic size of the elastic
+body. Consider, as an example, a cantilever beam of length \( L \) and
+square-shaped cross section of width \( W \), deformed under its own
+weight.  From beam theory one can derive \( u_c = \frac{3}{2}\varrho g
+L^2\delta^2/E \), where \( \delta = L/W \). If we consider \( E \) to be of the
+same size as \( \lambda \), this implies that \( \gamma\sim\delta^{-2} \). So,
+it may be wise to prescribe a \( u_c \) in elasticity problems, perhaps
+from formulas as shown, and keep \( \gamma \) in the PDE.
+
+<h3 id="___sec148">Scaling of displacement boundary conditions </h3>
 
 <p>
 A typical boundary condition on some part of the boundary is a prescribed
@@ -915,7 +939,7 @@ is present, to the dimensionless number
 
 $$ \delta = \frac{L^2\varrho f_c}{\mu |\U_0|}\tp$$
 
-<h3 id="___sec148">Scaling of traction boundary conditions </h3>
+<h3 id="___sec149">Scaling of traction boundary conditions </h3>
 
 <p>
 The other type of common boundary condition in elasticity is a
@@ -1029,7 +1053,7 @@ with the plain Navier-Stokes equations without body forces and
 progress with adding the gravity force and a free surface. We
 also look at scaling low Reynolds number flow and oscillating flows.
 
-<h2 id="___sec151">The momentum equation without body forces </h2>
+<h2 id="___sec152">The momentum equation without body forces </h2>
 
 <p>
 The Navier-Stokes equations for incompressible viscous fluid flow,
@@ -1049,7 +1073,7 @@ The primary unknowns are the
 velocity \( \u \) and the pressure \( p \). Moreover,
 \( \varrho \) is the fluid density, and \( \mu \) is the dynamic viscosity.
 
-<h3 id="___sec152">Scaling </h3>
+<h3 id="___sec153">Scaling </h3>
 
 <p>
 We start, as usual, by introducing a notation for
@@ -1129,7 +1153,7 @@ $$ p + \frac{1}{2}\varrho \u\cdot\u =
 
 for stationary flow.
 
-<h3 id="___sec153">Dimensonless PDEs and the Reynolds number </h3>
+<h3 id="___sec154">Dimensonless PDEs and the Reynolds number </h3>
 
 <p>
 The discussions so far results in the following dimensionless form of
@@ -1166,7 +1190,7 @@ $$ \frac{\hbox{convection}}{\hbox{viscosity}} =
 (We have here used that \( \nabla\u \) goes like \( U/L \) and \( \nabla^2\u \)
 goes like \( U/L^2 \).)
 
-<h2 id="___sec154">Scaling of time for low Reynolds numbers </h2>
+<h2 id="___sec155">Scaling of time for low Reynolds numbers </h2>
 
 <p>
 As we discussed in the section <a href="._scaling-book-solarized009.html#scale:convdiff">The convection-diffusion equation</a> for the convection-diffusion
@@ -1219,7 +1243,7 @@ $$
 
 This flow regime is also known as <em>Stokes' flow</em> or <em>creeping flow</em>.
 
-<h2 id="___sec155">Shear stress as pressure scale </h2>
+<h2 id="___sec156">Shear stress as pressure scale </h2>
 
 <p>
 Instead of using the kinetic energy \( \varrho U^2 \) as pressure scale,
@@ -1239,7 +1263,7 @@ $$
 
 Low Reynolds number flow now suggests neglecting both acceleration terms.
 
-<h2 id="___sec156">Gravity force and the Froude number </h2>
+<h2 id="___sec157">Gravity force and the Froude number </h2>
 
 <p>
 We now add a gravity force to the momentum equation
@@ -1269,7 +1293,7 @@ This quantity reflects the ratio of inertia and gravity forces:
 $$ \frac{|\u\cdot\nabla\u|}{|\varrho g|} \sim \frac{\varrho U^2/L}{\varrho g}
 = \hbox{Fr}^2\tp$$
 
-<h2 id="___sec157">Oscillating boundary conditions and the Strouhal number </h2>
+<h2 id="___sec158">Oscillating boundary conditions and the Strouhal number </h2>
 
 <p>
 Many flows have an oscillating nature, often arising from some
@@ -1322,7 +1346,7 @@ bridge</a>
 in 1940, when wind-induced vortex shedding caused resonance
 with the free torsional vibrations of the bridge.
 
-<h2 id="___sec158">Cavitation and the Euler number </h2>
+<h2 id="___sec159">Cavitation and the Euler number </h2>
 
 <p>
 The dimensionless pressure in <a href="#mjx-eqn-186">(186)</a>
@@ -1424,7 +1448,7 @@ is the ratio of the pressure scale \( \varrho U^2 \) and the surface
 tension force per area, typically \( \sigma/R_x \) in a 2D problem, which
 has size \( \sigma/L \).
 
-<h1 id="___sec160">Thermal convection </h1>
+<h1 id="___sec161">Thermal convection </h1>
 
 <p>
 Temperature differences in fluid flow cause density differences, and since
@@ -1436,7 +1460,7 @@ feedback from the temperature field to the motion, i.e., temperature
 differences do not create motion. This fact decouples the energy
 equation from the mass and momentum equations.
 
-<h2 id="___sec161">Forced convection </h2>
+<h2 id="___sec162">Forced convection </h2>
 
 <p>
 The model governing forced convection consists of the Navier-Stokes
@@ -1542,7 +1566,7 @@ relation to the Peclet number defined in the section <a href="._scaling-book-sol
 
 <h2 id="scale:fluid:forced_convection">Free convection</h2>
 
-<h3 id="___sec163">Governing equations </h3>
+<h3 id="___sec164">Governing equations </h3>
 
 <p>
 The mathematical model for free thermal convection
@@ -1575,7 +1599,7 @@ For slightly compressible gas flow a term \( -p\nabla\cdot\u \) may be
 needed in <a href="#mjx-eqn-210">(210)</a> and also
 a modified <a href="#mjx-eqn-209">(209)</a>.
 
-<h3 id="___sec164">Heating by viscous effects </h3>
+<h3 id="___sec165">Heating by viscous effects </h3>
 
 <p>
 We have also included heating of the fluid due to the work of viscous forces,
@@ -1599,7 +1623,7 @@ general mathematical model for mixed force and free convection, and
 arrive at dimensionless numbers that can tell if this extra term is
 important or not.
 
-<h3 id="___sec165">Relation between density and temperature </h3>
+<h3 id="___sec166">Relation between density and temperature </h3>
 
 <p>
 The equations <a href="#mjx-eqn-208">(208)</a> and
@@ -1619,7 +1643,7 @@ $$ \beta = -\frac{1}{\varrho}\left(\frac{\partial\varrho}{\partial t}
 is known as the thermal expansion coefficient of the fluid,
 and \( \varrho_0 \) is a reference density when the temperature is at \( T_0 \).
 
-<h3 id="___sec166">The Boussinesq approximation </h3>
+<h3 id="___sec167">The Boussinesq approximation </h3>
 
 <p>
 A very common approximation, called the <em>Boussinesq approximation</em>, is
@@ -1645,7 +1669,7 @@ $$
 A good justification of the Boussinesq approximation is provided
 by Tritton <a href="._scaling-book-solarized011.html#Tritton">[8]</a> (Ch. 13).
 
-<h3 id="___sec167">Scaling </h3>
+<h3 id="___sec168">Scaling </h3>
 
 <p>
 Dimensionless variables are introduced as
@@ -1735,7 +1759,7 @@ $$ \frac{|\mu\nabla^2\u|}{|\varrho_0c\u\cdot\nabla T|}\sim
 \frac{\mu U}{L\varrho_0 c \Delta T} = \delta\tp
 $$
 
-<h2 id="___sec168">The Grashof, Prandtl, and Eckert numbers </h2>
+<h2 id="___sec169">The Grashof, Prandtl, and Eckert numbers </h2>
 
 <p>
 The problem with the above dimensionless numbers is that they involve
@@ -1846,7 +1870,7 @@ the range \( 10^8 < \hbox{Gr} < 10^9 \) for free convection from vertical
 flat plates.  Gr is normally interpreted as a dimensionless number
 expressing the ratio of buoyancy forces and viscous forces.
 
-<h3 id="___sec169">Interpretations of the Grashof number </h3>
+<h3 id="___sec170">Interpretations of the Grashof number </h3>
 
 <p>
 Recall that the scaling leading to the Grashof number is based on an
@@ -1891,7 +1915,7 @@ The Rayleigh number is the preferred dimensionless number when studying
 free convection in horizontal layers <a href="._scaling-book-solarized011.html#Drazin_Reid">[9]</a> <a href="._scaling-book-solarized011.html#Tritton">[8]</a>. Otherwise,
 Gr and Pr are used.
 
-<h2 id="___sec170">Heat transfer at boundaries and the Nusselt and Biot numbers </h2>
+<h2 id="___sec171">Heat transfer at boundaries and the Nusselt and Biot numbers </h2>
 
 <p>
 A common boundary condition, modeling heat transfer to/from the
@@ -2060,7 +2084,7 @@ $$ \alpha = \frac{Lf_c}{U^2}\tp$$
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the \( \alpha \) coefficient.
 
-<h2 id="___sec173">General isentropic flow </h2>
+<h2 id="___sec174">General isentropic flow </h2>
 
 <p>
 Heat transfer can be neglected in
@@ -2082,7 +2106,7 @@ $$
 \end{align}
 $$
 
-<h3 id="___sec174">Elimination of the pressure </h3>
+<h3 id="___sec175">Elimination of the pressure </h3>
 
 <p>
 A common equation of state is
@@ -2170,7 +2194,7 @@ simplifies if \( \varrho_c=\varrho_0 \) is an appropriate choice.
 
 <h2 id="scale:gas:acoustic">The acoustic approximation for sound waves</h2>
 
-<h3 id="___sec176">Wave nature of isentropic flow with small perturbations </h3>
+<h3 id="___sec177">Wave nature of isentropic flow with small perturbations </h3>
 
 <p>
 A model for sound waves can be based on <a href="#mjx-eqn-227">(227)</a>
@@ -2214,7 +2238,7 @@ Similarly, \( \hat\varrho \) can be eliminated and one gets a wave equation for
 \( \hat\u \), also with wave velocity \( c_0 \).
 This means that the sound perturbations travel with velocity \( c_0 \).
 
-<h3 id="___sec177">Basic scaling for small wave perturbations </h3>
+<h3 id="___sec178">Basic scaling for small wave perturbations </h3>
 
 <p>
 Let \( \varrho_c \) and
@@ -2383,7 +2407,7 @@ a typical wavelength \( \lambda_c \), and a typical surface elevation \( A \), w
 then by definition is a scale for \( \eta \), are
 the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
 
-<h2 id="___sec180">Scaling </h2>
+<h2 id="___sec181">Scaling </h2>
 
 <p>
 First, it is instructive to define a typical wave celerity, \( c_c \), which
@@ -2434,7 +2458,7 @@ $$
 In the further development of the scaling
 we focus on two limiting cases, namely deep and shallow water.
 
-<h2 id="___sec181">Waves in deep  water </h2>
+<h2 id="___sec182">Waves in deep  water </h2>
 
 <p>
 Deep water means that \( h_c\gg\lambda_c \). Presumably the waves will not
@@ -2489,7 +2513,7 @@ $$
 
 as \( \bar z \rightarrow -\infty \).
 
-<h2 id="___sec182">Long waves in shallow water </h2>
+<h2 id="___sec183">Long waves in shallow water </h2>
 
 <p>
 Long waves imply that the wavelength is large
@@ -2553,7 +2577,7 @@ is hydrostatic. The above set of equations is a common  starting point for
 perturbation expansions in \( \epsilon \) and \( \mu^2 \) that lead to shallow water,
 KdV, and Boussinesq type equations.
 
-<h1 id="___sec183">Two-phase porous media flow </h1>
+<h1 id="___sec184">Two-phase porous media flow </h1>
 
 <p>
 We consider the flow of two incompressible, immiscible fluids in

@@ -14,7 +14,7 @@
 \usepackage{mathptmx}
 \usepackage{helvet}
 \usepackage{lmodern}   % not svmono style, but gives prettier math symbols
-\usepackage{courier} % note: courier monospace font is too wide
+%\usepackage{courier} % note: courier monospace font is too wide
 \usepackage{type1cm}
 \usepackage{framed}
 \usepackage{booktabs}
@@ -367,7 +367,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Mar 6, 2016}
+\date{Apr 4, 2016}
 \maketitle
 
 % Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
@@ -1030,7 +1030,7 @@ by \texttt{h}. We can now compute $s=vt$ as follows:
 
 \begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
 >>> # With ScientificPython:
->>> from Scientific.Physics.PhysicalQuantities import \
+>>> from Scientific.Physics.PhysicalQuantities import \ 
 ... PhysicalQuantity as PQ
 >>> # With PhysicalQuantities as separate/stand-alone module:
 >>> from PhysicalQuantities import PhysicalQuantity as PQ
@@ -1208,7 +1208,7 @@ in the command-line option, such as in \Verb!--Initial_velocity!.
 We can now run
 
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]
-Terminal> python distance.py --initial_velocity '10 km/h' \
+Terminal> python distance.py --initial_velocity '10 km/h' \ 
           --acceleration 0 --time '1 h
 s=10000
 \end{Verbatim}
@@ -1346,8 +1346,8 @@ print '|-----------------------------------------------------|'
 Here is a sample run,
 
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]
-Terminal> python distance.py --time '1 h & 2 h & 3 h' \
-          --acceleration '0 m/s**2 & 1 m/s**2 & 1 yd/s**2' \
+Terminal> python distance.py --time '1 h & 2 h & 3 h' \ 
+          --acceleration '0 m/s**2 & 1 m/s**2 & 1 yd/s**2' \ 
 	  --initial_velocity '1 & 5'
 |-----------------------------------------------------|
 |      v_0   |      a     |      t     |      s       |
@@ -2366,7 +2366,7 @@ The $a(t)$ function is scaled by letting the characteristic size be
 $a_c=d$ and $a_0=0$:
 
 \[ \bar a (\bar t) = \left\lbrace\begin{array}{ll}
-1, & \bar t < t_1/t_c\\
+1, & \bar t < t_1/t_c\\ 
 5, & \bar t \geq t_1/t_c
 \end{array}\right.
 \]
@@ -2385,7 +2385,7 @@ With $t_c=1/d$ we get
 \begin{equation}
 \bar u'(\bar t)=-\bar a\bar u,\quad \bar u(0)=1,\quad
 \bar a = \left\lbrace\begin{array}{ll}
-1, & \bar t < \gamma\\
+1, & \bar t < \gamma\\ 
 5, & \bar t \geq \gamma
 \end{array}\right.
 \label{sec:scale:jump:eq1}
@@ -2397,7 +2397,7 @@ is a dimensionless number in the problem. With $t_c=t_1$, we get
 
 \[ \bar u'(\bar t)=-\gamma\bar a\bar u,\quad \bar u(0)=1,\quad
 \bar a = \left\lbrace\begin{array}{ll}
-1, & \bar t < 1\\
+1, & \bar t < 1\\ 
 5, & \bar t \geq 1
 \end{array}\right.\]
 The dimensionless parameter $\gamma$ is now in the equation rather than in
@@ -2831,9 +2831,9 @@ system of three ODEs:
 
 \begin{align}
 \frac{dS}{dt} &= - \beta SI,
-\label{scale:SIR:S}\\
+\label{scale:SIR:S}\\ 
 \frac{dI}{dt} &= \beta SI - \nu I,
-\label{scale:SIR:I}\\
+\label{scale:SIR:I}\\ 
 \frac{dR}{dt} &= \nu I,
 \label{scale:SIR:R}
 \end{align}
@@ -2852,9 +2852,9 @@ Introducing $\bar t = t/t_c$, we arrive at the equations
 
 \begin{align*}
 \frac{d\bar S}{d\bar t} &= - t_c S(0) \beta\bar S\bar I,
-\\
+\\ 
 \frac{d\bar I}{d\bar t} &= t_c S(0) \beta \bar S\bar I - t_c \nu \bar I,
-\\
+\\ 
 \frac{d\bar R}{d\bar t} &= t_c \nu \bar I,
 \end{align*}
 with initial conditions $\bar S(0)=1$, $\bar I(0)=I_0/S(0)=\alpha$, and
@@ -2865,9 +2865,9 @@ to recover from the disease, we end up with the scaled model
 
 \begin{align}
 \frac{d\bar S}{d\bar t} &= - R_0\bar S\bar I,
-\label{scale:SIR:S2}\\
+\label{scale:SIR:S2}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S\bar I - \bar I,
-\label{scale:SIR:I2}\\
+\label{scale:SIR:I2}\\ 
 \frac{d\bar R}{d\bar t} &= \bar I,
 \label{scale:SIR:R2}
 \end{align}
@@ -2958,9 +2958,9 @@ $S$, $I$, and $R$ by $S(0)$) to the $I$ terms:
 
 \begin{align*}
 \frac{d\bar S}{d\bar t} &= - \bar S\bar I,
-\\
+\\ 
 \frac{d\bar I}{d\bar t} &= \bar S\bar I - \tilde R_0^{-1} \bar I,
-\\
+\\ 
 \frac{d\bar R}{d\bar t} &= \tilde R_0^{-1} I\tp
 \end{align*}
 
@@ -2977,11 +2977,11 @@ vaccinated). The ODE model reads
 
 \begin{align}
 \frac{dS}{dt} &= - \beta SI - pS + \mu R,
-\label{scale:SIRV:S}\\
+\label{scale:SIRV:S}\\ 
 \frac{dI}{dt} &= \beta SI - \nu I,
-\label{scale:SIRV:I}\\
+\label{scale:SIRV:I}\\ 
 \frac{dR}{dt} &= \nu I -\mu R,
-\label{scale:SIRV:R}\\
+\label{scale:SIRV:R}\\ 
 \frac{dV}{dt} &= p S\tp
 \label{scale:SIRV:V}
 \end{align}
@@ -2990,11 +2990,11 @@ the dimensionless model
 
 \begin{align}
 \frac{d\bar S}{d\bar t} &= - R_0 \bar S \bar I - \delta \bar S + \gamma \bar R,
-\label{scale:SIRV:S2}\\
+\label{scale:SIRV:S2}\\ 
 \frac{d\bar I}{d\bar t} &= R_0 \bar S \bar I - \bar I,
-\label{scale:SIRV:I2}\\
+\label{scale:SIRV:I2}\\ 
 \frac{d\bar R}{d\bar t} &= \bar I -\gamma \bar R,
-\label{scale:SIRV:R2}\\
+\label{scale:SIRV:R2}\\ 
 \frac{d\bar V}{d\bar t} &= \delta \bar S,
 \label{scale:SIRV:V2}
 \end{align}
@@ -3039,11 +3039,11 @@ $[P]$, the mathematical model can be written as
 
 \begin{align}
 \frac{d[ES]}{dt} &= k_+[E][S] - k_v[ES] - k_-[ES],
-\label{scale:MMK:ES1}\\
+\label{scale:MMK:ES1}\\ 
 \frac{d[P]}{dt} &= k_v[ES],
-\label{scale:MMK:P1}\\
+\label{scale:MMK:P1}\\ 
 \frac{d[S]}{dt} &= -k_+[E][S] + k_-[ES],
-\label{scale:MMK:S1}\\
+\label{scale:MMK:S1}\\ 
 \frac{d[E]}{dt} &= -k_+[E][S] + k_-[ES] + k_v[ES]\tp
 \label{scale:MMK:E1}
 \end{align}
@@ -3077,14 +3077,14 @@ Another important observation is that the ODE system implies
 two conservation equations, arising from simply adding the ODEs:
 
 \begin{align}
-\frac{d[ES]}{dt} + \frac{d[E]}{dt} & =0,\\
+\frac{d[ES]}{dt} + \frac{d[E]}{dt} & =0,\\ 
 \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} &= 0,
 \end{align}
 from which it follows that
 
 \begin{align}
 [ES] + [E] &= E_0,
-\label{scale:MMK:cons1}\\
+\label{scale:MMK:cons1}\\ 
 [ES] + [S] + [P] &= S_0\tp
 \label{scale:MMK:cons2}
 \end{align}
@@ -3098,9 +3098,9 @@ Now (\ref{scale:MMK:S1}) can be developed to an equation involving
 $[S]$ only:
 
 \begin{align}
-\frac{d[S]}{dt} &= -k_+[E][S] + k_-[ES]\nonumber\\
-& = (-k_+ + \frac{k_-}{K})[E][S]\nonumber\\
-& = (-k_+ + \frac{k_-}{K})[S]\frac{KE_0}{K + [S]}\nonumber\\
+\frac{d[S]}{dt} &= -k_+[E][S] + k_-[ES]\nonumber\\ 
+& = (-k_+ + \frac{k_-}{K})[E][S]\nonumber\\ 
+& = (-k_+ + \frac{k_-}{K})[S]\frac{KE_0}{K + [S]}\nonumber\\ 
 & = - \frac{k_-E_0}{[S] + K}\tp
 \label{scale:MMK:Seq1}
 \end{align}
@@ -3138,10 +3138,10 @@ With $\bar t = t/t_c$ the equations become
 
 \begin{align*}
 \frac{d\bar Q}{d\bar t} &= t_ck_+\frac{E_0S_0}{Q_c}\bar E\bar S
-- t_c(k_v + k_-)\bar Q,\\
-\frac{d\bar P}{d\bar t} &= t_ck_v\frac{Q_c}{P_c}\bar Q,\\
+- t_c(k_v + k_-)\bar Q,\\ 
+\frac{d\bar P}{d\bar t} &= t_ck_v\frac{Q_c}{P_c}\bar Q,\\ 
 \frac{d\bar S}{d\bar t} &= -t_ck_+E_0\bar E\bar S
-+ t_ck_-\frac{Q_c}{S_0}\bar Q,\\
++ t_ck_-\frac{Q_c}{S_0}\bar Q,\\ 
 \frac{d\bar E}{d\bar t} &= -t_ck_+S_0\bar E\bar S
 + t_c(k_- + k_v)\frac{Q_c}{E_0}\bar Q\tp
 \end{align*}
@@ -3180,10 +3180,10 @@ The equations then take the form
 
 \begin{align*}
 \frac{d\bar Q}{d\bar t} &= \frac{S_0}{Q_c}\bar E\bar S
-- KE_0^{-1}\bar Q,\\
-\frac{d\bar P}{d\bar t} &= \frac{k_v}{k_+ E_0}\frac{Q_c}{P_c}\bar Q,\\
+- KE_0^{-1}\bar Q,\\ 
+\frac{d\bar P}{d\bar t} &= \frac{k_v}{k_+ E_0}\frac{Q_c}{P_c}\bar Q,\\ 
 \frac{d\bar S}{d\bar t} &= -\bar E\bar S
-+ \frac{k_-}{k_+E_0}\frac{Q_c}{S_0}\bar Q,\\
++ \frac{k_-}{k_+E_0}\frac{Q_c}{S_0}\bar Q,\\ 
 \frac{d\bar E}{d\bar t} &= -\epsilon^{-1}\bar E\bar S
 + K\frac{Q_c}{E_0^2}\bar Q\tp
 \end{align*}
@@ -3203,10 +3203,10 @@ With these assumptions one gets
 
 \begin{align*}
 \frac{d\bar Q}{d\bar t} &= KE_0^{-1} (\bar E\bar S
-- \bar Q),\\
-\frac{d\bar P}{d\bar t} &= \frac{k_v}{k_+ E_0}\bar Q,\\
+- \bar Q),\\ 
+\frac{d\bar P}{d\bar t} &= \frac{k_v}{k_+ E_0}\bar Q,\\ 
 \frac{d\bar S}{d\bar t} &= -\bar E\bar S
-+ \frac{k_-}{k_+E_0}\frac{E_0}{K}\bar Q,\\
++ \frac{k_-}{k_+E_0}\frac{E_0}{K}\bar Q,\\ 
 \frac{d\bar E}{d\bar t} &= -\epsilon^{-1}\bar E\bar S
 + \epsilon^{-1}\bar Q\tp
 \end{align*}
@@ -3226,12 +3226,12 @@ We arrive at the final set of scaled differential equations:
 \begin{align}
 \frac{d\bar Q}{d\bar t} &= \alpha (\bar E\bar S
 - \bar Q),
-\label{scale:MMK:Q2}\\
+\label{scale:MMK:Q2}\\ 
 \frac{d\bar P}{d\bar t} &= \beta\bar Q,
-\label{scale:MMK:P2}\\
+\label{scale:MMK:P2}\\ 
 \frac{d\bar S}{d\bar t} &= -\bar E\bar S
 + (1 - \beta\alpha^{-1})\bar Q,
-\label{scale:MMK:S2}\\
+\label{scale:MMK:S2}\\ 
 \epsilon\frac{d\bar E}{d\bar t} &= -\bar E\bar S + \bar Q\tp
 \label{scale:MMK:E2}
 \end{align}
@@ -3265,7 +3265,7 @@ and adding (\ref{scale:MMK:Q2}), (\ref{scale:MMK:P2}), and
 $\alpha$ times (\ref{scale:MMK:S2}):
 
 \begin{align}
-\epsilon^{-1}\alpha^{-1}\bar Q + \bar E &= 1,\\
+\epsilon^{-1}\alpha^{-1}\bar Q + \bar E &= 1,\\ 
 \alpha\bar S + \bar Q + \bar P &= \alpha\tp
 \end{align}
 
@@ -3712,7 +3712,7 @@ forcing is the only driving mechanism, we can simplify:
 \begin{align*}
 u(t) &= \frac{A}{m(\omega^2 - \psi^2)}\cos(\psi t)
 +
-\frac{A}{m(\psi^2 - \omega^2)}\cos (\omega t)\\
+\frac{A}{m(\psi^2 - \omega^2)}\cos (\omega t)\\ 
 &= \frac{A}{m(\omega^2 - \psi^2)}(\cos(\psi t) - \cos(\omega t))\tp
 \end{align*}
 To gain more insight, $\cos(\psi t) - \cos(\omega t)$ can be
@@ -3793,9 +3793,9 @@ with frequency $\omega$, i.e., $t_c=1/\omega$. Inserting the expression in
 Here we have four dimensionless variables
 
 \begin{align}
-\alpha &= \frac{I}{u_c},\\
-\beta  &= \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},\\
-\gamma &= \frac{t_c^2 A}{mu_c} = \frac{A}{ku_c},\\
+\alpha &= \frac{I}{u_c},\\ 
+\beta  &= \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},\\ 
+\gamma &= \frac{t_c^2 A}{mu_c} = \frac{A}{ku_c},\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
 \end{align}
 We remark that the choice of $u_c$ has so far not been made. Several
@@ -3835,9 +3835,9 @@ $u_c=A/(m(\omega^2 - \psi^2))$. The dimensionless numbers
 become in this case
 
 \begin{align*}
-\alpha &= \frac{I}{u_c} = \frac{I}{A/k}(1-\delta^2),\\
-\beta  &= \frac{V}{\omega u_c} = \frac{V\sqrt{km}}{A}(1-\delta^2),\\
-\gamma &= \frac{A}{ku_c} = 1-\delta^2,\\
+\alpha &= \frac{I}{u_c} = \frac{I}{A/k}(1-\delta^2),\\ 
+\beta  &= \frac{V}{\omega u_c} = \frac{V\sqrt{km}}{A}(1-\delta^2),\\ 
+\gamma &= \frac{A}{ku_c} = 1-\delta^2,\\ 
 \delta &= \frac{\psi}{\omega}\tp
 \end{align*}
 With $\psi = 0.99\omega$, $\delta =0.99$, $V=0$,
@@ -3878,9 +3878,9 @@ Using the displacement scale $u_c=A/k$ leads to
 (\ref{sec:scale:vib:undamped:F:model:scaled2}) with
 
 \begin{align*}
-\alpha &= \frac{I}{u_c} = \frac{I}{A/k},\\
-\beta  &= \frac{V}{\omega u_c} = \frac{V k}{A\omega},\\
-\gamma &= \frac{A}{ku_c} = 1,\\
+\alpha &= \frac{I}{u_c} = \frac{I}{A/k},\\ 
+\beta  &= \frac{V}{\omega u_c} = \frac{V k}{A\omega},\\ 
+\gamma &= \frac{A}{ku_c} = 1,\\ 
 \delta &= \frac{\psi}{\omega}\tp
 \end{align*}
 Simulating a case with $\delta=0.5$, $\alpha=1$, and $\beta=0$ gives
@@ -3922,9 +3922,9 @@ This choice of $t_c$ changes the scaled ODE to
 where
 
 \begin{align*}
-\alpha &= \frac{I}{u_c} = \frac{I}{A/k}\delta^2,\\
-\beta  &= \frac{Vt_c}{u_c} = \frac{V\sqrt{km}}{A}\delta,\\
-\gamma &= \frac{t_c^2 A}{mu_c} = 1,\\
+\alpha &= \frac{I}{u_c} = \frac{I}{A/k}\delta^2,\\ 
+\beta  &= \frac{Vt_c}{u_c} = \frac{V\sqrt{km}}{A}\delta,\\ 
+\gamma &= \frac{t_c^2 A}{mu_c} = 1,\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}\tp
 \end{align*}
 In the regime $\psi\gg\omega$, $\delta\gg 1$, thus making $\alpha$ and
@@ -3986,7 +3986,7 @@ Choosing $u_c=I$ gives
 with
 
 \begin{align}
-\beta  &= \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},\\
+\beta  &= \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},\\ 
 \gamma & = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} \tp
 \end{align}
 This scaling is not relevant close to resonance since then $u_c\gg I$.
@@ -4184,20 +4184,20 @@ manually ordered to something like the following:
 \begin{align*} u = &
 \frac{Am^{-1}}{4 B^{2} \psi^{2} +
 \Omega^{2}} \left(2 B \psi
-\sin{\left (\psi t \right )} - \Omega\cos{\left (\psi t \right )}\right) + \\
+\sin{\left (\psi t \right )} - \Omega\cos{\left (\psi t \right )}\right) + \\ 
 &
 {e^{-B t}} \biggl(
 C_1 \cos{\left( t \sqrt{\omega^{2}- B^{2}}\right)} +
-C_2 \sin{\left (t \sqrt{\omega^{2}- B^{2}}\right )}\biggr)\\
+C_2 \sin{\left (t \sqrt{\omega^{2}- B^{2}}\right )}\biggr)\\ 
 C_1 &= \frac{Am^{-1} \Omega + 4 I B^{2} \psi^{2} +
 I\Omega^2}{
-4 B^{2} \psi^{2} + \Omega^2}\\
+4 B^{2} \psi^{2} + \Omega^2}\\ 
 C_2 &=
 \frac{- Am^{-1} B\Omega + 4 I B^{3} \psi^{2} +
 I B\Omega^2 + 4 V B^{2}\psi^{2} +
 V\Omega^2}{
 \sqrt{\omega^{2} - B^{2}}
-\left(4 B^{2} \psi^{2} + \Omega^2\right)},\\
+\left(4 B^{2} \psi^{2} + \Omega^2\right)},\\ 
 \Omega &= \psi^2 - \omega^2\tp
 \end{align*}
 
@@ -4215,10 +4215,10 @@ case the solution simplifies to
 u &= \frac{Am^{-1}}{4 B^{2} \psi^{2} +
 \Omega^{2}} \left(2 B \psi
 \sin{\left (\psi t \right )} - \Omega\cos{\left (\psi t \right )}\right)
-\nonumber\\
+\nonumber\\ 
 &= \frac{A}{m}\frac{1}{\sqrt{4B^2\psi^2 + \Omega^2}}\cos(\psi t + \phi)
 \frac{(\psi\omega)^{-1}}{(\psi\omega)^{-1}}
-\nonumber\\
+\nonumber\\ 
 & = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
 \frac{1}{2}}\cos(\psi t + \phi),
 \label{sec:scale:vib:damped:F:model:u_forced0}
@@ -4296,9 +4296,9 @@ with
 % \frac{A}{b\omega}
 
 \begin{align}
-\alpha &= \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},\\
-\beta  &= \frac{Vt_c}{u_c} = \frac{Vb}{A},\\
-\gamma &= \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},\\
+\alpha &= \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},\\ 
+\beta  &= \frac{Vt_c}{u_c} = \frac{Vb}{A},\\ 
+\gamma &= \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},\\ 
 \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1\tp
 \end{align}
 
@@ -4469,11 +4469,11 @@ no initial velocity $u_t$:
 
 \begin{align}
 u(x,0) &= I(x), \quad &x\in [0,L],
-\label{scale:wave:pde1:ic:u}\\
+\label{scale:wave:pde1:ic:u}\\ 
 {\partial\over\partial t}u(x,0) &= 0, \quad & x\in [0,L],
-\label{scale:wave:pde1:ic:ut}\\
+\label{scale:wave:pde1:ic:ut}\\ 
 u(0,t) & = 0, \quad  & t\in (0,T],
-\label{scale:wave:pde1:bc:0}\\
+\label{scale:wave:pde1:bc:0}\\ 
 u(L,t) & = 0, \quad  & t\in (0,T].
 \label{scale:wave:pde1:bc:L}
 \end{align}
@@ -4494,16 +4494,16 @@ Inserting the $x=x_c\bar x$, etc., in (\ref{scale:wave:pde1}) and
 \begin{align*}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 \frac{t_c^2c^2}{x_c^2}{\partial^2 \bar u\over\partial x^2}, \quad & \bar x\in (0,L/x_c),\ \bar t\in (0,T/t_c],
-\\
+\\ 
 \bar u(\bar x,0) &= \frac{I(x_c\bar x)}{u_c},
 \quad &\bar x\in [0,L/x_c],
-\\
+\\ 
 \frac{\partial}{\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,L/x_c],
-\\
+\\ 
 \bar u(0,\bar t) & = 0,
 \quad  & \bar t\in (0,T/t_c],
-\\
+\\ 
 \bar u(L/x_c,\bar t) & = 0,
 \quad &\bar t\in (0,T/t_c].
 \end{align*}
@@ -4549,16 +4549,16 @@ we end up with the dimensionless initial-boundary value problem
 \begin{align}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial x^2}, \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\label{scale:wave:pde1:d}\\
+\label{scale:wave:pde1:d}\\ 
 \bar u(\bar x,0) &= \frac{I(\bar x L)}{\max_{x\in(0,L)} |I(x)|},
 \quad &\bar x\in [0,1],
-\label{scale:wave:pde1:ic:u:d}\\
+\label{scale:wave:pde1:ic:u:d}\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\label{scale:wave:pde1:ic:ut:d}\\
+\label{scale:wave:pde1:ic:ut:d}\\ 
 \bar u(0,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\label{scale:wave:pde1:bc:0:d}\\
+\label{scale:wave:pde1:bc:0:d}\\ 
 \bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T].
 \label{scale:wave:pde1:bc:L:d}
@@ -4615,7 +4615,7 @@ $c=1$, and let $I(x)$ have a peak of unity at $x=x_0\in(0,1)$:
 \[
 \frac{I(x)}{\max_x I(x)} = \left\lbrace
 \begin{array}{ll}
-x/x_0, & x < x_0,\\
+x/x_0, & x < x_0,\\ 
 (1-x)/(1-x_0), & \hbox{otherwise}
 \end{array}\right.
 \]
@@ -4679,16 +4679,16 @@ With $u_c=\max_t |U_L(t)|$, we get the scaled problem
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial \bar x^2},
 \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
-\label{scale:wave:pde2:d}\\
+\label{scale:wave:pde2:d}\\ 
 \bar u(\bar x,0) &= \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
 \quad &\bar x\in [0,1],
-\label{scale:wave:pde2:ic:u:d}\\
+\label{scale:wave:pde2:ic:u:d}\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\label{scale:wave:pde2:ic:ut:d}\\
+\label{scale:wave:pde2:ic:ut:d}\\ 
 \bar u(0,\bar t) & = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
 \quad  &\bar t\in (0,\bar T],
-\label{scale:wave:pde2:bc:0:d}\\
+\label{scale:wave:pde2:bc:0:d}\\ 
 \bar u(1,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
 \label{scale:wave:pde2:bc:L:d}
@@ -4707,7 +4707,7 @@ As an example, consider
 
 \begin{align*}
 U_L(t) &= a\sin(\omega t)\hbox{ for } 0\leq t\leq 2\frac{\omega}{2\pi},
-\hbox{ else } 0,\\
+\hbox{ else } 0,\\ 
 I(x)   & = Ae^{-(x-L/2)^2/\sigma^2}\tp
 \end{align*}
 That is, we start with a Gaussian peak-shaped wave in the center of the
@@ -4719,7 +4719,7 @@ Since $\max_t |U_L|=a$ we get
 
 \begin{align}
 \bar u(\bar x,0) &= \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},
-\label{scale:wave:oscbc:I}\\
+\label{scale:wave:oscbc:I}\\ 
 \bar u(0,\bar t) &= \sin(\bar t\omega L/c)\tp
 \label{scale:wave:oscbc:u0}
 \end{align}
@@ -4740,7 +4740,7 @@ With $\alpha$, $\beta$, and $\gamma$ we can write the dimensionless
 initial and boundary conditions as
 
 \begin{align*}
-\bar u(\bar x,0) &= \alpha e^{-\beta^2(\bar x -\frac{1}{2})^2},\\
+\bar u(\bar x,0) &= \alpha e^{-\beta^2(\bar x -\frac{1}{2})^2},\\ 
 \bar u(0,\bar t) &= \sin(\gamma\bar t)\tp
 \end{align*}
 The dimensionless parameters have the following interpretations:
@@ -4834,7 +4834,7 @@ Movie \arabic{doconce:movie:counter}: $\alpha=0.1$. \href{https://github.com/hpl
 Now we change the initial condition from $u=I$ and $\partial u/\partial t = 0$ to
 
 \begin{align}
-u(x,0) &= 0,\\
+u(x,0) &= 0,\\ 
 \frac{\partial}{\partial t} u(x,0) &= V(x)\tp
 \end{align}
 Impact problems are often of this kind.
@@ -4954,16 +4954,16 @@ can be then expressed as
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
 \quad & x\in (0,L),\ t\in (0,T],
-\label{scale:wave:pde3}\\
+\label{scale:wave:pde3}\\ 
 u(x,0) &= I(x),
 \quad &x\in [0,L],
-\label{scale:wave:pde3:ic:u}\\
+\label{scale:wave:pde3:ic:u}\\ 
 {\partial\over\partial t}u(x,0) &= 0,
 \quad & x\in [0,L],
-\label{scale:wave:pde3:ic:ut}\\
+\label{scale:wave:pde3:ic:ut}\\ 
 \frac{\partial}{\partial x}u(0,t) & = 0,
 \quad  &t\in (0,T],
-\label{scale:wave:pde3:bc:0}\\
+\label{scale:wave:pde3:bc:0}\\ 
 \frac{\partial}{\partial x}u(L,t) & = 0,
 \quad  &t\in (0,T].
 \label{scale:wave:pde3:bc:L}
@@ -4993,13 +4993,13 @@ non-dimensional counterparts yields
 \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
 + \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
-\quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],\\
+\quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],\\ 
 \bar u(\bar x,0) &= \frac{I(x)}{u_c},
-\quad &\bar x\in [0,1],\\
+\quad &\bar x\in [0,1],\\ 
 {\partial\over\partial \bar t}\bar u(\bar x,0) &= 0,
-\quad & \bar x\in [0,1],\\
+\quad & \bar x\in [0,1],\\ 
 \frac{\partial}{\partial \bar x}\bar u(0,\bar t) & = 0,
-\quad  &\bar t\in (0,\bar T],\\
+\quad  &\bar t\in (0,\bar T],\\ 
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
 \end{align*}
@@ -5088,7 +5088,7 @@ we can write
 \[
 \frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
 \left\lbrace \begin{array}{ll}
-\alpha^{-1}\bar V(\bar x),& u_c=\max_x|I|\\
+\alpha^{-1}\bar V(\bar x),& u_c=\max_x|I|\\ 
 \alpha^{-1}\beta^{-1}\bar V(\bar x), & u_c=t_c^2f_c
 \end{array}\right.
 \]
@@ -5401,13 +5401,13 @@ The initial-boundary value problem reads
 \varrho c \frac{\partial u}{\partial t} &=
 k \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
-\label{scale:heat:pde3}\\
+\label{scale:heat:pde3}\\ 
 u(x,0) &= U_0,
 \quad & x\in [0,L],
-\label{scale:heat:pde3:ic:u}\\
+\label{scale:heat:pde3:ic:u}\\ 
 u(0, t) & = U_1,
 \quad  & t\in (0, T],
-\label{scale:heat:pde3:bc:0}\\
+\label{scale:heat:pde3:bc:0}\\ 
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
 \label{scale:heat:pde3:bc:L}
@@ -5437,13 +5437,13 @@ the dimensionless initial-boundary value problem
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{\partial^2 \bar u}{\partial \bar x^2},
 \quad &  \bar x\in (0,1),\ \bar t\in (0, \bar T],
-\label{scale:heat:pde3:d}\\
+\label{scale:heat:pde3:d}\\ 
 \bar u(\bar x,0) &= 0,
 \quad & \bar x\in [0,1],
-\label{scale:heat:pde3:ic:u:d}\\
+\label{scale:heat:pde3:ic:u:d}\\ 
 \bar u(0, \bar t) & = 1,
 \quad  & \bar t\in (0, \bar T],
-\label{scale:heat:pde3:bc:0:d}\\
+\label{scale:heat:pde3:bc:0:d}\\ 
 \frac{\partial}{\partial \bar x} u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
 \label{scale:heat:pde3:bc:L:d}
@@ -5476,13 +5476,13 @@ oscillating on the boundary $x=0$:
 \frac{\partial u}{\partial t} &=
 \dfc \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
-\label{scale:heat:pde2}\\
+\label{scale:heat:pde2}\\ 
 u(x,0) &= U_0,
 \quad & x\in [0,L],
-\label{scale:heat:pde2:ic:u}\\
+\label{scale:heat:pde2:ic:u}\\ 
 u(0, t) & = U_0 + A\sin(\omega t),
 \quad  & t\in (0, T],
-\label{scale:heat:pde2:bc:0}\\
+\label{scale:heat:pde2:bc:0}\\ 
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
 \label{scale:heat:pde2:bc:L}
@@ -5569,8 +5569,8 @@ The three choices of $\gamma$, implied by the three choices of $t_c$, are
 
 \begin{equation}
 \gamma = \left\lbrace\begin{array}{ll}
-1, & t_c=1/\omega,\\
-2, & t_c = 2/\omega,\\
+1, & t_c=1/\omega,\\ 
+2, & t_c = 2/\omega,\\ 
 2\beta^2, & t_c = L^2/\dfc,\ x_c=L
 \end{array}\right.
 \label{scale:heat:daynight:gamma3}
@@ -5621,13 +5621,13 @@ scaled initial-boundary value problem:
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{1}{2}\frac{\partial^2\bar u}{\partial x^2},
 \quad & \bar x\in (0,4),\ \bar t\in (0,\bar T],
-\label{scale:heat:pde2:d}\\
+\label{scale:heat:pde2:d}\\ 
 \bar u(\bar x,0) &= 0,
 \quad &\bar x\in [0,1],
-\label{scale:heat:pde2:ic:u:d}\\
+\label{scale:heat:pde2:ic:u:d}\\ 
 \bar u(0,\bar t) & = \sin(\bar t),
 \quad  &\bar t\in (0,\bar T],
-\label{scale:heat:pde2:bc:0:d}\\
+\label{scale:heat:pde2:bc:0:d}\\ 
 \frac{\partial}{\partial\bar x}\bar u(\bar L,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
 \label{scale:heat:pde2:bc:L:d}
@@ -6267,7 +6267,10 @@ The scale for $\u$ can be chosen from an initial displacement or by
 making the coefficient in front of the $\bar\f$ term unity. The latter
 means
 
-\[ u_c = \mu_c^{-1}f_cL^2\varrho_c\tp\]
+\[ u_c = \mu_c^{-1}\varrho_cf_cL^2\tp\]
+As discussed later, in Section~\ref{scale:elasticity:stationary},
+this might not be the desired $u_c$ in applications.
+
 The resulting dimensionless PDE becomes
 
 \begin{equation}
@@ -6302,7 +6305,7 @@ relation gives
 
 \begin{align*}
 \stress &= \lambda_cu_cL^{-2}\bar\lambda\bar\nabla\cdot\bar\u
-+ \mu_cu_cL^{-1}\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\\
++ \mu_cu_cL^{-1}\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\\ 
 &= \mu_c u_cL^{-1}\left(\beta\bar\lambda\bar\nabla\cdot\bar\u +
 \bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\right)\tp
 \end{align*}
@@ -6453,7 +6456,7 @@ Dividing by $L^2u_c\mu_c$ gives
 \bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
 \frac{L^2\varrho_cf_c}{u_c\mu_c}\bar\varrho\bar\f\tp
 \]
-Choosing $u_c = \varrho L^2f_c/\mu_c$ as before leads to
+Choosing $u_c = \varrho L^2f_c/\mu_c$ leads to
 
 \begin{equation}
 \bar \nabla ((\beta\bar\lambda +
@@ -6476,6 +6479,20 @@ Now $\beta$ is defined as
 \[ \beta = \frac{\lambda}{\mu} = \left(\frac{c_p}{c_s}\right)^2 - 2\tp\]
 It shows that in standard, stationary elasticity, $\lambda/\mu$ is the
 only significant physical parameter.
+
+\paragraph{Remark on the characteristic displacement.}
+The choice of $u_c$ may require a comment. If we end up with
+$\bar\u$ and a geometry of order one, it means that plotting the
+deformation (typically the deformed mesh used in a simulation) will
+look very strange.  We usually want the characteristic displacement to
+be a small fraction of the characteristic size of the elastic
+body. Consider, as an example, a cantilever beam of length $L$ and
+square-shaped cross section of width $W$, deformed under its own
+weight.  From beam theory one can derive $u_c = \frac{3}{2}\varrho g
+L^2\delta^2/E$, where $\delta = L/W$. If we consider $E$ to be of the
+same size as $\lambda$, this implies that $\gamma\sim\delta^{-2}$. So,
+it may be wise to prescribe a $u_c$ in elasticity problems, perhaps
+from formulas as shown, and keep $\gamma$ in the PDE.
 
 \paragraph{Scaling of displacement boundary conditions.}
 A typical boundary condition on some part of the boundary is a prescribed
@@ -6525,7 +6542,7 @@ a PDE for heat transfer in solids. The resulting system of PDEs is
 known as the equations of \emph{thermo-elasticity} and reads
 
 \begin{align}
-\nabla((\lambda + \mu)\nabla\cdot\u) + \nabla\cdot(\mu\nabla\u) &= \alpha\nabla T -\varrho\f,\\
+\nabla((\lambda + \mu)\nabla\cdot\u) + \nabla\cdot(\mu\nabla\u) &= \alpha\nabla T -\varrho\f,\\ 
 \varrho c \frac{\partial T}{\partial t} &= \nabla\cdot(\kappa\nabla T) + \varrho \f_T,
 \end{align}
 where $T$ is the temperature, $\alpha$ is a coefficient of thermal expansion,
@@ -6549,7 +6566,7 @@ The dimensionless PDE system then becomes
 
 \begin{align}
 \bar \nabla((1+\beta)\bar\mu\bar\nabla\cdot\bar\u) + \bar\nabla\cdot(\bar\mu\bar\nabla\bar\u) &= \bar\nabla\bar T
--\epsilon\bar\varrho\bar\f,\\
+-\epsilon\bar\varrho\bar\f,\\ 
 \frac{\partial \bar T}{\partial \bar t} &= \bar \nabla\cdot(\bar\kappa\bar\nabla\bar T)\tp
 \end{align}
 Here we have chosen $u_c$ such that
@@ -6568,7 +6585,7 @@ A homogeneous body with constant $\varrho$, $\lambda$, $\mu$, $c$, and $\kappa$
 is common. The PDE system reduces in this case to
 
 \begin{align}
-\bar \nabla((1+\beta)\bar\nabla\cdot\bar\u) + \bar\nabla^2\bar\u) &= \bar\nabla\bar T -\epsilon\bar\f,\\
+\bar \nabla((1+\beta)\bar\nabla\cdot\bar\u) + \bar\nabla^2\bar\u) &= \bar\nabla\bar T -\epsilon\bar\f,\\ 
 \frac{\partial \bar T}{\partial \bar t} &= \bar \nabla^2\bar T\tp
 \end{align}
 In the absence of body forces, $\beta$ is again the key parameter.
@@ -6601,7 +6618,7 @@ without body forces, take the form
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u,
-\label{scale:fluid:NS:eq:momentum}\\
+\label{scale:fluid:NS:eq:momentum}\\ 
 \nabla\cdot\u & = 0\tp
 \label{scale:fluid:NS:eq:cont}
 \end{align}
@@ -6624,7 +6641,7 @@ Inserted in the equations,
 \begin{align}
 \varrho\left(\frac{u_c}{t_c}\frac{\partial \bar\u}{\partial \bar t} + \frac{u_c^2}{L}\bar\u\cdot\bar\nabla\bar\u\right)
 &= -\frac{p_c}{L}\bar\nabla\bar p + \frac{u_c}{L^2}\mu\bar \nabla^2\bar\u,
-\label{scale:fluid:NS:eq:momentum_d0}\\
+\label{scale:fluid:NS:eq:momentum_d0}\\ 
 \frac{u_c}{L}\bar\nabla\cdot\bar\u & = 0\tp
 \label{scale:fluid:NS:eq:cont_d0}
 \end{align}
@@ -6708,7 +6725,7 @@ The discussions so far results in the following dimensionless form of
 \frac{\partial \bar\u}{\partial \bar t} +
 \bar\u\cdot\bar\nabla\bar\u
 &= -\bar\nabla\bar p + \hbox{Re}^{-1}\bar\nabla^2\bar\u,
-\label{scale:fluid:NS:eq:momentum_d1}\\
+\label{scale:fluid:NS:eq:momentum_d1}\\ 
 \bar\nabla\cdot \bar\u &= 0,
 \end{align}
 where Re is the famous \emph{Reynolds number},
@@ -6758,7 +6775,7 @@ With this time scale, the dimensionless Navier-Stokes equations look like
 \frac{\partial \bar\u}{\partial \bar t} +
 \hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u
 &= -\bar\nabla p + \bar\nabla^2\bar\u,
-\label{scale:fluid:NS:eq:momentum_d2}\\
+\label{scale:fluid:NS:eq:momentum_d2}\\ 
 \bar\nabla\cdot\bar\u &= 0\tp
 \end{align}
 As stated in the box in Section~\ref{scale:convdiff}, (\ref{scale:fluid:NS:eq:momentum_d2}) is the appropriate PDE for very low Reynolds number flow and
@@ -6769,7 +6786,7 @@ flow:
 
 \begin{align}
 -\bar\nabla p + \bar\nabla^2\bar\u &= 0,
-\label{scale:fluid:NS:eq:momentum_d3}\\
+\label{scale:fluid:NS:eq:momentum_d3}\\ 
 \bar\nabla\cdot\bar\u &= 0\tp
 \end{align}
 This flow regime is also known as \emph{Stokes' flow} or \emph{creeping flow}.
@@ -6902,7 +6919,7 @@ energy of the flow.
 At a free surface, $z=\eta(x,y,t)$, the boundary conditions are
 
 \begin{align}
-w &= \frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta,\\
+w &= \frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta,\\ 
 p - p_0 & \approx
 -\sigma\left(\frac{\partial^2\eta}{\partial x^2} +
 \frac{\partial^2\eta}{\partial y^2}\right),
@@ -6922,7 +6939,7 @@ dimensionless quantities in the equations:
 \begin{align*}
 u_c\bar w &= \frac{L}{t_c}
 \frac{\partial\bar\eta}{\partial\bar t} +
-u_c\bar\u\cdot\bar\nabla\bar\eta,\\
+u_c\bar\u\cdot\bar\nabla\bar\eta,\\ 
 p_c \bar p &\approx
 -\frac{1}{L}\sigma\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
 \frac{\partial^2\bar\eta}{\partial \bar y^2}\right)\tp
@@ -6934,7 +6951,7 @@ Using $u_c=U$, $t_c=L/U$, and $p_c = \varrho U^2$, results in
 
 \begin{align}
 \bar w &= \frac{\partial\bar\eta}{\partial\bar t} +
-\bar\u\cdot\bar\nabla\bar\eta,\\
+\bar\u\cdot\bar\nabla\bar\eta,\\ 
 \bar p &\approx
 - \hbox{We}^{-1}\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
 \frac{\partial^2\bar\eta}{\partial \bar y^2}\right),
@@ -6973,9 +6990,9 @@ equations and the energy equation for the temperature:
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\label{scale:fluid:forced_convection:eq:momentum_T_forced}\\
+\label{scale:fluid:forced_convection:eq:momentum_T_forced}\\ 
 \nabla\cdot\u & = 0,
-\label{scale:fluid:forced_convection:eq:cont_T_forced}\\
+\label{scale:fluid:forced_convection:eq:cont_T_forced}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T\tp
 \label{scale:fluid:forced_convection:eq:energy_T_forced}
@@ -7002,8 +7019,8 @@ from which we can find a characteristic velocity $U$.
 Dimensionless parameters are introduced as follows:
 
 \[ \bar x = \frac{x}{L},
-\ t_c = \frac{L}{U},\
-\bar\u = \frac{\u}{U},\ \bar p = \frac{p}{\varrho_0 U^2},\
+\ t_c = \frac{L}{U},\ 
+\bar\u = \frac{\u}{U},\ \bar p = \frac{p}{\varrho_0 U^2},\ 
 \bar T = \frac{T-T_0}{T_c}\tp\]
 Other coordinates are also scaled by $L$.
 The characteristic temperature $T_c$ is chosen as some range $\Delta T$,
@@ -7018,9 +7035,9 @@ Inserted in the equations, we get
 \varrho_0\frac{U^2}{L}\bar \u\cdot\bar \nabla\bar\u
 &= -\frac{\varrho_0 U^2}{L}\bar\nabla \bar p + \frac{\mu U}{L^2}
 \bar \nabla^2\bar \u,
-\\
+\\ 
 \frac{U}{L}\bar\nabla\cdot\bar\u & = 0,
-\\
+\\ 
 \varrho_0 c\left(\frac{T_c U}{L}
 \frac{\partial \bar T}{\partial \bar t} +
 \frac{UT_c}{L}\bar\u\cdot\bar\nabla \bar T\right)
@@ -7033,9 +7050,9 @@ Making each term in each equation dimensionless reduces the system to
 \frac{\partial \bar\u}{\partial \bar t} +
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u,
-\label{scale:fluid:forced_convection:eq:momentum_TB0}\\
+\label{scale:fluid:forced_convection:eq:momentum_TB0}\\ 
 \bar\nabla\cdot\bar\u & = 0,
-\label{scale:fluid:forced_convection:eq:cont_TB0}\\
+\label{scale:fluid:forced_convection:eq:cont_TB0}\\ 
 \frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}
@@ -7069,9 +7086,9 @@ coupled to an energy equation governing the temperature:
 \begin{align}
 \varrho\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - \varrho g\kk,
-\label{scale:fluid:free_convection:eq:momentum_T}\\
+\label{scale:fluid:free_convection:eq:momentum_T}\\ 
 \frac{\partial\rho}{\partial t} + \nabla\cdot(\varrho\u) & = 0,
-\label{scale:fluid:free_convection:eq:cont_T}\\
+\label{scale:fluid:free_convection:eq:cont_T}\\ 
 \varrho c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij},
 \label{scale:fluid:free_convection:eq:energy_T}
@@ -7137,9 +7154,9 @@ take the form
 \begin{align}
 \varrho_0\left(\frac{\partial \u}{\partial t} + \u\cdot\nabla\u\right)
 &= -\nabla p + \mu\nabla^2\u - (\varrho_0 - \varrho_0\beta(T-T_0))g\kk,
-\label{scale:fluid:free_convection:eq:momentum_TB}\\
+\label{scale:fluid:free_convection:eq:momentum_TB}\\ 
 \nabla\cdot\u & = 0,
-\label{scale:fluid:free_convection:eq:cont_TB}\\
+\label{scale:fluid:free_convection:eq:cont_TB}\\ 
 \varrho_0 c\left(\frac{\partial T}{\partial t} + \u\cdot\nabla T\right)
 &= \kappa\nabla^2 T + 2\mu\varepsilon_{ij}\varepsilon_{ij}\tp
 \label{scale:fluid:free_convection:eq:energy_TB}
@@ -7150,8 +7167,8 @@ by Tritton \cite[Ch.~13]{Tritton}.
 \paragraph{Scaling.}
 Dimensionless variables are introduced as
 
-\[ \bar x = \frac{x}{L},\ \ t_c = \frac{L}{U},\
-\bar\u = \frac{\u}{U},\ \bar p = \frac{p}{\varrho U^2},\
+\[ \bar x = \frac{x}{L},\ \ t_c = \frac{L}{U},\ 
+\bar\u = \frac{\u}{U},\ \bar p = \frac{p}{\varrho U^2},\ 
 \bar T = \frac{T-T_0}{\Delta T}\tp\]
 The dimensionless $y$ and $z$ coordinates also make use of $L$ as scale.
 As in forced convection, we assume the characteristic temperature
@@ -7169,9 +7186,9 @@ results in
 \varrho_0\frac{U^2}{L}\bar \u\cdot\bar \nabla\bar\u
 &= -\frac{p_c}{L}\bar\nabla \bar p + \frac{\mu U}{L^2}
 \bar \nabla^2\bar \u - \varrho_0g\kk + \varrho_0\beta T_c\bar T g\kk,
-\\
+\\ 
 \frac{U}{L}\bar\nabla\cdot\bar\u & = 0,
-\\
+\\ 
 \varrho_0 c\left(\frac{T_c U}{L}
 \frac{\partial \bar T}{\partial \bar t} +
 \frac{UT_c}{L}\bar\u\cdot\bar\nabla \bar T\right)
@@ -7186,9 +7203,9 @@ These equations reduce to
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u
 - \hbox{Fr}^{-2}\kk  + \gamma \bar T\kk,
-\label{scale:fluid:free_convection:eq:momentum_TB0}\\
+\label{scale:fluid:free_convection:eq:momentum_TB0}\\ 
 \bar\nabla\cdot\bar\u & = 0,
-\label{scale:fluid:free_convection:eq:cont_TB0}\\
+\label{scale:fluid:free_convection:eq:cont_TB0}\\ 
 \frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
@@ -7304,9 +7321,9 @@ system becomes
 \bar \u\cdot\bar \nabla\bar\u
 &= -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \u
 - \hbox{Fr}^{-2}\kk  + \bar T \kk,
-\label{scale:fluid:free_convection:eq:momentum_TB1}\\
+\label{scale:fluid:free_convection:eq:momentum_TB1}\\ 
 \bar\nabla\cdot\bar\u & = 0,
-\label{scale:fluid:free_convection:eq:cont_TB1}\\
+\label{scale:fluid:free_convection:eq:cont_TB1}\\ 
 \hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
 \bar\u\cdot\bar\nabla \bar T\right)
 &= \hbox{Pr}^{-1}
@@ -7435,9 +7452,9 @@ equations of gas dynamics, can be written as
 
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\varrho\u) &= 0,
-\label{scale:Euler_eqs:mass}\\
+\label{scale:Euler_eqs:mass}\\ 
 \frac{\partial(\varrho\u)}{\partial t} + \nabla\cdot(\varrho\u\u^T) &= -\nabla p + \varrho \f,
-\label{scale:Euler_eqs:mom}\\
+\label{scale:Euler_eqs:mom}\\ 
 \frac{\partial E}{\partial t} + \nabla\cdot(\u(E+p)) &= 0,
 \label{scale:Euler_eqs:energy}
 \end{align}
@@ -7457,7 +7474,7 @@ relations:
 
 \begin{align}
 e &= c_v T,
-\label{scale:Euler_eqs:e}\\
+\label{scale:Euler_eqs:e}\\ 
 p &= \varrho RT = \frac{R}{c_v}(E-\half\varrho \u\cdot\u),
 \label{scale:Euler_eqs:p}
 \end{align}
@@ -7483,9 +7500,9 @@ and dimensionless dependent variables,
 Inserting these expressions in the governing equations gives
 
 \begin{align*}
-\frac{\partial\bar\varrho}{\partial\bar t} + \frac{t_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\
-\frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} + \frac{t_cU}{L}\bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &= -\frac{t_cp_c}{UL\varrho_c}\nabla\bar p + \frac{t_c f_c}{U}\bar\varrho \bar\f,\\
-\frac{\partial\bar E}{\partial\bar t} + \frac{t_c U}{LE_c }\bar\nabla\cdot(\bar\u(E_c\bar E+p_c\bar p)) &= 0,\\
+\frac{\partial\bar\varrho}{\partial\bar t} + \frac{t_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\ 
+\frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} + \frac{t_cU}{L}\bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &= -\frac{t_cp_c}{UL\varrho_c}\nabla\bar p + \frac{t_c f_c}{U}\bar\varrho \bar\f,\\ 
+\frac{\partial\bar E}{\partial\bar t} + \frac{t_c U}{LE_c }\bar\nabla\cdot(\bar\u(E_c\bar E+p_c\bar p)) &= 0,\\ 
 \bar p & = \frac{R}{c_v p_c}(E_c\bar E - \half\varrho_cu_c\bar\varrho\bar\u\cdot\bar\u)\tp
 \end{align*}
 A natural choice of time scale is $t_c=L/U$. A common choice of
@@ -7494,12 +7511,12 @@ we choose $E_c=p_c=\varrho_c U^2$. With these scales we get
 
 \begin{align*}
 \frac{\partial\bar\varrho}{\partial\bar t} +
-\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\
+\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\ 
 \frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} +
 \bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &=
--\nabla\bar p + \alpha\bar\varrho \bar\f,\\
+-\nabla\bar p + \alpha\bar\varrho \bar\f,\\ 
 \frac{\partial\bar E}{\partial\bar t} +
-\bar\nabla\cdot(\bar\u(\bar E+ \bar p)) &= 0,\\
+\bar\nabla\cdot(\bar\u(\bar E+ \bar p)) &= 0,\\ 
 \bar p & = \frac{R}{c_v}(\bar E - \half\bar\varrho\bar u\cdot\bar u),
 \end{align*}
 where $\alpha$ is a dimensionless number:
@@ -7522,7 +7539,7 @@ to
 
 \begin{align}
 \frac{\partial\varrho}{\partial t} + \nabla\cdot(\u\varrho) &=0,
-\label{scale:gas:acoustic:rho}\\
+\label{scale:gas:acoustic:rho}\\ 
 \varrho\frac{\partial\u}{\partial t} + \varrho\u\cdot\nabla\u + \nabla p &=0\tp
 \label{scale:gas:acoustic:u}
 \end{align}
@@ -7564,7 +7581,7 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 
 \begin{align*}
 \frac{\varrho_c}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
-+ \frac{\varrho_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
++ \frac{\varrho_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\ 
 \frac{\varrho_c U}{t_c}\bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar\u
@@ -7578,7 +7595,7 @@ $t_c = L/U$. This choice leads to the scaled PDEs
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
-\label{scale:gas:acoustic:isentropic:cont:s}\\
+\label{scale:gas:acoustic:isentropic:cont:s}\\ 
 \bar\varrho
 \frac{\partial\bar\u}{\partial\bar t} +
 \bar\varrho\bar\u\cdot\bar\nabla\bar\u
@@ -7612,7 +7629,7 @@ Introducing the perturbations $\hat\varrho = \varrho - \varrho_0$ and $\hat\u$,
 and (\ref{scale:gas:acoustic:u2}) take the form
 
 \begin{align*}
-\frac{\partial\hat\varrho}{\partial t} + \nabla\cdot(\hat\u(\varrho_0 + \hat\varrho) &=0,\\
+\frac{\partial\hat\varrho}{\partial t} + \nabla\cdot(\hat\u(\varrho_0 + \hat\varrho) &=0,\\ 
 (\varrho_0 + \hat\varrho)
 \frac{\partial\hat\u}{\partial t} + (\varrho_0+\hat\varrho)\hat\u\cdot\nabla\hat\u +
 c_0^2\left(1 + \frac{\hat\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\hat\varrho &=0\tp
@@ -7623,7 +7640,7 @@ $\hat\u$. Also, $1 + \hat\varrho/\varrho_0\approx 1$.
 This leaves us with the simplified system
 
 \begin{align*}
-\frac{\partial\hat\varrho}{\partial t} + \varrho_0\nabla\cdot\hat\u &=0,\\
+\frac{\partial\hat\varrho}{\partial t} + \varrho_0\nabla\cdot\hat\u &=0,\\ 
 \varrho_0\frac{\partial\hat\u}{\partial t} +
 c_0^2\nabla\hat\varrho &=0\tp
 \end{align*}
@@ -7661,7 +7678,7 @@ and (\ref{scale:gas:acoustic:u2}) results in
 
 \begin{align*}
 \alpha\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
-+ \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
++ \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\ 
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
 \frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\u
@@ -7680,7 +7697,7 @@ Using $t_c=L/u_0$ we get
 
 \begin{align*}
 \alpha \frac{\partial\bar\varrho}{\partial\bar t}
-+ \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
++ \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\ 
 (1 + \alpha\bar\varrho)
 \frac{\partial\bar\u}{\partial\bar t} +
 \hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
@@ -7694,7 +7711,7 @@ choose $\alpha=M$ (implying $\varrho_c = \varrho_0\hbox{M}$) to obtain
 
 \begin{align*}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+\bar\nabla\cdot((1+\hbox{M}\bar\varrho)\bar\u) &=0,\\
++\bar\nabla\cdot((1+\hbox{M}\bar\varrho)\bar\u) &=0,\\ 
 \frac{\partial\bar\u}{\partial\bar t} +
 \hbox{M}\bar\u\cdot\bar\nabla\bar\u +
 \left(1 + \hbox{M} \bar\varrho\right)^{\gamma-2}\bar\nabla\bar\varrho
@@ -7707,7 +7724,7 @@ Letting $\hbox{M}\rightarrow 0$ we arrive at the following linearized system of 
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
 + \bar\nabla\cdot\bar\u &=0,
-\label{scale:gas:acoustic:rho:s}\\
+\label{scale:gas:acoustic:rho:s}\\ 
 \frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
 \label{scale:gas:acoustic:u2:s}
 \end{align}
@@ -7750,7 +7767,7 @@ is governed by the Euler equations of motion on the form
 
 \begin{align}
 \nabla\cdot\u &=0,
-\label{scale:surfacewaves:cont}\\
+\label{scale:surfacewaves:cont}\\ 
 \frac{\partial\u}{\partial t} + \u\cdot\nabla\u + \frac{1}{\rho}\nabla p +g\mathbf{k}&=0\tp
 \label{scale:surfacewave:u}
 \end{align}
@@ -7760,7 +7777,7 @@ at the surface read
 
 \begin{align}
 p &=p_s,
-\label{scale:surfacewaves:dynsurf}\\
+\label{scale:surfacewaves:dynsurf}\\ 
 \frac{\partial\eta}{\partial t} + \u\cdot\nabla\eta &=w,
 \label{scale:surfacewave:kinsurf}
 \end{align}
@@ -7842,7 +7859,7 @@ number
 
 \begin{align}
 \bar \nabla\cdot\bar\u &=0,
-\label{scale:surfacewaves:cont:}\\
+\label{scale:surfacewaves:cont:}\\ 
 \frac{\partial\bar\u}{\partial \bar t} + \epsilon\bar \u\cdot\bar\nabla\bar\u + \bar\nabla \bar p_d&=0\tp
 \label{scale:surfacewave:u:s}
 \end{align}
@@ -7850,7 +7867,7 @@ The surface conditions, at $z=\epsilon \eta$, become
 
 \begin{align}
 \bar p_d &=\bar \eta,
-\label{scale:surfacewaves:dynsurf:s}\\
+\label{scale:surfacewaves:dynsurf:s}\\ 
 \frac{\partial\bar\eta}{\partial \bar t} + \epsilon \bar \u\cdot\bar\nabla\bar\eta &=\bar w,
 \label{scale:surfacewave:kinsurf:s}
 \end{align}
@@ -7887,8 +7904,8 @@ and the corresponding horizontal components of the gradient operator, $\bar\nabl
 
 \begin{align}
 \bar \nabla\cdot\bar\u_h +\frac{\partial \bar w}{\partial \bar z}&=0,
-\label{scale:surfacewaves:contskalert}\\
-\frac{\partial\bar\u_h}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\u_h+\alpha \bar w \frac{\partial \bar \u_h}{\partial \bar z} + \bar\nabla_h \bar p_d&=0,\\
+\label{scale:surfacewaves:contskalert}\\ 
+\frac{\partial\bar\u_h}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\u_h+\alpha \bar w \frac{\partial \bar \u_h}{\partial \bar z} + \bar\nabla_h \bar p_d&=0,\\ 
 \mu^2\left(\frac{\partial\bar\w}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\w+\alpha \bar w \frac{\partial \bar w}{\partial \bar z}\right) + \frac{\partial \bar p_d}{\partial \bar z}&=0.\tp
 \label{scale:surfacewave:uh}
 \end{align}
@@ -7896,7 +7913,7 @@ Surface conditions, at $z=\alpha \eta$, now become
 
 \begin{align}
 \bar p_d &=\bar \eta,
-\label{scale:surfacewaves:dynsurf:s2}\\
+\label{scale:surfacewaves:dynsurf:s2}\\ 
 \frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,
 \label{scale:surfacewave:kinsurf:s2}
 \end{align}
@@ -7932,32 +7949,32 @@ algebraic relations that govern the two primary unknowns $S$ and $P$:
 
 \begin{align}
 \nabla\cdot\v &= -(Q_n + Q_w),
-\label{scale:twoph:Peq}\\
+\label{scale:twoph:Peq}\\ 
 \v &= -\lambda_t\nabla P + \lambda_wp_c'(S)\nabla S + (\lambda_w\varrho_w
 + \lambda_n\varrho_n)g\kk,
-\label{scale:twoph:v_teq}\\
+\label{scale:twoph:v_teq}\\ 
 \phi\frac{\partial S}{\partial t} + f_w'(S)\v\cdot\nabla S &=
-\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\
+\nabla\cdot(h_w(S)p_c'(S)\nabla S) + \nonumber\\ 
 &\qquad\qquad g\frac{\partial G_w}{\partial z} + f_w(Q_n+Q_w) - Q_w,
-\label{scale:twoph:Seq}\\
+\label{scale:twoph:Seq}\\ 
 Q_w &= \frac{q_w}{\varrho_w},
-\label{scale:twoph:Q_w}\\
+\label{scale:twoph:Q_w}\\ 
 Q_n &= \frac{q_n}{\varrho_n},
-\label{scale:twoph:Q_n}\\
+\label{scale:twoph:Q_n}\\ 
 \lambda_w(S) &= \frac{K}{\mu_w}k_{rw}(S),
-\label{scale:twoph:lambda_w}\\
+\label{scale:twoph:lambda_w}\\ 
 \lambda_n(S) &= \frac{K}{\mu_n}k_{rn}(S),
-\label{scale:twoph:lambda_n}\\
+\label{scale:twoph:lambda_n}\\ 
 \lambda_t(S) &= \lambda_w(S) + \lambda_n(S),
-\label{scale:twoph:lambda_t}\\
+\label{scale:twoph:lambda_t}\\ 
 k_{rw}(S) &= K_{wm}\left\lbrack\frac{S-S_{wr}}{1-S_{nr}-S_{wr}}\right\rbrack^a,
-\label{scale:twoph:k_rw}\\
+\label{scale:twoph:k_rw}\\ 
 k_{rn}(S) &= K_{nm}\left\lbrack\frac{1-S-S_{nr}}{1-S_{nr}-S_{wr}}\right\rbrack^b,
-\label{scale:twoph:k_rn}\\
+\label{scale:twoph:k_rn}\\ 
 f_w(S) &= \frac{\lambda_w}{\lambda_t},
-\label{scale:twoph:f_w}\\
+\label{scale:twoph:f_w}\\ 
 G_w(S) &= h_w(S)(\varrho_n - \varrho_w),
-\label{scale:twoph:G_w}\\
+\label{scale:twoph:G_w}\\ 
 h_w(S) &= -\lambda_n(S)f_w(S)\tp
 \label{scale:twoph:h_w}
 \end{align}
@@ -7999,11 +8016,11 @@ It is also convenient to introduce dimensionless fractions of
 wetting and non-wetting fluid properties:
 
 \begin{align*}
-\varrho &\equiv \varrho_w,\\
-\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\
-\mu &\equiv\mu_w,\\
-\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\
-Q &\equiv Q_w = \frac{q_w}{\varrho},\\
+\varrho &\equiv \varrho_w,\\ 
+\varrho_n &= \varrho\alpha,\quad \alpha = \frac{\varrho_n}{\varrho_w},\\ 
+\mu &\equiv\mu_w,\\ 
+\mu_n &= \mu\beta,\quad \beta = \frac{\mu_n}{\mu_w},\\ 
+Q &\equiv Q_w = \frac{q_w}{\varrho},\\ 
 Q_n &= Q\frac{\gamma}{\alpha},\quad \gamma = \frac{q_n}{q_w}\tp
 \end{align*}
 We will benefit from making $\lambda_w$, $\lambda_n$, and $\lambda_t$
@@ -8011,9 +8028,9 @@ dimensionless:
 
 \begin{align*}
 \lambda_w(S) &= \frac{K}{\mu}k_{rw}(S) = \lambda_c\bar\lambda_w,\quad
-\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\
+\lambda_c=\frac{K}{\mu},\quad \bar\lambda_w = k_{rw},\\ 
 \lambda_n(S) &= \frac{K}{\mu}\beta^{-1}k_{rn}(S) = \lambda_c\beta^{-1}\bar\lambda_n,
-\quad\bar\lambda_n = k_{rn},\\
+\quad\bar\lambda_n = k_{rn},\\ 
 \lambda_t(S) &= \lambda_w(S) + \lambda_n(S) = \lambda_c\bar\lambda_t,\quad
 \bar\lambda_t = \bar \lambda_w +
 \beta^{-1}\bar\lambda_n\tp
@@ -8032,16 +8049,16 @@ Inserting the above scaled quantities in the governing PDEs results in
 
 \begin{align}
 \bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
-\label{scale:twoph:Peq:s0}\\
+\label{scale:twoph:Peq:s0}\\ 
 \bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
-\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\
+\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\ 
 &\quad\quad\frac{g\lambda_c\varrho}{v_c}
 (\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\label{scale:twoph:v_teq:s0}\\
+\label{scale:twoph:v_teq:s0}\\ 
 \phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
 \bar\nabla S &=
 \frac{t_c P_c\lambda_c}{L^2}
-\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\
+\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\ 
 &\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
 \label{scale:twoph:Seq:s0}
 \end{align}
@@ -8090,18 +8107,18 @@ final dimensionless form as
 
 \begin{align}
 \bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
-\label{scale:twoph:Peq:s}\\
+\label{scale:twoph:Peq:s}\\ 
 \bar\v &= -\bar\lambda_t\bar\nabla\bar P +
 \bar\lambda_w \bar p_c'(S)\bar\nabla S +
 \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
-\label{scale:twoph:v_teq:s}\\
+\label{scale:twoph:v_teq:s}\\ 
 \phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
 \bar\nabla S &= -
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
-\nonumber\\
+\nonumber\\ 
 &\quad\quad (\alpha -1)\beta^{-1}\delta
 (\bar\lambda_n'(S)f_w(S) + \bar\lambda_n(S)f_w'(S))
-\frac{\partial S}{\partial\bar z} +\nonumber\\
+\frac{\partial S}{\partial\bar z} +\nonumber\\ 
 &\quad\quad\epsilon f_w (1+\alpha^{-1}\gamma) -
 \epsilon\tp
 \label{scale:twoph:Seq:s}
@@ -8136,3 +8153,4 @@ $K_{nm}$, $S_{wr}$, $S_{nr}$, $a$, and $b$.
 
 \end{document}
 % #endif
+

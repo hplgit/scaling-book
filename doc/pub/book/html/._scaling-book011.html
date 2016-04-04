@@ -343,14 +343,18 @@ code { color: inherit; background-color: transparent; }
                u'scale:elasticity:stationary',
                u'scale:elasticity:stationary'),
               (u'Scaling of the PDE', 3, None, '___sec146'),
-              (u'Scaling of displacement boundary conditions',
+              (u'Remark on the characteristic displacement',
                3,
                None,
                '___sec147'),
-              (u'Scaling of traction boundary conditions',
+              (u'Scaling of displacement boundary conditions',
                3,
                None,
                '___sec148'),
+              (u'Scaling of traction boundary conditions',
+               3,
+               None,
+               '___sec149'),
               (u'Quasi-static thermo-elasticity',
                2,
                u'scale:elasticity:thermo',
@@ -362,53 +366,53 @@ code { color: inherit; background-color: transparent; }
               (u'The momentum equation without body forces',
                2,
                None,
-               '___sec151'),
-              (u'Scaling', 3, None, '___sec152'),
+               '___sec152'),
+              (u'Scaling', 3, None, '___sec153'),
               (u'Dimensonless PDEs and the Reynolds number',
                3,
                None,
-               '___sec153'),
+               '___sec154'),
               (u'Scaling of time for low Reynolds numbers',
                2,
                None,
-               '___sec154'),
-              (u'Shear stress as pressure scale', 2, None, '___sec155'),
-              (u'Gravity force and the Froude number', 2, None, '___sec156'),
+               '___sec155'),
+              (u'Shear stress as pressure scale', 2, None, '___sec156'),
+              (u'Gravity force and the Froude number', 2, None, '___sec157'),
               (u'Oscillating boundary conditions and the Strouhal number',
                2,
                None,
-               '___sec157'),
-              (u'Cavitation and the Euler number', 2, None, '___sec158'),
+               '___sec158'),
+              (u'Cavitation and the Euler number', 2, None, '___sec159'),
               (u'Free surface conditions and the Weber number',
                2,
                u'freesurface:Weber',
                u'freesurface:Weber'),
-              (u'Thermal convection', 1, None, '___sec160'),
-              (u'Forced convection', 2, None, '___sec161'),
+              (u'Thermal convection', 1, None, '___sec161'),
+              (u'Forced convection', 2, None, '___sec162'),
               (u'Free convection',
                2,
                u'scale:fluid:forced_convection',
                u'scale:fluid:forced_convection'),
-              (u'Governing equations', 3, None, '___sec163'),
-              (u'Heating by viscous effects', 3, None, '___sec164'),
+              (u'Governing equations', 3, None, '___sec164'),
+              (u'Heating by viscous effects', 3, None, '___sec165'),
               (u'Relation between density and temperature',
                3,
                None,
-               '___sec165'),
-              (u'The Boussinesq approximation', 3, None, '___sec166'),
-              (u'Scaling', 3, None, '___sec167'),
+               '___sec166'),
+              (u'The Boussinesq approximation', 3, None, '___sec167'),
+              (u'Scaling', 3, None, '___sec168'),
               (u'The Grashof, Prandtl, and Eckert numbers',
                2,
                None,
-               '___sec168'),
+               '___sec169'),
               (u'Interpretations of the Grashof number',
                3,
                None,
-               '___sec169'),
+               '___sec170'),
               (u'Heat transfer at boundaries and the Nusselt and Biot numbers',
                2,
                None,
-               '___sec170'),
+               '___sec171'),
               (u'Compressible gas dynamics',
                1,
                u'scale:gasdyn',
@@ -417,8 +421,8 @@ code { color: inherit; background-color: transparent; }
                2,
                u'scale:Euler_eqs',
                u'scale:Euler_eqs'),
-              (u'General isentropic flow', 2, None, '___sec173'),
-              (u'Elimination of the pressure', 3, None, '___sec174'),
+              (u'General isentropic flow', 2, None, '___sec174'),
+              (u'Elimination of the pressure', 3, None, '___sec175'),
               (u'The acoustic approximation for sound waves',
                2,
                u'scale:gas:acoustic',
@@ -426,11 +430,11 @@ code { color: inherit; background-color: transparent; }
               (u'Wave nature of isentropic flow with small perturbations',
                3,
                None,
-               '___sec176'),
+               '___sec177'),
               (u'Basic scaling for small wave perturbations',
                3,
                None,
-               '___sec177'),
+               '___sec178'),
               (u'Water surface waves driven by gravity',
                1,
                u'scale:surfacewaves',
@@ -439,11 +443,11 @@ code { color: inherit; background-color: transparent; }
                2,
                u'scale:surfacewaves:Eulereq',
                u'scale:surfacewaves:Eulereq'),
-              (u'Scaling', 2, None, '___sec180'),
-              (u'Waves in deep  water', 2, None, '___sec181'),
-              (u'Long waves in shallow water', 2, None, '___sec182'),
-              (u'Two-phase porous media flow', 1, None, '___sec183'),
-              (u'References', 1, None, '___sec184')]}
+              (u'Scaling', 2, None, '___sec181'),
+              (u'Waves in deep  water', 2, None, '___sec182'),
+              (u'Long waves in shallow water', 2, None, '___sec183'),
+              (u'Two-phase porous media flow', 1, None, '___sec184'),
+              (u'References', 1, None, '___sec185')]}
 end of tocinfo -->
 
 <body>
@@ -648,44 +652,45 @@ $$
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec144" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Time-varying load</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:stationary" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The stationary elasticity problem</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec146" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of the PDE</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of displacement boundary conditions</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec148" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of traction boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec147" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remark on the characteristic displacement</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec148" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of displacement boundary conditions</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec149" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of traction boundary conditions</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:elasticity:thermo" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Quasi-static thermo-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#sec:scale:ns" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;The Navier-Stokes equations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec151" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The momentum equation without body forces</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec152" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec153" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensonless PDEs and the Reynolds number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec154" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of time for low Reynolds numbers</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec155" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shear stress as pressure scale</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec156" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gravity force and the Froude number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec157" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating boundary conditions and the Strouhal number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec158" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavitation and the Euler number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec152" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The momentum equation without body forces</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec153" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec154" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dimensonless PDEs and the Reynolds number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec155" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling of time for low Reynolds numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec156" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Shear stress as pressure scale</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec157" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Gravity force and the Froude number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec158" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Oscillating boundary conditions and the Strouhal number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec159" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavitation and the Euler number</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#freesurface:Weber" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free surface conditions and the Weber number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec160" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Thermal convection</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec161" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec161" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Thermal convection</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec162" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:fluid:forced_convection" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free convection</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec163" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Governing equations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec164" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heating by viscous effects</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec165" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relation between density and temperature</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec166" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Boussinesq approximation</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec167" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec168" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Grashof, Prandtl, and Eckert numbers</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec169" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interpretations of the Grashof number</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec170" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat transfer at boundaries and the Nusselt and Biot numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec164" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Governing equations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec165" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heating by viscous effects</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec166" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relation between density and temperature</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec167" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Boussinesq approximation</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec168" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec169" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Grashof, Prandtl, and Eckert numbers</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec170" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Interpretations of the Grashof number</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec171" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heat transfer at boundaries and the Nusselt and Biot numbers</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gasdyn" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Compressible gas dynamics</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:Euler_eqs" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The Euler equations of gas dynamics</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec173" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec174" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec174" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;General isentropic flow</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec175" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Elimination of the pressure</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:gas:acoustic" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The acoustic approximation for sound waves</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec176" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec177" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec177" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Wave nature of isentropic flow with small perturbations</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec178" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Basic scaling for small wave perturbations</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:surfacewaves" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Water surface waves driven by gravity</a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book010.html#scale:surfacewaves:Eulereq" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The mathematical model</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec180" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec181" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec182" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Long waves in shallow water</a></li>
-     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec183" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec184" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec181" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Scaling</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec182" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Waves in deep  water</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec183" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Long waves in shallow water</a></li>
+     <!-- navigation toc: --> <li><a href="._scaling-book010.html#___sec184" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Two-phase porous media flow</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec185" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -701,7 +706,7 @@ $$
 <a name="part0011"></a>
 <!-- !split -->
 
-<h1 id="___sec184">References </h1>
+<h1 id="___sec185">References </h1>
 
 <p>
 <!-- begin bibliography -->
