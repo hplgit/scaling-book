@@ -8266,6 +8266,279 @@ where $A$ now is the cross-section *area*.
 The result is the 1D initial-boundary value problem
 (ref{scale:exer:twometal:eq1:1D})-(ref{scale:exer:twometal:eq3:1D}).
 !eremarks
+
+
+===== Problem: Scaling a welding problem =====
+label{diffu:exer:welding}
+file=welding
+
+Welding equipment makes a very localized heat source that moves
+in time. We shall investigate the heating due to welding and choose,
+for maximum simplicity, a one-dimensional heat equation with a
+fixed temperature at the ends (a 2D or 3D model with cooling conditions
+at the boundaries would be of greater physical significance, but
+now the scaling is in focus). We shall investigate two
+alternative scalings through numerical experimentation.
+
+The governing PDE problem reads
+
+!bt
+\begin{align*}
+\varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
++ f, & x\in (0,L),\ t\in (0,T),\\
+u(x,0) &= 0, & x\in [0,L],\\
+u(0,t) = u(L,t) &= 0, & t\in (0,T].
+\end{align*}
+!et
+Here, $u$ is the temperature, $\varrho$ the density of the material,
+$c$ a heat capacity, $k$ the heat conduction coefficient, and $f$ is
+the heat source from the welding equipment.
+
+A possible model for the heat source is a moving Gaussian function:
+
+!bt
+\[ f = A\exp{\left(-\frac{1}{2}\left(\frac{x-vt}{\sigma}\right)^2\right)},\]
+!et
+where $A$ is the strength, $\sigma$ is a parameter governing how
+peak-shaped (or localized in space) the heat source is, and
+$v$ is the velocity (in positive $x$ direction) of the source.
+
+!bsubex
+Let $x_c$, $t_c$, $u_c$, and $f_c$ be scales, i.e., characteristic
+sizes, of $x$, $t$, $u$, and $f$, respectively. The natural choice of
+$x_c$ and $f_c$ is $L$ and $A$, since these make the scaled $x$ and
+$f$ in the interval $[0,1]$.  If each of the three terms in the PDE
+are equally important, we can find $t_c$ and $u_c$ by demanding that
+the coefficients in the scaled PDE are all equal to unity.  Perform
+this scaling. Use scaled quantities in the arguments for the
+exponential function in $f$ too and show that
+
+!bt
+\[ \bar f= e^{-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2},\]
+!et
+where $\beta$ and $\gamma$ are dimensionless numbers. Give an
+interpretation of $\beta$ and $\gamma$.
+
+!bsol
+We introduce
+
+!bt
+\[ \bar x=\frac{x}{L},\quad \bar t = \frac{t}{t_c},\quad \bar u = \frac{u}{u_c},
+\quad \bar f=\frac{f}{A}\tp\]
+!et
+Inserted in the PDE and dividing by $\varrho c u_c/t_c$ such that the
+coefficient in front of $\partial\bar u/\partial\bar t$ becomes unity, and
+thereby all terms become dimensionless, we
+get
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{k t_c}{\varrho c L^2}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \frac{A t_c}{\varrho c u_c}\bar f\tp
+\]
+!et
+Demanding that all three terms are equally important, it follows that
+
+!bt
+\[ \frac{k t_c}{\varrho c L^2} = 1,\quad \frac{A t_c}{\varrho c u_c}=1\tp\]
+!et
+These constraints imply the *diffusion time scale*
+
+!bt
+\[ t_c = \frac{\varrho cL^2}{k},\]
+!et
+and a scale for $u_c$,
+
+!bt
+\[ u_c = \frac{AL^2}{k}\tp\]
+!et
+The scaled PDE reads
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{\partial^2\bar u}{\partial\bar x^2}
++ \bar f\tp\]
+!et
+
+Scaling $f$ results in
+
+!bt
+\begin{align*}
+\bar f &= \exp{\left(-\frac{1}{2}\left(\frac{x-vt}{\sigma}\right)^2\right)}\\
+&= \exp{\left(-\frac{1}{2}\frac{L^2}{\sigma^2}
+\left(\bar x- \frac{vt_c}{L}t\right)^2\right)}\\
+&= \exp{\left(-\frac{1}{2}\beta^2\left(\bar x-\gamma \bar t\right)^2\right)},
+\end{align*}
+!et
+where $\beta$ and $\gamma$ are dimensionless numbers:
+
+!bt
+\[ \beta = \frac{L}{\sigma},\quad
+\gamma = \frac{vt_c}{L} = \frac{v\varrho cL}{k}\tp\]
+!et
+The $\sigma$ parameter measures the width of the Gaussian peak, so
+$\beta$ is the ratio of the domain and the width of the heat source (large
+$\beta$ implies a very peak-formed heat source).  The $\gamma$
+parameter arises from $t_c/(L/v)$, which is the ratio of the diffusion
+time scale and the time it takes for the heat source to travel through
+the domain. Equivalently, we can multiply by $t_c/t_c$ to get $\gamma
+= v/(t_cL)$ as the ratio between the velocity of the heat source and
+the diffusion velocity.
+!esol
+!esubex
+
+!bsubex
+Argue that for large $\gamma$ we should base the time scale on the
+movement of the heat source. Show that this gives rise to the scaled
+PDE
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\gamma^{-1}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \bar f,
+\]
+!et
+and
+
+!bt
+\[ \bar f = \exp{(-\frac{1}{2}\beta^2(\bar x - \bar t)^2)}\tp\]
+!et
+Discuss when the scalings in a) and b) are appropriate.
+
+!bsol
+We perform the scaling as in a), but this time we determine $t_c$ such
+that the heat source moves with unit velocity. This means that
+
+!bt
+\[ \frac{vt_c}{L} = 1\quad\Rightarrow\quad t_c = \frac{L}{v}\tp\]
+!et
+Scaling of the PDE gives, as before,
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{k t_c}{\varrho c L^2}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \frac{A t_c}{\varrho c u_c}\bar f\tp
+\]
+!et
+Inserting the expression for $t_c$, we have
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{k L}{\varrho c L^2v}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \frac{A L}{v\varrho c u_c}\bar f\tp
+\]
+!et
+We recognize the first coefficient as $\gamma^{-1}$, while $u_c$ can
+be determined from demanding the second coefficient to be unity:
+
+!bt
+\[ u_c = \frac{AL}{v\varrho c}\tp\]
+!et
+The scaled PDE is therefore
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\gamma^{-1}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \bar f\tp\]
+!et
+If the heat source moves very fast, there is little time for the
+diffusion to transport the heat away from the source, and the heat
+conduction term becomes insignificant. This is reflected in the
+coefficient $\gamma^{-1}$, which is small when $\gamma$, the ratio of
+the heat source velocity and the diffusion velocity, is large.
+
+The scaling in a) is therefore appropriate if diffusion is a
+significant process, i.e., the welding equipment moves at a slow speed
+so heat can efficiently spread out by diffusion. For large $\gamma$,
+the scaling in b) is appropriate, and $t=1$ corresponds to having the
+heat source traveled through the domain (with the scaling in a), the
+heat source will leave the domain in short time).
+
+!esol
+!esubex
+
+!bsubex
+One aim with scaling is to get a solution that lies in the interval
+$[-1,1]$. This is not always the case when $u_c$ is based on a scale
+involving a source term, as we do in a) and b).  However, from the
+scaled PDE we realize that if we replace $\bar f$ with $\delta\bar f$,
+where $\delta$ is a dimensionless factor, this corresponds to
+replacing $u_c$ by $u_c/\delta$. So, if we observe that $\bar
+u\sim1/\delta$ in simulations, we can just replace $\bar f$ by $\delta
+\bar f$ in the scaled PDE.
+
+Use this trick and implement the two scaled models. Reuse software for
+the 1D diffusion equation.  Make a function `run(gamma, beta=10, delta=40,
+scaling=1, animate=False)` that runs an implementation of
+the unscaled model with the given
+$\gamma$, $\beta$, and $\delta$ parameters as well as an indicator
+`scaling` that is 1 for the scaling in a) and 2 for the scaling in
+b). The last argument can be used to turn screen animations on or off.
+
+Experiments show that with $\gamma=1$ and $\beta=10$, $\delta =20$
+is appropriate. Then $\max |\bar u|$ will be larger than 4 for $\gamma
+=40$, but that is acceptable.
+
+Equip the `run` function with visualization, both animation of $\bar u$
+and $\bar f$, and plots with $\bar u$ and $\bar f$ for $t=0.2$ and $t=0.5$.
+
+!bhint
+Since the amplitudes of $\bar u$ and $\bar f$ differs by a factor $\delta$,
+it is attractive to plot $\bar f/\delta$ together with $\bar u$.
+!ehint
+
+!bsol
+Here is a possible general `solver` function for solving the 1D
+diffusion equation:
+
+@@@CODE exer-scaling/welding.py fromto: import numpy@def run
+
+And here is our `run` function tailored to the problem:
+
+@@@CODE exer-scaling/welding.py fromto: def run@def investigate
+Note that we have dropped the bar notation in the plots. It is common
+to drop the bars as soon as the scaled problem is established.
+!esol
+!esubex
+
+!bsubex
+Use the software in c) to investigate $\gamma=0.2,1,5,40$ for the
+two scalings. Discuss the results.
+
+!bsol
+For these investigations, we compare the two scalings for each of
+the different $\gamma$ values. An appropriate function for automating
+the tasks is
+
+@@@CODE exer-scaling/welding.py fromto: def investigate@if __name__
+
+We get the following plots:
+
+FIGURE: [fig-scaling/welding_gamma0_025, width=800 frac=1]
+
+FIGURE: [fig-scaling/welding_gamma0_2, width=800 frac=1]
+
+FIGURE: [fig-scaling/welding_gamma1, width=800 frac=1]
+
+FIGURE: [fig-scaling/welding_gamma5, width=800 frac=1]
+
+FIGURE: [fig-scaling/welding_gamma40, width=800 frac=1]
+
+For $\gamma\ll 1$ as in $\gamma = 0.025$, the heat source moves very
+slowly on the diffusion time scale and has hardly entered the medium,
+while the scaling in b) is not inappropriate, but a larger $\delta$ is
+needed to bring $\bar u$ around unity.  We see that for $\gamma=0.2$,
+each of the scalings work, but with the diffusion time scale, the heat
+source has not moved much into the domain. For $\gamma=1$, the
+mathematical problems are identical and hence the plots too. For
+$\gamma=5$, the time scale based on the source is clearly the best
+choice, and for $\gamma=40$, only this scale is appropriate.
+
+A conclusion is that the scaling in b) works well for a range of $\gamma$
+values, also in the case $\gamma\ll 1$.
+!esol
+!esubex
+
 % endif
 
 !split
