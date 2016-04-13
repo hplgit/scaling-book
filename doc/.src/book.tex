@@ -84,58 +84,60 @@
 \definecolor{cbg_blue1}{rgb}{0.87843, 0.95686, 1.0}
 \definecolor{bar_blue1}{rgb}{0.7,     0.95686, 1}
 
-%\setlength{\fboxsep}{-1.5mm}  % adjust cod_vpad/pro_vpad background box
+\usepackage{listingsutf8}
 
-%% Background for code blocks (parameter is color name)
+% Common lstlisting parameters
 
-%% pro/cod_vpad: gives some vertical padding before and after the text
-%% (but has more simplistic code than _cod/pro_tight+cod/pro).
-%% pro/cod_vpad can be used to enclose Verbatim or lst begin/end for code.
-%% pro/cod calls _pro/cod_tight and has very little vertical padding,
-%% used to enclose Verbatim and other begin/end for code.
-%% (pro/cod is what the ptex2tex program could produce with the
-%% Blue/BlueBar definitions in .ptex2tex.cfg.)
+\usepackage{calc}
+\newlength{\lstboxwidth}  % width of lst box
+\newlength{\framethickness}
+\setlength{\framethickness}{0.5mm}
+% for frame=trbl and a framerule that has significant size, set
+% xleftmargin=5mm and xrightmargin=5mm.
 
-\newenvironment{cod_vpad}[1]{
-   \def\FrameCommand{\colorbox{#1}}
-   \MakeFramed{\FrameRestore}}
-   {\endMakeFramed}
+\lstset{
+  basicstyle=\small \ttfamily,
+  breaklines=false,          % break/wrap lines
+  breakatwhitespace=true,    % let linebreaks happen at whitespace
+  breakindent=40pt,
+  tab=,
+  tabsize=4,                 % tab means 4 spaces
+  %belowskip=\smallskipamount,  % space between code and text below
+  xleftmargin=2mm,           % indentation of code frame
+  xrightmargin=0mm,
+  framexleftmargin=2mm,      % add frame space to the left of the code box
+  %numbers=left,             % put line numbers on the left
+  %stepnumber=2,             % stepnumber=1 numbers each line, =n every n lines
+  framerule=\framethickness, % thickness of frame
+  aboveskip=2ex,             % vertical space above code frame
+  showstringspaces=false,    % show spaces in strings with an underscore
+  showspaces=false,          % show spaces with an underscore
+  showtabs=false,
+  keepspaces=true,
+  columns=fullflexible,      % tighter character kerning, like verb
+  escapeinside={(*@}{@*)},   % (*@ \pause @*) in slides and math in code blocks
+  extendedchars=\true,       % allows non-ascii chars, does not work with utf-8
+}
 
-\newenvironment{_cod_tight}[1]{
-   \def\FrameCommand{\colorbox{#1}}
-   \FrameRule0.6pt\MakeFramed {\FrameRestore}\vskip3mm}
-   {\vskip0mm\endMakeFramed}
+% Internally defined styles for lstlisting
 
-\newenvironment{cod}[1]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{_cod_tight}{#1}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{_cod_tight}\egroup}
+% Use this one without additional background color
+\lstdefinestyle{graycolor}{
+backgroundcolor=\color{cbg_gray},
+%frame=tb,                            % include frame
+%framerule=1mm                        % thickness of frame
+%linewidth=100mm                      % box width
+keywordstyle=\color{black},
+commentstyle=\color{myteal},
+stringstyle=\color{darkgreen},
+identifierstyle=\color{darkblue},
+}
 
-%% Background for complete program blocks (parameter 1 is color name
-%% for background, parameter 2 is color for left bar)
-\newenvironment{pro_vpad}[2]{
-   \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
-   \MakeFramed{\FrameRestore}}
-   {\endMakeFramed}
+\lstdefinestyle{simple}{
+commentstyle={},
+}
 
-\newenvironment{_pro_tight}[2]{
-   \def\FrameCommand{\color{#2}\vrule width 1mm\normalcolor\colorbox{#1}}
-   \FrameRule0.6pt\MakeFramed {\advance\hsize-2mm\FrameRestore}\vskip3mm}
-   {\vskip0mm\endMakeFramed}
-
-\newenvironment{pro}[2]{
-\bgroup\rmfamily
-\fboxsep=0mm\relax
-\begin{_pro_tight}{#1}{#2}
-\list{}{\parsep=-2mm\parskip=0mm\topsep=0pt\leftmargin=2mm
-\rightmargin=2\leftmargin\leftmargin=4pt\relax}
-\item\relax}
-{\endlist\end{_pro_tight}\egroup}
-
+% end of custom lstdefinestyles
 
 \usepackage[T1]{fontenc}
 %\usepackage[latin1]{inputenc}
@@ -1028,7 +1030,7 @@ the units. In particular,
 yards are specified by \texttt{yd}, minutes by \texttt{min}, and hours
 by \texttt{h}. We can now compute $s=vt$ as follows:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> # With ScientificPython:
 >>> from Scientific.Physics.PhysicalQuantities import \ 
 ... PhysicalQuantity as PQ
@@ -1040,45 +1042,37 @@ by \texttt{h}. We can now compute $s=vt$ as follows:
 >>> s = v*t                # distance
 >>> print s                # s is string
 120.0 h*yd/min
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The odd unit \texttt{h*yd/min} is better converted to a standard SI unit such
 as meter:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> s.convertToUnit('m')
 >>> print s
 6583.68 m
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Note that \texttt{s} is a \texttt{PhysicalQuantity} object with a value and a
 unit. For mathematical computations we need to extract the
 value as a \texttt{float} object. We can also extract the unit as a string:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> print s.getValue()     # float
 6583.68
 >>> print s.getUnitName()  # string
 m
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 
 Here is an example on how to convert the odd velocity unit yards per
 minute to something more standard:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> v.convertToUnit('km/h')
 >>> print v
 6.58368 km/h
 >>> v.convertToUnit('m/s')
 >>> print v
 1.8288 m/s
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 
 % Sometimes you find physical quantities in the literature or on the web
 % with units that you do not want to use. The \texttt{convertToUnit} method is
@@ -1089,14 +1083,12 @@ be 1 $\hbox{cal}\, \hbox{g}^{-1}\hbox{K}^{-1}$. What is the
 corresponding value in the standard unit $\hbox{Jg}^{-1}\hbox{K}^{-1}$
 where joule replaces calorie?
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> c = PQ('1 cal/(g*K)')
 >>> c.convertToUnit('J/(g*K)')
 >>> print c
 4.184 J/K/g
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 
 \section{Parampool: user interfaces with automatic unit conversion}
 \label{scale:parampool}
@@ -1132,7 +1124,7 @@ three input parameters:
 $v_0$, $a$, and $t$. These parameters are put in a subpool called
 ``Main''. The pool is created by the code
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def define_input():
     pool = [
         'Main', [
@@ -1145,9 +1137,7 @@ def define_input():
     from parampool.pool.UI import listtree2Pool
     pool = listtree2Pool(pool)  # convert list to Pool object
     return pool
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 For each parameter we can define a logical name, such as \texttt{initial velocity},
 a default value, and a unit. Additional properties
 are also allowed, see the \href{{http://hplgit.github.io/parampool/doc/web/index.html}}{Parampool documentation}\footnote{\texttt{http://hplgit.github.io/parampool/doc/web/index.html}}.
@@ -1170,16 +1160,14 @@ the \texttt{str2type} property, e.g., \texttt{str2type=float}.)
 We can make a little function for fetching values from the pool
 and computing $s$:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def distance(pool):
     v_0 = pool.get_value('initial velocity')
     a = pool.get_value('acceleration')
     t = pool.get_value('time')
     s = v_0*t + 0.5*a*t**2
     return s
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The \Verb!pool.get_value! function returns the numerical value of
 the named parameter, after the unit has been converted from what the
 user has specified to what was registered in the pool.
@@ -1192,16 +1180,14 @@ For example, if the user provides the command-line argument
 To run the computations, we define the pool, load values from the
 command line, and call \texttt{distance}:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 pool = define_input()
 from parampool.menu.UI import set_values_from_command_line
 pool = set_values_from_command_line(pool)
 
 s = distance(pool)
 print 's=%g' % s
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 
 Parameter names with whitespace must use an underscore for whitespace
 in the command-line option, such as in \Verb!--Initial_velocity!.
@@ -1217,15 +1203,13 @@ Notice from the answer (\texttt{s}) that 10 km/h gets converted to m/s and 1 h t
 It is also possible to fetch parameter values as \texttt{PhysicalQuantity}
 objects from the pool by calling
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 v_0 = pool.get_value_unit('Initial velocity')
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The following variant of the \texttt{distance} function computes with
 values and units:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def distance_unit(pool):
     # Compute with units
     from parampool.PhysicalQuantities import PhysicalQuantity as PQ
@@ -1234,17 +1218,13 @@ def distance_unit(pool):
     t = pool.get_value_unit('time')
     s = v_0*t + 0.5*a*t**2
     return s.getValue(), s.getUnitName()
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 We can then do
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 s, s_unit = distance_unit(pool)
 print 's=%g' % s, s_unit
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 and get output with the right unit as well.
 
 \subsection{Setting default values in a file}
@@ -1254,24 +1234,20 @@ to define a (huge) set of default values specific for a case and then
 override a few of them on the command-line. Such sets of default values
 can be set in a file using syntax like
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 subpool Main
 initial velocity = 100 ! yd/min
 acceleration = 0 ! m/s**2         # drop acceleration
 end
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The unit can be given after the \Verb?!? symbol (and before the comment symbol \Verb!#!).
 
 To read such files we have to add the lines
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from parampool.pool.UI import set_defaults_from_file
 pool = set_defaults_from_file(pool)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 before the call to \Verb!set_defaults_from_command_line!.
 
 If the above commands are stored in a file \texttt{distance.dat}, we give
@@ -1311,7 +1287,7 @@ were specified for the parameter in question. By nesting loops over
 all parameters, we visit all combinations of all parameters as
 specified by the user:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def distance_table(pool):
     """Grab multiple values of parameters from the pool."""
     table = []
@@ -1321,9 +1297,7 @@ def distance_table(pool):
                 s = v_0*t + 0.5*a*t**2
                 table.append((v_0, a, t, s))
     return table
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 In case just a single value was specified for a parameter, \Verb!pool.get_values!
 returns this value only and there will be only one pass in the associated
 loop.
@@ -1332,7 +1306,7 @@ After loading command-line arguments into our \texttt{pool} object, we can call
 \Verb!distance_table! instead of \texttt{distance} or \Verb!distance_unit! and
 write out a nicely formatted table of results:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 table = distance_table(pool)
 print '|-----------------------------------------------------|'
 print '|      v_0   |      a     |      t     |      s       |'
@@ -1340,9 +1314,7 @@ print '|-----------------------------------------------------|'
 for v_0, a, t, s in table:
     print '|%11.3f | %10.3f | %10.3f | %12.3f |' % (v_0, a, t, s)
 print '|-----------------------------------------------------|'
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Here is a sample run,
 
 \begin{Verbatim}[frame=lines,label=\fbox{{\tiny Terminal}},framesep=2.5mm,framerule=0.7pt,fontsize=\fontsize{9pt}{9pt}]
@@ -1386,25 +1358,21 @@ For the fun of it, we can easily generate a graphical user interface
 via Parampool. We wrap the \Verb!distance_unit! function in a function that
 returns the result in some nice-looking HTML code:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def distance_unit2(pool):
     # Wrap result from distance_unit in HTML
     s, s_unit = distance_unit(pool)
     return '<b>Distance:</b> %.2f %s' % (s, s_unit)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 In addition, we must make a file \Verb!generate_distance_GUI.py! with the
 simple content
 
-\begin{pro}{cbg_gray}{bar_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from parampool.generator.flask import generate
 from distance import distance_unit2, define_input
 
 generate(distance_unit2, pool_function=define_input, MathJax=True)
-\end{Verbatim}
-\end{pro}
-\noindent
+\end{lstlisting}
 Running \Verb!generate_distance_GUI.py! creates a Flask-based web
 interface\footnote{You need to have Flask and additional packages installed. This is easy to do with a few \texttt{pip install} commands, see \cite{parampool} or \cite{web4sciapps}.}
 to our \Verb!distance_unit! function, see Figure~\ref{scale:dimunit:fig:GUI}.
@@ -1746,7 +1714,7 @@ Assume that we have some module \texttt{decay.py} that offers the following func
 The basic statements for solving (\ref{scale:model}) are
 then
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from decay import solver, read_command_line_argparse
 I, a, T, theta, dt_values = read_command_line_argparse()
 u, t = solver(I, a, T, dt_values[0], theta)
@@ -1754,9 +1722,7 @@ u, t = solver(I, a, T, dt_values[0], theta)
 from matplotlib.pyplot import plot, show
 plot(t, u)
 show()
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The module \href{{http://tinyurl.com/o8pb3yy/decay.py}}{\nolinkurl{decay.py}} is developed
 and explained in
 Section~\ref{softeng1:basic:module} in \cite{Langtangen_decay}.
@@ -1764,12 +1730,10 @@ Section~\ref{softeng1:basic:module} in \cite{Langtangen_decay}.
 To solve the dimensionless problem, just fix $I=1$ and $a=1$,
 and choose $\bar T$ and $\Delta\bar t$:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 _, _, T, theta, dt_values = read_command_line_argparse()
 u, t = solver(I=1, a=1, T=T, dt=dt_values[0], theta=theta)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The first two variables returned from \Verb!read_command_line_argparse!
 are \texttt{I} and \texttt{a}, which are ignored here. To indicate that these
 variables are not to be used, we use a
@@ -1830,7 +1794,7 @@ First we make a \Verb!solver_scaled! function for the scaled
 model that just calls up a \Verb!solver_unscaled! (with $I=a=1$) for the problem with
 dimensions:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from decay import solver as solver_unscaled
 import numpy as np
 import matplotlib.pyplot as plt
@@ -1841,29 +1805,25 @@ def solver_scaled(T, dt, theta):
     """
     print 'Computing the numerical solution'
     return solver_unscaled(I=1, a=1, T=T, dt=dt, theta=theta)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Then we create some ``computer memory on disk'', i.e., some disk space to
 store the result of a call to the \Verb!solver_scaled! function. Thereafter,
 we redefine the name \Verb!solver_scaled! to a new function, created
 by \texttt{joblib}, which calls our original \Verb!solver_scaled! function
 if necessary and otherwise loads data from file:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 import joblib
 disk_memory = joblib.Memory(cachedir='temp')
 solver_scaled = disk_memory.cache(solver_scaled)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The solutions are actually stored in files in the cache directory \texttt{temp}.
 
 A typical use case is to read values from the command line,
 solve the scaled problem (if necessary), unscale the solution, and visualize
 the solution with dimension:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def unscale(u_scaled, t_scaled, I, a):
     return I*u_scaled, a*t_scaled
 
@@ -1890,9 +1850,7 @@ def main():
     plt.title('I=%g, a=%g, theta=%g' % (I, a, theta))
     plt.savefig('tmp2.png'); plt.savefig('tmp2.pdf')
     plt.show()
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The complete code resides in the file
 \href{{http://tinyurl.com/o8pb3yy/decay_scaled.py}}{\nolinkurl{decay_scaled.py}}.
 Note from the code above that \Verb!read_command_line_argparse! is supposed
@@ -1960,7 +1918,7 @@ the returned results in a
 dictionary, and if the arguments are seen again, one looks up
 in the dictionary and returns previously computed results:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 class Memoize:
     def __init__(self, f):
         self.f = f
@@ -1973,9 +1931,7 @@ def __call__(self, *args):
 
 # Wrap my_compute_function(arg1, arg2, ...)
 my_compute_function = Memoize(my_compute_function)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The memoize functionality in \texttt{joblib.Memory} is more sophisticated and
 can work very efficiently with large array data structures as arguments.
 Note that the simple version above can only be used when all arguments to
@@ -2024,77 +1980,65 @@ Let us therefore demonstrate how SymPy can be used to find this solution.
 First we define the parameters in the problem as symbols
 and $u(t)$ as a function:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> from sympy import *
 >>> t, a, b, I = symbols('t a b I', real=True, positive=True)
 >>> u = symbols('u', cls=Function)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The next task is to define the differential equation, either as
 a symbolic expression that is to equal zero, or as
 an equation \texttt{Eq(lhs, rhs)} with \texttt{lhs} and \texttt{rhs} as expressions for
 the left- and right-hand side):
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> # Define differential equation
 >>> eq = diff(u(t), t) + a*u(t) - b
 >>> # or
 >>> eq = Eq(diff(u(t), t), -a*u(t) + b)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The differential equation can be solved by the \texttt{dsolve} function, yielding
 an equation of the form \texttt{u(t) == expression}. We want to grab the
 expression on the right-hand side as our solution:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> sol = dsolve(eq, u(t))
 >>> print sol
 u(t) == (b + exp(a*(C1 - t)))/a
 >>> u = sol.rhs                    # grab solution
 >>> print u
 (b + exp(a*(C1 - t)))/a
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The solution contains the unknown integration constant \texttt{C1}, which must
 be determined by the initial condition. We form the equation arising
 from the initial condition $u(0)=I$:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> C1 = symbols('C1')
 >>> eq = Eq(u.subs(t, 0), I)   # substitute t by 0 in u
 >>> sol = solve(eq, C1)
 >>> print sol
 [log(I*a - b)/a]
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The one solution that was found (stored in a list!)
 must then be substituted back in the
 expression \texttt{u} to yield the final solution:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> u = u.subs(C1, sol[0])
 >>> print u
 (b + exp(a*(-t + log(I*a - b)/a)))/a
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 As in mathematics with pen and paper, we strive to simplify
 expressions also in symbolic computing software.
 This frequently requires some trial and error
 process with SymPy's simplification functions. A very standard
 first try is to expand everything and run simplification algorithms:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> u = simplify(expand(u))
 >>> print u
 (I*a + b*exp(a*t) - b)*exp(-a*t)/a
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Doing \texttt{latex(u)} automatically converts the expression to {\LaTeX} syntax
 for inclusion in reports.
 \end{notice_mdfboxadmon}
@@ -2217,7 +2161,7 @@ $t\in (0,T]$, $u(0)=I$, with time step \texttt{dt}.
 We reuse this function and call it with $a=b=1$ and $I=\beta$ to solve
 the scaled problem:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from decay_vc import solver as solver_unscaled
 
 def solver_scaled(beta, T, dt, theta=0.5):
@@ -2233,12 +2177,10 @@ def solver_scaled(beta, T, dt, theta=0.5):
 import joblib
 disk_memory = joblib.Memory(cachedir='temp')
 solver_scaled = disk_memory.cache(solver_scaled)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 If we want to plot the physical solution, we need an \texttt{unscale} function,
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def unscale(u_scaled, t_scaled, d, mu, rho, rho_b, V):
     a, b = ab(d, mu, rho, rho_b, V)
     return (b/a)*u_scaled, a*t_scaled
@@ -2248,9 +2190,7 @@ def ab(d, mu, rho, rho_b, V):
     a = 3*pi*d*mu/(rho_b*V)
     b = g*(rho/rho_b - 1)
     return a, b
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 
 Looking at droplets of water in air, we can fix some of the parameters
 and let the size parameter $d$ be the one for experimentation.
@@ -2259,7 +2199,7 @@ runs the solver for the scaled problem (\texttt{joblib} detects
 if it is necessary), and finally plots the scaled curve
 $\bar u(\bar t)$ and the unscaled curve $u(t)$.
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def main(dt=0.075, # Time step, scaled problem
          T=7.5,    # Final time, scaled problem
          d=0.001,  # Diameter (unscaled problem)
@@ -2305,9 +2245,7 @@ def main(dt=0.075, # Time step, scaled problem
     plt.figure(1)
     plt.xlabel('scaled time'); plt.ylabel('scaled velocity')
     plt.legend(legends1, loc='lower right')
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The most complicated part of the code is related to plotting, but
 this part can be skipped when trying to understand how we work with
 a scaled model to perform the computations.
@@ -2526,7 +2464,7 @@ original differential equation, we have
 With $T_s(t)=T_m + a\sin (\omega t)$ we can use SymPy to help us with
 integrations (note that we use \texttt{w} for $\omega$ in the computer code):
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> from sympy import *
 >>> t, k, T_m, a, w = symbols('t k T_m a w', real=True, positive=True)
 >>> T_s = T_m + a*sin(w*t)
@@ -2538,9 +2476,7 @@ integrations (note that we use \texttt{w} for $\omega$ in the computer code):
 (-T_m*k**2 - T_m*w**2 + a*k*w +
 (T_m*k**2 + T_m*w**2 + a*k**2*sin(t*w) -
 a*k*w*cos(t*w))*exp(k*t))*exp(-k*t)/((k**2 + w**2))
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Reordering the result, we get
 
 \[ T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + \omega^2)^{-1}(ak\omega e^{-kt}
@@ -3414,44 +3350,38 @@ ODEs that are harder to solve by hand.
 
 SymPy requires all mathematical symbols to be explicitly created:
 
-\begin{pro}{cbg_gray}{bar_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from sympy import *
 u = symbols('u', cls=Function)
 w = symbols('w', real=True, positive=True)
 I, V, C1, C2 = symbols('I V C1 C2', real=True)
-\end{Verbatim}
-\end{pro}
-\noindent
+\end{lstlisting}
 To specify the ODE to be solved, we can make a Python function returning
 all the terms in the ODE:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 # Define differential equation: u'' + w**2*u = 0
 def ode(u):
     return diff(u, t, t) + w**2*u
 
 diffeq = ode(u(t))
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The \texttt{diffeq} variable, defining the ODE, can be passed to the SymPy
 function \texttt{dsolve} to find the symbolic solution of the ODE:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 s = dsolve(diffeq, u(t))
 # s is an u(t) == expression (Eq obj.), s.rhs grabs the expression
 u_sol = s.rhs
 print u_sol
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The solution that gets printed is \texttt{C1*sin(t*w) + C2*cos(t*w)}, indicating
 that there are two integration constants \texttt{C1} and \texttt{C2} to be determined
 by the initial conditions. The result of applying these conditions is
 a $2\times 2$ linear system of algebraic equations that SymPy can solve
 by the \texttt{solve} function. The code goes as follows:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 # The solution u_sol contains integration constants C1 and C2
 # but these are not symbols, substitute them by symbols
 u_sol = u_sol.subs('C1', C1).subs('C2', C2)
@@ -3464,22 +3394,18 @@ s = solve(ic, [C1, C2])
 # substitute solution back in u_sol
 u_sol = u_sol.subs(C1, s[C1]).subs(C2, s[C2])
 print u_sol
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The \Verb!u_sol! variable is now \texttt{I*cos(t*w) + V*sin(t*w)/w}.
 Since symbolic software is far from bug-free and can give wrong results,
 we should always check the answer. Here, we insert the solution in the ODE
 to see if the result is zero, and we insert the solution in the initial
 conditions to see that these are fulfilled:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 # Check that the solution fulfills the ODE and init.cond.
 print simplify(ode(u_sol)),
 print u_sol.subs(t, 0) - I, diff(u_sol, t).subs(t, 0) - V
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 There will be many more examples on using SymPy to find exact solutions
 of differential equation problems.
 
@@ -3657,7 +3583,7 @@ unscaled counterparts, but right now our task is to solve the unscaled version).
 The amplitude $A/m$ in the forcing term is of this reason
 replaced by the symbol \texttt{A1}.
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 A, A1, m, psi = symbols('A A1 m psi', positive=True, real=True)
 def ode(u):
     return diff(u, t, t) + w**2*u - A1*cos(psi*t)
@@ -3681,17 +3607,13 @@ print simplify(diff(u_sol, t).subs(t, 0) - V)
 
 u_sol = simplify(expand(u_sol.subs(A1, A/m)))
 print u_sol
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The output from the last line is
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 A/m*cos(psi*t)/(-psi**2 + w**2) + V*sin(t*w)/w +
 (A/m + I*psi**2 - I*w**2)*cos(t*w)/(psi**2 - w**2)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 With a bit of rewrite this expression becomes
 
 % Note that the solution becomes a bit simpler of F is cos rather than sin
@@ -4032,15 +3954,13 @@ choice of scales.
 Using SymPy to solve (\ref{sec:scale:vib:damped:F:model}) is, in principle,
 very straightforward:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 >>> diffeq = diff(u(t), t, t) + b/m*diff(u(t), t) + w**2*u(t)
 >>> s = dsolve(diffeq, u(t))
 >>> s.rhs
 C1*exp(t*(-b - sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m)) +
 C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 This is indeed the correct solution, but it is on a complex
 exponential function form, valid for all $b$, $m$, and $\omega$. We are
 interested in the case with \emph{small damping}, $b < 2m\omega$, where the solution
@@ -4066,7 +3986,7 @@ number of parameters in the equations!
 
 The following SymPy steps derives the solution of the homogeneous ODE:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 u = symbols('u', cls=Function)
 t, w, B, A, A1, m, psi = symbols('t w B A A1 m psi',
                                  positive=True, real=True)
@@ -4099,9 +4019,7 @@ u2 = exp(d*t)*sin(omega*t)
 C1, C2, V, I = symbols('C1 C2 V I', real=True)
 u_h = simplify(C1*u1 + C2*u2)
 print 'u_h:', u_h
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 The print out shows
 
 \[ u_h = e^{-Bt}\left(C_1 \cos(\sqrt{\omega^2 - B^2}t) +
@@ -4112,11 +4030,9 @@ differential equation:
 
 \index{assert@{\rm\texttt{assert}}}
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 assert simplify(ode(u_h)) == 0
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 We have previously just printed the residuals of the ODE and initial
 conditions after inserting the solution, but it is better in a code to
 let the programming language test that the residuals are symbolically zero.
@@ -4132,7 +4048,7 @@ The ansatz for the particular solution $u_p$ is
 which inserted in the ODE gives two equations
 for $C_3$ and $C_4$. The relevant SymPy statements are
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 # Particular solution
 C3, C4 = symbols('C3 C4')
 u_p = C3*cos(psi*t) + C4*sin(psi*t)
@@ -4147,25 +4063,21 @@ u_p = simplify(u_p.subs(C3, s[C3]).subs(C4, s[C4]))
 
 # Check that the solution is correct
 assert simplify(ode(u_p, homogeneous=False)) == 0
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Using the initial conditions for the complete solution $u=u_h+u_p$
 determines $C_1$ and $C_2$:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 u_sol = u_h + u_p  # total solution
 # Initial conditions
 eqs = [u_sol.subs(t, 0) - I, u_sol.diff(t).subs(t, 0) - V]
 # Determine C1 and C2 from the initial conditions
 s = solve(eqs, [C1, C2])
 u_sol = u_sol.subs(C1, s[C1]).subs(C2, s[C2])
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Finally, we should check that \Verb!u_sol! is indeed the correct solution:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 checks = dict(
     ODE=simplify(expand(ode(u_sol, homogeneous=False))),
     IC1=simplify(u_sol.subs(t, 0) - I),
@@ -4173,9 +4085,7 @@ checks = dict(
 for check in checks:
     msg = '%s residual: %s' % (check, checks[check])
     assert checks[check] == sympify(0), msg
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 Finally, we may take \Verb!u_sol = u_sol.subs(A, A/m)! to get the right
 expression for the solution.
 Using \Verb!latex(u_sol)! results in a huge expression, which should be
@@ -4321,11 +4231,9 @@ in the dimensionless case.
 In particular, we may use the \texttt{solver} function in the
 file \href{{http://tinyurl.com/o8pb3yy/vib.py}}{\nolinkurl{vib.py}}:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 def solver(I, V, m, b, s, F, dt, T, damping='linear'):
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 for solving the ODE problem
 
 \[ mu'' + f(u') + s(u) = F(t),\quad u(0)=I,\ u'(0)=V,\ t\in (0,T],\]
@@ -4335,13 +4243,11 @@ Given the dimensionless numbers $\alpha$, $\beta$, $\gamma$, $\delta$,
 and $Q$,
 an appropriate call for solving (\ref{sec:scale:vib:undamped:F:model:scaled2}) is
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 u, t = solver(I=alpha, V=beta, m=1, b=1.0/Q,
               s=lambda u: u, F=lambda t: gamma*cos(delta*t),
 	      dt=2*pi/n, T=2*pi*P)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 where \texttt{n} is the number of intervals per period and \texttt{P} is the number
 of periods to be simulated.
 We way wrap this call in a \Verb!solver_scaled! function and wrap it furthermore
@@ -4349,7 +4255,7 @@ with \texttt{joblib} to avoid repeated calls,
 as we explained in
 Section~\ref{sec:scale:prog}:
 
-\begin{cod}{cbg_gray}\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95,xleftmargin=2mm]
+\begin{lstlisting}[language=Python,style=graycolor]
 from vib import solver as solver_unscaled
 
 def solver_scaled(alpha, beta, gamma, delta, Q, T, dt):
@@ -4367,9 +4273,7 @@ def solver_scaled(alpha, beta, gamma, delta, Q, T, dt):
 import joblib
 disk_memory = joblib.Memory(cachedir='temp')
 solver_scaled = disk_memory.cache(solver_scaled)
-\end{Verbatim}
-\end{cod}
-\noindent
+\end{lstlisting}
 This code is found in \href{{http://tinyurl.com/o8pb3yy/vib_scaled.py}}{\nolinkurl{vib_scaled.py}}
 and features an application for running the scaled problem with
 options on the command-line for $\alpha$, $\beta$, $\gamma$, $\delta$,
