@@ -6650,7 +6650,7 @@ in the source term unity. The scaled PDE now becomes
 !bt
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + f,
+\bar\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + f,
 label{sec:scale:diffu:pde1:3D:d2}
 \end{equation}
 !et
@@ -8277,7 +8277,8 @@ in time. We shall investigate the heating due to welding and choose,
 for maximum simplicity, a one-dimensional heat equation with a
 fixed temperature at the ends (a 2D or 3D model with cooling conditions
 at the boundaries would be of greater physical significance, but
-now the scaling is in focus). We shall investigate two
+now the scaling is in focus). The effect of melting is not included in
+the heat equation. Our goal is to investigate two
 alternative scalings through numerical experimentation.
 
 The governing PDE problem reads
@@ -8286,13 +8287,14 @@ The governing PDE problem reads
 \begin{align*}
 \varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
 + f, & x\in (0,L),\ t\in (0,T),\\
-u(x,0) &= 0, & x\in [0,L],\\
+u(x,0) &= U_s, & x\in [0,L],\\
 u(0,t) = u(L,t) &= 0, & t\in (0,T].
 \end{align*}
 !et
 Here, $u$ is the temperature, $\varrho$ the density of the material,
-$c$ a heat capacity, $k$ the heat conduction coefficient, and $f$ is
-the heat source from the welding equipment.
+$c$ a heat capacity, $k$ the heat conduction coefficient, $f$ is
+the heat source from the welding equipment, and $U_s$ is the
+initial constant (room) temperature in the material.
 
 A possible model for the heat source is a moving Gaussian function:
 
@@ -8314,7 +8316,7 @@ this scaling. Use scaled quantities in the arguments for the
 exponential function in $f$ too and show that
 
 !bt
-\[ \bar f= e^{-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2},\]
+\[ \bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},\]
 !et
 where $\beta$ and $\gamma$ are dimensionless numbers. Give an
 interpretation of $\beta$ and $\gamma$.
@@ -8323,7 +8325,7 @@ interpretation of $\beta$ and $\gamma$.
 We introduce
 
 !bt
-\[ \bar x=\frac{x}{L},\quad \bar t = \frac{t}{t_c},\quad \bar u = \frac{u}{u_c},
+\[ \bar x=\frac{x}{L},\quad \bar t = \frac{t}{t_c},\quad \bar u = \frac{u-U_s}{u_c},
 \quad \bar f=\frac{f}{A}\tp\]
 !et
 Inserted in the PDE and dividing by $\varrho c u_c/t_c$ such that the
@@ -8342,7 +8344,7 @@ Demanding that all three terms are equally important, it follows that
 !bt
 \[ \frac{k t_c}{\varrho c L^2} = 1,\quad \frac{A t_c}{\varrho c u_c}=1\tp\]
 !et
-These constraints imply the *diffusion time scale*
+These constraints imply the diffusion time scale
 
 !bt
 \[ t_c = \frac{\varrho cL^2}{k},\]
@@ -8512,9 +8514,36 @@ the tasks is
 
 @@@CODE exer-scaling/welding.py fromto: def investigate@if __name__
 
-We get the following plots:
+Note that for each $\gamma$ value and each scaling, we have found
+a $\delta$ value such that the maximum $u$ value is around unity in size.
+We did this first by trial and error, and thereafter filled out the
+`delta_values` dictionary.
+
+We get the following plots, with diffusion time scale to the left and
+heat source time scale to the right, starting with $\gamma=0.025$
+and increasing its value to $\gamma=40$:
+
+[hpl: Geir, I feel we need some better discussions. It seems that
+scaling in time based on the heat source velocity is the ``winner''.
+However, for a very low $\gamma$ it will be inappropriate since
+heat transfer has worked for a very long time before have the
+equipment in the middle position of the domain.]
 
 FIGURE: [fig-scaling/welding_gamma0_025, width=800 frac=1]
+
+[hpl: I think it is a bit difficult to understand the graphs. This low
+$\gamma$ value corresponds to a very slowly moving heat source. There
+is then time for the heat to spread ahead of the source. This is easy
+to see in the left plot. Since the time scales are so different, the
+graphs to the right and left are at two very different time points.
+This should be pointed out. The graphs on the left are early in the
+process, while heat transfer has been working for a long time in the
+graphs to the right.
+Also in the right plot we see that a lot
+of material around the source is heated, but the boundary conditions
+forces heat out of the two boundaries. Had we used insulated ends, there
+would be a significant build-up of heating (probably constant $u$ in
+space for large times).]
 
 FIGURE: [fig-scaling/welding_gamma0_2, width=800 frac=1]
 
@@ -8864,10 +8893,9 @@ label{scale:elasticity:stationary}
 
 === Scaling of the PDE ===
 
-We now look at the stationary version of
-(ref{scale:elasticity:PDE1}) where the $\varrho\u_{tt}$ term is
-removed. The first step in the scaling is just inserting the
-dimensionless variables:
+We now look at the stationary version of (ref{scale:elasticity:PDE1})
+where the $\varrho\u_{tt}$ term is removed. The first step in the
+scaling is just inserting the dimensionless variables:
 
 !bt
 \[
@@ -8921,19 +8949,27 @@ only significant physical parameter.
 
 === Remark on the characteristic displacement ===
 
-The choice of $u_c$ may require a comment. If we end up with
-$\bar\u$ and a geometry of order one, it means that plotting the
-deformation (typically the deformed mesh used in a simulation) will
-look very strange.  We usually want the characteristic displacement to
-be a small fraction of the characteristic size of the elastic
-body. Consider, as an example, a cantilever beam of length $L$ and
-square-shaped cross section of width $W$, deformed under its own
-weight.  From beam theory one can derive $u_c = \frac{3}{2}\varrho g
-L^2\delta^2/E$, where $\delta = L/W$ ($g$ is the acceleration of
-gravity). If we consider $E$ to be of the
-same size as $\lambda$, this implies that $\gamma\sim\delta^{-2}$. So,
-it may be wise to prescribe a $u_c$ in elasticity problems, perhaps
-from formulas as shown, and keep $\gamma$ in the PDE.
+#The choice of $u_c$ may require a comment. If we end up with
+#$\bar\u$ and a geometry of order one, it means that plotting the
+#deformation (typically the deformed mesh used in a simulation) will
+#look very strange.  We usually want the characteristic displacement to
+#be a small fraction of the characteristic size of the elastic
+#body.
+
+The presented scaling may not be valid for problems where the geometry
+involves some dimensions that are much smaller than others, such as for
+beams, shells, or plates. Then more one length scale must be defined
+which gives us non-dimensional geometrical numbers.  Global balances of
+moments and loads then determine how characteristic displacements
+depend on these numbers. As an example, consider a cantilever beam of
+length $L$ and square-shaped cross section of width $W$, deformed
+under its own weight.  From beam theory one can derive $u_c =
+\frac{3}{2}\varrho g L^2\delta^2/E$, where $\delta = L/W$ ($g$ is the
+acceleration of gravity). If we consider $E$ to be of the same size as
+$\lambda$, this implies that $\gamma\sim\delta^{-2}$. So, it may be
+wise to prescribe a $u_c$ in elasticity problems, perhaps from
+formulas as shown, and keep $\gamma$ in the PDE.
+
 
 === Scaling of displacement boundary conditions ===
 

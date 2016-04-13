@@ -22,24 +22,25 @@ preprocess -DFORMAT=html newcommands_keep.p.tex > newcommands_keep.tex
 
 opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --exercise_numbering=chapter --replace_ref_by_latex_auxno=../../../decay-book/doc/.src/book/book.aux"
 
-# Compile Bootstrap HTML
-html=${topicname}-book
-system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit --html_output=$html --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
-system doconce split_html $html.html
-
 hash=82dee82e1274a586571086dca04d00308d3a0d86  # "book with solutions"
 # Compile Bootstrap HTML with solutions
 html=.trash${hash}
-system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit --html_output=$html $encoding --replace_ref_by_latex_auxno=book.aux #--without_solutions --without_answers
+system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit --html_output=$html $encoding --replace_ref_by_latex_auxno=book.aux EXV=True #--without_solutions --without_answers
+cp $html.html tmp.html
 system doconce split_html $html.html
 #cp password.html ${topicname}-book-sol.html
-cp $name.html ${topicname}-book-sol.html
+cp $html.html ${topicname}-book-sol.html
 #doconce replace DESTINATION "$html" ${topicname}-book-sol.html
 #doconce replace PASSWORD "s!c!ale" ${topicname}-book-sol.html
 
+# Compile Bootstrap HTML without answers
+html=${topicname}-book
+system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit --html_output=$html EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
+system doconce split_html $html.html
+
 # Compile solarized HTML
 html=${topicname}-book-solarized
-system doconce format html $name $opt --html_style=solarized3 --html_output=$html --without_solutions --without_answers --replace_ref_by_latex_auxno=book.aux $encoding
+system doconce format html $name $opt --html_style=solarized3 --html_output=$html EXV=True --without_solutions --without_answers --replace_ref_by_latex_auxno=book.aux $encoding
 system doconce split_html $html.html --nav_button=text
 
 # Compile standard sphinx
@@ -47,7 +48,7 @@ system doconce split_html $html.html --nav_button=text
 # so we drop sphinx)
 theme=cbc
 theme=classic
-#system doconce format sphinx $name $opt --sphinx_keep_splits --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
+#system doconce format sphinx $name $opt --sphinx_keep_splits EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
 #system doconce split_rst $name
 #system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
 #system python automake_sphinx.py

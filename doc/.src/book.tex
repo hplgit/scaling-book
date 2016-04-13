@@ -367,7 +367,7 @@
 
 % ----------------- end author(s) -------------------------
 
-\date{Apr 7, 2016}
+\date{Apr 13, 2016}
 \maketitle
 
 % Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
@@ -5351,7 +5351,7 @@ in the source term unity. The scaled PDE now becomes
 
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + f,
+\bar\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + f,
 \label{sec:scale:diffu:pde1:3D:d2}
 \end{equation}
 but the initial condition features the $\beta$ parameter:
@@ -6435,10 +6435,9 @@ is very often the case in applications involving structural analysis.
 \label{scale:elasticity:stationary}
 
 \paragraph{Scaling of the PDE.}
-We now look at the stationary version of
-(\ref{scale:elasticity:PDE1}) where the $\varrho\u_{tt}$ term is
-removed. The first step in the scaling is just inserting the
-dimensionless variables:
+We now look at the stationary version of (\ref{scale:elasticity:PDE1})
+where the $\varrho\u_{tt}$ term is removed. The first step in the
+scaling is just inserting the dimensionless variables:
 
 \[
 0 =
@@ -6481,19 +6480,27 @@ It shows that in standard, stationary elasticity, $\lambda/\mu$ is the
 only significant physical parameter.
 
 \paragraph{Remark on the characteristic displacement.}
-The choice of $u_c$ may require a comment. If we end up with
-$\bar\u$ and a geometry of order one, it means that plotting the
-deformation (typically the deformed mesh used in a simulation) will
-look very strange.  We usually want the characteristic displacement to
-be a small fraction of the characteristic size of the elastic
-body. Consider, as an example, a cantilever beam of length $L$ and
-square-shaped cross section of width $W$, deformed under its own
-weight.  From beam theory one can derive $u_c = \frac{3}{2}\varrho g
-L^2\delta^2/E$, where $\delta = L/W$ ($g$ is the acceleration of
-gravity). If we consider $E$ to be of the
-same size as $\lambda$, this implies that $\gamma\sim\delta^{-2}$. So,
-it may be wise to prescribe a $u_c$ in elasticity problems, perhaps
-from formulas as shown, and keep $\gamma$ in the PDE.
+% The choice of $u_c$ may require a comment. If we end up with
+% $\bar\u$ and a geometry of order one, it means that plotting the
+% deformation (typically the deformed mesh used in a simulation) will
+% look very strange.  We usually want the characteristic displacement to
+% be a small fraction of the characteristic size of the elastic
+% body.
+
+The presented scaling may not be valid for problems where the geometry
+involves some dimensions that are much smaller than others, such as for
+beams, shells, or plates. Then more one length scale must be defined
+which gives us non-dimensional geometrical numbers.  Global balances of
+moments and loads then determine how characteristic displacements
+depend on these numbers. As an example, consider a cantilever beam of
+length $L$ and square-shaped cross section of width $W$, deformed
+under its own weight.  From beam theory one can derive $u_c =
+\frac{3}{2}\varrho g L^2\delta^2/E$, where $\delta = L/W$ ($g$ is the
+acceleration of gravity). If we consider $E$ to be of the same size as
+$\lambda$, this implies that $\gamma\sim\delta^{-2}$. So, it may be
+wise to prescribe a $u_c$ in elasticity problems, perhaps from
+formulas as shown, and keep $\gamma$ in the PDE.
+
 
 \paragraph{Scaling of displacement boundary conditions.}
 A typical boundary condition on some part of the boundary is a prescribed

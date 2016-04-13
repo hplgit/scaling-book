@@ -121,7 +121,7 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
     b = 0.5*beta**2
     L = 1.0
     ymin = 0
-    # Need gloal to be able change ymax in closure process_u
+    # Need global ymax to be able change ymax in closure process_u
     global ymax
     ymax = 1.2
 
@@ -174,15 +174,20 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
 def investigate():
     """Do scienfic experiments with the run function above."""
     # Clean up old files
-    import glob
+    import glob, os
     for filename in glob.glob('tmp1_gamma*') + \
             glob.glob('welding_gamma*'):
         os.remove(filename)
 
     gamma_values = 1, 40, 5, 0.2, 0.025
+    delta_values = {}
+    delta_values[1] = {0.025: 140, 0.2: 60,  1: 20, 5: 40, 40: 800}
+    delta_values[2] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,  40: 5}
     for gamma in gamma_values:
         for scaling in 1, 2:
-            run(gamma=gamma, beta=10, delta=20, scaling=scaling)
+            run(gamma=gamma, beta=10,
+                delta=delta_values[scaling][gamma],
+                scaling=scaling)
 
     # Combine images
     for gamma in gamma_values:
@@ -195,9 +200,9 @@ def investigate():
             # pdflatex doesn't like 0.2 in filenames...
             if '.' in str(gamma):
                 os.rename(
-                    'welding_gamma%(gamma)g.%(ext)s' % vars(),
-                    ('welding_gamma%(gamma)g' % vars()).replace('.', '_')
-                    + '.' + ext)
+                'welding_gamma%(gamma)g.%(ext)s' % vars(),
+                ('welding_gamma%(gamma)g' % vars()).replace('.', '_')
+                + '.' + ext)
 
 if __name__ == '__main__':
     #run(gamma=1/40., beta=10, delta=40, scaling=2)
