@@ -951,7 +951,11 @@ unit \( \hbox{kg\, m/s}^2 \). The \( k \) parameter in
 <a href="#mjx-eqn-1.1">(1.1)</a> is measured in \( \hbox{kg\,s}^{-2} \).
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Dimension of derivatives.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Dimension of derivatives</h3>
+  </div>
+<div class="panel-body">
 The easiest way to realize the dimension of a derivative, is to express
 the derivative as a finite difference. For a function \( u(t) \) we have
 
@@ -964,6 +968,7 @@ interval has dimension \( \hbox{[T]} \), and consequently, the
 finite difference gets the dimension \( \hbox{[LT]}^{-2} \).
 In general, the dimension of the derivative \( du/dt \) is the dimension
 of \( u \) divided by the dimension of \( t \).
+</div>
 </div>
 
 
@@ -1279,7 +1284,11 @@ or a full textbook <a href="._scaling-book011.html#Langtangen_2012">[4]</a> in p
 Python code in the present notes.
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>These notes apply Python 2.7.</b>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+  <h3 class="panel-title">These notes apply Python 2.7</h3>
+  </div>
+<div class="panel-body">
 Python exists in two incompatible versions, numbered 2 and 3.
 The differences can be made small, and there are tools to write
 code that runs under both versions.
@@ -1290,6 +1299,7 @@ in scientific computing, we stick to this version, but
 write code in version 2.7 that is as close as possible to version 3.4
 and later. In most of our programs, only the <code>print</code> statement differs
 between version 2 and 3.
+</div>
 </div>
 
 
@@ -1450,7 +1460,11 @@ a default value, and a unit. Additional properties
 are also allowed, see the <a href="http://hplgit.github.io/parampool/doc/web/index.html" target="_self">Parampool documentation</a>.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip: specify default values of numbers as float objects.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Tip: specify default values of numbers as float objects</h3>
+  </div>
+<div class="panel-body">
 Note that we do not just write 1, but 1.0 as default.
 Had 1 been used, Parampool would have interpreted our parameter as
 an integer and would therefore convert input like <code>2.5 m/s</code> to <code>2 m/s</code>.
@@ -1458,6 +1472,7 @@ To ensure that a real-valued parameter becomes a <code>float</code> object insid
 the pool, we must specify the default value as a real number: <code>1.</code> or <code>1.0</code>.
 (The type of an input parameter can alternatively be set <em>explicitly</em> by
 the <code>str2type</code> property, e.g., <code>str2type=float</code>.)
+</div>
 </div>
 
 

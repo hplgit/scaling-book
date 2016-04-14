@@ -35,7 +35,7 @@ cp $html.html ${topicname}-book-sol.html
 
 # Compile Bootstrap HTML in Simula style without answers
 html=${topicname}-book
-system doconce format html $name $opt --html_style=bootstrap_simula --html_code_style=inherit --html_output=$html EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
+system doconce format html $name $opt --html_style=bootstrap_simula --html_admon=bootstrap_panel --html_code_style=inherit --html_output=$html EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
 system doconce split_html $html.html
 
 # Compile solarized HTML

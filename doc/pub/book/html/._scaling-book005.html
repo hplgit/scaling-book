@@ -1427,7 +1427,11 @@ and will therefore perform many more calls to
 <code>solver_unscaled</code>.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>On the implementation of a simple memoize function.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">On the implementation of a simple memoize function</h3>
+  </div>
+<div class="panel-body">
 A memoized function recalls
 previous results when the same set
 of arguments is encountered. That is, the function caches its results.
@@ -1439,7 +1443,7 @@ in the dictionary and returns previously computed results:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Memoize</span>:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Memoize</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>memo <span style="color: #666666">=</span> {}  <span style="color: #408080; font-style: italic"># map arguments to results</span>
@@ -1458,6 +1462,7 @@ can work very efficiently with large array data structures as arguments.
 Note that the simple version above can only be used when all arguments to
 the function <code>f</code> are immutable (since the key in a dictionary has to be
 immutable).
+</div>
 </div>
 
 
@@ -1501,7 +1506,11 @@ $$ \uex(t) = \frac{e^{-at}}{a}\left( b(e^{at}-1) + aI\right)
 $$
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Solving differential equations in SymPy.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solving differential equations in SymPy</h3>
+  </div>
+<div class="panel-body">
 It can be very useful to use a symbolic computation tool such as SymPy
 to aid us in solving differential equations.
 Let us therefore demonstrate how SymPy can be used to find this solution.
@@ -1511,7 +1520,7 @@ and \( u(t) \) as a function:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> t, a, b, I <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;t a b I&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;u&#39;</span>, cls<span style="color: #666666">=</span>Function)
 </pre></div>
@@ -1524,7 +1533,7 @@ the left- and right-hand side):
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># Define differential equation</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># Define differential equation</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> eq <span style="color: #666666">=</span> diff(u(t), t) <span style="color: #666666">+</span> a<span style="color: #666666">*</span>u(t) <span style="color: #666666">-</span> b
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># or</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> eq <span style="color: #666666">=</span> Eq(diff(u(t), t), <span style="color: #666666">-</span>a<span style="color: #666666">*</span>u(t) <span style="color: #666666">+</span> b)
@@ -1537,7 +1546,7 @@ expression on the right-hand side as our solution:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> sol <span style="color: #666666">=</span> dsolve(eq, u(t))
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> sol <span style="color: #666666">=</span> dsolve(eq, u(t))
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> sol
 u(t) <span style="color: #666666">==</span> (b <span style="color: #666666">+</span> exp(a<span style="color: #666666">*</span>(C1 <span style="color: #666666">-</span> t)))<span style="color: #666666">/</span>a
 <span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> sol<span style="color: #666666">.</span>rhs                    <span style="color: #408080; font-style: italic"># grab solution</span>
@@ -1552,7 +1561,7 @@ from the initial condition \( u(0)=I \):
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> C1 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;C1&#39;</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> C1 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;C1&#39;</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> eq <span style="color: #666666">=</span> Eq(u<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>), I)   <span style="color: #408080; font-style: italic"># substitute t by 0 in u</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> sol <span style="color: #666666">=</span> solve(eq, C1)
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> sol
@@ -1566,7 +1575,7 @@ expression <code>u</code> to yield the final solution:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> u<span style="color: #666666">.</span>subs(C1, sol[<span style="color: #666666">0</span>])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> u<span style="color: #666666">.</span>subs(C1, sol[<span style="color: #666666">0</span>])
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> u
 (b <span style="color: #666666">+</span> exp(a<span style="color: #666666">*</span>(<span style="color: #666666">-</span>t <span style="color: #666666">+</span> log(I<span style="color: #666666">*</span>a <span style="color: #666666">-</span> b)<span style="color: #666666">/</span>a)))<span style="color: #666666">/</span>a
 </pre></div>
@@ -1580,13 +1589,14 @@ first try is to expand everything and run simplification algorithms:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #ffffff"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> simplify(expand(u))
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> simplify(expand(u))
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> u
 (I<span style="color: #666666">*</span>a <span style="color: #666666">+</span> b<span style="color: #666666">*</span>exp(a<span style="color: #666666">*</span>t) <span style="color: #666666">-</span> b)<span style="color: #666666">*</span>exp(<span style="color: #666666">-</span>a<span style="color: #666666">*</span>t)<span style="color: #666666">/</span>a
 </pre></div>
 <p>
 Doing <code>latex(u)</code> automatically converts the expression to LaTeX syntax
 for inclusion in reports.
+</div>
 </div>
 
 
@@ -1617,13 +1627,18 @@ u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d
 $$
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>On the sign of the scaled velocity.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">On the sign of the scaled velocity</h3>
+  </div>
+<div class="panel-body">
 A little note on the sign of \( u_c \) is necessary here.
 With \( \varrho_b < \varrho \), the buoyancy force upwards wins over the
 gravity force downwards, and the body will move upwards. In this case,
 the terminal velocity \( u_c > 0 \). When \( \varrho_b > \varrho \), we get
 a motion downwards, and \( u_c < 0 \). The corresponding \( u \) is then also
 negative, but the scaled velocity \( u/u_c \), becomes positive.
+</div>
 </div>
 
 
@@ -2147,7 +2162,11 @@ oscillations in \( T_s \) and the e-folding time \( e=1/k \). Then \( \beta =
 2\pi e/P \) and measures the e-folding time versus the period.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Remark.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Remark</h3>
+  </div>
+<div class="panel-body">
 The original problem features five physical parameters: \( k \), \( T_0 \),
 \( T_m \), \( a \), and \( \omega \), but only two dimensionless numbers appear in the
 scaled model <a href="#mjx-eqn-2.23">(2.23)</a>.
@@ -2158,6 +2177,7 @@ theorem predicts that the five parameters yields three dimensionless numbers,
 not two. Scaling of the differential equations, on the other hand,
 shows us that the two parameters
 \( T_m \) and \( T_0 \) affect the nature of the problem only through their difference.
+</div>
 </div>
 
 
