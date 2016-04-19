@@ -123,7 +123,7 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
         b = 0.5*beta**2
     elif scaling == 3:
         v = 1
-        a = 1.0/gamma  # gamma is the name of epsilon
+        a = beta/gamma
         L = beta
         b = 0.5
 
@@ -196,7 +196,7 @@ def investigate():
     delta_values = {}  # delta_values[scaling][gamma]
     delta_values[1] = {0.025: 140, 0.2: 60,  1: 20, 5: 40, 40: 800}
     delta_values[2] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,  40: 5}
-    delta_values[3] = {0.025: 35,  0.2: 8,   1: 4,  5: 2,  40: 2}
+    delta_values[3] = {0.025: 350, 0.2: 40,  1: 12, 5: 5,  40: 2}
     for gamma in gamma_values:
         for scaling in scaling_values:
             run(gamma=gamma, beta=10,

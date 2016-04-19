@@ -2244,11 +2244,11 @@ $$
 where we have chosen \( t_c \) as \( \sigma/v \). Inserting \( t_c \) in
 the PDE leads to a coefficient
 
-$$ \epsilon^{-1} = \frac{k}{v\varrho c \sigma}\tp$$
+$$ \frac{k}{v\varrho c \sigma} = \gamma^{-1}\beta\tp$$
 
 As before, we chose \( u_c \) to make the other coefficient equal unity,
 modulo a scaling factor.
-The \( \epsilon \) parameter is the ratio of the moving heat source time
+The \( \gamma^{-1}\beta \) parameter is the ratio of the moving heat source time
 scale \( v/\sigma \) and the diffusion time scale \( \sigma^2/(k/\varrho c) \).
 
 <p>
@@ -2463,7 +2463,7 @@ And here is our <code>run</code> function tailored to the problem:
         b <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>beta<span style="color: #666666">**2</span>
     <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
         v <span style="color: #666666">=</span> <span style="color: #666666">1</span>
-        a <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>gamma  <span style="color: #408080; font-style: italic"># gamma is the name of epsilon</span>
+        a <span style="color: #666666">=</span> beta<span style="color: #666666">/</span>gamma
         L <span style="color: #666666">=</span> beta
         b <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
 
@@ -2571,7 +2571,7 @@ the tasks is
     delta_values <span style="color: #666666">=</span> {}  <span style="color: #408080; font-style: italic"># delta_values[scaling][gamma]</span>
     delta_values[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">140</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">60</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">40</span>, <span style="color: #666666">40</span>: <span style="color: #666666">800</span>}
     delta_values[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">700</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">100</span>, <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">8</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">5</span>}
-    delta_values[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">35</span>,  <span style="color: #666666">0.2</span>: <span style="color: #666666">8</span>,   <span style="color: #666666">1</span>: <span style="color: #666666">4</span>,  <span style="color: #666666">5</span>: <span style="color: #666666">2</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">2</span>}
+    delta_values[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">350</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">40</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">12</span>, <span style="color: #666666">5</span>: <span style="color: #666666">5</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">2</span>}
     <span style="color: #008000; font-weight: bold">for</span> gamma <span style="color: #AA22FF; font-weight: bold">in</span> gamma_values:
         <span style="color: #008000; font-weight: bold">for</span> scaling <span style="color: #AA22FF; font-weight: bold">in</span> scaling_values:
             run(gamma<span style="color: #666666">=</span>gamma, beta<span style="color: #666666">=10</span>,
