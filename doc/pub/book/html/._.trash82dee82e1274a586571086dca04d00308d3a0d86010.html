@@ -27,6 +27,8 @@ code { color: inherit; background-color: transparent; }
    max-height: 400px;
    overflow-x: hidden;
 }
+
+body { font-size:20px;line-height:1.5; }
 </style>
 
 
@@ -1257,7 +1259,7 @@ only significant physical parameter.
 <p>
 The presented scaling may not be valid for problems where the geometry
 involves some dimensions that are much smaller than others, such as for
-beams, shells, or plates. Then more one length scale must be defined
+beams, shells, or plates. Then one more length scale must be defined
 which gives us non-dimensional geometrical numbers.  Global balances of
 moments and loads then determine how characteristic displacements
 depend on these numbers. As an example, consider a cantilever beam of
@@ -1313,7 +1315,7 @@ which we simply have \( \bar\stress\cdot\normalvec = 0 \).
 <h2 id="scale:elasticity:thermo">Quasi-static thermo-elasticity</h2>
 
 <p>
-Heating solids give rise to expansion, i.e., strains, which may cause
+Heating solids gives rise to expansion, i.e., strains, which may cause
 stress if displacements are constrained. The time scale of temperature
 changes are usually much larger than the time scales of elastic waves,
 so the stationary equations of elasticity can be used, but a term
@@ -1508,7 +1510,7 @@ for stationary flow.
 <h3 id="___sec184">Dimensonless PDEs and the Reynolds number </h3>
 
 <p>
-The discussions so far results in the following dimensionless form of
+The discussions so far result in the following dimensionless form of
 <a href="#mjx-eqn-4.16">(4.16)</a> and <a href="#mjx-eqn-4.17">(4.17)</a>:
 
 $$
@@ -1939,7 +1941,7 @@ $$
 $$
 
 where Einstein's summation convention is implied for the
-\( \varepsilon_{ij}\varepsilon_{ij} \) term.[[[
+\( \varepsilon_{ij}\varepsilon_{ij} \) term.
 The symbol \( T \) is the temperature, \( c \) is a heat capacity, \( \kappa \)
 is the heat conduction coefficient for the fluid. In free convection,
 the gravity term \( -\varrho(T) g\kk \) is essential since the flow is driven
@@ -2087,9 +2089,6 @@ $$
 \delta = \frac{\mu U}{L\varrho_0 c \Delta T}\tp
 $$
 
-The Peclet number is here defined as the ratio of the
-convection term for heat \( \varrho_0 c U\Delta T/L \) and the
-heat conduction term \( \kappa U/L^2 \).
 The \( \gamma \) number measures the ratio of thermal buoyancy and
 the convection term:
 
@@ -2922,7 +2921,7 @@ while the bottom condition is invariant with respect to the present scaling
 $$
 \begin{equation}
 \tag{4.86}
-\bar\nabla_h\cdot\u_h =-\bar w\tp
+\bar\nabla_h\cdot\bar\u_h =-\bar w\tp
 \end{equation}
 $$
 
@@ -3011,7 +3010,8 @@ since \( k_{rn}>0 \) and \( k_{rw}>0 \)). Very often, \( p_c' \) is small so
 <a href="#mjx-eqn-4.89">(4.89)</a> is of hyperbolic nature, and \( S \) features very
 steep gradients that become shocks in the limit \( p_c'\rightarrow 0 \)
 and <a href="#mjx-eqn-4.89">(4.89)</a> is purely hyperbolic.
-A popular solution technique is based on operator splitting:
+A popular solution technique is based on operator splitting at each
+time level in a numerical scheme:
 <a href="#mjx-eqn-4.87">(4.87)</a> is solved with respect to \( P \), given \( S \), and
 <a href="#mjx-eqn-4.89">(4.89)</a> is solved with respect to \( S \), given \( P \).
 

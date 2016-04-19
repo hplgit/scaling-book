@@ -6630,7 +6630,7 @@ we end up with the scaled PDE
 !bt
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
+\bar\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
 label{sec:scale:diffu:pde1:3D:d}
 \end{equation}
 !et
@@ -6753,7 +6753,7 @@ label{scale:heat:pde3:ic:u:d}\\
 \bar u(0, \bar t) & = 1,
 \quad  & \bar t\in (0, \bar T],
 label{scale:heat:pde3:bc:0:d}\\
-\frac{\partial}{\partial \bar x} u(1, \bar t) & = 0,
+\frac{\partial}{\partial \bar x} \bar u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
 label{scale:heat:pde3:bc:L:d}
 \end{align}
@@ -6809,7 +6809,7 @@ condition, we expect $u\in [U_0-A,U_0+A]$.
 The dimensionless temperature is therefore taken as
 
 !bt
-\[ \bar u = \frac{u-U_0}{2A},\]
+\[ \bar u = \frac{u-U_0}{A},\]
 !et
 such that $\bar u\in [-1,1]$.
 
@@ -8272,14 +8272,14 @@ The result is the 1D initial-boundary value problem
 label{diffu:exer:welding}
 file=welding
 
-Welding equipment makes a very localized heat source that moves
-in time. We shall investigate the heating due to welding and choose,
-for maximum simplicity, a one-dimensional heat equation with a
-fixed temperature at the ends (a 2D or 3D model with cooling conditions
-at the boundaries would be of greater physical significance, but
-now the scaling is in focus). The effect of melting is not included in
-the heat equation. Our goal is to investigate two
-alternative scalings through numerical experimentation.
+Welding equipment makes a very localized heat source that moves in
+time. We shall investigate the heating due to welding and choose, for
+maximum simplicity, a one-dimensional heat equation with a fixed
+temperature at the ends (a 2D or 3D model with cooling conditions at
+the boundaries would be of greater physical significance, but now the
+scaling is in focus). The effect of melting is not included in the
+heat equation. Our goal is to investigate two alternative scalings
+through numerical experimentation.
 
 The governing PDE problem reads
 
@@ -8288,7 +8288,7 @@ The governing PDE problem reads
 \varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
 + f, & x\in (0,L),\ t\in (0,T),\\
 u(x,0) &= U_s, & x\in [0,L],\\
-u(0,t) = u(L,t) &= 0, & t\in (0,T].
+u(0,t) = u(L,t) &= U_s, & t\in (0,T].
 \end{align*}
 !et
 Here, $u$ is the temperature, $\varrho$ the density of the material,
@@ -8368,7 +8368,7 @@ Scaling $f$ results in
 \begin{align*}
 \bar f &= \exp{\left(-\frac{1}{2}\left(\frac{x-vt}{\sigma}\right)^2\right)}\\
 &= \exp{\left(-\frac{1}{2}\frac{L^2}{\sigma^2}
-\left(\bar x- \frac{vt_c}{L}t\right)^2\right)}\\
+\left(\bar x- \frac{vt_c}{L}\bar t\right)^2\right)}\\
 &= \exp{\left(-\frac{1}{2}\beta^2\left(\bar x-\gamma \bar t\right)^2\right)},
 \end{align*}
 !et
@@ -8391,7 +8391,8 @@ the diffusion velocity.
 
 !bsubex
 Argue that for large $\gamma$ we should base the time scale on the
-movement of the heat source. Show that this gives rise to the scaled
+movement of the heat source. Using $L$ as length scale,
+show that this gives rise to the scaled
 PDE
 
 !bt
@@ -8460,6 +8461,49 @@ heat source will leave the domain in short time).
 !esubex
 
 !bsubex
+For fast movement of the welding equipment, i.e., when heat transfer
+is less important than the local heating by the equipment, the
+typical length scale of the local heating is the size of the source,
+reflected by the $\sigma$ parameter. Modify the scaling in b) when
+$\sigma$ is chosen as length scale.
+
+!bsol
+With $\sigma$ as length scale, the scaled PDE has the initial form
+
+!bt
+\[ \frac{\partial\bar u}{\partial\bar t} =
+\frac{k t_c}{\varrho c \sigma^2}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \frac{A t_c}{\varrho c u_c}\bar f\tp
+\]
+!et
+The scaling of $f$ becomes
+
+!bt
+\begin{align*}
+\bar f &= \exp{\left(-\frac{1}{2}\left(\frac{x-vt}{\sigma}\right)^2\right)}\\
+&= \exp{\left(-\frac{1}{2}
+\left(\bar x- \frac{vt_c}{\sigma}\bar t\right)^2\right)}\\
+&= \exp{\left(-\frac{1}{2}\left(\bar x- \bar t\right)^2\right)},
+\end{align*}
+!et
+where we have chosen $t_c$ as $\sigma/v$. Inserting $t_c$ in
+the PDE leads to a coefficient
+
+!bt
+\[ \epsilon^{-1} = \frac{k}{v\varrho c \sigma}\tp\]
+!et
+As before, we chose $u_c$ to make the other coefficient equal unity,
+modulo a scaling factor.
+The $\epsilon$ parameter is the ratio of the moving heat source time
+scale $v/\sigma$ and the diffusion time scale $\sigma^2/(k/\varrho c)$.
+
+The equations are as in), except that $\beta =1$ and $\epsilon$
+replaces $\gamma$. Moreover, the length of the domain is now $L/\sigma$,
+i.e., $\beta$ enters the problem in the domain size.
+!esol
+!esubex
+
+!bsubex
 One aim with scaling is to get a solution that lies in the interval
 $[-1,1]$. This is not always the case when $u_c$ is based on a scale
 involving a source term, as we do in a) and b).  However, from the
@@ -8505,10 +8549,10 @@ to drop the bars as soon as the scaled problem is established.
 
 !bsubex
 Use the software in c) to investigate $\gamma=0.2,1,5,40$ for the
-two scalings. Discuss the results.
+three scalings. Discuss the results.
 
 !bsol
-For these investigations, we compare the two scalings for each of
+For these investigations, we compare the three scalings for each of
 the different $\gamma$ values. An appropriate function for automating
 the tasks is
 
@@ -8519,8 +8563,9 @@ a $\delta$ value such that the maximum $u$ value is around unity in size.
 We did this first by trial and error, and thereafter filled out the
 `delta_values` dictionary.
 
-We get the following plots, with diffusion time scale to the left and
-heat source time scale to the right, starting with $\gamma=0.025$
+We get the following plots, with diffusion time scale to the left,
+heat source time scale in the middle, and the time scale based on $\sigma$
+to the right, starting with $\gamma=0.025$
 and increasing its value to $\gamma=40$:
 
 [hpl: Geir, I feel we need some better discussions. It seems that
@@ -8958,7 +9003,7 @@ only significant physical parameter.
 
 The presented scaling may not be valid for problems where the geometry
 involves some dimensions that are much smaller than others, such as for
-beams, shells, or plates. Then more one length scale must be defined
+beams, shells, or plates. Then one more length scale must be defined
 which gives us non-dimensional geometrical numbers.  Global balances of
 moments and loads then determine how characteristic displacements
 depend on these numbers. As an example, consider a cantilever beam of
@@ -9022,7 +9067,7 @@ label{scale:elasticity:thermo}
 
 idx{thermo-elasticity}
 
-Heating solids give rise to expansion, i.e., strains, which may cause
+Heating solids gives rise to expansion, i.e., strains, which may cause
 stress if displacements are constrained. The time scale of temperature
 changes are usually much larger than the time scales of elastic waves,
 so the stationary equations of elasticity can be used, but a term
@@ -9214,7 +9259,7 @@ idx{Reynolds number}
 
 === Dimensonless PDEs and the Reynolds number ===
 
-The discussions so far results in the following dimensionless form of
+The discussions so far result in the following dimensionless form of
 (ref{scale:fluid:NS:eq:momentum}) and (ref{scale:fluid:NS:eq:cont}):
 
 !bt
@@ -9643,7 +9688,7 @@ label{scale:fluid:free_convection:eq:energy_T}
 \end{align}
 !et
 where Einstein's summation convention is implied for the
-$\varepsilon_{ij}\varepsilon_{ij}$ term.[[[
+$\varepsilon_{ij}\varepsilon_{ij}$ term.
 The symbol $T$ is the temperature, $c$ is a heat capacity, $\kappa$
 is the heat conduction coefficient for the fluid. In free convection,
 the gravity term $-\varrho(T) g\kk$ is essential since the flow is driven
@@ -9789,9 +9834,6 @@ The dimensionless numbers, in addition to Re and Fr, are
 \delta = \frac{\mu U}{L\varrho_0 c \Delta T}\tp
 \]
 !et
-The Peclet number is here defined as the ratio of the
-convection term for heat $\varrho_0 c U\Delta T/L$ and the
-heat conduction term $\kappa U/L^2$.
 The $\gamma$ number measures the ratio of thermal buoyancy and
 the convection term:
 
@@ -10715,7 +10757,7 @@ while the bottom condition is invariant with respect to the present scaling
 !bt
 \begin{equation}
 label{scale:surfacewave:kinbott3}
-\bar\nabla_h\cdot\u_h =-\bar w\tp
+\bar\nabla_h\cdot\bar\u_h =-\bar w\tp
 \end{equation}
 !et
 An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which implies that the pressure
@@ -10800,7 +10842,8 @@ since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
 (ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
 steep gradients that become shocks in the limit $p_c'\rightarrow 0$
 and (ref{scale:twoph:Seq}) is purely hyperbolic.
-A popular solution technique is based on operator splitting:
+A popular solution technique is based on operator splitting at each
+time level in a numerical scheme:
 (ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
 (ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
 

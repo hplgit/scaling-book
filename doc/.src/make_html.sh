@@ -25,7 +25,7 @@ opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --exercise_numbering=chapter
 hash=82dee82e1274a586571086dca04d00308d3a0d86  # "book with solutions"
 # Compile Bootstrap HTML with solutions
 html=.trash${hash}
-system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit --html_output=$html $encoding --replace_ref_by_latex_auxno=book.aux EXV=True #--without_solutions --without_answers
+system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit "--html_body_style=font-size:20px;line-height:1.5" --html_output=$html $encoding --replace_ref_by_latex_auxno=book.aux EXV=True #--without_solutions --without_answers
 cp $html.html tmp.html
 system doconce split_html $html.html
 #cp password.html ${topicname}-book-sol.html
@@ -35,7 +35,7 @@ cp $html.html ${topicname}-book-sol.html
 
 # Compile Bootstrap HTML in Simula style without answers
 html=${topicname}-book
-system doconce format html $name $opt --html_style=bootstrap_simula --html_admon=bootstrap_panel --html_code_style=inherit --html_output=$html EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
+system doconce format html $name $opt --html_style=bootstrap_simula --html_admon=bootstrap_panel --html_code_style=inherit "--html_body_style=font-size:20px;line-height:1.5" --html_output=$html EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
 system doconce split_html $html.html
 
 # Compile solarized HTML

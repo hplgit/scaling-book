@@ -1343,14 +1343,14 @@ The result is the 1D initial-boundary value problem
 <h2 id="diffu:exer:welding">Problem 3.6: Scaling a welding problem</h2>
 
 <p>
-Welding equipment makes a very localized heat source that moves
-in time. We shall investigate the heating due to welding and choose,
-for maximum simplicity, a one-dimensional heat equation with a
-fixed temperature at the ends (a 2D or 3D model with cooling conditions
-at the boundaries would be of greater physical significance, but
-now the scaling is in focus). The effect of melting is not included in
-the heat equation. Our goal is to investigate two
-alternative scalings through numerical experimentation.
+Welding equipment makes a very localized heat source that moves in
+time. We shall investigate the heating due to welding and choose, for
+maximum simplicity, a one-dimensional heat equation with a fixed
+temperature at the ends (a 2D or 3D model with cooling conditions at
+the boundaries would be of greater physical significance, but now the
+scaling is in focus). The effect of melting is not included in the
+heat equation. Our goal is to investigate two alternative scalings
+through numerical experimentation.
 
 <p>
 The governing PDE problem reads
@@ -1360,7 +1360,7 @@ $$
 \varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
 + f, & x\in (0,L),\ t\in (0,T),\\ 
 u(x,0) &= U_s, & x\in [0,L],\\ 
-u(0,t) = u(L,t) &= 0, & t\in (0,T].
+u(0,t) = u(L,t) &= U_s, & t\in (0,T].
 \end{align*}
 $$
 
@@ -1400,7 +1400,8 @@ interpretation of \( \beta \) and \( \gamma \).
 <p>
 <b>b)</b>
 Argue that for large \( \gamma \) we should base the time scale on the
-movement of the heat source. Show that this gives rise to the scaled
+movement of the heat source. Using \( L \) as length scale,
+show that this gives rise to the scaled
 PDE
 
 $$ \frac{\partial\bar u}{\partial\bar t} =
@@ -1419,6 +1420,17 @@ Discuss when the scalings in a) and b) are appropriate.
  -->
 <p>
 <b>c)</b>
+For fast movement of the welding equipment, i.e., when heat transfer
+is less important than the local heating by the equipment, the
+typical length scale of the local heating is the size of the source,
+reflected by the \( \sigma \) parameter. Modify the scaling in b) when
+\( \sigma \) is chosen as length scale.
+
+<p>
+<!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+ -->
+<p>
+<b>d)</b>
 One aim with scaling is to get a solution that lies in the interval
 \( [-1,1] \). This is not always the case when \( u_c \) is based on a scale
 involving a source term, as we do in a) and b).  However, from the
@@ -1461,9 +1473,9 @@ it is attractive to plot \( \bar f/\delta \) together with \( \bar u \).
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)
  -->
 <p>
-<b>d)</b>
+<b>e)</b>
 Use the software in c) to investigate \( \gamma=0.2,1,5,40 \) for the
-two scalings. Discuss the results.
+three scalings. Discuss the results.
 
 <p>
 <!-- removed !bsol ... !esol environment (because of the command-line option --without_solutions)

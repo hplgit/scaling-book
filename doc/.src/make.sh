@@ -25,7 +25,7 @@ function system {
   fi
 }
 
-rm tmp_*
+rm tmp_* *.dolog
 
 if [ $# -ge 1 ]; then
   spellcheck=$1
@@ -60,7 +60,7 @@ function compile {
 system doconce replace 'linecolor=black,' 'linecolor=darkblue,' $name.tex
 system doconce subst 'frametitlebackgroundcolor=.*?,' 'frametitlebackgroundcolor=blue!5,' $name.tex
 # Fix UTF-8 problem with svmono
-system doconce replace '%\usepackage[utf8x]' '\usepackage[utf8x]'  $name.tex
+#system doconce replace '%\usepackage[utf8x]' '\usepackage[utf8x]'  $name.tex
 
 rm -rf $name.aux $name.ind $name.idx $name.bbl $name.toc $name.loe
 

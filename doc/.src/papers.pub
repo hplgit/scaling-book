@@ -46,10 +46,11 @@
    series:    Texts in Computational Science and Engineering
    edition:   Fifth
    entrytype: book
-** Finite Difference Computing with Partial Differential Equation
+** Finite Difference Computing with Partial Differential Equations
    key:       Langtangen_Linge_fdm
    author:    H. P. Langtangen, S. Linge
    year:      2016
+   publisher: Springer
    status:    published
    note:      \url{http://tinyurl.com/Langtangen-Linge-FDM-book}
    url:       http://tinyurl.com/Langtangen-Linge-FDM-book

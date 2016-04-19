@@ -114,12 +114,19 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
     if scaling == 1:
         v = gamma
         a = 1
+        L = 1.0
+        b = 0.5*beta**2
     elif scaling == 2:
         v = 1
         a = 1.0/gamma
+        L = 1.0
+        b = 0.5*beta**2
+    elif scaling == 3:
+        v = 1
+        a = 1.0/gamma  # gamma is the name of epsilon
+        L = beta
+        b = 0.5
 
-    b = 0.5*beta**2
-    L = 1.0
     ymin = 0
     # Need global ymax to be able change ymax in closure process_u
     global ymax
@@ -165,7 +172,12 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
     plt.legend(['$u,\\ t=0.2$', '$f/%g,\\ t=0.2$' % delta,
                 '$u,\\ t=0.5$', '$f/%g,\\ t=0.5$' % delta])
     filename = 'tmp1_gamma%g_s%d' % (gamma, scaling)
-    s = 'diffusion' if scaling == 1 else 'source'
+    if scaling == 1:
+        s = 'diffusion'
+    elif scaling == 2:
+        s = 'source'
+    elif scaling == 3:
+        s = 'sigma'
     plt.title(r'$\beta = %g,\ \gamma = %g,\ $' % (beta, gamma)
               + 'scaling=%s' % s)
     plt.savefig(filename + '.pdf');  plt.savefig(filename + '.png')
@@ -179,12 +191,14 @@ def investigate():
             glob.glob('welding_gamma*'):
         os.remove(filename)
 
+    scaling_values = 1, 2, 3
     gamma_values = 1, 40, 5, 0.2, 0.025
-    delta_values = {}
+    delta_values = {}  # delta_values[scaling][gamma]
     delta_values[1] = {0.025: 140, 0.2: 60,  1: 20, 5: 40, 40: 800}
     delta_values[2] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,  40: 5}
+    delta_values[3] = {0.025: 35,  0.2: 8,   1: 4,  5: 2,  40: 2}
     for gamma in gamma_values:
-        for scaling in 1, 2:
+        for scaling in scaling_values:
             run(gamma=gamma, beta=10,
                 delta=delta_values[scaling][gamma],
                 scaling=scaling)
@@ -192,12 +206,12 @@ def investigate():
     # Combine images
     for gamma in gamma_values:
         for ext in 'pdf', 'png':
-            cmd = 'doconce combine_images -2 '\
-                  'tmp1_gamma%(gamma)g_s1.%(ext)s '\
-                  'tmp1_gamma%(gamma)g_s2.%(ext)s '\
-                  'welding_gamma%(gamma)g.%(ext)s' % vars()
+            cmd = 'doconce combine_images -' + str(len(scaling_values)) + ' '
+            for s in scaling_values:
+                cmd += ' tmp1_gamma%(gamma)g_s%(s)d.%(ext)s ' % vars()
+            cmd += ' welding_gamma%(gamma)g.%(ext)s' % vars()
             os.system(cmd)
-            # pdflatex doesn't like 0.2 in filenames...
+            # pdflatex doesn't like a dot (as in 0.2) in filenames...
             if '.' in str(gamma):
                 os.rename(
                 'welding_gamma%(gamma)g.%(ext)s' % vars(),

@@ -28,6 +28,8 @@ code { color: inherit; background-color: transparent; }
    max-height: 400px;
    overflow-x: hidden;
 }
+
+body { font-size:20px;line-height:1.5; }
 </style>
 
 
@@ -1042,7 +1044,7 @@ we end up with the scaled PDE
 $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
+\bar\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
 \tag{3.40}
 \end{equation}
 $$
@@ -1168,7 +1170,7 @@ $$
 \bar u(0, \bar t) & = 1,
 \quad  & \bar t\in (0, \bar T],
 \tag{3.48}\\ 
-\frac{\partial}{\partial \bar x} u(1, \bar t) & = 0,
+\frac{\partial}{\partial \bar x} \bar u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
 \tag{3.49}
 \end{align}
@@ -1229,7 +1231,7 @@ Since the boundary temperature is oscillating around the initial
 condition, we expect \( u\in [U_0-A,U_0+A] \).
 The dimensionless temperature is therefore taken as
 
-$$ \bar u = \frac{u-U_0}{2A},$$
+$$ \bar u = \frac{u-U_0}{A},$$
 
 such that \( \bar u\in [-1,1] \).
 

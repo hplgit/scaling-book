@@ -23,7 +23,7 @@
 \usepackage{cite}
 \usepackage{multicol}
 
-\listfiles               % print all files needed to compile this document
+\listfiles               %  print all files needed to compile this document
 
 \usepackage{makeidx,color,setspace,amsmath,amsfonts,amssymb}
 \usepackage[table]{xcolor}
@@ -346,6 +346,8 @@ commentstyle={},
 % matching end for #ifdef PREAMBLE
 % #endif
 
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
 \input{newcommands_keep}
 
 % ------------------- main content ----------------------
@@ -369,7 +371,7 @@ commentstyle={},
 
 % ----------------- end author(s) -------------------------
 
-\date{Apr 14, 2016}
+\date{Apr 19, 2016}
 \maketitle
 
 % Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
@@ -551,7 +553,7 @@ Significant portions of
 the present text were written when the first author was fed with
 FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr.~Olav
 Dajani, and the rest of the OUS team. There would simply be no booklet
-without their efforts. It is also a great pleasure to express my
+without their efforts. It is also a great pleasure to express our
 sincere thanks to the Springer and Simula team that handled the prompt
 editing and production of the text: Martin Peters, Ruth Allewelt,
 Aslak Tveito, and Åsmund Ødegård.
@@ -5239,7 +5241,7 @@ we end up with the scaled PDE
 
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
+\bar\nabla\cdot\left(\bar\dfc \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]\tp
 \label{sec:scale:diffu:pde1:3D:d}
 \end{equation}
 Here, $\bar\nabla$ means differentiation with respect to dimensionless
@@ -5348,7 +5350,7 @@ the dimensionless initial-boundary value problem
 \bar u(0, \bar t) & = 1,
 \quad  & \bar t\in (0, \bar T],
 \label{scale:heat:pde3:bc:0:d}\\ 
-\frac{\partial}{\partial \bar x} u(1, \bar t) & = 0,
+\frac{\partial}{\partial \bar x} \bar u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
 \label{scale:heat:pde3:bc:L:d}
 \end{align}
@@ -5405,7 +5407,7 @@ Since the boundary temperature is oscillating around the initial
 condition, we expect $u\in [U_0-A,U_0+A]$.
 The dimensionless temperature is therefore taken as
 
-\[ \bar u = \frac{u-U_0}{2A},\]
+\[ \bar u = \frac{u-U_0}{A},\]
 such that $\bar u\in [-1,1]$.
 
 What is an appropriate time scale? There will be two time scales involved,
@@ -6393,7 +6395,7 @@ only significant physical parameter.
 
 The presented scaling may not be valid for problems where the geometry
 involves some dimensions that are much smaller than others, such as for
-beams, shells, or plates. Then more one length scale must be defined
+beams, shells, or plates. Then one more length scale must be defined
 which gives us non-dimensional geometrical numbers.  Global balances of
 moments and loads then determine how characteristic displacements
 depend on these numbers. As an example, consider a cantilever beam of
@@ -6445,7 +6447,7 @@ which we simply have $\bar\stress\cdot\normalvec = 0$.
 
 \index{thermo-elasticity}
 
-Heating solids give rise to expansion, i.e., strains, which may cause
+Heating solids gives rise to expansion, i.e., strains, which may cause
 stress if displacements are constrained. The time scale of temperature
 changes are usually much larger than the time scales of elastic waves,
 so the stationary equations of elasticity can be used, but a term
@@ -6630,7 +6632,7 @@ for stationary flow.
 \index{Reynolds number}
 
 \paragraph{Dimensonless PDEs and the Reynolds number.}
-The discussions so far results in the following dimensionless form of
+The discussions so far result in the following dimensionless form of
 (\ref{scale:fluid:NS:eq:momentum}) and (\ref{scale:fluid:NS:eq:cont}):
 
 \begin{align}
@@ -7006,7 +7008,7 @@ coupled to an energy equation governing the temperature:
 \label{scale:fluid:free_convection:eq:energy_T}
 \end{align}
 where Einstein's summation convention is implied for the
-$\varepsilon_{ij}\varepsilon_{ij}$ term.[[[
+$\varepsilon_{ij}\varepsilon_{ij}$ term.
 The symbol $T$ is the temperature, $c$ is a heat capacity, $\kappa$
 is the heat conduction coefficient for the fluid. In free convection,
 the gravity term $-\varrho(T) g\kk$ is essential since the flow is driven
@@ -7131,9 +7133,6 @@ The dimensionless numbers, in addition to Re and Fr, are
 \hbox{Pe}^{-1} = \frac{\kappa }{\varrho_0 c UL},\quad
 \delta = \frac{\mu U}{L\varrho_0 c \Delta T}\tp
 \]
-The Peclet number is here defined as the ratio of the
-convection term for heat $\varrho_0 c U\Delta T/L$ and the
-heat conduction term $\kappa U/L^2$.
 The $\gamma$ number measures the ratio of thermal buoyancy and
 the convection term:
 
@@ -7833,7 +7832,7 @@ while the bottom condition is invariant with respect to the present scaling
 
 \begin{equation}
 \label{scale:surfacewave:kinbott3}
-\bar\nabla_h\cdot\u_h =-\bar w\tp
+\bar\nabla_h\cdot\bar\u_h =-\bar w\tp
 \end{equation}
 An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which implies that the pressure
 is hydrostatic. The above set of equations is a common  starting point for
@@ -7915,7 +7914,8 @@ since $k_{rn}>0$ and $k_{rw}>0$). Very often, $p_c'$ is small so
 (\ref{scale:twoph:Seq}) is of hyperbolic nature, and $S$ features very
 steep gradients that become shocks in the limit $p_c'\rightarrow 0$
 and (\ref{scale:twoph:Seq}) is purely hyperbolic.
-A popular solution technique is based on operator splitting:
+A popular solution technique is based on operator splitting at each
+time level in a numerical scheme:
 (\ref{scale:twoph:Peq}) is solved with respect to $P$, given $S$, and
 (\ref{scale:twoph:Seq}) is solved with respect to $S$, given $P$.
 
