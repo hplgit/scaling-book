@@ -1654,7 +1654,7 @@ reflected by the \( \sigma \) parameter. Modify the scaling in b) when
 <b>d)</b>
 One aim with scaling is to get a solution that lies in the interval
 \( [-1,1] \). This is not always the case when \( u_c \) is based on a scale
-involving a source term, as we do in a) and b).  However, from the
+involving a source term, as we do in a)-c).  However, from the
 scaled PDE we realize that if we replace \( \bar f \) with \( \delta\bar f \),
 where \( \delta \) is a dimensionless factor, this corresponds to
 replacing \( u_c \) by \( u_c/\delta \). So, if we observe that \( \bar
@@ -1662,18 +1662,18 @@ u\sim1/\delta \) in simulations, we can just replace \( \bar f \) by \( \delta
 \bar f \) in the scaled PDE.
 
 <p>
-Use this trick and implement the two scaled models. Reuse software for
+Use this trick and implement the three scaled models. Reuse software for
 the 1D diffusion equation.  Make a function <code>run(gamma, beta=10, delta=40,
 scaling=1, animate=False)</code> that runs an implementation of
 the unscaled model with the given
 \( \gamma \), \( \beta \), and \( \delta \) parameters as well as an indicator
-<code>scaling</code> that is 1 for the scaling in a) and 2 for the scaling in
-b). The last argument can be used to turn screen animations on or off.
+<code>scaling</code> that is 1 for the scaling in a), 2 for the scaling in
+b), and 3 for the scaling in c).
+The last argument can be used to turn screen animations on or off.
 
 <p>
-Experiments show that with \( \gamma=1 \) and \( \beta=10 \), \( \delta =20 \)
-is appropriate. Then \( \max |\bar u| \) will be larger than 4 for \( \gamma
-=40 \), but that is acceptable.
+Perform experiments to find the proper value of \( \delta \) for each \( \gamma \)
+and for each scaling.
 
 <p>
 Equip the <code>run</code> function with visualization, both animation of \( \bar u \)
@@ -1706,7 +1706,7 @@ it is attractive to plot \( \bar f/\delta \) together with \( \bar u \).
  -->
 <p>
 <b>e)</b>
-Use the software in c) to investigate \( \gamma=0.2,1,5,40 \) for the
+Use the software in d) to investigate \( \gamma=0.2,1,5,40 \) for the
 three scalings. Discuss the results.
 
 <p>

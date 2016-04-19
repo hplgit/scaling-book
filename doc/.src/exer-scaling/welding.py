@@ -138,6 +138,10 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
     import time
     import scitools.std as plt
     plot_arrays = []
+    if scaling == 3:
+        plot_times = [0.2*beta, 0.5*beta]
+    else:
+        plot_times = [0.2, 0.5]
 
     def process_u(u, x, t, n):
         global ymax
@@ -151,14 +155,18 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
             plot_arrays.append(x)
         dt = t[1] - t[0]
         tol = dt/10.0
-        if abs(t[n] - 0.2) < tol or abs(t[n] - 0.5) < tol:
+        if abs(t[n] - plot_times[0]) < tol or \
+           abs(t[n] - plot_times[1]) < tol:
             plot_arrays.append((u.copy(), f(x, t[n])/delta))
             if u.max() > ymax:
                 ymax = u.max()
 
     Nx = 100
     D = 10
-    T = 0.5
+    if scaling == 3:
+        T = 0.5*beta
+    else:
+        T = 0.5
     u_L = u_R = 0
     theta = 1.0
     cpu = solver(
@@ -169,8 +177,10 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
         plt.plot(x, u, 'r-', x, f, 'b--', axis=[x[0], x[-1], 0, ymax],
                  xlabel='$x$', ylabel=r'$u, \ f/%g$' % delta)
         plt.hold('on')
-    plt.legend(['$u,\\ t=0.2$', '$f/%g,\\ t=0.2$' % delta,
-                '$u,\\ t=0.5$', '$f/%g,\\ t=0.5$' % delta])
+    plt.legend(['$u,\\ t=%g$' % plot_times[0],
+                '$f/%g,\\ t=%g$' % (delta, plot_times[0]),
+                '$u,\\ t=%g$' % plot_times[1],
+                '$f/%g,\\ t=%g$' % (delta, plot_times[1])])
     filename = 'tmp1_gamma%g_s%d' % (gamma, scaling)
     if scaling == 1:
         s = 'diffusion'
@@ -194,9 +204,9 @@ def investigate():
     scaling_values = 1, 2, 3
     gamma_values = 1, 40, 5, 0.2, 0.025
     delta_values = {}  # delta_values[scaling][gamma]
-    delta_values[1] = {0.025: 140, 0.2: 60,  1: 20, 5: 40, 40: 800}
-    delta_values[2] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,  40: 5}
-    delta_values[3] = {0.025: 350, 0.2: 40,  1: 12, 5: 5,  40: 2}
+    delta_values[1] = {0.025: 140, 0.2: 60,  1: 20, 5: 40,  40: 800}
+    delta_values[2] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,   40: 5}
+    delta_values[3] = {0.025: 80,  0.2: 10,  1: 2,  5: 0.8, 40: 0.5}
     for gamma in gamma_values:
         for scaling in scaling_values:
             run(gamma=gamma, beta=10,

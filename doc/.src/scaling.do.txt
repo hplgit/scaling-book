@@ -8506,24 +8506,24 @@ i.e., $\beta$ enters the problem in the domain size.
 !bsubex
 One aim with scaling is to get a solution that lies in the interval
 $[-1,1]$. This is not always the case when $u_c$ is based on a scale
-involving a source term, as we do in a) and b).  However, from the
+involving a source term, as we do in a)-c).  However, from the
 scaled PDE we realize that if we replace $\bar f$ with $\delta\bar f$,
 where $\delta$ is a dimensionless factor, this corresponds to
 replacing $u_c$ by $u_c/\delta$. So, if we observe that $\bar
 u\sim1/\delta$ in simulations, we can just replace $\bar f$ by $\delta
 \bar f$ in the scaled PDE.
 
-Use this trick and implement the two scaled models. Reuse software for
+Use this trick and implement the three scaled models. Reuse software for
 the 1D diffusion equation.  Make a function `run(gamma, beta=10, delta=40,
 scaling=1, animate=False)` that runs an implementation of
 the unscaled model with the given
 $\gamma$, $\beta$, and $\delta$ parameters as well as an indicator
-`scaling` that is 1 for the scaling in a) and 2 for the scaling in
-b). The last argument can be used to turn screen animations on or off.
+`scaling` that is 1 for the scaling in a), 2 for the scaling in
+b), and 3 for the scaling in c).
+The last argument can be used to turn screen animations on or off.
 
-Experiments show that with $\gamma=1$ and $\beta=10$, $\delta =20$
-is appropriate. Then $\max |\bar u|$ will be larger than 4 for $\gamma
-=40$, but that is acceptable.
+Perform experiments to find the proper value of $\delta$ for each $\gamma$
+and for each scaling.
 
 Equip the `run` function with visualization, both animation of $\bar u$
 and $\bar f$, and plots with $\bar u$ and $\bar f$ for $t=0.2$ and $t=0.5$.
@@ -8548,7 +8548,7 @@ to drop the bars as soon as the scaled problem is established.
 !esubex
 
 !bsubex
-Use the software in c) to investigate $\gamma=0.2,1,5,40$ for the
+Use the software in d) to investigate $\gamma=0.2,1,5,40$ for the
 three scalings. Discuss the results.
 
 !bsol
@@ -8562,6 +8562,11 @@ Note that for each $\gamma$ value and each scaling, we have found
 a $\delta$ value such that the maximum $u$ value is around unity in size.
 We did this first by trial and error, and thereafter filled out the
 `delta_values` dictionary.
+
+The scalings in b) and c) are illustrated at the same *physical* times.
+The scaling in a) is plotted at the same non-dimensional time as
+the scaling in b), but observe that this is a different physical time
+than used for the  b) and c) scalings.
 
 We get the following plots, with diffusion time scale to the left,
 heat source time scale in the middle, and the time scale based on $\sigma$

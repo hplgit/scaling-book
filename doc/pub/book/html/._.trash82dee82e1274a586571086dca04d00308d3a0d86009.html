@@ -2268,7 +2268,7 @@ i.e., \( \beta \) enters the problem in the domain size.
 <b>d)</b>
 One aim with scaling is to get a solution that lies in the interval
 \( [-1,1] \). This is not always the case when \( u_c \) is based on a scale
-involving a source term, as we do in a) and b).  However, from the
+involving a source term, as we do in a)-c).  However, from the
 scaled PDE we realize that if we replace \( \bar f \) with \( \delta\bar f \),
 where \( \delta \) is a dimensionless factor, this corresponds to
 replacing \( u_c \) by \( u_c/\delta \). So, if we observe that \( \bar
@@ -2276,18 +2276,18 @@ u\sim1/\delta \) in simulations, we can just replace \( \bar f \) by \( \delta
 \bar f \) in the scaled PDE.
 
 <p>
-Use this trick and implement the two scaled models. Reuse software for
+Use this trick and implement the three scaled models. Reuse software for
 the 1D diffusion equation.  Make a function <code>run(gamma, beta=10, delta=40,
 scaling=1, animate=False)</code> that runs an implementation of
 the unscaled model with the given
 \( \gamma \), \( \beta \), and \( \delta \) parameters as well as an indicator
-<code>scaling</code> that is 1 for the scaling in a) and 2 for the scaling in
-b). The last argument can be used to turn screen animations on or off.
+<code>scaling</code> that is 1 for the scaling in a), 2 for the scaling in
+b), and 3 for the scaling in c).
+The last argument can be used to turn screen animations on or off.
 
 <p>
-Experiments show that with \( \gamma=1 \) and \( \beta=10 \), \( \delta =20 \)
-is appropriate. Then \( \max |\bar u| \) will be larger than 4 for \( \gamma
-=40 \), but that is acceptable.
+Perform experiments to find the proper value of \( \delta \) for each \( \gamma \)
+and for each scaling.
 
 <p>
 Equip the <code>run</code> function with visualization, both animation of \( \bar u \)
@@ -2478,6 +2478,10 @@ And here is our <code>run</code> function tailored to the problem:
     <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">time</span>
     <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">scitools.std</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
     plot_arrays <span style="color: #666666">=</span> []
+    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
+        plot_times <span style="color: #666666">=</span> [<span style="color: #666666">0.2*</span>beta, <span style="color: #666666">0.5*</span>beta]
+    <span style="color: #008000; font-weight: bold">else</span>:
+        plot_times <span style="color: #666666">=</span> [<span style="color: #666666">0.2</span>, <span style="color: #666666">0.5</span>]
 
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">process_u</span>(u, x, t, n):
         <span style="color: #008000; font-weight: bold">global</span> ymax
@@ -2491,14 +2495,18 @@ And here is our <code>run</code> function tailored to the problem:
             plot_arrays<span style="color: #666666">.</span>append(x)
         dt <span style="color: #666666">=</span> t[<span style="color: #666666">1</span>] <span style="color: #666666">-</span> t[<span style="color: #666666">0</span>]
         tol <span style="color: #666666">=</span> dt<span style="color: #666666">/10.0</span>
-        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">abs</span>(t[n] <span style="color: #666666">-</span> <span style="color: #666666">0.2</span>) <span style="color: #666666">&lt;</span> tol <span style="color: #AA22FF; font-weight: bold">or</span> <span style="color: #008000">abs</span>(t[n] <span style="color: #666666">-</span> <span style="color: #666666">0.5</span>) <span style="color: #666666">&lt;</span> tol:
+        <span style="color: #008000; font-weight: bold">if</span> <span style="color: #008000">abs</span>(t[n] <span style="color: #666666">-</span> plot_times[<span style="color: #666666">0</span>]) <span style="color: #666666">&lt;</span> tol <span style="color: #AA22FF; font-weight: bold">or</span> \ 
+           <span style="color: #008000">abs</span>(t[n] <span style="color: #666666">-</span> plot_times[<span style="color: #666666">1</span>]) <span style="color: #666666">&lt;</span> tol:
             plot_arrays<span style="color: #666666">.</span>append((u<span style="color: #666666">.</span>copy(), f(x, t[n])<span style="color: #666666">/</span>delta))
             <span style="color: #008000; font-weight: bold">if</span> u<span style="color: #666666">.</span>max() <span style="color: #666666">&gt;</span> ymax:
                 ymax <span style="color: #666666">=</span> u<span style="color: #666666">.</span>max()
 
     Nx <span style="color: #666666">=</span> <span style="color: #666666">100</span>
     D <span style="color: #666666">=</span> <span style="color: #666666">10</span>
-    T <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
+        T <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>beta
+    <span style="color: #008000; font-weight: bold">else</span>:
+        T <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
     u_L <span style="color: #666666">=</span> u_R <span style="color: #666666">=</span> <span style="color: #666666">0</span>
     theta <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
     cpu <span style="color: #666666">=</span> solver(
@@ -2509,8 +2517,10 @@ And here is our <code>run</code> function tailored to the problem:
         plt<span style="color: #666666">.</span>plot(x, u, <span style="color: #BA2121">&#39;r-&#39;</span>, x, f, <span style="color: #BA2121">&#39;b--&#39;</span>, axis<span style="color: #666666">=</span>[x[<span style="color: #666666">0</span>], x[<span style="color: #666666">-1</span>], <span style="color: #666666">0</span>, ymax],
                  xlabel<span style="color: #666666">=</span><span style="color: #BA2121">&#39;$x$&#39;</span>, ylabel<span style="color: #666666">=</span><span style="color: #BA2121">r&#39;$u, \ f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> delta)
         plt<span style="color: #666666">.</span>hold(<span style="color: #BA2121">&#39;on&#39;</span>)
-    plt<span style="color: #666666">.</span>legend([<span style="color: #BA2121">&#39;$u,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=0.2$&#39;</span>, <span style="color: #BA2121">&#39;$f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=0.2$&#39;</span> <span style="color: #666666">%</span> delta,
-                <span style="color: #BA2121">&#39;$u,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=0.5$&#39;</span>, <span style="color: #BA2121">&#39;$f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=0.5$&#39;</span> <span style="color: #666666">%</span> delta])
+    plt<span style="color: #666666">.</span>legend([<span style="color: #BA2121">&#39;$u,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> plot_times[<span style="color: #666666">0</span>],
+                <span style="color: #BA2121">&#39;$f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> (delta, plot_times[<span style="color: #666666">0</span>]),
+                <span style="color: #BA2121">&#39;$u,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> plot_times[<span style="color: #666666">1</span>],
+                <span style="color: #BA2121">&#39;$f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> (delta, plot_times[<span style="color: #666666">1</span>])])
     filename <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;tmp1_gamma</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">_s</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> (gamma, scaling)
     <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">1</span>:
         s <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;diffusion&#39;</span>
@@ -2537,7 +2547,7 @@ to drop the bars as soon as the scaled problem is established.
 
 <p>
 <b>e)</b>
-Use the software in c) to investigate \( \gamma=0.2,1,5,40 \) for the
+Use the software in d) to investigate \( \gamma=0.2,1,5,40 \) for the
 three scalings. Discuss the results.
 
 <p>
@@ -2569,9 +2579,9 @@ the tasks is
     scaling_values <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #666666">2</span>, <span style="color: #666666">3</span>
     gamma_values <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #666666">40</span>, <span style="color: #666666">5</span>, <span style="color: #666666">0.2</span>, <span style="color: #666666">0.025</span>
     delta_values <span style="color: #666666">=</span> {}  <span style="color: #408080; font-style: italic"># delta_values[scaling][gamma]</span>
-    delta_values[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">140</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">60</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">40</span>, <span style="color: #666666">40</span>: <span style="color: #666666">800</span>}
-    delta_values[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">700</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">100</span>, <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">8</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">5</span>}
-    delta_values[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">350</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">40</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">12</span>, <span style="color: #666666">5</span>: <span style="color: #666666">5</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">2</span>}
+    delta_values[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">140</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">60</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">40</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">800</span>}
+    delta_values[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">700</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">100</span>, <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">8</span>,   <span style="color: #666666">40</span>: <span style="color: #666666">5</span>}
+    delta_values[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">80</span>,  <span style="color: #666666">0.2</span>: <span style="color: #666666">10</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">2</span>,  <span style="color: #666666">5</span>: <span style="color: #666666">0.8</span>, <span style="color: #666666">40</span>: <span style="color: #666666">0.5</span>}
     <span style="color: #008000; font-weight: bold">for</span> gamma <span style="color: #AA22FF; font-weight: bold">in</span> gamma_values:
         <span style="color: #008000; font-weight: bold">for</span> scaling <span style="color: #AA22FF; font-weight: bold">in</span> scaling_values:
             run(gamma<span style="color: #666666">=</span>gamma, beta<span style="color: #666666">=10</span>,
@@ -2598,6 +2608,12 @@ Note that for each \( \gamma \) value and each scaling, we have found
 a \( \delta \) value such that the maximum \( u \) value is around unity in size.
 We did this first by trial and error, and thereafter filled out the
 <code>delta_values</code> dictionary.
+
+<p>
+The scalings in b) and c) are illustrated at the same <em>physical</em> times.
+The scaling in a) is plotted at the same non-dimensional time as
+the scaling in b), but observe that this is a different physical time
+than used for the  b) and c) scalings.
 
 <p>
 We get the following plots, with diffusion time scale to the left,
