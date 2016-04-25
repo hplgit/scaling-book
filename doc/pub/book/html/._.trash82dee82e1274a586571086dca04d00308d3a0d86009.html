@@ -2125,7 +2125,7 @@ the diffusion velocity.
 
 <p>
 <b>b)</b>
-Argue that for large \( \gamma \) we should base the time scale on the
+Argue that at least for large \( \gamma \) we should base the time scale on the
 movement of the heat source. Using \( L \) as length scale,
 show that this gives rise to the scaled
 PDE
@@ -2266,6 +2266,53 @@ i.e., \( \beta \) enters the problem in the domain size.
 
 <p>
 <b>d)</b>
+A fourth kind of possible scaling is to say that for small \( \gamma \),
+the problem is quasi-stationary and the heat transfer balances the
+heat source. Determine \( u_c \) from this assumption. Use \( L \) as length
+scale and a time scale as in b), i.e.,
+based on the movement of the welding equipment.
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_24_5" style="font-size: 80%;"></a>
+<b>Solution.</b>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_24_5">
+
+<p>
+We insert the dimensionless quantities in the PDE, but this time we
+make the factor in the source term unity:
+
+$$ \frac{\varrho c u_c}{A t_c}
+\frac{\partial\bar u}{\partial\bar t} =
+\frac{ku_c}{AL^2}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \bar f\tp
+$$
+
+Assuming the two terms on the right-hand side balance, we must have
+\( ku_c/(AL^2)=1 \) and hence \( u_c= L^2A/k \). This gives the coefficient
+\( \varrho cL^2/(kt_c) \) on the left-hand side. From b) we have that
+a time scale based the movement of the heat source: \( t_c=L/v \).
+Now the scaled PDE becomes
+
+$$ \gamma \frac{\partial\bar u}{\partial\bar t} =
+\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f\tp$$
+
+The scaling of \( f \) becomes identical to the one in b).
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+
+<p>
+<b>e)</b>
 One aim with scaling is to get a solution that lies in the interval
 \( [-1,1] \). This is not always the case when \( u_c \) is based on a scale
 involving a source term, as we do in a)-c).  However, from the
@@ -2276,14 +2323,13 @@ u\sim1/\delta \) in simulations, we can just replace \( \bar f \) by \( \delta
 \bar f \) in the scaled PDE.
 
 <p>
-Use this trick and implement the three scaled models. Reuse software for
-the 1D diffusion equation.  Make a function <code>run(gamma, beta=10, delta=40,
-scaling=1, animate=False)</code> that runs an implementation of
-the unscaled model with the given
-\( \gamma \), \( \beta \), and \( \delta \) parameters as well as an indicator
-<code>scaling</code> that is 1 for the scaling in a), 2 for the scaling in
-b), and 3 for the scaling in c).
-The last argument can be used to turn screen animations on or off.
+Use this trick and implement the four scaled models in a)-d). Reuse
+some software for the 1D diffusion equation.  Make a function
+<code>run(gamma, beta=10, delta=40, scaling=1, animate=False)</code> that runs an
+implementation of the unscaled model with the given \( \gamma \), \( \beta \),
+and \( \delta \) parameters as well as an indicator <code>scaling</code> that is <code>'a'</code>,
+<code>'b'</code>, and so forth.  The
+last argument can be used to turn screen animations on or off.
 
 <p>
 Perform experiments to find the proper value of \( \delta \) for each \( \gamma \)
@@ -2320,14 +2366,25 @@ it is attractive to plot \( \bar f/\delta \) together with \( \bar u \).
 
 <p>
 <a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_5" style="font-size: 80%;"></a>
+ data-target="#exer_24_6" style="font-size: 80%;"></a>
 <b>Solution.</b>
 <div class="collapse-group">
-<p><div class="collapse" id="exer_24_5">
+<p><div class="collapse" id="exer_24_6">
 
 <p>
 Here is a possible general <code>solver</code> function for solving the 1D
-diffusion equation:
+diffusion equation
+
+$$ \frac{\partial u}{\partial t} = \frac{\partial}{\partial x}
+\left(\dfc(x)\frac{\partial u}{\partial x}\right) + f,$$
+
+by the \( \theta \)-rule in time and centered finite
+differences in space. The \( \theta \)-rule in time is actually just a notational
+convenience that gives Forward Euler explicit time stepping for
+\( \theta=0 \), Backward Euler implicit time stepping for \( \theta=0 \), and
+a centered implicit Crank-Nicolson scheme for \( \theta=\half \).
+The boundary conditions is of Dirichlet type: \( u(0,t)=U_L(t) \) and
+\( u(L,t)=U_R(t) \).
 
 <p>
 
@@ -2451,21 +2508,29 @@ And here is our <code>run</code> function tailored to the problem:
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
 <div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">run</span>(gamma, beta<span style="color: #666666">=10</span>, delta<span style="color: #666666">=40</span>, scaling<span style="color: #666666">=1</span>, animate<span style="color: #666666">=</span><span style="color: #008000">False</span>):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Run the scaled model for welding.&quot;&quot;&quot;</span>
-    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">1</span>:
+    gamma <span style="color: #666666">=</span> <span style="color: #008000">float</span>(gamma)  <span style="color: #408080; font-style: italic"># avoid integer division</span>
+    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;a&#39;</span>:
         v <span style="color: #666666">=</span> gamma
         a <span style="color: #666666">=</span> <span style="color: #666666">1</span>
         L <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
         b <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>beta<span style="color: #666666">**2</span>
-    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">2</span>:
+    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;b&#39;</span>:
         v <span style="color: #666666">=</span> <span style="color: #666666">1</span>
         a <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>gamma
         L <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
         b <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>beta<span style="color: #666666">**2</span>
-    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
+    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;c&#39;</span>:
         v <span style="color: #666666">=</span> <span style="color: #666666">1</span>
         a <span style="color: #666666">=</span> beta<span style="color: #666666">/</span>gamma
         L <span style="color: #666666">=</span> beta
         b <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
+    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;d&#39;</span>:
+        <span style="color: #408080; font-style: italic"># PDE: u_t = gamma**(-1)u_xx + gamma**(-1)*delta*f</span>
+        v <span style="color: #666666">=</span> <span style="color: #666666">1</span>
+        a <span style="color: #666666">=</span> <span style="color: #666666">1.0/</span>gamma
+        L <span style="color: #666666">=</span> <span style="color: #666666">1.0</span>
+        b <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>beta<span style="color: #666666">**2</span>
+        delta <span style="color: #666666">*=</span> <span style="color: #666666">1.0/</span>gamma
 
     ymin <span style="color: #666666">=</span> <span style="color: #666666">0</span>
     <span style="color: #408080; font-style: italic"># Need global ymax to be able change ymax in closure process_u</span>
@@ -2478,12 +2543,16 @@ And here is our <code>run</code> function tailored to the problem:
     <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">time</span>
     <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">scitools.std</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
     plot_arrays <span style="color: #666666">=</span> []
-    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
+    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;c&#39;</span>:
         plot_times <span style="color: #666666">=</span> [<span style="color: #666666">0.2*</span>beta, <span style="color: #666666">0.5*</span>beta]
     <span style="color: #008000; font-weight: bold">else</span>:
         plot_times <span style="color: #666666">=</span> [<span style="color: #666666">0.2</span>, <span style="color: #666666">0.5</span>]
 
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">process_u</span>(u, x, t, n):
+        <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
+<span style="color: #BA2121; font-style: italic">        Animate u, and store arrays in plot_arrays if</span>
+<span style="color: #BA2121; font-style: italic">        t coincides with chosen times for plotting (plot_times).</span>
+<span style="color: #BA2121; font-style: italic">        &quot;&quot;&quot;</span>
         <span style="color: #008000; font-weight: bold">global</span> ymax
         <span style="color: #008000; font-weight: bold">if</span> animate:
             plt<span style="color: #666666">.</span>plot(x, u, <span style="color: #BA2121">&#39;r-&#39;</span>,
@@ -2503,7 +2572,7 @@ And here is our <code>run</code> function tailored to the problem:
 
     Nx <span style="color: #666666">=</span> <span style="color: #666666">100</span>
     D <span style="color: #666666">=</span> <span style="color: #666666">10</span>
-    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
+    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;c&#39;</span>:
         T <span style="color: #666666">=</span> <span style="color: #666666">0.5*</span>beta
     <span style="color: #008000; font-weight: bold">else</span>:
         T <span style="color: #666666">=</span> <span style="color: #666666">0.5</span>
@@ -2521,15 +2590,9 @@ And here is our <code>run</code> function tailored to the problem:
                 <span style="color: #BA2121">&#39;$f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> (delta, plot_times[<span style="color: #666666">0</span>]),
                 <span style="color: #BA2121">&#39;$u,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> plot_times[<span style="color: #666666">1</span>],
                 <span style="color: #BA2121">&#39;$f/</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,</span><span style="color: #BB6622; font-weight: bold">\\</span><span style="color: #BA2121"> t=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">$&#39;</span> <span style="color: #666666">%</span> (delta, plot_times[<span style="color: #666666">1</span>])])
-    filename <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;tmp1_gamma</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">_s</span><span style="color: #BB6688; font-weight: bold">%d</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> (gamma, scaling)
-    <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">1</span>:
-        s <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;diffusion&#39;</span>
-    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">2</span>:
-        s <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;source&#39;</span>
-    <span style="color: #008000; font-weight: bold">elif</span> scaling <span style="color: #666666">==</span> <span style="color: #666666">3</span>:
-        s <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;sigma&#39;</span>
+    filename <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;tmp1_gamma</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">_</span><span style="color: #BB6688; font-weight: bold">%s</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> (gamma, scaling)
     plt<span style="color: #666666">.</span>title(<span style="color: #BA2121">r&#39;$\beta = </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,\ \gamma = </span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">,\ $&#39;</span> <span style="color: #666666">%</span> (beta, gamma)
-              <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;scaling=</span><span style="color: #BB6688; font-weight: bold">%s</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> s)
+              <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;scaling=</span><span style="color: #BB6688; font-weight: bold">%s</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> scaling)
     plt<span style="color: #666666">.</span>savefig(filename <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;.pdf&#39;</span>);  plt<span style="color: #666666">.</span>savefig(filename <span style="color: #666666">+</span> <span style="color: #BA2121">&#39;.png&#39;</span>)
     <span style="color: #008000; font-weight: bold">return</span> cpu
 </pre></div>
@@ -2546,19 +2609,19 @@ to drop the bars as soon as the scaled problem is established.
 <!-- --- end solution of exercise --- -->
 
 <p>
-<b>e)</b>
-Use the software in d) to investigate \( \gamma=0.2,1,5,40 \) for the
-three scalings. Discuss the results.
+<b>f)</b>
+Use the software in e) to investigate \( \gamma=0.2,1,5,40 \) for the
+four scalings. Discuss the results.
 
 <p>
 <!-- --- begin solution of exercise --- -->
 
 <p>
 <a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_6" style="font-size: 80%;"></a>
+ data-target="#exer_24_7" style="font-size: 80%;"></a>
 <b>Solution.</b>
 <div class="collapse-group">
-<p><div class="collapse" id="exer_24_6">
+<p><div class="collapse" id="exer_24_7">
 
 <p>
 For these investigations, we compare the three scalings for each of
@@ -2576,12 +2639,13 @@ the tasks is
             glob<span style="color: #666666">.</span>glob(<span style="color: #BA2121">&#39;welding_gamma*&#39;</span>):
         os<span style="color: #666666">.</span>remove(filename)
 
-    scaling_values <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #666666">2</span>, <span style="color: #666666">3</span>
+    scaling_values <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;abcd&#39;</span>
     gamma_values <span style="color: #666666">=</span> <span style="color: #666666">1</span>, <span style="color: #666666">40</span>, <span style="color: #666666">5</span>, <span style="color: #666666">0.2</span>, <span style="color: #666666">0.025</span>
     delta_values <span style="color: #666666">=</span> {}  <span style="color: #408080; font-style: italic"># delta_values[scaling][gamma]</span>
-    delta_values[<span style="color: #666666">1</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">140</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">60</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">40</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">800</span>}
-    delta_values[<span style="color: #666666">2</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">700</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">100</span>, <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">8</span>,   <span style="color: #666666">40</span>: <span style="color: #666666">5</span>}
-    delta_values[<span style="color: #666666">3</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">80</span>,  <span style="color: #666666">0.2</span>: <span style="color: #666666">10</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">2</span>,  <span style="color: #666666">5</span>: <span style="color: #666666">0.8</span>, <span style="color: #666666">40</span>: <span style="color: #666666">0.5</span>}
+    delta_values[<span style="color: #BA2121">&#39;a&#39;</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">140</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">60</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">40</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">800</span>}
+    delta_values[<span style="color: #BA2121">&#39;b&#39;</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">700</span>, <span style="color: #666666">0.2</span>: <span style="color: #666666">100</span>, <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">8</span>,   <span style="color: #666666">40</span>: <span style="color: #666666">5</span>}
+    delta_values[<span style="color: #BA2121">&#39;c&#39;</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">80</span>,  <span style="color: #666666">0.2</span>: <span style="color: #666666">10</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">2</span>,  <span style="color: #666666">5</span>: <span style="color: #666666">0.8</span>, <span style="color: #666666">40</span>: <span style="color: #666666">0.5</span>}
+    delta_values[<span style="color: #BA2121">&#39;d&#39;</span>] <span style="color: #666666">=</span> {<span style="color: #666666">0.025</span>: <span style="color: #666666">20</span>,  <span style="color: #666666">0.2</span>: <span style="color: #666666">20</span>,  <span style="color: #666666">1</span>: <span style="color: #666666">20</span>, <span style="color: #666666">5</span>: <span style="color: #666666">40</span>,  <span style="color: #666666">40</span>: <span style="color: #666666">200</span>}
     <span style="color: #008000; font-weight: bold">for</span> gamma <span style="color: #AA22FF; font-weight: bold">in</span> gamma_values:
         <span style="color: #008000; font-weight: bold">for</span> scaling <span style="color: #AA22FF; font-weight: bold">in</span> scaling_values:
             run(gamma<span style="color: #666666">=</span>gamma, beta<span style="color: #666666">=10</span>,
@@ -2591,9 +2655,9 @@ the tasks is
     <span style="color: #408080; font-style: italic"># Combine images</span>
     <span style="color: #008000; font-weight: bold">for</span> gamma <span style="color: #AA22FF; font-weight: bold">in</span> gamma_values:
         <span style="color: #008000; font-weight: bold">for</span> ext <span style="color: #AA22FF; font-weight: bold">in</span> <span style="color: #BA2121">&#39;pdf&#39;</span>, <span style="color: #BA2121">&#39;png&#39;</span>:
-            cmd <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;doconce combine_images -&#39;</span> <span style="color: #666666">+</span> <span style="color: #008000">str</span>(<span style="color: #008000">len</span>(scaling_values)) <span style="color: #666666">+</span> <span style="color: #BA2121">&#39; &#39;</span>
+            cmd <span style="color: #666666">=</span> <span style="color: #BA2121">&#39;doconce combine_images -2&#39;</span>
             <span style="color: #008000; font-weight: bold">for</span> s <span style="color: #AA22FF; font-weight: bold">in</span> scaling_values:
-                cmd <span style="color: #666666">+=</span> <span style="color: #BA2121">&#39; tmp1_gamma</span><span style="color: #BB6688; font-weight: bold">%(gamma)g</span><span style="color: #BA2121">_s</span><span style="color: #BB6688; font-weight: bold">%(s)d</span><span style="color: #BA2121">.</span><span style="color: #BB6688; font-weight: bold">%(ext)s</span><span style="color: #BA2121"> &#39;</span> <span style="color: #666666">%</span> <span style="color: #008000">vars</span>()
+                cmd <span style="color: #666666">+=</span> <span style="color: #BA2121">&#39; tmp1_gamma</span><span style="color: #BB6688; font-weight: bold">%(gamma)g</span><span style="color: #BA2121">_</span><span style="color: #BB6688; font-weight: bold">%(s)s</span><span style="color: #BA2121">.</span><span style="color: #BB6688; font-weight: bold">%(ext)s</span><span style="color: #BA2121"> &#39;</span> <span style="color: #666666">%</span> <span style="color: #008000">vars</span>()
             cmd <span style="color: #666666">+=</span> <span style="color: #BA2121">&#39; welding_gamma</span><span style="color: #BB6688; font-weight: bold">%(gamma)g</span><span style="color: #BA2121">.</span><span style="color: #BB6688; font-weight: bold">%(ext)s</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> <span style="color: #008000">vars</span>()
             os<span style="color: #666666">.</span>system(cmd)
             <span style="color: #408080; font-style: italic"># pdflatex doesn&#39;t like a dot (as in 0.2) in filenames...</span>
@@ -2610,58 +2674,79 @@ We did this first by trial and error, and thereafter filled out the
 <code>delta_values</code> dictionary.
 
 <p>
-The scalings in b) and c) are illustrated at the same <em>physical</em> times.
+The scalings in b)-d) are illustrated at the same <em>physical</em> times.
 The scaling in a) is plotted at the same non-dimensional time as
-the scaling in b), but observe that this is a different physical time
-than used for the  b) and c) scalings.
+used in the other scalings, but observe that this is a different physical time
+than used for the b)-d) scalings.
 
 <p>
-We get the following plots, with diffusion time scale to the left,
-heat source time scale in the middle, and the time scale based on \( \sigma \)
-to the right, starting with \( \gamma=0.025 \)
+We get the following plots, with the a) and c) scalings to the left and
+the b) and d) scalings to the right,
+starting with \( \gamma=0.025 \)
 and increasing its value to \( \gamma=40 \):
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 1</b>: Geir, I feel we need some better discussions. It seems that scaling in time based on the heat source velocity is the &quot;winner&quot;. However, for a very low \( \gamma \) it will be inappropriate since heat transfer has worked for a very long time before have the equipment in the middle position of the domain.)</font>
-<!-- end inline comment -->
+<b>\( \gamma=0.025 \).</b>
 
 <p>
 <center><p><img src="fig-scaling/welding_gamma0_025.png" align="bottom" width=800></p></center>
 
 <p>
-
-<!-- begin inline comment -->
-<font color="red">(<b>hpl 2</b>: I think it is a bit difficult to understand the graphs. This low \( \gamma \) value corresponds to a very slowly moving heat source. There is then time for the heat to spread ahead of the source. This is easy to see in the left plot. Since the time scales are so different, the graphs to the right and left are at two very different time points. This should be pointed out. The graphs on the left are early in the process, while heat transfer has been working for a long time in the graphs to the right. Also in the right plot we see that a lot of material around the source is heated, but the boundary conditions forces heat out of the two boundaries. Had we used insulated ends, there would be a significant build-up of heating (probably constant \( u \) in space for large times).)</font>
-<!-- end inline comment -->
+<b>\( \gamma=0.02 \).</b>
 
 <p>
 <center><p><img src="fig-scaling/welding_gamma0_2.png" align="bottom" width=800></p></center>
 
 <p>
+For small \( \gamma \), 0.025 and 0.2, the scales b)-d) are equally
+applicable, while the diffusion time scale, which is much longer,
+
+<p>
+<b>\( \gamma=1 \).</b>
+Not surprisingly, all the scalings are equal
+and provide identical results for \( \gamma=1 \).
+
+<p>
 <center><p><img src="fig-scaling/welding_gamma1.png" align="bottom" width=800></p></center>
+
+<p>
+<b>\( \gamma=5 \).</b>
 
 <p>
 <center><p><img src="fig-scaling/welding_gamma5.png" align="bottom" width=800></p></center>
 
 <p>
+<b>\( \gamma=40 \).</b>
+
+<p>
 <center><p><img src="fig-scaling/welding_gamma40.png" align="bottom" width=800></p></center>
 
 <p>
-For \( \gamma\ll 1 \) as in \( \gamma = 0.025 \), the heat source moves very
-slowly on the diffusion time scale and has hardly entered the medium,
-while the scaling in b) is not inappropriate, but a larger \( \delta \) is
-needed to bring \( \bar u \) around unity.  We see that for \( \gamma=0.2 \),
-each of the scalings work, but with the diffusion time scale, the heat
-source has not moved much into the domain. For \( \gamma=1 \), the
-mathematical problems are identical and hence the plots too. For
-\( \gamma=5 \), the time scale based on the source is clearly the best
-choice, and for \( \gamma=40 \), only this scale is appropriate.
+From these plots we see that it does not matter which of the scalings
+in b)-d) we choose, as long as we compensate with the \( \delta \) parameter
+to bring \( u \) to the size of unity. The scaling a) is suitable for \( \gamma\leq
+1 \), it seems, but graphs at earlier times for \( \gamma=5,40 \)
+should be investigated before drawing a conclusion.
 
 <p>
-A conclusion is that the scaling in b) works well for a range of \( \gamma \)
-values, also in the case \( \gamma\ll 1 \).
+Looking at the necessary values of \( \delta \) to bring \( u \) around the size
+of unity, and noting that the factor used to scale \( f \) is \( \delta/\gamma \)
+in scaling d), we see that for small \( \gamma \), the scaling in d) requires
+an adjustment \( \delta =20 \), while the scaling in b) requires \( \delta =700 \).
+For the large \( \gamma=40 \), the situation is opposite: the scaling in d)
+requires \( \delta=200 \), while the one in b) only needs \( \delta =5 \).
+The scaling in c) is very similar to the scaling in b), apart from the
+factor \( L/\sigma \) (times, \( \delta \), etc. are all differ by the factor
+\( L/\sigma \)).
+
+<p>
+We therefore conclude that the scaling in d) is best for small \( \gamma \) and
+the scaling b) is best for large \( \gamma \), but with the \( \delta \) trick
+used here, it really does not matter for practical calculations which
+scaling we use. Nevertheless, the insight given by the scalings should not
+be forgotten: we see in d) that for large \( \gamma \)
+the time-derivative term can be neglected
+and in b) that the conduction term can be neglected.
 
 <p>
 </div></p>

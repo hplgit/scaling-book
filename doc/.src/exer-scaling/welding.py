@@ -111,21 +111,29 @@ def solver(I, a, f, L, Nx, D, T, theta=0.5, u_L=1, u_R=0,
 
 def run(gamma, beta=10, delta=40, scaling=1, animate=False):
     """Run the scaled model for welding."""
-    if scaling == 1:
+    gamma = float(gamma)  # avoid integer division
+    if scaling == 'a':
         v = gamma
         a = 1
         L = 1.0
         b = 0.5*beta**2
-    elif scaling == 2:
+    elif scaling == 'b':
         v = 1
         a = 1.0/gamma
         L = 1.0
         b = 0.5*beta**2
-    elif scaling == 3:
+    elif scaling == 'c':
         v = 1
         a = beta/gamma
         L = beta
         b = 0.5
+    elif scaling == 'd':
+        # PDE: u_t = gamma**(-1)u_xx + gamma**(-1)*delta*f
+        v = 1
+        a = 1.0/gamma
+        L = 1.0
+        b = 0.5*beta**2
+        delta *= 1.0/gamma
 
     ymin = 0
     # Need global ymax to be able change ymax in closure process_u
@@ -138,12 +146,16 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
     import time
     import scitools.std as plt
     plot_arrays = []
-    if scaling == 3:
+    if scaling == 'c':
         plot_times = [0.2*beta, 0.5*beta]
     else:
         plot_times = [0.2, 0.5]
 
     def process_u(u, x, t, n):
+        """
+        Animate u, and store arrays in plot_arrays if
+        t coincides with chosen times for plotting (plot_times).
+        """
         global ymax
         if animate:
             plt.plot(x, u, 'r-',
@@ -163,7 +175,7 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
 
     Nx = 100
     D = 10
-    if scaling == 3:
+    if scaling == 'c':
         T = 0.5*beta
     else:
         T = 0.5
@@ -181,15 +193,9 @@ def run(gamma, beta=10, delta=40, scaling=1, animate=False):
                 '$f/%g,\\ t=%g$' % (delta, plot_times[0]),
                 '$u,\\ t=%g$' % plot_times[1],
                 '$f/%g,\\ t=%g$' % (delta, plot_times[1])])
-    filename = 'tmp1_gamma%g_s%d' % (gamma, scaling)
-    if scaling == 1:
-        s = 'diffusion'
-    elif scaling == 2:
-        s = 'source'
-    elif scaling == 3:
-        s = 'sigma'
+    filename = 'tmp1_gamma%g_%s' % (gamma, scaling)
     plt.title(r'$\beta = %g,\ \gamma = %g,\ $' % (beta, gamma)
-              + 'scaling=%s' % s)
+              + 'scaling=%s' % scaling)
     plt.savefig(filename + '.pdf');  plt.savefig(filename + '.png')
     return cpu
 
@@ -201,12 +207,13 @@ def investigate():
             glob.glob('welding_gamma*'):
         os.remove(filename)
 
-    scaling_values = 1, 2, 3
+    scaling_values = 'abcd'
     gamma_values = 1, 40, 5, 0.2, 0.025
     delta_values = {}  # delta_values[scaling][gamma]
-    delta_values[1] = {0.025: 140, 0.2: 60,  1: 20, 5: 40,  40: 800}
-    delta_values[2] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,   40: 5}
-    delta_values[3] = {0.025: 80,  0.2: 10,  1: 2,  5: 0.8, 40: 0.5}
+    delta_values['a'] = {0.025: 140, 0.2: 60,  1: 20, 5: 40,  40: 800}
+    delta_values['b'] = {0.025: 700, 0.2: 100, 1: 20, 5: 8,   40: 5}
+    delta_values['c'] = {0.025: 80,  0.2: 10,  1: 2,  5: 0.8, 40: 0.5}
+    delta_values['d'] = {0.025: 20,  0.2: 20,  1: 20, 5: 40,  40: 200}
     for gamma in gamma_values:
         for scaling in scaling_values:
             run(gamma=gamma, beta=10,
@@ -216,9 +223,9 @@ def investigate():
     # Combine images
     for gamma in gamma_values:
         for ext in 'pdf', 'png':
-            cmd = 'doconce combine_images -' + str(len(scaling_values)) + ' '
+            cmd = 'doconce combine_images -2'
             for s in scaling_values:
-                cmd += ' tmp1_gamma%(gamma)g_s%(s)d.%(ext)s ' % vars()
+                cmd += ' tmp1_gamma%(gamma)g_%(s)s.%(ext)s ' % vars()
             cmd += ' welding_gamma%(gamma)g.%(ext)s' % vars()
             os.system(cmd)
             # pdflatex doesn't like a dot (as in 0.2) in filenames...
@@ -231,3 +238,4 @@ def investigate():
 if __name__ == '__main__':
     #run(gamma=1/40., beta=10, delta=40, scaling=2)
     investigate()
+    raw_input()

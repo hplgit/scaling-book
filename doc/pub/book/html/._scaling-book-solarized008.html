@@ -1309,21 +1309,19 @@ where \( \beta \) is a dimensionless number
 
 $$ \beta = \frac{\dfc}{\varrho L^2} = \frac{\varrho^{-1}}{L^2/\dfc}\tp$$
 
-The last equality demonstrates
-that \( \beta \) measures the ratio of the time scale
-for exponential growth in the beginning of the logistic process
-and the time scale of diffusion \( L^2/\dfc \) (i.e., the time it takes
-to transport a signal by diffusion through the domain).
-For small \( \beta \) we can neglect the diffusion and spatial movements,
-and the PDE is essentially a logistic ODE at each point, while for
-large \( \beta \), diffusion dominates, and \( t_c \) should in that case be
-based on the diffusion time scale \( L^2/\dfc \). This leads to the
-scaled PDE
+The last equality demonstrates that \( \beta \) measures the ratio of the
+time scale for exponential growth in the beginning of the logistic
+process and the time scale of diffusion \( L^2/\dfc \) (i.e., the time it
+takes to transport a signal by diffusion through the domain).  For
+small \( \beta \) we can neglect the diffusion and spatial movements, and
+the PDE is essentially a logistic ODE at each point, while for large
+\( \beta \), diffusion dominates, and \( t_c \) should in that case be based
+on the diffusion time scale \( L^2/\dfc \). This leads to the scaled PDE
 
 $$
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial^2 \bar u}{\partial x^2} + \beta^{-1}\bar u (1 - \bar u),
+\frac{\partial^2 \bar u}{\partial\bar x^2} + \beta^{-1}\bar u (1 - \bar u),
 \tag{175}
 \end{equation}
 $$

@@ -7175,21 +7175,19 @@ where $\beta$ is a dimensionless number
 !bt
 \[ \beta = \frac{\dfc}{\varrho L^2} = \frac{\varrho^{-1}}{L^2/\dfc}\tp\]
 !et
-The last equality demonstrates
-that $\beta$ measures the ratio of the time scale
-for exponential growth in the beginning of the logistic process
-and the time scale of diffusion $L^2/\dfc$ (i.e., the time it takes
-to transport a signal by diffusion through the domain).
-For small $\beta$ we can neglect the diffusion and spatial movements,
-and the PDE is essentially a logistic ODE at each point, while for
-large $\beta$, diffusion dominates, and $t_c$ should in that case be
-based on the diffusion time scale $L^2/\dfc$. This leads to the
-scaled PDE
+The last equality demonstrates that $\beta$ measures the ratio of the
+time scale for exponential growth in the beginning of the logistic
+process and the time scale of diffusion $L^2/\dfc$ (i.e., the time it
+takes to transport a signal by diffusion through the domain).  For
+small $\beta$ we can neglect the diffusion and spatial movements, and
+the PDE is essentially a logistic ODE at each point, while for large
+$\beta$, diffusion dominates, and $t_c$ should in that case be based
+on the diffusion time scale $L^2/\dfc$. This leads to the scaled PDE
 
 !bt
 \begin{equation}
 \frac{\partial \bar u}{\partial \bar t} =
-\frac{\partial^2 \bar u}{\partial x^2} + \beta^{-1}\bar u (1 - \bar u),
+\frac{\partial^2 \bar u}{\partial\bar x^2} + \beta^{-1}\bar u (1 - \bar u),
 \end{equation}
 !et
 showing that a large $\beta$ encourages omission of the logistic term,
@@ -8390,7 +8388,7 @@ the diffusion velocity.
 !esubex
 
 !bsubex
-Argue that for large $\gamma$ we should base the time scale on the
+Argue that at least for large $\gamma$ we should base the time scale on the
 movement of the heat source. Using $L$ as length scale,
 show that this gives rise to the scaled
 PDE
@@ -8504,6 +8502,38 @@ i.e., $\beta$ enters the problem in the domain size.
 !esubex
 
 !bsubex
+A fourth kind of possible scaling is to say that for small $\gamma$,
+the problem is quasi-stationary and the heat transfer balances the
+heat source. Determine $u_c$ from this assumption. Use $L$ as length
+scale and a time scale as in b), i.e.,
+based on the movement of the welding equipment.
+
+!bsol
+We insert the dimensionless quantities in the PDE, but this time we
+make the factor in the source term unity:
+
+!bt
+\[ \frac{\varrho c u_c}{A t_c}
+\frac{\partial\bar u}{\partial\bar t} =
+\frac{ku_c}{AL^2}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \bar f\tp
+\]
+!et
+Assuming the two terms on the right-hand side balance, we must have
+$ku_c/(AL^2)=1$ and hence $u_c= L^2A/k$. This gives the coefficient
+$\varrho cL^2/(kt_c)$ on the left-hand side. From b) we have that
+a time scale based the movement of the heat source: $t_c=L/v$.
+Now the scaled PDE becomes
+
+!bt
+\[ \gamma \frac{\partial\bar u}{\partial\bar t} =
+\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f\tp\]
+!et
+The scaling of $f$ becomes identical to the one in b).
+!esol
+!esubex
+
+!bsubex
 One aim with scaling is to get a solution that lies in the interval
 $[-1,1]$. This is not always the case when $u_c$ is based on a scale
 involving a source term, as we do in a)-c).  However, from the
@@ -8513,14 +8543,13 @@ replacing $u_c$ by $u_c/\delta$. So, if we observe that $\bar
 u\sim1/\delta$ in simulations, we can just replace $\bar f$ by $\delta
 \bar f$ in the scaled PDE.
 
-Use this trick and implement the three scaled models. Reuse software for
-the 1D diffusion equation.  Make a function `run(gamma, beta=10, delta=40,
-scaling=1, animate=False)` that runs an implementation of
-the unscaled model with the given
-$\gamma$, $\beta$, and $\delta$ parameters as well as an indicator
-`scaling` that is 1 for the scaling in a), 2 for the scaling in
-b), and 3 for the scaling in c).
-The last argument can be used to turn screen animations on or off.
+Use this trick and implement the four scaled models in a)-d). Reuse
+some software for the 1D diffusion equation.  Make a function
+`run(gamma, beta=10, delta=40, scaling=1, animate=False)` that runs an
+implementation of the unscaled model with the given $\gamma$, $\beta$,
+and $\delta$ parameters as well as an indicator `scaling` that is `'a'`,
+`'b'`, and so forth.  The
+last argument can be used to turn screen animations on or off.
 
 Perform experiments to find the proper value of $\delta$ for each $\gamma$
 and for each scaling.
@@ -8535,7 +8564,19 @@ it is attractive to plot $\bar f/\delta$ together with $\bar u$.
 
 !bsol
 Here is a possible general `solver` function for solving the 1D
-diffusion equation:
+diffusion equation
+
+!bt
+\[ \frac{\partial u}{\partial t} = \frac{\partial}{\partial x}
+\left(\dfc(x)\frac{\partial u}{\partial x}\right) + f,\]
+!et
+by the $\theta$-rule in time and centered finite
+differences in space. The $\theta$-rule in time is actually just a notational
+convenience that gives Forward Euler explicit time stepping for
+$\theta=0$, Backward Euler implicit time stepping for $\theta=0$, and
+a centered implicit Crank-Nicolson scheme for $\theta=\half$.
+The boundary conditions is of Dirichlet type: $u(0,t)=U_L(t)$ and
+$u(L,t)=U_R(t)$.
 
 @@@CODE exer-scaling/welding.py fromto: import numpy@def run
 
@@ -8548,8 +8589,8 @@ to drop the bars as soon as the scaled problem is established.
 !esubex
 
 !bsubex
-Use the software in d) to investigate $\gamma=0.2,1,5,40$ for the
-three scalings. Discuss the results.
+Use the software in e) to investigate $\gamma=0.2,1,5,40$ for the
+four scalings. Discuss the results.
 
 !bsol
 For these investigations, we compare the three scalings for each of
@@ -8563,58 +8604,63 @@ a $\delta$ value such that the maximum $u$ value is around unity in size.
 We did this first by trial and error, and thereafter filled out the
 `delta_values` dictionary.
 
-The scalings in b) and c) are illustrated at the same *physical* times.
+The scalings in b)-d) are illustrated at the same *physical* times.
 The scaling in a) is plotted at the same non-dimensional time as
-the scaling in b), but observe that this is a different physical time
-than used for the  b) and c) scalings.
+used in the other scalings, but observe that this is a different physical time
+than used for the b)-d) scalings.
 
-We get the following plots, with diffusion time scale to the left,
-heat source time scale in the middle, and the time scale based on $\sigma$
-to the right, starting with $\gamma=0.025$
+We get the following plots, with the a) and c) scalings to the left and
+the b) and d) scalings to the right,
+starting with $\gamma=0.025$
 and increasing its value to $\gamma=40$:
 
-[hpl: Geir, I feel we need some better discussions. It seems that
-scaling in time based on the heat source velocity is the ``winner''.
-However, for a very low $\gamma$ it will be inappropriate since
-heat transfer has worked for a very long time before have the
-equipment in the middle position of the domain.]
+__$\gamma=0.025$.__
 
 FIGURE: [fig-scaling/welding_gamma0_025, width=800 frac=1]
 
-[hpl: I think it is a bit difficult to understand the graphs. This low
-$\gamma$ value corresponds to a very slowly moving heat source. There
-is then time for the heat to spread ahead of the source. This is easy
-to see in the left plot. Since the time scales are so different, the
-graphs to the right and left are at two very different time points.
-This should be pointed out. The graphs on the left are early in the
-process, while heat transfer has been working for a long time in the
-graphs to the right.
-Also in the right plot we see that a lot
-of material around the source is heated, but the boundary conditions
-forces heat out of the two boundaries. Had we used insulated ends, there
-would be a significant build-up of heating (probably constant $u$ in
-space for large times).]
+__$\gamma=0.02$.__
 
 FIGURE: [fig-scaling/welding_gamma0_2, width=800 frac=1]
 
+For small $\gamma$, 0.025 and 0.2, the scales b)-d) are equally
+applicable, while the diffusion time scale, which is much longer,
+
+__$\gamma=1$.__ Not surprisingly, all the scalings are equal
+and provide identical results for $\gamma=1$.
+
 FIGURE: [fig-scaling/welding_gamma1, width=800 frac=1]
+
+__$\gamma=5$.__
 
 FIGURE: [fig-scaling/welding_gamma5, width=800 frac=1]
 
+__$\gamma=40$.__
+
 FIGURE: [fig-scaling/welding_gamma40, width=800 frac=1]
 
-For $\gamma\ll 1$ as in $\gamma = 0.025$, the heat source moves very
-slowly on the diffusion time scale and has hardly entered the medium,
-while the scaling in b) is not inappropriate, but a larger $\delta$ is
-needed to bring $\bar u$ around unity.  We see that for $\gamma=0.2$,
-each of the scalings work, but with the diffusion time scale, the heat
-source has not moved much into the domain. For $\gamma=1$, the
-mathematical problems are identical and hence the plots too. For
-$\gamma=5$, the time scale based on the source is clearly the best
-choice, and for $\gamma=40$, only this scale is appropriate.
+From these plots we see that it does not matter which of the scalings
+in b)-d) we choose, as long as we compensate with the $\delta$ parameter
+to bring $u$ to the size of unity. The scaling a) is suitable for $\gamma\leq
+1$, it seems, but graphs at earlier times for $\gamma=5,40$
+should be investigated before drawing a conclusion.
 
-A conclusion is that the scaling in b) works well for a range of $\gamma$
-values, also in the case $\gamma\ll 1$.
+Looking at the necessary values of $\delta$ to bring $u$ around the size
+of unity, and noting that the factor used to scale $f$ is $\delta/\gamma$
+in scaling d), we see that for small $\gamma$, the scaling in d) requires
+an adjustment $\delta =20$, while the scaling in b) requires $\delta =700$.
+For the large $\gamma=40$, the situation is opposite: the scaling in d)
+requires $\delta=200$, while the one in b) only needs $\delta =5$.
+The scaling in c) is very similar to the scaling in b), apart from the
+factor $L/\sigma$ (times, $\delta$, etc. are all differ by the factor
+$L/\sigma$).
+
+We therefore conclude that the scaling in d) is best for small $\gamma$ and
+the scaling b) is best for large $\gamma$, but with the $\delta$ trick
+used here, it really does not matter for practical calculations which
+scaling we use. Nevertheless, the insight given by the scalings should not
+be forgotten: we see in d) that for large $\gamma$
+the time-derivative term can be neglected
+and in b) that the conduction term can be neglected.
 !esol
 !esubex
 
