@@ -104,11 +104,6 @@ cp $name.aux ${newname}.aux-final
 cp $name.tex ${newname}.tex
 cp $name.log ${newname}.log
 
-# Report typical problems with the book (too long lines,
-# undefined labels, etc.). Here we report lines that are more than 10pt
-# too long.
-doconce latex_problems $name.log 10
-
 # Check grammar in MS Word:
 # doconce spellcheck tmp_mako__book.do.txt
 # load tmp_stripped_book.do.txt into Word
@@ -157,3 +152,8 @@ cd -
 cd $dest; git add .; cd -
 
 # What about slides? One file here, but so far non-existing...
+cd ~/vc/scaling-book/doc/.src
+# Report typical problems with the book (too long lines,
+# undefined labels, etc.). Here we report lines that are more than 10pt
+# too long.
+doconce latex_problems $name.log 10
