@@ -8491,7 +8491,8 @@ the PDE leads to a coefficient
 \[ \frac{k}{v\varrho c \sigma} = \gamma^{-1}\beta\tp\]
 !et
 As before, we chose $u_c$ to make the other coefficient equal unity,
-modulo a scaling factor.
+modulo a scaling factor. We then obtain $u_c=t_c A/\rho c$, which may be read as the time each point feels the source times source strength
+divided to the volumetric heat capacity that includes the density. 
 The $\gamma^{-1}\beta$ parameter is the ratio of the moving heat source time
 scale $v/\sigma$ and the diffusion time scale $\sigma^2/(k/\varrho c)$.
 
