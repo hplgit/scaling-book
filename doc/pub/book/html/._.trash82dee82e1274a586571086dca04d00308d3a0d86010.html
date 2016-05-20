@@ -492,11 +492,14 @@ body { font-size:20px;line-height:1.5; }
                u'freesurface:Weber',
                u'freesurface:Weber'),
               (u'Thermal convection', 1, None, '___sec191'),
-              (u'Forced convection', 2, None, '___sec192'),
-              (u'Free convection',
+              (u'Forced convection',
                2,
                u'scale:fluid:forced_convection',
                u'scale:fluid:forced_convection'),
+              (u'Free convection',
+               2,
+               u'scale:fluid:free_convection',
+               u'scale:fluid:free_convection'),
               (u'Governing equations', 3, None, '___sec194'),
               (u'Heating by viscous effects', 3, None, '___sec195'),
               (u'Relation between density and temperature',
@@ -571,7 +574,12 @@ body { font-size:20px;line-height:1.5; }
                2,
                u'scale:vib:exer:starting_Couette',
                u'scale:vib:exer:starting_Couette'),
-              (u'References', 1, None, '___sec223')]}
+              (u'Problem 4.4: Channel flow',
+               2,
+               u'scale:vib:exer:channel',
+               u'scale:vib:exer:channel'),
+              (u'Remarks', 3, None, '___sec224'),
+              (u'References', 1, None, '___sec225')]}
 end of tocinfo -->
 
 <body>
@@ -826,8 +834,8 @@ $$
      <!-- navigation toc: --> <li><a href="#___sec189" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cavitation and the Euler number</a></li>
      <!-- navigation toc: --> <li><a href="#freesurface:Weber" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free surface conditions and the Weber number</a></li>
      <!-- navigation toc: --> <li><a href="#___sec191" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Thermal convection</a></li>
-     <!-- navigation toc: --> <li><a href="#___sec192" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
-     <!-- navigation toc: --> <li><a href="#scale:fluid:forced_convection" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free convection</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:fluid:forced_convection" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Forced convection</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:fluid:free_convection" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Free convection</a></li>
      <!-- navigation toc: --> <li><a href="#___sec194" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Governing equations</a></li>
      <!-- navigation toc: --> <li><a href="#___sec195" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Heating by viscous effects</a></li>
      <!-- navigation toc: --> <li><a href="#___sec196" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Relation between density and temperature</a></li>
@@ -857,7 +865,9 @@ $$
      <!-- navigation toc: --> <li><a href="#scale::exer:elasticity:vibmodels" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 4.1: Comparison of vibration models for elastic structures</a></li>
      <!-- navigation toc: --> <li><a href="#scale:exer:poroelasticity" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Exercise 4.2: A model for quasi-static poro-elasticity</a></li>
      <!-- navigation toc: --> <li><a href="#scale:vib:exer:starting_Couette" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 4.3: Starting Couette flow</a></li>
-     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#___sec223" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
+     <!-- navigation toc: --> <li><a href="#scale:vib:exer:channel" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Problem 4.4: Channel flow</a></li>
+     <!-- navigation toc: --> <li><a href="#___sec224" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remarks</a></li>
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#___sec225" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;References</a></li>
 
         </ul>
       </li>
@@ -1814,7 +1824,7 @@ feedback from the temperature field to the motion, i.e., temperature
 differences do not create motion. This fact decouples the energy
 equation from the mass and momentum equations.
 
-<h2 id="___sec192">Forced convection </h2>
+<h2 id="scale:fluid:forced_convection">Forced convection</h2>
 
 <p>
 The model governing forced convection consists of the Navier-Stokes
@@ -1918,7 +1928,7 @@ heat conduction term \( \kappa U/L^2 \). The fraction
 and if this quantity is given a symbol \( \dfc \), we realize the
 relation to the Peclet number defined in the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86009.html#scale:convdiff">The convection-diffusion equation</a>.
 
-<h2 id="scale:fluid:forced_convection">Free convection</h2>
+<h2 id="scale:fluid:free_convection">Free convection</h2>
 
 <h3 id="___sec194">Governing equations </h3>
 
@@ -1949,9 +1959,8 @@ by temperature differences and the fact that hot fluid rises while
 cold fluid falls.
 
 <p>
-For slightly compressible gas flow a term \( -p\nabla\cdot\u \) may be
-needed in <a href="#mjx-eqn-4.44">(4.44)</a> and also
-a modified <a href="#mjx-eqn-4.43">(4.43)</a>.
+For a slightly compressible gas flow a term \( -p\nabla\cdot\u \) may be
+needed in (ref{scale:fluid:free_convection:eq:energy_T}.
 
 <h3 id="___sec195">Heating by viscous effects </h3>
 
@@ -1966,7 +1975,7 @@ $$ \varepsilon_{ij} = \frac{1}{2}\left(\frac{\partial u_i}{\partial x_j}
 where \( u_i \) is the velocity in direction of \( x_i \) (\( i=1,2,3 \) measures
 the space directions). The term \( 2\mu\varepsilon_{ij}\varepsilon_{ij} \)
 is actually much
-more relevant for forced convection, but was left out in the section <a href="#scale:fluid:forced_convection">Free convection</a> for mathematical simplicity.
+more relevant for forced convection, but was left out in the section <a href="#scale:fluid:forced_convection">Forced convection</a> for mathematical simplicity.
 Heating by the work of viscous forces is often a very small effect and
 can be neglected, although it plays a major role in forging and
 extrusion of metals where the viscosity is very large (such
@@ -1980,12 +1989,11 @@ important or not.
 <h3 id="___sec196">Relation between density and temperature </h3>
 
 <p>
-The equations <a href="#mjx-eqn-4.42">(4.42)</a> and
-<a href="#mjx-eqn-4.43">(4.43)</a> has already been made dimensionless
-in the previous section. The major difference is now that \( \varrho \)
-is no longer a constant, but a function of \( T \).
-The relationship between \( \varrho \) and \( T \) is often taken as
-linear,
+Equation <a href="#mjx-eqn-4.42">(4.42)</a> and has
+already been made dimensionless in the previous section. The major
+difference is now that \( \varrho \) is no longer a constant, but a
+function of \( T \).  The relationship between \( \varrho \) and \( T \) is often
+taken as linear,
 
 $$ \varrho = \varrho_0 -\varrho_0 \beta (T-T_0),$$
 
@@ -2036,7 +2044,7 @@ The dimensionless \( y \) and \( z \) coordinates also make use of \( L \) as sc
 As in forced convection, we assume the characteristic temperature
 level \( T_0 \) and the scale \( \Delta T \) are given by thermal boundary and/or
 initial conditions.
-Contrary to the sections <a href="#sec:scale:ns">The Navier-Stokes equations</a> and <a href="#scale:fluid:forced_convection">Free convection</a>,
+Contrary to the sections <a href="#sec:scale:ns">The Navier-Stokes equations</a> and <a href="#scale:fluid:forced_convection">Forced convection</a>,
 \( U \) is now not given by the problem description, but implied by
 \( \Delta T \).
 
@@ -2683,7 +2691,7 @@ $$
 $$
 
 <p>
-The velocity \( \u \) can be eliminated taking the time derivative of
+The velocity \( \u \) can be eliminated by taking the time derivative of
 <a href="#mjx-eqn-4.66">(4.66)</a> and the divergence of
 <a href="#mjx-eqn-4.67">(4.67)</a>:
 
@@ -3936,6 +3944,139 @@ Let \( z \) be named \( x \). Set \( \dfc = 1 \), \( f=0 \), \( L=1 \), \( I(x)=
 
 <p>
 Filename: <code>starting_Couette</code>.
+
+<p>
+<!-- --- end exercise --- -->
+
+<p>
+<!-- --- begin exercise --- -->
+
+<h2 id="scale:vib:exer:channel">Problem 4.4: Channel flow</h2>
+
+<p>
+We look at viscous fluid flow between two flat, infinite plates.
+Often, one first reduces such a problem to mathematical
+one-dimensional problems and then scale the model (cf. <a href="#scale:vib:exer:starting_Couette">Problem 4.3: Starting Couette flow</a>), but if a general 2D/3D
+numerical Navier-Stokes model is to be used to solve the problem, it
+is more natural to just scale the full Navier-Stokes equations and then
+run the solver for the scaled model.
+
+<p>
+This is a problem dominated by viscous diffusion and shear stresses
+and where there is no convection. Argue why the standard scaling of
+the Navier-Stokes equations is inappropriate. Scale the equations and
+choose the time scale and pressure scale such that \( \partial\bar
+u/\partial\bar t \), \( \bar\nabla^2\bar u \), and \( \bar\nabla\bar p \) all
+have unit coefficients. This naturally gives a time scale based on
+viscous diffusion and a pressure scale based on the shear stress \( \mu
+U/H \), where \( H \) is the width of the channel, and \( U \) a characteristic
+inlet velocity. Set up the scaled problem and derive an exact solution
+in the stationary case.
+
+<p>
+<!-- --- begin solution of exercise --- -->
+
+<p>
+<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
+ data-target="#exer_28_1" style="font-size: 80%;"></a>
+<b>Solution.</b>
+<div class="collapse-group">
+<p><div class="collapse" id="exer_28_1">
+
+<p>
+The standard scaling of the Navier-Stokes equations applies \( L/U \)
+as time scale and \( \varrho U^2 \) as pressure scale. Both these scales
+are tightly connected to convection: \( L/U \) is the time scale of
+convection, and \( \varrho U^2 \) is the size of the convection term.
+In channel flow, the convection is zero, and the flow is dominated
+by viscous diffusion and shear stresses. It therefore makes more sense
+to choose a diffusion time scale and a shear stress-based pressure scale.
+
+<p>
+We introduce
+\( \bar x = x/H \), \( \bar y = y/H \), \( \bar z = z/H \), \( \bar u =u/U \),
+\( \bar p = p/p_c \), and
+\( \bar t = t/t_c \) in the equations results in the scaled
+Navier-Stokes equations:
+
+$$
+\begin{align*}
+\frac{\partial\bar\u}{\partial\bar t} +
+\hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u &= -\bar\nabla\bar p +
+\bar\nabla^2\bar\u,\\ 
+\bar\nabla\cdot\bar\u &= 0,
+\end{align*}
+$$
+
+if we choose \( t_c = H^2 \varrho/\mu \) and \( p_c=\mu U/H \).
+We see that these scales are exactly the diffusion scale and the
+shear scale: \( \mu \partial U/\partial y\sim\mu U/H \).
+Re is as usual the Reynolds number, here \( \varrho UH/\mu \), but it
+actually has no impact on the physics (as long as the flow is laminar)
+since the associated convective term is zero.
+A feature of the Navier-Stokes equations is that the solution can become
+<a href="https://en.wikipedia.org/wiki/Laminar-turbulent_transition" target="_self">unstable</a>
+and result in turbulence if the Reynolds number is above a critical value.
+Physical experiments show that the flow is always
+laminar for \( \mathrm{Re} < 2000 \),
+while the critical Reynolds number for turbulence depends strongly on
+the roughness of the walls.
+
+<p>
+The exact solution (of the scaled problem) is derived by assuming flow
+along the channel: \( u=(u_x(x,y,z),0,0) \), with the \( x \) axis pointing
+along the channel. Since \( \nabla\cdot u=0 \), \( u \) cannot depend on
+\( x \). The physics of channel flow is also two-dimensional so we can
+omit the \( z \) coordinate (more precisely: \( \partial/\partial z=0 \) as
+nothing varies in this direction).  Inserting \( u=(u_x(y),0,0) \) in the
+(scaled) governing equations gives \( u_x''(y) = \partial p/\partial x \).
+Differentiating this equation with respect to \( x \) shows that \( \partial
+p/\partial x \) is a constant, here called \( -\beta \). This is the driving
+force of the flow and specified as known in the problem.
+
+<p>
+Integrating \( u_x''(y)=-\beta \) over the width of the channel, \( [0,1] \),
+and requiring \( u=0 \) at the channel walls, results in
+\( u_x=\frac{1}{2}\beta y(1-y) \). The characteristic inlet flow in the
+channel, \( U \), can be taken as the maximum inflow at \( x=1/2 \), implying
+that \( \beta = 8 \).  The length of the channel, \( L/H \) in the scaled
+model, has no impact on the result, so for simplicity we may just compute
+on the unit square.  The pressure can then be set to \( p=0 \) at the
+outlet \( x=1 \), giving \( p(x)=8(1-x) \) and \( u_x=4y(1-y) \).
+
+<p>
+</div></p>
+</div>
+</p>
+
+<p>
+<!-- --- end solution of exercise --- -->
+Filename: <code>channel</code>.
+
+<p>
+<!-- Closing remarks for this Problem -->
+
+<h3 id="___sec224">Remarks </h3>
+
+<p>
+One may want to implement the Navier-Stokes equations in scaled form
+to have only one parameter Re in the PDEs. However, whatever we want
+to compute with the solver, we need to benchmark it on 2D/3D channel
+flow to verify that it works, and the proper scaling is different
+in this simple application. Therefore, the software should implement
+the original form of the Navier-Stokes equations, as this is the
+most general form of the model. In a particular application, one can
+derive a scaled model and set parameters in the original PDEs to mimic
+the scaled model. The present case of channel flow faces a problem, however,
+as there is no unique coefficient in front of the convective term in
+the original Navier-Stokes equations. We may therefore insert such
+a parameter in the implementation,
+
+$$ \rho \u_t + \alpha\rho \u\cdot\nabla\u = -nabla p + \nu\nabla^2\u + \f,$$
+
+but the convective term will vanish
+for channel flow so there is little effect of Re in front of this term.
+Our scaling is obtained by setting \( \rho=\nu=1 \) and \( \alpha=\mathrm{Re} \).
 
 <p>
 <!-- --- end exercise --- -->

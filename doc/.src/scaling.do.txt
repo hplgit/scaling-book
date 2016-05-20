@@ -3999,13 +3999,15 @@ label{sec:scale:exer:ball_y_wdrag}
 file=vertical_motion_with_drag
 
 The velocity $v(t)$
-of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by the ODE
+of a body moving vertically through a fluid in the gravity field
+(with fluid drag, buoyancy, and added mass) is governed by the ODE
 
 !bt
-\[ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,\]
+\[ mv' + \mu v'
+= -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,\]
 !et
-where $t$ is time, $m$ is the mass of the body, $C_D$ is a drag coefficient,
+where $t$ is time, $m$ is the mass of the body, $\mu$ is the body's added
+mass, $C_D$ is a drag coefficient,
 $\varrho$ is the density of the fluid, $A$ is the cross-sectional area
 perpendicular to the motion, $g$ is the acceleration of gravity,
 and $V$ is the volume of the body. Scale this ODE.
@@ -4020,7 +4022,7 @@ but the main challenge is to find values for $v_c$ and $t_c$.
 Inserting the scaled quantities gives
 
 !bt
-\[ m\frac{v_c}{t_c}\frac{d\bar v}{d\bar t} =
+\[ (m+\mu)\frac{v_c}{t_c}\frac{d\bar v}{d\bar t} =
 -\frac{1}{2}C_D\varrho A v_c^2 |\bar v|\bar v
 - mg + \varrho V g,\quad v_c v(0)=v_0,\]
 !et
@@ -4050,9 +4052,10 @@ This results in
 !bt
 \[
 \frac{d\bar v}{d\bar t} =
--t_c\frac{1}{2m}C_D \varrho A \sqrt{\frac{2|\varrho V - m|g}{C_D\varrho A}}
+-t_c\frac{1}{2(m+\mu)}C_D \varrho A \sqrt{\frac{2|\varrho V - m|g}{C_D\varrho A}}
 |\bar v|\bar v
-- t_c\sqrt{\frac{C_D\varrho g A}{2|\varrho V - m|}}(1- \frac{\varrho V}{m}),
+- t_c\sqrt{\frac{C_D\varrho g A}{2|\varrho V - m|}}
+\left(\frac{m}{m+\mu}- \frac{\varrho V}{m+\mu}\right),
 \]
 !et
 and
@@ -4068,25 +4071,33 @@ nonlinear term $|\bar v|\bar v$ should be unity. This forces $t_c$ to be
 !bt
 \[ t_c = \frac{2m}{\sqrt{2g|\varrho V - m|C_D\varrho A}}\tp\]
 !et
-Introducing the dimensionless numbers
+We can introduce the dimensionless numbers
 
 !bt
-\[ \alpha = \frac{\varrho V}{m}, \quad \beta = v_0\sqrt{\frac{C_D\varrho A}{2g|\varrho V - m|}} = \frac{v_0}{|v_T|},\]
+\[ \alpha = \frac{\varrho V}{m+\mu}, \quad \beta = v_0\sqrt{\frac{C_D\varrho A}{2g|\varrho V - m|}} = \frac{v_0}{|v_T|},\quad\gamma = \frac{\mu}{m}\tp\]
 !et
-we get the scaled ODE problem
+The added mass $\mu$ for sphere is
+$\mu = \frac{1}{2}\varrho V$, implying
+$\gamma = \frac{1}{2}\alpha$. We will assume this
+relationship from now on.
+
+Summarizing, we get the scaled ODE problem
 
 !bt
 \[
 \frac{d\bar v}{d\bar t} =
-- |\bar v|\bar v + \mbox{sign}(1-\alpha),\quad
+- |\bar v|\bar v + \mbox{sign}(\frac{2 - \alpha(\alpha+2)}{\alpha+2),\quad
 \bar v(0)=\beta\tp
 \]
 !et
 Note that, as usual, the dimensionless numbers have simple
 interpretations:
 $\alpha$ is the ratio of the mass of the displaced fluid and
-the mass of the body, while $\beta$ is the ratio of the initial and
-terminal velocities.
+the mass of the body, $\beta$ is the ratio of the initial and
+terminal velocities, while $\gamma$ is the ratio of the real and
+added masses. For motion in air, buoyancy and added mass can often be
+neglected: $\alpha\ll 1$, $\gamma\ll 1$, but in a liquid, these
+effects may be significant.
 !esol
 
 ===== Exercise: Solve a decay ODE with discontinuous coefficient =====
@@ -9611,6 +9622,7 @@ differences do not create motion. This fact decouples the energy
 equation from the mass and momentum equations.
 
 ===== Forced convection =====
+label{scale:fluid:forced_convection}
 
 idx{forced convection}
 idx{Peclet number}
@@ -9716,7 +9728,7 @@ relation to the Peclet number defined in Section ref{scale:convdiff}.
 
 
 ===== Free convection =====
-label{scale:fluid:forced_convection}
+label{scale:fluid:free_convection}
 
 idx{free convection}
 
@@ -9746,9 +9758,8 @@ the gravity term $-\varrho(T) g\kk$ is essential since the flow is driven
 by temperature differences and the fact that hot fluid rises while
 cold fluid falls.
 
-For slightly compressible gas flow a term $-p\nabla\cdot\u$ may be
-needed in (ref{scale:fluid:free_convection:eq:energy_T}) and also
-a modified (ref{scale:fluid:free_convection:eq:cont_T}).
+For a slightly compressible gas flow a term $-p\nabla\cdot\u$ may be
+needed in (ref{scale:fluid:free_convection:eq:energy_T}.
 
 === Heating by viscous effects ===
 
@@ -9777,12 +9788,11 @@ important or not.
 
 === Relation between density and temperature ===
 
-The equations (ref{scale:fluid:free_convection:eq:momentum_T}) and
-(ref{scale:fluid:free_convection:eq:cont_T}) has already been made dimensionless
-in the previous section. The major difference is now that $\varrho$
-is no longer a constant, but a function of $T$.
-The relationship between $\varrho$ and $T$ is often taken as
-linear,
+Equation (ref{scale:fluid:free_convection:eq:momentum_T}) and has
+already been made dimensionless in the previous section. The major
+difference is now that $\varrho$ is no longer a constant, but a
+function of $T$.  The relationship between $\varrho$ and $T$ is often
+taken as linear,
 
 !bt
 \[ \varrho = \varrho_0 -\varrho_0 \beta (T-T_0),\]
@@ -10583,7 +10593,7 @@ label{scale:gas:acoustic:u2:s}
 \end{align}
 !et
 
-The velocity $\u$ can be eliminated taking the time derivative of
+The velocity $\u$ can be eliminated by taking the time derivative of
 (ref{scale:gas:acoustic:rho:s}) and the divergence of
 (ref{scale:gas:acoustic:u2:s}):
 
@@ -11310,4 +11320,108 @@ Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
 $U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
 !esol
 !esubex
+
+===== Problem: Channel flow =====
+label{scale:vib:exer:channel}
+file=channel
+
+We look at viscous fluid flow between two flat, infinite plates.
+Often, one first reduces such a problem to mathematical
+one-dimensional problems and then scale the model (cf. Problem
+ref{scale:vib:exer:starting_Couette}), but if a general 2D/3D
+numerical Navier-Stokes model is to be used to solve the problem, it
+is more natural to just scale the full Navier-Stokes equations and then
+run the solver for the scaled model.
+
+This is a problem dominated by viscous diffusion and shear stresses
+and where there is no convection. Argue why the standard scaling of
+the Navier-Stokes equations is inappropriate. Scale the equations and
+choose the time scale and pressure scale such that $\partial\bar
+u/\partial\bar t$, $\bar\nabla^2\bar u$, and $\bar\nabla\bar p$ all
+have unit coefficients. This naturally gives a time scale based on
+viscous diffusion and a pressure scale based on the shear stress $\mu
+U/H$, where $H$ is the width of the channel, and $U$ a characteristic
+inlet velocity. Set up the scaled problem and derive an exact solution
+in the stationary case.
+
+!bsol
+The standard scaling of the Navier-Stokes equations applies $L/U$
+as time scale and $\varrho U^2$ as pressure scale. Both these scales
+are tightly connected to convection: $L/U$ is the time scale of
+convection, and $\varrho U^2$ is the size of the convection term.
+In channel flow, the convection is zero, and the flow is dominated
+by viscous diffusion and shear stresses. It therefore makes more sense
+to choose a diffusion time scale and a shear stress-based pressure scale.
+
+We introduce
+$\bar x = x/H$, $\bar y = y/H$, $\bar z = z/H$, $\bar u =u/U$,
+$\bar p = p/p_c$, and
+$\bar t = t/t_c$ in the equations results in the scaled
+Navier-Stokes equations:
+
+!bt
+\begin{align*}
+\frac{\partial\bar\u}{\partial\bar t} +
+\hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u &= -\bar\nabla\bar p +
+\bar\nabla^2\bar\u,\\
+\bar\nabla\cdot\bar\u &= 0,
+\end{align*}
+!et
+if we choose $t_c = H^2 \varrho/\mu$ and $p_c=\mu U/H$.
+We see that these scales are exactly the diffusion scale and the
+shear scale: $\mu \partial U/\partial y\sim\mu U/H$.
+Re is as usual the Reynolds number, here $\varrho UH/\mu$, but it
+actually has no impact on the physics (as long as the flow is laminar)
+since the associated convective term is zero.
+A feature of the Navier-Stokes equations is that the solution can become
+"unstable": "https://en.wikipedia.org/wiki/Laminar-turbulent_transition"
+and result in turbulence if the Reynolds number is above a critical value.
+Physical experiments show that the flow is always
+laminar for $\mathrm{Re} < 2000$,
+while the critical Reynolds number for turbulence depends strongly on
+the roughness of the walls.
+
+The exact solution (of the scaled problem) is derived by assuming flow
+along the channel: $u=(u_x(x,y,z),0,0)$, with the $x$ axis pointing
+along the channel. Since $\nabla\cdot u=0$, $u$ cannot depend on
+$x$. The physics of channel flow is also two-dimensional so we can
+omit the $z$ coordinate (more precisely: $\partial/\partial z=0$ as
+nothing varies in this direction).  Inserting $u=(u_x(y),0,0)$ in the
+(scaled) governing equations gives $u_x''(y) = \partial p/\partial x$.
+Differentiating this equation with respect to $x$ shows that $\partial
+p/\partial x$ is a constant, here called $-\beta$. This is the driving
+force of the flow and specified as known in the problem.
+
+Integrating $u_x''(y)=-\beta$ over the width of the channel, $[0,1]$,
+and requiring $u=0$ at the channel walls, results in
+$u_x=\frac{1}{2}\beta y(1-y)$. The characteristic inlet flow in the
+channel, $U$, can be taken as the maximum inflow at $x=1/2$, implying
+that $\beta = 8$.  The length of the channel, $L/H$ in the scaled
+model, has no impact on the result, so for simplicity we may just compute
+on the unit square.  The pressure can then be set to $p=0$ at the
+outlet $x=1$, giving $p(x)=8(1-x)$ and $u_x=4y(1-y)$.
+!esol
+
+!bremarks
+One may want to implement the Navier-Stokes equations in scaled form
+to have only one parameter Re in the PDEs. However, whatever we want
+to compute with the solver, we need to benchmark it on 2D/3D channel
+flow to verify that it works, and the proper scaling is different
+in this simple application. Therefore, the software should implement
+the original form of the Navier-Stokes equations, as this is the
+most general form of the model. In a particular application, one can
+derive a scaled model and set parameters in the original PDEs to mimic
+the scaled model. The present case of channel flow faces a problem, however,
+as there is no unique coefficient in front of the convective term in
+the original Navier-Stokes equations. We may therefore insert such
+a parameter in the implementation,
+
+!bt
+\[ \rho \u_t + \alpha\rho \u\cdot\nabla\u = -nabla p + \nu\nabla^2\u + \f,\]
+!et
+but the convective term will vanish
+for channel flow so there is little effect of Re in front of this term.
+Our scaling is obtained by setting $\rho=\nu=1$ and $\alpha=\mathrm{Re}$.
+!eremarks
+
 % endif

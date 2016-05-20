@@ -22,10 +22,21 @@ preprocess -DFORMAT=html newcommands_keep.p.tex > newcommands_keep.tex
 
 opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --exercise_numbering=chapter --replace_ref_by_latex_auxno=../../../decay-book/doc/.src/book/book.aux"
 
+# Compile standard sphinx
+# (lots of mathjax rendering failures, especially with \bar\boldsymbol{},
+# so we drop sphinx)
+theme=cbc
+theme=classic
+system doconce format sphinx $name $opt EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux --DSPHINX_SC2 --toc_depth=2 # --sphinx_keep_splits
+system doconce split_rst $name
+system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
+system python automake_sphinx.py
+exit
+
 hash=82dee82e1274a586571086dca04d00308d3a0d86  # "book with solutions"
 # Compile Bootstrap HTML with solutions
 html=.trash${hash}
-system doconce format html $name $opt --html_style=bootswatch_readable --html_code_style=inherit "--html_body_style=font-size:20px;line-height:1.5" --html_output=$html $encoding --replace_ref_by_latex_auxno=book.aux EXV=True #--without_solutions --without_answers
+system doconce format html $name $opt --html_style=bootswatch_simula --html_admon=bootstrap_panel --html_code_style=inherit "--html_body_style=font-size:20px;line-height:1.5" --html_output=$html $encoding --replace_ref_by_latex_auxno=book.aux EXV=True #--without_solutions --without_answers
 cp $html.html tmp.html
 system doconce split_html $html.html
 #cp password.html ${topicname}-book-sol.html
@@ -42,16 +53,6 @@ system doconce split_html $html.html
 html=${topicname}-book-solarized
 system doconce format html $name $opt --html_style=solarized3 --html_output=$html EXV=True --without_solutions --without_answers --replace_ref_by_latex_auxno=book.aux $encoding
 system doconce split_html $html.html --nav_button=text
-
-# Compile standard sphinx
-# (lots of mathjax rendering failures, especially with \bar\boldsymbol{},
-# so we drop sphinx)
-theme=cbc
-theme=classic
-#system doconce format sphinx $name $opt --sphinx_keep_splits EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux
-#system doconce split_rst $name
-#system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
-#system python automake_sphinx.py
 
 # Publish
 repo=../pub
