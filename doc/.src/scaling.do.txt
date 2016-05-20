@@ -8502,9 +8502,12 @@ the PDE leads to a coefficient
 \[ \frac{k}{v\varrho c \sigma} = \gamma^{-1}\beta\tp\]
 !et
 As before, we chose $u_c$ to make the other coefficient equal unity,
-modulo a scaling factor.
-The $\gamma^{-1}\beta$ parameter is the ratio of the moving heat source time
-scale $v/\sigma$ and the diffusion time scale $\sigma^2/(k/\varrho c)$.
+modulo a scaling factor. We then obtain $u_c=t_c A/\rho c$, which may
+be read as the time each point feels the source times source strength
+divided to the volumetric heat capacity that includes the density.
+The $\gamma^{-1}\beta$ parameter is the ratio of the moving heat
+source time scale $v/\sigma$ and the diffusion time scale
+$\sigma^2/(k/\varrho c)$.
 
 The equations are as in), except that $\beta =1$ and $\epsilon$
 replaces $\gamma$. Moreover, the length of the domain is now $L/\sigma$,
@@ -8635,6 +8638,7 @@ FIGURE: [fig-scaling/welding_gamma0_2, width=800 frac=1]
 
 For small $\gamma$, 0.025 and 0.2, the scales b)-d) are equally
 applicable, while the diffusion time scale, which is much longer,
+does not fit with the heat source motion.
 
 __$\gamma=1$.__ Not surprisingly, all the scalings are equal
 and provide identical results for $\gamma=1$.
@@ -11320,6 +11324,7 @@ Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
 $U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
 !esol
 !esubex
+<<<<<<< HEAD
 
 ===== Problem: Channel flow =====
 label{scale:vib:exer:channel}
@@ -11424,4 +11429,6 @@ for channel flow so there is little effect of Re in front of this term.
 Our scaling is obtained by setting $\rho=\nu=1$ and $\alpha=\mathrm{Re}$.
 !eremarks
 
+=======
+>>>>>>> 1732d258bd1fd52b1d1a66df1c3be076184db0a4
 % endif
