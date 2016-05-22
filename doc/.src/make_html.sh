@@ -22,9 +22,9 @@ preprocess -DFORMAT=html newcommands_keep.p.tex > newcommands_keep.tex
 
 opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --exercise_numbering=chapter --replace_ref_by_latex_auxno=../../../decay-book/doc/.src/book/book.aux"
 
-# Compile standard sphinx
-# (lots of mathjax rendering failures, especially with \bar\boldsymbol{},
-# so we drop sphinx)
+# --- Let's compile a lot of formats before we have decided for one HTML
+# and one Sphinx
+
 themes="uio2 cbc bootstrap scipy_lectures"
 for theme in $themes; do
 system doconce format sphinx $name $opt EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux --toc_depth=2 # --sphinx_keep_splits
