@@ -967,7 +967,7 @@ SymPy requires all mathematical symbols to be explicitly created:
 <p>
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
 u <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;u&#39;</span>, cls<span style="color: #666666">=</span>Function)
 w <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;w&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 I, V, C1, C2 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;I V C1 C2&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>)
@@ -979,7 +979,7 @@ all the terms in the ODE:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Define differential equation: u&#39;&#39; + w**2*u = 0</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Define differential equation: u&#39;&#39; + w**2*u = 0</span>
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">ode</span>(u):
     <span style="color: #008000; font-weight: bold">return</span> diff(u, t, t) <span style="color: #666666">+</span> w<span style="color: #666666">**2*</span>u
 
@@ -992,7 +992,7 @@ function <code>dsolve</code> to find the symbolic solution of the ODE:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">s <span style="color: #666666">=</span> dsolve(diffeq, u(t))
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>s <span style="color: #666666">=</span> dsolve(diffeq, u(t))
 <span style="color: #408080; font-style: italic"># s is an u(t) == expression (Eq obj.), s.rhs grabs the expression</span>
 u_sol <span style="color: #666666">=</span> s<span style="color: #666666">.</span>rhs
 <span style="color: #008000; font-weight: bold">print</span> u_sol
@@ -1007,7 +1007,7 @@ by the <code>solve</code> function. The code goes as follows:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># The solution u_sol contains integration constants C1 and C2</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># The solution u_sol contains integration constants C1 and C2</span>
 <span style="color: #408080; font-style: italic"># but these are not symbols, substitute them by symbols</span>
 u_sol <span style="color: #666666">=</span> u_sol<span style="color: #666666">.</span>subs(<span style="color: #BA2121">&#39;C1&#39;</span>, C1)<span style="color: #666666">.</span>subs(<span style="color: #BA2121">&#39;C2&#39;</span>, C2)
 
@@ -1030,7 +1030,7 @@ conditions to see that these are fulfilled:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Check that the solution fulfills the ODE and init.cond.</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Check that the solution fulfills the ODE and init.cond.</span>
 <span style="color: #008000; font-weight: bold">print</span> simplify(ode(u_sol)),
 <span style="color: #008000; font-weight: bold">print</span> u_sol<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> I, diff(u_sol, t)<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> V
 </pre></div>
@@ -1255,7 +1255,7 @@ replaced by the symbol <code>A1</code>.
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">A, A1, m, psi <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;A A1 m psi&#39;</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>A, A1, m, psi <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;A A1 m psi&#39;</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">ode</span>(u):
     <span style="color: #008000; font-weight: bold">return</span> diff(u, t, t) <span style="color: #666666">+</span> w<span style="color: #666666">**2*</span>u <span style="color: #666666">-</span> A1<span style="color: #666666">*</span>cos(psi<span style="color: #666666">*</span>t)
 
@@ -1285,7 +1285,7 @@ The output from the last line is
 <p>
 
 <!-- code=text typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">A/m*cos(psi*t)/(-psi**2 + w**2) + V*sin(t*w)/w +
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>A/m*cos(psi*t)/(-psi**2 + w**2) + V*sin(t*w)/w +
 (A/m + I*psi**2 - I*w**2)*cos(t*w)/(psi**2 - w**2)
 </pre></div>
 <p>
@@ -1674,7 +1674,7 @@ very straightforward:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> diffeq <span style="color: #666666">=</span> diff(u(t), t, t) <span style="color: #666666">+</span> b<span style="color: #666666">/</span>m<span style="color: #666666">*</span>diff(u(t), t) <span style="color: #666666">+</span> w<span style="color: #666666">**2*</span>u(t)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> diffeq <span style="color: #666666">=</span> diff(u(t), t, t) <span style="color: #666666">+</span> b<span style="color: #666666">/</span>m<span style="color: #666666">*</span>diff(u(t), t) <span style="color: #666666">+</span> w<span style="color: #666666">**2*</span>u(t)
 <span style="color: #666666">&gt;&gt;&gt;</span> s <span style="color: #666666">=</span> dsolve(diffeq, u(t))
 <span style="color: #666666">&gt;&gt;&gt;</span> s<span style="color: #666666">.</span>rhs
 C1<span style="color: #666666">*</span>exp(t<span style="color: #666666">*</span>(<span style="color: #666666">-</span>b <span style="color: #666666">-</span> sqrt(b <span style="color: #666666">-</span> <span style="color: #666666">2*</span>m<span style="color: #666666">*</span>w)<span style="color: #666666">*</span>sqrt(b <span style="color: #666666">+</span> <span style="color: #666666">2*</span>m<span style="color: #666666">*</span>w))<span style="color: #666666">/</span>(<span style="color: #666666">2*</span>m)) <span style="color: #666666">+</span>
@@ -1711,7 +1711,7 @@ The following SymPy steps derives the solution of the homogeneous ODE:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">u <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;u&#39;</span>, cls<span style="color: #666666">=</span>Function)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>u <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;u&#39;</span>, cls<span style="color: #666666">=</span>Function)
 t, w, B, A, A1, m, psi <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;t w B A A1 m psi&#39;</span>,
                                  positive<span style="color: #666666">=</span><span style="color: #008000">True</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 
@@ -1757,7 +1757,7 @@ differential equation:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">assert</span> simplify(ode(u_h)) <span style="color: #666666">==</span> <span style="color: #666666">0</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">assert</span> simplify(ode(u_h)) <span style="color: #666666">==</span> <span style="color: #666666">0</span>
 </pre></div>
 <p>
 We have previously just printed the residuals of the ODE and initial
@@ -1780,7 +1780,7 @@ for \( C_3 \) and \( C_4 \). The relevant SymPy statements are
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Particular solution</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Particular solution</span>
 C3, C4 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;C3 C4&#39;</span>)
 u_p <span style="color: #666666">=</span> C3<span style="color: #666666">*</span>cos(psi<span style="color: #666666">*</span>t) <span style="color: #666666">+</span> C4<span style="color: #666666">*</span>sin(psi<span style="color: #666666">*</span>t)
 eqs <span style="color: #666666">=</span> simplify(ode(u_p, homogeneous<span style="color: #666666">=</span><span style="color: #008000">False</span>))
@@ -1802,7 +1802,7 @@ determines \( C_1 \) and \( C_2 \):
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">u_sol <span style="color: #666666">=</span> u_h <span style="color: #666666">+</span> u_p  <span style="color: #408080; font-style: italic"># total solution</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>u_sol <span style="color: #666666">=</span> u_h <span style="color: #666666">+</span> u_p  <span style="color: #408080; font-style: italic"># total solution</span>
 <span style="color: #408080; font-style: italic"># Initial conditions</span>
 eqs <span style="color: #666666">=</span> [u_sol<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> I, u_sol<span style="color: #666666">.</span>diff(t)<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> V]
 <span style="color: #408080; font-style: italic"># Determine C1 and C2 from the initial conditions</span>
@@ -1815,7 +1815,7 @@ Finally, we should check that <code>u_sol</code> is indeed the correct solution:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">checks <span style="color: #666666">=</span> <span style="color: #008000">dict</span>(
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>checks <span style="color: #666666">=</span> <span style="color: #008000">dict</span>(
     ODE<span style="color: #666666">=</span>simplify(expand(ode(u_sol, homogeneous<span style="color: #666666">=</span><span style="color: #008000">False</span>))),
     IC1<span style="color: #666666">=</span>simplify(u_sol<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> I),
     IC2<span style="color: #666666">=</span>simplify(diff(u_sol, t)<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>) <span style="color: #666666">-</span> V))
@@ -2004,7 +2004,7 @@ file <a href="http://tinyurl.com/o8pb3yy/vib.py" target="_self"><tt>vib.py</tt><
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(I, V, m, b, s, F, dt, T, damping<span style="color: #666666">=</span><span style="color: #BA2121">&#39;linear&#39;</span>):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver</span>(I, V, m, b, s, F, dt, T, damping<span style="color: #666666">=</span><span style="color: #BA2121">&#39;linear&#39;</span>):
 </pre></div>
 <p>
 for solving the ODE problem
@@ -2020,7 +2020,7 @@ an appropriate call for solving <a href="#mjx-eqn-2.73">(2.73)</a> is
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">u, t <span style="color: #666666">=</span> solver(I<span style="color: #666666">=</span>alpha, V<span style="color: #666666">=</span>beta, m<span style="color: #666666">=1</span>, b<span style="color: #666666">=1.0/</span>Q,
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>u, t <span style="color: #666666">=</span> solver(I<span style="color: #666666">=</span>alpha, V<span style="color: #666666">=</span>beta, m<span style="color: #666666">=1</span>, b<span style="color: #666666">=1.0/</span>Q,
               s<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">lambda</span> u: u, F<span style="color: #666666">=</span><span style="color: #008000; font-weight: bold">lambda</span> t: gamma<span style="color: #666666">*</span>cos(delta<span style="color: #666666">*</span>t),
 	      dt<span style="color: #666666">=2*</span>pi<span style="color: #666666">/</span>n, T<span style="color: #666666">=2*</span>pi<span style="color: #666666">*</span>P)
 </pre></div>
@@ -2035,7 +2035,7 @@ the section <a href="._scaling-book005.html#sec:scale:prog">Making software for 
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">vib</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">vib</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver_scaled</span>(alpha, beta, gamma, delta, Q, T, dt):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
@@ -2205,12 +2205,14 @@ What is an appropriate scaling of the temperature?
 
 <p>
 The velocity \( v(t) \)
-of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by the ODE
+of a body moving vertically through a fluid in the gravity field
+(with fluid drag, buoyancy, and added mass) is governed by the ODE
 
-$$ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,$$
+$$ mv' + \mu v'
+= -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,$$
 
-where \( t \) is time, \( m \) is the mass of the body, \( C_D \) is a drag coefficient,
+where \( t \) is time, \( m \) is the mass of the body, \( \mu \) is the body's added
+mass, \( C_D \) is a drag coefficient,
 \( \varrho \) is the density of the fluid, \( A \) is the cross-sectional area
 perpendicular to the motion, \( g \) is the acceleration of gravity,
 and \( V \) is the volume of the body. Scale this ODE.

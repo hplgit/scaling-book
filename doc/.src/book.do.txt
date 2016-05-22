@@ -45,7 +45,8 @@ TOC: on
 
 !split
 # #ifdef SPHINX_SC2
-# #include "sc2.do.txt"
+# #include "scaling.do.txt"
+### #include "sc2.do.txt"
 # #else
 # #include "scaling.do.txt"
 # #endif

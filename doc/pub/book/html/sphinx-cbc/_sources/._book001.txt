@@ -1,0 +1,187 @@
+.. !split
+
+.. _ch:preface:
+
+Preface
+%%%%%%%
+
+Finding proper values of physical parameters in mathematical models is
+often quite a challenge. While many have gotten away with using just
+the mathematical symbols when doing science and engineering with pen
+and paper, the modern world of numerical computing requires each
+physical parameter to have a numerical value, otherwise one cannot get
+started with the computations.  For example, in the simplest possible
+transient heat conduction simulation, a case relevant for a real
+physical material needs values for the heat capacity, the density, and
+the heat conduction coefficient of the material. In addition, relevant
+values must be chosen for initial and boundary temperatures as well as
+the size of the material.  With a dimensionless mathematical model, as
+explained in the chapter :ref:`sec:scale:diffu`, *no physical quantities*
+need to be assigned (!). Not only is this a simplification of great
+convenience, as one simulation is valid for any type of material, but
+it also actually increases the understanding of the physical problem.
+
+Scaling of differential equations is basically a simple mathematical
+process, consisting of the chain rule for differentiation and some
+algebra.  The *choice of scales*, however, is a non-trivial topic,
+which may cause confusion among practitioners without extensive
+experience with scaling.  How to choose scales is unfortunately not
+well treated in the literature. Most of the times, authors just state
+scales without proper motivation. The choice of scales is highly
+problem-dependent and requires knowledge of the characteristic
+features of the solution or the physics of the problem.  The present
+notes aim at explaining "all nuts and bolts" of the scaling
+technique, including choice of scales, the algebra, the interpretation
+of dimensionless parameters in scaled models, and how scaling impacts
+software for solving differential equations.
+
+Traditionally, scaling was mainly used to identify small parameters in
+mathematical models, such that perturbation methods based on series
+expansions in terms of the small parameters could be used as an
+approximate solution method for differential equations.  Nowadays, the
+greatest practical benefit of scaling is related to running numerical
+simulations, since scaling greatly simplifies the choice of values for
+the input data and makes the simulations results more widely
+applicable.  The number of parameters in scaled models may be much
+less than the number of physical parameters in the original model. The
+parameters in scaled models are also dimensionless and express
+*ratios* of physical effects rather than levels of individual
+effects.  Setting meaningful values of a few dimensionless numbers is
+much easier than determining physically relevant values for the
+original physical parameters.
+
+Another great benefit of scaling is the physical insight that follows
+from dimensionless parameters. Since physical effects enter the
+problem through a few dimensionless groups, one can from these groups
+see how different effects compete in their impact on the
+solution. Ideally, a good physical understanding should provide the
+same insight, but it is not always easy to "think right" and realize
+how spatial and temporal scales interact with physical parameters.
+This interaction becomes clear through the dimensionless numbers, and
+such numbers are therefore a great help, especially for students, in
+developing a correct physical understanding.
+
+Since we have a special focus on scaling related to numerical
+simulations, the notes contain a lot of examples on how to program
+with dimensionless differential equation models. Most numerical models
+feature quantities with dimension, so we show in particular how to
+utilize such existing models to solve the equations in the associated
+scaled model.
+
+Scaling is not a universal mathematical technique as the details
+depend on the problem at hand. We therefore present scaling in a range
+of specific applications, starting with simple ODEs, progressing with
+basic PDEs, before attacking more complicated models, especially from
+fluid mechanics.
+
+The chapter :ref:`scale:dimunit` discusses units and how to make programs
+that can automatically take care of unit conversion (the most frequent
+mathematical mistake in industry and science?).  The section :ref:`sec:scale:decay` introduces the mathematics of scaling and the
+thinking about scales in a simple ODE problem modeling exponential
+decay. The ideas are generalized to nonlinear ODEs and to systems of
+ODEs.  Another ODE example, on mechanical vibrations, is treated in
+the section :ref:`sec:scale:vib`, where we cover many different physical
+contexts and different choices of scales.  Scaling the standard,
+linear wave equation is the topic of the chapter :ref:`sec:scale:wave`, with
+discussion of how boundary and initial conditions influence the choice
+of scales.  Another PDE example, the diffusion equation, appears in
+the chapter :ref:`sec:scale:diffu`. Here we progress from a simple linear
+diffusion equation in 1D to a study of how scales are influenced by
+an oscillatory boundary condition. Nonlinear diffusion models, as well as
+convection-diffusion PDEs, are elaborated on.  The final Chapter is
+devoted to many famous PDEs arising from continuum models: elasticity,
+viscous fluid flow, thermal convection, etc.
+
+The mathematics is translated into complete computer codes for the
+ODE and simpler PDE problems.
+
+Experimental fluid mechanics is a field full of relations involving
+dimensionless numbers such as the Grashof and Prandtl
+numbers, but none of the textbooks the authors have seen explain how
+these numbers actually relate to dimensionless forms of the governing
+equations. Consequently, this non-trivial topic is particularly
+highlighted in the fluid mechanics examples.
+
+The mathematics in the first two chapters is very gentle and requires
+no more background than basic one-variable calculus and preferably
+some knowledge of differential equation models. The next chapter
+involves PDEs and assumes familiarity with basic models for wave
+phenomena, diffusion, and combined convection-diffusion. The final
+chapter is meant for readers with knowledge of the physics and
+mathematics of continuum mechanical models. The mathematical level of
+the text rises quickly after the first two chapters.
+
+In the first two chapters, much of the mathematics is accompanied
+by complete (yet short) computer codes. The programming level requires
+familiarity with procedural programming in Python. As the mathematical
+level rises, the computer codes get much more comprehensive, and we refer
+to some files for computational examples in chapter three.
+
+The pedagogy is to saturate the reader with lots of detailed examples to
+provide an understanding for the topic, primarily because the choice
+of scales depends on the problem at hand. One can also view the notes
+as a reference on how to scale many of the most important differential
+equation models in physics.  For the simpler differential equations in
+Chapters 2 and 3, we present computer code for many computational
+examples, but the treatment of the advanced models in Chapter 4 is
+more superficial to limit the size of that chapter.
+
+The exercises are named either Exercise or Problem. The latter is
+a stand-alone exercise without reference to the rest of the text, while
+the former typically extends a topic in the text or refers to sections or
+formulas in the text.
+
+
+.. admonition:: What this booklet is and is not
+
+   Books containing material on
+   scaling and non-dimensionalization very often cover
+   topics not treated in the present notes, e.g., the key topic of
+   dimensional analysis and the famous Buckingham Pi Theorem
+   [Ref01]_ [Ref02]_, which we discuss only briefly in
+   the section :ref:`scale:dimunit:Pi`. Similarly,
+   analytical solution methods like perturbation techniques
+   and similarity solutions, which represent classical methods
+   closely related to scaling and non-dimensionalization, are not
+   addressed herein.
+   There are numerous texts on perturbation techniques, and these methods
+   build on an already scaled differential equations. Similarity
+   solutions do not fit within the present scope since these involve
+   non-dimensional *combinations* of the unscaled independent variables to derive
+   new differential equations that are easier to solve.
+   
+   Our scope is to scale differential
+   equations to simplify the setting of parameters in numerical simulations,
+   and at the same time understand more of the physics
+   through interpretation of the dimensionless numbers that automatically
+   arise from the scaling procedure.
+
+
+
+
+With these notes, we hope to demystify the thinking involved in scale
+determination and encourage numerical simulations to be performed with
+dimensionless differential equation models.
+
+All program and data files referred to in this book are available
+from the book's primary web site:
+URL: `<http://hplgit.github.io/scaling-book/doc/web/.>`_
+
+**Acknowledgments.**
+Professor Svein Linge
+provided very detailed, constructive comments on the entire manuscript
+and helped improve the reading quality significantly.
+Yapi Donatien Achou assisted with proof reading.
+The authors are thankful to Dr. Joakim Sundnes who contributed a section on
+scaling of the bidomain
+model in electrophysiology in the extended version of this booklet,
+found in the section :ref:`scale:bidomain`.
+Significant portions of
+the present text were written when the first author was fed with
+FOLFIRINOX (and thereby kept alive) by Linda Falch-Koslung, Dr. Olav
+Dajani, and the rest of the OUS team. There would simply be no booklet
+without their efforts. It is also a great pleasure to express our
+sincere thanks to the Springer and Simula team that handled the prompt
+editing and production of the text: Martin Peters, Ruth Allewelt,
+Aslak Tveito, and Åsmund Ødegård.
+

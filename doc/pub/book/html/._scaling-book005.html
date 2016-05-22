@@ -1222,7 +1222,7 @@ then
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> solver, read_command_line_argparse
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> solver, read_command_line_argparse
 I, a, T, theta, dt_values <span style="color: #666666">=</span> read_command_line_argparse()
 u, t <span style="color: #666666">=</span> solver(I, a, T, dt_values[<span style="color: #666666">0</span>], theta)
 
@@ -1245,7 +1245,7 @@ and choose \( \bar T \) and \( \Delta\bar t \):
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">_, _, T, theta, dt_values <span style="color: #666666">=</span> read_command_line_argparse()
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>_, _, T, theta, dt_values <span style="color: #666666">=</span> read_command_line_argparse()
 u, t <span style="color: #666666">=</span> solver(I<span style="color: #666666">=1</span>, a<span style="color: #666666">=1</span>, T<span style="color: #666666">=</span>T, dt<span style="color: #666666">=</span>dt_values[<span style="color: #666666">0</span>], theta<span style="color: #666666">=</span>theta)
 </pre></div>
 <p>
@@ -1315,7 +1315,7 @@ dimensions:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">matplotlib.pyplot</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">plt</span>
 
@@ -1336,7 +1336,7 @@ if necessary and otherwise loads data from file:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">joblib</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">joblib</span>
 disk_memory <span style="color: #666666">=</span> joblib<span style="color: #666666">.</span>Memory(cachedir<span style="color: #666666">=</span><span style="color: #BA2121">&#39;temp&#39;</span>)
 solver_scaled <span style="color: #666666">=</span> disk_memory<span style="color: #666666">.</span>cache(solver_scaled)
 </pre></div>
@@ -1351,7 +1351,7 @@ the solution with dimension:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale</span>(u_scaled, t_scaled, I, a):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale</span>(u_scaled, t_scaled, I, a):
     <span style="color: #008000; font-weight: bold">return</span> I<span style="color: #666666">*</span>u_scaled, a<span style="color: #666666">*</span>t_scaled
 
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay</span> <span style="color: #008000; font-weight: bold">import</span> read_command_line_argparse
@@ -1389,7 +1389,7 @@ Let us run
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python decay_scaled.py --I 8 --a 0.1 --dt 0.01 --T 50
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python decay_scaled.py --I 8 --a 0.1 --dt 0.01 --T 50
 </pre></div>
 <p>
 A plot of the scaled and unscaled solution appears in Figure
@@ -1412,7 +1412,7 @@ Here is a demo:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; # Very first run
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; # Very first run
 Terminal&gt; python decay_scaled.py --T 7 --a 1 --I 0.5 --dt 0.2
 [Memory] Calling __main__--home-hpl...
 solver_scaled-alias(7.0, 0.2, 0.5)
@@ -1456,7 +1456,7 @@ in the dictionary and returns previously computed results:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Memoize</span>:
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">class</span> <span style="color: #0000FF; font-weight: bold">Memoize</span>:
     <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">__init__</span>(<span style="color: #008000">self</span>, f):
         <span style="color: #008000">self</span><span style="color: #666666">.</span>f <span style="color: #666666">=</span> f
         <span style="color: #008000">self</span><span style="color: #666666">.</span>memo <span style="color: #666666">=</span> {}  <span style="color: #408080; font-style: italic"># map arguments to results</span>
@@ -1534,7 +1534,7 @@ and \( u(t) \) as a function:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> t, a, b, I <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;t a b I&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;u&#39;</span>, cls<span style="color: #666666">=</span>Function)
 </pre></div>
@@ -1547,7 +1547,7 @@ the left- and right-hand side):
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># Define differential equation</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># Define differential equation</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> eq <span style="color: #666666">=</span> diff(u(t), t) <span style="color: #666666">+</span> a<span style="color: #666666">*</span>u(t) <span style="color: #666666">-</span> b
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># or</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> eq <span style="color: #666666">=</span> Eq(diff(u(t), t), <span style="color: #666666">-</span>a<span style="color: #666666">*</span>u(t) <span style="color: #666666">+</span> b)
@@ -1560,7 +1560,7 @@ expression on the right-hand side as our solution:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> sol <span style="color: #666666">=</span> dsolve(eq, u(t))
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> sol <span style="color: #666666">=</span> dsolve(eq, u(t))
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> sol
 u(t) <span style="color: #666666">==</span> (b <span style="color: #666666">+</span> exp(a<span style="color: #666666">*</span>(C1 <span style="color: #666666">-</span> t)))<span style="color: #666666">/</span>a
 <span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> sol<span style="color: #666666">.</span>rhs                    <span style="color: #408080; font-style: italic"># grab solution</span>
@@ -1575,7 +1575,7 @@ from the initial condition \( u(0)=I \):
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> C1 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;C1&#39;</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> C1 <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;C1&#39;</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> eq <span style="color: #666666">=</span> Eq(u<span style="color: #666666">.</span>subs(t, <span style="color: #666666">0</span>), I)   <span style="color: #408080; font-style: italic"># substitute t by 0 in u</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> sol <span style="color: #666666">=</span> solve(eq, C1)
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> sol
@@ -1589,7 +1589,7 @@ expression <code>u</code> to yield the final solution:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> u<span style="color: #666666">.</span>subs(C1, sol[<span style="color: #666666">0</span>])
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> u<span style="color: #666666">.</span>subs(C1, sol[<span style="color: #666666">0</span>])
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> u
 (b <span style="color: #666666">+</span> exp(a<span style="color: #666666">*</span>(<span style="color: #666666">-</span>t <span style="color: #666666">+</span> log(I<span style="color: #666666">*</span>a <span style="color: #666666">-</span> b)<span style="color: #666666">/</span>a)))<span style="color: #666666">/</span>a
 </pre></div>
@@ -1603,7 +1603,7 @@ first try is to expand everything and run simplification algorithms:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> simplify(expand(u))
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> u <span style="color: #666666">=</span> simplify(expand(u))
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> u
 (I<span style="color: #666666">*</span>a <span style="color: #666666">+</span> b<span style="color: #666666">*</span>exp(a<span style="color: #666666">*</span>t) <span style="color: #666666">-</span> b)<span style="color: #666666">*</span>exp(<span style="color: #666666">-</span>a<span style="color: #666666">*</span>t)<span style="color: #666666">/</span>a
 </pre></div>
@@ -1761,7 +1761,7 @@ the scaled problem:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay_vc</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">decay_vc</span> <span style="color: #008000; font-weight: bold">import</span> solver <span style="color: #008000; font-weight: bold">as</span> solver_unscaled
 
 <span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">solver_scaled</span>(beta, T, dt, theta<span style="color: #666666">=0.5</span>):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;</span>
@@ -1783,7 +1783,7 @@ If we want to plot the physical solution, we need an <code>unscale</code> functi
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale</span>(u_scaled, t_scaled, d, mu, rho, rho_b, V):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">unscale</span>(u_scaled, t_scaled, d, mu, rho, rho_b, V):
     a, b <span style="color: #666666">=</span> ab(d, mu, rho, rho_b, V)
     <span style="color: #008000; font-weight: bold">return</span> (b<span style="color: #666666">/</span>a)<span style="color: #666666">*</span>u_scaled, a<span style="color: #666666">*</span>t_scaled
 
@@ -1804,7 +1804,7 @@ if it is necessary), and finally plots the scaled curve
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">main</span>(dt<span style="color: #666666">=0.075</span>, <span style="color: #408080; font-style: italic"># Time step, scaled problem</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">main</span>(dt<span style="color: #666666">=0.075</span>, <span style="color: #408080; font-style: italic"># Time step, scaled problem</span>
          T<span style="color: #666666">=7.5</span>,    <span style="color: #408080; font-style: italic"># Final time, scaled problem</span>
          d<span style="color: #666666">=0.001</span>,  <span style="color: #408080; font-style: italic"># Diameter (unscaled problem)</span>
          I<span style="color: #666666">=0</span>,      <span style="color: #408080; font-style: italic"># Initial velocity (unscaled problem)</span>
@@ -2108,7 +2108,7 @@ integrations (note that we use <code>w</code> for \( \omega \) in the computer c
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">import</span> <span style="color: #666666">*</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> t, k, T_m, a, w <span style="color: #666666">=</span> symbols(<span style="color: #BA2121">&#39;t k T_m a w&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> T_s <span style="color: #666666">=</span> T_m <span style="color: #666666">+</span> a<span style="color: #666666">*</span>sin(w<span style="color: #666666">*</span>t)
 <span style="color: #666666">&gt;&gt;&gt;</span> I <span style="color: #666666">=</span> exp(k<span style="color: #666666">*</span>t)<span style="color: #666666">*</span>T_s

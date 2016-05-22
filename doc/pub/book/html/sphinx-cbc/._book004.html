@@ -1,0 +1,2051 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Basic partial differential equation models</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+
+        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+
+        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+
+        <style type="text/css">
+                .sagecell .CodeMirror-scroll {
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                }
+                .sagecell .CodeMirror {
+                        height: auto;
+                }
+        </style>
+
+    
+    <link rel="top" title="Scaling of Differential Equations" href="index.html" />
+    <link rel="next" title="Advanced partial differential equation models" href="._book005.html" />
+    <link rel="prev" title="Ordinary differential equation models" href="._book003.html" />
+ 
+  
+       <style type="text/css">
+         div.admonition {
+           background-color: whiteSmoke;
+           border: 1px solid #bababa;
+         }
+       </style>
+      </head>
+    
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="._book005.html" title="Advanced partial differential equation models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="._book003.html" title="Ordinary differential equation models"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Scaling of Differential Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="basic-partial-differential-equation-models">
+<h1>Basic partial differential equation models<a class="headerlink" href="#basic-partial-differential-equation-models" title="Permalink to this headline">¶</a></h1>
+<p>This chapter extends the scaling technique to well-known partial differential
+equation (PDE) models for waves, diffusion, and transport.
+We start out with the simplest 1D models of the PDEs and then progress
+with additional terms, different types of boundary and initial conditions,
+and generalizations to 2D and 3D.</p>
+<div class="section" id="the-wave-equation">
+<span id="sec-scale-wave"></span><h2>The wave equation<a class="headerlink" href="#the-wave-equation" title="Permalink to this headline">¶</a></h2>
+<p>A standard, linear, one-dimensional wave equation problem
+in a homogeneous medium may be written as</p>
+<div class="math" id="eq-scale-wave-pde1">
+\[\tag{112}
+\frac{\partial^2 u}{\partial t^2} =
+    c^2 {\partial^2 u\over\partial x^2}, \quad  x\in (0,L),\ t\in (0,T],\]</div>
+<p>where <span class="math">\(c\)</span> is the constant wave velocity of the medium.
+With a briefer notation, where subscripts indicate derivatives,
+the PDE <a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a> can be written
+<span class="math">\(u_{tt}=c^2u_{xx}\)</span>. This subscript notation will occasionally be
+used later.</p>
+<p>For any number of dimensions in heterogeneous media we have the generalization</p>
+<div class="math" id="eq-scale-wave-pde1-3d">
+\[\tag{113}
+\frac{\partial^2 u}{\partial t^2} =
+    \nabla\cdot\left(c^2 \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T],\]</div>
+<p>where <span class="math">\(f\)</span> represents a forcing.</p>
+<div class="section" id="homogeneous-dirichlet-conditions-in-1d">
+<span id="sec-scale-wave-bc-u0"></span><h3>Homogeneous Dirichlet conditions in 1D<a class="headerlink" href="#homogeneous-dirichlet-conditions-in-1d" title="Permalink to this headline">¶</a></h3>
+<p>Let us first start with <a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a>,
+homogeneous Dirichlet conditions in space, and
+no initial velocity <span class="math">\(u_t\)</span>:</p>
+<div class="math" id="eq-scale-wave-pde1-ic-u">
+\[\tag{114}
+u(x,0) = I(x), \quad x\in [0,L],\]</div>
+<div class="math" id="eq-scale-wave-pde1-ic-ut">
+\[\tag{115}
+{\partial\over\partial t}u(x,0) = 0, \quad  x\in [0,L],\]</div>
+<div class="math" id="eq-scale-wave-pde1-bc-0">
+\[\tag{116}
+u(0,t)  = 0, \quad   t\in (0,T],\]</div>
+<div class="math" id="eq-scale-wave-pde1-bc-l">
+\[\tag{117}
+u(L,t)  = 0, \quad   t\in (0,T].\]</div>
+<p>The independent variables are <span class="math">\(x\)</span> and <span class="math">\(t\)</span>, while <span class="math">\(u\)</span> is the dependent
+variable.
+The rest of the parameters, <span class="math">\(c\)</span>, <span class="math">\(L\)</span>, <span class="math">\(T\)</span>, and <span class="math">\(I(x)\)</span>, are given data.</p>
+<p>We start with introducing dimensionless versions of the independent and
+dependent variables:</p>
+<div class="math">
+\[\bar x = \frac{x}{x_c},\quad \bar t=\frac{t}{t_c},\quad\bar u=\frac{u}{u_c}
+{\thinspace .}\]</div>
+<p>Inserting the <span class="math">\(x=x_c\bar x\)</span>, etc., in <a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a> and
+<a class="reference internal" href="#eq-scale-wave-pde1-ic-u"><span class="std std-ref">(114)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde1-bc-l"><span class="std std-ref">(117)</span></a> gives</p>
+<div class="math">
+\[\begin{split}\frac{\partial^2 \bar u}{\partial \bar t^2} &amp;=
+\frac{t_c^2c^2}{x_c^2}{\partial^2 \bar u\over\partial x^2}, \quad &amp; \bar x\in (0,L/x_c),\ \bar t\in (0,T/t_c],
+\\
+\bar u(\bar x,0) &amp;= \frac{I(x_c\bar x)}{u_c},
+\quad &amp;\bar x\in [0,L/x_c],
+\\
+\frac{\partial}{\partial \bar t}\bar u(\bar x,0) &amp;= 0,
+\quad &amp; \bar x\in [0,L/x_c],
+\\
+\bar u(0,\bar t) &amp; = 0,
+\quad  &amp; \bar t\in (0,T/t_c],
+\\
+\bar u(L/x_c,\bar t) &amp; = 0,
+\quad &amp;\bar t\in (0,T/t_c].\end{split}\]</div>
+<p>The key question is how to define the scales.
+A natural choice is <span class="math">\(x_c=L\)</span> since this makes <span class="math">\(\bar x\in [0,1]\)</span>.
+For the spatial scale and the problem governed by
+<a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a> we
+have some analytical insight that can help.
+The solution behaves like</p>
+<div class="math" id="eq-scale-wave-pde-sol-general">
+\[\tag{118}
+u(x,t) = f_R(x-ct) + f_R(x+ct),\]</div>
+<p>i.e., a right- and left-going wave with velocity <span class="math">\(c\)</span>. The initial
+conditions constrain the choices of <span class="math">\(f_R\)</span> and <span class="math">\(f_L\)</span> to <span class="math">\(f_L + f_R=I\)</span>
+and <span class="math">\(-cf_L' + cf_R' = 0\)</span>. The solution is <span class="math">\(f_R = f_L = \frac{1}{2}\)</span>,
+and consequently</p>
+<div class="math">
+\[u(x,t) = \frac{1}{2}I(x-ct) + \frac{1}{2}I(x+ct),\]</div>
+<p>which tells that the initial condition splits in two, half of it moves
+to the left and half to the right.
+This means in particular that we can choose <span class="math">\(u_c=\max_x |I(x)|\)</span>
+and get <span class="math">\(|\bar u|\leq 1\)</span>, which is a goal. It must be added that
+boundary conditions may result in reflected waves, and the solution is
+then more complicated than indicated in the formula above.</p>
+<p>Regarding the time scale, we may look at the two terms in the scaled
+PDE and argue that if <span class="math">\(|u|\)</span> and its derivatives are to be of order unity,
+then the size of the second-order derivatives should be the same, and
+<span class="math">\(t_c\)</span> can be chosen to make the coefficient <span class="math">\(t_c^2 c^2 /x_c^2\)</span> unity,
+i.e., <span class="math">\(t_c=L/c\)</span>.
+Another reasoning may set <span class="math">\(t_c\)</span> as the time it takes the wave
+to travel through the domain <span class="math">\([0,L]\)</span>. Since the wave has constant
+speed <span class="math">\(c\)</span>, <span class="math">\(t_c = L/c\)</span>.</p>
+<p>With the described choices of scales,
+we end up with the dimensionless initial-boundary value problem</p>
+<div class="math" id="eq-scale-wave-pde1-d">
+\[\tag{119}
+\frac{\partial^2 \bar u}{\partial \bar t^2} =
+    {\partial^2 \bar u\over\partial x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-wave-pde1-ic-u-d">
+\[\tag{120}
+\bar u(\bar x,0) = \frac{I(\bar x L)}{\max_{x\in(0,L)} |I(x)|},
+    \quad \bar x\in [0,1],\]</div>
+<div class="math" id="eq-scale-wave-pde1-ic-ut-d">
+\[\tag{121}
+{\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+    \quad  \bar x\in [0,1],\]</div>
+<div class="math" id="eq-scale-wave-pde1-bc-0-d">
+\[\tag{122}
+\bar u(0,\bar t)  = 0,
+    \quad  \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-wave-pde1-bc-l-d">
+\[\tag{123}
+\bar u(1,\bar t)  = 0,
+    \quad  \bar t\in (0,\bar T].\]</div>
+<p>Here, <span class="math">\(\bar T = Tc/L\)</span>.</p>
+<p>The striking feature of
+<a class="reference internal" href="#eq-scale-wave-pde1-d"><span class="std std-ref">(119)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde1-bc-l-d"><span class="std std-ref">(123)</span></a>
+is that there are <em>no physical parameters</em> involved! Everything we need
+to specify is the shape of the initial condition and then scale it
+such that it is less than or equal to 1.</p>
+<p>The physical solution with dimension is recovered from <span class="math">\(\bar u(\bar x,\bar t)\)</span>
+through</p>
+<div class="math" id="eq-auto43">
+\[\tag{124}
+u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)\]</div>
+</div>
+<div class="section" id="implementation-of-the-scaled-wave-equation">
+<span id="sec-scale-wave-impl"></span><h3>Implementation of the scaled wave equation<a class="headerlink" href="#implementation-of-the-scaled-wave-equation" title="Permalink to this headline">¶</a></h3>
+<p>How do we implement <a class="reference internal" href="#eq-scale-wave-pde1-d"><span class="std std-ref">(119)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde1-bc-l-d"><span class="std std-ref">(123)</span></a>?
+As for the simpler mathematical models, we suggest to implement the model
+with dimensions and observe how to set parameters to obtain the scaled
+model. In the present case, one must choose <span class="math">\(L=1\)</span>, <span class="math">\(c=1\)</span>, and scale <span class="math">\(I\)</span> by its
+maximum value. That&#8217;s all!</p>
+<p>Several implementations of 1D wave equation models with different
+degree of mathematical and software complexity come along with these
+notes. The simplest
+version is <a class="reference external" href="http://tinyurl.com/o8pb3yy/wave1D_u0.py">wave1D_u0.py</a>
+that implements <a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a> and
+<a class="reference internal" href="#eq-scale-wave-pde1-ic-u"><span class="std std-ref">(114)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde1-bc-l"><span class="std std-ref">(117)</span></a>.
+This is the code to be used in the following. It is described
+in in
+the book <a class="reference external" href="http://tinyurl.com/Langtangen-Linge-FDM-book">Finite difference computing with PDEs</a>
+<a class="reference internal" href="._book005.html#ref03" id="id1">[Ref03]</a>.</p>
+<div class="section" id="waves-on-a-string">
+<h4>Waves on a string<a class="headerlink" href="#waves-on-a-string" title="Permalink to this headline">¶</a></h4>
+<p>As an example, we may let the original initial-boundary value problem
+<a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde1-bc-l"><span class="std std-ref">(117)</span></a> model vibrations of
+a string on a string instrument (e.g., a guitar).
+With <span class="math">\(u\)</span> as the displacement of the
+string, the boundary conditions <span class="math">\(u=0\)</span> at the ends are relevant, as
+well as the zero velocity condition <span class="math">\(\partial u/\partial t=0\)</span> at
+<span class="math">\(t=0\)</span>.  The initial condition <span class="math">\(I(x)\)</span> typically has a triangular shape
+for a picked guitar string.  The physical problem needs parameters for
+the amplitude of <span class="math">\(I(x)\)</span>, the length <span class="math">\(L\)</span> of the string, and the value
+of <span class="math">\(c\)</span> for the string. Only the latter is challenging as it involves
+relating <span class="math">\(c\)</span> to the pitch (i.e., time frequency) of the string. In the
+scaled problem, we can forget about all this. We simply set <span class="math">\(L=1\)</span>,
+<span class="math">\(c=1\)</span>, and let <span class="math">\(I(x)\)</span> have a peak of unity at <span class="math">\(x=x_0\in(0,1)\)</span>:</p>
+<div class="math">
+\[\begin{split}\frac{I(x)}{\max_x I(x)} = \left\lbrace
+\begin{array}{ll}
+x/x_0, &amp; x &lt; x_0,\\
+(1-x)/(1-x_0), &amp; \hbox{otherwise}
+\end{array}\right.\end{split}\]</div>
+<p>The dimensionless coordinate of the peak, <span class="math">\(x_0\)</span>, is the only
+dimensionless parameter in the problem. For fixed <span class="math">\(x_0\)</span>,
+one single simulation will capture all possible solutions with such
+an initial triangular shape.</p>
+</div>
+<div class="section" id="detecting-an-already-computed-case">
+<h4>Detecting an already computed case<a class="headerlink" href="#detecting-an-already-computed-case" title="Permalink to this headline">¶</a></h4>
+<p>The file <a class="reference external" href="http://tinyurl.com/o8pb3yy/wave1D_u0_scaled.py">wave1D_u0_scaled.py</a>
+has functionality for detecting whether a simulation corresponds to
+a previously run scaled case, and if so, the solution is retrieved from
+file. The implementation technique makes use of <code class="docutils literal"><span class="pre">joblib</span></code>, but is more
+complicated than shown previously in these notes since some of the
+arguments to the function that computes the solution are functions,
+and one must recognized if the function has been used as argument
+before or not. There is documentation in the <code class="docutils literal"><span class="pre">wave1D_u0_scaled.py</span></code>
+file explaining how this is done.</p>
+</div>
+</div>
+<div class="section" id="time-dependent-dirichlet-condition">
+<span id="scale-wave-pde2"></span><h3>Time-dependent Dirichlet condition<a class="headerlink" href="#time-dependent-dirichlet-condition" title="Permalink to this headline">¶</a></h3>
+<p>A generalization of <a class="reference internal" href="#eq-scale-wave-pde1"><span class="std std-ref">(112)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde1-bc-l"><span class="std std-ref">(117)</span></a>
+is to allow for a time-dependent Dirichlet condition at one end, say
+<span class="math">\(u(0,t)=U_L(t)\)</span>. At the other end we may still have <span class="math">\(u=0\)</span>.  This new
+condition at <span class="math">\(x=0\)</span> may model a specified wave that enters the
+domain. For example, if we feed in a monochromatic wave
+<span class="math">\(A\sin(k(x-ct))\)</span> from the left end, <span class="math">\(U_L(t)=A\sin (kct)\)</span>.  This
+forcing of the wave motion has its own amplitude and time scale that
+could affect the choice of <span class="math">\(u_c\)</span> and <span class="math">\(t_c\)</span>.</p>
+<p>The main difference from the previous initial-boundary value problem
+is the condition at <span class="math">\(x=0\)</span>, which now reads</p>
+<div class="math">
+\[\bar u(0,\bar t) = \frac{U_L(\bar t t_c)}{u_c}\]</div>
+<p>in scaled form.</p>
+<div class="section" id="scaling-5">
+<h4>Scaling<a class="headerlink" href="#scaling-5" title="Permalink to this headline">¶</a></h4>
+<p>Regarding the characteristic time scale, it is natural to base this
+scale on the wave propagation velocity, together with the length
+scale, and not on the time scale of <span class="math">\(U_L(t)\)</span>, because the time scale
+of <span class="math">\(U_L\)</span> basically determines whether short or long waves are fed in
+at the boundary. All waves, long or short, propagate with the same
+velocity <span class="math">\(c\)</span>. We therefore continue to use <span class="math">\(t_c=L/c\)</span>.</p>
+<p>The solution <span class="math">\(u\)</span> will have one wave contribution from the initial
+condition <span class="math">\(I\)</span> and one from the feeding of waves at <span class="math">\(x=0\)</span>. This gives
+us three choices of <span class="math">\(u_c\)</span>: <span class="math">\(\max_x |I| + \max_t |U_L|\)</span>, <span class="math">\(\max_x |I|\)</span>,
+or <span class="math">\(\max_t |U_L|\)</span>. The first seems relevant if the size of <span class="math">\(I\)</span> and
+<span class="math">\(U_L\)</span> are about the same, but then we can choose either <span class="math">\(\max_x |I|\)</span>
+or <span class="math">\(\max_t |U_L|\)</span> as characteristic size of <span class="math">\(u\)</span> since a factor of 2 is
+not important. If <span class="math">\(I\)</span> is much less than <span class="math">\(U_L\)</span>, <span class="math">\(u_c=\max_t |u_L|\)</span> is
+relevant, while <span class="math">\(u_c=\max_x|I|\)</span> is the choice when <span class="math">\(I\)</span> has much bigger
+impact than <span class="math">\(U_L\)</span> on <span class="math">\(u\)</span>.</p>
+<p>With <span class="math">\(u_c=\max_t |U_L(t)|\)</span>, we get the scaled problem</p>
+<div class="math" id="eq-scale-wave-pde2-d">
+\[\tag{125}
+\frac{\partial^2 \bar u}{\partial \bar t^2} =
+    {\partial^2 \bar u\over\partial \bar x^2},
+    \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-wave-pde2-ic-u-d">
+\[\tag{126}
+\bar u(\bar x,0) = \frac{I(x_c\bar x)}{\max_t |U_L(t)|},
+    \quad \bar x\in [0,1],\]</div>
+<div class="math" id="eq-scale-wave-pde2-ic-ut-d">
+\[\tag{127}
+{\partial\over\partial \bar t}\bar u(\bar x,0) = 0,
+    \quad  \bar x\in [0,1],\]</div>
+<div class="math" id="eq-scale-wave-pde2-bc-0-d">
+\[\tag{128}
+\bar u(0,\bar t)  = \frac{U_L(\bar tt_c)}{\max_t |U_L(t)|},
+    \quad  \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-wave-pde2-bc-l-d">
+\[\tag{129}
+\bar u(1,\bar t)  = 0,
+    \quad \bar t\in (0,\bar T].\]</div>
+<p>Also this problem is free of physical parameters like <span class="math">\(c\)</span> and <span class="math">\(L\)</span>.
+The input is completely specified by the shape of <span class="math">\(I(x)\)</span> and <span class="math">\(U_L(t)\)</span>.</p>
+</div>
+<div class="section" id="software-7">
+<h4>Software<a class="headerlink" href="#software-7" title="Permalink to this headline">¶</a></h4>
+<p>Software for the original problem with dimensions can be reused for
+<a class="reference internal" href="#eq-scale-wave-pde2-d"><span class="std std-ref">(125)</span></a>-<a class="reference internal" href="#eq-scale-wave-pde2-bc-l-d"><span class="std std-ref">(129)</span></a> by
+setting <span class="math">\(L=1\)</span>, <span class="math">\(c=1\)</span>, and scaling <span class="math">\(U_L(t)\)</span> and <span class="math">\(I(x)\)</span> by
+<span class="math">\(\max_t |U_L(t)|\)</span>.</p>
+</div>
+<div class="section" id="specific-case">
+<h4>Specific case<a class="headerlink" href="#specific-case" title="Permalink to this headline">¶</a></h4>
+<p>As an example, consider</p>
+<div class="math">
+\[\begin{split}U_L(t) &amp;= a\sin(\omega t)\hbox{ for } 0\leq t\leq 2\frac{\omega}{2\pi},
+\hbox{ else } 0,\\
+I(x)   &amp; = Ae^{-(x-L/2)^2/\sigma^2}{\thinspace .}\end{split}\]</div>
+<p>That is, we start with a Gaussian peak-shaped wave in the center of the
+domain and feed in a sinusoidal wave at the left end for two periods.
+The solution will be the sum of three waves: two parts from the initial
+condition, plus the wave fed in from the left.</p>
+<p>Since <span class="math">\(\max_t |U_L|=a\)</span> we get</p>
+<div class="math" id="eq-scale-wave-oscbc-i">
+\[\tag{130}
+\bar u(\bar x,0) = \frac{A}{a}e^{-(L/\sigma)^2(\bar x -\frac{1}{2})^2},\]</div>
+<div class="math" id="eq-scale-wave-oscbc-u0">
+\[\tag{131}
+\bar u(0,\bar t) = \sin(\bar t\omega L/c){\thinspace .}\]</div>
+<p>Here, <span class="math">\(U_L\)</span> models an incoming wave <span class="math">\(a\sin(k(x-ct)\)</span>, with <span class="math">\(k\)</span> specified.
+The result is incoming
+waves of length <span class="math">\(\lambda = 2\pi/k\)</span>. Since <span class="math">\(\omega =kc\)</span>,
+<span class="math">\(\bar u(0,\bar t)=\sin(kL\bar t) = \sin(2\pi\bar t L/\lambda)\)</span>.
+(This formula demonstrates the previous assertion that the time scale
+of <span class="math">\(U_L\)</span>, i.e., <span class="math">\(1/\omega\)</span>, determines the wave length <span class="math">\(1/\omega = \lambda/(2\pi)\)</span> in space.)
+We realize from the formulas <a class="reference internal" href="#eq-scale-wave-oscbc-i"><span class="std std-ref">(130)</span></a> and
+<a class="reference internal" href="#eq-scale-wave-oscbc-u0"><span class="std std-ref">(131)</span></a>
+that there are three key dimensionless parameters related
+to these specific choices of initial and boundary conditions:</p>
+<div class="math">
+\[\alpha = \frac{A}{a},\quad\beta = \frac{L}{\sigma},\quad\gamma = kL
+=2\pi\frac{L}{\lambda}{\thinspace .}\]</div>
+<p>With <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span>, and <span class="math">\(\gamma\)</span> we can write the dimensionless
+initial and boundary conditions as</p>
+<div class="math">
+\[\begin{split}\bar u(\bar x,0) &amp;= \alpha e^{-\beta^2(\bar x -\frac{1}{2})^2},\\
+\bar u(0,\bar t) &amp;= \sin(\gamma\bar t){\thinspace .}\end{split}\]</div>
+<p>The dimensionless parameters have the following interpretations:</p>
+<blockquote>
+<div><ul class="simple">
+<li><span class="math">\(\alpha\)</span>: ratio of initial condition amplitude and amplitude of incoming wave
+at <span class="math">\(x=0\)</span></li>
+<li><span class="math">\(\beta\)</span>: ratio of length of domain and width of initial condition</li>
+<li><span class="math">\(\gamma\)</span>: ratio of length of domain and wave length of incoming wave</li>
+</ul>
+</div></blockquote>
+<p>Again, these dimensionless parameters tell a lot about the interplay of
+the physical effects in the problem. And only some ratios count!</p>
+<p>We can simulate two special cases:</p>
+<ol class="arabic simple">
+<li><span class="math">\(\alpha=10\)</span> (large) where the
+incoming wave is small and the solution is dominated by the two waves
+arising from <span class="math">\(I(x)\)</span>,</li>
+<li><span class="math">\(\alpha=0.1\)</span> (small) where the incoming waves
+dominate and the solution has the initial condition just
+as a small perturbation of the wave shape.</li>
+</ol>
+<p>We may choose a peak-shaped initial condition: <span class="math">\(\beta = 10\)</span>,
+and also a relatively short incoming wave compared to the domain size:
+<span class="math">\(\gamma = 6\pi\)</span> (i.e., wave length of incoming wave is <span class="math">\(L/6\)</span>).
+A function <code class="docutils literal"><span class="pre">simulate_Gaussian_and_incoming_wave</span></code> in
+the file <a class="reference external" href="http://tinyurl.com/o8pb3yy/session.py">session.py</a>
+applies the general unscaled
+solver in <a class="reference external" href="http://tinyurl.com/o8pb3yy/wave1D_dn.py">wave1D_dn.py</a>
+for solving the wave equation with constant <span class="math">\(c\)</span>,
+and any time-dependent function or <span class="math">\(\partial u/\partial x=0\)</span> at the
+end points. This solver is trivially adapted to the present case.</p>
+<div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha10.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha10.webm" type='video/webm; codecs="vp8, vorbis"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha10.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
+</div>
+<p><em> \( \alpha=10 \) .</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script><div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha01.mp4"  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha01.webm" type='video/webm; codecs="vp8, vorbis"'>
+    <source src="_static/mov-scaling/gaussian_plus_incoming/alpha01.ogg"  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
+</div>
+<p><em> \( \alpha=0.1 \) .</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script></div>
+</div>
+<div class="section" id="velocity-initial-condition">
+<span id="scale-wave-pde2-vcond"></span><h3>Velocity initial condition<a class="headerlink" href="#velocity-initial-condition" title="Permalink to this headline">¶</a></h3>
+<p>Now we change the initial condition from <span class="math">\(u=I\)</span> and <span class="math">\(\partial u/\partial t = 0\)</span> to</p>
+<div class="math" id="eq-auto44">
+\[\tag{132}
+u(x,0) = 0,\]</div>
+<div class="math" id="eq-auto45">
+\[\tag{133}
+\frac{\partial}{\partial t} u(x,0) = V(x){\thinspace .}\]</div>
+<p>Impact problems are often of this kind.
+The scaled version of <span class="math">\(u_t(x,0)=V(x)\)</span> becomes</p>
+<div class="math">
+\[\frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
+\frac{t_c}{u_c}V(\bar x x_c){\thinspace .}\]</div>
+<div class="section" id="analytical-insight-1">
+<h4>Analytical insight<a class="headerlink" href="#analytical-insight-1" title="Permalink to this headline">¶</a></h4>
+<p>From <a class="reference internal" href="#eq-scale-wave-pde-sol-general"><span class="std std-ref">(118)</span></a> we now get <span class="math">\(f_L + f_R =0\)</span> and
+<span class="math">\(cf_L' - cf_R' = V\)</span>. Introducing <span class="math">\(W(x)\)</span> such that <span class="math">\(W'(x)=V(x)\)</span>, a solution
+is <span class="math">\(f_L=\frac{1}{2}W/c\)</span> and <span class="math">\(-f_R=\frac{1}{2}W/c\)</span>. We can express this
+solution through the formula</p>
+<div class="math" id="eq-scale-wave-pde2-vcond-usol">
+\[\tag{134}
+u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} V(\xi) d\xi
+     = \frac{1}{2c}(W(x+ct) - W(x-ct)){\thinspace .}\]</div>
+</div>
+<div class="section" id="scaling-6">
+<h4>Scaling<a class="headerlink" href="#scaling-6" title="Permalink to this headline">¶</a></h4>
+<p>Since <span class="math">\(V\)</span> is the time-derivative of <span class="math">\(u\)</span>, the characteristic size of
+<span class="math">\(V\)</span>, call it <span class="math">\(V_c\)</span>, is typically <span class="math">\(u_c/t_c\)</span>.  If we, as usual, base
+<span class="math">\(t_c\)</span> on the wave speed, <span class="math">\(t_c = L/c\)</span>, we get <span class="math">\(u_c = V_cL/c\)</span>.  Looking
+at the solution <a class="reference internal" href="#eq-scale-wave-pde2-vcond-usol"><span class="std std-ref">(134)</span></a>, we see that <span class="math">\(u_c\)</span>
+has size <span class="math">\(\hbox{mean}(V)L/(2c)\)</span>, where <span class="math">\(\hbox{mean}(V)\)</span> is the mean
+value of <span class="math">\(V\)</span> (<span class="math">\(W\sim\hbox{mean}(V)L\)</span>). This result suggests
+<span class="math">\(V_c=\hbox{mean}(V)\)</span> and <span class="math">\(u_c = \hbox{mean}(V)L/(2c)\)</span>. One may argue
+that the factor 2 is not important, but if we want <span class="math">\(|\bar u|\in [0,1]\)</span>
+it is convenient to keep it.</p>
+<p>The scaled initial condition becomes</p>
+<div class="math">
+\[\frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
+\frac{t_c}{u_c}V(\bar x x_c) =
+\frac{V(\bar x x_c)}{\frac{1}{2}\hbox{mean}(V)}{\thinspace .}\]</div>
+</div>
+<div class="section" id="nonzero-initial-shape">
+<h4>Nonzero initial shape<a class="headerlink" href="#nonzero-initial-shape" title="Permalink to this headline">¶</a></h4>
+<p>Suppose we change the initial condition <span class="math">\(u(x,0)=0\)</span> to <span class="math">\(u(x,0)=I(x)\)</span>.
+The scaled version of this condition with the above <span class="math">\(u_c\)</span>
+based on <span class="math">\(V\)</span> becomes</p>
+<div class="math" id="eq-scale-wave-pde2-vcond-eq">
+\[\tag{135}
+\bar u(\bar x, 0) = \frac{2cI(\bar x x_c)}{L\,\hbox{mean}(V)}{\thinspace .}\]</div>
+<div class="admonition-check-that-dimensionless-numbers-are-dimensionless admonition">
+<p class="first admonition-title">Check that dimensionless numbers are dimensionless</p>
+<p>Is a dimensionless number really dimensionless?
+It is easy to make errors when scaling equations, so checking that
+such fractions are dimensionless is wise.
+The dimension of <span class="math">\(I\)</span> is the same as <span class="math">\(u\)</span>, here taken to be displacement:
+[L].
+Since <span class="math">\(V\)</span> is <span class="math">\(\partial u/\partial t\)</span>, its dimension is
+<span class="math">\([\hbox{LT}^{-1}]\)</span>. The dimensions of <span class="math">\(c\)</span> and <span class="math">\(L\)</span> are
+<span class="math">\([\hbox{LT}^{-1}]\)</span> and <span class="math">\([\hbox{L}]\)</span>. The dimension of the right-hand side
+of <a class="reference internal" href="#eq-scale-wave-pde2-vcond-eq"><span class="std std-ref">(135)</span></a> is then</p>
+<div class="math">
+\[\frac{[\hbox{LT}^{-1}][L]}{[L][L\hbox{T}^{-1}]}
+= 1,\]</div>
+<p class="last">demonstrating that the fraction is indeed dimensionless.</p>
+</div>
+<p>One may introduce a dimensionless initial
+shape, <span class="math">\(\bar I (\bar x)= I(\bar xL)/\max_x |I|\)</span>. Then</p>
+<div class="math">
+\[\bar u(\bar x, 0) = \alpha\bar I(\bar x),\]</div>
+<p>where <span class="math">\(\alpha\)</span> the dimensionless number</p>
+<div class="math">
+\[\alpha = \frac{2c}{L}\frac{\max_x |I(x)|}{\hbox{mean}(V)}{\thinspace .}\]</div>
+<p id="index-0">If <span class="math">\(V\)</span> is much larger than <span class="math">\(I\)</span>, one expects that the influence of <span class="math">\(I\)</span>
+is small. However, it takes time for the initial velocity <span class="math">\(V\)</span> to
+influence the wave motion, so the speed of the waves <span class="math">\(c\)</span> and the length
+of the domain <span class="math">\(L\)</span> also play a role. This is reflected in <span class="math">\(\alpha\)</span>, which is the
+important parameter.
+Again, the scaling and the resulting dimensionless parameter(s)
+teach us much about the interaction of the various physical effects.</p>
+</div>
+</div>
+<div class="section" id="variable-wave-velocity-and-forcing">
+<span id="scale-wave-pde2-cvar"></span><h3>Variable wave velocity and forcing<a class="headerlink" href="#variable-wave-velocity-and-forcing" title="Permalink to this headline">¶</a></h3>
+<p>The next generalization regards wave propagation in
+a non-homogeneous medium where the wave velocity <span class="math">\(c\)</span> depends on the
+spatial position: <span class="math">\(c=c(x)\)</span>. To simplify the notation we introduce
+<span class="math">\(\lambda (x) = c^2(x)\)</span>. We introduce homogeneous Neumann conditions
+at <span class="math">\(x=0\)</span> and <span class="math">\(x=L\)</span>. In addition, we add a force term <span class="math">\(f(x,t)\)</span>
+to the PDE, modeling wave generation in the interior of
+the domain. For example, a moving slide at the bottom of a fjord
+will generate surface waves and is modeled by such an <span class="math">\(f(x,t)\)</span> term
+(provided the length of the waves is much larger than the depth so
+that a simple wave equation like <a class="reference internal" href="#eq-scale-wave-pde3"><span class="std std-ref">(136)</span></a> applies).
+The initial-boundary value problem
+can be then expressed as</p>
+<div class="math" id="eq-scale-wave-pde3">
+\[\tag{136}
+\frac{\partial^2 u}{\partial t^2} =
+    \frac{\partial}{\partial x}\left(
+    \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
+    \quad  x\in (0,L),\ t\in (0,T],\]</div>
+<div class="math" id="eq-scale-wave-pde3-ic-u">
+\[\tag{137}
+u(x,0) = I(x),
+    \quad x\in [0,L],\]</div>
+<div class="math" id="eq-scale-wave-pde3-ic-ut">
+\[\tag{138}
+{\partial\over\partial t}u(x,0) = 0,
+    \quad  x\in [0,L],\]</div>
+<div class="math" id="eq-scale-wave-pde3-bc-0">
+\[\tag{139}
+\frac{\partial}{\partial x}u(0,t)  = 0,
+    \quad  t\in (0,T],\]</div>
+<div class="math" id="eq-scale-wave-pde3-bc-l">
+\[\tag{140}
+\frac{\partial}{\partial x}u(L,t)  = 0,
+    \quad  t\in (0,T].\]</div>
+<div class="section" id="non-dimensionalization">
+<h4>Non-dimensionalization<a class="headerlink" href="#non-dimensionalization" title="Permalink to this headline">¶</a></h4>
+<p>We make the coefficient <span class="math">\(\lambda\)</span> non-dimensional by</p>
+<div class="math" id="eq-auto46">
+\[\tag{141}
+\bar\lambda(\bar x) = \frac{\lambda(\bar xx_c)}{\lambda_c},\]</div>
+<p>where one normally chooses the characteristic size of <span class="math">\(\lambda\)</span>, <span class="math">\(\lambda_c\)</span>,
+to be the maximum value such that <span class="math">\(|\lambda|\leq 1\)</span>:</p>
+<div class="math">
+\[\lambda_c = \max_{x\in(0,L)}\lambda(x){\thinspace .}\]</div>
+<p>Similarly, <span class="math">\(f\)</span> has a scaled version</p>
+<div class="math">
+\[\bar f(\bar x,\bar t) = \frac{f(\bar x x_c, \bar t t_c)}{f_c},\]</div>
+<p>where normally we choose</p>
+<div class="math">
+\[f_c=\max_{x,t}|f(x,t)|{\thinspace .}\]</div>
+<p>Inserting dependent and independent variables expressed by their
+non-dimensional counterparts yields</p>
+<div class="math">
+\[\begin{split}\frac{\partial^2 \bar u}{\partial \bar t^2} &amp;=
+\frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
+\bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
++ \frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t),
+\quad &amp; \bar x\in (0,1),\ \bar t\in (0,\bar T],\\
+\bar u(\bar x,0) &amp;= \frac{I(x)}{u_c},
+\quad &amp;\bar x\in [0,1],\\
+{\partial\over\partial \bar t}\bar u(\bar x,0) &amp;= 0,
+\quad &amp; \bar x\in [0,1],\\
+\frac{\partial}{\partial \bar x}\bar u(0,\bar t) &amp; = 0,
+\quad  &amp;\bar t\in (0,\bar T],\\
+\frac{\partial}{\partial \bar x}\bar u(1,\bar t) &amp; = 0,
+\quad  &amp;\bar t\in (0,\bar T],\end{split}\]</div>
+<p>with <span class="math">\(\bar T = Tc/L\)</span>.</p>
+</div>
+<div class="section" id="choosing-the-time-scale-1">
+<h4>Choosing the time scale<a class="headerlink" href="#choosing-the-time-scale-1" title="Permalink to this headline">¶</a></h4>
+<p>The time scale is, as before, chosen as <span class="math">\(t_c
+=L/\sqrt{\lambda_c}\)</span>. Note that the previous (constant) wave velocity
+<span class="math">\(c\)</span> now corresponds to <span class="math">\(\sqrt{\lambda (x)}\)</span>.  Therefore,
+<span class="math">\(\sqrt{\lambda_c}\)</span> is a characteristic wave velocity.</p>
+<p>One could wonder if the time scale of the force term, <span class="math">\(f(x,t)\)</span>,
+should influence <span class="math">\(t_c\)</span>, but as we reasoned for the boundary condition
+<span class="math">\(u(0,t)=U_L(t)\)</span>, we let the characteristic time be governed by the
+signal speed in the medium, i.e., by <span class="math">\(\sqrt{\lambda_c}\)</span> here and not
+by the time scale of the excitation <span class="math">\(f\)</span>, which dictates the
+length of the generated waves and not their propagation speed.</p>
+</div>
+<div class="section" id="choosing-the-spatial-scale">
+<h4>Choosing the spatial scale<a class="headerlink" href="#choosing-the-spatial-scale" title="Permalink to this headline">¶</a></h4>
+<p>We may choose <span class="math">\(u_c\)</span> as <span class="math">\(\max_x |I(x)|\)</span>, as before,
+or we may fit <span class="math">\(u_c\)</span> such that the coefficient in the source term
+is unity, i.e., all terms balance each other.
+This latter idea leads to</p>
+<div class="math">
+\[u_c = \frac{L^2 f_c}{\lambda_c}\]</div>
+<p>and a PDE without parameters,</p>
+<div class="math">
+\[\frac{\partial^2 \bar u}{\partial \bar t^2} =
+\frac{\partial}{\partial \bar x}\left(
+\bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
++ \bar f(\bar x,\bar t){\thinspace .}\]</div>
+<p>The initial condition <span class="math">\(u(x,0)=I(x)\)</span> becomes in dimensionless form</p>
+<div class="math">
+\[\bar u(\bar x, 0) = u_c^{-1} \max_x |I(x)|\bar I(\bar x) =
+\beta^{-1}\bar I(\bar x),\]</div>
+<p>where</p>
+<div class="math">
+\[\beta = \frac{L^2}{\lambda_c}\frac{\max_{x,t} |f(x,t)|}{\max_x|I(x)|}{\thinspace .}\]</div>
+<p>In the case <span class="math">\(u_c=\max_x|I(x)|\)</span>, <span class="math">\(\bar u(\bar x,0)=\bar I(\bar x)\)</span> and
+the <span class="math">\(\beta\)</span> parameter appears in the PDE instead:</p>
+<div class="math">
+\[\frac{\partial^2 \bar u}{\partial \bar t^2} =
+\frac{\partial}{\partial \bar x}\left(
+\bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
++ \beta \bar f(\bar x,\bar t){\thinspace .}\]</div>
+<p>With <span class="math">\(V=0\)</span>, and <span class="math">\(u=0\)</span> or <span class="math">\(u_x=0\)</span> on the boundaries <span class="math">\(x=0,L\)</span>, this scaling normally gives
+<span class="math">\(|\bar u|\leq 1\)</span>, since initially <span class="math">\(|I|\leq 1\)</span>, and no boundary condition
+can increase the amplitude.
+However, the forcing, <span class="math">\(\bar f\)</span>, may inherit spatial and temporal scales of its
+own that may complicate the matter. The forcing may, for instance, be
+some disturbance moving with a velocity close to the propagation velocity of
+the free waves. This will have an effect akin to the resonance for the vibration problem discussed in
+the section <a class="reference internal" href="._book003.html#sec-scale-vib-undamped-mg"><span class="std std-ref">Undamped vibrations with constant forcing</span></a> and the waves produced by the forcing may be much larger than
+indicated by <span class="math">\(\beta\)</span>. On the other hand, the forcing may also consist
+of alternating positive and negative parts (retrogressive slides constitute an
+example). These may interfere to
+reduce the wave generation by an order of magnitude.</p>
+</div>
+<div class="section" id="scaling-the-velocity-initial-condition">
+<h4>Scaling the velocity initial condition<a class="headerlink" href="#scaling-the-velocity-initial-condition" title="Permalink to this headline">¶</a></h4>
+<p>The initial condition <span class="math">\(u_t(x,0)=V(x)\)</span> has its dimensionless variant as</p>
+<div class="math">
+\[\bar V(\bar x) = \frac{t_c}{u_c}\frac{V(L\bar x)}{\max_x|V(x)|},\]</div>
+<p>which becomes</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
+\frac{L}{\sqrt{\lambda_c}}\frac{\max_{x}|V(x)|}{\max_{x}|I(x)|}\bar V(\bar x),
+\hbox{ if } u_c=\max_x|I(x)|,\]</div>
+<p>or</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
+\frac{\sqrt{\lambda_c}}{L}\frac{\max_{x}|V(x)|}{\max_{x,t}|f(x,t)|}
+\bar V(\bar x),
+\hbox{ if } u_c=t_c^2f_c=\frac{L^2}{\lambda_c}\max_{x,t}|f(x,t)|{\thinspace .}\]</div>
+<p>Introducing the dimensionless number <span class="math">\(\alpha\)</span> (cf. the section <a class="reference internal" href="#scale-wave-pde2-vcond"><span class="std std-ref">Velocity initial condition</span></a>),</p>
+<div class="math">
+\[\alpha^{-1} = \frac{\sqrt{\lambda_c}}{L}\frac{\max_{x}|V(x)|}{\max_{x,t}|f(x,t)|},\]</div>
+<p>we can write</p>
+<div class="math">
+\[\begin{split}\frac{\partial\bar u}{\partial\bar t}(\bar x, 0) =
+\left\lbrace \begin{array}{ll}
+\alpha^{-1}\bar V(\bar x),&amp; u_c=\max_x|I|\\
+\alpha^{-1}\beta^{-1}\bar V(\bar x), &amp; u_c=t_c^2f_c
+\end{array}\right.\end{split}\]</div>
+</div>
+</div>
+<div class="section" id="damped-wave-equation">
+<span id="scale-wave-pde2-damped"></span><h3>Damped wave equation<a class="headerlink" href="#damped-wave-equation" title="Permalink to this headline">¶</a></h3>
+<p>A linear damping term <span class="math">\(b\,\partial u/\partial t\)</span> is often added to
+the wave equation to model energy dissipation and amplitude reduction.
+Our PDE then reads</p>
+<div class="math" id="eq-auto47">
+\[\tag{142}
+\frac{\partial^2 u}{\partial t^2}
+    + b\frac{\partial u}{\partial t} =
+    \frac{\partial}{\partial x}\left(
+    \lambda(x) {\partial u\over\partial x}\right) + f(x,t){\thinspace .}\]</div>
+<p>The scaled equation becomes</p>
+<div class="math">
+\[\frac{\partial^2 \bar u}{\partial \bar t^2}
++ \frac{t_c} b\frac{\partial \bar u}{\partial \bar t} =
+\frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
+\bar \lambda(\bar x) {\partial \bar u\over\partial \bar x}\right) +
+\frac{t_c^2f_c}{u_c}\bar f(\bar x,\bar t){\thinspace .}\]</div>
+<p>The damping term is usually much smaller than the two other terms involving
+<span class="math">\(\bar u\)</span>. The time scale is therefore chosen as in the undamped case,
+<span class="math">\(t_c=L/\sqrt{\lambda_c}\)</span>. As in the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>,
+we have two choices of <span class="math">\(u_c\)</span>: <span class="math">\(u_c=\max_x|I|\)</span> or <span class="math">\(u_c=t_c^2f_c\)</span>.
+The former choice of <span class="math">\(u_c\)</span> gives a PDE with two dimensionless numbers,</p>
+<div class="math" id="eq-auto48">
+\[\tag{143}
+\frac{\partial^2 \bar u}{\partial \bar t^2}
+    + \gamma\frac{\partial \bar u}{\partial \bar t} =
+    \frac{\partial}{\partial \bar x}\left(
+    \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
+    \beta\bar f(\bar x,\bar t),\]</div>
+<p>where</p>
+<div class="math">
+\[\gamma = \frac{bL}{\sqrt{\lambda_c}},\]</div>
+<p>measures the size of the damping, and <span class="math">\(\beta\)</span> is as given
+in the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>.
+With <span class="math">\(u_c=t_c^2f_c\)</span> we get a PDE where only <span class="math">\(\gamma\)</span> enters,</p>
+<div class="math" id="eq-auto49">
+\[\tag{144}
+\frac{\partial^2 \bar u}{\partial \bar t^2}
+    + \gamma\frac{\partial \bar u}{\partial \bar t} =
+    \frac{\partial}{\partial \bar x}\left(
+    \bar \lambda(\bar x) {\partial\bar u\over\partial\bar x}\right) +
+    \bar f(\bar x,\bar t){\thinspace .}\]</div>
+<p>The scaled initial conditions are as in
+the section <a class="reference internal" href="#scale-wave-pde2-cvar"><span class="std std-ref">Variable wave velocity and forcing</span></a>, so in this latter case
+<span class="math">\(\beta\)</span> appears in the initial condition for <span class="math">\(u\)</span>.</p>
+<p>To summarize, the effects of <span class="math">\(V\)</span>, <span class="math">\(f\)</span>, and damping are reflected in
+the dimensionless numbers <span class="math">\(\alpha\)</span>, <span class="math">\(\beta\)</span>, and <span class="math">\(\gamma\)</span>,
+respectively.</p>
+</div>
+<div class="section" id="a-three-dimensional-wave-equation-problem">
+<h3>A three-dimensional wave equation problem<a class="headerlink" href="#a-three-dimensional-wave-equation-problem" title="Permalink to this headline">¶</a></h3>
+<p>To demonstrate how the scaling extends to in three spatial dimensions,
+we consider</p>
+<div class="math" id="eq-auto50">
+\[\tag{145}
+\frac{\partial^2 \bar u}{\partial \bar t^2} =
+    \frac{\partial}{\partial x}\left(\lambda\frac{\partial u}{\partial x}\right)+
+    \frac{\partial}{\partial y}\left(\lambda\frac{\partial u}{\partial y}\right)+
+    \frac{\partial}{\partial z}\left(\lambda\frac{\partial u}{\partial z}\right){\thinspace .}\]</div>
+<p>Introducing</p>
+<div class="math">
+\[\bar x = \frac{x}{x_c},\quad \bar y = \frac{y}{y_c},
+  \quad \bar z = \frac{z}{z_c},
+  \quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c},\]</div>
+<p>and scaling <span class="math">\(\lambda\)</span> as
+<span class="math">\(\bar\lambda = \lambda(\bar xx_c, \bar y y_c, \bar z z_c)/\lambda_c\)</span>,
+we get</p>
+<div class="math">
+\[\frac{\partial^2 \bar u}{\partial \bar t^2} =
+\frac{t_c^2\lambda_c}{x_c^2}\frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
+\frac{t_c^2\lambda_c}{y_c^2}\frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
+\frac{t_c^2\lambda_c}{z_c^2}\frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right){\thinspace .}\]</div>
+<p>Often, we will set <span class="math">\(x_c=y_c=z_c=L\)</span> where <span class="math">\(L\)</span> is some characteristic
+size of the domain.
+As before, <span class="math">\(t_c = L/\sqrt{\lambda_c}\)</span>, and these choices lead to a
+dimensionless wave equation without physical parameters:</p>
+<div class="math" id="eq-auto51">
+\[\tag{146}
+\frac{\partial^2 \bar u}{\partial \bar t^2} =
+    \frac{\partial}{\partial \bar x}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar x}\right)+
+    \frac{\partial}{\partial \bar y}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar y}\right)+
+    \frac{\partial}{\partial \bar z}\left(\bar\lambda\frac{\partial \bar u}{\partial \bar z}\right){\thinspace .}\]</div>
+<p>The initial conditions remain the same as in the previous one-dimensional
+examples.</p>
+</div>
+</div>
+<div class="section" id="the-diffusion-equation">
+<span id="sec-scale-diffu"></span><h2>The diffusion equation<a class="headerlink" href="#the-diffusion-equation" title="Permalink to this headline">¶</a></h2>
+<p>The diffusion equation in a one-dimensional homogeneous medium reads</p>
+<div class="math" id="eq-sec-scale-diffu-pde1">
+\[\tag{147}
+\frac{\partial u}{\partial t} =
+    {\alpha}\frac{\partial^2 u}{\partial x^2}, \quad  x\in (0,L),\ t\in (0,T],\]</div>
+<p>where <span class="math">\({\alpha}\)</span> is the diffusion coefficient. The
+multi-dimensional generalization to a heterogeneous medium
+and a source term takes the form</p>
+<div class="math" id="eq-sec-scale-diffu-pde1-3d">
+\[\tag{148}
+\frac{\partial u}{\partial t} =
+    \nabla\cdot\left({\alpha} \nabla u\right) + f, \quad  x,y,z\in \Omega,\ t\in (0,T]{\thinspace .}\]</div>
+<p>We first look at scaling of the PDE itself, and thereafter we discuss
+some types of boundary conditions and how to scale the complete
+initial-boundary value problem.</p>
+<div class="section" id="homogeneous-1d-diffusion-equation">
+<span id="sec-scale-diffu-homo1d"></span><h3>Homogeneous 1D diffusion equation<a class="headerlink" href="#homogeneous-1d-diffusion-equation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="choosing-the-time-scale-2">
+<h4>Choosing the time scale<a class="headerlink" href="#choosing-the-time-scale-2" title="Permalink to this headline">¶</a></h4>
+<p>To make <a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(147)</span></a> dimensionless,
+we introduce, as usual, dimensionless dependent and independent variables:</p>
+<div class="math">
+\[\bar x = \frac{x}{x_c},
+\quad \bar t = \frac{t}{t_c}, \quad \bar u =\frac{u}{u_c}{\thinspace .}\]</div>
+<p>Inserting the dimensionless quantities in the one-dimensional
+PDE <a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(147)</span></a> results in</p>
+<div class="math" id="eq-sec-scale-diffu-pde1-d0">
+\[\tag{149}
+\frac{\partial \bar u}{\partial \bar t} =
+    \frac{t_c{\alpha}}{L^2}
+    \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T = T/t_c]{\thinspace .}\]</div>
+<p>Arguing, as for the wave equation, that the scaling should result in</p>
+<div class="math">
+\[\frac{\partial \bar u}{\partial \bar t}\hbox{ and }
+\frac{\partial^2 \bar u}{\partial \bar x^2}\]</div>
+<p>of the same size (about unity),
+implies <span class="math">\(t_c{\alpha}/L^2=1\)</span> and therefore <span class="math">\(t_c = L^2/{\alpha}\)</span>.</p>
+</div>
+<div class="section" id="analytical-insight-2">
+<h4>Analytical insight<a class="headerlink" href="#analytical-insight-2" title="Permalink to this headline">¶</a></h4>
+<p>The best way to obtain the scales inherent in a problem is to obtain
+an exact analytic solution, as we have done in many of the ODE
+examples in this booklet. However, as a rule this is not possible.
+Still, often highly
+simplified analytic solutions can be found for parts of the problem,
+or for some closely related problem. Such solutions may provide
+crucial guidance to the nature of the complete solution and to the
+appropriate scaling of the full problem. We will employ such solutions
+now to learn about scales in diffusion problems.</p>
+<p>One can show that <span class="math">\(u=Ae^{-pt}\sin (kx)\)</span> is a solution of
+<a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(147)</span></a> if <span class="math">\(p={\alpha} k^2\)</span>, for any <span class="math">\(k\)</span>.
+This is the typical solution arising from separation of variables
+and reflects the dynamics of the space and time in the PDE.
+Exponential decay in
+time is a characteristic feature of diffusion processes, and
+the e-folding time can then be taken as a time scale. This means
+<span class="math">\(t_c = 1/p \sim k^{-2}\)</span>. Since <span class="math">\(k\)</span> is related to the spatial
+wave length <span class="math">\(\lambda\)</span>
+through <span class="math">\(k=2\pi/\lambda\)</span>, it means that <span class="math">\(t_c\)</span> depends strongly on the wave
+length of the sine term <span class="math">\(\sin(kx)\)</span>.
+In particular, short waves (as found in noisy signals) with
+large <span class="math">\(k\)</span> decay very rapidly.
+For the overall solution we are interested in how the longest meaningful
+wave decays and use that time scale for <span class="math">\(t_c\)</span>. The longest wave
+typically has half a wave length over the domain <span class="math">\([0,L]\)</span>:
+<span class="math">\(u = Ae^{-pt}\sin(\pi x/L)\)</span> (<span class="math">\(k=\pi/L\)</span>), provided <span class="math">\(u(0,t)=u(L,t)=0\)</span>
+(with <span class="math">\(u_x(L,t)=0\)</span>, the longest wave is <span class="math">\(L/4\)</span>, but we look at the
+case with the wave length <span class="math">\(L/2\)</span>). Then <span class="math">\(t_c=L^2/{\alpha} \pi^{-2}\)</span>,
+but the factor <span class="math">\(\pi^{-2}\)</span> is not important and we simply choose
+<span class="math">\(t_c=L^2/{\alpha}\)</span>, which equals the time scale we arrived at above.
+We may say that <span class="math">\(t_c\)</span> is the time it takes for the diffusion to
+significantly change the solution in the entire domain.</p>
+<p>Another fundamental solution of the diffusion equation is the
+diffusion of a Gaussian function: <span class="math">\(u(x,t)=K(4\pi{\alpha}
+t)^{-1/2}\exp{(-x^2/(4{\alpha} t))}\)</span>, for some constant <span class="math">\(K\)</span> with
+the same dimension as <span class="math">\(u\)</span>. For the diffusion to be significant
+at a distance <span class="math">\(x=L\)</span>, we may demand the exponential factor to have a
+value of <span class="math">\(e^{-1}\approx 0.37\)</span>, which implies <span class="math">\(t=L^2/(4{\alpha})\)</span>, but the
+factor 4 is not of importance, so again, a relevant time scale is
+<span class="math">\(t_c=L^2/{\alpha}\)</span>.</p>
+</div>
+<div class="section" id="choosing-other-scales">
+<h4>Choosing other scales<a class="headerlink" href="#choosing-other-scales" title="Permalink to this headline">¶</a></h4>
+<p>The scale <span class="math">\(u_c\)</span> is chosen according to the initial condition:
+<span class="math">\(u_c=\max_{x\in(0,L)}|I(x)|\)</span>. For a diffusion equation <span class="math">\(u_t={\alpha} u_{xx}\)</span>
+with <span class="math">\(u=0\)</span> at the boundaries <span class="math">\(x=0,L\)</span>, the solution is bounded by
+the initial condition <span class="math">\(I(x)\)</span>. Therefore, the listed choice of <span class="math">\(u_c\)</span>
+implies that
+<span class="math">\(|u|\leq 1\)</span>. (The solution <span class="math">\(u=Ae^{-pt}\sin (kx)\)</span> is such an example
+if <span class="math">\(k=n\pi/L\)</span> for integer <span class="math">\(n\)</span> such that <span class="math">\(u=0\)</span> for <span class="math">\(x=0\)</span> and <span class="math">\(x=L\)</span>.)</p>
+<p>The resulting dimensionless PDE becomes</p>
+<div class="math" id="eq-sec-scale-diffu-pde1-d">
+\[\tag{150}
+\frac{\partial \bar u}{\partial \bar t} =
+    \frac{\partial^2 \bar u}{\partial \bar x^2}, \quad  \bar x\in (0,1),\ \bar t\in (0,\bar T],\]</div>
+<p>with initial condition</p>
+<div class="math">
+\[\bar u(\bar x, 0) = \bar I(\bar x) = \frac{I(x_c\bar x)}{\max_x |I(x)|}{\thinspace .}\]</div>
+<p>Notice that <a class="reference internal" href="#eq-sec-scale-diffu-pde1-d"><span class="std std-ref">(150)</span></a> is without physical parameters,
+but there may be parameters in <span class="math">\(I(x)\)</span>.</p>
+</div>
+</div>
+<div class="section" id="generalized-diffusion-pde">
+<h3>Generalized diffusion PDE<a class="headerlink" href="#generalized-diffusion-pde" title="Permalink to this headline">¶</a></h3>
+<p>Turning the attention to <a class="reference internal" href="#eq-sec-scale-diffu-pde1-3d"><span class="std std-ref">(148)</span></a>, we introduce
+the dimensionless diffusion coefficient</p>
+<div class="math">
+\[\bar{\alpha}(\bar x,\bar y,\bar z) =
+{\alpha}_c^{-1}{\alpha} (x_c\bar x, y_c\bar y, z_c\bar z),\]</div>
+<p>typically with</p>
+<div class="math">
+\[{\alpha}_c = \max_{x,y,z}{\alpha}(x,y,z){\thinspace .}\]</div>
+<p>The length scales are</p>
+<div class="math">
+\[\bar x = \frac{x}{x_c},\quad \bar y = \frac{y}{y_c},\quad
+\bar z = \frac{z}{z_c}{\thinspace .}\]</div>
+<p>We scale <span class="math">\(f\)</span> in a similar fashion:</p>
+<div class="math">
+\[\bar f(\bar x, \bar y, \bar z, \bar t)
+= f_c^{-1}f(\bar xx_c, \bar yy_c \bar zz_c, \bar tt_c),\]</div>
+<p>with</p>
+<div class="math">
+\[f_c = \max_{x,y,z,t}|f(x,y,z,t)|{\thinspace .}\]</div>
+<p>Also assuming
+that <span class="math">\(x_c=y_c=z_c=L\)</span>, and <span class="math">\(u_c=\max_{x,y,z}(I(x,y,z)\)</span>,
+we end up with the scaled PDE</p>
+<div class="math" id="eq-sec-scale-diffu-pde1-3d-d">
+\[\tag{151}
+\frac{\partial \bar u}{\partial \bar t} =
+    \bar\nabla\cdot\left(\bar{\alpha} \bar\nabla \bar u\right) + \beta\bar f, \quad  \bar x,\bar y,\bar z\in \bar \Omega,\ \bar t\in (0,\bar T]{\thinspace .}\]</div>
+<p>Here, <span class="math">\(\bar\nabla\)</span> means differentiation with respect to dimensionless
+coordinates <span class="math">\(\bar x\)</span>, <span class="math">\(\bar y\)</span>, and <span class="math">\(\bar z\)</span>. The dimensionless parameter
+<span class="math">\(\beta\)</span> takes the form</p>
+<div class="math">
+\[\beta = \frac{t_cf_c}{u_c} = \frac{L^2}{{\alpha}}
+\frac{\max_{x,y,z,t}|f(x,y,z,t)|}{\max_{x,y,z}|I(x,y,z)|}{\thinspace .}\]</div>
+<p>The scaled initial condition is <span class="math">\(\bar u = \bar I\)</span> as in the 1D case.</p>
+<p>An alternative choice of <span class="math">\(u_c\)</span> is to make the coefficient <span class="math">\(t_cf_c/u_c\)</span>
+in the source term unity. The scaled PDE now becomes</p>
+<div class="math" id="eq-sec-scale-diffu-pde1-3d-d2">
+\[\tag{152}
+\frac{\partial \bar u}{\partial \bar t} =
+    \bar\nabla\cdot\left(\bar{\alpha} \bar\nabla \bar u\right) + f,\]</div>
+<p>but the initial condition features the <span class="math">\(\beta\)</span> parameter:</p>
+<div class="math">
+\[\bar u(\bar x, \bar y, \bar z, 0) = \frac{I}{t_cf_c} =
+\beta^{-1}\bar I(\bar x,\bar y,\bar z){\thinspace .}\]</div>
+<p>The <span class="math">\(\beta\)</span> parameter can be interpreted as the ratio of the source
+term and the terms with <span class="math">\(u\)</span>:</p>
+<div class="math">
+\[\beta = \frac{f_c}{u_c/t_c}\sim \frac{|f|}{|u_t|},\quad
+\beta = \frac{f_c}{u_c/t_c} = \frac{f_c}{L^2/t_c u_c/L^2}\sim
+\frac{|f_c|}{|{\alpha}\nabla^2 u|}{\thinspace .}\]</div>
+<p>We may check that <span class="math">\(\beta\)</span> is really non-dimensional. From the PDE,
+<span class="math">\(f\)</span> must have the same dimensions as <span class="math">\(\partial u/\partial t\)</span>, i.e.,
+<span class="math">\([\Theta\hbox{T}^{-1}]\)</span>.
+The dimension of <span class="math">\({\alpha}\)</span> is more intricate, but from the term
+<span class="math">\({\alpha} u_{xx}\)</span> we know that <span class="math">\(u_{xx}\)</span> has dimensions <span class="math">\([\Theta\hbox{L}^{-2}]\)</span>,
+and then <span class="math">\({\alpha}\)</span> must have dimension <span class="math">\([\hbox{L}^2\hbox{T}^{-1}]\)</span>
+to match the target <span class="math">\([\Theta\hbox{T}^{-1}]\)</span>.
+In the expression for <span class="math">\(\beta\)</span> we get
+<span class="math">\([\hbox{L}^2\Theta\hbox{T}^{-1}(\hbox{L}^2\hbox{T}^{-1}\Theta)^{-1}]\)</span>,
+which equals 1 as it should.</p>
+</div>
+<div class="section" id="jump-boundary-condition">
+<h3>Jump boundary condition<a class="headerlink" href="#jump-boundary-condition" title="Permalink to this headline">¶</a></h3>
+<p>A classical one-dimensional heat conduction problem goes as
+follows. An insulated rod at some constant temperature <span class="math">\(U_0\)</span> is
+suddenly heated from one end (<span class="math">\(x=0\)</span>), modeled as a constant Dirichlet
+condition <span class="math">\(u(0,t)=U_1\neq U_0\)</span> at that end. That is, the boundary
+temperature jumps from <span class="math">\(U_0\)</span> to <span class="math">\(U_1\)</span> at <span class="math">\(t=0\)</span>. All the other surfaces
+of the rod are insulated such that a one-dimensional model is
+appropriate, but we must explicitly demand <span class="math">\(u_x(L,t)=0\)</span> to incorporate
+the insulation condition in the one-dimensional model at the end
+of the domain <span class="math">\(x=L\)</span>.  Heat cannot
+escape, and since we supply heat at <span class="math">\(x=0\)</span>, all of the material will
+eventually be warmed up to the temperature <span class="math">\(U_1\)</span>: <span class="math">\(u\rightarrow U_1\)</span>
+as <span class="math">\(t\rightarrow\infty\)</span>.</p>
+<p>The initial-boundary value problem reads</p>
+<div class="math" id="eq-scale-heat-pde3">
+\[\tag{153}
+\varrho c \frac{\partial u}{\partial t} =
+    k \frac{\partial^2 u}{\partial x^2},
+    \quad   x\in (0,L),\ t\in (0, T],\]</div>
+<div class="math" id="eq-scale-heat-pde3-ic-u">
+\[\tag{154}
+u(x,0) = U_0,
+    \quad  x\in [0,L],\]</div>
+<div class="math" id="eq-scale-heat-pde3-bc-0">
+\[\tag{155}
+u(0, t)  = U_1,
+    \quad   t\in (0, T],\]</div>
+<div class="math" id="eq-scale-heat-pde3-bc-l">
+\[\tag{156}
+\frac{\partial}{\partial x} u(L, t)  = 0,
+    \quad  t\in (0, T].\]</div>
+<p>The PDE <a class="reference internal" href="#eq-scale-heat-pde3"><span class="std std-ref">(153)</span></a> arises from the energy equation in
+solids and involves three physical parameters: the density <span class="math">\(\varrho\)</span>,
+the specific heat capacity parameter <span class="math">\(c\)</span>,a nd the heat conduction
+coefficient (from Fourier&#8217;s law). Dividing by <span class="math">\(\varrho c\)</span> and
+introducing <span class="math">\({\alpha} = k/(\varrho c)\)</span> brings <a class="reference internal" href="#eq-scale-heat-pde3"><span class="std std-ref">(153)</span></a> on
+the standard form <a class="reference internal" href="#eq-sec-scale-diffu-pde1"><span class="std std-ref">(147)</span></a>. We just use the
+<span class="math">\({\alpha}\)</span> parameter in the following.</p>
+<p>The natural dimensionless temperature for this problem is</p>
+<div class="math">
+\[\bar u = \frac{u - U_0}{U_1 - U_0},\]</div>
+<p>since this choice makes <span class="math">\(\bar u\in [0,1]\)</span>. The reason is that <span class="math">\(u\)</span> is bounded by
+the initial and boundary conditions (in the absence of a source term in
+the PDE),
+and we have
+<span class="math">\(\bar u(\bar x,0)=0\)</span>, <span class="math">\(\bar u(\bar x,\infty)=1\)</span>, and <span class="math">\(\bar u(0,\bar t)=1\)</span>.</p>
+<p>The choice of <span class="math">\(t_c\)</span> is as in the previous cases. We arrive at
+the dimensionless initial-boundary value problem</p>
+<div class="math" id="eq-scale-heat-pde3-d">
+\[\tag{157}
+\frac{\partial \bar u}{\partial \bar t} =
+    \frac{\partial^2 \bar u}{\partial \bar x^2},
+    \quad   \bar x\in (0,1),\ \bar t\in (0, \bar T],\]</div>
+<div class="math" id="eq-scale-heat-pde3-ic-u-d">
+\[\tag{158}
+\bar u(\bar x,0) = 0,
+    \quad  \bar x\in [0,1],\]</div>
+<div class="math" id="eq-scale-heat-pde3-bc-0-d">
+\[\tag{159}
+\bar u(0, \bar t)  = 1,
+    \quad   \bar t\in (0, \bar T],\]</div>
+<div class="math" id="eq-scale-heat-pde3-bc-l-d">
+\[\tag{160}
+\frac{\partial}{\partial \bar x} \bar u(1, \bar t)  = 0,
+    \quad  \bar t\in (0, \bar T].\]</div>
+<p>The striking feature is that there are no physical parameters left in
+this problem. One simulation can be carried out for <span class="math">\(\bar u(\bar x,\bar t)\)</span>,
+see Figure <a class="reference internal" href="#scale-heat-pde3-fig"><span class="std std-ref">Scaled temperature in an isolated rod suddenly heated from the end</span></a>,
+and the temperature in a rod of any material and any constant initial and
+boundary temperature can be retrieved by</p>
+<div class="math">
+\[u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t{\alpha}/L^2){\thinspace .}\]</div>
+<div class="figure" id="id2">
+<span id="scale-heat-pde3-fig"></span><a class="reference internal image-reference" href="_images/diffusion_jump_BC.png"><img alt="_images/diffusion_jump_BC.png" src="_images/diffusion_jump_BC.png" style="width: 500px;" /></a>
+<p class="caption"><span class="caption-text"><em>Scaled temperature in an isolated rod suddenly heated from the end</em></span></p>
+</div>
+</div>
+<div class="section" id="oscillating-dirichlet-condition">
+<h3>Oscillating Dirichlet condition<a class="headerlink" href="#oscillating-dirichlet-condition" title="Permalink to this headline">¶</a></h3>
+<p>Now we address a heat equation problem where the temperature is
+oscillating on the boundary <span class="math">\(x=0\)</span>:</p>
+<div class="math" id="eq-scale-heat-pde2">
+\[\tag{161}
+\frac{\partial u}{\partial t} =
+    {\alpha} \frac{\partial^2 u}{\partial x^2},
+    \quad   x\in (0,L),\ t\in (0, T],\]</div>
+<div class="math" id="eq-scale-heat-pde2-ic-u">
+\[\tag{162}
+u(x,0) = U_0,
+    \quad  x\in [0,L],\]</div>
+<div class="math" id="eq-scale-heat-pde2-bc-0">
+\[\tag{163}
+u(0, t)  = U_0 + A\sin(\omega t),
+    \quad   t\in (0, T],\]</div>
+<div class="math" id="eq-scale-heat-pde2-bc-l">
+\[\tag{164}
+\frac{\partial}{\partial x} u(L, t)  = 0,
+    \quad  t\in (0, T].\]</div>
+<p>One important physical application is temperature oscillations in the
+ground, either day and night variations
+at a short temporal and spatial scale, or seasonal variations in the
+Earth&#8217;s crust.
+An important modeling assumption is <a class="reference internal" href="#eq-scale-heat-pde2-bc-l"><span class="std std-ref">(164)</span></a>,
+which means that the boundary <span class="math">\(x=L\)</span> is placed sufficiently far from <span class="math">\(x=0\)</span>
+such that the solution is much damped and basically constant so
+<span class="math">\(u_x=0\)</span> is a reasonable condition.</p>
+<div class="section" id="scaling-issues">
+<h4>Scaling issues<a class="headerlink" href="#scaling-issues" title="Permalink to this headline">¶</a></h4>
+<p>Since the boundary temperature is oscillating around the initial
+condition, we expect <span class="math">\(u\in [U_0-A,U_0+A]\)</span>.
+The dimensionless temperature is therefore taken as</p>
+<div class="math">
+\[\bar u = \frac{u-U_0}{A},\]</div>
+<p>such that <span class="math">\(\bar u\in [-1,1]\)</span>.</p>
+<p>What is an appropriate time scale? There will be two time scales involved,
+the oscillations <span class="math">\(\sin(\omega t)\)</span> with period <span class="math">\(P=2\pi/\omega\)</span> at
+the boundary and the &#8220;speed of diffusion&#8221;, or more specifically
+the &#8220;speed of heat conduction&#8221; in the present context,
+where <span class="math">\(t_c=x_c^2/{\alpha}\)</span> is the appropriate scale, <span class="math">\(x_c\)</span> being
+the length scale. Choosing the right length scale is not obvious. As
+we shall see, the standard choice <span class="math">\(x_c=L\)</span> is not a good candidate, but
+to understand why, we need to examine the solution, either through
+simulations or through a closed-form formula. We are so lucky in this
+relatively simple pedagogical problem that one can find an exact solution
+of a related problem.</p>
+</div>
+<div class="section" id="exact-solution-4">
+<h4>Exact solution<a class="headerlink" href="#exact-solution-4" title="Permalink to this headline">¶</a></h4>
+<p>As usual, investigating the exact solution of the model problem can
+illuminate the involved scales. For this particular initial-boundary
+value problem the exact solution as <span class="math">\(t\rightarrow\infty\)</span>
+(such that
+the initial condition <span class="math">\(u(x,0)=U_0\)</span> is forgotten)
+and <span class="math">\(L\rightarrow\infty\)</span> (such that <a class="reference internal" href="#eq-scale-heat-pde2-bc-l"><span class="std std-ref">(164)</span></a>
+is certainly valid) can be shown to be</p>
+<div class="math" id="eq-scale-heat-daynight-sol">
+\[\tag{165}
+u(x,t) = U_0 - Ae^{-bx}\sin (bx - \omega t),\quad b =\sqrt{\frac{\omega}{2{\alpha}}}{\thinspace .}\]</div>
+<p>This solution is of the form <span class="math">\(e^{-bx}g(x-ct)\)</span>, i.e., a damped wave that
+moves to the right with velocity <span class="math">\(c\)</span> and a damped amplitude <span class="math">\(e^{-bx}\)</span>.
+This is perhaps more easily seen if we make a rewrite</p>
+<div class="math">
+\[u(x,t) = U_0 - Ae^{-bx}\sin\left(b(x - ct)\right),\quad
+c=\omega/b = \sqrt{2{\alpha}\omega},\  b =\sqrt{\frac{\omega}{2{\alpha}}}{\thinspace .}\]</div>
+</div>
+<div class="section" id="time-and-length-scales">
+<h4>Time and length scales<a class="headerlink" href="#time-and-length-scales" title="Permalink to this headline">¶</a></h4>
+<p>The boundary oscillations lead to the time scale <span class="math">\(t_c=1/\omega\)</span>.
+The speed of the wave suggests another time scale: the time it
+takes to propagate through the domain, which is <span class="math">\(L/c\)</span>, and
+hence <span class="math">\(t_c = L/c = L/\sqrt{2{\alpha}\omega}\)</span>.</p>
+<p>One can argue that <span class="math">\(L\)</span> is not the appropriate length scale, because
+<span class="math">\(u\)</span> is damped by <span class="math">\(e^{-bx}\)</span>. So, for <span class="math">\(x &gt; 4/b\)</span>, <span class="math">\(u\)</span> is close to zero.
+We may instead use <span class="math">\(1/b\)</span> as length scale, which is the e-folding distance of the
+damping factor, and base
+<span class="math">\(t_c\)</span> on the time it takes a signal to propagate one length scale,
+<span class="math">\(t_c^{-1}=bc=\omega\)</span>. Similarly, the time scale based on
+the &#8220;speed of diffusion&#8221; changes to
+<span class="math">\(t_c^{-1}= b^2{\alpha} = \frac{1}{2}\omega\)</span> if we employ <span class="math">\(1/b\)</span> as length scale.</p>
+<p>To summarize, we have three candidates for the time scale:
+<span class="math">\(t_c=L^2/{\alpha}\)</span> (diffusion through the entire domain), <span class="math">\(t_c=2/\omega\)</span>
+(diffusion through a distance <span class="math">\(1/b\)</span> where <span class="math">\(u\)</span> is significantly
+different from zero), and <span class="math">\(t_c=1/\omega\)</span> (wave movement over a
+distance <span class="math">\(1/b\)</span>).</p>
+<p>Let us look at the dimensionless exact solution to see if it can help
+with the choice of scales.  We introduce the dimensionless parameters</p>
+<div class="math">
+\[\beta = bx_c = x_c\sqrt{\frac{\omega}{2{\alpha}}},\quad
+\gamma = \omega t_c{\thinspace .}\]</div>
+<p>The scaled solution becomes</p>
+<div class="math">
+\[\bar u(\bar x, \bar t; \beta,\gamma) = e^{-\beta\bar x}\sin(\gamma\bar t- \beta\bar x){\thinspace .}\]</div>
+<p>The three choices of <span class="math">\(\gamma\)</span>, implied by the three choices of <span class="math">\(t_c\)</span>, are</p>
+<div class="math" id="eq-scale-heat-daynight-gamma3">
+\[\begin{split}\tag{166}
+\gamma = \left\lbrace\begin{array}{ll}
+    1, &amp; t_c=1/\omega,\\
+    2, &amp; t_c = 2/\omega,\\
+    2\beta^2, &amp; t_c = L^2/{\alpha},\ x_c=L
+    \end{array}\right.\end{split}\]</div>
+<p>The former two choices leave only <span class="math">\(\beta\)</span> as parameter in <span class="math">\(\bar u\)</span>,
+and with <span class="math">\(x_c=1/b\)</span> as length scale, <span class="math">\(\beta\)</span> becomes unity, and there
+are no parameters in the dimensionless solution:</p>
+<div class="math" id="eq-scale-heat-daynight-xcb">
+\[\tag{167}
+\bar u(\bar x, \bar t) = e^{-\bar x}\sin(\bar t - \bar x){\thinspace .}\]</div>
+<p>Therefore, <span class="math">\(x_c=1/b\)</span> and <span class="math">\(t_c=1/\omega\)</span> (or <span class="math">\(t_c=2/\omega\)</span>, but the
+factor 2 is of no importance) are the most appropriate scales.</p>
+<p>To further argue why <a class="reference internal" href="#eq-scale-heat-daynight-xcb"><span class="std std-ref">(167)</span></a> demonstrates
+that these scales are
+preferred, think of
+<span class="math">\(\omega\)</span> as large. Then the wave is damped over a short
+distance and there will be a thin boundary layer of temperature
+oscillations near <span class="math">\(x=0\)</span> and little changes in <span class="math">\(u\)</span> in the rest of
+the domain. The scaling <a class="reference internal" href="#eq-scale-heat-daynight-xcb"><span class="std std-ref">(167)</span></a> resolves
+this problem by using <span class="math">\(1/b \sim \omega^{-1/2}\)</span> as length scale,
+because then the boundary layer thickness is independent of
+<span class="math">\(\omega\)</span>. The length of the domain can be chosen as, e.g., <span class="math">\(4/b\)</span>
+such that <span class="math">\(\bar u\approx 0\)</span> at the end <span class="math">\(x=L\)</span>. The length scale <span class="math">\(1/b\)</span>
+helps us to zoom in on the part of <span class="math">\(u\)</span> where significant changes
+take place.</p>
+<p>In the other limit, <span class="math">\(\omega\)</span> small, <span class="math">\(b\)</span> becomes small, and the wave is
+hardly damped in the domain <span class="math">\([0,L]\)</span> unless <span class="math">\(L\)</span> is large enough.  The
+imposed boundary condition on <span class="math">\(x=L\)</span> in fact requires <span class="math">\(u\)</span> to be
+approximately constant so its derivative vanishes, and this property
+can only be obtained if <span class="math">\(L\)</span> is large enough to ensure that the wave
+becomes significantly damped.  Therefore, the length scale is dictated
+by <span class="math">\(b\)</span>, not <span class="math">\(L\)</span>, and <span class="math">\(L\)</span> should be adapted to <span class="math">\(b\)</span>, typically <span class="math">\(L\geq
+4/b\)</span> if <span class="math">\(e^{-4}\approx 0.018\)</span> is considered enough damping to
+consider <span class="math">\(\bar u\approx 0\)</span> for the boundary condition.
+This means that <span class="math">\(x\in [0,4/b]\)</span> and then <span class="math">\(\bar x\in [0,4]\)</span>.
+Increasing the spatial domain to <span class="math">\([0,6]\)</span> implies a damping <span class="math">\(e^{-6}\approx
+0.0025\)</span>, if more accuracy is desired in the boundary condition.</p>
+</div>
+<div class="section" id="the-scaled-problem">
+<h4>The scaled problem<a class="headerlink" href="#the-scaled-problem" title="Permalink to this headline">¶</a></h4>
+<p>Based on the discussion of scales above, we arrive at the following
+scaled initial-boundary value problem:</p>
+<div class="math" id="eq-scale-heat-pde2-d">
+\[\tag{168}
+\frac{\partial \bar u}{\partial \bar t} =
+    \frac{1}{2}\frac{\partial^2\bar u}{\partial x^2},
+    \quad  \bar x\in (0,4),\ \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-heat-pde2-ic-u-d">
+\[\tag{169}
+\bar u(\bar x,0) = 0,
+    \quad \bar x\in [0,1],\]</div>
+<div class="math" id="eq-scale-heat-pde2-bc-0-d">
+\[\tag{170}
+\bar u(0,\bar t)  = \sin(\bar t),
+    \quad  \bar t\in (0,\bar T],\]</div>
+<div class="math" id="eq-scale-heat-pde2-bc-l-d">
+\[\tag{171}
+\frac{\partial}{\partial\bar x}\bar u(\bar L,\bar t)  = 0,
+    \quad \bar t\in (0,\bar T].\]</div>
+<p>The coefficient in front of the second-derivative is <span class="math">\(\frac{1}{2}\)</span> because</p>
+<div class="math">
+\[\frac{t_c{\alpha}}{1/b^2} = \frac{b^2{\alpha}}{\omega}
+= \frac{1}{2}{\thinspace .}\]</div>
+<p>We may, of course, choose <span class="math">\(t_c=2/\omega\)</span> and get rid of the <span class="math">\(\frac{1}{2}\)</span> factor,
+if desired, but then it turns up in <a class="reference internal" href="#eq-scale-heat-pde2-bc-0-d"><span class="std std-ref">(170)</span></a> instead,
+as <span class="math">\(\sin (2\bar t)\)</span>.</p>
+<p>The boundary condition at <span class="math">\(\bar x=\bar L\)</span> is only an approximation and
+relies on sufficient damping of <span class="math">\(\bar u\)</span> to consider it constant
+<span class="math">\((\partial/\partial\bar x =0)\)</span> in
+space. We could, therefore, assign the condition <span class="math">\(\bar u = 0\)</span> instead
+at <span class="math">\(\bar x=\bar L\)</span>.</p>
+</div>
+<div class="section" id="simulations">
+<h4>Simulations<a class="headerlink" href="#simulations" title="Permalink to this headline">¶</a></h4>
+<p>The file <a class="reference external" href="http://tinyurl.com/o8pb3yy/session.py">session.py</a> contains a function
+<code class="docutils literal"><span class="pre">solver_diffusion_FE</span></code> for solving a diffusion equation in one dimension.
+This function can be used to solve the
+system <a class="reference internal" href="#eq-scale-heat-pde2-d"><span class="std std-ref">(168)</span></a>-<a class="reference internal" href="#eq-scale-heat-pde2-bc-l-d"><span class="std std-ref">(171)</span></a>,
+see <code class="docutils literal"><span class="pre">diffusion_oscillatory_BC</span></code>.</p>
+<div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/diffusion_osc_BC/movie.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/diffusion_osc_BC/movie.webm' type='video/webm; codecs="vp8, vorbis"'>
+    <source src='https://github.com/hplgit/scaling-book/raw/master/doc/pub/book/html/mov-scaling/diffusion_osc_BC/movie.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
+</div>
+<p><em>Diffusion wave.</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script></div>
+</div>
+</div>
+<div class="section" id="reaction-diffusion-equations">
+<span id="sec-scale-diffu-fisher"></span><h2>Reaction-diffusion equations<a class="headerlink" href="#reaction-diffusion-equations" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="fisher-s-equation">
+<h3>Fisher&#8217;s equation<a class="headerlink" href="#fisher-s-equation" title="Permalink to this headline">¶</a></h3>
+<p>Fisher&#8217;s equation is essentially the logistic equation at each point
+for population dynamics (see the section <a class="reference internal" href="._book003.html#sec-scale-nonlinear"><span class="std std-ref">Scaling a nonlinear ODE</span></a>)
+combined with spatial movement through ordinary diffusion:</p>
+<div class="math" id="eq-sec-scale-diffu-fisher-pde">
+\[\tag{172}
+\frac{\partial u}{\partial t} =
+    {\alpha}\frac{\partial^2 u}{\partial x^2} + \varrho u(1-u/M)
+    {\thinspace .}\]</div>
+<p>This PDE is also known as the KPP equation after
+Kolmogorov, Petrovsky, and Piskynov (who introduced the equation
+independently of Fisher).</p>
+<p>Setting</p>
+<div class="math">
+\[\bar x = \frac{x}{x_c},\quad
+\ \bar t = \frac{t}{t_c}, \quad\bar u =\frac{u}{u_c},\]</div>
+<p>results in</p>
+<div class="math">
+\[\frac{\partial \bar u}{\partial \bar t} =
+\frac{t_c{\alpha}}{x_c^2}
+\frac{\partial^2\bar u}{\partial\bar x^2} + t_c \varrho \bar u (1 - u_c\bar u/M){\thinspace .}\]</div>
+<div class="section" id="balance-of-all-terms">
+<h4>Balance of all terms<a class="headerlink" href="#balance-of-all-terms" title="Permalink to this headline">¶</a></h4>
+<p>If all terms are equally important, the scales can be determined from
+demanding the coefficients to be unity.
+Reasoning as for the logistic ODE in the section <a class="reference internal" href="._book003.html#sec-scale-nonlinear"><span class="std std-ref">Scaling a nonlinear ODE</span></a>,
+we may choose <span class="math">\(t_c=1/\varrho\)</span>. Then
+the coefficient in the diffusion term dictates the length scale <span class="math">\(x_c =
+\sqrt{t_c{\alpha}}\)</span>.
+A natural scale for <span class="math">\(u\)</span> is <span class="math">\(M\)</span>, since <span class="math">\(M\)</span> is the upper limit of <span class="math">\(u\)</span> in
+the model (cf. the logistic term). Summarizing,</p>
+<div class="math">
+\[u_c=M,\quad t_c = \frac{1}{\varrho},\quad x_c = \sqrt{\frac{{\alpha}}{\varrho}},\]</div>
+<p>and the scaled PDE becomes</p>
+<div class="math" id="eq-auto52">
+\[\tag{173}
+\frac{\partial \bar u}{\partial \bar t} =
+    \frac{\partial^2 \bar u}{\partial\bar x^2} + \bar u (1 - \bar u){\thinspace .}\]</div>
+<p>With this scaling, the length scale <span class="math">\(x_c=\sqrt{{\alpha}/\varrho}\)</span>
+is not related to the domain size, so the scale is particularly relevant for
+infinite domains.</p>
+<p>An open question is whether the time scale should be based on
+the diffusion process rather than the initial exponential growth
+in the logistic term. The diffusion time scale means <span class="math">\(t_c = x_c^2/{\alpha}\)</span>,
+but demanding the logistic term then to have a unit coefficient
+forces <span class="math">\(x_c^2\varrho /{\alpha} = 1\)</span>, which implies <span class="math">\(x_c=\sqrt{{\alpha}/\varrho}\)</span>
+and <span class="math">\(t_c=1/\varrho\)</span>. That is, equal balance of the three
+terms gives a unique choice of the time and length scale.</p>
+</div>
+<div class="section" id="fixed-length-scale">
+<h4>Fixed length scale<a class="headerlink" href="#fixed-length-scale" title="Permalink to this headline">¶</a></h4>
+<p>Assume now that we fix the length scale to be <span class="math">\(L\)</span>, either the
+domain size or some other naturally given length. With
+<span class="math">\(x_c=L\)</span>, <span class="math">\(t_c=\varrho^{-1}\)</span>,
+<span class="math">\(u_c=M\)</span>, we get</p>
+<div class="math" id="eq-auto53">
+\[\tag{174}
+\frac{\partial \bar u}{\partial \bar t} =
+    \beta
+    \frac{\partial^2 \bar u}{\partial\bar x^2} + \bar u (1 - \bar u),\]</div>
+<p>where <span class="math">\(\beta\)</span> is a dimensionless number</p>
+<div class="math">
+\[\beta = \frac{{\alpha}}{\varrho L^2} = \frac{\varrho^{-1}}{L^2/{\alpha}}{\thinspace .}\]</div>
+<p>The last equality demonstrates that <span class="math">\(\beta\)</span> measures the ratio of the
+time scale for exponential growth in the beginning of the logistic
+process and the time scale of diffusion <span class="math">\(L^2/{\alpha}\)</span> (i.e., the time it
+takes to transport a signal by diffusion through the domain).  For
+small <span class="math">\(\beta\)</span> we can neglect the diffusion and spatial movements, and
+the PDE is essentially a logistic ODE at each point, while for large
+<span class="math">\(\beta\)</span>, diffusion dominates, and <span class="math">\(t_c\)</span> should in that case be based
+on the diffusion time scale <span class="math">\(L^2/{\alpha}\)</span>. This leads to the scaled PDE</p>
+<div class="math" id="eq-auto54">
+\[\tag{175}
+\frac{\partial \bar u}{\partial \bar t} =
+    \frac{\partial^2 \bar u}{\partial\bar x^2} + \beta^{-1}\bar u (1 - \bar u),\]</div>
+<p>showing that a large <span class="math">\(\beta\)</span> encourages omission of the logistic term,
+because the point-wise growth takes place over long time intervals while
+diffusion is rapid. The effect of diffusion is then more prominent
+and it suffices to solve <span class="math">\(\bar u_{\bar t} = \bar u_{\bar x\bar x}\)</span>.
+The observant reader will in this latter case notice that <span class="math">\(u_c=M\)</span>
+is an irrelevant scale for <span class="math">\(u\)</span>, since logistic growth with its limit is
+not of importance, so we implicitly assume that another scale <span class="math">\(u_c\)</span>
+has been used, but that scale cancels anyway in the simplified PDE
+<span class="math">\(\bar u_{\bar t} = \bar u_{\bar x\bar x}\)</span>.</p>
+</div>
+</div>
+<div class="section" id="nonlinear-reaction-diffusion-pde">
+<h3>Nonlinear reaction-diffusion PDE<a class="headerlink" href="#nonlinear-reaction-diffusion-pde" title="Permalink to this headline">¶</a></h3>
+<p>A general, nonlinear reaction-diffusion equation in 1D looks like</p>
+<div class="math" id="eq-auto55">
+\[\tag{176}
+\frac{\partial u}{\partial t} = {\alpha}\frac{\partial^2 u}{\partial x^2} + f(u)
+    {\thinspace .}\]</div>
+<p>By scaling the nonlinear reaction term <span class="math">\(f(u)\)</span> as <span class="math">\(f_c\bar f(u_c\bar u)\)</span>,
+where <span class="math">\(f_c\)</span> is a characteristic size of <span class="math">\(f(u)\)</span>, typically the maximum
+value, one gets a non-dimensional PDE like</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t} = \frac{t_c{\alpha}}{x_c^2}
+\frac{\partial^2\bar u}{\partial\bar x^2} +
+\frac{t_cf_c}{u_c}\bar f(u_c\bar u){\thinspace .}\]</div>
+<p>The characteristic size of <span class="math">\(u\)</span> can often be derived from boundary or
+initial conditions, so we first assume
+that <span class="math">\(u_c\)</span> is given. This fact uniquely determines the space and time
+scales by demanding that all three terms are equally important and
+of unit size:</p>
+<div class="math">
+\[t_c = \frac{u_c}{f_c},\quad x_c = \sqrt{\frac{{\alpha} u_c}{f_c}}{\thinspace .}\]</div>
+<p>The corresponding PDE reads</p>
+<div class="math" id="eq-auto56">
+\[\tag{177}
+\frac{\partial\bar u}{\partial\bar t} =
+    \frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u){\thinspace .}\]</div>
+<p>If <span class="math">\(x_c\)</span> is based on some known length scale <span class="math">\(L\)</span>, balance of all three
+terms can be used to determine <span class="math">\(u_c\)</span> and <span class="math">\(t_c\)</span>:</p>
+<div class="math">
+\[t_c = \frac{L^2}{{\alpha}},\quad u_c = \frac{L^2 f_c}{{\alpha}}{\thinspace .}\]</div>
+<p>This scaling only works if <span class="math">\(f\)</span> is nonlinear, otherwise <span class="math">\(u_c\)</span> cancels
+and there is no freedom to constrain this scale.</p>
+<p>With given <span class="math">\(L\)</span> and <span class="math">\(u_c\)</span>, there are two choices of <span class="math">\(t_c\)</span> since it can
+be based on the diffusion or the reaction time scales. With
+the reaction scale, <span class="math">\(t_c = u_c/f_c\)</span>, one arrives a the PDE</p>
+<div class="math" id="eq-auto57">
+\[\tag{178}
+\frac{\partial\bar u}{\partial\bar t} =
+    \beta\frac{\partial^2\bar u}{\partial\bar x^2} + \bar f(u_c\bar u),\]</div>
+<p>where</p>
+<div class="math">
+\[\beta = \frac{{\alpha} u_c}{L^2 f_c} = \frac{u_c/f_c}{L^2/{\alpha}}\]</div>
+<p>is a dimensionless number reflecting the ratio of the reaction time
+scale and the diffusion time scale. On the contrary,
+with the
+diffusion time scale, <span class="math">\(t_c=L^2/{\alpha}\)</span>, the scaled PDE becomes</p>
+<div class="math" id="eq-auto58">
+\[\tag{179}
+\frac{\partial\bar u}{\partial\bar t} =
+    \frac{\partial^2\bar u}{\partial \bar x^2} + \beta^{-1}\bar f(u_c\bar u){\thinspace .}\]</div>
+<p>The size of <span class="math">\(\beta\)</span> in an application will determine which of the scalings
+that is most appropriate.</p>
+</div>
+</div>
+<div class="section" id="the-convection-diffusion-equation">
+<span id="scale-convdiff"></span><h2>The convection-diffusion equation<a class="headerlink" href="#the-convection-diffusion-equation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="convection-diffusion-without-a-force-term">
+<h3>Convection-diffusion without a force term<a class="headerlink" href="#convection-diffusion-without-a-force-term" title="Permalink to this headline">¶</a></h3>
+<p id="index-1">We now add a convection term <span class="math">\(\boldsymbol{v}\cdot\nabla u\)</span> to the diffusion
+equation to obtain the well-known convection-diffusion equation:</p>
+<div class="math" id="eq-scale-convdiff-pde1">
+\[\tag{180}
+\frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
+    {\alpha}\nabla^2 u,
+    \quad  x,y, z\in \Omega,\ t\in (0, T]{\thinspace .}\]</div>
+<p>The velocity field <span class="math">\(\boldsymbol{v}\)</span> is prescribed, and its characteristic size <span class="math">\(V\)</span>
+is normally clear from the problem description. In the sketch below,
+we have some given flow over a bump, and <span class="math">\(u\)</span> may be the concentration
+of some substance in the fluid. Here, <span class="math">\(V\)</span> is typically <span class="math">\(\max_y v(y)\)</span>.
+The characteristic length <span class="math">\(L\)</span> could be the entire domain, <span class="math">\(L=c+\ell\)</span>,
+or the height of the bump, <span class="math">\(L=D\)</span>. (The latter is the important length
+scale for the flow.)</p>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<div class="figure">
+<a class="reference internal image-reference" href="_images/flow_over_gaussian.png"><img alt="_images/flow_over_gaussian.png" src="_images/flow_over_gaussian.png" style="width: 500px;" /></a>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+<div class="line"><br /></div>
+</div>
+<p>Inserting</p>
+<div class="math">
+\[\bar x = \frac{x}{x_c},\ \bar y = \frac{y}{y_c},\ \bar z = \frac{z}{z_c},
+\ \bar t = \frac{t}{t_c}, \ \bar\boldsymbol{v} = \frac{\boldsymbol{v}}{V},
+\ \bar u =\frac{u}{u_c}\]</div>
+<p>in <a class="reference internal" href="#eq-scale-convdiff-pde1"><span class="std std-ref">(180)</span></a> yields</p>
+<div class="math">
+\[\frac{u_c}{t_c}
+\frac{\partial \bar u}{\partial \bar t} +
+\frac{u_c V}{L}\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+\frac{{\alpha} u_c}{L^2}\bar\nabla^2\bar u,
+\quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]{\thinspace .}\]</div>
+<p>For <span class="math">\(u_c\)</span> we simply introduce the symbol <span class="math">\(U\)</span>, which we may estimate
+from an initial condition. It is not critical here, since it vanishes
+from the scaled equation anyway, as long as there is no source term
+present.
+With some velocity measure <span class="math">\(V\)</span> and length measure <span class="math">\(L\)</span>, it is
+tempting to just let <span class="math">\(t_c = L/V\)</span>. This is the characteristic time it takes to
+transport a signal by convection through the domain.
+The alternative is to use the
+diffusion length scale <span class="math">\(t_c=L^2/{\alpha}\)</span>. A common physical scenario in
+convection-diffusion problems is that
+the convection term <span class="math">\(\boldsymbol{v}\cdot\nabla u\)</span> dominates over the
+diffusion term <span class="math">\({\alpha}\nabla^2 u\)</span>. Therefore, the time scale for convection
+(<span class="math">\(L/V\)</span>)
+is most appropriate of the two. Only when
+the diffusion term is very much larger than the convection
+term (corresponding to very small Peclet numbers, see below)
+<span class="math">\(t_c=L^2/{\alpha}\)</span> is the right time scale.</p>
+<p>The non-dimensional form of the PDE with <span class="math">\(t_c=L/V\)</span> becomes</p>
+<div class="math" id="eq-scale-convdiff-pde1-d">
+\[\tag{181}
+\frac{\partial \bar u}{\partial \bar t} +
+    \bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+    \hbox{Pe}^{-1}\bar\nabla^2\bar u,
+    \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T],\]</div>
+<p>where Pe is the <em>Peclet number</em>,</p>
+<div class="math">
+\[\hbox{Pe} = \frac{LV}{{\alpha}}{\thinspace .}\]</div>
+<p>Estimating the size of the convection term <span class="math">\(\boldsymbol{v}\cdot\nabla u\)</span> as
+<span class="math">\(VU/L\)</span> and the diffusion term <span class="math">\({\alpha}\nabla^2 u\)</span> as <span class="math">\({\alpha} U/L^2\)</span>,
+we see that the Peclet number measures the ratio of the convection
+and the diffusion terms:</p>
+<div class="math">
+\[\hbox{Pe} = \frac{\hbox{convection}}{\hbox{diffusion}} =
+\frac{VU/L}{{\alpha} U/L^2}= \frac{LV}{{\alpha}}{\thinspace .}\]</div>
+<p>In case we use the diffusion time scale
+<span class="math">\(t_c=L^2/{\alpha}\)</span>, we get the non-dimensional PDE</p>
+<div class="math" id="eq-scale-convdiff-pde1-d2">
+\[\tag{182}
+\frac{\partial \bar u}{\partial \bar t} +
+    \hbox{Pe}\,\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+    \bar\nabla^2\bar u,
+    \quad \bar x,\bar y,\bar z\in \Omega,\ \bar t\in (0,\bar T]{\thinspace .}\]</div>
+<div class="admonition-discussion-of-scales-and-balance-of-terms-in-the-pde admonition">
+<p class="first admonition-title">Discussion of scales and balance of terms in the PDE</p>
+<p>We see that <a class="reference internal" href="#eq-scale-convdiff-pde1-d"><span class="std std-ref">(181)</span></a> and <a class="reference internal" href="#eq-scale-convdiff-pde1-d2"><span class="std std-ref">(182)</span></a>
+are not equal, and they are based on two different time scales.
+For moderate Peclet numbers around 1, all terms have the same size
+in <a class="reference internal" href="#eq-scale-convdiff-pde1-d"><span class="std std-ref">(181)</span></a>, i.e., a size around unity.
+For large Peclet numbers,
+<a class="reference internal" href="#eq-scale-convdiff-pde1-d"><span class="std std-ref">(181)</span></a> expresses a balance
+between the time derivative term and the convection term, both of size
+unity, and then there is a very small
+<span class="math">\(\hbox{Pe}^{-1}\bar\nabla^2\bar u\)</span> term because Pe is large and
+<span class="math">\(\bar\nabla^2\bar u\)</span> should be of size unity.
+That the convection term dominates over the diffusion term is
+consistent with the time scale <span class="math">\(t_c=L/V\)</span> based on convection transport.
+In this case, we can neglect the diffusion term as Pe goes to infinity
+and work with a pure convection (or advection) equation</p>
+<div class="math">
+\[\frac{\partial \bar u}{\partial \bar t} +
+\bar\boldsymbol{v}\cdot\bar\nabla\bar u = 0{\thinspace .}\]</div>
+<p>For small Peclet numbers, <span class="math">\(\hbox{Pe}^{-1}\bar\nabla^2\bar u\)</span> becomes
+very large and can only be balanced by two terms that are supposed to
+be unity of size.  The time-derivative and/or the convection term must
+be much larger than unity, but that means we use suboptimal scales,
+since right scales imply that <span class="math">\(\partial\bar u/\partial\bar t\)</span> and
+<span class="math">\(\bar v\cdot\bar\nabla\bar u\)</span> are of order unity. Switching to a time
+scale based on diffusion as the dominating physical effect gives
+<a class="reference internal" href="#eq-scale-convdiff-pde1-d2"><span class="std std-ref">(182)</span></a>.  For very small Peclet numbers this
+equation tells that the time-derivative balances the diffusion.
+The convection term <span class="math">\(\bar\boldsymbol{v}\cdot\bar\nabla\bar\boldsymbol{u}\)</span> is around
+unity in size, but multiplied by a very small coefficient Pe, so this term is
+negligible in the PDE. An approximate PDE for small Peclet numbers is
+therefore</p>
+<div class="math">
+\[\frac{\partial \bar u}{\partial \bar t}
+= \bar\nabla^2\bar u{\thinspace .}\]</div>
+<p class="last">Scaling can, with the above type of reasoning, be used
+to neglect terms from a differential equation under precise mathematical
+conditions.</p>
+</div>
+</div>
+<div class="section" id="stationary-pde">
+<h3>Stationary PDE<a class="headerlink" href="#stationary-pde" title="Permalink to this headline">¶</a></h3>
+<p>Suppose the problem is stationary and that there is no need for
+any time scale. How is this type of convection-diffusion problem
+scaled? We get</p>
+<div class="math">
+\[\frac{VU}{L}\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+\frac{{\alpha} U}{L^2}\bar\nabla^2\bar u,\]</div>
+<p>or</p>
+<div class="math" id="eq-scale-convdiff-pde1-d3">
+\[\tag{183}
+\bar\boldsymbol{v}\cdot\bar\nabla\bar u =
+    \hbox{Pe}^{-1}\bar\nabla^2\bar u{\thinspace .}\]</div>
+<p>This scaling only &#8220;works&#8221; for moderate Peclet numbers. For very small or
+very large Pe, either the convection term <span class="math">\(\bar\boldsymbol{v}\cdot\bar\nabla\bar u\)</span>
+or the diffusion term <span class="math">\(\bar\nabla^2\bar u\)</span> must deviate significantly
+from unity.</p>
+<p>Consider the following 1D example to illustrate the point: <span class="math">\(\boldsymbol{v} = v\boldsymbol{i}\)</span>,
+<span class="math">\(v&gt;0\)</span> constant, a domain <span class="math">\([0,L]\)</span>, with boundary conditions <span class="math">\(u(0)=0\)</span> and
+<span class="math">\(u(L)=U_L\)</span>. (The vector <span class="math">\(\boldsymbol{i}\)</span> is a unit vector in <span class="math">\(x\)</span> direction.)
+The problem with dimensions is now</p>
+<div class="math">
+\[vu^{\prime} = {\alpha} u^{\prime\prime},\quad u(0)=0,\ u(L)=U_L{\thinspace .}\]</div>
+<p>Scaling results in</p>
+<div class="math">
+\[\frac{d\bar u}{d\bar x} = \hbox{Pe}^{-1}\frac{d^2\bar u}{d\bar x^2},\quad
+\bar x\in (0,1),\quad \bar u(0)=0,\ \bar u(1) = 1,\]</div>
+<p>if we choose <span class="math">\(U=U_L\)</span>. The solution of the scaled problem is</p>
+<p>[ bar u(bar x) = frac{1 - e^{bar x{smallhbox{Pe}}}}{1 - e^{smallhbox{Pe}}}{thinspace .}]
+Figure <a class="reference internal" href="#scale-convdiff-fig-scaled"><span class="std std-ref">Solution of scaled problem for 1D convection-diffusion</span></a> indicates how <span class="math">\(\bar u\)</span> depends on
+Pe: small Pe values give approximately a straight line while large Pe
+values lead to a <em>boundary layer</em> close to <span class="math">\(x=1\)</span>, where the solution
+changes very rapidly.</p>
+<div class="figure" id="id3">
+<span id="scale-convdiff-fig-scaled"></span><a class="reference internal image-reference" href="_images/boundary_layer1D.png"><img alt="_images/boundary_layer1D.png" src="_images/boundary_layer1D.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text"><em>Solution of scaled problem for 1D convection-diffusion</em></span></p>
+</div>
+<p>We realize that for large Pe,</p>
+<div class="math">
+\[\max_{\bar x}\frac{d\bar u}{d\bar x} \approx \hbox{Pe},\quad
+\max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx \hbox{Pe}^{2},\]</div>
+<p>which are consistent results with the PDE, since the double derivative term
+is multiplied by <span class="math">\(\hbox{Pe}^{-1}\)</span>.
+For small Pe,</p>
+<div class="math">
+\[\max_{\bar x}\frac{d\bar u}{d\bar x}\approx 1,\quad
+  \max_{\bar x}\frac{d^2\bar u}{d\bar x^2} \approx 0,\]</div>
+<p>which is also consistent with the PDE,
+since an almost vanishing second-order derivative
+is multiplied by a very large coefficient <span class="math">\(\hbox{Pe}^{-1}\)</span>.
+However, we have a problem with very large
+derivatives of <span class="math">\(\bar u\)</span> when Pe is large.</p>
+<p>To arrive at a proper scaling for large Peclet numbers,
+we need to remove the Pe coefficient
+from the differential equation. There are only two scales at our
+disposals: <span class="math">\(u_c\)</span> and <span class="math">\(x_c\)</span> for <span class="math">\(u\)</span> and <span class="math">\(x\)</span>, respectively.
+The natural value for <span class="math">\(u_c\)</span> is the boundary value <span class="math">\(U_L\)</span> at <span class="math">\(x=L\)</span>.
+The scaling of <span class="math">\(Vu_x = {\alpha} u_{xx}\)</span> then results in</p>
+<div class="math">
+\[\frac{d\bar u}{d\bar x} = \frac{{\alpha}}{Vx_c}\frac{d^2\bar u}{d\bar x^2},
+\quad \bar x\in (0,\bar L),\quad \bar u(0)=0,\ \bar u(\bar L)=1,\]</div>
+<p>where <span class="math">\(\bar L = L/x_c\)</span>. Choosing the coefficient <span class="math">\({\alpha}/(Vx_c)\)</span> to
+be unity results in the scale <span class="math">\(x_c={\alpha}/V\)</span>, and <span class="math">\(\bar L\)</span> becomes Pe.
+The final, scaled boundary-value
+problem is now</p>
+<div class="math">
+\[\frac{d\bar u}{d\bar x} = \frac{d^2\bar u}{d\bar x^2},
+\quad \bar x \in (0, \hbox{Pe}), \quad \bar u(0)=0,\ \bar u(\hbox{Pe})=1,\]</div>
+<p>with solution</p>
+<div class="math">
+\[\bar u(\bar x) = \frac{1 - e^{\bar x}}{1 - e^{\small\mbox{Pe}}}{\thinspace .}\]</div>
+<p>Figure <a class="reference internal" href="#scale-convdiff-fig-rescaled"><span class="std std-ref">Solution of scaled problem where the length scale depends on the Peclet number</span></a> displays <span class="math">\(\bar u\)</span> for some
+Peclet numbers, and we see that the shape of the graphs are the same
+with this scaling. For large Peclet numbers we realize that <span class="math">\(\bar u\)</span>
+and its derivatives are around unity
+(<span class="math">\(1-e^{\hbox{Pe}}\approx -e^{\small\hbox{Pe}}\)</span>),
+but for small Peclet numbers <span class="math">\(d\bar u/d\bar x \sim \hbox{Pe}^{-1}\)</span>.</p>
+<div class="figure" id="id4">
+<span id="scale-convdiff-fig-rescaled"></span><a class="reference internal image-reference" href="_images/boundary_layer1D_scale2.png"><img alt="_images/boundary_layer1D_scale2.png" src="_images/boundary_layer1D_scale2.png" style="width: 600px;" /></a>
+<p class="caption"><span class="caption-text"><em>Solution of scaled problem where the length scale depends on the Peclet number</em></span></p>
+</div>
+<p>The conclusion is that for small Peclet numbers, <span class="math">\(x_c=L\)</span> is an
+appropriate length scale.
+The scaled equation <span class="math">\(\hbox{Pe}\,\bar u' = \bar u''\)</span> indicates that <span class="math">\(\bar
+u''\approx 0\)</span>, and the solution is close to a straight line.  For
+large Pe values, <span class="math">\(x_c={\alpha}/V\)</span> is an appropriate length scale, and the
+scaled equation <span class="math">\(\bar u' = \bar u''\)</span>
+expresses that the terms <span class="math">\(\bar u'\)</span> and <span class="math">\(\bar u''\)</span> are
+equal and of size around unity.</p>
+<span class="target" id="index-2"></span></div>
+<div class="section" id="convection-diffusion-with-a-source-term">
+<span id="scale-convdiff-f"></span><span id="index-3"></span><h3>Convection-diffusion with a source term<a class="headerlink" href="#convection-diffusion-with-a-source-term" title="Permalink to this headline">¶</a></h3>
+<p>Let us add a force term <span class="math">\(f(\boldsymbol{x},t)\)</span> to the convection-diffusion equation:</p>
+<div class="math" id="eq-scale-convdiff-pde2">
+\[\tag{184}
+\frac{\partial u}{\partial t} + \boldsymbol{v}\cdot\nabla u =
+    {\alpha}\nabla^2 u + f{\thinspace .}\]</div>
+<p>The scaled version reads</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t} +
+\frac{t_cV}{L}\bar\boldsymbol{v}\cdot\bar\nabla \bar u =
+\frac{t_c{\alpha}}{L^2}\bar\nabla^2 \bar u +
+\frac{t_cf_c}{u_c}\bar f{\thinspace .}\]</div>
+<p>We can base <span class="math">\(t_c\)</span> on convective transport: <span class="math">\(t_c = L/V\)</span>. Now,
+<span class="math">\(u_c\)</span> could be chosen to make the coefficient in the source term unity:
+<span class="math">\(u_c = t_cf_c = Lf_c/V\)</span>.
+This leaves us with</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t} +
+\bar\boldsymbol{v}\cdot\bar \nabla\bar u =
+\hbox{Pe}^{-1}\bar \nabla^2 \bar u + \bar f{\thinspace .}\]</div>
+<p>In the diffusion limit, we base <span class="math">\(t_c\)</span> on the diffusion time scale:
+<span class="math">\(t_c=L^2/{\alpha}\)</span>, and the coefficient of the source term set to unity
+determines <span class="math">\(u_c\)</span> according to</p>
+<div class="math">
+\[\frac{L^2 f_c}{{\alpha} u_c} = 1\quad\Rightarrow\quad u_c = \frac{L^2 f_c}{{\alpha}}{\thinspace .}\]</div>
+<p>The corresponding PDE reads</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t} +
+\hbox{Pe}\,\bar\boldsymbol{v}\cdot\bar \nabla\bar u =
+\bar\nabla^2 \bar u + \bar f,\]</div>
+<p>so for small Peclet numbers, which we have, the convective term can
+be neglected and we get a pure diffusion equation with a source term.</p>
+<p>What if the problem is stationary?
+Then there is no time scale and we get</p>
+<div class="math">
+\[\frac{V u_c}{L}\bar\boldsymbol{v}\cdot\bar \nabla \bar u =
+\frac{u_c {\alpha}}{L^2}\bar\nabla^2 \bar u + f_c\bar f,\]</div>
+<p>or</p>
+<div class="math">
+\[\bar\boldsymbol{v}\cdot\bar \nabla \bar u =
+\hbox{Pe}^{-1}\bar\nabla^2 \bar u + \frac{f_c L}{V u_c}\bar f{\thinspace .}\]</div>
+<p>Again, choosing <span class="math">\(u_c\)</span> such that the source term coefficient is unity leads
+to <span class="math">\(u_c= f_c L/V\)</span>.
+Alternatively, <span class="math">\(u_c\)</span> can be based on the initial condition, with similar
+results as found in the sections on the wave and diffusion PDEs.</p>
+</div>
+</div>
+<div class="section" id="exercises-2">
+<h2>Exercises<a class="headerlink" href="#exercises-2" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="problem-3-1-stationary-couette-flow">
+<span id="scale-vib-exer-stationary-couette"></span><h3>Problem 3.1: Stationary Couette flow<a class="headerlink" href="#problem-3-1-stationary-couette-flow" title="Permalink to this headline">¶</a></h3>
+<p>A fluid flows between two flat plates, with one plate at rest while
+the other moves with velocity <span class="math">\(U_0\)</span>. This classical flow case is known as
+stationary <a class="reference external" href="https://en.wikipedia.org/wiki/Couette_flow">Couette flow</a>.</p>
+<p><strong>a)</strong>
+Directing the <span class="math">\(x\)</span> axis in the flow direction and letting <span class="math">\(y\)</span> be
+a coordinate perpendicular to the walls, one can assume that
+the velocity field simplifies to <span class="math">\(\boldsymbol{u} = u(y)\boldsymbol{i}\)</span>.
+Show from the Navier-Stokes equations that the boundary-value problem
+for <span class="math">\(u(y)\)</span> is</p>
+<div class="math">
+\[u^{\prime\prime}(u) = 0,\quad u(0)=0,\ u(H)=U_0{\thinspace .}\]</div>
+<p>We have here assumed at <span class="math">\(y=0\)</span> corresponds to the plate at rest and
+that <span class="math">\(y=H\)</span> represents the plate that moves. There are no pressure
+gradients present in the flow.</p>
+<p><strong>b)</strong>
+Scale the problem in a) and show that the result has no physical parameters
+left in the model:</p>
+<div class="math">
+\[\frac{d^2\bar u}{d\bar y^2} = 0,\quad \bar u(0)=0,\ \bar u(1)=1{\thinspace .}\]</div>
+<p><strong>c)</strong>
+We can compute <span class="math">\(\bar u(\bar y)\)</span> from one numerical simulation (or a
+straightforward integration of the differential equation). Set up
+the formula that finds <span class="math">\(u(y; H, u_0)\)</span> from <span class="math">\(\bar u(\bar y)\)</span> for any
+values of <span class="math">\(H\)</span> and <span class="math">\(U_0\)</span>.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">stationary_Couette</span></code>.</p>
+<div class="section" id="remarks-3">
+<h4>Remarks<a class="headerlink" href="#remarks-3" title="Permalink to this headline">¶</a></h4>
+<p>The problem for <span class="math">\(u\)</span> is a classical two-point boundary-value problem
+in applied mathematics and arises in a number of applications, where
+Couette flow is just one example. Heat conduction is another
+example: <span class="math">\(u\)</span> is temperature, and the heat conduction equation for
+an insulated rod reduces to <span class="math">\(u^{\prime\prime}=0\)</span> under stationary
+conditions and no heat source.
+Controlling the end <span class="math">\(x=0\)</span> at 0 degrees Celsius the other end <span class="math">\(x=L\)</span>
+at <span class="math">\(U_0\)</span> degrees
+Celsius, gives the same boundary conditions as in the above flow problem.
+The scaled problem is of course the same whether we have flow of
+fluid or heat.</p>
+</div>
+</div>
+<div class="section" id="exercise-3-2-couette-poiseuille-flow">
+<span id="scale-vib-exer-couette-wpressure"></span><h3>Exercise 3.2: Couette-Poiseuille flow<a class="headerlink" href="#exercise-3-2-couette-poiseuille-flow" title="Permalink to this headline">¶</a></h3>
+<p>Viscous fluid flow between two infinite flat plates <span class="math">\(z=0\)</span> and <span class="math">\(z=H\)</span>
+is governed by</p>
+<div class="math" id="eq-auto59">
+\[\tag{185}
+\mu u''(z) = -\beta\]</div>
+<div class="math" id="eq-auto60">
+\[\tag{186}
+u(0) = 0,\]</div>
+<div class="math" id="eq-auto61">
+\[\tag{187}
+u(H) = U_0{\thinspace .}\]</div>
+<p>Here, <span class="math">\(u(z)\)</span> is the fluid velocity in <span class="math">\(x\)</span> direction (perpendicular to the
+<span class="math">\(z\)</span> axis), <span class="math">\(\mu\)</span> is the dynamic viscosity of the fluid, <span class="math">\(\beta\)</span> is
+a positive constant pressure gradient, and <span class="math">\(U_0\)</span> is the
+constant velocity of the upper
+plate <span class="math">\(z=H\)</span> in <span class="math">\(x\)</span> direction. The model represents
+<a class="reference external" href="https://en.wikipedia.org/wiki/Couette_flow">Couette flow</a> for <span class="math">\(\beta=0\)</span>
+and <a class="reference external" href="https://en.wikipedia.org/wiki/Hagen-Poiseuille_equation">Poiseuille flow</a>
+for <span class="math">\(U_0=0\)</span>.</p>
+<p><strong>a)</strong>
+Find the exact solution <span class="math">\(u(z)\)</span>. Point out how <span class="math">\(\beta\)</span> and <span class="math">\(U_0\)</span>
+influence the magnitude of <span class="math">\(u\)</span>.</p>
+<p><strong>b)</strong>
+Scale the problem.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">Couette_wpressure</span></code>.</p>
+</div>
+<div class="section" id="exercise-3-3-pulsatile-pipeflow">
+<span id="scale-exer-pipeflow-pulsatile"></span><h3>Exercise 3.3: Pulsatile pipeflow<a class="headerlink" href="#exercise-3-3-pulsatile-pipeflow" title="Permalink to this headline">¶</a></h3>
+<p>The flow of a viscous fluid in a straight pipe with circular
+cross section with radius <span class="math">\(R\)</span> is governed by</p>
+<div class="math" id="eq-auto65">
+\[\tag{188}
+\varrho\frac{\partial u}{\partial t} = \frac{\mu}{r}\frac{\partial}{\partial r}
+    \left(r\frac{\partial u}{\partial r}\right) - P(t),  r\in (0,R),\ t\in (0,T],\]</div>
+<div class="math" id="eq-auto66">
+\[\tag{189}
+\frac{\partial u}{\partial r}(0,t) = 0,  t\in (0,T],\]</div>
+<div class="math" id="eq-auto67">
+\[\tag{190}
+u(R,t) = 0,  t\in (0,T],\]</div>
+<div class="math" id="eq-auto68">
+\[\tag{191}
+u(r,0) = 0,  r\in [0,R].\]</div>
+<p>The quantity <span class="math">\(u(r,t)\)</span> is the fluid velocity, <span class="math">\(P(t)\)</span> is a given
+pressure gradient, <span class="math">\(\varrho\)</span> is the fluid density, and <span class="math">\(\mu\)</span> is the
+dynamic viscosity.</p>
+<p>Assume <span class="math">\(P(t) = A\cos\omega t\)</span>. Scale the problem and identify
+appropriate dimensionless numbers. Thereafter, assume <span class="math">\(P(t)\)</span> is a more
+complicated function, but still period with period <span class="math">\(p\)</span>.
+Discuss how the scaling can be extended to this case.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">pipeflow</span></code>.</p>
+</div>
+<div class="section" id="exercise-3-4-the-linear-cable-equation">
+<span id="scale-exer-cable-eq"></span><h3>Exercise 3.4: The linear cable equation<a class="headerlink" href="#exercise-3-4-the-linear-cable-equation" title="Permalink to this headline">¶</a></h3>
+<p>A key PDE in neuroscience is the <a class="reference external" href="https://en.wikipedia.org/wiki/Cable_theory">cable equation</a>, here given in its simplest linear form:</p>
+<div class="math" id="eq-scale-exer-cable-eq-pde">
+\[\tag{192}
+\tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
+    -u{\thinspace .}\]</div>
+<p>The unknown <span class="math">\(u\)</span> is the voltage (measured in volt) associated with
+an electric current along one-dimensional dendrites (&#8220;cables&#8221;)
+in neural networks, while <span class="math">\(\tau\)</span> and <span class="math">\(\lambda\)</span> are given parameters.</p>
+<p>Scale <a class="reference internal" href="#eq-scale-exer-cable-eq-pde"><span class="std std-ref">(192)</span></a> in three ways: 1) let all terms in
+the scaled equation have unit coefficients, 2) use the domain size
+<span class="math">\(L\)</span> as spatial scale and base the time scale on diffusion, 3) use the
+domain size <span class="math">\(L\)</span> as spatial scale and base the time scale on
+reaction, i.e., the <span class="math">\(-u\)</span> term.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">cable_eq</span></code>.</p>
+</div>
+<div class="section" id="exercise-3-5-heat-conduction-with-discontinuous-initial-condition">
+<span id="scale-exer-twometal"></span><h3>Exercise 3.5: Heat conduction with discontinuous initial condition<a class="headerlink" href="#exercise-3-5-heat-conduction-with-discontinuous-initial-condition" title="Permalink to this headline">¶</a></h3>
+<p>Two pieces of metal at different temperature are brought in contact
+at <span class="math">\(t=0\)</span>. The following initial-boundary value problem governs the
+temperature evolution in the two pieces:</p>
+<div class="math" id="eq-auto69">
+\[\tag{193}
+\frac{\partial u}{\partial t} = {\alpha}\nabla^2 u,\  \boldsymbol{x}\in\Omega,\ t\in (0,T],\]</div>
+<div class="math" id="eq-scale-exer-twometal-eq1-3d">
+\[\tag{194}
+u(\boldsymbol{x},0)=I(x),  \boldsymbol{x}\in \Omega,\]</div>
+<div class="math" id="eq-scale-exer-twometal-eq2-3d">
+\[\tag{195}
+-{\alpha}\frac{\partial u}{\partial n} = h(u-u_S),
+     x\in\partial\Omega,\ t\in (0,T].\]</div>
+<p>Here, <span class="math">\(u(\boldsymbol{x},t)\)</span> is the temperature, <span class="math">\({\alpha}\)</span> the effective heat diffusion
+coefficient (assuming both pieces are homogeneous and of the same type of
+metal), and <span class="math">\(u_S\)</span> is the surrounding temperature.
+The domain <span class="math">\(\Omega\)</span> consists of the two pieces <span class="math">\(\Omega_1\)</span> and <span class="math">\(\Omega_2\)</span>:
+<span class="math">\(\Omega = \Omega_1\cup\Omega_2\)</span>. The initial condition can be specified as</p>
+<div class="math">
+\[\begin{split}I(x) = \left\lbrace\begin{array}{ll}
+U_1, &amp; \boldsymbol{x}\in\Omega_1,\\
+U_2, &amp; \boldsymbol{x}\in\Omega_2,
+\end{array}\right.\end{split}\]</div>
+<p>where <span class="math">\(U_1\)</span> and <span class="math">\(U_2\)</span> are the constant initial temperatures in each piece.</p>
+<p>Thinking of two identical pieces <span class="math">\(\Omega_1\)</span> and <span class="math">\(\Omega_2\)</span> with shapes
+as bricks, it is tempting to develop a one-dimensional model,
+especially if the pieces are somewhat slender. We then expect the main
+temperature variations to take place in the <span class="math">\(x\)</span> direction, where the
+<span class="math">\(x\)</span> axis is perpendicular to the contact surface between the pieces.
+A simplified PDE problem, neglecting variations in the <span class="math">\(y\)</span> and <span class="math">\(z\)</span>
+directions, takes the form</p>
+<div class="math" id="eq-scale-exer-twometal-eq1-1d">
+\[\tag{196}
+\frac{\partial v}{\partial t} =
+    {\alpha} \frac{\partial^2 v}{\partial x^2}
+    -\frac{hP}{A}(v(x,t) -u_S),\  x\in (0,L),\ t\in (0,T],\]</div>
+<div class="math" id="eq-auto70">
+\[\tag{197}
+v(x,0)=I(x),  x\in (0,L),\]</div>
+<div class="math" id="eq-scale-exer-twometal-eq2-1d">
+\[\tag{198}
+{\alpha}\frac{\partial v}{\partial x} = h(v(x,t)-u_S),  x=0,\ t\in (0,T],\]</div>
+<div class="math" id="eq-scale-exer-twometal-eq3-1d">
+\[\tag{199}
+-{\alpha}\frac{\partial v}{\partial x} = h(v(x,t)-u_S),  x=L,\ t\in (0,T],\]</div>
+<p>with</p>
+<div class="math">
+\[\begin{split}I(x) = \left\lbrace\begin{array}{ll}
+U_1, &amp; x\in [0,L/2),\\
+U_2, &amp; x\in [L/2, L]{\thinspace .}
+\end{array}\right.\end{split}\]</div>
+<p>The parameter <span class="math">\(P\)</span> is the perimeter of the cross section and <span class="math">\(A\)</span> is the
+area of the cross section. Scale this problem.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">metal_pieces</span></code>.</p>
+<div class="section" id="remarks-4">
+<h4>Remarks<a class="headerlink" href="#remarks-4" title="Permalink to this headline">¶</a></h4>
+<p>We can derive <a class="reference internal" href="#eq-scale-exer-twometal-eq1-1d"><span class="std std-ref">(196)</span></a>-<a class="reference internal" href="#eq-scale-exer-twometal-eq3-1d"><span class="std std-ref">(199)</span></a> from <a class="reference internal" href="#eq-scale-exer-twometal-eq1-3d"><span class="std std-ref">(194)</span></a>-<a class="reference internal" href="#eq-scale-exer-twometal-eq2-3d"><span class="std std-ref">(195)</span></a>.
+The idea is to integrate the governing PDE
+<a class="reference internal" href="#eq-scale-exer-twometal-eq1-1d"><span class="std std-ref">(196)</span></a> in the two directions where we
+expect negligible variations,
+use the Gauss divergence theorem in these directions, and
+apply the cooling boundary condition. Let <span class="math">\(A\)</span> be the cross section of
+the bricks. Integrating over <span class="math">\(A\)</span> gives</p>
+<div class="math">
+\[\begin{split}\int\limits_A \frac{\partial u}{\partial t}dydz &amp;=
+\int\limits_A {\alpha}\left(
+\frac{\partial^2 u}{\partial x^2} +
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}
+\right)dydz \\
+&amp;=\int\limits_A {\alpha}
+\frac{\partial^2 u}{\partial x^2}
+dydz +
+\int\limits_A {\alpha}\left(
+\frac{\partial^2 u}{\partial y^2} +
+\frac{\partial^2 u}{\partial z^2}
+\right)dydz \\
+&amp; =
+\int\limits_A {\alpha}
+\frac{\partial^2 u}{\partial x^2}
+dydz +
+{\alpha}\int\limits_{\partial A}\frac{\partial u}{\partial n}ds\\
+&amp; = \int\limits_A {\alpha}
+\frac{\partial^2 u}{\partial x^2}
+dydz -h(v(x,t) -u_S)P{\thinspace .}\end{split}\]</div>
+<p>The parameter <span class="math">\(P\)</span> is the perimeter of the cross section <span class="math">\(A\)</span>.
+The function <span class="math">\(v(x,t)\)</span> means <span class="math">\(u(\boldsymbol{x},t)\)</span> evaluated at the boundary <span class="math">\(\partial A\)</span>.
+Assuming <span class="math">\(u\)</span> to vary little across the cross section <span class="math">\(A\)</span>, we can
+approximate the integrals by <span class="math">\(u\)</span> evaluated at <span class="math">\(\partial A\)</span> as <span class="math">\(v\)</span>:</p>
+<div class="math">
+\[\int\limits_A \frac{\partial u}{\partial t}dydz\approx A
+\frac{\partial}{\partial t} v(x,t),
+\quad
+\int\limits_A {\alpha}
+\frac{\partial^2 u}{\partial x^2}
+dydz \approx A {\alpha} \frac{\partial^2 v}{\partial x^2},\]</div>
+<p>where <span class="math">\(A\)</span> now is the cross-section <em>area</em>.
+The result is the 1D initial-boundary value problem
+<a class="reference internal" href="#eq-scale-exer-twometal-eq1-1d"><span class="std std-ref">(196)</span></a>-<a class="reference internal" href="#eq-scale-exer-twometal-eq3-1d"><span class="std std-ref">(199)</span></a>.</p>
+</div>
+</div>
+<div class="section" id="problem-3-6-scaling-a-welding-problem">
+<span id="diffu-exer-welding"></span><h3>Problem 3.6: Scaling a welding problem<a class="headerlink" href="#problem-3-6-scaling-a-welding-problem" title="Permalink to this headline">¶</a></h3>
+<p>Welding equipment makes a very localized heat source that moves in
+time. We shall investigate the heating due to welding and choose, for
+maximum simplicity, a one-dimensional heat equation with a fixed
+temperature at the ends (a 2D or 3D model with cooling conditions at
+the boundaries would be of greater physical significance, but now the
+scaling is in focus). The effect of melting is not included in the
+heat equation. Our goal is to investigate two alternative scalings
+through numerical experimentation.</p>
+<p>The governing PDE problem reads</p>
+<div class="math">
+\[\begin{split}\varrho c\frac{\partial u}{\partial t} &amp;= k\frac{\partial^2 u}{\partial x^2}
++ f, &amp; x\in (0,L),\ t\in (0,T),\\
+u(x,0) &amp;= U_s, &amp; x\in [0,L],\\
+u(0,t) = u(L,t) &amp;= U_s, &amp; t\in (0,T].\end{split}\]</div>
+<p>Here, <span class="math">\(u\)</span> is the temperature, <span class="math">\(\varrho\)</span> the density of the material,
+<span class="math">\(c\)</span> a heat capacity, <span class="math">\(k\)</span> the heat conduction coefficient, <span class="math">\(f\)</span> is
+the heat source from the welding equipment, and <span class="math">\(U_s\)</span> is the
+initial constant (room) temperature in the material.</p>
+<p>A possible model for the heat source is a moving Gaussian function:</p>
+<div class="math">
+\[f = A\exp{\left(-\frac{1}{2}\left(\frac{x-vt}{\sigma}\right)^2\right)},\]</div>
+<p>where <span class="math">\(A\)</span> is the strength, <span class="math">\(\sigma\)</span> is a parameter governing how
+peak-shaped (or localized in space) the heat source is, and
+<span class="math">\(v\)</span> is the velocity (in positive <span class="math">\(x\)</span> direction) of the source.</p>
+<p><strong>a)</strong>
+Let <span class="math">\(x_c\)</span>, <span class="math">\(t_c\)</span>, <span class="math">\(u_c\)</span>, and <span class="math">\(f_c\)</span> be scales, i.e., characteristic
+sizes, of <span class="math">\(x\)</span>, <span class="math">\(t\)</span>, <span class="math">\(u\)</span>, and <span class="math">\(f\)</span>, respectively. The natural choice of
+<span class="math">\(x_c\)</span> and <span class="math">\(f_c\)</span> is <span class="math">\(L\)</span> and <span class="math">\(A\)</span>, since these make the scaled <span class="math">\(x\)</span> and
+<span class="math">\(f\)</span> in the interval <span class="math">\([0,1]\)</span>.  If each of the three terms in the PDE
+are equally important, we can find <span class="math">\(t_c\)</span> and <span class="math">\(u_c\)</span> by demanding that
+the coefficients in the scaled PDE are all equal to unity.  Perform
+this scaling. Use scaled quantities in the arguments for the
+exponential function in <span class="math">\(f\)</span> too and show that</p>
+<div class="math">
+\[\bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},\]</div>
+<p>where <span class="math">\(\beta\)</span> and <span class="math">\(\gamma\)</span> are dimensionless numbers. Give an
+interpretation of <span class="math">\(\beta\)</span> and <span class="math">\(\gamma\)</span>.</p>
+<p><strong>b)</strong>
+Argue that at least for large <span class="math">\(\gamma\)</span> we should base the time scale on the
+movement of the heat source. Using <span class="math">\(L\)</span> as length scale,
+show that this gives rise to the scaled
+PDE</p>
+<div class="math">
+\[\frac{\partial\bar u}{\partial\bar t} =
+\gamma^{-1}\frac{\partial^2\bar u}{\partial\bar x^2}
++ \bar f,\]</div>
+<p>and</p>
+<div class="math">
+\[\bar f = \exp{(-\frac{1}{2}\beta^2(\bar x - \bar t)^2)}{\thinspace .}\]</div>
+<p>Discuss when the scalings in a) and b) are appropriate.</p>
+<p><strong>c)</strong>
+For fast movement of the welding equipment, i.e., when heat transfer
+is less important than the local heating by the equipment, the
+typical length scale of the local heating is the size of the source,
+reflected by the <span class="math">\(\sigma\)</span> parameter. Modify the scaling in b) when
+<span class="math">\(\sigma\)</span> is chosen as length scale.</p>
+<p><strong>d)</strong>
+A fourth kind of possible scaling is to say that for small <span class="math">\(\gamma\)</span>,
+the problem is quasi-stationary and the heat transfer balances the
+heat source. Determine <span class="math">\(u_c\)</span> from this assumption. Use <span class="math">\(L\)</span> as length
+scale and a time scale as in b), i.e.,
+based on the movement of the welding equipment.</p>
+<p><strong>e)</strong>
+One aim with scaling is to get a solution that lies in the interval
+<span class="math">\([-1,1]\)</span>. This is not always the case when <span class="math">\(u_c\)</span> is based on a scale
+involving a source term, as we do in a)-c).  However, from the
+scaled PDE we realize that if we replace <span class="math">\(\bar f\)</span> with <span class="math">\(\delta\bar f\)</span>,
+where <span class="math">\(\delta\)</span> is a dimensionless factor, this corresponds to
+replacing <span class="math">\(u_c\)</span> by <span class="math">\(u_c/\delta\)</span>. So, if we observe that <span class="math">\(\bar
+u\sim1/\delta\)</span> in simulations, we can just replace <span class="math">\(\bar f\)</span> by <span class="math">\(\delta
+\bar f\)</span> in the scaled PDE.</p>
+<p>Use this trick and implement the four scaled models in a)-d). Reuse
+some software for the 1D diffusion equation.  Make a function
+<code class="docutils literal"><span class="pre">run(gamma,</span> <span class="pre">beta=10,</span> <span class="pre">delta=40,</span> <span class="pre">scaling=1,</span> <span class="pre">animate=False)</span></code> that runs an
+implementation of the unscaled model with the given <span class="math">\(\gamma\)</span>, <span class="math">\(\beta\)</span>,
+and <span class="math">\(\delta\)</span> parameters as well as an indicator <code class="docutils literal"><span class="pre">scaling</span></code> that is <code class="docutils literal"><span class="pre">'a'</span></code>,
+<code class="docutils literal"><span class="pre">'b'</span></code>, and so forth.  The
+last argument can be used to turn screen animations on or off.</p>
+<p>Perform experiments to find the proper value of <span class="math">\(\delta\)</span> for each <span class="math">\(\gamma\)</span>
+and for each scaling.</p>
+<p>Equip the <code class="docutils literal"><span class="pre">run</span></code> function with visualization, both animation of <span class="math">\(\bar u\)</span>
+and <span class="math">\(\bar f\)</span>, and plots with <span class="math">\(\bar u\)</span> and <span class="math">\(\bar f\)</span> for <span class="math">\(t=0.2\)</span> and <span class="math">\(t=0.5\)</span>.</p>
+<p><strong>Hint.</strong>
+Since the amplitudes of <span class="math">\(\bar u\)</span> and <span class="math">\(\bar f\)</span> differs by a factor <span class="math">\(\delta\)</span>,
+it is attractive to plot <span class="math">\(\bar f/\delta\)</span> together with <span class="math">\(\bar u\)</span>.</p>
+<p><strong>f)</strong>
+Use the software in e) to investigate <span class="math">\(\gamma=0.2,1,5,40\)</span> for the
+four scalings. Discuss the results.</p>
+<p>Filename: <code class="docutils literal"><span class="pre">welding</span></code>.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <center>
+            <p class="logo"><a href="http://cbc.simula.no/" title="Go to Center for Biomedical Computing">
+              <img class="logo" src="_static/cbc_logo.png" alt="Logo"/>
+            </a></p>
+            </center>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Basic partial differential equation models</a><ul>
+<li><a class="reference internal" href="#the-wave-equation">The wave equation</a><ul>
+<li><a class="reference internal" href="#homogeneous-dirichlet-conditions-in-1d">Homogeneous Dirichlet conditions in 1D</a></li>
+<li><a class="reference internal" href="#implementation-of-the-scaled-wave-equation">Implementation of the scaled wave equation</a><ul>
+<li><a class="reference internal" href="#waves-on-a-string">Waves on a string</a></li>
+<li><a class="reference internal" href="#detecting-an-already-computed-case">Detecting an already computed case</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#time-dependent-dirichlet-condition">Time-dependent Dirichlet condition</a><ul>
+<li><a class="reference internal" href="#scaling-5">Scaling</a></li>
+<li><a class="reference internal" href="#software-7">Software</a></li>
+<li><a class="reference internal" href="#specific-case">Specific case</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#velocity-initial-condition">Velocity initial condition</a><ul>
+<li><a class="reference internal" href="#analytical-insight-1">Analytical insight</a></li>
+<li><a class="reference internal" href="#scaling-6">Scaling</a></li>
+<li><a class="reference internal" href="#nonzero-initial-shape">Nonzero initial shape</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#variable-wave-velocity-and-forcing">Variable wave velocity and forcing</a><ul>
+<li><a class="reference internal" href="#non-dimensionalization">Non-dimensionalization</a></li>
+<li><a class="reference internal" href="#choosing-the-time-scale-1">Choosing the time scale</a></li>
+<li><a class="reference internal" href="#choosing-the-spatial-scale">Choosing the spatial scale</a></li>
+<li><a class="reference internal" href="#scaling-the-velocity-initial-condition">Scaling the velocity initial condition</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#damped-wave-equation">Damped wave equation</a></li>
+<li><a class="reference internal" href="#a-three-dimensional-wave-equation-problem">A three-dimensional wave equation problem</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-diffusion-equation">The diffusion equation</a><ul>
+<li><a class="reference internal" href="#homogeneous-1d-diffusion-equation">Homogeneous 1D diffusion equation</a><ul>
+<li><a class="reference internal" href="#choosing-the-time-scale-2">Choosing the time scale</a></li>
+<li><a class="reference internal" href="#analytical-insight-2">Analytical insight</a></li>
+<li><a class="reference internal" href="#choosing-other-scales">Choosing other scales</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#generalized-diffusion-pde">Generalized diffusion PDE</a></li>
+<li><a class="reference internal" href="#jump-boundary-condition">Jump boundary condition</a></li>
+<li><a class="reference internal" href="#oscillating-dirichlet-condition">Oscillating Dirichlet condition</a><ul>
+<li><a class="reference internal" href="#scaling-issues">Scaling issues</a></li>
+<li><a class="reference internal" href="#exact-solution-4">Exact solution</a></li>
+<li><a class="reference internal" href="#time-and-length-scales">Time and length scales</a></li>
+<li><a class="reference internal" href="#the-scaled-problem">The scaled problem</a></li>
+<li><a class="reference internal" href="#simulations">Simulations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reaction-diffusion-equations">Reaction-diffusion equations</a><ul>
+<li><a class="reference internal" href="#fisher-s-equation">Fisher&#8217;s equation</a><ul>
+<li><a class="reference internal" href="#balance-of-all-terms">Balance of all terms</a></li>
+<li><a class="reference internal" href="#fixed-length-scale">Fixed length scale</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#nonlinear-reaction-diffusion-pde">Nonlinear reaction-diffusion PDE</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-convection-diffusion-equation">The convection-diffusion equation</a><ul>
+<li><a class="reference internal" href="#convection-diffusion-without-a-force-term">Convection-diffusion without a force term</a></li>
+<li><a class="reference internal" href="#stationary-pde">Stationary PDE</a></li>
+<li><a class="reference internal" href="#convection-diffusion-with-a-source-term">Convection-diffusion with a source term</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exercises-2">Exercises</a><ul>
+<li><a class="reference internal" href="#problem-3-1-stationary-couette-flow">Problem 3.1: Stationary Couette flow</a><ul>
+<li><a class="reference internal" href="#remarks-3">Remarks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#exercise-3-2-couette-poiseuille-flow">Exercise 3.2: Couette-Poiseuille flow</a></li>
+<li><a class="reference internal" href="#exercise-3-3-pulsatile-pipeflow">Exercise 3.3: Pulsatile pipeflow</a></li>
+<li><a class="reference internal" href="#exercise-3-4-the-linear-cable-equation">Exercise 3.4: The linear cable equation</a></li>
+<li><a class="reference internal" href="#exercise-3-5-heat-conduction-with-discontinuous-initial-condition">Exercise 3.5: Heat conduction with discontinuous initial condition</a><ul>
+<li><a class="reference internal" href="#remarks-4">Remarks</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#problem-3-6-scaling-a-welding-problem">Problem 3.6: Scaling a welding problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="._book003.html"
+                        title="previous chapter">Ordinary differential equation models</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="._book005.html"
+                        title="next chapter">Advanced partial differential equation models</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/._book004.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="._book005.html" title="Advanced partial differential equation models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="._book003.html" title="Ordinary differential equation models"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Scaling of Differential Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="wrapper">
+  <div class="footer">
+    <a href="http://cbc.simula.no"><img src="_static/cbc_banner.png" width="100%"><a>
+    <br />
+    <br />
+      &copy;2016, Hans Petter Langtangen, Geir K. Pedersen. Released under CC Attribution 4.0 license.
+  </div>
+</div>
+
+  </body>
+</html>

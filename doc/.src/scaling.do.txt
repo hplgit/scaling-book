@@ -8730,7 +8730,7 @@ centrifugal force, or similar).
 We introduce dimensionless variables:
 
 !bt
-\[ \bar\u = u_c^{-1}\u,\quad \bar x = \frac{x}{L}
+\[ \bar{\u} = u_c^{-1}\u,\quad \bar x = \frac{x}{L}
 \quad \bar y = \frac{y}{L}
 \quad \bar z = \frac{z}{L},
 \quad \bar t = \frac{f}{t_c}\tp\]
@@ -8754,7 +8754,7 @@ the functions:
 Finally, we scale $\f$ too (if not constant):
 
 !bt
-\[ \bar\f = f_c^{-1}\f,\quad f_c = \max_{x,y,z,t}||\f||\tp\]
+\[ \bar{\f} = f_c^{-1}\f,\quad f_c = \max_{x,y,z,t}||\f||\tp\]
 !et
 
 Inserting the dimensionless quantities in the governing vector PDE results in
@@ -8762,24 +8762,24 @@ Inserting the dimensionless quantities in the governing vector PDE results in
 !bt
 \[
 \frac{\varrho_c u_c}{t_c^2}
-\frac{\partial^2\bar \u}{\partial \bar t^2} =
-L^{-2}u_c\bar \nabla ((\lambda_c\bar\lambda +
-\mu_c\bar\mu)\bar \nabla\cdot\bar \u) +
-L^{-2}u_c\mu_c\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\varrho_cf_c\bar\varrho\bar\f\tp
+\frac{\partial^2\bar{\u}}{\partial\bar{t}^2} =
+L^{-2}u_c\bar{\nabla} ((\lambda_c\bar{\lambda} +
+\mu_c\bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
+L^{-2}u_c\mu_c\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\varrho_cf_c\bar{\varrho}\bar{\f}\tp
 \]
 !et
 Making the terms non-dimensional gives the equation
 
 !bt
 \begin{equation}
-\bar\varrho\frac{\partial^2\bar \u}{\partial \bar t^2} =
+\bar{\varrho}\frac{\partial^2\bar{\u}}{\partial \bar{t}^2} =
 \frac{t_c^2\lambda_c}{L^2\varrho_c}
-\bar \nabla (\bar\lambda\bar\nabla\cdot\bar u) +
+\bar{\nabla} (\bar{\lambda}\bar{\nabla}\cdot\bar{\u}) +
 \frac{t_c^2\mu_c}{L^2\varrho_c}
-\bar\nabla(\bar\mu \bar\nabla\cdot\bar \u) +
-\frac{t_c^2\mu_c}{L^2\varrho_c}\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\frac{t_c^2f_c}{u_c}\bar\varrho\bar\f\tp
+\bar{\nabla}(\bar{\mu}\bar{\nabla}\cdot\bar{\u}) +
+\frac{t_c^2\mu_c}{L^2\varrho_c}\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\frac{t_c^2f_c}{u_c}\bar{\varrho}\bar{\f}\tp
 \end{equation}
 !et
 We may choose $t_c$ to make the coefficient in front of any of the spatial
@@ -8789,7 +8789,7 @@ derivative terms equal unity. Here we choose the $\mu$ term, which implies
 \[ t_c = L\sqrt{\frac{\varrho_c}{\mu_c}}\tp\]
 !et
 The scale for $\u$ can be chosen from an initial displacement or by
-making the coefficient in front of the $\bar\f$ term unity. The latter
+making the coefficient in front of the $\bar{\f}$ term unity. The latter
 means
 
 !bt
@@ -8802,10 +8802,10 @@ The resulting dimensionless PDE becomes
 
 !bt
 \begin{equation}
-\bar\varrho\frac{\partial^2\bar \u}{\partial \bar t^2} =
-\bar \nabla ((\beta\bar\lambda + \bar\mu)\bar\nabla\cdot\bar u) +
-\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\bar\varrho\bar\f\tp
+\bar{\varrho}\frac{\partial^2\bar{\u}}{\partial \bar{t}^2} =
+\bar{\nabla} ((\beta\bar{\lambda} + \bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\bar{\varrho}\bar{\f}\tp
 \end{equation}
 !et
 The only dimensionless parameter is
@@ -8839,10 +8839,10 @@ relation gives
 
 !bt
 \begin{align*}
-\stress &= \lambda_cu_cL^{-2}\bar\lambda\bar\nabla\cdot\bar\u
-+ \mu_cu_cL^{-1}\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\\
-&= \mu_c u_cL^{-1}\left(\beta\bar\lambda\bar\nabla\cdot\bar\u +
-\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\right)\tp
+\stress &= \lambda_cu_cL^{-2}\bar{\lambda}\bar{\nabla}\cdot\bar{\u}
++ \mu_cu_cL^{-1}\bar{\mu}(\bar{\nabla}\bar{\u} + (\bar{\nabla}\bar{\u})^T)\\
+&= \mu_c u_cL^{-1}\left(\beta\bar{\lambda}\bar{\nabla}\cdot\bar{\u} +
+\bar{\mu}(\bar{\nabla}\bar{\u} + (\bar{\nabla}\bar{\u})^T)\right)\tp
 \end{align*}
 !et
 The coefficient on the right-hand side, $\mu_c u_cL^{-1}$, has dimension
@@ -8853,15 +8853,15 @@ The quantity $\mu_c u_cL^{-1}$ is therefore the natural scale of the
 stress tensor:
 
 !bt
-\[ \bar\stress = \frac{\stress}{\sigma_c},\quad \sigma_c = \mu_c u_c L^{-1},\]
+\[ \bar{\stress} = \frac{\stress}{\sigma_c},\quad \sigma_c = \mu_c u_c L^{-1},\]
 !et
 and we have the dimensionless stress-displacement relation
 
 !bt
 \begin{equation}
-\bar\stress =
-\beta\bar\lambda\bar\nabla\cdot\bar\u +
-\bar\mu(\bar\nabla\bar\u + (\bar\nabla\bar\u)^T)\tp
+\bar{\stress} =
+\beta\bar{\lambda}\bar{\nabla}\cdot\bar{\u} +
+\bar{\mu}(\bar{\nabla}\bar{\u} + (\bar{\nabla}\bar{\u})^T)\tp
 \end{equation}
 !et
 
@@ -8965,11 +8965,11 @@ choose $t_c=1/\omega$.  The scaling now leads to
 !bt
 \[
 \gamma
-\frac{\partial^2\bar \u}{\partial \bar t^2} =
-\bar \nabla ((\beta\bar\lambda +
-\bar\mu)\bar \nabla\cdot\bar \u) +
-\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\bar\varrho\bar\f\tp
+\frac{\partial^2\bar{\u}}{\partial \bar{t}^2} =
+\bar{\nabla} ((\beta\bar{\lambda} +
+\bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\bar{\varrho}\bar{\f}\tp
 \]
 !et
 where we have set
@@ -9011,10 +9011,10 @@ scaling is just inserting the dimensionless variables:
 !bt
 \[
 0 =
-L^{-2}u_c\bar \nabla ((\lambda_c\bar\lambda +
-\mu_c\bar\mu)\bar \nabla\cdot\bar \u) +
-L^{-2}u_c\mu_c\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\varrho_cf_c\bar\varrho\bar\f\tp
+L^{-2}u_c\bar{\nabla} ((\lambda_c\bar{\lambda} +
+\mu_c\bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
+L^{-2}u_c\mu_c\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\varrho_cf_c\bar{\varrho}\bar{\f}\tp
 \]
 !et
 Dividing by $L^2u_c\mu_c$ gives
@@ -9022,20 +9022,20 @@ Dividing by $L^2u_c\mu_c$ gives
 !bt
 \[
 0 =
-\bar \nabla ((\beta\bar\lambda +
-\bar\mu)\bar \nabla\cdot\bar \u) +
-\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\frac{L^2\varrho_cf_c}{u_c\mu_c}\bar\varrho\bar\f\tp
+\bar{\nabla} ((\beta\bar{\lambda} +
+\bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\frac{L^2\varrho_cf_c}{u_c\mu_c}\bar{\varrho}\bar{\f}\tp
 \]
 !et
 Choosing $u_c = \varrho L^2f_c/\mu_c$ leads to
 
 !bt
 \begin{equation}
-\bar \nabla ((\beta\bar\lambda +
-\bar\mu)\bar \nabla\cdot\bar \u) +
-\bar \nabla\cdot(\bar \mu\bar \nabla\bar \u) +
-\bar\varrho\bar\f = 0\tp
+\bar{\nabla} ((\beta\bar\{lambda} +
+\bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
+\bar\varrho\bar{\f} = 0\tp
 \end{equation}
 !et
 
@@ -9045,9 +9045,9 @@ $\varrho_c=\varrho$, $\bar\varrho=\bar\lambda=\bar\mu=1$):
 
 !bt
 \begin{equation}
-(1+\beta)\bar \nabla(\bar \nabla\cdot\bar \u) +
-\bar \nabla^2\bar \u) +
-\bar\f = 0\tp
+(1+\beta)\bar{\nabla}(\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}^2\bar{\u}) +
+\bar{\f} = 0\tp
 \end{equation}
 !et
 Now $\beta$ is defined as
@@ -9090,14 +9090,14 @@ $\U_0$ as boundary condition. With $u_c=\varrho L^2f_c/\mu$, we get
 the dimensionless condition
 
 !bt
-\[ \bar\u = \frac{\U_0}{u_c} = \frac{\mu \U_0}{\varrho L^2f_c}\tp\]
+\[ \bar{\u} = \frac{\U_0}{u_c} = \frac{\mu \U_0}{\varrho L^2f_c}\tp\]
 !et
 In the absence of body forces, the expression for $u_c$ has no
 meaning ($f_c=0$), so then $u_c = |\U_0|$ is a better choice.
 This gives the dimensionless boundary condition
 
 !bt
-\[ \bar u = \frac{\U_0}{|\U_0|},\]
+\[ \bar{u} = \frac{\U_0}{|\U_0|},\]
 !et
 which is the unit vector in the direction of $\U_0$. The new $u_c$
 changes the coefficient in front of the body force term, if that term
@@ -9121,11 +9121,11 @@ $\sigma_c = \mu u_c/L$, but we may alternatively use $|\bm{T}_0|$
 as stress scale. In that case,
 
 !bt
-\[ \bar\stress\cdot\normalvec = \frac{\bm{T}_0}{|\bm{T}_0|},\]
+\[ \bar{\stress}\cdot\normalvec = \frac{\bm{T}_0}{|\bm{T}_0|},\]
 !et
 which is a unit vector in the direction of $\bm{T}_0$.
 Many applications involve large traction free areas on the boundary, on
-which we simply have $\bar\stress\cdot\normalvec = 0$.
+which we simply have $\bar{\stress}\cdot\normalvec = 0$.
 
 
 ===== Quasi-static thermo-elasticity =====
@@ -9158,9 +9158,9 @@ from a temperature level $T_0$ to some level $T_0 +\Delta T$.
 A suitable scaling for $T$ is therefore
 
 !bt
-\[ \bar T = \frac{T-T_0}{\Delta T},\]
+\[ \bar{T} = \frac{T-T_0}{\Delta T},\]
 !et
-so that $\bar T\in [0,1]$. The elasticity equation has already been scaled
+so that $\bar{T}\in [0,1]$. The elasticity equation has already been scaled
 and so has the diffusion equation for $T$. We base the time scale on
 the diffusion, i.e., the thermal conduction process:
 
@@ -9172,14 +9172,16 @@ The dimensionless PDE system then becomes
 
 !bt
 \begin{align}
-\bar \nabla((1+\beta)\bar\mu\bar\nabla\cdot\bar\u) + \bar\nabla\cdot(\bar\mu\bar\nabla\bar\u) &= \bar\nabla\bar T
--\epsilon\bar\varrho\bar\f,\\
-\frac{\partial \bar T}{\partial \bar t} &= \bar \nabla\cdot(\bar\kappa\bar\nabla\bar T)\tp
+\bar{\nabla}((1+\beta)\bar{\mu}\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) &= \bar{\nabla}\bar{T}
+-\epsilon\bar{\varrho}\bar{\f},\\
+\frac{\partial\bar{T}}{\partial\bar{t}} &=
+\bar{\nabla}\cdot(\bar{\kappa}\bar{\nabla}\bar{T})\tp
 \end{align}
 !et
 Here we have chosen $u_c$ such that
 the ``heating source term'' has a unit coefficient, acknowledging that
-this thermal expansion balances the stress terms with $\bar\u$. The
+this thermal expansion balances the stress terms with $\bar{\u}$. The
 corresponding displacement scale is
 
 !bt
@@ -9198,8 +9200,9 @@ is common. The PDE system reduces in this case to
 
 !bt
 \begin{align}
-\bar \nabla((1+\beta)\bar\nabla\cdot\bar\u) + \bar\nabla^2\bar\u) &= \bar\nabla\bar T -\epsilon\bar\f,\\
-\frac{\partial \bar T}{\partial \bar t} &= \bar \nabla^2\bar T\tp
+\bar{\nabla}((1+\beta)\bar{\nabla}\cdot\bar{\u}) +
+\bar{\nabla}^2\bar{\u}) &= \bar{\nabla}\bar{T} -\epsilon\bar{\f},\\
+\frac{\partial\bar{T}}{\partial\bar{t}} &= \bar{\nabla}^2\bar{T}\tp
 \end{align}
 !et
 In the absence of body forces, $\beta$ is again the key parameter.
@@ -9248,9 +9251,9 @@ We start, as usual, by introducing a notation for
 dimensionless independent and dependent variables:
 
 !bt
-\[ \bar x = \frac{x}{L},\quad \bar y = \frac{y}{L},\quad
-\bar z= \frac{z}{L},\quad \bar t = \frac{t}{t_c},\quad
-\bar\u = \frac{\u}{u_c},\quad \bar p = \frac{p}{p_c},\]
+\[ \bar{x} = \frac{x}{L},\quad \bar{y} = \frac{y}{L},\quad
+\bar{z}= \frac{z}{L},\quad \bar{t} = \frac{t}{t_c},\quad
+\bar{\u} = \frac{\u}{u_c},\quad \bar{p} = \frac{p}{p_c},\]
 !et
 where $L$ is some characteristic distance,
 $t_c$ is some characteristic time, $u_c$ is a characteristic
@@ -9259,10 +9262,10 @@ Inserted in the equations,
 
 !bt
 \begin{align}
-\varrho\left(\frac{u_c}{t_c}\frac{\partial \bar\u}{\partial \bar t} + \frac{u_c^2}{L}\bar\u\cdot\bar\nabla\bar\u\right)
-&= -\frac{p_c}{L}\bar\nabla\bar p + \frac{u_c}{L^2}\mu\bar \nabla^2\bar\u,
+\varrho\left(\frac{u_c}{t_c}\frac{\partial \bar{\u}}{\partial \bar t} + \frac{u_c^2}{L}\bar{\u}\cdot\bar\nabla\bar{\u}\right)
+&= -\frac{p_c}{L}\bar\nabla\bar p + \frac{u_c}{L^2}\mu\bar \nabla^2\bar{\u},
 label{scale:fluid:NS:eq:momentum_d0}\\
-\frac{u_c}{L}\bar\nabla\cdot\bar\u & = 0\tp
+\frac{u_c}{L}\bar\nabla\cdot\bar{\u} & = 0\tp
 label{scale:fluid:NS:eq:cont_d0}
 \end{align}
 !et
@@ -9330,11 +9333,11 @@ The discussions so far result in the following dimensionless form of
 
 !bt
 \begin{align}
-\frac{\partial \bar\u}{\partial \bar t} +
-\bar\u\cdot\bar\nabla\bar\u
-&= -\bar\nabla\bar p + \hbox{Re}^{-1}\bar\nabla^2\bar\u,
+\frac{\partial \bar{\u}}{\partial \bar t} +
+\bar{\u}\cdot\bar\nabla\bar{\u}
+&= -\bar\nabla\bar p + \hbox{Re}^{-1}\bar\nabla^2\bar{\u},
 label{scale:fluid:NS:eq:momentum_d1}\\
-\bar\nabla\cdot \bar\u &= 0,
+\bar\nabla\cdot \bar{\u} &= 0,
 \end{align}
 !et
 where Re is the famous *Reynolds number*,
@@ -9372,25 +9375,25 @@ is much smaller
 than the viscosity term $\mu\nabla^2\u$, i.e., the Reynolds number
 is small, the viscosity term is dominating. However,
 if the scaling is right, the other terms are of order unity, and
-$\hbox{Re}^{-1}\nabla^2\bar\u$ must then also be of unit size. This fact
-implies that $\nabla^2\bar\u$ must be small, but then the scaling is
+$\hbox{Re}^{-1}\nabla^2\bar{\u}$ must then also be of unit size. This fact
+implies that $\nabla^2\bar{\u}$ must be small, but then the scaling is
 not right (since a right scaling will lead to $\bar u$ and its derivatives
 around unity). Such reasoning around inconsistent size of terms clearly points
 to the need for other scales.
 
 In the low-Reynolds number regime, the diffusion effect
-of $\nabla^2\bar\u$ is dominating, and we should use a time scale
+of $\nabla^2\bar{\u}$ is dominating, and we should use a time scale
 based on diffusion rather than convection. Such a time scale is
 $t_c = L^2/(\mu/\varrho) = L^2/\nu$.
 With this time scale, the dimensionless Navier-Stokes equations look like
 
 !bt
 \begin{align}
-\frac{\partial \bar\u}{\partial \bar t} +
-\hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u
-&= -\bar\nabla p + \bar\nabla^2\bar\u,
+\frac{\partial \bar{\u}}{\partial \bar t} +
+\hbox{Re}\,\bar{\u}\cdot\bar\nabla\bar{\u}
+&= -\bar\nabla p + \bar\nabla^2\bar{\u},
 label{scale:fluid:NS:eq:momentum_d2}\\
-\bar\nabla\cdot\bar\u &= 0\tp
+\bar\nabla\cdot\bar{\u} &= 0\tp
 \end{align}
 !et
 As stated in the box in Section ref{scale:convdiff}, (ref{scale:fluid:NS:eq:momentum_d2}) is the appropriate PDE for very low Reynolds number flow and
@@ -9401,9 +9404,9 @@ flow:
 
 !bt
 \begin{align}
--\bar\nabla p + \bar\nabla^2\bar\u &= 0,
+-\bar\nabla p + \bar\nabla^2\bar{\u} &= 0,
 label{scale:fluid:NS:eq:momentum_d3}\\
-\bar\nabla\cdot\bar\u &= 0\tp
+\bar\nabla\cdot\bar{\u} &= 0\tp
 \end{align}
 !et
 This flow regime is also known as *Stokes' flow* or *creeping flow*.
@@ -9422,9 +9425,9 @@ time scale, and $\mu U/L$ as pressure scale, results in
 
 !bt
 \begin{equation}
-\hbox{Re}\left(\frac{\partial \bar\u}{\partial \bar t} +
-\bar\u\cdot\bar\nabla\bar\u\right)
-= -\bar\nabla\bar p + \bar\nabla^2\bar\u\tp
+\hbox{Re}\left(\frac{\partial \bar{\u}}{\partial \bar t} +
+\bar{\u}\cdot\bar\nabla\bar{\u}\right)
+= -\bar\nabla\bar p + \bar\nabla^2\bar{\u}\tp
 \end{equation}
 !et
 Low Reynolds number flow now suggests neglecting both acceleration terms.
@@ -9477,14 +9480,14 @@ boundary $x=\hbox{const}$, takes the specific form
 The dimensionless counterpart becomes
 
 !bt
-\[ U\bar\u = U\sin(\omega \frac{L}{U}\bar t)\ii,\]
+\[ U\bar{\u} = U\sin(\omega \frac{L}{U}\bar t)\ii,\]
 !et
 if $t_c=L/U$ is the appropriate time scale. This condition can be
 written
 
 !bt
 \begin{equation}
-\bar\u = \sin(\hbox{St}\,\bar t),
+\bar{\u} = \sin(\hbox{St}\,\bar t),
 \end{equation}
 !et
 where St is the *Strouhal number*,
@@ -9581,7 +9584,7 @@ dimensionless quantities in the equations:
 \begin{align*}
 u_c\bar w &= \frac{L}{t_c}
 \frac{\partial\bar\eta}{\partial\bar t} +
-u_c\bar\u\cdot\bar\nabla\bar\eta,\\
+u_c\bar{\u}\cdot\bar\nabla\bar\eta,\\
 p_c \bar p &\approx
 -\frac{1}{L}\sigma\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
 \frac{\partial^2\bar\eta}{\partial \bar y^2}\right)\tp
@@ -9595,7 +9598,7 @@ Using $u_c=U$, $t_c=L/U$, and $p_c = \varrho U^2$, results in
 !bt
 \begin{align}
 \bar w &= \frac{\partial\bar\eta}{\partial\bar t} +
-\bar\u\cdot\bar\nabla\bar\eta,\\
+\bar{\u}\cdot\bar\nabla\bar\eta,\\
 \bar p &\approx
 - \hbox{We}^{-1}\left(\frac{\partial^2\bar\eta}{\partial \bar x^2} +
 \frac{\partial^2\bar\eta}{\partial \bar y^2}\right),
@@ -9671,7 +9674,7 @@ Dimensionless parameters are introduced as follows:
 !bt
 \[ \bar x = \frac{x}{L},
 \ t_c = \frac{L}{U},\
-\bar\u = \frac{\u}{U},\ \bar p = \frac{p}{\varrho_0 U^2},\
+\bar{\u} = \frac{\u}{U},\ \bar p = \frac{p}{\varrho_0 U^2},\
 \bar T = \frac{T-T_0}{T_c}\tp\]
 !et
 Other coordinates are also scaled by $L$.
@@ -9684,16 +9687,16 @@ Inserted in the equations, we get
 
 !bt
 \begin{align*}
-\varrho_0\frac{U^2}{L}\frac{\partial \bar\u}{\partial \bar t} +
-\varrho_0\frac{U^2}{L}\bar \u\cdot\bar \nabla\bar\u
+\varrho_0\frac{U^2}{L}\frac{\partial \bar{\u}}{\partial \bar t} +
+\varrho_0\frac{U^2}{L}\bar{\u}\cdot\bar \nabla\bar{\u}
 &= -\frac{\varrho_0 U^2}{L}\bar\nabla \bar p + \frac{\mu U}{L^2}
-\bar \nabla^2\bar \u,
+\bar \nabla^2\bar{\u},
 \\
-\frac{U}{L}\bar\nabla\cdot\bar\u & = 0,
+\frac{U}{L}\bar\nabla\cdot\bar{\u} & = 0,
 \\
 \varrho_0 c\left(\frac{T_c U}{L}
 \frac{\partial \bar T}{\partial \bar t} +
-\frac{UT_c}{L}\bar\u\cdot\bar\nabla \bar T\right)
+\frac{UT_c}{L}\bar{\u}\cdot\bar\nabla \bar T\right)
 &= \frac{\kappa T_c}{L^2}
 \bar \nabla^2 \bar T \tp
 \end{align*}
@@ -9702,16 +9705,16 @@ Making each term in each equation dimensionless reduces the system to
 
 !bt
 \begin{align}
-\frac{\partial \bar\u}{\partial \bar t} +
-\bar \u\cdot\bar \nabla\bar\u
-&= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u,
+\frac{\partial \bar{\u}}{\partial\bar{t}} +
+\bar{\u}\cdot\bar{\nabla}\bar{\u}
+&= -\bar{\nabla}\bar{p} + \hbox{Re}^{-1}\bar{\nabla}^2\bar{\u},
 label{scale:fluid:forced_convection:eq:momentum_TB0}\\
-\bar\nabla\cdot\bar\u & = 0,
+\bar{\nabla}\cdot\bar{\u} & = 0,
 label{scale:fluid:forced_convection:eq:cont_TB0}\\
-\frac{\partial \bar T}{\partial \bar t} +
-\bar\u\cdot\bar\nabla \bar T
+\frac{\partial\bar{T}}{\partial\bar{t}} +
+\bar{\u}\cdot\bar{\nabla}\bar{T}
 &= \hbox{Pe}^{-1}
-\bar \nabla^2 \bar T\tp
+\bar{\nabla}^2\bar{T}\tp
 label{scale:fluid:forced_convection:eq:energy_TB0}
 \end{align}
 !et
@@ -9763,7 +9766,8 @@ by temperature differences and the fact that hot fluid rises while
 cold fluid falls.
 
 For a slightly compressible gas flow a term $-p\nabla\cdot\u$ may be
-needed in (ref{scale:fluid:free_convection:eq:energy_T}.
+needed in
+(ref{scale:fluid:free_convection:eq:energy_T}).
 
 === Heating by viscous effects ===
 
@@ -9841,7 +9845,7 @@ Dimensionless variables are introduced as
 
 !bt
 \[ \bar x = \frac{x}{L},\ \ t_c = \frac{L}{U},\
-\bar\u = \frac{\u}{U},\ \bar p = \frac{p}{\varrho U^2},\
+\bar{\u} = \frac{\u}{U},\ \bar p = \frac{p}{\varrho U^2},\
 \bar T = \frac{T-T_0}{\Delta T}\tp\]
 !et
 The dimensionless $y$ and $z$ coordinates also make use of $L$ as scale.
@@ -9857,16 +9861,16 @@ results in
 
 !bt
 \begin{align*}
-\varrho_0\frac{U^2}{L}\frac{\partial \bar\u}{\partial \bar t} +
-\varrho_0\frac{U^2}{L}\bar \u\cdot\bar \nabla\bar\u
+\varrho_0\frac{U^2}{L}\frac{\partial \bar{\u}}{\partial \bar t} +
+\varrho_0\frac{U^2}{L}\bar{\u}\cdot\bar \nabla\bar{\u}
 &= -\frac{p_c}{L}\bar\nabla \bar p + \frac{\mu U}{L^2}
-\bar \nabla^2\bar \u - \varrho_0g\kk + \varrho_0\beta T_c\bar T g\kk,
+\bar \nabla^2\bar{\u} - \varrho_0g\kk + \varrho_0\beta T_c\bar T g\kk,
 \\
-\frac{U}{L}\bar\nabla\cdot\bar\u & = 0,
+\frac{U}{L}\bar\nabla\cdot\bar{\u} & = 0,
 \\
 \varrho_0 c\left(\frac{T_c U}{L}
 \frac{\partial \bar T}{\partial \bar t} +
-\frac{UT_c}{L}\bar\u\cdot\bar\nabla \bar T\right)
+\frac{UT_c}{L}\bar{\u}\cdot\bar\nabla \bar T\right)
 &= \frac{\kappa T_c}{L^2}
 \bar \nabla^2 \bar T + 2\frac{\mu U}{L}
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
@@ -9876,15 +9880,15 @@ These equations reduce to
 
 !bt
 \begin{align}
-\frac{\partial \bar\u}{\partial \bar t} +
-\bar \u\cdot\bar \nabla\bar\u
-&= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u
+\frac{\partial \bar{\u}}{\partial \bar t} +
+\bar{\u}\cdot\bar \nabla\bar{\u}
+&= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar{\u}
 - \hbox{Fr}^{-2}\kk  + \gamma \bar T\kk,
 label{scale:fluid:free_convection:eq:momentum_TB0}\\
-\bar\nabla\cdot\bar\u & = 0,
+\bar\nabla\cdot\bar{\u} & = 0,
 label{scale:fluid:free_convection:eq:cont_TB0}\\
 \frac{\partial \bar T}{\partial \bar t} +
-\bar\u\cdot\bar\nabla \bar T
+\bar{\u}\cdot\bar\nabla \bar T
 &= \hbox{Pe}^{-1}\bar \nabla^2 \bar T + 2\delta
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
 label{scale:fluid:free_convection:eq:energy_TB0}
@@ -10023,15 +10027,15 @@ system becomes
 
 !bt
 \begin{align}
-\frac{\partial \bar\u}{\partial \bar t} +
-\bar \u\cdot\bar \nabla\bar\u
-&= -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar \u
+\frac{\partial \bar{\u}}{\partial \bar t} +
+\bar{\u}\cdot\bar \nabla\bar{\u}
+&= -\bar\nabla \bar p + \hbox{Gr}^{-1/2}\bar \nabla^2\bar{\u}
 - \hbox{Fr}^{-2}\kk  + \bar T \kk,
 label{scale:fluid:free_convection:eq:momentum_TB1}\\
-\bar\nabla\cdot\bar\u & = 0,
+\bar\nabla\cdot\bar{\u} & = 0,
 label{scale:fluid:free_convection:eq:cont_TB1}\\
 \hbox{Gr}^{1/2}\left(\frac{\partial \bar T}{\partial \bar t} +
-\bar\u\cdot\bar\nabla \bar T\right)
+\bar{\u}\cdot\bar\nabla \bar T\right)
 &= \hbox{Pr}^{-1}
 \bar \nabla^2 \bar T + 2\hbox{Ec}\hbox{Gr}^{-1/2}
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
@@ -10123,15 +10127,15 @@ Using these three numbers in the equations, we end up with
 
 !bt
 \begin{align}
-\frac{\partial \bar\u}{\partial \bar t} +
-\bar \u\cdot\bar \nabla\bar\u
-&= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar \u
+\frac{\partial \bar{\u}}{\partial \bar t} +
+\bar{\u}\cdot\bar \nabla\bar{\u}
+&= -\bar\nabla \bar p + \hbox{Re}^{-1}\bar \nabla^2\bar{\u}
 - \hbox{Fr}^{-2}\kk  + \hbox{Gr}\hbox{Re}^{-2} \bar T\kk,
 label{scale:fluid:free_convection:eq:momentum_TB2}\\
-\bar\nabla\cdot\bar\u & = 0,
+\bar\nabla\cdot\bar{\u} & = 0,
 label{scale:fluid:free_convection:eq:cont_TB2}\\
 \frac{\partial \bar T}{\partial \bar t} +
-\bar\u\cdot\bar\nabla \bar T
+\bar{\u}\cdot\bar\nabla \bar T
 &= \hbox{Pr}^{-1}\hbox{Re}^{-1}
 \bar \nabla^2 \bar T + 2\hbox{Ec}\hbox{Re}^{-1}
 \bar\varepsilon_{ij}\bar\varepsilon_{ij}\tp
@@ -10313,17 +10317,23 @@ We introduce dimensionless independent variables,
 and dimensionless dependent variables,
 
 !bt
-\[ \bar\u = \frac{\u}{U},\quad\bar\varrho = \frac{\varrho}{\varrho_c},
+\[ \bar{\u} = \frac{\u}{U},\quad\bar\varrho = \frac{\varrho}{\varrho_c},
 \quad\bar p = \frac{p}{p_c},\quad \bar E= \frac{E}{E_c}\tp\]
 !et
 Inserting these expressions in the governing equations gives
 
 !bt
 \begin{align*}
-\frac{\partial\bar\varrho}{\partial\bar t} + \frac{t_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\
-\frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} + \frac{t_cU}{L}\bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &= -\frac{t_cp_c}{UL\varrho_c}\nabla\bar p + \frac{t_c f_c}{U}\bar\varrho \bar\f,\\
-\frac{\partial\bar E}{\partial\bar t} + \frac{t_c U}{LE_c }\bar\nabla\cdot(\bar\u(E_c\bar E+p_c\bar p)) &= 0,\\
-\bar p & = \frac{R}{c_v p_c}(E_c\bar E - \half\varrho_cu_c\bar\varrho\bar\u\cdot\bar\u)\tp
+\frac{\partial\bar{\varrho}}{\partial\bar{t}} +
+\frac{t_c U}{L}\bar{\nabla}\cdot(\bar{\varrho}\bar{\u}) &= 0,\\
+\frac{\partial(\bar{\varrho}\bar{\u})}{\partial\bar{t}} +
+\frac{t_cU}{L}\bar{\nabla}\cdot(\bar{\varrho}\bar{\u}\bar{\u}^T) &=-
+\frac{t_cp_c}{UL\varrho_c}\nabla\bar{p} + \frac{t_c f_c}{U}\bar{\varrho}
+\bar{\f},\\
+\frac{\partial\bar E}{\partial\bar{t}} +
+\frac{t_c U}{LE_c }\bar{\nabla}\cdot(\bar{\u}(E_c\bar{E}+p_c\bar{p})) &= 0,\\
+\bar{p} & = \frac{R}{c_v p_c}(E_c\bar{E} -
+\half\varrho_cu_c\bar{\varrho}\bar{\u}\cdot\bar{\u})\tp
 \end{align*}
 !et
 A natural choice of time scale is $t_c=L/U$. A common choice of
@@ -10333,12 +10343,12 @@ we choose $E_c=p_c=\varrho_c U^2$. With these scales we get
 !bt
 \begin{align*}
 \frac{\partial\bar\varrho}{\partial\bar t} +
-\bar\nabla\cdot(\bar\varrho\bar\u) &= 0,\\
-\frac{\partial(\bar\varrho\bar\u)}{\partial\bar t} +
-\bar\nabla\cdot(\bar\varrho\bar\u\bar\u^T) &=
--\nabla\bar p + \alpha\bar\varrho \bar\f,\\
+\bar\nabla\cdot(\bar\varrho\bar{\u}) &= 0,\\
+\frac{\partial(\bar\varrho\bar{\u})}{\partial\bar t} +
+\bar\nabla\cdot(\bar\varrho\bar{\u}\bar{\u}^T) &=
+-\nabla\bar p + \alpha\bar\varrho \bar{\f},\\
 \frac{\partial\bar E}{\partial\bar t} +
-\bar\nabla\cdot(\bar\u(\bar E+ \bar p)) &= 0,\\
+\bar\nabla\cdot(\bar{\u}(\bar E+ \bar p)) &= 0,\\
 \bar p & = \frac{R}{c_v}(\bar E - \half\bar\varrho\bar u\cdot\bar u),
 \end{align*}
 !et
@@ -10415,7 +10425,7 @@ Space and time are scaled in the usual way as
 The scaled dependent variables are
 
 !bt
-\[ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar\u = \frac{\u}{U}\tp\]
+\[ \bar\varrho = \frac{\varrho}{\varrho_c},\quad \bar{\u} = \frac{\u}{U}\tp\]
 !et
 Then $F'(\varrho)=c_0^2\bar\varrho^{\gamma-1}$.
 
@@ -10424,10 +10434,10 @@ Inserting the dimensionless variables in the two governing PDEs leads to
 !bt
 \begin{align*}
 \frac{\varrho_c}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
-+ \frac{\varrho_c U}{L}\bar\nabla\cdot(\bar\varrho\bar\u) &=0,\\
++ \frac{\varrho_c U}{L}\bar\nabla\cdot(\bar\varrho\bar{\u}) &=0,\\
 \frac{\varrho_c U}{t_c}\bar\varrho
-\frac{\partial\bar\u}{\partial\bar t} +
-\frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar\u
+\frac{\partial\bar{\u}}{\partial\bar t} +
+\frac{\varrho_c U^2}{L}\bar\varrho\bar u\cdot\bar\nabla\bar{\u}
 + \frac{\varrho_c}{L}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}c_0^2\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
@@ -10439,11 +10449,11 @@ $t_c = L/U$. This choice leads to the scaled PDEs
 !bt
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+ \bar\nabla\cdot(\bar\varrho\bar\u) &=0,
++ \bar\nabla\cdot(\bar\varrho\bar{\u}) &=0,
 label{scale:gas:acoustic:isentropic:cont:s}\\
 \bar\varrho
-\frac{\partial\bar\u}{\partial\bar t} +
-\bar\varrho\bar\u\cdot\bar\nabla\bar\u
+\frac{\partial\bar{\u}}{\partial\bar t} +
+\bar\varrho\bar{\u}\cdot\bar\nabla\bar{\u}
 + \hbox{M}^{-2}\left(\frac{\varrho_c}{\varrho_0}\right)^{\gamma-1}\bar\varrho^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0,
@@ -10473,31 +10483,32 @@ and (ref{scale:gas:acoustic:u2}), but in this case
 there are small pressure, velocity, and
 density *perturbations* from a ground state at rest
 where $\u=0$, $\varrho=\varrho_0$, and $p=p_0 = F(\varrho_0)$.
-Introducing the perturbations $\hat\varrho = \varrho - \varrho_0$ and $\hat\u$,
+Introducing the perturbations $\hat\varrho = \varrho - \varrho_0$ and
+$\hat{\u}$,
 (ref{scale:gas:acoustic:rho})
 and (ref{scale:gas:acoustic:u2}) take the form
 
 !bt
 \begin{align*}
-\frac{\partial\hat\varrho}{\partial t} + \nabla\cdot(\hat\u(\varrho_0 + \hat\varrho) &=0,\\
+\frac{\partial\hat\varrho}{\partial t} + \nabla\cdot(\hat{\u}(\varrho_0 + \hat\varrho) &=0,\\
 (\varrho_0 + \hat\varrho)
-\frac{\partial\hat\u}{\partial t} + (\varrho_0+\hat\varrho)\hat\u\cdot\nabla\hat\u +
+\frac{\partial\hat{\u}}{\partial t} + (\varrho_0+\hat\varrho)\hat{\u}\cdot\nabla\hat{\u} +
 c_0^2\left(1 + \frac{\hat\varrho}{\varrho_0}\right)^{\gamma-1}\nabla\hat\varrho &=0\tp
 \end{align*}
 !et
 For small perturbations we can linearize this PDE system by
 neglecting all products of $\hat\varrho$ and
-$\hat\u$. Also, $1 + \hat\varrho/\varrho_0\approx 1$.
+$\hat{\u}$. Also, $1 + \hat\varrho/\varrho_0\approx 1$.
 This leaves us with the simplified system
 
 !bt
 \begin{align*}
-\frac{\partial\hat\varrho}{\partial t} + \varrho_0\nabla\cdot\hat\u &=0,\\
-\varrho_0\frac{\partial\hat\u}{\partial t} +
+\frac{\partial\hat\varrho}{\partial t} + \varrho_0\nabla\cdot\hat{\u} &=0,\\
+\varrho_0\frac{\partial\hat{\u}}{\partial t} +
 c_0^2\nabla\hat\varrho &=0\tp
 \end{align*}
 !et
-Eliminating $\hat\u$ by differentiating the first PDE with respect to $t$
+Eliminating $\hat{\u}$ by differentiating the first PDE with respect to $t$
 and taking the divergence of the second PDE gives a standard wave equation
 for the density perturbations:
 
@@ -10505,7 +10516,7 @@ for the density perturbations:
 \[ \frac{\partial^2\hat\varrho}{\partial t^2} = c_0^2\nabla^2\hat\varrho\tp\]
 !et
 Similarly, $\hat\varrho$ can be eliminated and one gets a wave equation for
-$\hat\u$, also with wave velocity $c_0$.
+$\hat{\u}$, also with wave velocity $c_0$.
 This means that the sound perturbations travel with velocity $c_0$.
 
 
@@ -10539,10 +10550,10 @@ and (ref{scale:gas:acoustic:u2}) results in
 !bt
 \begin{align*}
 \alpha\frac{\varrho_0}{t_c}\frac{\partial\bar\varrho}{\partial\bar t}
-+ \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
++ \frac{\varrho_0 U}{L}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar{\u}) &=0,\\
 \frac{\varrho_0 U}{t_c}(1 + \alpha\bar\varrho)
-\frac{\partial\bar\u}{\partial\bar t} +
-\frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar\u
+\frac{\partial\bar{\u}}{\partial\bar t} +
+\frac{\varrho_0 U^2}{L}(1 + \alpha\bar\varrho)\bar u\cdot\bar\nabla\bar{\u}
 + \alpha\frac{\varrho_0}{L}c_0^2\left(1 + \alpha\bar\varrho\right)^{\gamma-1}
 \bar\nabla\bar\varrho
 &=0\tp
@@ -10560,10 +10571,10 @@ Using $t_c=L/u_0$ we get
 !bt
 \begin{align*}
 \alpha \frac{\partial\bar\varrho}{\partial\bar t}
-+ \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar\u) &=0,\\
++ \hbox{M}\bar\nabla\cdot((1+\alpha\bar\varrho)\bar{\u}) &=0,\\
 (1 + \alpha\bar\varrho)
-\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}(1 + \alpha\bar\varrho)\bar\u\cdot\bar\nabla\bar\u +
+\frac{\partial\bar{\u}}{\partial\bar t} +
+\hbox{M}(1 + \alpha\bar\varrho)\bar{\u}\cdot\bar\nabla\bar{\u} +
 \alpha\hbox{M}^{-1}\left(1 + \alpha \bar\varrho\right)^{\gamma-1}\bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
@@ -10576,9 +10587,9 @@ choose $\alpha=M$ (implying $\varrho_c = \varrho_0\hbox{M}$) to obtain
 !bt
 \begin{align*}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+\bar\nabla\cdot((1+\hbox{M}\bar\varrho)\bar\u) &=0,\\
-\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{M}\bar\u\cdot\bar\nabla\bar\u +
++\bar\nabla\cdot((1+\hbox{M}\bar\varrho)\bar{\u}) &=0,\\
+\frac{\partial\bar{\u}}{\partial\bar t} +
+\hbox{M}\bar{\u}\cdot\bar\nabla\bar{\u} +
 \left(1 + \hbox{M} \bar\varrho\right)^{\gamma-2}\bar\nabla\bar\varrho
 &=0\tp
 \end{align*}
@@ -10590,9 +10601,9 @@ Letting $\hbox{M}\rightarrow 0$ we arrive at the following linearized system of 
 !bt
 \begin{align}
 \frac{\partial\bar\varrho}{\partial\bar t}
-+ \bar\nabla\cdot\bar\u &=0,
++ \bar\nabla\cdot\bar{\u} &=0,
 label{scale:gas:acoustic:rho:s}\\
-\frac{\partial\bar\u}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
+\frac{\partial\bar{\u}}{\partial\bar t} + \bar\nabla\bar\varrho &=0,
 label{scale:gas:acoustic:u2:s}
 \end{align}
 !et
@@ -10615,8 +10626,8 @@ we can eliminate $\varrho$ by taking the divergence of
 
 !bt
 \begin{equation}
-\frac{\partial^2\bar\u}{\partial\bar t^2} =
-\bar\nabla^2\bar\u\tp
+\frac{\partial^2\bar{\u}}{\partial\bar t^2} =
+\bar\nabla^2\bar{\u}\tp
 \end{equation}
 !et
 We also observe that there are no physical parameters in the scaled
@@ -10745,9 +10756,9 @@ number
 
 !bt
 \begin{align}
-\bar \nabla\cdot\bar\u &=0,
+\bar \nabla\cdot\bar{\u} &=0,
 label{scale:surfacewaves:cont:}\\
-\frac{\partial\bar\u}{\partial \bar t} + \epsilon\bar \u\cdot\bar\nabla\bar\u + \bar\nabla \bar p_d&=0\tp
+\frac{\partial\bar{\u}}{\partial \bar t} + \epsilon\bar{\u}\cdot\bar\nabla\bar{\u} + \bar\nabla \bar p_d&=0\tp
 label{scale:surfacewave:u:s}
 \end{align}
 !et
@@ -10757,7 +10768,7 @@ The surface conditions, at $z=\epsilon \eta$, become
 \begin{align}
 \bar p_d &=\bar \eta,
 label{scale:surfacewaves:dynsurf:s}\\
-\frac{\partial\bar\eta}{\partial \bar t} + \epsilon \bar \u\cdot\bar\nabla\bar\eta &=\bar w,
+\frac{\partial\bar\eta}{\partial \bar t} + \epsilon \bar{\u}\cdot\bar\nabla\bar\eta &=\bar w,
 label{scale:surfacewave:kinsurf:s}
 \end{align}
 !et
@@ -10766,7 +10777,7 @@ while the bottom condition is replaced by
 !bt
 \begin{equation}
 label{scale:surfacewave:kinbott2}
-\bar\u \rightarrow 0,
+\bar{\u} \rightarrow 0,
 \end{equation}
 !et
 as $\bar z \rightarrow -\infty$.
@@ -10795,15 +10806,18 @@ we rewrite the velocity scales as
 We observe that $W\ll U$ for shallow water and that particle orbits must be elongated in the horizontal direction.
 
 The equation set is now most transparently written by introducing the
-horizontal velocity $\bar\u_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
+horizontal velocity $\bar{\u}_h=\bar u\mathbf{i}+\bar v\mathbf{j}$
 and the corresponding horizontal components of the gradient operator, $\bar\nabla_h$:
 
 !bt
 \begin{align}
-\bar \nabla\cdot\bar\u_h +\frac{\partial \bar w}{\partial \bar z}&=0,
+\bar \nabla\cdot\bar{\u}_h +\frac{\partial \bar w}{\partial \bar z}&=0,
 label{scale:surfacewaves:contskalert}\\
-\frac{\partial\bar\u_h}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\u_h+\alpha \bar w \frac{\partial \bar \u_h}{\partial \bar z} + \bar\nabla_h \bar p_d&=0,\\
-\mu^2\left(\frac{\partial\bar\w}{\partial \bar t} + \alpha\bar \u_h\cdot\bar\nabla_h\bar\w+\alpha \bar w \frac{\partial \bar w}{\partial \bar z}\right) + \frac{\partial \bar p_d}{\partial \bar z}&=0.\tp
+\frac{\partial\bar{\u}_h}{\partial \bar t} + \alpha\bar{\u}_h\cdot\bar\nabla_h\bar{\u}_h+\alpha \bar w \frac{\partial \bar{\u}_h}{\partial \bar z} + \bar\nabla_h \bar p_d&=0,\\
+\mu^2\left(\frac{\partial\bar{\w}}{\partial \bar t} +
+\alpha\bar{\u}_h\cdot\bar{\nabla}_h\bar{\w} +
+\alpha \bar{\w} \frac{\partial\bar{w}}{\partial\bar{z}}\right) +
+\frac{\partial\bar{p}_d}{\partial\bar{z}}&=0.\tp
 label{scale:surfacewave:uh}
 \end{align}
 !et
@@ -10813,7 +10827,7 @@ Surface conditions, at $z=\alpha \eta$, now become
 \begin{align}
 \bar p_d &=\bar \eta,
 label{scale:surfacewaves:dynsurf:s2}\\
-\frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar \u_h\cdot\bar\nabla_h\bar\eta &=\bar w,
+\frac{\partial\bar\eta}{\partial \bar t} + \alpha \bar{\u}_h\cdot\bar\nabla_h\bar\eta &=\bar w,
 label{scale:surfacewave:kinsurf:s2}
 \end{align}
 !et
@@ -10822,7 +10836,7 @@ while the bottom condition is invariant with respect to the present scaling
 !bt
 \begin{equation}
 label{scale:surfacewave:kinbott3}
-\bar\nabla_h\cdot\bar\u_h =-\bar w\tp
+\bar\nabla_h\cdot\bar{\u}_h =-\bar w\tp
 \end{equation}
 !et
 An immediate consequence is that $\bar p_d$ remains equal to $\bar \eta$ throughout the water column when $\mu^2\rightarrow 0$, which implies that the pressure
@@ -10955,24 +10969,26 @@ G_w(S) = h_w(S)\varrho(\alpha - 1)\tp\]
 Furthermore, we introduce dimensionless quantities by
 
 !bt
-\[ \bar\x = \frac{\x}{L},\quad \bar\v = \frac{\v}{v_c},\quad
-\bar P = \frac{P}{P_c},\quad\bar p_c = \frac{p_c}{P_c}\tp\]
+\[ \bar{\x} = \frac{\x}{L},\quad \bar{\v} = \frac{\v}{v_c},\quad
+\bar{P} = \frac{P}{P_c},\quad\bar{p}_c = \frac{p_c}{P_c}\tp\]
 !et
 Inserting the above scaled quantities in the governing PDEs results in
 
 !bt
 \begin{align}
-\bar\nabla\cdot\bar\v &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
+\bar\nabla\cdot\bar{\v} &= -\frac{LQ}{v_c}(1 + \alpha^{-1}\gamma),
 label{scale:twoph:Peq:s0}\\
-\bar\v &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
-\frac{\lambda_c P_c}{v_c L}\bar\lambda_w \bar p_c'(S)\bar\nabla S +\nonumber\\
+\bar{\v} &= -\frac{P_c\lambda_c}{v_c L}\bar\lambda_t\bar\nabla\bar P +
+\frac{\lambda_c P_c}{v_c L}\bar{\lambda}_w \bar{p}_c'(S)\bar\nabla S +
+\nonumber\\
 &\quad\quad\frac{g\lambda_c\varrho}{v_c}
-(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
+(\bar{\lambda}_w + \alpha\beta^{-1}\bar{\lambda}_n)\kk,
 label{scale:twoph:v_teq:s0}\\
-\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar\v\cdot
+\phi\frac{\partial S}{\partial\bar t} + \frac{t_cv_c}{L}f_w'(S)\bar{\v}\cdot
 \bar\nabla S &=
 \frac{t_c P_c\lambda_c}{L^2}
-\bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) + \nonumber\\
+\bar\nabla\cdot(-\beta^{-1}\bar{\lambda}_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) +
+\nonumber\\
 &\quad\quad \frac{t_c g}{L}\frac{\partial G_w}{\partial\bar z} + t_c f_w Q(1+\alpha^{-1}\gamma) - t_cQ\tp
 label{scale:twoph:Seq:s0}
 \end{align}
@@ -11034,13 +11050,13 @@ final dimensionless form as
 
 !bt
 \begin{align}
-\bar\nabla\cdot\bar\v &= -\epsilon(1 + \alpha^{-1}\gamma),
+\bar\nabla\cdot\bar{\v} &= -\epsilon(1 + \alpha^{-1}\gamma),
 label{scale:twoph:Peq:s}\\
-\bar\v &= -\bar\lambda_t\bar\nabla\bar P +
+\bar{\v} &= -\bar\lambda_t\bar\nabla\bar P +
 \bar\lambda_w \bar p_c'(S)\bar\nabla S +
 \delta(\bar\lambda_w + \alpha\beta^{-1}\bar\lambda_n)\kk,
 label{scale:twoph:v_teq:s}\\
-\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar\v\cdot
+\phi\frac{\partial S}{\partial\bar t} + f_w'(S)\bar{\v}\cdot
 \bar\nabla S &= -
 \bar\nabla\cdot(-\beta^{-1}\bar\lambda_n(S)f_w(S)\bar p_c'(S)\bar\nabla S) -
 \nonumber\\
@@ -11243,7 +11259,7 @@ the physical solution can be retrieved as
 
 !bsubex
 Start with the dimensionless Navier-Stokes equations and use
-the assumption $\bar\u = \bar u(\bar z,\bar t)\ii$ to reduce
+the assumption $\bar{\u} = \bar u(\bar z,\bar t)\ii$ to reduce
 the problem. The resulting equation now contains a Reynolds
 number, i.e., one more physical parameter than in a).
 Why is this an inferior approach to scaling the problem?
@@ -11324,7 +11340,6 @@ Let $z$ be named $x$. Set $\dfc = 1$, $f=0$, $L=1$, $I(x)=0$,
 $U_0(t)=0$, $U_L(t)=1$. The resulting problem is our scaled problem from a).
 !esol
 !esubex
-<<<<<<< HEAD
 
 ===== Problem: Channel flow =====
 label{scale:vib:exer:channel}
@@ -11366,10 +11381,10 @@ Navier-Stokes equations:
 
 !bt
 \begin{align*}
-\frac{\partial\bar\u}{\partial\bar t} +
-\hbox{Re}\,\bar\u\cdot\bar\nabla\bar\u &= -\bar\nabla\bar p +
-\bar\nabla^2\bar\u,\\
-\bar\nabla\cdot\bar\u &= 0,
+\frac{\partial\bar{\u}}{\partial\bar t} +
+\hbox{Re}\,\bar{\u}\cdot\bar\nabla\bar{\u} &= -\bar\nabla\bar p +
+\bar\nabla^2\bar{\u},\\
+\bar\nabla\cdot\bar{\u} &= 0,
 \end{align*}
 !et
 if we choose $t_c = H^2 \varrho/\mu$ and $p_c=\mu U/H$.
@@ -11429,6 +11444,4 @@ for channel flow so there is little effect of Re in front of this term.
 Our scaling is obtained by setting $\rho=\nu=1$ and $\alpha=\mathrm{Re}$.
 !eremarks
 
-=======
->>>>>>> 1732d258bd1fd52b1d1a66df1c3be076184db0a4
 % endif

@@ -11,8 +11,9 @@ Automatically generated HTML file from DocOnce source
 
 <title>Scaling of Differential Equations</title>
 
-<!-- Bootstrap style: bootswatch_readable -->
-<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap style: bootstrap_simula -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_bootstrap/css/bootstrap_simula.css" rel="stylesheet">
 <!-- not necessary
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
@@ -962,7 +963,12 @@ unit \( \hbox{kg\, m/s}^2 \). The \( k \) parameter in
 <a href="#mjx-eqn-1.1">(1.1)</a> is measured in \( \hbox{kg\,s}^{-2} \).
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Dimension of derivatives.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Dimension of derivatives</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 The easiest way to realize the dimension of a derivative, is to express
 the derivative as a finite difference. For a function \( u(t) \) we have
 
@@ -975,6 +981,7 @@ interval has dimension \( \hbox{[T]} \), and consequently, the
 finite difference gets the dimension \( \hbox{[LT]}^{-2} \).
 In general, the dimension of the derivative \( du/dt \) is the dimension
 of \( u \) divided by the dimension of \( t \).
+</div>
 </div>
 
 
@@ -1290,7 +1297,12 @@ or a full textbook <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.
 Python code in the present notes.
 
 <p>
-<div class="alert alert-block alert-danger alert-text-normal"><b>These notes apply Python 2.7.</b>
+<div class="panel panel-warning">
+  <div class="panel-heading">
+  <h3 class="panel-title">These notes apply Python 2.7</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 Python exists in two incompatible versions, numbered 2 and 3.
 The differences can be made small, and there are tools to write
 code that runs under both versions.
@@ -1301,6 +1313,7 @@ in scientific computing, we stick to this version, but
 write code in version 2.7 that is as close as possible to version 3.4
 and later. In most of our programs, only the <code>print</code> statement differs
 between version 2 and 3.
+</div>
 </div>
 
 
@@ -1323,7 +1336,7 @@ PhysicalQuantities</code>, or
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; pydoc Scientific.Physics.PhysicalQuantities
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; pydoc Scientific.Physics.PhysicalQuantities
 </pre></div>
 <p>
 if you have the entire ScientificPython package installed. The
@@ -1335,7 +1348,7 @@ by <code>h</code>. We can now compute \( s=vt \) as follows:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># With ScientificPython:</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># With ScientificPython:</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">Scientific.Physics.PhysicalQuantities</span> <span style="color: #008000; font-weight: bold">import</span> \ 
 <span style="color: #666666">...</span> PhysicalQuantity <span style="color: #008000; font-weight: bold">as</span> PQ
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #408080; font-style: italic"># With PhysicalQuantities as separate/stand-alone module:</span>
@@ -1354,7 +1367,7 @@ as meter:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> s<span style="color: #666666">.</span>convertToUnit(<span style="color: #BA2121">&#39;m&#39;</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> s<span style="color: #666666">.</span>convertToUnit(<span style="color: #BA2121">&#39;m&#39;</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> s
 <span style="color: #666666">6583.68</span> m
 </pre></div>
@@ -1366,7 +1379,7 @@ value as a <code>float</code> object. We can also extract the unit as a string:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> s<span style="color: #666666">.</span>getValue()     <span style="color: #408080; font-style: italic"># float</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> s<span style="color: #666666">.</span>getValue()     <span style="color: #408080; font-style: italic"># float</span>
 <span style="color: #666666">6583.68</span>
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> s<span style="color: #666666">.</span>getUnitName()  <span style="color: #408080; font-style: italic"># string</span>
 m
@@ -1378,7 +1391,7 @@ minute to something more standard:
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> v<span style="color: #666666">.</span>convertToUnit(<span style="color: #BA2121">&#39;km/h&#39;</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> v<span style="color: #666666">.</span>convertToUnit(<span style="color: #BA2121">&#39;km/h&#39;</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> v
 <span style="color: #666666">6.58368</span> km<span style="color: #666666">/</span>h
 <span style="color: #666666">&gt;&gt;&gt;</span> v<span style="color: #666666">.</span>convertToUnit(<span style="color: #BA2121">&#39;m/s&#39;</span>)
@@ -1398,7 +1411,7 @@ where joule replaces calorie?
 <p>
 
 <!-- code=python (!bc pyshell) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #666666">&gt;&gt;&gt;</span> c <span style="color: #666666">=</span> PQ(<span style="color: #BA2121">&#39;1 cal/(g*K)&#39;</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #666666">&gt;&gt;&gt;</span> c <span style="color: #666666">=</span> PQ(<span style="color: #BA2121">&#39;1 cal/(g*K)&#39;</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> c<span style="color: #666666">.</span>convertToUnit(<span style="color: #BA2121">&#39;J/(g*K)&#39;</span>)
 <span style="color: #666666">&gt;&gt;&gt;</span> <span style="color: #008000; font-weight: bold">print</span> c
 <span style="color: #666666">4.184</span> J<span style="color: #666666">/</span>K<span style="color: #666666">/</span>g
@@ -1442,7 +1455,7 @@ three input parameters:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">define_input</span>():
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">define_input</span>():
     pool <span style="color: #666666">=</span> [
         <span style="color: #BA2121">&#39;Main&#39;</span>, [
             <span style="color: #008000">dict</span>(name<span style="color: #666666">=</span><span style="color: #BA2121">&#39;initial velocity&#39;</span>, default<span style="color: #666666">=1.0</span>, unit<span style="color: #666666">=</span><span style="color: #BA2121">&#39;m/s&#39;</span>),
@@ -1461,7 +1474,12 @@ a default value, and a unit. Additional properties
 are also allowed, see the <a href="http://hplgit.github.io/parampool/doc/web/index.html" target="_self">Parampool documentation</a>.
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Tip: specify default values of numbers as float objects.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Tip: specify default values of numbers as float objects</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 Note that we do not just write 1, but 1.0 as default.
 Had 1 been used, Parampool would have interpreted our parameter as
 an integer and would therefore convert input like <code>2.5 m/s</code> to <code>2 m/s</code>.
@@ -1469,6 +1487,7 @@ To ensure that a real-valued parameter becomes a <code>float</code> object insid
 the pool, we must specify the default value as a real number: <code>1.</code> or <code>1.0</code>.
 (The type of an input parameter can alternatively be set <em>explicitly</em> by
 the <code>str2type</code> property, e.g., <code>str2type=float</code>.)
+</div>
 </div>
 
 
@@ -1481,7 +1500,7 @@ and computing \( s \):
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance</span>(pool):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance</span>(pool):
     v_0 <span style="color: #666666">=</span> pool<span style="color: #666666">.</span>get_value(<span style="color: #BA2121">&#39;initial velocity&#39;</span>)
     a <span style="color: #666666">=</span> pool<span style="color: #666666">.</span>get_value(<span style="color: #BA2121">&#39;acceleration&#39;</span>)
     t <span style="color: #666666">=</span> pool<span style="color: #666666">.</span>get_value(<span style="color: #BA2121">&#39;time&#39;</span>)
@@ -1505,7 +1524,7 @@ command line, and call <code>distance</code>:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">pool <span style="color: #666666">=</span> define_input()
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>pool <span style="color: #666666">=</span> define_input()
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">parampool.menu.UI</span> <span style="color: #008000; font-weight: bold">import</span> set_values_from_command_line
 pool <span style="color: #666666">=</span> set_values_from_command_line(pool)
 
@@ -1520,7 +1539,7 @@ We can now run
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python distance.py --initial_velocity &#39;10 km/h&#39; \ 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python distance.py --initial_velocity &#39;10 km/h&#39; \ 
           --acceleration 0 --time &#39;1 h
 s=10000
 </pre></div>
@@ -1534,7 +1553,7 @@ objects from the pool by calling
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">v_0 <span style="color: #666666">=</span> pool<span style="color: #666666">.</span>get_value_unit(<span style="color: #BA2121">&#39;Initial velocity&#39;</span>)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>v_0 <span style="color: #666666">=</span> pool<span style="color: #666666">.</span>get_value_unit(<span style="color: #BA2121">&#39;Initial velocity&#39;</span>)
 </pre></div>
 <p>
 The following variant of the <code>distance</code> function computes with
@@ -1543,7 +1562,7 @@ values and units:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance_unit</span>(pool):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance_unit</span>(pool):
     <span style="color: #408080; font-style: italic"># Compute with units</span>
     <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">parampool.PhysicalQuantities</span> <span style="color: #008000; font-weight: bold">import</span> PhysicalQuantity <span style="color: #008000; font-weight: bold">as</span> PQ
     v_0 <span style="color: #666666">=</span> pool<span style="color: #666666">.</span>get_value_unit(<span style="color: #BA2121">&#39;initial velocity&#39;</span>)
@@ -1558,7 +1577,7 @@ We can then do
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">s, s_unit <span style="color: #666666">=</span> distance_unit(pool)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>s, s_unit <span style="color: #666666">=</span> distance_unit(pool)
 <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;s=</span><span style="color: #BB6688; font-weight: bold">%g</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> s, s_unit
 </pre></div>
 <p>
@@ -1575,7 +1594,7 @@ can be set in a file using syntax like
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">subpool Main
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>subpool Main
 initial velocity <span style="color: #666666">=</span> <span style="color: #666666">100</span> ! yd<span style="color: #666666">/</span><span style="color: #008000">min</span>
 acceleration <span style="color: #666666">=</span> <span style="color: #666666">0</span> ! m<span style="color: #666666">/</span>s<span style="color: #666666">**2</span>         <span style="color: #408080; font-style: italic"># drop acceleration</span>
 end
@@ -1589,7 +1608,7 @@ To read such files we have to add the lines
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">parampool.pool.UI</span> <span style="color: #008000; font-weight: bold">import</span> set_defaults_from_file
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">parampool.pool.UI</span> <span style="color: #008000; font-weight: bold">import</span> set_defaults_from_file
 pool <span style="color: #666666">=</span> set_defaults_from_file(pool)
 </pre></div>
 <p>
@@ -1603,7 +1622,7 @@ option <code>--poolfile distance.dat</code>. Running just
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python distance.py --poolfile distance.dat
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python distance.py --poolfile distance.dat
 s=15.25 m
 </pre></div>
 <p>
@@ -1618,7 +1637,7 @@ parameters on the command line:
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python distance.py --poolfile distance.dat --time &#39;2 h&#39;
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python distance.py --poolfile distance.dat --time &#39;2 h&#39;
 s=10972.8 m
 </pre></div>
 <p>
@@ -1641,7 +1660,7 @@ specified by the user:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance_table</span>(pool):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance_table</span>(pool):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Grab multiple values of parameters from the pool.&quot;&quot;&quot;</span>
     table <span style="color: #666666">=</span> []
     <span style="color: #008000; font-weight: bold">for</span> v_0 <span style="color: #AA22FF; font-weight: bold">in</span> pool<span style="color: #666666">.</span>get_values(<span style="color: #BA2121">&#39;initial velocity&#39;</span>):
@@ -1664,7 +1683,7 @@ write out a nicely formatted table of results:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">table <span style="color: #666666">=</span> distance_table(pool)
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>table <span style="color: #666666">=</span> distance_table(pool)
 <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;|-----------------------------------------------------|&#39;</span>
 <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;|      v_0   |      a     |      t     |      s       |&#39;</span>
 <span style="color: #008000; font-weight: bold">print</span> <span style="color: #BA2121">&#39;|-----------------------------------------------------|&#39;</span>
@@ -1678,7 +1697,7 @@ Here is a sample run,
 <p>
 
 <!-- code=text (!bc sys) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%">Terminal&gt; python distance.py --time &#39;1 h &amp; 2 h &amp; 3 h&#39; \ 
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span>Terminal&gt; python distance.py --time &#39;1 h &amp; 2 h &amp; 3 h&#39; \ 
           --acceleration &#39;0 m/s**2 &amp; 1 m/s**2 &amp; 1 yd/s**2&#39; \ 
 	  --initial_velocity &#39;1 &amp; 5&#39;
 |-----------------------------------------------------|
@@ -1719,7 +1738,7 @@ returns the result in some nice-looking HTML code:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance_unit2</span>(pool):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">distance_unit2</span>(pool):
     <span style="color: #408080; font-style: italic"># Wrap result from distance_unit in HTML</span>
     s, s_unit <span style="color: #666666">=</span> distance_unit(pool)
     <span style="color: #008000; font-weight: bold">return</span> <span style="color: #BA2121">&#39;&lt;b&gt;Distance:&lt;/b&gt; </span><span style="color: #BB6688; font-weight: bold">%.2f</span><span style="color: #BA2121"> </span><span style="color: #BB6688; font-weight: bold">%s</span><span style="color: #BA2121">&#39;</span> <span style="color: #666666">%</span> (s, s_unit)
@@ -1731,7 +1750,7 @@ simple content
 <p>
 
 <!-- code=python (!bc pypro) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">parampool.generator.flask</span> <span style="color: #008000; font-weight: bold">import</span> generate
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">parampool.generator.flask</span> <span style="color: #008000; font-weight: bold">import</span> generate
 <span style="color: #008000; font-weight: bold">from</span> <span style="color: #0000FF; font-weight: bold">distance</span> <span style="color: #008000; font-weight: bold">import</span> distance_unit2, define_input
 
 generate(distance_unit2, pool_function<span style="color: #666666">=</span>define_input, MathJax<span style="color: #666666">=</span><span style="color: #008000">True</span>)

@@ -1970,12 +1970,14 @@ What is an appropriate scaling of the temperature?
 
 <p>
 The velocity \( v(t) \)
-of a body moving vertically through a fluid in the gravity field,
-with fluid drag and buoyancy, is governed by the ODE
+of a body moving vertically through a fluid in the gravity field
+(with fluid drag, buoyancy, and added mass) is governed by the ODE
 
-$$ mv' = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,$$
+$$ mv' + \mu v'
+= -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,$$
 
-where \( t \) is time, \( m \) is the mass of the body, \( C_D \) is a drag coefficient,
+where \( t \) is time, \( m \) is the mass of the body, \( \mu \) is the body's added
+mass, \( C_D \) is a drag coefficient,
 \( \varrho \) is the density of the fluid, \( A \) is the cross-sectional area
 perpendicular to the motion, \( g \) is the acceleration of gravity,
 and \( V \) is the volume of the body. Scale this ODE.

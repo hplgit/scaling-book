@@ -365,11 +365,15 @@ v -t_c l w \tp
 !et
 The time and length scales are again chosen by requiring balance of
 the reaction and diffusion term, which gives
+
 !bt
-\[ t_c = \frac{C_m}{A \Delta v^2},\quad L = \sqrt{\frac{\sigma_c}{A
-\Delta v^2 \chi}},\tp\]
+\[
+t_c = \frac{C_m}{A \Delta v^2},\quad L = \sqrt{\frac{\sigma_c}{A
+\Delta v^2 \chi}},
+\]
 !et
- and we arrive at the final dimensionless system
+and we arrive at the final dimensionless system
+
 !bt
 \begin{align*}
 \frac{\partial \bar v}{\partial \bar t} &=

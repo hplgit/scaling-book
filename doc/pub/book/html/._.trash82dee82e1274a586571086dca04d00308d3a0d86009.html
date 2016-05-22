@@ -11,8 +11,9 @@ Automatically generated HTML file from DocOnce source
 
 <title>Scaling of Differential Equations</title>
 
-<!-- Bootstrap style: bootswatch_readable -->
-<link href="http://netdna.bootstrapcdn.com/bootswatch/3.1.1/readable/bootstrap.min.css" rel="stylesheet">
+<!-- Bootstrap style: bootstrap_simula -->
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.rawgit.com/hplgit/doconce/master/bundled/html_styles/style_bootstrap/css/bootstrap_simula.css" rel="stylesheet">
 <!-- not necessary
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
 -->
@@ -995,7 +996,12 @@ $$
 $$
 
 <p>
-<div class="alert alert-block alert-success alert-text-normal"><b>Discussion of scales and balance of terms in the PDE.</b>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Discussion of scales and balance of terms in the PDE</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 We see that <a href="#mjx-eqn-3.70">(3.70)</a> and <a href="#mjx-eqn-3.71">(3.71)</a>
 are not equal, and they are based on two different time scales.
 For moderate Peclet numbers around 1, all terms have the same size
@@ -1040,6 +1046,7 @@ $$
 Scaling can, with the above type of reasoning, be used
 to neglect terms from a differential equation under precise mathematical
 conditions.
+</div>
 </div>
 
 
@@ -1352,7 +1359,7 @@ integration constants to the boundary conditions:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">sym</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">sympy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">sym</span>
 mu, beta, z, H <span style="color: #666666">=</span> sym<span style="color: #666666">.</span>symbols(<span style="color: #BA2121">&#39;mu beta z H&#39;</span>,
                              real<span style="color: #666666">=</span><span style="color: #008000">True</span>, positive<span style="color: #666666">=</span><span style="color: #008000">True</span>)
 U0, C1, C2 <span style="color: #666666">=</span> sym<span style="color: #666666">.</span>symbols(<span style="color: #BA2121">&#39;U0 C1 C2&#39;</span>, real<span style="color: #666666">=</span><span style="color: #008000">True</span>)
@@ -1380,7 +1387,7 @@ The maximum value of \( u \) is found by
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #408080; font-style: italic"># Find max u</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #408080; font-style: italic"># Find max u</span>
 dudz <span style="color: #666666">=</span> sym<span style="color: #666666">.</span>diff(u, z)
 s <span style="color: #666666">=</span> sym<span style="color: #666666">.</span>solve(dudz, z)
 <span style="color: #008000; font-weight: bold">print</span> s
@@ -2257,9 +2264,12 @@ the PDE leads to a coefficient
 $$ \frac{k}{v\varrho c \sigma} = \gamma^{-1}\beta\tp$$
 
 As before, we chose \( u_c \) to make the other coefficient equal unity,
-modulo a scaling factor.
-The \( \gamma^{-1}\beta \) parameter is the ratio of the moving heat source time
-scale \( v/\sigma \) and the diffusion time scale \( \sigma^2/(k/\varrho c) \).
+modulo a scaling factor. We then obtain \( u_c=t_c A/\rho c \), which may
+be read as the time each point feels the source times source strength
+divided to the volumetric heat capacity that includes the density.
+The \( \gamma^{-1}\beta \) parameter is the ratio of the moving heat
+source time scale \( v/\sigma \) and the diffusion time scale
+\( \sigma^2/(k/\varrho c) \).
 
 <p>
 The equations are as in), except that \( \beta =1 \) and \( \epsilon \)
@@ -2399,7 +2409,7 @@ The boundary conditions is of Dirichlet type: \( u(0,t)=U_L(t) \) and
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">numpy</span> <span style="color: #008000; font-weight: bold">as</span> <span style="color: #0000FF; font-weight: bold">np</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">scipy.sparse</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">scipy.sparse.linalg</span>
 <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">time</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">sys</span>
@@ -2516,7 +2526,7 @@ And here is our <code>run</code> function tailored to the problem:
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">run</span>(gamma, beta<span style="color: #666666">=10</span>, delta<span style="color: #666666">=40</span>, scaling<span style="color: #666666">=1</span>, animate<span style="color: #666666">=</span><span style="color: #008000">False</span>):
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">run</span>(gamma, beta<span style="color: #666666">=10</span>, delta<span style="color: #666666">=40</span>, scaling<span style="color: #666666">=1</span>, animate<span style="color: #666666">=</span><span style="color: #008000">False</span>):
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Run the scaled model for welding.&quot;&quot;&quot;</span>
     gamma <span style="color: #666666">=</span> <span style="color: #008000">float</span>(gamma)  <span style="color: #408080; font-style: italic"># avoid integer division</span>
     <span style="color: #008000; font-weight: bold">if</span> scaling <span style="color: #666666">==</span> <span style="color: #BA2121">&#39;a&#39;</span>:
@@ -2641,7 +2651,7 @@ the tasks is
 <p>
 
 <!-- code=python (!bc pycod) typeset with pygments style "default" -->
-<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">investigate</span>():
+<div class="highlight" style="background: #f8f8f8"><pre style="line-height: 125%"><span></span><span style="color: #008000; font-weight: bold">def</span> <span style="color: #0000FF">investigate</span>():
     <span style="color: #BA2121; font-style: italic">&quot;&quot;&quot;Do scienfic experiments with the run function above.&quot;&quot;&quot;</span>
     <span style="color: #408080; font-style: italic"># Clean up old files</span>
     <span style="color: #008000; font-weight: bold">import</span> <span style="color: #0000FF; font-weight: bold">glob</span><span style="color: #666666">,</span> <span style="color: #0000FF; font-weight: bold">os</span>
@@ -2710,6 +2720,7 @@ and increasing its value to \( \gamma=40 \):
 <p>
 For small \( \gamma \), 0.025 and 0.2, the scales b)-d) are equally
 applicable, while the diffusion time scale, which is much longer,
+does not fit with the heat source motion.
 
 <p>
 <b>\( \gamma=1 \).</b>
