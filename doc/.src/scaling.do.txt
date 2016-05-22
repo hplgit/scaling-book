@@ -3860,7 +3860,7 @@ file=density_conversion
 
 Density (mass per volume: $[\hbox{ML}^{-3}]$) of water is
 given as 1.05 ounce per fluid ounce. Use the `PhysicalQuantity` object
-to convert to $\hbox{kg\,m}^{-3}$.
+to convert to $\hbox{kg}\,\hbox{m}^{-3}$.
 
 !bsol
 Use `pydoc PhysicalQuantities` to find that `floz` is the name of
