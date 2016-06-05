@@ -273,7 +273,7 @@ in SI units while others are in US or British units.  Density could,
 for instance, be given in unit of ounce per
 % if EXV:
 teaspoon (see Exercise ref{sec:scale:exer:US2SI1} for how to safely
-convert to a standard unit like $\hbox{kg\,m}^{-3}$).
+convert to a standard unit like $\hbox{kg}\,\hbox{m}^{-3}$).
 % else:
 teaspoon.
 % endif
@@ -512,8 +512,7 @@ various type of user interfaces: command-line arguments (option-value
 pairs), text files, and interactive web pages. All of these
 are described next.
 
-=== Example application ===
-
+__Example application.__
 As case, we want to make software for computing with the simple
 formula $s=v_0t + \frac{1}{2}at^2$. We want $v_0$ to be a velocity
 with unit m/s, $a$ to be acceleration with unit $\hbox{m/s}^2$, $t$ to be
@@ -2198,13 +2197,7 @@ the scaled model by setting $\beta = R_0$, $\nu = 1$, $S(0)=1-\alpha$,
 and $I(0)=\alpha$. Below is a plot with two cases: $R_0=2$ and $R_0=5$,
 both with $\alpha=0.02$.
 
-<linebreak>
-<linebreak>
-
 FIGURE: [fig-scaling/SIR1, width=800 frac=1]
-
-<linebreak>
-<linebreak>
 
 
 === Alternative scaling ===
@@ -4086,7 +4079,7 @@ Summarizing, we get the scaled ODE problem
 !bt
 \[
 \frac{d\bar v}{d\bar t} =
-- |\bar v|\bar v + \mbox{sign}(\frac{2 - \alpha(\alpha+2)}{\alpha+2),\quad
+- |\bar v|\bar v + \mbox{sign}(\frac{2 - \alpha(\alpha+2)}{\alpha+2},\quad
 \bar v(0)=\beta\tp
 \]
 !et
@@ -5274,9 +5267,13 @@ We remark that the sequence of unknowns in `u` must be different if the
 `odespy.EulerCromer` solver is to be chosen. In that case, the
 velocity for each degree of freedom must appear before the position.
 
-FIGURE: [fig-scaling/planet_circular, width=500 frac=0.7] Planet in circular motion around a star.
+__Planet in circular motion around a star:__
 
-FIGURE: [mov-scaling/binary_star/tmp_0100, width=500 frac=0.7] Two rotating stars.
+FIGURE: [fig-scaling/planet_circular, width=500 frac=0.7]
+
+__Two rotating stars:__
+
+FIGURE: [mov-scaling/binary_star/tmp_0100, width=500 frac=0.7]
 
 !esol
 !esubex
@@ -7317,13 +7314,7 @@ The characteristic length $L$ could be the entire domain, $L=c+\ell$,
 or the height of the bump, $L=D$. (The latter is the important length
 scale for the flow.)
 
-<linebreak>
-<linebreak>
-
 FIGURE: [fig-scaling/flow_over_gaussian, width=500 frac=0.9]
-
-<linebreak>
-<linebreak>
 
 Inserting
 
@@ -8287,7 +8278,7 @@ maximum simplicity, a one-dimensional heat equation with a fixed
 temperature at the ends (a 2D or 3D model with cooling conditions at
 the boundaries would be of greater physical significance, but now the
 scaling is in focus). The effect of melting is not included in the
-heat equation. Our goal is to investigate two alternative scalings
+heat equation. Our goal is to investigate alternative scalings
 through numerical experimentation.
 
 The governing PDE problem reads
@@ -8304,6 +8295,15 @@ Here, $u$ is the temperature, $\varrho$ the density of the material,
 $c$ a heat capacity, $k$ the heat conduction coefficient, $f$ is
 the heat source from the welding equipment, and $U_s$ is the
 initial constant (room) temperature in the material.
+
+The boundary conditions at $x=0,L$ are set for convenience -- some sort
+of heat flux out of the boundary, modeled in terms of a cooling
+condition $-ku_x = h(u-U_s)$, for a heat transfer coefficient $h$,
+would yield a more physically relevant model. Also, using a 3D geometry
+with cooling conditions at all boundaries would result in a more
+relevant model. Since the focus is on scaling, we prefer to work with
+the simplest possible model, which is one-dimensional, has Dirichlet
+boundary conditions, and neglects melting.
 
 A possible model for the heat source is a moving Gaussian function:
 
@@ -8629,27 +8629,26 @@ starting with $\gamma=0.025$
 and increasing its value to $\gamma=40$:
 
 __$\gamma=0.025$.__
-
-FIGURE: [fig-scaling/welding_gamma0_025, width=800 frac=1]
-
-__$\gamma=0.02$.__
-
-FIGURE: [fig-scaling/welding_gamma0_2, width=800 frac=1]
-
 For small $\gamma$, 0.025 and 0.2, the scales b)-d) are equally
 applicable, while the diffusion time scale, which is much longer,
 does not fit with the heat source motion.
 
-__$\gamma=1$.__ Not surprisingly, all the scalings are equal
-and provide identical results for $\gamma=1$.
+FIGURE: [fig-scaling/welding_gamma0_025, width=800 frac=1]
+
+Below are the results for $\gamma=0.02$.
+
+FIGURE: [fig-scaling/welding_gamma0_2, width=800 frac=1]
+
+For $\gamma=1$, all the scalings are equal
+and provide identical results.
 
 FIGURE: [fig-scaling/welding_gamma1, width=800 frac=1]
 
-__$\gamma=5$.__
+Next we present results for $\gamma=5$.
 
 FIGURE: [fig-scaling/welding_gamma5, width=800 frac=1]
 
-__$\gamma=40$.__
+Finally, we have the results for $\gamma=40$.
 
 FIGURE: [fig-scaling/welding_gamma40, width=800 frac=1]
 
@@ -8676,6 +8675,16 @@ scaling we use. Nevertheless, the insight given by the scalings should not
 be forgotten: we see in d) that for large $\gamma$
 the time-derivative term can be neglected
 and in b) that the conduction term can be neglected.
+
+We must also remark that the boundary conditions reduce the physical
+relevance of the results as we force the scaled temperature down to zero
+at the end points. The temperature at the end points are much more ``free'',
+in reality, resulting in flatter curves than what we achieved above. This
+flattening
+would also demonstrate that the heat from the welding equipment is more
+efficiently conducted away toward the boundaries. However, for
+investigating the differences between different scalings, the choice
+of boundary conditions is not a key issue.
 !esol
 !esubex
 
@@ -9032,7 +9041,7 @@ Choosing $u_c = \varrho L^2f_c/\mu_c$ leads to
 
 !bt
 \begin{equation}
-\bar{\nabla} ((\beta\bar\{lambda} +
+\bar{\nabla} ((\beta\bar{\lambda} +
 \bar{\mu})\bar{\nabla}\cdot\bar{\u}) +
 \bar{\nabla}\cdot(\bar{\mu}\bar{\nabla}\bar{\u}) +
 \bar\varrho\bar{\f} = 0\tp
@@ -9282,13 +9291,7 @@ type of outflow boundary condition used.  Ideally,
 $c,\ell\rightarrow\infty$, so none of these parameters are useful as
 length scales.
 
-<linebreak>
-<linebreak>
-
 FIGURE: [fig-scaling/flow_over_gaussian, width=500 frac=0.9]
-
-<linebreak>
-<linebreak>
 
 For flow in a channel or tube, we also have some inlet profile, e.g.,
 $v(r)$ in a tube, where $r$ is the radial coordinate. A natural

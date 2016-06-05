@@ -1,0 +1,1010 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Dimensions and units</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/sidebar.js"></script>
+
+        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+
+        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+
+        <style type="text/css">
+                .sagecell .CodeMirror-scroll {
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                }
+                .sagecell .CodeMirror {
+                        height: auto;
+                }
+        </style>
+
+    
+    <link rel="top" title="Scaling of Differential Equations" href="index.html" />
+    <link rel="next" title="Ordinary differential equation models" href="._book003.html" />
+    <link rel="prev" title="Preface" href="._book001.html" />
+ 
+  
+       <style type="text/css">
+         div.admonition {
+           background-color: whiteSmoke;
+           border: 1px solid #bababa;
+         }
+       </style>
+      </head>
+    
+  <body role="document">
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="._book003.html" title="Ordinary differential equation models"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="._book001.html" title="Preface"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Scaling of Differential Equations</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="dimensions-and-units">
+<span id="scale-dimunit"></span><h1>Dimensions and units<a class="headerlink" href="#dimensions-and-units" title="Permalink to this headline">¶</a></h1>
+<p id="index-0">A mechanical system undergoing one-dimensional damped vibrations can be
+modeled by the equation</p>
+<div class="math" id="eq-scale-dimunit-eq-u">
+\[\tag{1}
+mu'' + bu' + ku = 0,\]</div>
+<p>where <span class="math">\(m\)</span> is the mass of the system, <span class="math">\(b\)</span> is some damping coefficient,
+<span class="math">\(k\)</span> is a spring constant, and <span class="math">\(u(t)\)</span> is the displacement of the
+system.  This is an equation expressing the balance of three physical
+effects: <span class="math">\(mu''\)</span> (mass times acceleration), <span class="math">\(bu'\)</span> (damping force), and
+<span class="math">\(ku\)</span> (spring force).  The different physical quantities, such as <span class="math">\(m\)</span>,
+<span class="math">\(u(t)\)</span>, <span class="math">\(b\)</span>, and <span class="math">\(k\)</span>, all have different <em>dimensions</em>, measured in
+different <em>units</em>, but <span class="math">\(mu''\)</span>, <span class="math">\(bu'\)</span>, and <span class="math">\(ku\)</span> must all have the same
+dimension, otherwise it would not make sense to add them.</p>
+<div class="section" id="fundamental-concepts">
+<h2>Fundamental concepts<a class="headerlink" href="#fundamental-concepts" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="base-units-and-dimensions">
+<h3>Base units and dimensions<a class="headerlink" href="#base-units-and-dimensions" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-1"></span><span class="target" id="index-2"></span><span class="target" id="index-3"></span><p id="index-4"><em>Base units</em> have the important property that all other units derive
+from them. In the SI system,
+there are seven such base units and corresponding
+physical quantities:
+meter (m) for length,
+kilogram (kg) for mass,
+second (s) for time,
+kelvin (K) for temperature,
+ampere (A) for electric current,
+candela (cd) for luminous intensity, and
+mole (mol) for the amount of substance.</p>
+<p>We need some suitable mathematical notation to calculate with
+dimensions like length, mass, time, and so forth.  The dimension of
+length is written as [L], the dimension of mass as [M], the dimension
+of time as [T], and the dimension of temperature as <span class="math">\([\Theta]\)</span> (the
+dimensions of the other base units are simply omitted as we do not make
+much use of them in this text).
+The dimension of a <em>derived unit</em> like velocity, which
+is distance (length) divided by time, then becomes <span class="math">\([\hbox{LT}^{-1}]\)</span>
+in this notation.  The dimension of force, another derived unit, is
+the same as the dimension of mass times acceleration, and hence the
+dimension of force is <span class="math">\([\hbox{MLT}^{-2}]\)</span>.</p>
+<p>Let us find the dimensions of the terms in <a class="reference internal" href="#eq-scale-dimunit-eq-u"><span class="std std-ref">(1)</span></a>.
+A displacement <span class="math">\(u(t)\)</span> has dimension [L]. The derivative <span class="math">\(u'(t)\)</span> is
+change of displacement, which has dimension [L], divided by a time
+interval, which has dimension [T], implying that the dimension of <span class="math">\(u'\)</span>
+is <span class="math">\([\hbox{LT}^{-1}]\)</span>. This result coincides with the interpretation of
+<span class="math">\(u'\)</span> as velocity and the fact that velocity is defined as distance
+([L]) per time ([T]).</p>
+<p>Looking at <a class="reference internal" href="#eq-scale-dimunit-eq-u"><span class="std std-ref">(1)</span></a>, and interpreting <span class="math">\(u(t)\)</span> as
+displacement, we realize that the term <span class="math">\(mu''\)</span> (mass times
+acceleration) has dimension <span class="math">\([\hbox{MLT}^{-2}]\)</span>.  The term <span class="math">\(bu'\)</span> must
+have the same dimension, and since <span class="math">\(u'\)</span> has dimension
+<span class="math">\([\hbox{LT}^{-1}]\)</span>, <span class="math">\(b\)</span> must have dimension <span class="math">\([\hbox{MT}^{-1}]\)</span>.
+Finally, <span class="math">\(ku\)</span> must also have dimension <span class="math">\([\hbox{MLT}^{-2}]\)</span>, implying
+that <span class="math">\(k\)</span> is a parameter with dimension <span class="math">\([\hbox{MT}^{-2}]\)</span>.</p>
+<p>The unit of a physical quantity follows from the dimension expression.
+For example, since velocity has dimension <span class="math">\([\hbox{LT}^{-1}]\)</span> and length
+is measured in m while time is measured in s, the unit for velocity
+becomes m/s. Similarly, force has dimension <span class="math">\([\hbox{MLT}^{-2}]\)</span> and
+unit <span class="math">\(\hbox{kg\, m/s}^2\)</span>. The <span class="math">\(k\)</span> parameter in
+<a class="reference internal" href="#eq-scale-dimunit-eq-u"><span class="std std-ref">(1)</span></a> is measured in <span class="math">\(\hbox{kg\,s}^{-2}\)</span>.</p>
+<div class="admonition-dimension-of-derivatives admonition">
+<p class="first admonition-title">Dimension of derivatives</p>
+<p>The easiest way to realize the dimension of a derivative, is to express
+the derivative as a finite difference. For a function <span class="math">\(u(t)\)</span> we have</p>
+<div class="math">
+\[\frac{du}{dt} \approx \frac{u(t+\Delta t)- u(t)}{\Delta t},\]</div>
+<p class="last">where <span class="math">\(\Delta t\)</span> is a small time interval.
+If <span class="math">\(u\)</span> denotes a velocity, its dimension is <span class="math">\(\hbox{[LT]}^{-1}\)</span>,
+and <span class="math">\(u(t+\Delta t) - u(t)\)</span> gets the same dimension. The time
+interval has dimension <span class="math">\(\hbox{[T]}\)</span>, and consequently, the
+finite difference gets the dimension <span class="math">\(\hbox{[LT]}^{-2}\)</span>.
+In general, the dimension of the derivative <span class="math">\(du/dt\)</span> is the dimension
+of <span class="math">\(u\)</span> divided by the dimension of <span class="math">\(t\)</span>.</p>
+</div>
+</div>
+<div class="section" id="dimensions-of-common-physical-quantities">
+<span id="scale-dimunit-tables"></span><h3>Dimensions of common physical quantities<a class="headerlink" href="#dimensions-of-common-physical-quantities" title="Permalink to this headline">¶</a></h3>
+<p id="index-5">Many derived quantities are measured in derived units that have their
+own name. Force is one example: Newton (N) is a derived unit for
+force, equal to <span class="math">\(\hbox{kg\, m/s}^2\)</span>. Another derived unit is Pascal
+(Pa) for pressure and stress, i.e., force per area. The unit of Pa
+then equals <span class="math">\(\hbox{N/m}^2\)</span> or <span class="math">\(\hbox{kg/ms}^2\)</span>. Below are more names
+for derived
+quantities, listed with their units.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="11%" />
+<col width="33%" />
+<col width="45%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Name</th>
+<th class="head">Symbol</th>
+<th class="head">Physical quantity</th>
+<th class="head">Unit</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>radian</td>
+<td>rad</td>
+<td>angle</td>
+<td>1</td>
+</tr>
+<tr class="row-odd"><td>hertz</td>
+<td>Hz</td>
+<td>frequency</td>
+<td><span class="math">\(\hbox{s}^{-1}\)</span></td>
+</tr>
+<tr class="row-even"><td>newton</td>
+<td>N</td>
+<td>force, weight</td>
+<td><span class="math">\(\hbox{kg\, m/s}^2\)</span></td>
+</tr>
+<tr class="row-odd"><td>pascal</td>
+<td>Pa</td>
+<td>pressure, stress</td>
+<td><span class="math">\(\hbox{N/m}^2\)</span></td>
+</tr>
+<tr class="row-even"><td>joule</td>
+<td>J</td>
+<td>energy, work, heat</td>
+<td>Nm</td>
+</tr>
+<tr class="row-odd"><td>watt</td>
+<td>W</td>
+<td>power</td>
+<td>J/s</td>
+</tr>
+</tbody>
+</table>
+<p>Some common physical quantities and their dimensions are listed next.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="29%" />
+<col width="20%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Quantity</th>
+<th class="head">Relation</th>
+<th class="head">Unit</th>
+<th class="head">Dimension</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>stress</td>
+<td>force/area</td>
+<td><span class="math">\(\hbox{N/m}^2 = \hbox{Pa}\)</span></td>
+<td><span class="math">\([\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>pressure</td>
+<td>force/area</td>
+<td><span class="math">\(\hbox{N/m}^2 = \hbox{Pa}\)</span></td>
+<td><span class="math">\(\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]\)</span></td>
+</tr>
+<tr class="row-even"><td>density</td>
+<td>mass/volume</td>
+<td><span class="math">\(\hbox{kg/m}^3\)</span></td>
+<td><span class="math">\([\hbox{ML}^{-3}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>strain</td>
+<td>displacement/length</td>
+<td>1</td>
+<td><span class="math">\([1]\)</span></td>
+</tr>
+<tr class="row-even"><td>Young&#8217;s modulus</td>
+<td>stress/strain</td>
+<td><span class="math">\(\hbox{N/m}^2 = \hbox{Pa}\)</span></td>
+<td><span class="math">\([\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>Poisson&#8217;s ratio</td>
+<td>transverse strain/axial strain</td>
+<td>1</td>
+<td><span class="math">\([1]\)</span></td>
+</tr>
+<tr class="row-even"><td>Lame&#8217; parameters <span class="math">\(\lambda\)</span> and <span class="math">\(\mu\)</span></td>
+<td>stress/strain</td>
+<td><span class="math">\(\hbox{N/m}^2 = \hbox{Pa}\)</span></td>
+<td><span class="math">\([\hbox{M}\hbox{T}^{-2}\hbox{L}^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>moment (of a force)</td>
+<td>distance <span class="math">\(\times\)</span> force</td>
+<td>Nm</td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
+</tr>
+<tr class="row-even"><td>impulse</td>
+<td>force <span class="math">\(\times\)</span> time</td>
+<td><span class="math">\(\hbox{Ns}\)</span></td>
+<td><span class="math">\([\hbox{MLT}^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>linear momentum</td>
+<td>mass <span class="math">\(\times\)</span> velocity</td>
+<td><span class="math">\(\hbox{kg m/s}\)</span></td>
+<td><span class="math">\([\hbox{ML}\hbox{T}^{-1}]\)</span></td>
+</tr>
+<tr class="row-even"><td>angular momentum</td>
+<td>distance <span class="math">\(\times\)</span> mass <span class="math">\(\times\)</span> velocity</td>
+<td><span class="math">\(\hbox{kg m}^2/\hbox{s}\)</span></td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>work</td>
+<td>force <span class="math">\(\times\)</span> distance</td>
+<td><span class="math">\(\hbox{Nm} = \hbox{J}\)</span></td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
+</tr>
+<tr class="row-even"><td>energy</td>
+<td>work</td>
+<td><span class="math">\(\hbox{Nm} = \hbox{J}\)</span></td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>power</td>
+<td>work/time</td>
+<td><span class="math">\(\hbox{Nm/s} = \hbox{W}\)</span></td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-3}]\)</span></td>
+</tr>
+<tr class="row-even"><td>heat</td>
+<td>work</td>
+<td>J</td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>heat flux</td>
+<td>heat rate/area</td>
+<td><span class="math">\(\hbox{Wm}^{-2}\)</span></td>
+<td><span class="math">\([\hbox{MT}^{-3}]\)</span></td>
+</tr>
+<tr class="row-even"><td>temperature</td>
+<td>base unit</td>
+<td>K</td>
+<td><span class="math">\([\Theta]\)</span></td>
+</tr>
+<tr class="row-odd"><td>heat capacity</td>
+<td>heat change/temperature change</td>
+<td>J/K</td>
+<td><span class="math">\([\hbox{ML}^2\hbox{T}^{-2}\Theta^{-1}]\)</span></td>
+</tr>
+<tr class="row-even"><td>specific heat capacity</td>
+<td>heat capacity/unit mass</td>
+<td><span class="math">\(\hbox{JK}^{-1}\hbox{kg}^{-1}\)</span></td>
+<td><span class="math">\([\hbox{L}^2\hbox{T}^{-2}\Theta^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>thermal conductivity</td>
+<td>heat flux/temperature gradient</td>
+<td><span class="math">\(\hbox{Wm}^{-1}\hbox{K}^{-1}\)</span></td>
+<td><span class="math">\([\hbox{MLT}^{-3}\Theta^{-1}]\)</span></td>
+</tr>
+<tr class="row-even"><td>dynamic viscosity</td>
+<td>shear stress/velocity gradient</td>
+<td><span class="math">\(\hbox{kgm}^{-1}\hbox{s}^{-1}\)</span></td>
+<td><span class="math">\([\hbox{ML}^{-1}T^{-1}]\)</span></td>
+</tr>
+<tr class="row-odd"><td>kinematic viscosity</td>
+<td>dynamic viscosity/density</td>
+<td><span class="math">\(\hbox{m}^2/\hbox{s}\)</span></td>
+<td><span class="math">\([\hbox{L}^2\hbox{T}^{-1}]\)</span></td>
+</tr>
+<tr class="row-even"><td>surface tension</td>
+<td>energy/area</td>
+<td><span class="math">\(\hbox{J/m}^2\)</span></td>
+<td><span class="math">\([\hbox{MT}^{-2}]\)</span></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="prefixes-for-units">
+<h4>Prefixes for units<a class="headerlink" href="#prefixes-for-units" title="Permalink to this headline">¶</a></h4>
+<p>Units often have <a class="reference external" href="https://en.wikipedia.org/wiki/Metric_prefix">prefixes</a>.
+For example, kilo (k) is a prefix for 1000,
+so kg is 1000 g. Similarly, GPa means giga pascal or <span class="math">\(10^9\)</span> Pa.</p>
+</div>
+</div>
+<div class="section" id="the-buckingham-pi-theorem">
+<span id="scale-dimunit-pi"></span><h3>The Buckingham Pi theorem<a class="headerlink" href="#the-buckingham-pi-theorem" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-6"></span><p id="index-7">Almost all texts on scaling has a treatment of the famous Buckingham
+Pi theorem, which can be used to derive physical laws based on unit
+compatibility rather than the underlying physical mechanisms.  This
+booklet has its focus on models where the physical mechanisms are
+already expressed through differential equations. Nevertheless, the Pi
+theorem has a remarkable position in the literature on scaling, and
+since we will occasionally make references to it, the theorem is
+briefly discussed below.</p>
+<p>The theorem itself is simply stated in two parts. First, if a problem
+involves <span class="math">\(n\)</span> physical parameters in which <span class="math">\(m\)</span> independent unit-types
+(such as length, mass etc.) appear, then the parameters can be
+combined to exactly <span class="math">\(n-m\)</span> independent dimensionless numbers, referred
+to as Pi&#8217;s. Second, any unit-free relation between the original <span class="math">\(n\)</span>
+parameters can be transformed into a relation between the <span class="math">\(n-m\)</span>
+dimensionless numbers.  Such relations may be identities or
+inequalities stating, for instance, whether or not a given effect is
+negligible. Moreover, the transformation of an equation set into
+dimensionless form corresponds to expressing the coefficients, as well
+as the free and dependent variables, in terms of Pi&#8217;s.</p>
+<p>As an example, think of a body moving at constant speed <span class="math">\(v\)</span>. What
+is the distance <span class="math">\(s\)</span> traveled in time <span class="math">\(t\)</span>? The Pi theorem results in
+one dimensionless variable <span class="math">\(\pi = vt/s\)</span> and leads to the formula
+<span class="math">\(s = Cvt\)</span>, where <span class="math">\(C\)</span> is an undetermined constant. The result is
+very close to the well-known formula <span class="math">\(s=vt\)</span> arising from the differential
+equation <span class="math">\(s'=v\)</span> in physics, but with an extra constant.</p>
+<p>At first glance the Pi theorem may appear as bordering on the
+trivial. However, it may produce remarkable progress for selected
+problems, such as turbulent jets, nuclear blasts, or similarity
+solutions, without the detailed knowledge of mathematical or physical
+models. Hence, to a novice in scaling it may stand out as something
+very profound, if not magical.  Anyhow, as one moves on to more complex
+problems with many parameters, the use of the theorem yields
+comparatively less gain as the number of Pi&#8217;s becomes large.
+Many Pi&#8217;s may also be
+recombined in many ways. Thus, good
+physical insight, and/or information conveyed through an equation set,
+is required to
+pick the useful dimensionless numbers or the appropriate scaling of
+the said equation set.  Sometimes scrutiny of the equations also
+reveals that some Pi&#8217;s, obtained by applying the theorem, in fact
+may be removed from the problem.  As a consequence, when
+modeling a complex physical problem, the real assessment of scaling
+and dimensionless numbers will anyhow be included in the
+analysis of the governing equations instead of being a separate issue left
+with the Pi theorem. In textbooks and articles alike, the discussion of
+scaling in the context of the equations are too often missing or
+presented in a half-hearted fashion. Hence, the authors&#8217; focus will be
+on this process, while we do not provide much in the way of examples
+on the Pi theorem.  We do not allude that the Pi theorem is of little
+value.  In a number of contexts, such as in experiments, it may
+provide valuable and even crucial guidance, but in this particular
+textbook we seek to tell the complementary story on scaling.
+Moreover, as will be shown in this booklet, the dimensionless numbers in
+a problem also arise, in a very natural way, from scaling the
+differential equations.  Provided one has a model based on
+differential equations, there is actually no need for classical
+dimensional analysis.</p>
+</div>
+<div class="section" id="absolute-errors-relative-errors-and-units">
+<h3>Absolute errors, relative errors, and units<a class="headerlink" href="#absolute-errors-relative-errors-and-units" title="Permalink to this headline">¶</a></h3>
+<p>Mathematically, it does not matter what units we use for a physical
+quantity. However, when we deal with approximations and errors,
+units are important. Suppose we work with a geophysical problem where
+the length scale is typically measured in km and we have an approximation
+12.5 km to the exact value 12.52 km. The error is then 0.02 km.
+Switching units to mm leads to an error of 20,000 mm. A program working
+in mm would report <span class="math">\(2\cdot 10^5\)</span> as the error, while a program working
+in km would print 0.02. The absolute error is therefore sensitive to
+the choice of units. This fact motivates the use of <em>relative
+error</em>: (exact - approximate)/exact, since units then cancel.
+In the present example, one gets a relative error of <span class="math">\(1.6\cdot 10^{-3}\)</span>
+regardless of whether the length is measured in km or mm.</p>
+<p>Nevertheless, rather than relying solely on relative errors, it is in general
+better to scale the problem such that the quantities entering the
+computations are of unit size (or at least moderate) instead of being very
+large or very small. The techniques of these notes show how this
+can be done.</p>
+</div>
+<div class="section" id="units-and-computers">
+<h3>Units and computers<a class="headerlink" href="#units-and-computers" title="Permalink to this headline">¶</a></h3>
+<p>Traditional numerical computing involves numbers only and therefore
+requires dimensionless mathematical expressions. Usually, an implicit
+trivial scaling is used. One can, for example, just scale all length
+quantities by 1 m, all time quantities by 1 s, and all mass quantities
+by 1 kg, to obtain the dimensionless numbers needed for calculations.
+This is the most common approach, although it is very seldom explicitly
+stated.</p>
+<p>Symbolic computing packages, such as Mathematica and Maple, allow
+computations with quantities that have dimension. This is also possible
+in popular computer languages used for numerical computing (the section <a class="reference internal" href="#scale-pq"><span class="std std-ref">PhysicalQuantity: a tool for computing with units</span></a> provides a specific example in Python).</p>
+</div>
+<div class="section" id="unit-systems">
+<h3>Unit systems<a class="headerlink" href="#unit-systems" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-8"></span><p id="index-9">Confusion arises quickly when some physical quantities are expressed
+in SI units while others are in US or British units.  Density could,
+for instance, be given in unit of ounce per
+teaspoon (see <a class="reference internal" href="._book003.html#sec-scale-exer-us2si1"><span class="std std-ref">Exercise 2.1: Perform unit conversion</span></a> for how to safely
+convert to a standard unit like <span class="math">\(\hbox{kg}\,\hbox{m}^{-3}\)</span>).
+Although unit conversion tables are
+frequently met in school, errors in unit conversion probably rank
+highest among all errors committed by scientists and engineers (and
+when a unit conversion error makes an <a class="reference external" href="http://www.nytimes.com/1983/07/30/us/jet-s-fuel-ran-out-after-metric-conversion-errors.html">airplane&#8217;s fuel run out</a>,
+it is serious!).  Having good software tools to assist in unit
+conversion is therefore paramount, motivating the treatment of this
+topic in the sections <a class="reference internal" href="#scale-pq"><span class="std std-ref">PhysicalQuantity: a tool for computing with units</span></a> and <a class="reference internal" href="#scale-parampool"><span class="std std-ref">Parampool: user interfaces with automatic unit conversion</span></a>.  Readers who
+are primarily interested in the mathematical scaling technique may
+safely skip this material and jump right to the section <a class="reference internal" href="._book003.html#sec-scale-decay"><span class="std std-ref">Exponential decay problems</span></a>.</p>
+</div>
+<div class="section" id="example-on-challenges-arising-from-unit-systems">
+<h3>Example on challenges arising from unit systems<a class="headerlink" href="#example-on-challenges-arising-from-unit-systems" title="Permalink to this headline">¶</a></h3>
+<p>A slightly elaborated example on scaling in an actual
+science/engineering project may stimulate the reader&#8217;s
+motivation.  In its full extent, the study of <em>tsunamis</em> spans
+geophysics, geology, history, fluid dynamics, statistics, geodesy,
+engineering, and civil protection. This complexity reflects in a
+diversity of practices concerning the use of units, scales, and
+concepts. If we narrow the scope to modeling of tsunami
+propagation, the scaling aspect, at least, may seem simple as we are
+mainly concerned with length and time.  Still, even here the
+non-uniformity concerning physical units is an encumbrance.</p>
+<p>A minor issue is the occasional use of non-SI units such as inches, or
+in old charts, even fathoms.  More important is the non-uniformity in
+the magnitude of the different variables, and the differences in the
+inherent horizontal and vertical scales in particular.  Typically,
+surface elevations are in meters or smaller. For far-field deep water
+propagation, as well as small tsunamis (which are still of scientific
+interest) surface elevations are often given in cm or even
+mm.  In the deep ocean, the characteristic depth is orders of
+magnitude larger than this, typically <span class="math">\(5000\,\hbox{m}\)</span>. Propagation
+distances, on the other hand, are hundreds or thousands of
+kilometers. Often locations and computational grids are best described
+in geographical coordinates (longitude/latitude) which are related to
+SI units by 1 latitude minute being roughly one nautical mile
+(<span class="math">\(1852\,\hbox{m}\)</span>), and 1 longitude minute being this quantity times
+the cosine of the latitude. Wave periods of tsunamis mostly range from
+minutes to an hour, hopefully sufficiently short to be well separated
+from the half-daily period of the tides. Propagation times are
+typically hours or maybe the better part of a day when the Pacific
+Ocean is traversed.</p>
+<p>The scientists, engineers, and bureaucrats in the tsunami community
+tend to be particular and non-conform concerning formats and units, as
+well as the type of data required.  To accommodate these demands, a
+tsunami modeler must produce a diversity of data which are in units
+and formats which cannot be used internally in her models.  On the
+other hand, she must also be prepared to accept the input data in
+diversified forms.  Some data sets may be large, implying that
+unnecessary duplication, with different units or scaling, should be
+avoided.  In addition, tsunami models are often bench-marked through
+comparison with experimental data. The lab scale is generally
+<span class="math">\(\hbox{cm}\)</span> or <span class="math">\(\hbox{m}\)</span>, at most, which implies that measured data
+are provided in different units (than used in real earth-scale events),
+or even in volts,
+with conversion information, as obtained from the measuring gauges.</p>
+<p>All the unit particulars in various file formats is clearly a nuisance
+and give rise to a number of misconceptions and errors that may cause
+loss of precious time or efforts. To reduce such problems, developers
+of computational tools should combine a reasonable flexibility
+concerning units in input and output with a clear and consistent
+convention for scaling within the tools. In fact, this also applies to
+academic tools for in-house use.</p>
+<p>The discussion above points to some best practices that these notes
+promotes. First, always compute with scaled differential equation
+models. This booklet tells you how to do that. Second, users of software
+often want to specify input data with dimension and get output data
+with dimension. The software should then apply tools like
+<code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> (the section <a class="reference internal" href="#scale-pq"><span class="std std-ref">PhysicalQuantity: a tool for computing with units</span></a>)
+or the more sophisticated Parampool package (the section <a class="reference internal" href="#scale-parampool"><span class="std std-ref">Parampool: user interfaces with automatic unit conversion</span></a>) to allow input with explicit dimensions and
+convert the dimensions to the right types if necessary.
+It is trivial to apply these tools if the computational software is
+written in Python, but it is even straightforward if the software is
+written in compiled languages like Fortran, C, or C++. In the latter
+case one just makes an input reading module in Python that grabs data from
+a user interface and feeds them into the computational software, either
+through files or function calls (the relevant functions to be called
+must be wrapped in Python with tools like
+<a class="reference external" href="http://docs.scipy.org/doc/numpy-dev/f2py/">f2py</a>,
+<a class="reference external" href="http://cython.org/">Cython</a>,
+<a class="reference external" href="http://docs.scipy.org/doc/scipy/reference/tutorial/weave.html">Weave</a>,
+<a class="reference external" href="http://www.swig.org/">SWIG</a>,
+<a class="reference external" href="https://bitbucket.org/fenics-project/instant">Instant</a>,
+or similar, see <a class="reference internal" href="._book005.html#ref03" id="id1">[Ref03]</a> (Appendix C) for basic
+examples on f2py and Cython wrapping of C and Fortran code).</p>
+</div>
+<div class="section" id="physicalquantity-a-tool-for-computing-with-units">
+<span id="scale-pq"></span><h3>PhysicalQuantity: a tool for computing with units<a class="headerlink" href="#physicalquantity-a-tool-for-computing-with-units" title="Permalink to this headline">¶</a></h3>
+<span class="target" id="index-10"></span><span class="target" id="index-11"></span><p id="index-12">These notes contain quite some computer code to illustrate how the theory
+maps in detail to running software. Python is the programming language
+used, primarily because it is an easy-to-read, powerful,
+full-fledged language that allows MATLAB-like code
+as well as class-based code typically used in Java, C#, and C++.
+The Python ecosystem for scientific computing has in recent years grown
+fast in popularity and acts as a replacement for more specialized tools
+like MATLAB, R, and IDL.
+The coding examples in this booklet requires only familiarity with basic
+procedural programming in Python.</p>
+<p>Readers without knowledge of Python variables, functions, if tests,
+and module import should consult, e.g., a <a class="reference external" href="http://hplgit.github.io/bumpy/doc/web/index.html">brief tutorial on scientific
+Python</a>,
+the <a class="reference external" href="http://scipy-lectures.github.com/">Python Scientific Lecture Notes</a>,
+or a full textbook <a class="reference internal" href="._book005.html#ref04" id="id2">[Ref04]</a> in parallel with reading about
+Python code in the present notes.</p>
+<div class="admonition-these-notes-apply-python-2-7 admonition">
+<p class="first admonition-title">These notes apply Python 2.7</p>
+<p>Python exists in two incompatible versions, numbered 2 and 3.
+The differences can be made small, and there are tools to write
+code that runs under both versions.</p>
+<p class="last">As Python version 2 is still dominating
+in scientific computing, we stick to this version, but
+write code in version 2.7 that is as close as possible to version 3.4
+and later. In most of our programs, only the <code class="docutils literal"><span class="pre">print</span></code> statement differs
+between version 2 and 3.</p>
+</div>
+<p>Computations with units in Python are well supported by the
+very useful tool <code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> from the <a class="reference external" href="https://bitbucket.org/khinsen/scientificpython">ScientificPython package</a> by Konrad
+Hinsen. Unfortunately, ScientificPython does not, at the time of this
+writing, work with NumPy version 1.9 or later, so we have isolated the
+<code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> object in a module <a class="reference external" href="https://github.com/hplgit/physical-quantities">PhysicalQuantities</a> and made it publicly
+available on GitHub. There is also an alternative package <a class="reference external" href="https://bitbucket.org/kiv/unum/">Unum</a> for computing with numbers with
+units, but we shall stick to the former module here.</p>
+<p>Let us demonstrate the usage of the <code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> object by
+computing <span class="math">\(s=vt\)</span>, where <span class="math">\(v\)</span> is a velocity given in the unit <em>yards per
+minute</em> and <span class="math">\(t\)</span> is time measured in hours.  First we need to know what
+the units are called in <code class="docutils literal"><span class="pre">PhysicalQuantities</span></code>.  To this end, run <code class="docutils literal"><span class="pre">pydoc</span>
+<span class="pre">PhysicalQuantities</span></code>, or</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Terminal&gt; pydoc Scientific.Physics.PhysicalQuantities
+</pre></div>
+</div>
+<p>if you have the entire ScientificPython package installed. The
+resulting documentation shows the names of
+the units. In particular,
+yards are specified by <code class="docutils literal"><span class="pre">yd</span></code>, minutes by <code class="docutils literal"><span class="pre">min</span></code>, and hours
+by <code class="docutils literal"><span class="pre">h</span></code>. We can now compute <span class="math">\(s=vt\)</span> as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="c1"># With ScientificPython:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">Scientific.Physics.PhysicalQuantities</span> <span class="kn">import</span> \
+<span class="gp">... </span><span class="n">PhysicalQuantity</span> <span class="k">as</span> <span class="n">PQ</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># With PhysicalQuantities as separate/stand-alone module:</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">PhysicalQuantities</span> <span class="kn">import</span> <span class="n">PhysicalQuantity</span> <span class="k">as</span> <span class="n">PQ</span>
+<span class="go">&gt;&gt;&gt;</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span> <span class="o">=</span> <span class="n">PQ</span><span class="p">(</span><span class="s1">&#39;120 yd/min&#39;</span><span class="p">)</span>   <span class="c1"># velocity</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">PQ</span><span class="p">(</span><span class="s1">&#39;1 h&#39;</span><span class="p">)</span>          <span class="c1"># time</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">v</span><span class="o">*</span><span class="n">t</span>                <span class="c1"># distance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span>                <span class="c1"># s is string</span>
+<span class="go">120.0 h*yd/min</span>
+</pre></div>
+</div>
+<p>The odd unit <code class="docutils literal"><span class="pre">h*yd/min</span></code> is better converted to a standard SI unit such
+as meter:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">convertToUnit</span><span class="p">(</span><span class="s1">&#39;m&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span>
+<span class="go">6583.68 m</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal"><span class="pre">s</span></code> is a <code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> object with a value and a
+unit. For mathematical computations we need to extract the
+value as a <code class="docutils literal"><span class="pre">float</span></code> object. We can also extract the unit as a string:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getValue</span><span class="p">()</span>     <span class="c1"># float</span>
+<span class="go">6583.68</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">s</span><span class="o">.</span><span class="n">getUnitName</span><span class="p">()</span>  <span class="c1"># string</span>
+<span class="go">m</span>
+</pre></div>
+</div>
+<p>Here is an example on how to convert the odd velocity unit yards per
+minute to something more standard:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">convertToUnit</span><span class="p">(</span><span class="s1">&#39;km/h&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">v</span>
+<span class="go">6.58368 km/h</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">v</span><span class="o">.</span><span class="n">convertToUnit</span><span class="p">(</span><span class="s1">&#39;m/s&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">v</span>
+<span class="go">1.8288 m/s</span>
+</pre></div>
+</div>
+<p>As another example on unit conversion,
+say you look up the specific heat capacity of water to
+be 1 <span class="math">\(\hbox{cal}\, \hbox{g}^{-1}\hbox{K}^{-1}\)</span>. What is the
+corresponding value in the standard unit <span class="math">\(\hbox{Jg}^{-1}\hbox{K}^{-1}\)</span>
+where joule replaces calorie?</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">c</span> <span class="o">=</span> <span class="n">PQ</span><span class="p">(</span><span class="s1">&#39;1 cal/(g*K)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">c</span><span class="o">.</span><span class="n">convertToUnit</span><span class="p">(</span><span class="s1">&#39;J/(g*K)&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">print</span> <span class="n">c</span>
+<span class="go">4.184 J/K/g</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="parampool-user-interfaces-with-automatic-unit-conversion">
+<span id="scale-parampool"></span><h2>Parampool: user interfaces with automatic unit conversion<a class="headerlink" href="#parampool-user-interfaces-with-automatic-unit-conversion" title="Permalink to this headline">¶</a></h2>
+<p id="index-13">The <a class="reference external" href="https://github.com/hplgit/parampool">Parampool</a> package allows
+creation of user interfaces with support for units and unit
+conversion. Values of parameters can be set as a number with a
+unit. The parameters can be registered beforehand with a preferred
+unit, and whatever the user prescribes, the value and unit are
+converted so the unit becomes the registered unit. Parampool supports
+various type of user interfaces: command-line arguments (option-value
+pairs), text files, and interactive web pages. All of these
+are described next.</p>
+<p><strong>Example application.</strong>
+As case, we want to make software for computing with the simple
+formula <span class="math">\(s=v_0t + \frac{1}{2}at^2\)</span>. We want <span class="math">\(v_0\)</span> to be a velocity
+with unit m/s, <span class="math">\(a\)</span> to be acceleration with unit <span class="math">\(\hbox{m/s}^2\)</span>, <span class="math">\(t\)</span> to be
+time measured in s, and consequently <span class="math">\(s\)</span> will be a distance measured in m.</p>
+<div class="section" id="pool-of-parameters">
+<h3>Pool of parameters<a class="headerlink" href="#pool-of-parameters" title="Permalink to this headline">¶</a></h3>
+<p>First, Parampool requires us to define a <em>pool</em> of all input
+parameters, which is here simply represented by list of dictionaries, where each
+dictionary holds information about one parameter. It is possible to
+organize input parameters in a tree structure with subpools that
+themselves may have
+subpools,
+but for our simple application we just need a flat structure with
+three input parameters:
+<span class="math">\(v_0\)</span>, <span class="math">\(a\)</span>, and <span class="math">\(t\)</span>. These parameters are put in a subpool called
+&#8220;Main&#8221;. The pool is created by the code</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">define_input</span><span class="p">():</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;Main&#39;</span><span class="p">,</span> <span class="p">[</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;initial velocity&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;m/s&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;acceleration&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">1.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;m/s**2&#39;</span><span class="p">),</span>
+            <span class="nb">dict</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;time&#39;</span><span class="p">,</span> <span class="n">default</span><span class="o">=</span><span class="mf">10.0</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;s&#39;</span><span class="p">)</span>
+            <span class="p">]</span>
+        <span class="p">]</span>
+
+    <span class="kn">from</span> <span class="nn">parampool.pool.UI</span> <span class="kn">import</span> <span class="n">listtree2Pool</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="n">listtree2Pool</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>  <span class="c1"># convert list to Pool object</span>
+    <span class="k">return</span> <span class="n">pool</span>
+</pre></div>
+</div>
+<p>For each parameter we can define a logical name, such as <code class="docutils literal"><span class="pre">initial</span> <span class="pre">velocity</span></code>,
+a default value, and a unit. Additional properties
+are also allowed, see the <a class="reference external" href="http://hplgit.github.io/parampool/doc/web/index.html">Parampool documentation</a>.</p>
+<div class="admonition-tip-specify-default-values-of-numbers-as-float-objects admonition">
+<p class="first admonition-title">Tip: specify default values of numbers as float objects</p>
+<p class="last">Note that we do not just write 1, but 1.0 as default.
+Had 1 been used, Parampool would have interpreted our parameter as
+an integer and would therefore convert input like <code class="docutils literal"><span class="pre">2.5</span> <span class="pre">m/s</span></code> to <code class="docutils literal"><span class="pre">2</span> <span class="pre">m/s</span></code>.
+To ensure that a real-valued parameter becomes a <code class="docutils literal"><span class="pre">float</span></code> object inside
+the pool, we must specify the default value as a real number: <code class="docutils literal"><span class="pre">1.</span></code> or <code class="docutils literal"><span class="pre">1.0</span></code>.
+(The type of an input parameter can alternatively be set <em>explicitly</em> by
+the <code class="docutils literal"><span class="pre">str2type</span></code> property, e.g., <code class="docutils literal"><span class="pre">str2type=float</span></code>.)</p>
+</div>
+</div>
+<div class="section" id="fetching-pool-data-for-computing">
+<h3>Fetching pool data for computing<a class="headerlink" href="#fetching-pool-data-for-computing" title="Permalink to this headline">¶</a></h3>
+<p>We can make a little function for fetching values from the pool
+and computing <span class="math">\(s\)</span>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance</span><span class="p">(</span><span class="n">pool</span><span class="p">):</span>
+    <span class="n">v_0</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;initial velocity&#39;</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;acceleration&#39;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">v_0</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal"><span class="pre">pool.get_value</span></code> function returns the numerical value of
+the named parameter, after the unit has been converted from what the
+user has specified to what was registered in the pool.
+For example, if the user provides the command-line argument
+<code class="docutils literal"><span class="pre">--time</span> <span class="pre">'2</span> <span class="pre">h'</span></code>, Parampool will convert this quantity to seconds and
+<code class="docutils literal"><span class="pre">pool.get_value('time')</span></code> will return 7200.</p>
+</div>
+<div class="section" id="reading-command-line-options">
+<h3>Reading command-line options<a class="headerlink" href="#reading-command-line-options" title="Permalink to this headline">¶</a></h3>
+<p>To run the computations, we define the pool, load values from the
+command line, and call <code class="docutils literal"><span class="pre">distance</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">pool</span> <span class="o">=</span> <span class="n">define_input</span><span class="p">()</span>
+<span class="kn">from</span> <span class="nn">parampool.menu.UI</span> <span class="kn">import</span> <span class="n">set_values_from_command_line</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">set_values_from_command_line</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">distance</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;s=</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s</span>
+</pre></div>
+</div>
+<p>Parameter names with whitespace must use an underscore for whitespace
+in the command-line option, such as in <code class="docutils literal"><span class="pre">--Initial_velocity</span></code>.
+We can now run</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Terminal&gt; python distance.py --initial_velocity &#39;10 km/h&#39; \
+          --acceleration 0 --time &#39;1 h
+s=10000
+</pre></div>
+</div>
+<p>Notice from the answer (<code class="docutils literal"><span class="pre">s</span></code>) that 10 km/h gets converted to m/s and 1 h to s.</p>
+<p>It is also possible to fetch parameter values as <code class="docutils literal"><span class="pre">PhysicalQuantity</span></code>
+objects from the pool by calling</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">v_0</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value_unit</span><span class="p">(</span><span class="s1">&#39;Initial velocity&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The following variant of the <code class="docutils literal"><span class="pre">distance</span></code> function computes with
+values and units:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance_unit</span><span class="p">(</span><span class="n">pool</span><span class="p">):</span>
+    <span class="c1"># Compute with units</span>
+    <span class="kn">from</span> <span class="nn">parampool.PhysicalQuantities</span> <span class="kn">import</span> <span class="n">PhysicalQuantity</span> <span class="k">as</span> <span class="n">PQ</span>
+    <span class="n">v_0</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value_unit</span><span class="p">(</span><span class="s1">&#39;initial velocity&#39;</span><span class="p">)</span>
+    <span class="n">a</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value_unit</span><span class="p">(</span><span class="s1">&#39;acceleration&#39;</span><span class="p">)</span>
+    <span class="n">t</span> <span class="o">=</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_value_unit</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="n">v_0</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">getValue</span><span class="p">(),</span> <span class="n">s</span><span class="o">.</span><span class="n">getUnitName</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>We can then do</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">,</span> <span class="n">s_unit</span> <span class="o">=</span> <span class="n">distance_unit</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;s=</span><span class="si">%g</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="n">s</span><span class="p">,</span> <span class="n">s_unit</span>
+</pre></div>
+</div>
+<p>and get output with the right unit as well.</p>
+</div>
+<div class="section" id="setting-default-values-in-a-file">
+<h3>Setting default values in a file<a class="headerlink" href="#setting-default-values-in-a-file" title="Permalink to this headline">¶</a></h3>
+<p>In large applications with lots of input parameters one will often like
+to define a (huge) set of default values specific for a case and then
+override a few of them on the command-line. Such sets of default values
+can be set in a file using syntax like</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span>subpool Main
+initial velocity = 100 ! yd/min
+acceleration = 0 ! m/s**2         # drop acceleration
+end
+</pre></div>
+</div>
+<p>The unit can be given after the <code class="docutils literal"><span class="pre">!</span></code> symbol (and before the comment symbol <code class="docutils literal"><span class="pre">#</span></code>).</p>
+<p>To read such files we have to add the lines</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parampool.pool.UI</span> <span class="kn">import</span> <span class="n">set_defaults_from_file</span>
+<span class="n">pool</span> <span class="o">=</span> <span class="n">set_defaults_from_file</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>before the call to <code class="docutils literal"><span class="pre">set_defaults_from_command_line</span></code>.</p>
+<p>If the above commands are stored in a file <code class="docutils literal"><span class="pre">distance.dat</span></code>, we give
+this file information to the program through the
+option <code class="docutils literal"><span class="pre">--poolfile</span> <span class="pre">distance.dat</span></code>. Running just</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Terminal&gt; python distance.py --poolfile distance.dat
+s=15.25 m
+</pre></div>
+</div>
+<p>first loads the velocity
+100 yd/min converted to 1.524 m/s and zero acceleration
+into the pool system and, and then we call <code class="docutils literal"><span class="pre">distance_unit</span></code>, which
+loads these values from the pool along with the default value for
+time, set as 10 s. The calculation is then <span class="math">\(s=1.524\cdot 10 + 0=15.24\)</span>
+with unit m. We can override the time and/or the other two
+parameters on the command line:</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Terminal&gt; python distance.py --poolfile distance.dat --time &#39;2 h&#39;
+s=10972.8 m
+</pre></div>
+</div>
+<p>The resulting calculations are <span class="math">\(s=1.524\cdot 7200 + 0 =10972.8\)</span>.
+You are encouraged to play around with the <a class="reference external" href="http://tinyurl.com/o8pb3yy/distance.py">distance.py</a> program.</p>
+</div>
+<div class="section" id="specifying-multiple-values-of-input-parameters">
+<span id="index-14"></span><h3>Specifying multiple values of input parameters<a class="headerlink" href="#specifying-multiple-values-of-input-parameters" title="Permalink to this headline">¶</a></h3>
+<p>Parampool has an interesting feature: multiple values can be assigned
+to an input parameter, thereby making it easy for an application to
+run through all combinations of all parameters.
+We can demonstrate this feature by making a table of <span class="math">\(v_0\)</span>, <span class="math">\(a\)</span>, <span class="math">\(t\)</span>, and
+<span class="math">\(s\)</span> values. In the compute function, we need to call <code class="docutils literal"><span class="pre">pool.get_values</span></code>
+instead of <code class="docutils literal"><span class="pre">pool.get_value</span></code> to get a list of all the values that
+were specified for the parameter in question. By nesting loops over
+all parameters, we visit all combinations of all parameters as
+specified by the user:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance_table</span><span class="p">(</span><span class="n">pool</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Grab multiple values of parameters from the pool.&quot;&quot;&quot;</span>
+    <span class="n">table</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">v_0</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;initial velocity&#39;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">a</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;acceleration&#39;</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">pool</span><span class="o">.</span><span class="n">get_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">):</span>
+                <span class="n">s</span> <span class="o">=</span> <span class="n">v_0</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">a</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span>
+                <span class="n">table</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">v_0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">table</span>
+</pre></div>
+</div>
+<p>In case just a single value was specified for a parameter, <code class="docutils literal"><span class="pre">pool.get_values</span></code>
+returns this value only and there will be only one pass in the associated
+loop.</p>
+<p>After loading command-line arguments into our <code class="docutils literal"><span class="pre">pool</span></code> object, we can call
+<code class="docutils literal"><span class="pre">distance_table</span></code> instead of <code class="docutils literal"><span class="pre">distance</span></code> or <code class="docutils literal"><span class="pre">distance_unit</span></code> and
+write out a nicely formatted table of results:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="n">table</span> <span class="o">=</span> <span class="n">distance_table</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;|-----------------------------------------------------|&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;|      v_0   |      a     |      t     |      s       |&#39;</span>
+<span class="k">print</span> <span class="s1">&#39;|-----------------------------------------------------|&#39;</span>
+<span class="k">for</span> <span class="n">v_0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">table</span><span class="p">:</span>
+    <span class="k">print</span> <span class="s1">&#39;|</span><span class="si">%11.3f</span><span class="s1"> | </span><span class="si">%10.3f</span><span class="s1"> | </span><span class="si">%10.3f</span><span class="s1"> | </span><span class="si">%12.3f</span><span class="s1"> |&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">v_0</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="k">print</span> <span class="s1">&#39;|-----------------------------------------------------|&#39;</span>
+</pre></div>
+</div>
+<p>Here is a sample run,</p>
+<div class="highlight-text"><div class="highlight"><pre><span></span>Terminal&gt; python distance.py --time &#39;1 h &amp; 2 h &amp; 3 h&#39; \
+          --acceleration &#39;0 m/s**2 &amp; 1 m/s**2 &amp; 1 yd/s**2&#39; \
+      --initial_velocity &#39;1 &amp; 5&#39;
+|-----------------------------------------------------|
+|      v_0   |      a     |      t     |      s       |
+|-----------------------------------------------------|
+|      1.000 |      0.000 |   3600.000 |     3600.000 |
+|      1.000 |      0.000 |   7200.000 |     7200.000 |
+|      1.000 |      0.000 |  10800.000 |    10800.000 |
+|      1.000 |      1.000 |   3600.000 |  6483600.000 |
+|      1.000 |      1.000 |   7200.000 | 25927200.000 |
+|      1.000 |      1.000 |  10800.000 | 58330800.000 |
+|      1.000 |      0.914 |   3600.000 |  5928912.000 |
+|      1.000 |      0.914 |   7200.000 | 23708448.000 |
+|      1.000 |      0.914 |  10800.000 | 53338608.000 |
+|      5.000 |      0.000 |   3600.000 |    18000.000 |
+|      5.000 |      0.000 |   7200.000 |    36000.000 |
+|      5.000 |      0.000 |  10800.000 |    54000.000 |
+|      5.000 |      1.000 |   3600.000 |  6498000.000 |
+|      5.000 |      1.000 |   7200.000 | 25956000.000 |
+|      5.000 |      1.000 |  10800.000 | 58374000.000 |
+|      5.000 |      0.914 |   3600.000 |  5943312.000 |
+|      5.000 |      0.914 |   7200.000 | 23737248.000 |
+|      5.000 |      0.914 |  10800.000 | 53381808.000 |
+|-----------------------------------------------------|
+</pre></div>
+</div>
+<p>Notice that some of the multiple values have dimensions different
+from the registered dimension for that parameter, and the table
+shows that conversion to the right dimension has taken place.</p>
+<span class="target" id="index-15"></span></div>
+<div class="section" id="generating-a-graphical-user-interface">
+<span id="index-16"></span><h3>Generating a graphical user interface<a class="headerlink" href="#generating-a-graphical-user-interface" title="Permalink to this headline">¶</a></h3>
+<p>For the fun of it, we can easily generate a graphical user interface
+via Parampool. We wrap the <code class="docutils literal"><span class="pre">distance_unit</span></code> function in a function that
+returns the result in some nice-looking HTML code:</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">distance_unit2</span><span class="p">(</span><span class="n">pool</span><span class="p">):</span>
+    <span class="c1"># Wrap result from distance_unit in HTML</span>
+    <span class="n">s</span><span class="p">,</span> <span class="n">s_unit</span> <span class="o">=</span> <span class="n">distance_unit</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+    <span class="k">return</span> <span class="s1">&#39;&lt;b&gt;Distance:&lt;/b&gt; </span><span class="si">%.2f</span><span class="s1"> </span><span class="si">%s</span><span class="s1">&#39;</span> <span class="o">%</span> <span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s_unit</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In addition, we must make a file <code class="docutils literal"><span class="pre">generate_distance_GUI.py</span></code> with the
+simple content</p>
+<div class="highlight-python"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parampool.generator.flask</span> <span class="kn">import</span> <span class="n">generate</span>
+<span class="kn">from</span> <span class="nn">distance</span> <span class="kn">import</span> <span class="n">distance_unit2</span><span class="p">,</span> <span class="n">define_input</span>
+
+<span class="n">generate</span><span class="p">(</span><span class="n">distance_unit2</span><span class="p">,</span> <span class="n">pool_function</span><span class="o">=</span><span class="n">define_input</span><span class="p">,</span> <span class="n">MathJax</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Running <code class="docutils literal"><span class="pre">generate_distance_GUI.py</span></code> creates a Flask-based web
+interface <a class="footnote-reference" href="#flask" id="id3">[1]</a>
+to our <code class="docutils literal"><span class="pre">distance_unit</span></code> function, see Figure <a class="reference internal" href="#scale-dimunit-fig-gui"><span class="std std-ref">Web GUI where parameters can be specified with units</span></a>.
+The text fields in this GUI allow specification of parameters with
+numbers and units, e.g., acceleration with unit yards per minute squared,
+as shown in the figure. Hovering the mouse slightly to the left of
+the text field causes a little black window to pop up with the registered unit
+of that parameter.</p>
+<table class="docutils footnote" frame="void" id="flask" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[1]</a></td><td>You need to have Flask and additional packages installed.
+This is easy to do with a few <code class="docutils literal"><span class="pre">pip</span> <span class="pre">install</span></code> commands,
+see <a class="reference internal" href="._book005.html#ref05" id="id4">[Ref05]</a> or <a class="reference internal" href="._book005.html#ref06" id="id5">[Ref06]</a>.</td></tr>
+</tbody>
+</table>
+<div class="figure" id="id6">
+<span id="scale-dimunit-fig-gui"></span><a class="reference internal image-reference" href="_images/distance_GUI.png"><img alt="_images/distance_GUI.png" src="_images/distance_GUI.png" style="width: 400px;" /></a>
+<p class="caption"><span class="caption-text"><em>Web GUI where parameters can be specified with units</em></span></p>
+</div>
+<p>With examples shown above, the reader should be able to make use of the
+<code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> object and the Parampool package in programs
+and thereby work safely with units. For the coming text, where we discuss the
+craft of scaling in detail, we shall just work in standard SI units
+and avoid unit conversion so there will be no more use of
+<code class="docutils literal"><span class="pre">PhysicalQuantity</span></code> and Parampool.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <center>
+            <p class="logo"><a href="http://cbc.simula.no/" title="Go to Center for Biomedical Computing">
+              <img class="logo" src="_static/cbc_logo.png" alt="Logo"/>
+            </a></p>
+            </center>
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Dimensions and units</a><ul>
+<li><a class="reference internal" href="#fundamental-concepts">Fundamental concepts</a><ul>
+<li><a class="reference internal" href="#base-units-and-dimensions">Base units and dimensions</a></li>
+<li><a class="reference internal" href="#dimensions-of-common-physical-quantities">Dimensions of common physical quantities</a><ul>
+<li><a class="reference internal" href="#prefixes-for-units">Prefixes for units</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#the-buckingham-pi-theorem">The Buckingham Pi theorem</a></li>
+<li><a class="reference internal" href="#absolute-errors-relative-errors-and-units">Absolute errors, relative errors, and units</a></li>
+<li><a class="reference internal" href="#units-and-computers">Units and computers</a></li>
+<li><a class="reference internal" href="#unit-systems">Unit systems</a></li>
+<li><a class="reference internal" href="#example-on-challenges-arising-from-unit-systems">Example on challenges arising from unit systems</a></li>
+<li><a class="reference internal" href="#physicalquantity-a-tool-for-computing-with-units">PhysicalQuantity: a tool for computing with units</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parampool-user-interfaces-with-automatic-unit-conversion">Parampool: user interfaces with automatic unit conversion</a><ul>
+<li><a class="reference internal" href="#pool-of-parameters">Pool of parameters</a></li>
+<li><a class="reference internal" href="#fetching-pool-data-for-computing">Fetching pool data for computing</a></li>
+<li><a class="reference internal" href="#reading-command-line-options">Reading command-line options</a></li>
+<li><a class="reference internal" href="#setting-default-values-in-a-file">Setting default values in a file</a></li>
+<li><a class="reference internal" href="#specifying-multiple-values-of-input-parameters">Specifying multiple values of input parameters</a></li>
+<li><a class="reference internal" href="#generating-a-graphical-user-interface">Generating a graphical user interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="._book001.html"
+                        title="previous chapter">Preface</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="._book003.html"
+                        title="next chapter">Ordinary differential equation models</a></p>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/._book002.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="._book003.html" title="Ordinary differential equation models"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="._book001.html" title="Preface"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Scaling of Differential Equations</a> &raquo;</li> 
+      </ul>
+    </div>
+<div class="wrapper">
+  <div class="footer">
+    <a href="http://cbc.simula.no"><img src="_static/cbc_banner.png" width="100%"><a>
+    <br />
+    <br />
+      &copy;2016, Hans Petter Langtangen, Geir K. Pedersen. Released under CC Attribution 4.0 license.
+  </div>
+</div>
+
+  </body>
+</html>

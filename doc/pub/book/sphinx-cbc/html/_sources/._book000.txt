@@ -1,0 +1,22 @@
+.. Automatically generated Sphinx-extended reStructuredText file from DocOnce source
+   (https://github.com/hplgit/doconce/)
+
+.. Document title:
+
+Scaling of Differential Equations
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+:Authors: Hans Petter Langtangen, Geir K. Pedersen
+
+This book explains the mathematical details of making differential
+equation models dimensionless. A key feature of the text is the reasoning
+about the right choice
+of scales. A large number of worked examples demonstrate
+the scaling technique for ordinary and partial differential equations
+from physics and biology. How to utilize scaled models in simulation
+software is also addressed.
+
+:Date: Jun 5, 2016
+
+.. Externaldocuments: ../../../decay-book/doc/.src/book/book, ../../../fdm-book/doc/.src/book/book
+

@@ -25,14 +25,6 @@ opt="CHAPTER=$CHAPTER BOOK=$BOOK APPENDIX=$APPENDIX --exercise_numbering=chapter
 # --- Let's compile a lot of formats before we have decided for one HTML
 # and one Sphinx
 
-themes="uio2 cbc bootstrap scipy_lectures"
-for theme in $themes; do
-system doconce format sphinx $name $opt EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux --toc_depth=2 # --sphinx_keep_splits
-system doconce split_rst $name
-system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
-system python automake_sphinx.py
-done
-
 hash=82dee82e1274a586571086dca04d00308d3a0d86  # "book with solutions"
 # Compile Bootstrap HTML with solutions
 html=.trash${hash}
@@ -64,6 +56,15 @@ html=${topicname}-book-solarized
 system doconce format html $name $opt --html_style=solarized3 --html_output=$html EXV=True --without_solutions --without_answers --replace_ref_by_latex_auxno=book.aux $encoding
 system doconce split_html $html.html --nav_button=text
 
+themes="uio2 cbc bootstrap scipy_lectures"
+for theme in $themes; do
+system doconce format sphinx $name $opt EXV=True --without_solutions --without_answers $encoding --replace_ref_by_latex_auxno=book.aux --toc_depth=2 # --sphinx_keep_splits
+system doconce split_rst $name
+system doconce sphinx_dir theme=$theme dirname=sphinx-${theme} $name
+system python automake_sphinx.py
+done
+
+
 # Publish
 repo=../pub
 dest=${repo}/book
@@ -85,6 +86,7 @@ done
 rm -f $dest/sphinx-*
 for dir in sphinx-*; do
  cp -r $dir/_build/html ${dest}/$dir
+done
 
 cd $dest
 git add .

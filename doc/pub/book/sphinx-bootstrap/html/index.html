@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Scaling of Differential Equations</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.4/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-3.3.4/css/bootstrap-theme.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.4/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+
+        <script src="http://sagecell.sagemath.org/static/jquery.min.js"></script>
+        <script src="http://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
+
+        <script>sagecell.makeSagecell({inputLocation: ".sage"});</script>
+
+        <style type="text/css">
+                .sagecell .CodeMirror-scroll {
+                        overflow-y: hidden;
+                        overflow-x: auto;
+                }
+                .sagecell .CodeMirror {
+                        height: auto;
+                }
+        </style>
+
+    
+    <link rel="top" title="Scaling of Differential Equations" href="#" />
+    <link rel="next" title="Scaling of Differential Equations" href="._book000.html" />
+
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  
+       <style type="text/css">
+         div.admonition {
+           background-color: whiteSmoke;
+           border: 1px solid #bababa;
+         }
+       </style>
+      </head>
+    
+  <body role="document">
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="#">
+          Scaling of Differential Equations</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="._book000.html">Scaling of Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="._book001.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="._book002.html">Dimensions and units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book002.html#fundamental-concepts">Fundamental concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#base-units-and-dimensions">Base units and dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#dimensions-of-common-physical-quantities">Dimensions of common physical quantities</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book002.html#prefixes-for-units">Prefixes for units</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#the-buckingham-pi-theorem">The Buckingham Pi theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#absolute-errors-relative-errors-and-units">Absolute errors, relative errors, and units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#units-and-computers">Units and computers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#unit-systems">Unit systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#example-on-challenges-arising-from-unit-systems">Example on challenges arising from unit systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#physicalquantity-a-tool-for-computing-with-units">PhysicalQuantity: a tool for computing with units</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book002.html#parampool-user-interfaces-with-automatic-unit-conversion">Parampool: user interfaces with automatic unit conversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#pool-of-parameters">Pool of parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#fetching-pool-data-for-computing">Fetching pool data for computing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#reading-command-line-options">Reading command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#setting-default-values-in-a-file">Setting default values in a file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#specifying-multiple-values-of-input-parameters">Specifying multiple values of input parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#generating-a-graphical-user-interface">Generating a graphical user interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="._book003.html">Ordinary differential equation models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book003.html#exponential-decay-problems">Exponential decay problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#fundamental-ideas-of-scaling">Fundamental ideas of scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#the-basic-model-problem">The basic model problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#example-population-dynamics">Example: Population dynamics</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#example-decay-of-pressure-with-altitude">Example: Decay of pressure with altitude</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#the-technical-steps-of-the-scaling-procedure">The technical steps of the scaling procedure</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#step-1-identify-independent-and-dependent-variables">Step 1: Identify independent and dependent variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#step-2-make-independent-and-dependent-variables-dimensionless">Step 2: Make independent and dependent variables dimensionless</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#step-3-derive-the-model-involving-only-dimensionless-variables">Step 3: Derive the model involving only dimensionless variables</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#step-4-make-each-term-dimensionless">Step 4: Make each term dimensionless</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#step-5-estimate-the-scales">Step 5: Estimate the scales</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#making-software-for-utilizing-the-scaled-model">Making software for utilizing the scaled model</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-for-the-original-unscaled-problem">Software for the original unscaled problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-for-the-scaled-problem">Software for the scaled problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#implementation-with-joblib">Implementation with joblib</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-generalized-problem">Scaling a generalized problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#exact-solution-1">Exact solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#theory">Theory</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-1">Software</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#variable-coefficients">Variable coefficients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-cooling-problem-with-constant-temperature-in-the-surroundings">Scaling a cooling problem with constant temperature in the surroundings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#exact-solution-2">Exact solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#scaling-1">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-2">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#alternative-scaling-1">Alternative scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-cooling-problem-with-time-dependent-surroundings">Scaling a cooling problem with time-dependent surroundings</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#exact-solution-3">Exact solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#scaling-2">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-3">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#discussion-of-the-time-scale-1">Discussion of the time scale</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-nonlinear-ode">Scaling a nonlinear ODE</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#scaling-3">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#alternative-scaling-2">Alternative scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#sir-ode-system-for-spreading-of-diseases">SIR ODE system for spreading of diseases</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#scaling-4">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-4">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#alternative-scaling-3">Alternative scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#sirv-model-with-finite-immunity">SIRV model with finite immunity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#michaelis-menten-kinetics-for-biochemical-reactions">Michaelis-Menten kinetics for biochemical reactions</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#classical-analysis">Classical analysis</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#dimensionless-ode-system">Dimensionless ODE system</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#determining-scales">Determining scales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#conservation-equations">Conservation equations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#analysis-of-the-scaled-system">Analysis of the scaled system</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book003.html#vibration-problems">Vibration problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#undamped-vibrations-without-forcing">Undamped vibrations without forcing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#the-first-technical-steps-of-scaling">The first technical steps of scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#the-exact-solution-1">The exact solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#discussion-of-the-displacement-scale">Discussion of the displacement scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#discussion-of-the-time-scale-2">Discussion of the time scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#the-dimensionless-solution">The dimensionless solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#alternative-displacement-scale">Alternative displacement scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#about-frequency-and-dimensions">About frequency and dimensions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#undamped-vibrations-with-constant-forcing">Undamped vibrations with constant forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#undamped-vibrations-with-time-dependent-forcing">Undamped vibrations with time-dependent forcing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#investigating-scales-via-analytical-solutions">Investigating scales via analytical solutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#the-displacement-and-time-scales">The displacement and time scales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#finding-the-displacement-scale-from-the-differential-equation">Finding the displacement scale from the differential equation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#scaling-with-free-vibrations-as-time-scale">Scaling with free vibrations as time scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-5">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#choice-of-close-to-resonance">Choice of <span class="math">\(u_c\)</span> close to resonance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#unit-size-of-all-terms-in-the-ode">Unit size of all terms in the ODE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#choice-of-when">Choice of <span class="math">\(u_c\)</span> when <span class="math">\(\psi\gg\omega\)</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#displacement-scale-based-on">Displacement scale based on <span class="math">\(I\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#damped-vibrations-with-forcing">Damped vibrations with forcing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#the-exact-solution-2">The exact solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#choosing-scales">Choosing scales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#choice-of-at-resonance">Choice of <span class="math">\(u_c\)</span> at resonance</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#id3">Choice of <span class="math">\(u_c\)</span> when <span class="math">\(\omega\gg\psi\)</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#id4">Choice of <span class="math">\(u_c\)</span> when <span class="math">\(\omega\ll\psi\)</span></a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#software-6">Software</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#oscillating-electric-circuits">Oscillating electric circuits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book003.html#exercises-1">Exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-1-perform-unit-conversion">Exercise 2.1: Perform unit conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-2-scale-a-simple-formula">Problem 2.2: Scale a simple formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-3-perform-alternative-scalings">Exercise 2.3: Perform alternative scalings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-4-a-nonlinear-ode-for-vertical-motion-with-air-resistance">Problem 2.4: A nonlinear ODE for vertical motion with air resistance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-5-solve-a-decay-ode-with-discontinuous-coefficient">Exercise 2.5: Solve a decay ODE with discontinuous coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-6-implement-a-scaled-model-for-cooling">Exercise 2.6: Implement a scaled model for cooling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-7-decay-ode-with-discontinuous-coefficients">Problem 2.7: Decay ODE with discontinuous coefficients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-8-alternative-scalings-of-a-cooling-model">Exercise 2.8: Alternative scalings of a cooling model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-9-projectile-motion">Exercise 2.9: Projectile motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-10-a-predator-prey-model">Problem 2.10: A predator-prey model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-11-a-model-for-competing-species">Problem 2.11: A model for competing species</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-12-find-the-period-of-sinusoidal-signals">Problem 2.12: Find the period of sinusoidal signals</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#remarks-1">Remarks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-13-oscillating-mass-with-sliding-friction">Problem 2.13: Oscillating mass with sliding friction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-14-pendulum-equations">Problem 2.14: Pendulum equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-15-odes-for-a-binary-star">Exercise 2.15: ODEs for a binary star</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-16-duffing-s-equation">Problem 2.16: Duffing&#8217;s equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-17-vertical-motion-in-a-varying-gravity-field">Problem 2.17: Vertical motion in a varying gravity field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-18-a-simplified-schroedinger-equation">Problem 2.18: A simplified Schroedinger equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book003.html#remarks-2">Remarks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="._book004.html">Basic partial differential equation models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#the-wave-equation">The wave equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#homogeneous-dirichlet-conditions-in-1d">Homogeneous Dirichlet conditions in 1D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#implementation-of-the-scaled-wave-equation">Implementation of the scaled wave equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#waves-on-a-string">Waves on a string</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#detecting-an-already-computed-case">Detecting an already computed case</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#time-dependent-dirichlet-condition">Time-dependent Dirichlet condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#scaling-5">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#software-7">Software</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#specific-case">Specific case</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#velocity-initial-condition">Velocity initial condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#analytical-insight-1">Analytical insight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#scaling-6">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#nonzero-initial-shape">Nonzero initial shape</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#variable-wave-velocity-and-forcing">Variable wave velocity and forcing</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#non-dimensionalization">Non-dimensionalization</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#choosing-the-time-scale-1">Choosing the time scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#choosing-the-spatial-scale">Choosing the spatial scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#scaling-the-velocity-initial-condition">Scaling the velocity initial condition</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#damped-wave-equation">Damped wave equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#a-three-dimensional-wave-equation-problem">A three-dimensional wave equation problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#the-diffusion-equation">The diffusion equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#homogeneous-1d-diffusion-equation">Homogeneous 1D diffusion equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#choosing-the-time-scale-2">Choosing the time scale</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#analytical-insight-2">Analytical insight</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#choosing-other-scales">Choosing other scales</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#generalized-diffusion-pde">Generalized diffusion PDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#jump-boundary-condition">Jump boundary condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#oscillating-dirichlet-condition">Oscillating Dirichlet condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#scaling-issues">Scaling issues</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#exact-solution-4">Exact solution</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#time-and-length-scales">Time and length scales</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#the-scaled-problem">The scaled problem</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#simulations">Simulations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#reaction-diffusion-equations">Reaction-diffusion equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#fisher-s-equation">Fisher&#8217;s equation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#balance-of-all-terms">Balance of all terms</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#fixed-length-scale">Fixed length scale</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#nonlinear-reaction-diffusion-pde">Nonlinear reaction-diffusion PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#the-convection-diffusion-equation">The convection-diffusion equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#convection-diffusion-without-a-force-term">Convection-diffusion without a force term</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#stationary-pde">Stationary PDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#convection-diffusion-with-a-source-term">Convection-diffusion with a source term</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#exercises-2">Exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#problem-3-1-stationary-couette-flow">Problem 3.1: Stationary Couette flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#remarks-3">Remarks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-2-couette-poiseuille-flow">Exercise 3.2: Couette-Poiseuille flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-3-pulsatile-pipeflow">Exercise 3.3: Pulsatile pipeflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-4-the-linear-cable-equation">Exercise 3.4: The linear cable equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-5-heat-conduction-with-discontinuous-initial-condition">Exercise 3.5: Heat conduction with discontinuous initial condition</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book004.html#remarks-4">Remarks</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#problem-3-6-scaling-a-welding-problem">Problem 3.6: Scaling a welding problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="._book005.html">Advanced partial differential equation models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#the-equations-of-linear-elasticity">The equations of linear elasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-general-time-dependent-elasticity-problem">The general time-dependent elasticity problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#software-8">Software</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#dimensionless-stress-tensor">Dimensionless stress tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#when-can-the-acceleration-term-be-neglected">When can the acceleration term be neglected?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#s-waves">S waves</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#p-waves">P waves</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#time-varying-load">Time-varying load</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-stationary-elasticity-problem">The stationary elasticity problem</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#scaling-of-the-pde">Scaling of the PDE</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#remark-on-the-characteristic-displacement">Remark on the characteristic displacement</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#scaling-of-displacement-boundary-conditions">Scaling of displacement boundary conditions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#scaling-of-traction-boundary-conditions">Scaling of traction boundary conditions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#quasi-static-thermo-elasticity">Quasi-static thermo-elasticity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#the-navier-stokes-equations">The Navier-Stokes equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-momentum-equation-without-body-forces">The momentum equation without body forces</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#scaling-7">Scaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#dimensonless-pdes-and-the-reynolds-number">Dimensonless PDEs and the Reynolds number</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#scaling-of-time-for-low-reynolds-numbers">Scaling of time for low Reynolds numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#shear-stress-as-pressure-scale">Shear stress as pressure scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#gravity-force-and-the-froude-number">Gravity force and the Froude number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#oscillating-boundary-conditions-and-the-strouhal-number">Oscillating boundary conditions and the Strouhal number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#cavitation-and-the-euler-number">Cavitation and the Euler number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#free-surface-conditions-and-the-weber-number">Free surface conditions and the Weber number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#thermal-convection">Thermal convection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#forced-convection">Forced convection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#free-convection">Free convection</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#governing-equations">Governing equations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#heating-by-viscous-effects">Heating by viscous effects</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#relation-between-density-and-temperature">Relation between density and temperature</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#the-boussinesq-approximation">The Boussinesq approximation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#scaling-8">Scaling</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-grashof-prandtl-and-eckert-numbers">The Grashof, Prandtl, and Eckert numbers</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#interpretations-of-the-grashof-number">Interpretations of the Grashof number</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#heat-transfer-at-boundaries-and-the-nusselt-and-biot-numbers">Heat transfer at boundaries and the Nusselt and Biot numbers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#compressible-gas-dynamics">Compressible gas dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-euler-equations-of-gas-dynamics">The Euler equations of gas dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#general-isentropic-flow">General isentropic flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#elimination-of-the-pressure">Elimination of the pressure</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-acoustic-approximation-for-sound-waves">The acoustic approximation for sound waves</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#wave-nature-of-isentropic-flow-with-small-perturbations">Wave nature of isentropic flow with small perturbations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#basic-scaling-for-small-wave-perturbations">Basic scaling for small wave perturbations</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#water-surface-waves-driven-by-gravity">Water surface waves driven by gravity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-mathematical-model-1">The mathematical model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#scaling-9">Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#waves-in-deep-water">Waves in deep  water</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#long-waves-in-shallow-water">Long waves in shallow water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#two-phase-porous-media-flow">Two-phase porous media flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#the-bidomain-model-in-electrophysiology">The bidomain model in electrophysiology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-mathematical-model-2">The mathematical model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#scaling-10">Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#an-alternative">An alternative <span class="math">\(I_{\rm{ion}}\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#exercises-3">Exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#exercise-4-1-comparison-of-vibration-models-for-elastic-structures">Exercise 4.1: Comparison of vibration models for elastic structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#exercise-4-2-a-model-for-quasi-static-poro-elasticity">Exercise 4.2: A model for quasi-static poro-elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#problem-4-3-starting-couette-flow">Problem 4.3: Starting Couette flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#problem-4-4-channel-flow">Problem 4.4: Channel flow</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="._book005.html#remarks-5">Remarks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Scaling of Differential Equations</a></li>
+<li><a class="reference internal" href="#index">Index</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="._book000.html" title="Next Chapter: Scaling of Differential Equations"><span class="glyphicon glyphicon-chevron-right visible-sm"></span><span class="hidden-sm hidden-tablet">Scaling of Di... &raquo;</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <style type="text/css">
+  .dropdown-menu {
+    height: auto;
+    max-height: 400px;
+    overflow-x: hidden;
+}
+</style><div class="section" id="scaling-of-differential-equations">
+<h1>Scaling of Differential Equations<a class="headerlink" href="#scaling-of-differential-equations" title="Permalink to this headline">¶</a></h1>
+<p>Contents:</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="._book000.html">Scaling of Differential Equations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="._book001.html">Preface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="._book002.html">Dimensions and units</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book002.html#fundamental-concepts">Fundamental concepts</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#base-units-and-dimensions">Base units and dimensions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#dimensions-of-common-physical-quantities">Dimensions of common physical quantities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#the-buckingham-pi-theorem">The Buckingham Pi theorem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#absolute-errors-relative-errors-and-units">Absolute errors, relative errors, and units</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#units-and-computers">Units and computers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#unit-systems">Unit systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#example-on-challenges-arising-from-unit-systems">Example on challenges arising from unit systems</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#physicalquantity-a-tool-for-computing-with-units">PhysicalQuantity: a tool for computing with units</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book002.html#parampool-user-interfaces-with-automatic-unit-conversion">Parampool: user interfaces with automatic unit conversion</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#pool-of-parameters">Pool of parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#fetching-pool-data-for-computing">Fetching pool data for computing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#reading-command-line-options">Reading command-line options</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#setting-default-values-in-a-file">Setting default values in a file</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#specifying-multiple-values-of-input-parameters">Specifying multiple values of input parameters</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book002.html#generating-a-graphical-user-interface">Generating a graphical user interface</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="._book003.html">Ordinary differential equation models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book003.html#exponential-decay-problems">Exponential decay problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#fundamental-ideas-of-scaling">Fundamental ideas of scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#the-basic-model-problem">The basic model problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#the-technical-steps-of-the-scaling-procedure">The technical steps of the scaling procedure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#making-software-for-utilizing-the-scaled-model">Making software for utilizing the scaled model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-generalized-problem">Scaling a generalized problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#variable-coefficients">Variable coefficients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-cooling-problem-with-constant-temperature-in-the-surroundings">Scaling a cooling problem with constant temperature in the surroundings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-cooling-problem-with-time-dependent-surroundings">Scaling a cooling problem with time-dependent surroundings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#scaling-a-nonlinear-ode">Scaling a nonlinear ODE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#sir-ode-system-for-spreading-of-diseases">SIR ODE system for spreading of diseases</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#sirv-model-with-finite-immunity">SIRV model with finite immunity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#michaelis-menten-kinetics-for-biochemical-reactions">Michaelis-Menten kinetics for biochemical reactions</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book003.html#vibration-problems">Vibration problems</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#undamped-vibrations-without-forcing">Undamped vibrations without forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#undamped-vibrations-with-constant-forcing">Undamped vibrations with constant forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#undamped-vibrations-with-time-dependent-forcing">Undamped vibrations with time-dependent forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#damped-vibrations-with-forcing">Damped vibrations with forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#oscillating-electric-circuits">Oscillating electric circuits</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book003.html#exercises-1">Exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-1-perform-unit-conversion">Exercise 2.1: Perform unit conversion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-2-scale-a-simple-formula">Problem 2.2: Scale a simple formula</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-3-perform-alternative-scalings">Exercise 2.3: Perform alternative scalings</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-4-a-nonlinear-ode-for-vertical-motion-with-air-resistance">Problem 2.4: A nonlinear ODE for vertical motion with air resistance</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-5-solve-a-decay-ode-with-discontinuous-coefficient">Exercise 2.5: Solve a decay ODE with discontinuous coefficient</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-6-implement-a-scaled-model-for-cooling">Exercise 2.6: Implement a scaled model for cooling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-7-decay-ode-with-discontinuous-coefficients">Problem 2.7: Decay ODE with discontinuous coefficients</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-8-alternative-scalings-of-a-cooling-model">Exercise 2.8: Alternative scalings of a cooling model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-9-projectile-motion">Exercise 2.9: Projectile motion</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-10-a-predator-prey-model">Problem 2.10: A predator-prey model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-11-a-model-for-competing-species">Problem 2.11: A model for competing species</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-12-find-the-period-of-sinusoidal-signals">Problem 2.12: Find the period of sinusoidal signals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-13-oscillating-mass-with-sliding-friction">Problem 2.13: Oscillating mass with sliding friction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-14-pendulum-equations">Problem 2.14: Pendulum equations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#exercise-2-15-odes-for-a-binary-star">Exercise 2.15: ODEs for a binary star</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-16-duffing-s-equation">Problem 2.16: Duffing&#8217;s equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-17-vertical-motion-in-a-varying-gravity-field">Problem 2.17: Vertical motion in a varying gravity field</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book003.html#problem-2-18-a-simplified-schroedinger-equation">Problem 2.18: A simplified Schroedinger equation</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="._book004.html">Basic partial differential equation models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#the-wave-equation">The wave equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#homogeneous-dirichlet-conditions-in-1d">Homogeneous Dirichlet conditions in 1D</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#implementation-of-the-scaled-wave-equation">Implementation of the scaled wave equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#time-dependent-dirichlet-condition">Time-dependent Dirichlet condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#velocity-initial-condition">Velocity initial condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#variable-wave-velocity-and-forcing">Variable wave velocity and forcing</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#damped-wave-equation">Damped wave equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#a-three-dimensional-wave-equation-problem">A three-dimensional wave equation problem</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#the-diffusion-equation">The diffusion equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#homogeneous-1d-diffusion-equation">Homogeneous 1D diffusion equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#generalized-diffusion-pde">Generalized diffusion PDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#jump-boundary-condition">Jump boundary condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#oscillating-dirichlet-condition">Oscillating Dirichlet condition</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#reaction-diffusion-equations">Reaction-diffusion equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#fisher-s-equation">Fisher&#8217;s equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#nonlinear-reaction-diffusion-pde">Nonlinear reaction-diffusion PDE</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#the-convection-diffusion-equation">The convection-diffusion equation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#convection-diffusion-without-a-force-term">Convection-diffusion without a force term</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#stationary-pde">Stationary PDE</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#convection-diffusion-with-a-source-term">Convection-diffusion with a source term</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book004.html#exercises-2">Exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#problem-3-1-stationary-couette-flow">Problem 3.1: Stationary Couette flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-2-couette-poiseuille-flow">Exercise 3.2: Couette-Poiseuille flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-3-pulsatile-pipeflow">Exercise 3.3: Pulsatile pipeflow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-4-the-linear-cable-equation">Exercise 3.4: The linear cable equation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#exercise-3-5-heat-conduction-with-discontinuous-initial-condition">Exercise 3.5: Heat conduction with discontinuous initial condition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book004.html#problem-3-6-scaling-a-welding-problem">Problem 3.6: Scaling a welding problem</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="._book005.html">Advanced partial differential equation models</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#the-equations-of-linear-elasticity">The equations of linear elasticity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-general-time-dependent-elasticity-problem">The general time-dependent elasticity problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#dimensionless-stress-tensor">Dimensionless stress tensor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#when-can-the-acceleration-term-be-neglected">When can the acceleration term be neglected?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-stationary-elasticity-problem">The stationary elasticity problem</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#quasi-static-thermo-elasticity">Quasi-static thermo-elasticity</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#the-navier-stokes-equations">The Navier-Stokes equations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-momentum-equation-without-body-forces">The momentum equation without body forces</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#scaling-of-time-for-low-reynolds-numbers">Scaling of time for low Reynolds numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#shear-stress-as-pressure-scale">Shear stress as pressure scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#gravity-force-and-the-froude-number">Gravity force and the Froude number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#oscillating-boundary-conditions-and-the-strouhal-number">Oscillating boundary conditions and the Strouhal number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#cavitation-and-the-euler-number">Cavitation and the Euler number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#free-surface-conditions-and-the-weber-number">Free surface conditions and the Weber number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#thermal-convection">Thermal convection</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#forced-convection">Forced convection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#free-convection">Free convection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-grashof-prandtl-and-eckert-numbers">The Grashof, Prandtl, and Eckert numbers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#heat-transfer-at-boundaries-and-the-nusselt-and-biot-numbers">Heat transfer at boundaries and the Nusselt and Biot numbers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#compressible-gas-dynamics">Compressible gas dynamics</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-euler-equations-of-gas-dynamics">The Euler equations of gas dynamics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#general-isentropic-flow">General isentropic flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-acoustic-approximation-for-sound-waves">The acoustic approximation for sound waves</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#water-surface-waves-driven-by-gravity">Water surface waves driven by gravity</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-mathematical-model-1">The mathematical model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#scaling-9">Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#waves-in-deep-water">Waves in deep  water</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#long-waves-in-shallow-water">Long waves in shallow water</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#two-phase-porous-media-flow">Two-phase porous media flow</a></li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#the-bidomain-model-in-electrophysiology">The bidomain model in electrophysiology</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#the-mathematical-model-2">The mathematical model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#scaling-10">Scaling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#an-alternative">An alternative <span class="math">\(I_{\rm{ion}}\)</span></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#exercises-3">Exercises</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#exercise-4-1-comparison-of-vibration-models-for-elastic-structures">Exercise 4.1: Comparison of vibration models for elastic structures</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#exercise-4-2-a-model-for-quasi-static-poro-elasticity">Exercise 4.2: A model for quasi-static poro-elasticity</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#problem-4-3-starting-couette-flow">Problem 4.3: Starting Couette flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="._book005.html#problem-4-4-channel-flow">Problem 4.4: Channel flow</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="._book005.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="index">
+<h1>Index<a class="headerlink" href="#index" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
+</ul>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+        <br/>
+        
+<div id="sourcelink">
+  <a href="_sources/index.txt"
+     rel="nofollow">Source</a>
+</div>
+      
+    </p>
+    <p>
+        &copy; Copyright 2016, Hans Petter Langtangen, Geir K. Pedersen. Released under CC Attribution 4.0 license.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.4.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

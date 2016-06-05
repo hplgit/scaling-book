@@ -1,0 +1,24 @@
+
+.. Master file automatically created by doconce sphinx_dir
+
+
+Scaling of Differential Equations
+=================================
+
+Contents:
+
+.. toctree::
+   :maxdepth: 3
+
+   ._book000
+   ._book001
+   ._book002
+   ._book003
+   ._book004
+   ._book005
+
+
+Index
+=====
+
+* :ref:`genindex`

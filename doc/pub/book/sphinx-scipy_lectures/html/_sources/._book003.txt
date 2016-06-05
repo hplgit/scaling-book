@@ -1,0 +1,4676 @@
+.. !split
+
+Ordinary differential equation models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+This chapter introduces the basic techniques of scaling and the ways to
+reason about scales. The first class of examples targets exponential
+decay models, starting with the simple ordinary differential equation (ODE)
+for exponential decay processes: :math:`u^{\prime}=-au`, with constant :math:`a>0`.
+Then we progress to various generalizations of this ODE, including nonlinear
+versions and systems of ODEs. The next class of examples concerns
+second-order ODEs for oscillatory systems, where the simplest
+ODE reads :math:`mu^{\prime\prime} + ku=0`, with :math:`m` and :math:`k` as positive constants.
+Various extensions with damping and force terms are discussed in detail.
+
+.. _sec:scale:decay:
+
+Exponential decay problems
+==========================
+
+Fundamental ideas of scaling
+----------------------------
+
+.. index:: scaling
+
+.. index:: non-dimensionalization
+
+Scaling is an extremely useful technique in mathematical modeling and
+numerical simulation.  The purpose of the technique is three-fold:
+
+1. Make independent and dependent variables dimensionless.
+
+2. Make the size of independent and dependent variables about unity.
+
+3. Reduce the number of independent physical parameters in the model.
+
+.. index:: dimensionless variable
+
+The first two items mean that for any variable, denote it by
+:math:`q`, we introduce a corresponding dimensionless variable
+
+.. math::
+         \bar q = \frac{q-q_0}{q_c},
+
+where :math:`q_0` is a reference value of :math:`q` (:math:`q_0=0` is a common choice) and
+:math:`q_c` is a characteristic size of :math:`|q|`, often referred to as "a scale".
+Since the numerator and denominator
+have the same dimension, :math:`\bar q` becomes a dimensionless number.
+
+If :math:`q_c` is the maximum value of :math:`|q-q_0|`, we see that :math:`0 < |\bar
+q|\leq 1`. How to find :math:`q_c` is sometimes the big challenge of
+scaling. Examples will illustrate various approaches to meet this
+challenge.
+
+The many coming examples on scaling differential equations contain
+the following pedagogical ingredients to meet the desired learning outcomes.
+
+ * Teach the technical steps of making a mathematical model, based
+   on differential equations, dimensionless.
+
+ * Describe various techniques for reasoning about the scales, i.e.,
+   finding the characteristic sizes of quantities.
+
+ * Teach how to identify and interpret dimensionless numbers arising
+   from the scaling process.
+
+ * Provide a lot of different examples on making models dimensionless
+   with physically correct scales.
+
+ * Show how symbolic software (SymPy) can be used
+   to derive exact solutions of differential equations.
+
+ * Explain how to run a dimensionless model with software developed
+   for the problem with dimensions.
+
+The basic model problem
+-----------------------
+
+.. index:: exponential decay
+
+Processes undergoing exponential reduction can be modeled by the ODE
+problem
+
+.. _Eq:scale:model:
+
+.. math::
+
+    \tag{2}
+    u'(t) = -au(t),\quad u(0)=I,
+        
+        
+
+where :math:`a,I>0` are prescribed parameters, and :math:`u(t)` is the unknown function.
+For the particular model with a constant :math:`a`, we can easily derive the exact
+solution, :math:`u(t)=Ie^{-at}`,
+which is helpful to have in mind during the scaling process.
+
+Example: Population dynamics
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The evolution of a population of humans, animals, cells, etc.,
+under unlimited access to resources, can be
+modeled by :ref:`(2) <Eq:scale:model>`. Then :math:`u` is the number of
+individuals in the population, strictly speaking an integer, but well
+modeled by a real number in large populations.
+The parameter :math:`a` is the increase in the number of individuals per
+time and per individual.
+
+Example: Decay of pressure with altitude
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The simple model :ref:`(2) <Eq:scale:model>` also governs the pressure
+in the atmosphere (under many assumptions, such air is an ideal gas in
+equilibrium). In this case :math:`u` is the
+pressure, measured in :math:`\hbox{Nm}^{-2}`; :math:`t` is the height in meters;
+and :math:`a=M/(R^*T)`, where
+:math:`M` is the molar mass of the Earth's air (0.029 kg/mol),
+:math:`R^*` is the universal
+gas constant (:math:`8.314\,\frac{\hbox{Nm}}{\hbox{mol K}}`),
+and :math:`T` is the temperature in Kelvin (K).
+The temperature depends on the height so we have :math:`a=a(t)`.
+
+.. _sec:scale:steps:
+
+The technical steps of the scaling procedure
+--------------------------------------------
+
+Step 1: Identify independent and dependent variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There is one independent variable, :math:`t`, and one dependent variable,
+:math:`u`.
+
+.. index:: dimensionless variable
+
+.. index:: characteristic time
+
+Step 2: Make independent and dependent variables dimensionless
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We introduce a new dimensionless :math:`t`, called :math:`\bar t`, defined by
+
+.. _Eq:_auto1:
+
+.. math::
+
+    \tag{3}
+    \bar t = \frac{t}{t_c},
+        
+        
+
+where :math:`t_c` is a *characteristic value* of :math:`t`. Similarly,
+we introduce a dimensionless :math:`u`, named :math:`\bar u`, according to
+
+.. _Eq:_auto2:
+
+.. math::
+
+    \tag{4}
+    \bar u = \frac{u}{u_c},
+        
+        
+
+where :math:`u_c` is a constant *characteristic size* of :math:`u`. When :math:`u` has a specific
+interpretation, say when :ref:`(2) <Eq:scale:model>` models pressure
+in an atmospheric layer, :math:`u_c` would be referred to as characteristic pressure.
+For a decaying population, :math:`u_c` may be a characteristic number of
+members in the population, e.g., the initial population :math:`I`.
+
+Step 3: Derive the model involving only dimensionless variables
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The next task is to insert the new dimensionless variables in the
+governing mathematical model. That is, we replace :math:`t` by :math:`t_c\bar t`
+and :math:`u` by :math:`u_c\bar u` in :ref:`(2) <Eq:scale:model>`. The derivative
+with respect to :math:`\bar t` is derived through the chain rule as
+
+.. math::
+         \frac{du}{dt} = \frac{d (u_c\bar u)}{d\bar t}\frac{d\bar t}{dt}
+        = u_c\frac{d\bar u}{d\bar t}\frac{1}{t_c} =
+        \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}{\thinspace .}
+        
+
+The model :ref:`(2) <Eq:scale:model>` now becomes
+
+.. _Eq:scale:model:scaled0:
+
+.. math::
+
+    \tag{5}
+    \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = -au_c\bar u,\quad u_c\bar u(0)=I{\thinspace .}
+        
+        
+
+Step 4: Make each term dimensionless
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Equation :ref:`(5) <Eq:scale:model:scaled0>` still has terms with
+dimensions. To make each term dimensionless, we usually divide by
+the coefficient in front of the term with the highest time derivative
+(but dividing by any coefficient in any term will do). The result is
+
+.. _Eq:scale:model:dimless0:
+
+.. math::
+
+    \tag{6}
+    \frac{d\bar u}{d\bar t} = -at_c\bar u,\quad \bar u(0)=u_c^{-1}I
+        {\thinspace .}
+        
+        
+
+Step 5: Estimate the scales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A characteristic quantity like :math:`t_c` reflects the time scale in the
+problem. Estimating such a time scale is certainly
+the most challenging part of the scaling procedure. There are different
+ways to reason. The first approach
+is to aim at a size of :math:`\bar u` and its derivatives
+that is of order unity. If :math:`u_c` is chosen such that :math:`|\bar u|` is
+of size unity, we see from :ref:`(6) <Eq:scale:model:dimless0>` that
+:math:`d\bar u/d\bar t` is of the size of :math:`\bar u` (i.e., unity)
+if we choose :math:`t_c = 1/a`.
+
+.. index:: e-folding time
+
+Alternatively, we may look at a special case of the model where we have
+analytical insight that can guide the choice of scales.
+In the present problem we are lucky to know the
+exact solution for any value of the input data as long as :math:`a`
+is a constant. For exponential
+decay,
+:math:`u(t)\sim e^{-at}`, it is common to define a characteristic time
+scale :math:`t_c` as the time it takes to reduce the initial value of
+:math:`u` by a factor of :math:`1/e` (also called the *e-folding time*):
+
+.. math::
+         e^{-at_c} = \frac{1}{e}e^{-a\cdot 0}\quad\Rightarrow\quad e^{-at_c}=e^{-1},
+        
+
+from which it follows that :math:`t_c = 1/a`.
+Note that using an exact solution of the problem to determine
+scales is not a requirement, just a useful help in the few cases where
+we actually have access to an exact solution.
+
+In this example, two different, yet common ways of reasoning, lead to the
+same value of :math:`t_c`. However, instead of using the e-folding time we
+could use the half-time of the exponential decay as characteristic
+time, which is also a very common measure of the time scale in such
+processes. The half time is defined as the time it takes to halve :math:`u`:
+
+.. math::
+         e^{-at_c} = \frac{1}{2}e^{-a\cdot 0}
+        \quad\Rightarrow\quad t_c = a^{-1}\ln 2{\thinspace .}
+
+There is a factor :math:`\ln 2 =0.69` difference from the other :math:`t_c` value.
+As long as the factor is not an order of magnitude or more different,
+we do not pay attention factors like :math:`\ln 2` and skip them, simply to make
+formulas look nicer. Using
+:math:`t_c = a^{-1}\ln 2` as time scale
+leads to a scaled differential equation :math:`u'=-(\ln 2) u`,
+which is fine, but an unusual form. People tend to prefer the simpler
+ODE :math:`u'=-u`,
+which arises from :math:`t_c=1/a`, and we shall therefore use this
+time scale.
+
+Regarding :math:`u_c`, we may look at the initial condition and realize that
+the choice :math:`u_c=I` makes :math:`\bar u(0)=1`. For :math:`t>0`, the differential
+equation expresses explicitly that :math:`u` decreases, so :math:`u_c=I` gives
+:math:`\bar u\in (0, 1]`. Scaling a variable :math:`q` such that :math:`|\bar q|\in
+[0,1]` is always the ultimate goal, and this goal is in fact obtained
+here! Next best result is to ensure that the magnitude of :math:`|q|` is not
+"big" or "small", in the sense that the size is neither as large as
+10 or 100, nor as small as
+0.1 or 0.01.  (In the
+present problem, where we are lucky to have an exact solution
+:math:`u(t)=Ie^{-at}`, we may look at this to explicitly see that :math:`u\in
+(0,I]` such that :math:`u_c=I` gives :math:`\bar u\in (0,1]`).
+
+With :math:`t_c=1/a` and :math:`u_c=I`, we have the final dimensionless model
+
+.. _Eq:scale:model:dimless:
+
+.. math::
+
+    \tag{7}
+    \frac{d\bar u}{d\bar t} = -\bar u,\quad \bar u(0)=1
+        {\thinspace .}
+        
+        
+
+This is a remarkable result in the sense that *all physical parameters*
+(:math:`a` and :math:`I`)
+are removed from the model! Or more precisely, there are no physical input
+parameters to assign
+before using the model. In particular, numerical investigations of the original
+model :ref:`(2) <Eq:scale:model>` would need experiments with different
+:math:`a` and :math:`I` values, while numerical investigations of
+:ref:`(7) <Eq:scale:model:dimless>` can be limited to *a single run*! As soon
+as we have computed the curve :math:`\bar u(\bar t)`, we can find the
+solution :math:`u(t)` of :ref:`(2) <Eq:scale:model>` by
+
+.. _Eq:scale:u:dim:
+
+.. math::
+
+    \tag{8}
+    u(t) = u_c\bar u(t/t_c) = I\bar u(at)
+        {\thinspace .}
+        
+        
+
+This particular transformation actually means stretching the :math:`\bar t` and
+:math:`\bar u` axes in a plot of :math:`\bar u(\bar t)` by the factors :math:`a` and :math:`I`,
+respectively.
+
+It is very common to drop the bars when the scaled problem has been
+derived and work further with :ref:`(7) <Eq:scale:model:dimless>` simply
+written as
+
+.. math::
+        
+        \frac{du}{dt} = -u,\quad u(0)=1
+        {\thinspace .}
+        
+
+Nevertheless, in this booklet we have decided to stick to bars for all
+dimensionless quantities.
+
+.. _sec:scale:prog:
+
+Making software for utilizing the scaled model
+----------------------------------------------
+
+Software for solving :ref:`(2) <Eq:scale:model>` could take advantage of
+the fact that only one simulation of :ref:`(7) <Eq:scale:model:dimless>`
+is necessary. As soon as we have :math:`\bar u(\bar t)` accessible, a simple
+scaling :ref:`(8) <Eq:scale:u:dim>` computes the real :math:`u(t)` for any
+given input data :math:`a` and :math:`I`. Although the numerical computation of
+:math:`u(t)` from :ref:`(2) <Eq:scale:model>` is very fast in this simple model
+problem, using :ref:`(8) <Eq:scale:u:dim>` is very much faster. In
+general, a simple rescaling of a scaled solution is extremely more
+computationally efficient than solving a differential equation
+problem.
+
+We can compute with the dimensionless model :ref:`(7) <Eq:scale:model:dimless>`
+in two ways, either make a solver for :ref:`(7) <Eq:scale:model:dimless>`,
+or reuse a solver for :ref:`(2) <Eq:scale:model>` with
+:math:`I=1` and :math:`a=1`.
+We will choose the latter approach since it has the advantage of giving us
+software that works both with a dimensionless model and a model
+with dimensions (and all the original physical parameters).
+
+Software for the original unscaled problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Assume that we have some module ``decay.py`` that offers the following functions:
+
+  * ``solver(I, a, T, dt, theta=0.5)`` for returning the solution arrays
+    ``u`` and ``t``, over a time interval :math:`[0,T]`,
+    for :ref:`(2) <Eq:scale:model>` solved by the so-called
+    :math:`\theta` rule. This rule includes the Forward Euler scheme (:math:`\theta=0`),
+    the Backward Euler scheme (:math:`\theta=1`), or the Crank-Nicolson
+    (centered midpoint) scheme (:math:`\theta=\frac{1}{2}`).
+
+  * ``read_command_line_argparse()`` for reading parameters in the problem
+    from the command line and returning them: ``I``, ``a``, ``T``, ``theta`` (:math:`\theta`),
+    and a list of :math:`\Delta t` values for time steps. (We shall only make
+    use of the first :math:`\Delta t` value.)
+
+The basic statements for solving :ref:`(2) <Eq:scale:model>` are
+then
+
+.. code-block:: python
+
+    from decay import solver, read_command_line_argparse
+    I, a, T, theta, dt_values = read_command_line_argparse()
+    u, t = solver(I, a, T, dt_values[0], theta)
+    
+    from matplotlib.pyplot import plot, show
+    plot(t, u)
+    show()
+
+The module `decay.py <http://tinyurl.com/o8pb3yy/decay.py>`__ is developed
+and explained in
+
+Section 5.1.7 in
+the book `Finite Difference Computing with Exponential Decay Models <http://tinyurl.com/nclmcng/doc/pub/book>`__ [Ref07]_.
+
+To solve the dimensionless problem, just fix :math:`I=1` and :math:`a=1`,
+and choose :math:`\bar T` and :math:`\Delta\bar t`:
+
+.. code-block:: python
+
+    _, _, T, theta, dt_values = read_command_line_argparse()
+    u, t = solver(I=1, a=1, T=T, dt=dt_values[0], theta=theta)
+
+The first two variables returned from ``read_command_line_argparse``
+are ``I`` and ``a``, which are ignored here. To indicate that these
+variables are not to be used, we use a
+"dummy name", often taken to be the underscore symbol in
+Python. The user can set ``--I`` and ``--a`` on the command line, since
+the ``decay`` module allows this, but we hope the code above has a form
+that reminds the user that these options are not to be used.
+Also note that ``T`` and ``dt_values[0]`` set on the command line are
+the desired parameters for solving the *scaled* problem.
+
+Software for the scaled problem
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Turning now to the scaled problem, the solver function (originally
+designed for the unscaled problem) will be reused, but it will only
+be run if it is strictly necessary. That is, when the user requests
+a solution, our code should first check whether that solution can be provided
+by simply scaling a solution already computed and available in a file.
+If not, we will compute an appropriate scaled solution, find the
+requested unscaled solution for the user, and also save the new scaled
+solution to file for possible later use.
+
+.. A key observation, as mentioned, is that we need to solve the problem
+
+.. :ref:`(7) <Eq:scale:model:dimless>` only once. All solutions
+
+.. corresponding to different :math:`I` and :math:`a` values in the original physical
+
+.. problem can be recovered by scaling this single solution with formula
+
+.. :ref:`(8) <Eq:scale:u:dim>`.  We may therefore want to make software that
+
+.. takes advantage of this fact. When requesting a solution, we see if it
+
+.. has already been computed and stored in a file, and if so, the data
+
+.. can be retrieved from file, otherwise we have to compute a new
+
+.. solution and store it in a file.
+
+A very plain solution to the problem is found in the file
+`decay_scaled_v1.py <http://tinyurl.com/o8pb3yy/decay_scaled_v1.py>`__.
+The ``np.savetxt`` function saves a two-dimensional array ("table") to
+a text file, and the ``np.loadtxt`` function can load the data back
+into the program. A better solution to this problem is obtained
+by using the ``joblib`` package as described next.
+
+.. index:: memoize function
+
+.. index:: joblib
+
+Implementation with joblib
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The Python package ``joblib`` has functionality that is very convenient
+for implementing the ``solver_scaled`` function. The first time a
+function is called with a set of arguments, the statements in the
+function are executed and the return value is saved to file. If the
+function is called again with the same set of arguments, the
+statements in the function are not executed, but the return value is
+read from file (of course, many files may be stored, one for each
+combination of parameter values).  In computer science, one would say
+that ``joblib`` in this way provides *memorization* functionality for
+Python functions.  This functionality is particularly aimed at
+large-scale computations with arrays that one would hesitate to
+recompute. We illustrate the technique here in a very simple
+mathematical context.
+
+First we make a ``solver_scaled`` function for the scaled
+model that just calls up a ``solver_unscaled`` (with :math:`I=a=1`) for the problem with
+dimensions:
+
+.. code-block:: python
+
+    from decay import solver as solver_unscaled
+    import numpy as np
+    import matplotlib.pyplot as plt
+    
+    def solver_scaled(T, dt, theta):
+        """
+        Solve u'=-u, u(0)=1 for (0,T] with step dt and theta method.
+        """
+        print 'Computing the numerical solution'
+        return solver_unscaled(I=1, a=1, T=T, dt=dt, theta=theta)
+
+Then we create some "computer memory on disk", i.e., some disk space to
+store the result of a call to the ``solver_scaled`` function. Thereafter,
+we redefine the name ``solver_scaled`` to a new function, created
+by ``joblib``, which calls our original ``solver_scaled`` function
+if necessary and otherwise loads data from file:
+
+.. code-block:: python
+
+    import joblib
+    disk_memory = joblib.Memory(cachedir='temp')
+    solver_scaled = disk_memory.cache(solver_scaled)
+
+The solutions are actually stored in files in the cache directory ``temp``.
+
+A typical use case is to read values from the command line,
+solve the scaled problem (if necessary), unscale the solution, and visualize
+the solution with dimension:
+
+.. code-block:: python
+
+    def unscale(u_scaled, t_scaled, I, a):
+        return I*u_scaled, a*t_scaled
+    
+    from decay import read_command_line_argparse
+    
+    def main():
+        # Read unscaled parameters, solve and plot
+        I, a, T, theta, dt_values = read_command_line_argparse()
+        dt = dt_values[0]  # use only the first dt value
+        T_bar = a*T
+        dt_bar = a*dt
+        u_scaled, t_scaled = solver_scaled(T_bar, dt_bar, theta)
+        u, t = unscale(u_scaled, t_scaled, I, a)
+    
+        plt.figure()
+        plt.plot(t_scaled, u_scaled)
+        plt.xlabel('scaled time'); plt.ylabel('scaled velocity')
+        plt.title('Universial solution of scaled problem')
+        plt.savefig('tmp1.png');  plt.savefig('tmp1.pdf')
+    
+        plt.figure()
+        plt.plot(t, u)
+        plt.xlabel('t'); plt.ylabel('u')
+        plt.title('I=%g, a=%g, theta=%g' % (I, a, theta))
+        plt.savefig('tmp2.png'); plt.savefig('tmp2.pdf')
+        plt.show()
+
+The complete code resides in the file
+`decay_scaled.py <http://tinyurl.com/o8pb3yy/decay_scaled.py>`__.
+Note from the code above that ``read_command_line_argparse`` is supposed
+to read parameters with dimensions (but technically, we solve the
+scaled problem, if strictly necessary, and unscale the solution).
+Let us run
+
+.. code-block:: text
+
+    Terminal> python decay_scaled.py --I 8 --a 0.1 --dt 0.01 --T 50
+
+A plot of the scaled and unscaled solution appears in Figure
+:ref:`sec:decay:fig:simplest`.
+
+.. _sec:decay:fig:simplest:
+
+.. figure:: decay.png
+   :width: 800
+
+   *Scaled (left) and unscaled (right) exponential decay*
+
+Note that we write a message ``Computing the numerical solution`` inside
+the ``solver_scaled`` function. We can then easily detect when
+the solution is actually computed from scratch
+and when it is simply read from file (followed by the unscaling procedure).
+Here is a demo:
+
+.. code-block:: text
+
+    Terminal> # Very first run
+    Terminal> python decay_scaled.py --T 7 --a 1 --I 0.5 --dt 0.2
+    [Memory] Calling __main__--home-hpl...
+    solver_scaled-alias(7.0, 0.2, 0.5)
+    Computing the numerical solution
+    
+    Terminal> # No change of T, dt, theta - can reuse solution in file
+    Terminal> python decay_scaled.py --T 7 --a 4 --I 2.5 --dt 0.2
+    
+    Terminal> # Change of dt, must recompute
+    Terminal> python decay_scaled.py --T 7 --a 4 --I 2.0 --dt 0.5
+    [Memory] Calling __main__--home-hpl...
+    solver_scaled-alias(7.0, 0.5, 0.5)
+    Computing the numerical solution
+    
+    Terminal> # Change of dt again, but dt=0.2 is already in a file
+    Terminal> python decay_scaled.py --T 7 --a 0.5 --I 1 --dt 0.2
+
+We realize that ``joblib`` has access to all previous runs and does not
+recompute unless it is strictly required. Our previous implementation
+without ``joblib`` (in ``decay_scaled_v1.py``)
+used only one file (for one numerical case)
+and will therefore perform many more calls to
+``solver_unscaled``.
+
+
+.. admonition:: On the implementation of a simple memoize function
+
+   A memoized function recalls
+   previous results when the same set
+   of arguments is encountered. That is, the function caches its results.
+   A simple implementation stores the arguments in a function call and
+   the returned results in a
+   dictionary, and if the arguments are seen again, one looks up
+   in the dictionary and returns previously computed results:
+   
+   .. code-block:: python
+   
+       class Memoize:
+           def __init__(self, f):
+               self.f = f
+               self.memo = {}  # map arguments to results
+       
+       def __call__(self, *args):
+               if not args in self.memo:
+                   self.memo[args] = self.f(*args)
+               return self.memo[args]
+       
+       # Wrap my_compute_function(arg1, arg2, ...)
+       my_compute_function = Memoize(my_compute_function)
+   
+   The memoize functionality in ``joblib.Memory`` is more sophisticated and
+   can work very efficiently with large array data structures as arguments.
+   Note that the simple version above can only be used when all arguments to
+   the function ``f`` are immutable (since the key in a dictionary has to be
+   immutable).
+
+
+
+
+.. _sec:scale:body:
+
+Scaling a generalized problem
+-----------------------------
+
+Now we consider an extension of the exponential decay ODE to the
+form
+
+.. _Eq:scale:model:g:
+
+.. math::
+
+    \tag{9}
+    u'(t) = -au(t) + b,\quad u(0)=I
+        
+        {\thinspace .}
+        
+
+One particular model, with constant :math:`a` and :math:`b`,
+is a spherical small-sized organism falling in air,
+
+.. _Eq:scale:model:g:spec:
+
+.. math::
+
+    \tag{10}
+    u' = - \frac{3\pi d\mu}{\varrho_b V} u + g\left(\frac{\varrho}{\varrho_b} -1\right),
+        
+        
+
+where :math:`d`, :math:`\mu`, :math:`\varrho_b`, :math:`\varrho`, :math:`V`, and :math:`g` are physical
+parameters. The function :math:`u(t)` represents the vertical velocity,
+being positive upwards.
+We shall use this model in the following.
+
+Exact solution          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+It can be handy to have the exact solution for reference, in case
+of constant :math:`a` and :math:`b`:
+
+.. math::
+         {u_{\small\mbox{e}}}(t) = \frac{e^{-at}}{a}\left( b(e^{at}-1) + aI\right)
+        {\thinspace .}
+        
+
+
+.. admonition:: Solving differential equations in SymPy
+
+   It can be very useful to use a symbolic computation tool such as SymPy
+   to aid us in solving differential equations.
+   Let us therefore demonstrate how SymPy can be used to find this solution.
+   First we define the parameters in the problem as symbols
+   and :math:`u(t)` as a function:
+   
+   .. code-block:: python
+   
+       >>> from sympy import *
+       >>> t, a, b, I = symbols('t a b I', real=True, positive=True)
+       >>> u = symbols('u', cls=Function)
+   
+   The next task is to define the differential equation, either as
+   a symbolic expression that is to equal zero, or as
+   an equation ``Eq(lhs, rhs)`` with ``lhs`` and ``rhs`` as expressions for
+   the left- and right-hand side):
+   
+   .. code-block:: python
+   
+       >>> # Define differential equation
+       >>> eq = diff(u(t), t) + a*u(t) - b
+       >>> # or
+       >>> eq = Eq(diff(u(t), t), -a*u(t) + b)
+   
+   The differential equation can be solved by the ``dsolve`` function, yielding
+   an equation of the form ``u(t) == expression``. We want to grab the
+   expression on the right-hand side as our solution:
+   
+   .. code-block:: python
+   
+       >>> sol = dsolve(eq, u(t))
+       >>> print sol
+       u(t) == (b + exp(a*(C1 - t)))/a
+       >>> u = sol.rhs                    # grab solution
+       >>> print u
+       (b + exp(a*(C1 - t)))/a
+   
+   The solution contains the unknown integration constant ``C1``, which must
+   be determined by the initial condition. We form the equation arising
+   from the initial condition :math:`u(0)=I`:
+   
+   .. code-block:: python
+   
+       >>> C1 = symbols('C1')
+       >>> eq = Eq(u.subs(t, 0), I)   # substitute t by 0 in u
+       >>> sol = solve(eq, C1)
+       >>> print sol
+       [log(I*a - b)/a]
+   
+   The one solution that was found (stored in a list!)
+   must then be substituted back in the
+   expression ``u`` to yield the final solution:
+   
+   .. code-block:: python
+   
+       >>> u = u.subs(C1, sol[0])
+       >>> print u
+       (b + exp(a*(-t + log(I*a - b)/a)))/a
+   
+   As in mathematics with pen and paper, we strive to simplify
+   expressions also in symbolic computing software.
+   This frequently requires some trial and error
+   process with SymPy's simplification functions. A very standard
+   first try is to expand everything and run simplification algorithms:
+   
+   .. code-block:: python
+   
+       >>> u = simplify(expand(u))
+       >>> print u
+       (I*a + b*exp(a*t) - b)*exp(-a*t)/a
+   
+   Doing ``latex(u)`` automatically converts the expression to LaTeX syntax
+   for inclusion in reports.
+
+
+
+
+The reader may wonder why we bother with scaling of differential
+equations if SymPy can solved the problem in a nice, closed
+formula. This is true in the present introductory problem, but in a
+more general problem setting, we have some differential equation where
+SymPy perhaps can help with finding an exact solution only in a
+special case. We can use this special-case solution to control our
+reasoning about scales in the more general setting.
+
+Theory
+~~~~~~
+
+The challenges in our scaling is to find the right :math:`u_c` and :math:`t_c`
+scales. From :ref:`(9) <Eq:scale:model:g>` we see that if :math:`u'\rightarrow 0`
+as :math:`t\rightarrow\infty`, :math:`u` approaches the constant value :math:`b/a`. It can be
+convenient to let the scaled :math:`\bar u\rightarrow 1` as
+we approach the :math:`d\bar u/d\bar t = 0` state. This idea points to choosing
+
+.. _Eq:_auto3:
+
+.. math::
+
+    \tag{11}
+    u_c = \frac{b}{a} = g\left(\frac{\varrho}{\varrho_b} -1\right)\left(\frac{3\pi d\mu}{\varrho_b V}\right)^{-1}
+        {\thinspace .}
+        
+        
+
+
+.. admonition:: On the sign of the scaled velocity
+
+   A little note on the sign of :math:`u_c` is necessary here.
+   With :math:`\varrho_b < \varrho`, the buoyancy force upwards wins over the
+   gravity force downwards, and the body will move upwards. In this case,
+   the terminal velocity :math:`u_c > 0`. When :math:`\varrho_b > \varrho`, we get
+   a motion downwards, and :math:`u_c < 0`. The corresponding :math:`u` is then also
+   negative, but the scaled velocity :math:`u/u_c`, becomes positive.
+
+
+
+
+.. index:: dimensionless number
+
+Inserting :math:`u = u_c\bar u = b\bar u/a` and :math:`t=t_c\bar t` in
+:ref:`(9) <Eq:scale:model:g>` leads to
+
+.. math::
+        
+        \frac{d\bar u}{d\bar t} = -t_c a\bar u + \frac{t_c}{u_c}b,
+        \quad \bar u(0) = I\frac{a}{b}
+        {\thinspace .}
+        
+
+We want the scales such that :math:`d\bar u/d\bar t` and :math:`\bar u` are
+about unity.
+To balance the size of :math:`\bar u` and :math:`d\bar u/d\bar t` we must
+therefore choose
+:math:`t_c = 1/a`, resulting in the scaled ODE problem
+
+.. _Eq:scale:model:g:dimless:
+
+.. math::
+
+    \tag{12}
+    \frac{d\bar u}{d\bar t} = -\bar u + 1,\quad \bar u(0)=\beta,
+        
+        
+
+where :math:`\beta` is a dimensionless number,
+
+.. _Eq:_auto4:
+
+.. math::
+
+    \tag{13}
+    \beta = \frac{I}{u_c} = I\frac{a}{b},
+        
+        
+
+reflecting the ratio of the initial velocity and the
+terminal (:math:`t\rightarrow \infty`) velocity :math:`b/a`.
+Scaled equations normally end up with one or more dimensionless parameters,
+such as :math:`\beta` here, containing ratios of physical effects in
+the model. Many more examples on dimensionless parameters will appear
+in later sections.
+
+The analytical solution of the scaled model
+:ref:`(12) <Eq:scale:model:g:dimless>` reads
+
+.. _Eq:scale:model:g:exact_scaled:
+
+.. math::
+
+    \tag{14}
+    \bar{u_{\small\mbox{e}}}(t) =
+        e^{-t}\left( e^{t}-1 + \beta\right) = 1 + (\beta -1)e^{-t}{\thinspace .}
+        
+        
+
+The result :ref:`(12) <Eq:scale:model:g:dimless>` with the
+solution :ref:`(14) <Eq:scale:model:g:exact_scaled>` is actually
+astonishing if :math:`a` and :math:`b` are as in :ref:`(10) <Eq:scale:model:g:spec>`:
+the six parameters :math:`d`, :math:`\mu`, :math:`\varrho_b`, :math:`\varrho`, :math:`V`, and :math:`g`
+are conjured to one:
+
+.. math::
+         \beta = I\frac{3\pi d\mu}{\varrho_b V}
+        \frac{1}{g}\left(\frac{\varrho}{\varrho_b} -1\right)^{-1},
+        
+
+which is an enormous simplification of the problem if our aim is to
+investigate how :math:`u` varies with the physical input parameters in
+the model.
+In particular, if the motion starts from rest, :math:`\beta=0`, and
+there are no physical parameters in the scaled model!
+We can then perform a single simulation and recover all physical
+cases by the unscaling procedure. More precisely,
+having computed :math:`\bar u(\bar t)` from :ref:`(12) <Eq:scale:model:g:dimless>`,
+we can use
+
+.. _Eq:_auto5:
+
+.. math::
+
+    \tag{15}
+    u(t) = \frac{b}{a}\bar u(at),
+        
+        
+
+to scale back to the original
+problem again.
+We observe that :ref:`(12) <Eq:scale:model:g:dimless>` can utilize a solver
+for :ref:`(9) <Eq:scale:model:g>` by setting :math:`a=1`, :math:`b=1`, and :math:`I=\beta`.
+Given some implementation of a solver for :ref:`(9) <Eq:scale:model:g>`,
+say ``solver(I, a, b, T, dt, theta)``,
+the scaled model is run by ``solver(beta, 1, 1, T, dt, theta)``.
+
+.. index:: joblib
+
+Software          (1)
+~~~~~~~~~~~~~~~~~~~~~
+
+We may develop a solver for the scaled problem that uses ``joblib``
+to cache solutions with the same :math:`\beta`, :math:`\Delta t`, and :math:`T`.
+For now we fix :math:`\theta=0.5`.
+The module `decay_vc.py <http://tinyurl.com/o8pb3yy/decay_vc.py>`__
+(see the
+section `Implementation of the generalized model problem <http://hplgit.github.io/decay-book/doc/pub/book/sphinx/._book006.html#implementation-of-the-generalized-model-problem>`__
+[Ref07]_ for details)
+has a function
+``solver(I, a, b, T, dt, theta)`` for solving :math:`u'(t)=-a(t)u(t)+b(t)` for
+:math:`t\in (0,T]`, :math:`u(0)=I`, with time step ``dt``.
+We reuse this function and call it with :math:`a=b=1` and :math:`I=\beta` to solve
+the scaled problem:
+
+.. code-block:: python
+
+    from decay_vc import solver as solver_unscaled
+    
+    def solver_scaled(beta, T, dt, theta=0.5):
+        """
+        Solve u'=-u+1, u(0)=beta for (0,T]
+        with step dt and theta method.
+        """
+        print 'Computing the numerical solution'
+        return solver_unscaled(
+            I=beta, a=lambda t: 1, b=lambda t: 1,
+            T=T, dt=dt, theta=theta)
+    
+    import joblib
+    disk_memory = joblib.Memory(cachedir='temp')
+    solver_scaled = disk_memory.cache(solver_scaled)
+
+If we want to plot the physical solution, we need an ``unscale`` function,
+
+.. code-block:: python
+
+    def unscale(u_scaled, t_scaled, d, mu, rho, rho_b, V):
+        a, b = ab(d, mu, rho, rho_b, V)
+        return (b/a)*u_scaled, a*t_scaled
+    
+    def ab(d, mu, rho, rho_b, V):
+        g = 9.81
+        a = 3*pi*d*mu/(rho_b*V)
+        b = g*(rho/rho_b - 1)
+        return a, b
+
+Looking at droplets of water in air, we can fix some of the parameters
+and let the size parameter :math:`d` be the one for experimentation.
+The following function sets physical parameters, computes :math:`\beta`,
+runs the solver for the scaled problem (``joblib`` detects
+if it is necessary), and finally plots the scaled curve
+:math:`\bar u(\bar t)` and the unscaled curve :math:`u(t)`.
+
+.. code-block:: python
+
+    def main(dt=0.075, # Time step, scaled problem
+             T=7.5,    # Final time, scaled problem
+             d=0.001,  # Diameter (unscaled problem)
+             I=0,      # Initial velocity (unscaled problem)
+             ):
+        # Set parameters, solve and plot
+        rho = 0.00129E+3  # air
+        rho_b = 1E+3      # density of water
+        mu = 0.001        # viscosity of water
+        # Asumme we have list or similar for d
+        if not isinstance(d, (list,tuple,np.ndarray)):
+            d = [d]
+    
+        legends1 = []
+        legends2 = []
+        plt.figure(1)
+        plt.figure(2)
+        betas = []     # beta values already computed (for plot)
+    
+        for d_ in d:
+            V = 4*pi/3*(d_/2.)**3  # volume
+            a, b = ab(d_, mu, rho, rho_b, V)
+            beta = I*a/b
+            # Restrict to 3 digits in beta
+            beta = abs(round(beta, 3))
+    
+            print 'beta=%.3f' % beta
+            u_scaled, t_scaled = solver_scaled(beta, T, dt)
+    
+            # Avoid plotting curves with the same beta value
+            if not beta in betas:
+                plt.figure(1)
+                plt.plot(t_scaled, u_scaled)
+                plt.hold('on')
+                legends1.append('beta=%g' % beta)
+            betas.append(beta)
+    
+            plt.figure(2)
+            u, t = unscale(u_scaled, t_scaled, d_, mu, rho, rho_b, V)
+            plt.plot(t, u)
+            plt.hold('on')
+            legends2.append('d=%g [mm]' % (d_*1000))
+        plt.figure(1)
+        plt.xlabel('scaled time'); plt.ylabel('scaled velocity')
+        plt.legend(legends1, loc='lower right')
+
+The most complicated part of the code is related to plotting, but
+this part can be skipped when trying to understand how we work with
+a scaled model to perform the computations.
+The complete program is found in the file
+`falling_body.py <http://tinyurl.com/o8pb3yy/falling_body.py>`__.
+
+Since :math:`I=0` implies :math:`\beta=0`, we can run different :math:`d` values without
+any need to recompute :math:`\bar u(\bar t)` as long as we assume the particle
+starts from rest.
+
+From the scaling, we see that :math:`u_c = b/a\sim d^{-2}` and
+also that :math:`t_c=1/a \sim d^{-2}`, so plotting of :math:`u(t)` with dimensions
+for various :math:`d` values will involve significant variations in the time
+and velocity scales. Figure :ref:`sec:scale:body:fig`
+has an example with :math:`d=1,2,3` mm, where we clearly see the different
+time and velocity scales in the figure with unscaled variables.
+Note that the scaled velocity is positive because of the sign of :math:`u_c`
+(see the box above).
+
+.. _sec:scale:body:fig:
+
+.. figure:: falling_body.png
+   :width: 800
+
+   *Velocity of falling body: scaled (left) and with dimensions (right)*
+
+.. _sec:scale:jump:
+
+Variable coefficients
+---------------------
+
+When a prescribed coefficient like :math:`a(t)` in :math:`u'(t) = -a(t)u(t)`
+varies with time one usually also
+performs a scaling of this :math:`a`,
+
+.. math::
+         \bar a(\bar t) = \frac{a(t) - a_0}{a_c}, 
+
+where the goal is to have the scaled :math:`\bar a`
+of size unity: :math:`|\bar a|\leq 1`.
+This property is obtained by choosing :math:`a_c` as the maximum value
+of :math:`|a(t)-a_0|` for :math:`t\in [0,T]`, which is usually a quantity that
+can be estimated since :math:`a(t)` is known as a function of :math:`t`. The :math:`a_0`
+parameter can be chosen as 0 here. (It could be tempting to
+choose :math:`a_0=\min_t a(t)` so that :math:`0\leq \bar a\leq 1`, but then there
+is at least one point where :math:`\bar a = 0` and
+the differential equation collapses to :math:`u'=0`.)
+
+As an example, imagine a decaying cell culture where we at time :math:`t_1`
+change the environment (typically the nutrition)
+such that the death rate increases by a factor 5.
+Mathematically, :math:`a(t) = d` for
+:math:`t < t_1` and :math:`a(t)=5d` for :math:`t\geq t_1`. The model reads :math:`u'=-a(t)u`, :math:`u(0)=I`.
+
+The :math:`a(t)` function is scaled by letting the characteristic size be
+:math:`a_c=d` and :math:`a_0=0`:
+
+.. math::
+         \bar a (\bar t) = \left\lbrace\begin{array}{ll}
+        1, & \bar t < t_1/t_c\\ 
+        5, & \bar t \geq t_1/t_c
+        \end{array}\right.
+        
+
+.. index:: dimensionless number
+
+The scaled equation becomes
+
+.. math::
+         \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = a_c\bar a(\bar t) u_c\bar u,\quad
+        u_c\bar u(0) = I{\thinspace .}
+
+The natural choice of :math:`u_c` is :math:`I`.
+The characteristic time, previously taken as :math:`t_c=1/a`, can now be
+chosen as :math:`t_c=t_1` or :math:`t_c=1/d`.
+With :math:`t_c=1/d` we get
+
+.. _Eq:sec:scale:jump:eq1:
+
+.. math::
+
+    \tag{16}
+    \bar u'(\bar t)=-\bar a\bar u,\quad \bar u(0)=1,\quad
+        \bar a = \left\lbrace\begin{array}{ll}
+        1, & \bar t < \gamma\\ 
+        5, & \bar t \geq \gamma
+        \end{array}\right.
+        
+        
+
+where
+
+.. math::
+         \gamma = t_1 d
+
+is a dimensionless number in the problem. With :math:`t_c=t_1`, we get
+
+.. math::
+         \bar u'(\bar t)=-\gamma\bar a\bar u,\quad \bar u(0)=1,\quad
+        \bar a = \left\lbrace\begin{array}{ll}
+        1, & \bar t < 1\\ 
+        5, & \bar t \geq 1
+        \end{array}\right.
+
+The dimensionless parameter :math:`\gamma` is now in the equation rather than in
+the definition of :math:`\bar a`. Both problems involve :math:`\gamma`, which
+is the ratio between the time when the environmental change happens
+and the typical time for the decay (:math:`1/d`).
+
+A computation with the scaled model :ref:`(16) <Eq:sec:scale:jump:eq1>`
+and the original model with dimensions appears in
+Figure :ref:`sec:scale:jump:fig`.
+
+.. _sec:scale:jump:fig:
+
+.. figure:: decay_jump.png
+   :width: 800
+
+   *Exponential decay with jump: scaled model (left) and unscaled model (right)*
+
+.. _scale:cooling:const:
+
+Scaling a cooling problem with constant temperature in the surroundings
+-----------------------------------------------------------------------
+
+The heat exchange between a body at temperature :math:`T(t)` and the
+surroundings at constant temperature :math:`T_s`
+can be modeled by Newton's law of cooling:
+
+.. _Eq:scale:cooling:model:
+
+.. math::
+
+    \tag{17}
+    T'(t) = -k(T-T_s),\quad T(0)=T_0,
+        
+        
+
+where :math:`k` is a prescribed heat transfer coefficient.
+
+Exact solution          (2)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An analytical solution is always handy to have as a control of the
+choice of scales. The solution of :ref:`(17) <Eq:scale:cooling:model>`
+is by standard methods for ODEs found to be
+:math:`T(t) = T_s + (T_0 - T_s)e^{-kt}`.
+
+Scaling          (1)
+~~~~~~~~~~~~~~~~~~~~
+
+Physically, we expect the temperature to start at :math:`T_0` and then to
+move toward the temperature of the surroundings (:math:`T_s`). We therefore
+expect that :math:`T` lies between :math:`T_0` and :math:`T_s`. This is mathematically
+demonstrated by the analytical solution as well. A proper scaling is
+therefore to scale and translate :math:`T` according to
+
+.. _Eq:scale:cooling:Tbar:
+
+.. math::
+
+    \tag{18}
+    \bar T = \frac{T-T_0}{T_s-T_0}
+        
+        {\thinspace .}
+        
+
+Now, :math:`0\leq \bar T\leq 1`.
+
+Scaling time by :math:`\bar t = t/t_c` and inserting
+:math:`T= T_0 + (T_s-T_0)\bar T` and :math:`t=t_c\bar t` in the
+problem :ref:`(17) <Eq:scale:cooling:model>` gives
+
+.. math::
+         \frac{d\bar T}{d\bar t} = - t_ck(\bar T - 1),\quad \bar T(0) = 0
+        {\thinspace .}
+        
+
+A natural choice, as argued in other exponential decay problems,
+is to choose :math:`t_ck=1`, which leaves us with the scaled problem
+
+.. _Eq:scale:cooling:Tbar:eq:
+
+.. math::
+
+    \tag{19}
+    \frac{d\bar T}{d\bar t} = - (\bar T - 1),\quad \bar T(0)=0
+        
+        {\thinspace .}
+        
+
+No physical parameter enters this problem!
+Our scaling implies that :math:`\bar T` starts at
+0 and approaches 1 as :math:`\bar t\rightarrow\infty`, also in the case
+:math:`T_s < T_0`. The physical temperature is always recovered as
+
+.. _Eq:scale:cooling:T:
+
+.. math::
+
+    \tag{20}
+    T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)
+        
+        {\thinspace .}
+        
+
+Software          (2)
+~~~~~~~~~~~~~~~~~~~~~
+
+An implementation for :ref:`(17) <Eq:scale:cooling:model>` works for
+:ref:`(19) <Eq:scale:cooling:Tbar:eq>` by setting :math:`k=1`, :math:`T_s=1`, and :math:`T_0=0`.
+
+Alternative scaling          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+An alternative temperature scaling is to choose
+
+.. _Eq:scale:cooling:Tbar2:
+
+.. math::
+
+    \tag{21}
+    \bar T = \frac{T-T_s}{T_0-T_s}
+        
+        {\thinspace .}
+        
+
+Now :math:`\bar T=1` initially and approaches zero as :math:`t\rightarrow\infty`.
+The resulting scaled ODE problem then becomes
+
+.. _Eq:scale:cooling:Tbar:eq2:
+
+.. math::
+
+    \tag{22}
+    \frac{d\bar T}{d\bar t} = - \bar T,\quad \bar T(0)=1,
+        
+        {\thinspace .}
+        
+
+with solution :math:`\bar T = e^{-\bar t}`.
+
+.. _scale:cooling:osc:
+
+Scaling a cooling problem with time-dependent surroundings
+----------------------------------------------------------
+
+Let us apply the model :ref:`(17) <Eq:scale:cooling:model>` to the case when
+the surrounding temperature varies in time. Say we have
+an oscillating temperature environment according to
+
+.. _Eq:scale:cooling:Tst:
+
+.. math::
+
+    \tag{23}
+    T_s(t) = T_m + a\sin(\omega t),
+        
+        
+
+where :math:`T_m` is the mean temperature in the surroundings, :math:`a` is
+the amplitude of the variations around :math:`T_m`, and :math:`2\pi/\omega` is
+the period of the temperature oscillations.
+
+Exact solution          (3)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Also in this relatively simple problem
+it is possible to solve the differential equation problem analytically.
+Such a solution may be a good help to see what the scales are, and
+especially to control other forms for reasoning about the scales.
+Using the method of integrating factors for the
+original differential equation, we have
+
+.. math::
+         T(t) = T_0e^{-kt} + e^{-kt}k\int_0^t e^{k\tau}T_s(\tau)d\tau{\thinspace .}
+
+With :math:`T_s(t)=T_m + a\sin (\omega t)` we can use SymPy to help us with
+integrations (note that we use ``w`` for :math:`\omega` in the computer code):
+
+.. code-block:: python
+
+    >>> from sympy import *
+    >>> t, k, T_m, a, w = symbols('t k T_m a w', real=True, positive=True)
+    >>> T_s = T_m + a*sin(w*t)
+    >>> I = exp(k*t)*T_s
+    >>> I = integrate(I, (t, 0, t))
+    >>> Q = k*exp(-k*t)*I
+    >>> Q = simplify(expand(Q))
+    >>> print Q
+    (-T_m*k**2 - T_m*w**2 + a*k*w +
+    (T_m*k**2 + T_m*w**2 + a*k**2*sin(t*w) -
+    a*k*w*cos(t*w))*exp(k*t))*exp(-k*t)/((k**2 + w**2))
+
+Reordering the result, we get
+
+.. math::
+         T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + \omega^2)^{-1}(ak\omega e^{-kt}
+        + ak\sin (\omega t) - akw\cos(\omega t)){\thinspace .}
+
+.. index:: dimensionless number
+
+Scaling          (2)
+~~~~~~~~~~~~~~~~~~~~
+
+The scaling :ref:`(18) <Eq:scale:cooling:Tbar>` brings in a time-dependent
+characteristic temperature scale :math:`T_s-T_0`. Let us start with a
+fixed scale, where we take the characteristic temperature variation to
+be :math:`T_m - T_0`:
+
+.. math::
+         \bar T = \frac{T-T_0}{T_m-T_0}{\thinspace .}
+
+We realize by physical
+reasoning that :math:`T` sets out at :math:`T_0`, but with time, it will oscillate
+around :math:`T_m`. (This reasoning can be controlled by looking at the exact
+solution we produced above.)
+The typical average temperature span is therefore
+:math:`|T_m-T_0|`, unless :math:`a` is much larger than :math:`|T_m-T_0|` or :math:`T_0` is
+very close to
+:math:`T_m` (see :ref:`sec:scale:exer:decay:cooling:osc` for
+a discussion of these cases).
+
+We get from the differential equation, with :math:`t_c=1/k` as in the former
+case,
+
+.. math::
+         k(T_m-T_0)\frac{d\bar T}{d\bar t} = -k((T_m-T_0)\bar T + T_0 - T_m - a
+        \sin(\omega t),
+
+resulting in
+
+.. _Eq:scale:cooling:model:scaled:
+
+.. math::
+
+    \tag{24}
+    \frac{d\bar T}{d\bar t} = -\bar T + 1 + \alpha\sin (\beta \bar t),\quad
+        \bar T(0)=0,
+        
+        
+
+where we have two dimensionless numbers:
+
+.. math::
+         \alpha = \frac{a}{T_m-T_0},\quad \beta = \frac{\omega}{k}{\thinspace .}
+
+The :math:`\alpha` quantity measures the ratio of temperatures: amplitude of
+oscillations versus distance from initial temperature to the average
+temperature for large times.  The :math:`\beta` number is the ratio of the
+two time scales: the frequency of the oscillations in :math:`T_s` and the
+inverse e-folding time of the heat transfer. For clear interpretation
+of :math:`\beta` we may introduce the period :math:`P=2\pi/\omega` of the
+oscillations in :math:`T_s` and the e-folding time :math:`e=1/k`. Then :math:`\beta =
+2\pi e/P` and measures the e-folding time versus the period.
+
+
+.. admonition:: Remark
+
+   The original problem features five physical parameters: :math:`k`, :math:`T_0`,
+   :math:`T_m`, :math:`a`, and :math:`\omega`, but only two dimensionless numbers appear in the
+   scaled model :ref:`(24) <Eq:scale:cooling:model:scaled>`.
+   In fact, this is an example where application of the Pi theorem
+   (see the section :ref:`scale:dimunit:Pi`) falls
+   short. Since, only time and temperature are involved as unit types, the
+   theorem predicts that the five parameters yields three dimensionless numbers,
+   not two. Scaling of the differential equations, on the other hand,
+   shows us that the two parameters
+   :math:`T_m` and :math:`T_0` affect the nature of the problem only through their difference.
+
+
+
+
+Software          (3)
+~~~~~~~~~~~~~~~~~~~~~
+
+Implementations of the unscaled problem :ref:`(17) <Eq:scale:cooling:model>`
+can be reused for the scaled model by setting :math:`k=1`, :math:`T_0=0`, and
+:math:`T_s(t) = 1 + \alpha\sin (\beta \bar t)` (:math:`T_m=1`, :math:`a=\alpha`, :math:`\omega =\beta`).
+The file `osc_cooling.py <http://tinyurl.com/o8pb3yy/osc_cooling.py>`__ contains
+solvers for the problem with dimensions and
+for the scaled problem. The figure below
+shows three cases of :math:`\beta` values: small, medium, and large.
+
+.. figure:: osc_cooling.png
+   :width: 500
+
+For the small :math:`\beta` value, the oscillations in the surrounding
+temperature are slow enough compared to :math:`k` for the heating and
+cooling process to follow the surrounding temperature, with a small
+time lag. For larger :math:`\beta`, the heating and cooling require more
+time, and the oscillations get smaller.
+
+Discussion of the time scale          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+There are two time variations of importance in the present problem:
+heat is transferred to the surroundings at a rate :math:`k`, and the
+surroundings have a temperature variation with a period that goes like
+:math:`1/\omega`. (We can, when we are so lucky that we have an analytical
+solution at hand, inspect this solution to see that :math:`k` impacts the
+problem through a decay factor :math:`e^{-kt}`, and :math:`\omega` impacts the problem
+through oscillations :math:`\sin(\omega t)`.)  The :math:`k` parameter related to
+temperature decay points to a time scale :math:`t_c=1/k`, while the
+temperature oscillations of the surroundings point to a time scale
+:math:`t_c=1/\omega`.  Which one should be chosen?
+
+Bringing the temperature from :math:`T_0` to the level of the surroundings,
+:math:`T_m`, goes like :math:`e^{-kt}`, so in this process :math:`t_c=1/k` is the
+characteristic time. Thereafter, the body's temperature just responds
+to the oscillations and the :math:`\sin (\omega t)` (and :math:`\cos(\omega t)`)
+term dominates. For these large times, :math:`t_c=1/\omega` is the
+appropriate time scale. Choosing :math:`t_c=1/\omega` results in
+
+.. _Eq:scale:cooling:model:scaled2:
+
+.. math::
+
+    \tag{25}
+    \frac{d\bar T}{d\bar t} = -\beta^{-1}(\bar T - (1 + \alpha\sin (\bar t))),\quad
+        \bar T(0)=0{\thinspace .}
+        
+        
+
+Let us illustrate another, less effective, scaling.
+The temperature scale in
+:ref:`(18) <Eq:scale:cooling:Tbar>` looks natural, so we apply this
+choice of scale. The characteristic temperature :math:`T_0-T_s`
+now involves
+a time-dependent term :math:`T_s(t)`. The mathematical steps become a bit
+more technically involved:
+
+.. math::
+         T(t) = T_0 + (T_s(t)-T_0)\bar T,
+
+.. math::
+         \frac{dT}{dt} = \frac{dT_s}{dt}\bar T +
+        (T_s-T_0)\frac{d\bar T}{d\bar t}\frac{d\bar t}{dt}
+        {\thinspace .}
+        
+
+With :math:`\bar t = t/t_c = kt` we get from the differential equation
+
+.. math::
+        
+        \frac{dT_s}{dt}\bar T +
+        (T_s-T_0)\frac{d\bar T}{d\bar t}k
+        = -k(\bar T - 1)(T_s - T_0),
+        
+
+which after dividing by :math:`k(T_s-T_0)` results in
+
+.. math::
+        
+        \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
+        \frac{dT_s}{dt}\frac{\bar T}{k(T_s-T_0},
+        
+
+or
+
+.. math::
+        
+        \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
+        \frac{a\omega\cos(\omega \bar t/k)}{k(T_m + a\sin(\omega \bar t/k) -T_0)}\bar T
+        {\thinspace .}
+        
+
+The last term is complicated and becomes more tractable if we factor
+out dimensionless numbers. To this end, we scale :math:`T_s` by (e.g.) :math:`T_m`,
+which means to factor out :math:`T_m` in the denominator. We are then
+left with
+
+.. _Eq:scale:cooling:Tbar:eq3:
+
+.. math::
+
+    \tag{26}
+    \frac{d\bar T}{d\bar t} = -(\bar T - 1) -
+        \alpha\beta \frac{\cos(\beta \bar t)}{1 + \alpha\sin(\beta\bar t) - \gamma}
+        \bar T,
+        
+        
+
+where :math:`\alpha`, :math:`\beta`, and :math:`\gamma` are dimensionless numbers
+characterizing the relative importance of parameters in the problem:
+
+.. _Eq:_auto6:
+
+.. math::
+
+    \tag{27}
+    \alpha=a/T_m,\quad \beta = \omega/k,\quad \gamma = T_0/T_m
+        {\thinspace .}
+        
+        
+
+We notice that :ref:`(26) <Eq:scale:cooling:Tbar:eq3>`
+is not a special case of the original problem
+:ref:`(17) <Eq:scale:cooling:model>`. Furthermore, the original five
+parameters :math:`k`, :math:`T_m`, :math:`a`, :math:`\omega`, and
+:math:`T_0` are reduced to three dimensionless parameters.
+We conclude that this scaling is inferior, because
+using the temperature scale :math:`T_0-T_m` enables reuse of the software
+for the unscaled problem and only two dimensionless parameters appear
+in the scaled model.
+
+Let us briefly mention another possible temperature scaling:
+:math:`\bar T = T/T_m`, motivated by the fact that as :math:`t\rightarrow\infty`,
+:math:`T` will oscillate around :math:`T_m`, so this :math:`\bar T` will oscillate around
+unity. We get the dimensionless ODE
+
+.. math::
+         \frac{d\bar T}{d\bar t} = -(\bar T - (1 + \delta\sin(\beta\bar t))),
+
+with a new dimensionless parameter :math:`\delta = a/T_m`. However, the initial
+condition becomes :math:`\bar T(0)=T_0/T_m`, and the ratio :math:`T_0/T_m` is
+a third dimensionless parameter, so this scaling is also inferior to the
+one above with only two parameters.
+
+.. _sec:scale:nonlinear:
+
+Scaling a nonlinear ODE
+-----------------------
+
+.. index:: logistic equation
+
+Exponential growth models, :math:`u'=au`, are not realistic in environments
+with limited resources. However, by letting :math:`a` depend on :math:`u`, the effect
+of limited resources can well be captured by such a simple differential
+equation model:
+
+.. _Eq:sec:scale:nonlinear:model1:
+
+.. math::
+
+    \tag{28}
+    u' = a(u)u,\quad u(0)=I{\thinspace .}
+        
+        
+
+If the maximum value of :math:`u` is denoted by :math:`M`, we have that :math:`a(M)=0`.
+A simple choice fulfilling this requirement is :math:`a(u)=\varrho(1-u/M)`.
+The parameter :math:`\varrho` can be interpreted as the initial exponential
+growth rate if we assume that :math:`I/M\ll 1`, since at :math:`t=0` the model then
+approximates :math:`u'=\varrho u`.
+
+The choice :math:`a(u)=\varrho(1-u/M)` is known as the logistic model for
+population growth:
+
+.. _Eq:sec:scale:nonlinear:model2:
+
+.. math::
+
+    \tag{29}
+    u' = \varrho u(1-u/M),\quad u(0)=I{\thinspace .}
+        
+        
+
+A more complicated choice of :math:`a` may be :math:`a(u)=\varrho(1-u/M)^p` for
+some exponent :math:`p` (this function also fulfills :math:`a(M)=0` and :math:`a\approx\varrho`
+for :math:`t=0`).
+
+.. index:: dimensionless number
+
+Scaling          (3)
+~~~~~~~~~~~~~~~~~~~~
+
+Let us scale :ref:`(28) <Eq:sec:scale:nonlinear:model1>` with
+:math:`a(u)=\varrho (1-u/M)^p`.
+The natural scale for :math:`u` is :math:`M` (:math:`u_c=M`), since we know that
+:math:`0 < u\leq M`, and this makes the dimensionless :math:`\bar u = u/M \in (0,1]`.
+The function :math:`a(u)` is
+typically varying between 0 and :math:`\varrho`, so it can be scaled as
+
+.. math::
+         \bar a(\bar u) = \frac{a(u)}{\varrho} = (1 - \frac{u}{M})^p =
+        (1 - \bar u)^p{\thinspace .}
+
+Time is scaled as :math:`\bar t = t/t_c` for some suitable characteristic time :math:`t_c`.
+Inserted in :ref:`(28) <Eq:sec:scale:nonlinear:model1>`, we get
+
+.. math::
+         \frac{u_c}{t_c}\frac{d\bar u}{d\bar t} = \varrho\bar a u_c\bar u,\quad u_c\bar u(0)=I,
+
+resulting in
+
+.. math::
+         \frac{d\bar u}{d\bar t} = t_c \varrho (1 - \bar u)^p \bar u,\quad
+        \bar u(0) =\frac{I}{M}{\thinspace .}
+
+A natural choice is :math:`t_c =1/\varrho` as in other exponential growth models
+since it leads to the term on the right-hand side to be about unity,
+just as the left-hand side. (If the scaling is correct, :math:`\bar u` and its
+derivatives are of order unity, so the coefficients must also be of order
+unity.) Introducing also the dimensionless parameter
+
+.. math::
+         \alpha = \frac{I}{M},
+
+measuring the fraction of the initial population compared to the maximum
+one, we get the dimensionless model
+
+.. _Eq:sec:scale:nonlinear:model1:scaled:
+
+.. math::
+
+    \tag{30}
+    \frac{d\bar u}{d\bar t} = (1 - \bar u)^p \bar u,\quad
+        \bar u(0) =\alpha{\thinspace .}
+        
+        
+
+Here, we have two dimensionless parameters: :math:`\alpha` and :math:`p`. A classical
+logistic model with :math:`p=1` has only one dimensionless variable.
+
+Alternative scaling          (2)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+We could try another scaling of :math:`u` where we also translate :math:`\bar u`:
+
+.. math::
+         \bar u = \frac{u-I}{M}{\thinspace .} 
+
+This choice of :math:`\bar u` results in
+
+.. _Eq:sec:scale:nonlinear:model1:scaled2:
+
+.. math::
+
+    \tag{31}
+    \frac{d\bar u}{d\bar t} = (1 - \alpha - \bar u)^p \bar u,\quad
+        \bar u(0) =0{\thinspace .}
+        
+        
+
+The essential difference between :ref:`(30) <Eq:sec:scale:nonlinear:model1:scaled>`
+and :ref:`(31) <Eq:sec:scale:nonlinear:model1:scaled2>` is that
+:math:`\bar u\in [\alpha, 1]` in the former and :math:`\bar u \in [0, 1-\alpha]` in
+the latter. Both models involve the dimensionless numbers :math:`\alpha` and :math:`p`.
+An advantage of :ref:`(30) <Eq:sec:scale:nonlinear:model1:scaled>`
+is that software for the unscaled model can easily be used for the
+scaled model by choosing :math:`I=\alpha`, :math:`M=1`, and :math:`\varrho=1`.
+
+SIR ODE system for spreading of diseases
+----------------------------------------
+
+The field of epidemiology frequently applies ODE systems to describe
+the spreading of diseases, such as smallpox, measles, plague, ordinary
+flu, swine flu, and HIV. Different models include different effects,
+which are reflected in dimensionless numbers. Most of the effects are
+modeled as exponential decay or growth of the dependent variables.
+
+The simplest model has three categories of people: susceptibles (S)
+who can get the disease, infectious (I) who are infected and may
+infect susceptibles, and recovered (R) who have recovered from the
+disease and gained immunity. We introduce :math:`S(t)`, :math:`I(t)`, and :math:`R(t)`
+as the number of people in the categories S, I, and R, respectively.
+The model, naturally known as the `SIR model <https://en.wikipedia.org/wiki/Epidemic_model>`__, can be expressed as a
+system of three ODEs:
+
+.. _Eq:scale:SIR:S:
+
+.. math::
+
+    \tag{32}
+    \frac{dS}{dt} = - \beta SI,
+        
+        
+
+.. _Eq:scale:SIR:I:
+
+.. math::
+
+    \tag{33}
+    \frac{dI}{dt} = \beta SI - \nu I,
+        
+        
+
+.. _Eq:scale:SIR:R:
+
+.. math::
+
+    \tag{34}
+    \frac{dR}{dt} = \nu I,
+        
+        
+
+where :math:`\beta` and :math:`\nu` are empirical constants. The average time for recovering
+from the disease can be shown to be :math:`\nu^{-1}`, but :math:`\beta` is much harder
+to estimate, so working with a scaled model where :math:`\beta` is "scaled away"
+is advantageous.
+
+Scaling          (4)
+~~~~~~~~~~~~~~~~~~~~
+
+It is natural to scale :math:`S`, :math:`I`, and :math:`R` by, e.g., :math:`S(0)`:
+
+.. math::
+         \bar S = \frac{S}{S(0)},\quad \bar I = \frac{I}{S(0)},\quad
+        \bar R = \frac{R}{S(0)}{\thinspace .}
+        
+
+Introducing :math:`\bar t = t/t_c`, we arrive at the equations
+
+.. math::
+        \begin{align*}
+        \frac{d\bar S}{d\bar t} &= - t_c S(0) \beta\bar S\bar I,
+        \\ 
+        \frac{d\bar I}{d\bar t} &= t_c S(0) \beta \bar S\bar I - t_c \nu \bar I,
+        \\ 
+        \frac{d\bar R}{d\bar t} &= t_c \nu \bar I,
+        \end{align*}
+
+with initial conditions :math:`\bar S(0)=1`, :math:`\bar I(0)=I_0/S(0)=\alpha`, and
+:math:`\bar R(0)=R(0)/S(0)`. Normally, :math:`R(0)=0`.
+
+Taking :math:`t_c=1/\nu`, corresponding to a time unit equal to the time it takes
+to recover from the disease, we end up with the scaled model
+
+.. _Eq:scale:SIR:S2:
+
+.. math::
+
+    \tag{35}
+    \frac{d\bar S}{d\bar t} = - R_0\bar S\bar I,
+        
+        
+
+.. _Eq:scale:SIR:I2:
+
+.. math::
+
+    \tag{36}
+    \frac{d\bar I}{d\bar t} = R_0 \bar S\bar I - \bar I,
+        
+        
+
+.. _Eq:scale:SIR:R2:
+
+.. math::
+
+    \tag{37}
+    \frac{d\bar R}{d\bar t} = \bar I,
+        
+        
+
+with :math:`\bar S(0)=1`, :math:`\bar I(0)=\alpha`, :math:`\bar R(0)=0`, and :math:`R_0` as
+the dimensionless number
+
+.. _Eq:_auto7:
+
+.. math::
+
+    \tag{38}
+    R_0 = \frac{S(0)\beta}{\nu}{\thinspace .}
+        
+        
+
+We see from :ref:`(36) <Eq:scale:SIR:I2>` that to make the disease spreading,
+:math:`d\bar I/d\bar t >0`, and therefore :math:`R_0 \bar S(0) - 1 > 0` or :math:`R_0 > 1`
+since :math:`\bar S(0)=1`.
+Therefore, :math:`R_0` reflects the disease's ability to spread and is
+consequently an important dimensionless quantity, known as the `basic
+reproduction number <https://en.wikipedia.org/wiki/Basic_reproduction_number>`__.
+This number reflects the number of infected people caused by one infectious
+individual during the time period of the disease.
+
+Looking at :ref:`(33) <Eq:scale:SIR:I>`, we see that to increase :math:`I` initially,
+we must have :math:`dI/dt >0` at :math:`t=0`, which implies
+:math:`\beta I(0)S(0) - \nu I(0) >0`, i.e., :math:`R_0 > 1`.
+
+Software          (4)
+~~~~~~~~~~~~~~~~~~~~~
+
+Any implementation of the SIR model with dimensions can be reused for
+the scaled model by setting :math:`\beta = R_0`, :math:`\nu = 1`, :math:`S(0)=1-\alpha`,
+and :math:`I(0)=\alpha`. Below is a plot with two cases: :math:`R_0=2` and :math:`R_0=5`,
+both with :math:`\alpha=0.02`.
+
+.. figure:: SIR1.png
+   :width: 800
+
+Alternative scaling          (3)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Adding :ref:`(32) <Eq:scale:SIR:S>`-:ref:`(34) <Eq:scale:SIR:R>` shows that
+
+.. math::
+         \frac{dS}{dt}+\frac{dI}{dt}+\frac{dR}{dt}=0\quad\Rightarrow\quad
+        S+I+R=\hbox{const}=N,
+
+where :math:`N` is the size of the population.
+We can therefore scale :math:`S`, :math:`I`, and :math:`R` by the total
+population :math:`N=S(0)+I(0)+R(0)`:
+
+.. math::
+         \bar S = \frac{S}{N},\quad \bar I = \frac{I}{N},\quad
+        \bar R = \frac{R}{N}{\thinspace .}
+        
+
+With the same time scale, one gets the system :ref:`(35) <Eq:scale:SIR:S2>`-:ref:`(37) <Eq:scale:SIR:R2>`, but with :math:`R_0` replaced by the dimensionless number:
+
+.. _Eq:_auto8:
+
+.. math::
+
+    \tag{39}
+    \tilde R_0 = \frac{N\beta}{\nu}{\thinspace .}
+        
+        
+
+The initial conditions become :math:`\bar S(0)=1-\alpha`, :math:`\bar I(0)=\alpha`,
+and :math:`\bar R(0)=0`.
+
+For the disease to spread at :math:`t=0`, we must have :math:`\tilde R_0 \bar S(0) > 1`,
+but :math:`\tilde R_0 \bar S(0) = N\beta/\nu \cdot S(0)/N = R_0`, so the
+criterion is still :math:`R_0 > 1`. Since :math:`R_0` is a more famous number than
+:math:`\tilde R_0`, we can write the ODEs with :math:`R_0/S(0) = R_0/(1-\alpha)`
+instead of :math:`\tilde R_0`.
+
+Choosing :math:`t_c` to make the :math:`SI` terms balance the time derivatives,
+:math:`t_c = (N\beta)^{-1}`, moves :math:`\tilde R_0` (or :math:`R_0` if we scale
+:math:`S`, :math:`I`, and :math:`R` by :math:`S(0)`) to the :math:`I` terms:
+
+.. math::
+        \begin{align*}
+        \frac{d\bar S}{d\bar t} &= - \bar S\bar I,
+        \\ 
+        \frac{d\bar I}{d\bar t} &= \bar S\bar I - \tilde R_0^{-1} \bar I,
+        \\ 
+        \frac{d\bar R}{d\bar t} &= \tilde R_0^{-1} I{\thinspace .}
+        \end{align*}
+
+SIRV model with finite immunity
+-------------------------------
+
+A common extension of the SIR model involves finite immunity: after
+some period of time, recovered individuals lose their immunity
+and become susceptibles again. This is modeled as
+a leakage :math:`-\mu R` from the R to the S category, where :math:`\mu^{-1}`
+is the average time it takes to lose immunity.
+Vaccination is another extension: a fraction :math:`pS` is removed from the
+S category by successful vaccination and brought to a new category V (the
+vaccinated). The ODE model reads
+
+.. _Eq:scale:SIRV:S:
+
+.. math::
+
+    \tag{40}
+    \frac{dS}{dt} = - \beta SI - pS + \mu R,
+        
+        
+
+.. _Eq:scale:SIRV:I:
+
+.. math::
+
+    \tag{41}
+    \frac{dI}{dt} = \beta SI - \nu I,
+        
+        
+
+.. _Eq:scale:SIRV:R:
+
+.. math::
+
+    \tag{42}
+    \frac{dR}{dt} = \nu I -\mu R,
+        
+        
+
+.. _Eq:scale:SIRV:V:
+
+.. math::
+
+    \tag{43}
+    \frac{dV}{dt} = p S{\thinspace .}
+        
+        
+
+Using :math:`t_c=1/\nu` and scaling the unknowns by :math:`S(0)`, we arrive at
+the dimensionless model
+
+.. _Eq:scale:SIRV:S2:
+
+.. math::
+
+    \tag{44}
+    \frac{d\bar S}{d\bar t} = - R_0 \bar S \bar I - \delta \bar S + \gamma \bar R,
+        
+        
+
+.. _Eq:scale:SIRV:I2:
+
+.. math::
+
+    \tag{45}
+    \frac{d\bar I}{d\bar t} = R_0 \bar S \bar I - \bar I,
+        
+        
+
+.. _Eq:scale:SIRV:R2:
+
+.. math::
+
+    \tag{46}
+    \frac{d\bar R}{d\bar t} = \bar I -\gamma \bar R,
+        
+        
+
+.. _Eq:scale:SIRV:V2:
+
+.. math::
+
+    \tag{47}
+    \frac{d\bar V}{d\bar t} = \delta \bar S,
+        
+        
+
+with two new dimensionless parameters:
+
+.. math::
+         \gamma = \frac{\mu}{\nu},\quad \delta = \frac{p}{\nu}{\thinspace .} 
+
+The quantity :math:`p^{-1}` can be interpreted as the average time it takes
+to vaccinate a susceptible successfully. Writing :math:`\gamma = \nu^{-1}/\mu^{-1}`
+and :math:`\delta = \nu^{-1}/p^{-1}` gives the interpretation that :math:`\gamma`
+is the ratio of the average time to recover and the average time to
+lose immunity, while :math:`\delta` is the ratio of the average time to recover
+and the average time to successfully vaccinate a susceptible.
+
+The plot in Figure :ref:`sec:scale:SIRV:fig` has :math:`\gamma = 0.05`, i.e.,
+loss of immunity takes 20 weeks if it takes one week to recover from
+the disease. The left plot corresponds to no vaccination, while the
+right has :math:`\delta = 0.5` for a vaccination campaign that lasts from
+day 7 to day 15. The value :math:`\delta =0.5` reflects that
+it takes two weeks to successfully
+vaccinate a susceptible, but the effect of vaccination is still dramatic.
+
+.. _sec:scale:SIRV:fig:
+
+.. figure:: SIRV2.png
+   :width: 800
+
+   *Spreading of a disease with loss of immunity (left) and added vaccination (right)*
+
+.. _scale:MMK:
+
+Michaelis-Menten kinetics for biochemical reactions
+---------------------------------------------------
+
+A classical reaction model in biochemistry describes how a
+substrate S is turned into a product P with aid of an enzyme E.
+S and E react to form a complex ES in the first stage of the reaction.
+In the second stage, ES is turned into E and P.
+Introducing the amount of S, E, ES, and P by :math:`[S]`, :math:`[E]`, :math:`[ES]`, and
+:math:`[P]`, the mathematical model can be written as
+
+.. _Eq:scale:MMK:ES1:
+
+.. math::
+
+    \tag{48}
+    \frac{d[ES]}{dt} = k_+[E][S] - k_v[ES] - k_-[ES],
+        
+        
+
+.. _Eq:scale:MMK:P1:
+
+.. math::
+
+    \tag{49}
+    \frac{d[P]}{dt} = k_v[ES],
+        
+        
+
+.. _Eq:scale:MMK:S1:
+
+.. math::
+
+    \tag{50}
+    \frac{d[S]}{dt} = -k_+[E][S] + k_-[ES],
+        
+        
+
+.. _Eq:scale:MMK:E1:
+
+.. math::
+
+    \tag{51}
+    \frac{d[E]}{dt} = -k_+[E][S] + k_-[ES] + k_v[ES]{\thinspace .}
+        
+        
+
+The initial conditions are :math:`[ES](0)=[P](0)=0`, and :math:`[S]=S_0`, :math:`[E]=E_0`.
+Three rate constants are involved: :math:`k_+`, :math:`k_-`, and :math:`k_v`.
+The above mathematical model is known as `Michaelis-Menten kinetics <https://en.wikipedia.org/wiki/Michaelis-Menten_kinetics>`__.
+
+The amount of substance is measured in the unit `mole <https://en.wikipedia.org/wiki/Mole_(unit)>`__ (mol). From the equations we can see that
+:math:`k_+` is measured in :math:`\hbox{s}^{-1}\hbox{mol}^{-1}`, while :math:`k_-` and
+:math:`k_v` are measured in :math:`\hbox{s}^{-1}`. It is convenient to get rid of
+the mole unit for the amount of a substance. When working with
+dimensionless quantities, only ratios of the rate constants and not their
+specific values are needed.
+
+Classical analysis
+~~~~~~~~~~~~~~~~~~
+
+A common assumption is that the formation of :math:`[ES]` is very fast and that
+it quickly reaches an equilibrium state, :math:`[ES]^{\prime}=0`. Equation
+:ref:`(48) <Eq:scale:MMK:ES1>` then reduces to the algebraic equation
+
+.. math::
+         k_+[E][S] - k_v[ES] - k_-[ES] = 0, 
+
+which leads to
+
+.. _Eq:scale:MMK:K:
+
+.. math::
+
+    \tag{52}
+    \frac{[E][S]}{[ES]} = \frac{k_- + k_v}{k_+} = K,
+        
+        
+
+where :math:`K` is the famous Michaelis constant - the equilibrium constant
+between :math:`[E][S]` and :math:`[ES]`.
+
+Another important observation is that the ODE system implies
+two conservation equations, arising from simply adding the ODEs:
+
+.. _Eq:_auto9:
+
+.. math::
+
+    \tag{53}
+    \frac{d[ES]}{dt} + \frac{d[E]}{dt}  =0,
+        
+        
+
+.. _Eq:_auto10:
+
+.. math::
+
+    \tag{54}
+    \frac{d[ES]}{dt} + \frac{d[S]}{dt} + \frac{d[P]}{dt} = 0,
+        
+        
+
+from which it follows that
+
+.. _Eq:scale:MMK:cons1:
+
+.. math::
+
+    \tag{55}
+    [ES] + [E] = E_0,
+        
+        
+
+.. _Eq:scale:MMK:cons2:
+
+.. math::
+
+    \tag{56}
+    [ES] + [S] + [P] = S_0{\thinspace .}
+        
+        
+
+We can use :ref:`(55) <Eq:scale:MMK:cons1>` and :ref:`(52) <Eq:scale:MMK:K>` to
+express :math:`[E]` by :math:`[S]`:
+
+.. math::
+         [E] = E_0 - [ES] = E_0 - \frac{[E][S]}{K}\quad\Rightarrow\quad
+        [E] = \frac{KE_0}{K + [S]}{\thinspace .}
+
+Now :ref:`(50) <Eq:scale:MMK:S1>` can be developed to an equation involving
+:math:`[S]` only:
+
+.. math::
+        
+        \frac{d[S]}{dt} = -k_+[E][S] + k_-[ES]\nonumber
+        
+
+.. math::
+          
+         = (-k_+ + \frac{k_-}{K})[E][S]\nonumber
+        
+
+.. math::
+          
+         = (-k_+ + \frac{k_-}{K})[S]\frac{KE_0}{K + [S]}\nonumber
+        
+
+.. _Eq:scale:MMK:Seq1:
+
+.. math::
+
+    \tag{57}
+    = - \frac{k_-E_0}{[S] + K}{\thinspace .}
+        
+        
+
+We see that the parameter :math:`K` is central.
+
+From above expression for :math:`[E]` and :ref:`(55) <Eq:scale:MMK:cons1>` it now follows
+
+.. math::
+        
+        [E]=\frac{K E_0}{K+[S]},\quad [ES]=\frac{E_0[S]}{K+[S]}.
+        
+
+If :math:`K` is comparable to :math:`S_0` these indicate
+
+.. math::
+        
+        [E]\sim E_0,\quad [ES]\sim \frac{E_0 S_0}{K},
+        
+
+as is used for scaling :math:`[E]` and :math:`Q_c`, subsequently.
+Provided we exclude the case :math:`[S]\gg K`, we may infer that :math:`[E]` will be of magnitude :math:`E_0`, while :math:`[ES]` will be of magnitude :math:`E_0 S_0/K`.
+
+Dimensionless ODE system
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Let us reason how to make the original ODE system
+:ref:`(48) <Eq:scale:MMK:ES1>`-:ref:`(51) <Eq:scale:MMK:E1>` dimensionless.
+Aiming at :math:`[S]` and :math:`[E]` of unit size, two obvious dimensionless
+unknowns are
+
+.. math::
+         \bar S = \frac{[S]}{S_0},\quad
+        \bar E = \frac{[E]}{E_0}{\thinspace .}
+
+For the other two unknowns we just introduce scales to be determined
+later:
+
+.. math::
+        
+        \bar P = \frac{[P]}{P_c},\quad
+        \bar{Q} = \frac{[ES]}{Q_c}{\thinspace .}
+        
+
+With :math:`\bar t = t/t_c` the equations become
+
+.. math::
+        \begin{align*}
+        \frac{d\bar Q}{d\bar t} &= t_ck_+\frac{E_0S_0}{Q_c}\bar E\bar S
+        - t_c(k_v + k_-)\bar Q,\\ 
+        \frac{d\bar P}{d\bar t} &= t_ck_v\frac{Q_c}{P_c}\bar Q,\\ 
+        \frac{d\bar S}{d\bar t} &= -t_ck_+E_0\bar E\bar S
+        + t_ck_-\frac{Q_c}{S_0}\bar Q,\\ 
+        \frac{d\bar E}{d\bar t} &= -t_ck_+S_0\bar E\bar S
+        + t_c(k_- + k_v)\frac{Q_c}{E_0}\bar Q{\thinspace .}
+        \end{align*}
+
+.. `<http://www.biosym.uzh.ch/modules/models/Michaelis_Menten/michaelis_menten.html>`_
+
+.. `<http://deepblue.lib.umich.edu/bitstream/handle/2027.42/26960/0000527.pdf>`_?sequence=1
+
+.. `<http://www.math.ubc.ca/~keshet/EnzKin.pdf>`_
+
+.. Good (but complicated): `<https://people.maths.ox.ac.uk/maini/PKM%20publications/9.pdf>`_
+
+.. `<http://www.ncbi.nlm.nih.gov/pmc/articles/PMC2932968/>`_ (read this one - it is the best, this one has units for the constants too and typical values of constants)
+
+.. Murray has S_c=S_0, Q_c=E_0 (that is common)
+
+.. All use the long time scale with E_0
+
+.. Murray has much complicated analysis before selecting scales...
+
+.. Can find Q_c from Q'=0 which gives Q_c=E_0S_0/K
+
+Determining scales
+~~~~~~~~~~~~~~~~~~
+
+Choosing the scales is actually a quite complicated matter that requires
+extensive analysis of the equations to determine the characteristics of
+the solutions. Much literature is written about this, but here we shall
+take a simplistic and pragmatic approach.
+Besides the Michaelis constant :math:`K`, there is another important parameter,
+
+.. math::
+         \epsilon = \frac{E_0}{S_0},
+
+because most applications will involve a small :math:`\epsilon`.
+We shall have :math:`K` and :math:`\epsilon` in mind while choosing scales such that
+these symbols appear naturally in the scaled equations.
+
+Looking at the equations, we see that the :math:`K` parameter will appear
+if :math:`t_c\sim 1/k_+`. However, :math:`1/k_+` does not have the dimension
+:math:`\hbox{[T]}^{-1}` as required, so we need to add a factor with dimension
+mol. A natural choice is
+:math:`t_c^{-1}=k_+S_0` or :math:`t_c^{-1}=k_+E_0`. Since often :math:`S_0\gg E_0`,
+the former :math:`t_c` is a short time scale and the latter is a long
+time scale. If the interest is in the long time scale, we set
+
+.. math::
+         t_c = \frac{1}{k_+E_0}{\thinspace .}
+
+The equations then take the form
+
+.. math::
+        \begin{align*}
+        \frac{d\bar Q}{d\bar t} &= \frac{S_0}{Q_c}\bar E\bar S
+        - KE_0^{-1}\bar Q,\\ 
+        \frac{d\bar P}{d\bar t} &= \frac{k_v}{k_+ E_0}\frac{Q_c}{P_c}\bar Q,\\ 
+        \frac{d\bar S}{d\bar t} &= -\bar E\bar S
+        + \frac{k_-}{k_+E_0}\frac{Q_c}{S_0}\bar Q,\\ 
+        \frac{d\bar E}{d\bar t} &= -\epsilon^{-1}\bar E\bar S
+        + K\frac{Q_c}{E_0^2}\bar Q{\thinspace .}
+        \end{align*}
+
+The :math:`[ES]` variable starts and ends at zero, and its maximum value
+can be roughly estimated from the equation for :math:`[ES]^\prime`
+by setting :math:`[ES]^\prime = 0`, which gives
+
+.. math::
+         [ES] = \frac{[E][S]}{K}\sim \frac{E_0S_0}{K},
+
+where we have replaced :math:`[E][S]` by :math:`E_0S_0` as an identification
+of magnitude. This magnitude of :math:`[ES]`
+at its maximum can be used as the characteristic size :math:`Q_c`:
+
+.. math::
+         Q_c = \frac{E_0S_0}{K}{\thinspace .}
+
+The equation for :math:`\bar P` simplifies if we choose :math:`P_c=Q_c`.
+With these assumptions one gets
+
+.. math::
+        \begin{align*}
+        \frac{d\bar Q}{d\bar t} &= KE_0^{-1} (\bar E\bar S
+        - \bar Q),\\ 
+        \frac{d\bar P}{d\bar t} &= \frac{k_v}{k_+ E_0}\bar Q,\\ 
+        \frac{d\bar S}{d\bar t} &= -\bar E\bar S
+        + \frac{k_-}{k_+E_0}\frac{E_0}{K}\bar Q,\\ 
+        \frac{d\bar E}{d\bar t} &= -\epsilon^{-1}\bar E\bar S
+        + \epsilon^{-1}\bar Q{\thinspace .}
+        \end{align*}
+
+We can now identify the dimensionless numbers
+
+.. math::
+         \alpha = \frac{K}{E_0},\quad \beta = \frac{k_v}{k_+ E_0},
+        \quad \gamma = \frac{k_-}{k_+E_0},
+        
+
+where we see that :math:`\alpha = \beta + \gamma`, so :math:`\gamma` can be eliminated.
+Moreover,
+
+.. math::
+         \alpha = \frac{k_-}{k_+E_0} + \beta,
+
+implying that :math:`\alpha > \beta`.
+
+We arrive at the final set of scaled differential equations:
+
+.. _Eq:scale:MMK:Q2:
+
+.. math::
+
+    \tag{58}
+    \frac{d\bar Q}{d\bar t} = \alpha (\bar E\bar S
+        - \bar Q),
+        
+        
+
+.. _Eq:scale:MMK:P2:
+
+.. math::
+
+    \tag{59}
+    \frac{d\bar P}{d\bar t} = \beta\bar Q,
+        
+        
+
+.. _Eq:scale:MMK:S2:
+
+.. math::
+
+    \tag{60}
+    \frac{d\bar S}{d\bar t} = -\bar E\bar S
+        + (1 - \beta\alpha^{-1})\bar Q,
+        
+        
+
+.. _Eq:scale:MMK:E2:
+
+.. math::
+
+    \tag{61}
+    \epsilon\frac{d\bar E}{d\bar t} = -\bar E\bar S + \bar Q{\thinspace .}
+        
+        
+
+The initial conditions are :math:`\bar S=\bar E =1` and :math:`\bar Q=\bar P=0`.
+
+The five initial parameters (:math:`S_0`, :math:`E_0`, :math:`k_+`, :math:`k_-`, and :math:`k_v`)
+are reduced to three dimensionless constants:
+
+ * :math:`\alpha` is the dimensionless Michaelis constant, reflecting the
+   ratio of the production of P and E (:math:`k_v+k_-`) versus the production of
+   the complex (:math:`k_+`), made dimensionless by :math:`E_0`,
+
+ * :math:`\epsilon` is the initial fraction of enzyme relative to the substrate,
+
+ * :math:`\beta` measures the relative importance of production of P (:math:`k_v`)
+   versus production of the complex (:math:`k_+`), made dimensionless by :math:`E_0`.
+
+Observe that software developed for
+solving :ref:`(48) <Eq:scale:MMK:ES1>`-:ref:`(51) <Eq:scale:MMK:E1>` cannot be reused
+for solving :ref:`(58) <Eq:scale:MMK:Q2>`-:ref:`(61) <Eq:scale:MMK:E2>` since the latter
+system has a slightly different structure.
+
+Conservation equations
+~~~~~~~~~~~~~~~~~~~~~~
+
+The counterpart to the conservation equations
+:ref:`(55) <Eq:scale:MMK:cons1>`-:ref:`(56) <Eq:scale:MMK:cons2>` is obtained by
+adding :ref:`(58) <Eq:scale:MMK:Q2>` and :math:`\alpha` times :ref:`(61) <Eq:scale:MMK:E2>`,
+and adding :ref:`(58) <Eq:scale:MMK:Q2>`, :ref:`(59) <Eq:scale:MMK:P2>`, and
+:math:`\alpha` times :ref:`(60) <Eq:scale:MMK:S2>`:
+
+.. _Eq:_auto11:
+
+.. math::
+
+    \tag{62}
+    \epsilon^{-1}\alpha^{-1}\bar Q + \bar E = 1,
+        
+        
+
+.. _Eq:_auto12:
+
+.. math::
+
+    \tag{63}
+    \alpha\bar S + \bar Q + \bar P = \alpha{\thinspace .}
+        
+        
+
+The scaled quantities, as well as the original concentrations, must be
+positive variables, and :math:`\bar E\in [0,1]`, :math:`\bar S\in [0,1]`. Such checks
+along with the conserved quantities above should be performed at every
+time step in a simulation.
+
+Analysis of the scaled system
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the scaled system, we may assume :math:`\epsilon` small, which from
+:ref:`(61) <Eq:scale:MMK:E2>` gives rise to the simplification
+:math:`\epsilon\bar E^{\prime}=0`, and thereby the relation :math:`\bar Q = \bar E\bar S`.
+The conservation equation :math:`[ES] + [E]= E_0` reads :math:`Q_c\bar Q + E_0\bar E =
+E_0` such that :math:`\bar E = 1 - Q_c\bar Q/E_0=1- \bar Q S_0/K = 1 - \epsilon^{-1}\alpha^{-1}\bar Q`. The relation :math:`\bar Q=\bar E\bar S` then becomes
+
+.. math::
+         \bar Q = (1 - \epsilon^{-1}\alpha^{-1}\bar Q)\bar S,
+
+which can be solved for :math:`\bar Q`:
+
+.. math::
+         \bar Q = \frac{\bar S}{1 + \epsilon^{-1}\alpha^{-1}\bar S}{\thinspace .}
+
+The equation :ref:`(60) <Eq:scale:MMK:S2>` for :math:`\bar S` becomes
+
+.. _Eq:scale:MMK:Seq2:
+
+.. math::
+
+    \tag{64}
+    \frac{d\bar S}{d\bar t} = -\beta\alpha^{-1}\bar Q =
+        -\frac{\beta\bar S}{\alpha + \epsilon^{-1}\bar S}{\thinspace .}
+        
+        
+
+This is a more precise analysis than the one leading to
+:ref:`(57) <Eq:scale:MMK:Seq1>` since we now realize that the
+mathematical assumption for the simplification is
+:math:`\epsilon\rightarrow 0`.
+
+Is :ref:`(64) <Eq:scale:MMK:Seq2>` consistent with :ref:`(57) <Eq:scale:MMK:Seq1>`? It is
+easy to make algebraic mistakes when deriving scaled equations,
+so it is always wise to carry out consistency checks.
+Introducing dimensions in :ref:`(64) <Eq:scale:MMK:Seq2>` leads to
+
+.. math::
+        
+        \frac{t_c}{S_0}\frac{d S}{dt} =
+        \frac{d\bar S}{d\bar t}  =
+        -\frac{\beta\bar S}{\alpha + \epsilon^{-1}\bar S}
+        = -\frac{k_v}{k_+E_0}\frac{S}{KE_0^{-1} + E_0^{-1}S_0\bar S}
+        = -\frac{k_v}{k_+}\frac{\bar S}{K + S},
+
+and hence with :math:`t_c^{-1}=k_+E_0`,
+
+.. math::
+         \frac{dS}{dt} = -\frac{k_vE_0 S}{K + S},
+
+which is :ref:`(57) <Eq:scale:MMK:Seq1>`.
+
+Figure :ref:`scale:MMK:fig` shows the impact of :math:`\epsilon`: with a moderately small
+value (0.1) we see that :math:`\bar Q\approx 0`, which justifies the
+simplifications performed above. We also observe that all the unknowns
+vary between 0 and about 1, indicating that the scaling is successful
+for the chosen dimensionless numbers. The simulations made use of
+a time step :math:`\Delta\bar t=0.01` with a 4th-order Runge-Kutta method,
+using :math:`\alpha=1.5`, :math:`\beta=1` (relevant code is in the
+``simulate_biochemical_process`` function in `session.py <http://tinyurl.com/o8pb3yy/session.py>`__).
+
+.. _scale:MMK:fig:
+
+.. figure:: biochem.png
+   :width: 700
+
+   *Simulation of a biochemical process*
+
+However, it is of interest to investigate the limit :math:`\epsilon\rightarrow 0`.
+Initially, the equation for :math:`d\bar E/d\bar t` reads
+:math:`d\bar E/d\bar t = -\epsilon^{-1}`, which implies a very fast reduction of
+:math:`\bar E`. Using :math:`\epsilon=0.005` and :math:`\Delta\bar t = 10^{-3}`, simulation
+results show that :math:`\bar E` decays to approximately zero at :math:`t=0.03` while
+:math:`\bar S\approx 1` and :math:`\bar Q \approx \bar P\approx 0`.
+This is reasonable since with
+very little enzyme in comparison with the substrate (:math:`\epsilon\rightarrow 0`)
+very little will happen.
+
+.. _sec:scale:vib:
+
+Vibration problems
+==================
+
+We shall in this section
+address a range of different second-order ODEs for mechanical
+vibrations and demonstrate how to reason about the scaling in
+different physical scenarios.
+
+.. _sec:scale:vib:undamped:
+
+Undamped vibrations without forcing
+-----------------------------------
+
+The simplest differential equation model for mechanical vibrations
+reads
+
+.. _Eq:sec:scale:vib:undamped:model:
+
+.. math::
+
+    \tag{65}
+    mu'' + ku = 0,\quad u(0)=I,\ u'(0)=V,
+        
+        
+
+where unknown :math:`u(t)` measures the displacement of the body,
+This is a common model for a vibrating body  with mass :math:`m` attached
+to a linear spring with spring constant :math:`k` (and force :math:`-ku`).
+Figure :ref:`sec:scale:vib:undamped:sketch` shows a typical mechanical
+sketch of such a system: some mass can move horizontally without friction
+and is connected to a spring that exerts a force :math:`-ku` on the body.
+
+.. _sec:scale:vib:undamped:sketch:
+
+.. figure:: oscillator_spring.png
+   :width: 500
+
+   *Oscillating body attached to a spring*
+
+The first technical steps of scaling
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The problem :ref:`(65) <Eq:sec:scale:vib:undamped:model>` has one independent
+variable :math:`t` and one dependent variable :math:`u`. We introduce dimensionless
+versions of these variables:
+
+.. math::
+         \bar u =\frac{u}{u_c},\quad\bar t = \frac{t}{t_c},
+
+where :math:`u_c` and :math:`t_c` are characteristic values of :math:`u` and :math:`t`.
+Inserted in :ref:`(65) <Eq:sec:scale:vib:undamped:model>`, we get
+
+.. math::
+         m\frac{u_c}{t_c^2}\frac{d^2\bar u}{d\bar t^2} + ku_c\bar u = 0,
+        \quad u_c\bar u(0)=I,\quad \frac{u_c}{t_c}\frac{d\bar u}{d\bar t}(0)=V,
+
+resulting in
+
+.. _Eq:sec:scale:vib:undamped:model:scaled0:
+
+.. math::
+
+    \tag{66}
+    \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u = 0,
+        \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}{\thinspace .}
+        
+        
+
+What is an appropriate displacement scale :math:`u_c`? The initial condition
+:math:`u(0)=I` is a candidate, i.e., :math:`u_c=I`. But how to choose the time scale?
+Making the coefficient in front of the :math:`\bar u` unity, such that
+both terms balance and are of size unity, is a candidate.
+
+The exact solution          (1)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+To better see what the proper scales of :math:`u` and :math:`t` are, we can look
+into the analytical solution of this problem.
+Although the exact solution of
+:ref:`(65) <Eq:sec:scale:vib:undamped:model>` is quite straightforward to calculate
+by hand, we take the opportunity to make use of SymPy to
+find :math:`u(t)`. The use of SymPy can later be generalized to vibration
+ODEs that are harder to solve by hand.
+
+SymPy requires all mathematical symbols to be explicitly created:
+
+.. code-block:: python
+
+    from sympy import *
+    u = symbols('u', cls=Function)
+    w = symbols('w', real=True, positive=True)
+    I, V, C1, C2 = symbols('I V C1 C2', real=True)
+
+To specify the ODE to be solved, we can make a Python function returning
+all the terms in the ODE:
+
+.. code-block:: python
+
+    # Define differential equation: u'' + w**2*u = 0
+    def ode(u):
+        return diff(u, t, t) + w**2*u
+    
+    diffeq = ode(u(t))
+
+The ``diffeq`` variable, defining the ODE, can be passed to the SymPy
+function ``dsolve`` to find the symbolic solution of the ODE:
+
+.. code-block:: python
+
+    s = dsolve(diffeq, u(t))
+    # s is an u(t) == expression (Eq obj.), s.rhs grabs the expression
+    u_sol = s.rhs
+    print u_sol
+
+The solution that gets printed is ``C1*sin(t*w) + C2*cos(t*w)``, indicating
+that there are two integration constants ``C1`` and ``C2`` to be determined
+by the initial conditions. The result of applying these conditions is
+a :math:`2\times 2` linear system of algebraic equations that SymPy can solve
+by the ``solve`` function. The code goes as follows:
+
+.. code-block:: python
+
+    # The solution u_sol contains integration constants C1 and C2
+    # but these are not symbols, substitute them by symbols
+    u_sol = u_sol.subs('C1', C1).subs('C2', C2)
+    
+    # Determine C1 and C2 from the initial conditions
+    ic = [u_sol.subs(t, 0) - I, u_sol.diff(t).subs(t, 0) - V]
+    print ic   # 2x2 algebraic system for C1 and C2
+    s = solve(ic, [C1, C2])
+    # s is now a dictionary: {C2: I, C1: V/w}
+    # substitute solution back in u_sol
+    u_sol = u_sol.subs(C1, s[C1]).subs(C2, s[C2])
+    print u_sol
+
+The ``u_sol`` variable is now ``I*cos(t*w) + V*sin(t*w)/w``.
+Since symbolic software is far from bug-free and can give wrong results,
+we should always check the answer. Here, we insert the solution in the ODE
+to see if the result is zero, and we insert the solution in the initial
+conditions to see that these are fulfilled:
+
+.. code-block:: python
+
+    # Check that the solution fulfills the ODE and init.cond.
+    print simplify(ode(u_sol)),
+    print u_sol.subs(t, 0) - I, diff(u_sol, t).subs(t, 0) - V
+
+There will be many more examples on using SymPy to find exact solutions
+of differential equation problems.
+
+The solution of the ODE in mathematical notation is
+
+.. math::
+         u(t) = I\cos(\omega t) + \frac{V}{\omega}\sin(\omega t),\quad \omega = \sqrt{\frac{k}{m}}{\thinspace .}
+
+More insight arises from rewriting such an expression in the form
+:math:`A\cos(wt - \phi)`:
+
+.. math::
+         u(t) = \sqrt{I^2 + \frac{V^2}{\omega^2}}\cos(wt - \phi),\quad
+        \phi = \tan^{-1}(V/(\omega I)){\thinspace .}
+        
+
+Now we see that the :math:`u` corresponds to cosine oscillations with a
+frequency shift :math:`\phi` and amplitude :math:`\sqrt{I^2 + (V/\omega)^2}`.
+
+The forthcoming text relies on a good understanding of concepts
+like period, frequency, and amplitude of oscillating signals, so
+readers who need to refresh these concepts are recommended to
+do :ref:`scale:exer:sine` before continuing.
+
+Discussion of the displacement scale
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The amplitude of :math:`u` is :math:`\sqrt{I^2 + V^2/\omega^2}`, and this
+expression is obviously a candidate for :math:`u_c`.  However, the simpler
+choice :math:`u_c=\max (I, V/\omega)` is also relevant and more attractive
+than the square root expression (but potentially a factor 1.4 wrong
+compared to the exact amplitude).  It is not very important to have
+:math:`|u|\leq 1`, the point is to avoid :math:`|u|` very small or large.
+
+Discussion of the time scale          (2)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+What is an appropriate time scale? Looking at
+:ref:`(66) <Eq:sec:scale:vib:undamped:model:scaled0>` and arguing that
+:math:`\bar u''` and :math:`\bar u` both should be around unity in size, the
+coefficient :math:`t_c^2k/m` must equal unity, implying that :math:`t_c=\sqrt{m/k}`.
+Also from the analytical solution we see that the solution goes like the
+sine or cosine of :math:`\omega t`, so :math:`1/\omega = \sqrt{m/k}` can be a characteristic
+time scale. Likewise, one period of the oscillations, :math:`P=2\pi/\omega`, can
+be the characteristic time, leading to :math:`t_c=2\pi/\omega`.
+
+The dimensionless solution
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+With :math:`u_c=I` and :math:`t_c=\sqrt{m/k}` we get the scaled model
+
+.. _Eq:sec:scale:vib:undamped:model:scaled1:
+
+.. math::
+
+    \tag{67}
+    \frac{d^2\bar u}{d\bar t^2} + \bar u = 0,
+        \quad \bar u(0)=1,\ \bar u'(0)=\alpha,
+        
+        
+
+where :math:`\alpha` is a dimensionless parameter:
+
+.. math::
+         \alpha = \frac{V}{I}\sqrt{\frac{m}{k}}{\thinspace .}
+
+Note that in case :math:`V=0`, we have "scaled away" all physical parameters.
+The universal solution without physical parameters is then
+:math:`\bar u(\bar t)=\cos\bar t`.
+
+The unscaled solution is recovered as
+
+.. _Eq:_auto13:
+
+.. math::
+
+    \tag{68}
+    u(t) = I\bar u(\sqrt{k/m}\bar t){\thinspace .}
+        
+        
+
+This expressions shows that the scaling is simply a matter of
+*stretching or shrinking the axes*.
+
+Alternative displacement scale
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Using :math:`u_c = V/\omega`, the equation
+is not changed, but the initial conditions become
+
+.. math::
+         \bar u(0) = \frac{I}{u_c} = \frac{I\omega}{V} =\frac{I}{V}\sqrt{\frac{k}{m}} = \alpha^{-1},\quad \bar u'(0)=1{\thinspace .}
+
+With :math:`u_c=V/\omega` and one period as time scale,
+:math:`t_c=2\pi\sqrt{m/k}`,
+we get the alternative model
+
+.. _Eq:sec:scale:vib:undamped:model:scaled2:
+
+.. math::
+
+    \tag{69}
+    \frac{d^2\bar u}{d\bar t^2} + 4\pi^2 \bar u = 0,
+        \quad \bar u(0)=\alpha^{-1},\ \bar u'(0)=2\pi{\thinspace .}
+        
+        
+
+The unscaled solution is in this case recovered by
+
+.. _Eq:_auto14:
+
+.. math::
+
+    \tag{70}
+    u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t){\thinspace .}
+        
+        
+
+.. index:: frequency
+
+.. index::
+   single: frequency, angular
+
+.. index:: period (of oscillations)
+
+.. index:: radians
+
+.. index:: angular frequency
+
+About frequency and dimensions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The solution goes like :math:`\cos\omega t`, where :math:`\omega =\sqrt{m/k}`
+must have dimension 1/s. Actually, :math:`\omega` has dimension *radians
+per second*: rad/s. A radian is dimensionless since it is arc (length)
+divided by radius (length), but still regarded as a unit.
+The period :math:`P` of vibrations is a more intuitive quantity than the frequency
+:math:`\omega`. The relation between :math:`P` and :math:`\omega` is :math:`P=2\pi/\omega`.
+The number of oscillation cycles per period, :math:`f`, is a more intuitive
+measurement of frequency and also known as *frequency*. Therefore, to be
+precise, :math:`\omega` should be named *angular frequency*. The relation between
+:math:`f` and :math:`T` is :math:`f=1/T`, so :math:`f=2\pi\omega` and measured in Hz (1/s), which is
+the unit for counts per unit time.
+
+.. _sec:scale:vib:undamped:mg:
+
+Undamped vibrations with constant forcing
+-----------------------------------------
+
+For vertical vibrations in the gravity field, the model
+:ref:`(65) <Eq:sec:scale:vib:undamped:model>` must also take the gravity force
+:math:`-mg` into account:
+
+.. math::
+         mu'' + ku = -mg{\thinspace .}
+
+How does the new term :math:`-mg` influence
+the scaling? We observe that if there is no movement of the body,
+:math:`u''=0`, and the spring elongation matches the gravity force:
+:math:`ku = -mg`, leading to a steady displacement :math:`u=-mg/k`. We can then
+have oscillations around this equilibrium point. A natural scaling
+for :math:`u` is therefore
+
+.. math::
+         \bar u = \frac{u - (-mg/k)}{u_c}=\frac{uk + mg}{ku_c}{\thinspace .}
+
+.. u = - mg/k + u_c\bar u
+
+The scaled differential equation with the same time scale as before
+reads
+
+.. math::
+         \frac{d^2\bar u}{d\bar t^2} + \bar u - \frac{t_c^2}{u_c}g
+        = -\frac{t_c^2}{u_c}g,
+
+leading to
+
+.. math::
+         \frac{d^2\bar u}{d\bar t^2} + \bar u = 0{\thinspace .}
+
+The initial conditions :math:`u(0)=I` and :math:`u'(0)=V` become, with :math:`u_c=I`,
+
+.. math::
+         \bar u(0) = 1 + \frac{mg}{kI},\quad \frac{d\bar u}{d\bar t}(0)=\sqrt{\frac{m}{k}}\frac{V}{I}{\thinspace .}
+
+We see that the oscillations around the equilibrium point in the
+gravity field are identical to the horizontal oscillations without
+gravity, except for an offset :math:`mg/(kI)` in the displacement.
+
+.. _sec:scale:vib:undamped:F:
+
+Undamped vibrations with time-dependent forcing
+-----------------------------------------------
+
+Now we add a transient forcing term :math:`F(t)` to the model
+:ref:`(65) <Eq:sec:scale:vib:undamped:model>`:
+
+.. _Eq:sec:scale:vib:undamped:F:model:
+
+.. math::
+
+    \tag{71}
+    mu'' + ku = F(t),\quad u(0)=I,\ u'(0)=V{\thinspace .}
+        
+        
+
+Take the forcing to be oscillating:
+
+.. math::
+         F(t) = A\cos(\psi t){\thinspace .}
+
+The technical steps of the scaling are still the same, with the
+intermediate result
+
+.. _Eq:sec:scale:vib:undamped:F:model:scaled0:
+
+.. math::
+
+    \tag{72}
+    \frac{d^2\bar u}{d\bar t^2} + \frac{t_c^2 k}{m}\bar u =
+        \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
+        \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}{\thinspace .}
+        
+        
+
+What are typical displacement and time scales? This is not so obvious
+without knowing the details of the solution, because there are
+three parameters (:math:`I`, :math:`V`, and :math:`A`) that influence the magnitude of :math:`u`.
+Moreover, there are two time scales, one for the free vibrations of
+the systems and one for the forced vibrations :math:`F(t)`.
+
+Investigating scales via analytical solutions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As we have seen already several times, having access to
+an exact solution is very fortunate as it allows us to directly
+examine the scales. Also in the present problem it is possible
+to derive an exact solution. We
+continue the SymPy session from the previous section and perform much
+of the same steps. Note that we use ``w`` for :math:`\omega = \sqrt{k/m}`
+in the computer code (to obtain a more direct visual counterpart to
+:math:`\omega`).
+SymPy may get confused when coefficients in differential equations
+contain several symbols. We therefore rewrite the equation with
+at most one symbol in each coefficient (i.e., symbolic software is
+in general
+more successful when applied to scaled differential equations than the
+unscaled counterparts, but right now our task is to solve the unscaled version).
+The amplitude :math:`A/m` in the forcing term is of this reason
+replaced by the symbol ``A1``.
+
+.. code-block:: python
+
+    A, A1, m, psi = symbols('A A1 m psi', positive=True, real=True)
+    def ode(u):
+        return diff(u, t, t) + w**2*u - A1*cos(psi*t)
+    
+    diffeq = ode(u(t))
+    u_sol = dsolve(diffeq, u(t))
+    u_sol = u_sol.rhs
+    
+    # Determine the constants C1 and C2 in u_sol
+    # (first substitute our own declared C1 and C2 symbols,
+    # then use the initial conditions)
+    u_sol = u_sol.subs('C1', C1).subs('C2', C2)
+    eqs = [u_sol.subs(t, 0) - I, u_sol.diff(t).subs(t, 0) - V]
+    s = solve(eqs, [C1, C2])
+    u_sol = u_sol.subs(C1, s[C1]).subs(C2, s[C2])
+    
+    # Check that the solution fulfills the equation and init.cond.
+    print simplify(ode(u_sol))
+    print simplify(u_sol.subs(t, 0) - I)
+    print simplify(diff(u_sol, t).subs(t, 0) - V)
+    
+    u_sol = simplify(expand(u_sol.subs(A1, A/m)))
+    print u_sol
+
+The output from the last line is
+
+.. code-block:: text
+
+    A/m*cos(psi*t)/(-psi**2 + w**2) + V*sin(t*w)/w +
+    (A/m + I*psi**2 - I*w**2)*cos(t*w)/(psi**2 - w**2)
+
+With a bit of rewrite this expression becomes
+
+.. Note that the solution becomes a bit simpler of F is cos rather than sin
+
+.. math::
+         u(t) = \frac{A/m}{\omega^2 - \psi^2}\cos(\psi t) + \frac{V}{\omega}
+           \sin(\omega t) +
+        \left(\frac{A/m}{\psi^2 - \omega^2} + I\right) \cos (\omega t){\thinspace .}
+        
+
+Obviously, this expression is only meaningful for :math:`\psi\neq\omega`. The
+case :math:`\psi = \omega` gives an infinite amplitude in this model, a
+phenomenon known as resonance. The amplitude becomes finite when
+damping is included,
+see the section :ref:`sec:scale:vib:damped:F`.
+
+When the system starts from rest, :math:`I=V=0`, and the
+forcing is the only driving mechanism, we can simplify:
+
+.. math::
+        \begin{align*}
+        u(t) &= \frac{A}{m(\omega^2 - \psi^2)}\cos(\psi t)
+        +
+        \frac{A}{m(\psi^2 - \omega^2)}\cos (\omega t)\\ 
+        &= \frac{A}{m(\omega^2 - \psi^2)}(\cos(\psi t) - \cos(\omega t)){\thinspace .}
+        \end{align*}
+
+To gain more insight, :math:`\cos(\psi t) - \cos(\omega t)` can be
+rewritten in terms of the mean frequency :math:`(\psi + \omega)/2` and
+the difference in frequency :math:`(\psi - \omega)/2`:
+
+.. _Eq:sec:scale:vib:undamped:F:model:sinsin:
+
+.. math::
+
+    \tag{73}
+    u(t) = \frac{A}{m(\omega^2 - \psi^2)} 2
+        \sin\left(\frac{\psi - \omega}{2}t\right)
+        \sin\left(\frac{\psi + \omega}{2}t\right),
+        
+        
+
+showing that there is a signal with frequency :math:`(\psi + \omega)/2`
+whose amplitude has a (much) slower frequency
+:math:`(\psi - \omega)/2`. Figure :ref:`sec:scale:vib:fig:envelope` shows
+an example on such a signal.
+
+.. _sec:scale:vib:fig:envelope:
+
+.. figure:: envelope.png
+   :width: 600
+
+   *Signal with frequency 3.1 and envelope frequency 0.2*
+
+The displacement and time scales
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+A characteristic displacement can in the latter special case
+be taken as :math:`u_c= A/(m(\omega^2 - \psi^2))`. This is also a relevant choice
+in the more general case :math:`I\neq0, V\neq 0`, unless :math:`I` or :math:`V`
+is so large that it dominates over the amplitude
+caused by the forcing. With :math:`u_c= A/(m(\omega^2 - \psi^2))` we also
+have three special cases: :math:`\omega \ll \psi`, :math:`\omega \gg\psi`, and
+:math:`\psi \sim \omega`. In the latter case we need
+:math:`u_c= A/(m(\omega^2 - \psi^2))` if we want :math:`|u|\leq 1`. When
+:math:`\omega` and :math:`\psi` are significantly different, we may choose one
+of them and neglect the smaller. Choosing :math:`\omega` means :math:`u_c=A/k`,
+which is the relevant scale
+if :math:`\omega\gg\psi`. In the opposite case, :math:`\omega\ll\psi`,
+:math:`u_c=A/(m\psi^2)`.
+
+The time scale is dominated by the fastest oscillations, which are
+of frequency :math:`\psi` or :math:`\omega` when these are close and the largest
+of them when they are distant. In any case, we set
+:math:`t_c=1/\max(\psi,\omega)`.
+
+Finding the displacement scale from the differential equation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Going back to :ref:`(72) <Eq:sec:scale:vib:undamped:F:model:scaled0>`, we
+may demand that all the three terms in the differential equation
+are of size unity. This leads to :math:`t_c=\sqrt{m/k}`
+and :math:`u_c=At_c^2/m = A/k`. The formula for :math:`u_c` is a kind of measure
+of the ratio of the
+forcing and the spring force (the dimensionless number
+:math:`A/(ku_c)` would be this ratio).
+
+Looking at :ref:`(73) <Eq:sec:scale:vib:undamped:F:model:sinsin>`, we see
+that if :math:`\psi\ll\omega`, the amplitude can be approximated
+by :math:`A/(m\omega^2)=A/k`, showing that the scale :math:`u_c=A/k` is
+relevant for an excitation frequency :math:`\psi` that is small compared to
+the free vibration frequency :math:`\omega`.
+
+Scaling with free vibrations as time scale
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The next step is to work out the dimensionless ODE for the chosen scales.
+We first select the time scale based on the free oscillations
+with frequency :math:`\omega`, i.e., :math:`t_c=1/\omega`. Inserting the expression in
+:ref:`(72) <Eq:sec:scale:vib:undamped:F:model:scaled0>` results in
+
+.. _Eq:sec:scale:vib:undamped:F:model:scaled2:
+
+.. math::
+
+    \tag{74}
+    \frac{d^2\bar u}{d\bar t^2} + \bar u =
+        \gamma
+        \cos(\delta\bar t),
+        \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta{\thinspace .}
+        
+        
+
+Here we have four dimensionless variables
+
+.. _Eq:_auto15:
+
+.. math::
+
+    \tag{75}
+    \alpha = \frac{I}{u_c},
+        
+        
+
+.. _Eq:_auto16:
+
+.. math::
+
+    \tag{76}
+    \beta  = \frac{Vt_c}{u_c} = \frac{V}{\omega u_c},
+        
+        
+
+.. _Eq:_auto17:
+
+.. math::
+
+    \tag{77}
+    \gamma = \frac{t_c^2 A}{mu_c} = \frac{A}{ku_c},
+        
+        
+
+.. _Eq:_auto18:
+
+.. math::
+
+    \tag{78}
+    \delta = \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}{\thinspace .}
+        
+        
+
+We remark that the choice of :math:`u_c` has so far not been made. Several
+different cases will be considered below, and we will see that certain
+choices reduce the number of independent dimensionless variables to
+three.
+
+The four dimensionless variables above have interpretations as ratios of
+physical effects:
+
+ * :math:`\alpha`: ratio of the initial displacement and
+   the characteristic response :math:`u_c`,
+
+ * :math:`\beta`: ratio of the initial velocity
+   and the typical velocity measure :math:`u_c/t_c`,
+
+ * :math:`\gamma`: ratio of
+   the forcing :math:`A` and the mass times acceleration :math:`mu_c/t_c^2` *or*
+   the ratio of the forcing and the spring force :math:`ku_c`
+
+ * :math:`\delta`: ratio of the
+   frequencies or the time scales of the forcing and the free vibrations.
+
+Software          (5)
+~~~~~~~~~~~~~~~~~~~~~
+
+Any solver for :ref:`(72) <Eq:sec:scale:vib:undamped:F:model:scaled0>`
+can be used for :ref:`(74) <Eq:sec:scale:vib:undamped:F:model:scaled2>`.
+More details are provided at the end of
+the section :ref:`sec:scale:vib:damped:F`.
+
+Choice of :math:`u_c` close to resonance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Now we shall discuss various choices of :math:`u_c`.
+Close to resonance, when :math:`\psi\sim\omega`, we may set
+:math:`u_c=A/(m(\omega^2 - \psi^2))`. The dimensionless numbers
+become in this case
+
+.. math::
+        \begin{align*}
+        \alpha &= \frac{I}{u_c} = \frac{I}{A/k}(1-\delta^2),\\ 
+        \beta  &= \frac{V}{\omega u_c} = \frac{V\sqrt{km}}{A}(1-\delta^2),\\ 
+        \gamma &= \frac{A}{ku_c} = 1-\delta^2,\\ 
+        \delta &= \frac{\psi}{\omega}{\thinspace .}
+        \end{align*}
+
+With :math:`\psi = 0.99\omega`, :math:`\delta =0.99`, :math:`V=0`,
+:math:`\alpha = \gamma = 1-\delta^2 = 0.02`, we have the problem
+
+.. math::
+        
+        \frac{d^2\bar u}{d\bar t^2} + \bar u =
+        0.02 \cos(0.99\bar t),
+        \quad \bar u(0)=0.02,\ \bar u'(0)=0{\thinspace .}
+        
+
+This is a problem with a very small initial condition and a very small
+forcing, but the state close to resonance brings the amplitude up to
+about unity, see the result of numerical simulations with :math:`\delta=0.99` in
+Figure :ref:`sec:scale:vib:fig:Fcos_b0:1`.
+Neglecting :math:`\alpha`,
+the solution is given by :ref:`(73) <Eq:sec:scale:vib:undamped:F:model:sinsin>`,
+which here means :math:`A=1-\delta^2`, :math:`m=1`, :math:`\omega=1`, :math:`\psi=\delta`:
+
+.. math::
+         \bar u(\bar t) = 2\sin(-0.005\bar t)\sin(0.995\bar t){\thinspace .} 
+
+Note that this is a problem which demands very high accuracy in the
+numerical calculations. Using 20 time steps per period gives a
+significant angular frequency error and an amplitude of about 1.4. We used
+160 steps per period for the results in
+Figure :ref:`sec:scale:vib:fig:Fcos_b0:1`.
+
+.. _sec:scale:vib:fig:Fcos_b0:1:
+
+.. figure:: vib_delta099_b0_Fcos.png
+   :width: 600
+
+   *Forced undamped vibrations close to resonance*
+
+Unit size of all terms in the ODE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Using the displacement scale :math:`u_c=A/k` leads to
+:ref:`(74) <Eq:sec:scale:vib:undamped:F:model:scaled2>` with
+
+.. math::
+        \begin{align*}
+        \alpha &= \frac{I}{u_c} = \frac{I}{A/k},\\ 
+        \beta  &= \frac{V}{\omega u_c} = \frac{V k}{A\omega},\\ 
+        \gamma &= \frac{A}{ku_c} = 1,\\ 
+        \delta &= \frac{\psi}{\omega}{\thinspace .}
+        \end{align*}
+
+Simulating a case with :math:`\delta=0.5`, :math:`\alpha=1`, and :math:`\beta=0` gives
+the oscillations in Figure :ref:`sec:scale:vib:fig:Fcos_b0:2`, which is
+a case away from resonance, and the amplitude is about unity. However,
+choosing :math:`\delta =0.99` (close to resonance) results in a figure
+similar to Figure :ref:`sec:scale:vib:fig:Fcos_b0:1`, except that the
+amplitude is about :math:`10^2` because of the moderate size of :math:`u_c`.
+The present scaling is therefore most suitable away from resonance,
+and when the terms containing :math:`\cos\omega t` and :math:`\sin\omega t`
+are important (e.g., :math:`\omega\gg\psi`).
+
+.. _sec:scale:vib:fig:Fcos_b0:2:
+
+.. figure:: vib_delta05_b0_Fcos.png
+   :width: 600
+
+   *Forced undamped vibrations away from resonance*
+
+Choice of :math:`u_c` when :math:`\psi\gg\omega`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Finally, we may look at the case where :math:`\psi\gg\omega` such that
+:math:`u_c=A/(m\psi^2)` is a relevant scale (i.e., omitting :math:`\omega^2` compared to
+:math:`\psi^2` in the denominator), but in this case we should
+use :math:`t_c=1/\psi` since the force varies much faster than the
+free vibrations of the system.
+This choice of :math:`t_c` changes the scaled ODE to
+
+.. _Eq:sec:scale:vib:undamped:F:model:scaled6:
+
+.. math::
+
+    \tag{79}
+    \frac{d^2\bar u}{d\bar t^2} + \delta^{-2}\bar u =
+        \gamma
+        \cos(\bar t),
+        \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
+        
+        
+
+where
+
+.. math::
+        \begin{align*}
+        \alpha &= \frac{I}{u_c} = \frac{I}{A/k}\delta^2,\\ 
+        \beta  &= \frac{Vt_c}{u_c} = \frac{V\sqrt{km}}{A}\delta,\\ 
+        \gamma &= \frac{t_c^2 A}{mu_c} = 1,\\ 
+        \delta &= \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega}{\thinspace .}
+        \end{align*}
+
+In the regime :math:`\psi\gg\omega`, :math:`\delta\gg 1`, thus making :math:`\alpha` and
+:math:`\beta` large.
+However, if :math:`\alpha` and/or :math:`\beta` is large,
+the initial condition dominates over the forcing, and will also dominate
+the amplitude of :math:`u`, thereby making the scaling of :math:`u` inappropriate.
+In case :math:`I=V=0` so that :math:`\alpha=\beta=0`,
+:ref:`(73) <Eq:sec:scale:vib:undamped:F:model:sinsin>` predicts
+(:math:`A=m=1`, :math:`\omega=\delta^{-1}`, :math:`\psi=1`)
+
+.. math::
+         \bar u(\bar t) = (\delta^{-2}-1)^{-1}2
+        \sin\left(\frac{1}{2}(1 -\delta^{-1})\bar t\right)
+        \sin\left(\frac{1}{2}(1 +\delta^{-1})\bar t\right),
+        
+
+which has an amplitude about :math:`2` for :math:`\delta\gg 1`.
+Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` shows a case.
+
+.. _sec:scale:vib:fig:Fcos_b0:3:
+
+.. figure:: vib_delta10_b0_Fcos.png
+   :width: 600
+
+   *Forced undamped vibrations with rapid forcing*
+
+With :math:`\alpha=0.05\delta^2=5`, we get a significant contribution from
+the free vibrations (the homogeneous solution of the ODE) as
+shown in Figure :ref:`sec:scale:vib:fig:Fcos_b0:4`. For larger :math:`\alpha`
+values, one must base :math:`u_c` on :math:`I` instead.
+(The graphs in Figure :ref:`sec:scale:vib:fig:Fcos_b0:3` and
+:ref:`sec:scale:vib:fig:Fcos_b0:4` were
+produced by
+numerical simulations with 160 time steps per period of the forcing.)
+
+.. _sec:scale:vib:fig:Fcos_b0:4:
+
+.. figure:: vib_delta10_b0_a5_Fcos.png
+   :width: 600
+
+   *Forced undamped vibrations with rapid forcing and initial displacement of 5*
+
+Displacement scale based on :math:`I`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Choosing :math:`u_c=I` gives
+
+.. _Eq:sec:scale:vib:undamped:F:model:scaled5:
+
+.. math::
+
+    \tag{80}
+    \frac{d^2\bar u}{d\bar t^2} + \bar u =
+        \gamma\cos(\delta\bar t),
+        \quad \bar u(0)=1,\ \bar u'(0)=\beta,
+        
+        
+
+with
+
+.. _Eq:_auto19:
+
+.. math::
+
+    \tag{81}
+    \beta  = \frac{Vt_c}{u_c} = \frac{V}{I}\sqrt{\frac{m}{k}},
+        
+        
+
+.. _Eq:_auto20:
+
+.. math::
+
+    \tag{82}
+    \gamma  = \frac{tc^2A}{mu_c} = \frac{A}{ku_c} = \frac{A}{kI} {\thinspace .}
+        
+        
+
+This scaling is not relevant close to resonance since then :math:`u_c\gg I`.
+
+.. _sec:scale:vib:damped:F:
+
+Damped vibrations with forcing
+------------------------------
+
+We now introduce a linear damping force :math:`bu'(t)` in the equation of motion:
+
+.. _Eq:sec:scale:vib:damped:F:model:
+
+.. math::
+
+    \tag{83}
+    mu'' + bu' + ku = A\cos(\psi t),\quad u(0)=I,\ u'(0)=V{\thinspace .}
+        
+        
+
+Figure :ref:`sec:scale:vib:damped:sketch` shows a typical
+one-degree-of-freedom mechanical system with a linear dashpot, representing
+the damper (:math:`bu'`), a linear spring (:math:`ku`), and an external force (:math:`F`).
+
+.. _sec:scale:vib:damped:sketch:
+
+.. figure:: oscillator.png
+   :width: 500
+
+   *Oscillating body with external force, attached to a spring and damper*
+
+The standard scaling procedure results in
+
+.. _Eq:sec:scale:vib:damped:F:model:scaled0:
+
+.. math::
+
+    \tag{84}
+    \frac{d^2\bar u}{d\bar t^2} + \frac{t_c b}{m}\frac{d\bar u}{d\bar t}
+        + \frac{t_c^2 k}{m}\bar u =
+        \frac{t_c^2}{mu_c}A\cos(\psi t_c\bar t),
+        \quad \bar u(0)=\frac{I}{u_c},\ \bar u'(0)=\frac{Vt_c}{u_c}{\thinspace .}
+        
+        
+
+The exact solution          (2)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+As always, it is
+a great advantage to look into exact solutions for controlling our
+choice of scales.
+Using SymPy to solve :ref:`(83) <Eq:sec:scale:vib:damped:F:model>` is, in principle,
+very straightforward:
+
+.. code-block:: python
+
+    >>> diffeq = diff(u(t), t, t) + b/m*diff(u(t), t) + w**2*u(t)
+    >>> s = dsolve(diffeq, u(t))
+    >>> s.rhs
+    C1*exp(t*(-b - sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m)) +
+    C2*exp(t*(-b + sqrt(b - 2*m*w)*sqrt(b + 2*m*w))/(2*m))
+
+This is indeed the correct solution, but it is on a complex
+exponential function form, valid for all :math:`b`, :math:`m`, and :math:`\omega`. We are
+interested in the case with *small damping*, :math:`b < 2m\omega`, where the solution
+is an exponentially damped sinusoidal function. Rewriting the expression
+in the right form is tricky with SymPy commands. Instead, we demonstrate
+a common technique when doing symbolic computing: general procedures like
+``dsolve`` are replaced by manual steps. That is, we solve the ODE "by hand",
+but use SymPy to assist the calculations.
+
+The solution is composed of a homogeneous
+solution :math:`u_h` of :math:`mu'' + bu' + ku=0` and one particular solution :math:`u_p`
+of the nonhomogeneous equation
+:math:`mu'' + bu' + ku=A\cos(\psi t)`. The homogeneous solution with
+damped oscillations (requiring :math:`b < 2\sqrt{mk}`) can be
+found by the following code. We have divided the differential equation
+by :math:`m` and introduced :math:`B=\frac{1}{2}b/m` and let ``A1`` represent
+:math:`A/m` to simplify expressions and
+help SymPy with less symbols in the equation. Without these simplifications,
+SymPy stalls in the computations due to too many symbols in the equation.
+The problem is actually a solid argument for scaling differential equations
+before asking SymPy to solve them since scaling effectively reduces the
+number of parameters in the equations!
+
+The following SymPy steps derives the solution of the homogeneous ODE:
+
+.. code-block:: python
+
+    u = symbols('u', cls=Function)
+    t, w, B, A, A1, m, psi = symbols('t w B A A1 m psi',
+                                     positive=True, real=True)
+    
+    def ode(u, homogeneous=True):
+        h = diff(u, t, t) + 2*B*diff(u, t) + w**2*u
+        f = A1*cos(psi*t)
+        return h if homogeneous else h - f
+    
+    # Find coefficients in polynomial (in r) for exp(r*t) ansatz
+    r = symbols('r')
+    ansatz = exp(r*t)
+    poly = simplify(ode(ansatz)/ansatz)
+    
+    # Convert to polynomial to extract coefficients
+    poly = Poly(poly, r)
+    # Extract coefficients in poly: a_*t**2 + b_*t + c_
+    a_, b_, c_ = poly.coeffs()
+    # Assume b_**2 - 4*a_*c_ < 0
+    d = -b_/(2*a_)
+    if a_ == 1:
+        omega = sqrt(c_ - (b_/2)**2)  # nicer formula
+    else:
+        omega = sqrt(4*a_*c_ - b_**2)/(2*a_)
+    
+    # The homogeneous solution is a linear combination of a
+    # cos term (u1) and a sin term (u2)
+    u1 = exp(d*t)*cos(omega*t)
+    u2 = exp(d*t)*sin(omega*t)
+    C1, C2, V, I = symbols('C1 C2 V I', real=True)
+    u_h = simplify(C1*u1 + C2*u2)
+    print 'u_h:', u_h
+
+The print out shows
+
+.. math::
+         u_h = e^{-Bt}\left(C_1 \cos(\sqrt{\omega^2 - B^2}t) +
+        C_2 \sin(\sqrt{\omega^2 - B^2}t)\right),
+
+where :math:`C_1` and :math:`C_2` must be determined by the initial conditions later.
+It is wise to check that :math:`u_h` is indeed a solution of the homogeneous
+differential equation:
+
+.. index:: assert
+
+.. code-block:: python
+
+    assert simplify(ode(u_h)) == 0
+
+We have previously just printed the residuals of the ODE and initial
+conditions after inserting the solution, but it is better in a code to
+let the programming language test that the residuals are symbolically zero.
+This is achieved using the ``assert`` statement in Python. The argument is
+a boolean expression, and if the expression evaluates to ``False``,
+an ``AssertionError`` is raised and the program aborts (otherwise ``assert``
+runs silently for a ``True`` boolean expression). Hereafter, we will use
+``assert`` for consistency checks in computer code.
+
+The ansatz for the particular solution :math:`u_p` is
+
+.. math::
+         u_p= C_3\cos(\psi t) + C_4\sin(\psi t),
+
+which inserted in the ODE gives two equations
+for :math:`C_3` and :math:`C_4`. The relevant SymPy statements are
+
+.. code-block:: python
+
+    # Particular solution
+    C3, C4 = symbols('C3 C4')
+    u_p = C3*cos(psi*t) + C4*sin(psi*t)
+    eqs = simplify(ode(u_p, homogeneous=False))
+    
+    # Collect cos(omega*t) terms
+    print 'eqs:', eqs
+    eq_cos = simplify(eqs.subs(sin(psi*t), 0).subs(cos(psi*t), 1))
+    eq_sin = simplify(eqs.subs(cos(psi*t), 0).subs(sin(psi*t), 1))
+    s = solve([eq_cos, eq_sin], [C3, C4])
+    u_p = simplify(u_p.subs(C3, s[C3]).subs(C4, s[C4]))
+    
+    # Check that the solution is correct
+    assert simplify(ode(u_p, homogeneous=False)) == 0
+
+Using the initial conditions for the complete solution :math:`u=u_h+u_p`
+determines :math:`C_1` and :math:`C_2`:
+
+.. code-block:: python
+
+    u_sol = u_h + u_p  # total solution
+    # Initial conditions
+    eqs = [u_sol.subs(t, 0) - I, u_sol.diff(t).subs(t, 0) - V]
+    # Determine C1 and C2 from the initial conditions
+    s = solve(eqs, [C1, C2])
+    u_sol = u_sol.subs(C1, s[C1]).subs(C2, s[C2])
+
+Finally, we should check that ``u_sol`` is indeed the correct solution:
+
+.. code-block:: python
+
+    checks = dict(
+        ODE=simplify(expand(ode(u_sol, homogeneous=False))),
+        IC1=simplify(u_sol.subs(t, 0) - I),
+        IC2=simplify(diff(u_sol, t).subs(t, 0) - V))
+    for check in checks:
+        msg = '%s residual: %s' % (check, checks[check])
+        assert checks[check] == sympify(0), msg
+
+Finally, we may take ``u_sol = u_sol.subs(A, A/m)`` to get the right
+expression for the solution.
+Using ``latex(u_sol)`` results in a huge expression, which should be
+manually ordered to something like the following:
+
+.. math::
+        \begin{align*} u = &
+        \frac{Am^{-1}}{4 B^{2} \psi^{2} +
+        \Omega^{2}} \left(2 B \psi
+        \sin{\left (\psi t \right )} - \Omega\cos{\left (\psi t \right )}\right) + \\ 
+        &
+        {e^{-B t}} \biggl(
+        C_1 \cos{\left( t \sqrt{\omega^{2}- B^{2}}\right)} +
+        C_2 \sin{\left (t \sqrt{\omega^{2}- B^{2}}\right )}\biggr)\\ 
+        C_1 &= \frac{Am^{-1} \Omega + 4 I B^{2} \psi^{2} +
+        I\Omega^2}{
+        4 B^{2} \psi^{2} + \Omega^2}\\ 
+        C_2 &=
+        \frac{- Am^{-1} B\Omega + 4 I B^{3} \psi^{2} +
+        I B\Omega^2 + 4 V B^{2}\psi^{2} +
+        V\Omega^2}{
+        \sqrt{\omega^{2} - B^{2}}
+        \left(4 B^{2} \psi^{2} + \Omega^2\right)},\\ 
+        \Omega &= \psi^2 - \omega^2{\thinspace .}
+        \end{align*}
+
+.. index:: quality factor Q
+
+.. index:: phase shift
+
+The most important feature of this solution is that there are
+two time scales with frequencies :math:`\psi` and :math:`\sqrt{\omega^2 - B^2}`,
+respectively,
+but the latter appears in terms that decay as :math:`e^{-Bt}` in time.
+The attention is usually on longer periods of time, so in that
+case the solution simplifies to
+
+.. math::
+        
+        u = \frac{Am^{-1}}{4 B^{2} \psi^{2} +
+        \Omega^{2}} \left(2 B \psi
+        \sin{\left (\psi t \right )} - \Omega\cos{\left (\psi t \right )}\right)
+        \nonumber
+        
+
+.. math::
+          
+        = \frac{A}{m}\frac{1}{\sqrt{4B^2\psi^2 + \Omega^2}}\cos(\psi t + \phi)
+        \frac{(\psi\omega)^{-1}}{(\psi\omega)^{-1}}
+        \nonumber
+        
+
+.. _Eq:sec:scale:vib:damped:F:model:u_forced0:
+
+.. math::
+
+    \tag{85}
+    = \frac{A}{k} Q\delta^{-1}\left(1 + Q^2(\delta - \delta^{-1})\right)^{-
+        \frac{1}{2}}\cos(\psi t + \phi),
+        
+        
+
+where we have introduced the dimensionless numbers
+
+.. math::
+         Q = \frac{\omega}{2B},\quad\delta = \frac{\psi}{\omega},
+
+and
+
+.. math::
+         \phi = \tan^{-1}\left(-\frac{2B}{\omega^2 - \psi^2}\right)
+        = \tan^{-1}\left(\frac{Q^{-1}}{\delta^2 - 1}\right){\thinspace .}
+
+:math:`Q` is commonly called *quality factor* and :math:`\phi` is the
+*phase shift*. Dividing
+:ref:`(85) <Eq:sec:scale:vib:damped:F:model:u_forced0>` by :math:`A/k`, which is a common
+scale for :math:`u`, gives the dimensionless relation
+
+.. _Eq:sec:scale:vib:damped:F:model:u_forced:
+
+.. math::
+
+    \tag{86}
+    \frac{u}{A/k} = \frac{Q}{\delta} R(Q,\delta)^{\frac{1}{2}}\cos(\psi t + \phi),
+        \quad
+        R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}{\thinspace .}
+        
+        
+
+Choosing scales
+~~~~~~~~~~~~~~~
+
+Much of the discussion about scales in the previous sections are
+relevant also when damping is included.  Although the oscillations
+with frequency :math:`\sqrt{\omega^2-B^2}` die out for :math:`t\gg B^{-1}`, we
+start with using this frequency for the time scale.  A highly relevant
+assumption for engineering applications of
+:ref:`(83) <Eq:sec:scale:vib:damped:F:model>` is that the damping is small.
+Therefore, :math:`\sqrt{\omega^2-B^2}` is close to :math:`\omega` and we simply
+apply :math:`t_c=1/\omega` as before (if not the interest in large :math:`t` for
+which the oscillations with frequency :math:`\omega` has died out).
+
+The coefficient in front of the :math:`\bar u'` term then becomes
+
+.. math::
+         \frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}{\thinspace .}
+
+The rest of the ODE is given in the previous section, and the particular
+formulas depend on the choices of :math:`t_c` and :math:`u_c`.
+
+Choice of :math:`u_c` at resonance
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The relevant scale for :math:`u_c` at or nearby resonance (:math:`\psi = \omega`)
+becomes different from the previous section, since with damping,
+the maximum amplitude is a finite value. For :math:`t\gg B^{-1}`, when the
+:math:`\sin\psi t` term is dominating, we have for :math:`\psi = \omega`:
+
+.. math::
+         u = \frac{Am^{-1}2B\psi}{4B^2\psi^2}\sin (\psi t) =
+        \frac{A}{2Bm\psi}\sin (\psi t) =
+        \frac{A}{b\psi}\sin (\psi t)
+        {\thinspace .}
+        
+
+This motivates the choice
+
+.. math::
+         u_c = \frac{A}{b\psi} = \frac{A}{b\omega}{\thinspace .}
+
+(It is wise during computations like this to stop and check the
+dimensions: :math:`A` must be :math:`[\hbox{MLT}^{-2}]` from the original
+equation (:math:`F(t)` must have the same dimension as :math:`mu''`),
+:math:`bu'` must also have dimension :math:`[\hbox{MLT}^{-2}]`, implying that
+:math:`b` has dimension :math:`[\hbox{MT}^{-1}]`. :math:`A/b` then has dimension
+:math:`LT^{-1}`, and :math:`A/(b\psi)` gets dimension :math:`[L]`, which matches
+what we want for :math:`u_c`.)
+
+The differential equation on dimensionless form becomes
+
+.. _Eq:sec:scale:vib:damped:F:model:scaled1:
+
+.. math::
+
+    \tag{87}
+    \frac{d^2\bar u}{d\bar t^2} + Q^{-1}\frac{d\bar u}{d\bar t} + \bar u =
+        \gamma
+        \cos(\delta\bar t),
+        \quad \bar u(0)=\alpha,\ \bar u'(0)=\beta,
+        
+        
+
+with
+
+.. \frac{A}{b\omega}
+
+.. _Eq:_auto21:
+
+.. math::
+
+    \tag{88}
+    \alpha = \frac{I}{u_c} = \frac{Ib}{A}\sqrt{\frac{k}{m}},
+        
+        
+
+.. _Eq:_auto22:
+
+.. math::
+
+    \tag{89}
+    \beta  = \frac{Vt_c}{u_c} = \frac{Vb}{A},
+        
+        
+
+.. _Eq:_auto23:
+
+.. math::
+
+    \tag{90}
+    \gamma = \frac{t_c^2 A}{mu_c} = \frac{b\omega}{k},
+        
+        
+
+.. _Eq:_auto24:
+
+.. math::
+
+    \tag{91}
+    \delta = \frac{t_c}{\psi^{-1}} = \frac{\psi}{\omega} = 1{\thinspace .}
+        
+        
+
+Choice of :math:`u_c` when :math:`\omega\gg\psi`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the limit :math:`\omega\gg\psi` and :math:`t\gg B^{-1}`,
+
+.. math::
+         u \approx \frac{A}{m\omega^2}\cos\psi t = \frac{A}{k}\cos\psi t,
+
+showing that :math:`u_c=A/k` is an appropriate displacement scale.
+(Alternatively, we get this scale also from demanding :math:`\gamma=1` in the ODE.)
+The dimensionless numbers :math:`\alpha`, :math:`\beta`, and :math:`\delta` are as
+for the forced vibrations without damping.
+
+Choice of :math:`u_c` when :math:`\omega\ll\psi`
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+In the limit :math:`\omega\ll\psi`, we should base :math:`t_c` on the rapid
+variations in the excitation: :math:`t_c=1/\psi`.
+
+Software          (6)
+~~~~~~~~~~~~~~~~~~~~~
+
+It is easy to reuse a solver for a general vibration problem also
+in the dimensionless case.
+In particular, we may use the ``solver`` function in the
+file `vib.py <http://tinyurl.com/o8pb3yy/vib.py>`__:
+
+.. code-block:: python
+
+    def solver(I, V, m, b, s, F, dt, T, damping='linear'):
+
+for solving the ODE problem
+
+.. math::
+         mu'' + f(u') + s(u) = F(t),\quad u(0)=I,\ u'(0)=V,\ t\in (0,T],
+
+with time steps ``dt``. With ``damping='linear'``, we have :math:`f(u')=bu'`, while the
+other value is ``'quadratic'``, meaning :math:`f(u')=b|u'|u'`.
+Given the dimensionless numbers :math:`\alpha`, :math:`\beta`, :math:`\gamma`, :math:`\delta`,
+and :math:`Q`,
+an appropriate call for solving :ref:`(74) <Eq:sec:scale:vib:undamped:F:model:scaled2>` is
+
+.. code-block:: python
+
+    u, t = solver(I=alpha, V=beta, m=1, b=1.0/Q,
+                  s=lambda u: u, F=lambda t: gamma*cos(delta*t),
+    	      dt=2*pi/n, T=2*pi*P)
+
+where ``n`` is the number of intervals per period and ``P`` is the number
+of periods to be simulated.
+We way wrap this call in a ``solver_scaled`` function and wrap it furthermore
+with ``joblib`` to avoid repeated calls,
+as we explained in
+the section :ref:`sec:scale:prog`:
+
+.. code-block:: python
+
+    from vib import solver as solver_unscaled
+    
+    def solver_scaled(alpha, beta, gamma, delta, Q, T, dt):
+        """
+        Solve u'' + (1/Q)*u' + u = gamma*cos(delta*t),
+        u(0)=alpha, u'(1)=beta, for (0,T] with step dt.
+        """
+        print 'Computing the numerical solution'
+        from math import cos
+        return solver_unscaled(I=alpha, V=beta, m=1, b=1./Q,
+                               s=lambda u: u,
+                               F=lambda t: gamma*cos(delta*t),
+                               dt=dt, T=T, damping='linear')
+    
+    import joblib
+    disk_memory = joblib.Memory(cachedir='temp')
+    solver_scaled = disk_memory.cache(solver_scaled)
+
+This code is found in `vib_scaled.py <http://tinyurl.com/o8pb3yy/vib_scaled.py>`__
+and features an application for running the scaled problem with
+options on the command-line for :math:`\alpha`, :math:`\beta`, :math:`\gamma`, :math:`\delta`,
+:math:`Q`, number of time steps per period, and number of periods (see
+the ``main`` function). It is an ideal application for exploring
+scaled vibration models.
+
+Oscillating electric circuits
+-----------------------------
+
+The differential equation for an oscillating electric circuit is
+very similar to the equation for forced, damped,
+mechanical vibrations, and their
+dimensionless form is identical. This fact will now be demonstrated.
+
+The current :math:`I(t)` in a
+circuit having an inductor with inductance :math:`L`, a capacitor with
+capacitance :math:`C`, and overall resistance :math:`R`, obeys the equation
+
+.. _Eq:_auto25:
+
+.. math::
+
+    \tag{92}
+    \ddot I + \frac{R}{L}\dot I + \frac{1}{LC}I =  V(t),
+        
+        
+
+where :math:`V(t)` is the voltage source powering the circuit.
+We introduce
+
+.. math::
+         \bar I=\frac{I}{I_c},\quad \bar t = \frac{t}{t_c},
+
+and get
+
+.. math::
+         \frac{d^2\bar I}{d\bar t^2} + \frac{t_c R}{L}\frac{d\bar I}{d\bar t}
+        + \frac{t_c^2}{LC}\bar I = \frac{t_c^2V_c}{I_c} \bar V(t){\thinspace .}
+
+Here, we have scaled :math:`V(t)` according to
+
+.. math::
+         \bar V(\bar t) = \frac{V(t_c\bar t)}{\max_t V(t)}{\thinspace .}
+
+The time scale :math:`t_c` is chosen to make :math:`\ddot I` and :math:`I/(LC)` balance,
+:math:`t_c = \sqrt{LC}`.
+Choosing :math:`I_c` to make the coefficient in the source term of unit size,
+means :math:`I_c = LCV_c`.
+With
+
+.. math::
+         Q^{-1} = R\sqrt{\frac{C}{L}},
+
+we get the scaled equation
+
+.. _Eq:_auto26:
+
+.. math::
+
+    \tag{93}
+    \frac{d^2\bar I}{d\bar t^2} + Q^{-1}\frac{d\bar I}{d\bar t}
+        + \bar I = \bar V(t),
+        
+        
+
+which is basically the same as we derived for mechanical vibrations.
+(Two additional dimensionless variables will arise from the initial
+conditions for :math:`I`, just as in the mechanics cases.)
+
+Exercises          (1)
+======================
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:US2SI1:
+
+Exercise 2.1: Perform unit conversion
+-------------------------------------
+
+Density (mass per volume: :math:`[\hbox{ML}^{-3}]`) of water is
+given as 1.05 ounce per fluid ounce. Use the ``PhysicalQuantity`` object
+to convert to :math:`\hbox{kg}\,\hbox{m}^{-3}`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``density_conversion``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:ball_y:
+
+Problem 2.2: Scale a simple formula
+-----------------------------------
+
+The height :math:`y` of a body thrown up in the air is given by
+
+.. math::
+         y = v_0t - \frac{1}{2}gt^2,
+
+where :math:`t` is time, :math:`v_0` is the initial velocity of the body at :math:`t=0`,
+and :math:`g` is the acceleration of gravity. Scale this formula. Use
+two choices of the characteristic time: the time it takes to reach the
+maximum :math:`y` value and the time it takes to return to :math:`y=0`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``vertical_motion``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:decay:cooling:osc:
+
+Exercise 2.3: Perform alternative scalings
+------------------------------------------
+
+The problem in the section :ref:`scale:cooling:osc` applies a
+temperature scaling
+
+.. math::
+         \bar T = \frac{T-T_0}{T_m-T_0},
+
+which is not always suitable.
+
+**a)**
+Consider the case :math:`T_0=T_m` and the fact that :math:`|T_m-T_0|` does not
+represent the characteristic temperature scale since it
+collapses to zero. Formulate a suitable
+scaling in this case. The figure below corresponds to :math:`T_m=25` C,
+:math:`T_0=24.9` C, and :math:`a=2.5` C. We clearly see that :math:`\bar T` is
+not of size unity.
+
+.. figure:: osc_cooling_wrong_scale.png
+   :width: 500
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+Consider the case where :math:`a` is much larger than :math:`|T_m-T_0|`.
+What is an appropriate scaling of the temperature?
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:ball_y_wdrag:
+
+Problem 2.4: A nonlinear ODE for vertical motion with air resistance
+--------------------------------------------------------------------
+
+The velocity :math:`v(t)`
+of a body moving vertically through a fluid in the gravity field
+(with fluid drag, buoyancy, and added mass) is governed by the ODE
+
+.. math::
+         mv' + \mu v'
+        = -\frac{1}{2}C_D\varrho A |v|v - mg + \varrho V g,\quad v(0)=v_0,
+
+where :math:`t` is time, :math:`m` is the mass of the body, :math:`\mu` is the body's added
+mass, :math:`C_D` is a drag coefficient,
+:math:`\varrho` is the density of the fluid, :math:`A` is the cross-sectional area
+perpendicular to the motion, :math:`g` is the acceleration of gravity,
+and :math:`V` is the volume of the body. Scale this ODE.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``vertical_motion_with_drag``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:decay:jump:
+
+Exercise 2.5: Solve a decay ODE with discontinuous coefficient
+--------------------------------------------------------------
+
+Make software for the problem in the section :ref:`sec:scale:jump`
+so that you can produce Figure :ref:`sec:scale:jump:fig`.
+
+.. --- begin hint in exercise ---
+
+**Hint.**
+Follow the ideas for software in the section :ref:`sec:scale:body`: use the
+`decay_vc.py <http://tinyurl.com/o8pb3yy/decay_vc.py>`__ module as computational
+engine and modify the
+`falling_body.py <http://tinyurl.com/o8pb3yy/falling_body.py>`__ code.
+
+.. --- end hint in exercise ---
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``decay_jump``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:decay:cooling:
+
+Exercise 2.6: Implement a scaled model for cooling
+--------------------------------------------------
+
+Use software for the unscaled problem :ref:`(17) <Eq:scale:cooling:model>`
+to compute the solution of the
+scaled problem :ref:`(24) <Eq:scale:cooling:model:scaled>`.
+Let :math:`T_s` be a function of time.
+
+.. --- begin hint in exercise ---
+
+**Hint.**
+You may use the general software `decay_vc.py <http://tinyurl.com/o8pb3yy/decay_vc.py>`__
+for computing with the cooling model.
+See the section :ref:`sec:scale:body` for more ideas.
+
+.. --- end hint in exercise ---
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``cooling1``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:exer:decay:step:
+
+Problem 2.7: Decay ODE with discontinuous coefficients
+------------------------------------------------------
+
+The goal of this exercise is to scale the problem
+:math:`u^{\prime}(t) = -a(t)u(t) + b(t)`, :math:`u(0)=I`, when
+
+.. math::
+        
+        a(t) =\left\lbrace\begin{array}{ll}
+        Q, & t < s,\\ 
+        Q - A, & t\geq s,\end{array}\right.
+        \quad b = \left\lbrace\begin{array}{ll}
+        \epsilon t, & t < s,\\ 
+        0, & t\geq s,\end{array}\right.
+        
+
+Here, :math:`Q,A,\epsilon >0`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``decay_varcoeff``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:exer:nonlin:logistic2:
+
+Exercise 2.8: Alternative scalings of a cooling model
+-----------------------------------------------------
+
+Implement the scaled model :ref:`(30) <Eq:sec:scale:nonlinear:model1:scaled>`
+and produce a plot with curves corresponding to various values of
+:math:`\alpha` and :math:`p` to summarize how :math:`\bar u(\bar t)` looks like.
+
+.. --- begin hint in exercise ---
+
+**Hint.**
+A centered Crank-Nicolson-style
+scheme for :ref:`(30) <Eq:sec:scale:nonlinear:model1:scaled>`
+can use an old time value for the nonlinear coefficient:
+
+.. math::
+         \frac{\bar u^{n+1} - \bar u^n}{\Delta t} =
+        (1 - \alpha\bar u^n)^p\frac{1}{2}(\bar u^n + \bar u^{n+1}){\thinspace .}
+
+.. --- end hint in exercise ---
+
+Filename: ``growth``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:vib:exer:projectile:
+
+Exercise 2.9: Projectile motion
+-------------------------------
+
+We have the following mathematical model for the motion of a projectile
+in two dimensions:
+
+.. math::
+         m\ddot\boldsymbol{x} + \frac{1}{2}C_D\varrho A|\dot\boldsymbol{x}|\dot\boldsymbol{x}
+        = -mg\boldsymbol{j},\quad \boldsymbol{x}(0)=\boldsymbol{0},\ \dot\boldsymbol{x}(0)=v_0\cos\theta\boldsymbol{i} +
+        v_0\sin\theta\boldsymbol{j}{\thinspace .}
+
+Here, :math:`m` is the mass of the projectile, :math:`\boldsymbol{x}=x\boldsymbol{i} + y\boldsymbol{j}` is
+the position vector of the projectile, :math:`\boldsymbol{i}` and :math:`\boldsymbol{j}`
+are unit vectors along the :math:`x` and :math:`y` axes, respectively,
+:math:`\ddot\boldsymbol{x}` and :math:`\dot\boldsymbol{x}` is the second- and first-order
+time derivative of :math:`\boldsymbol{x}(t)`, :math:`C_D` is a drag coefficient
+depending on the shape of the projectile (can be taken as 0.4 for a sphere),
+:math:`\varrho` is the density of the air, :math:`A` is the cross section area
+(can be taken as :math:`\pi R^2` for a sphere of radius :math:`R`), :math:`g` is gravity,
+:math:`v_0` is the initial velocity of the projectile in a direction that makes
+the angle :math:`\theta` with the ground.
+
+**a)**
+Neglect the air resistance term proportional to :math:`\dot\boldsymbol{x}` and solve
+analytically for :math:`\boldsymbol{x}(t)`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+Make the model for projectile motion with air resistance non-dimensional.
+Use the maximum height from the simplification in a) as length scale.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**c)**
+Make the model dimensionless again, but this time by demanding that
+the scaled initial velocity is unity in :math:`x` direction.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**d)**
+A soccer ball has radius 11 cm and mass 0.43 kg, the density of air
+is 1.2 :math:`\hbox{kg}\hbox{m}^{-3}`, a soft kick has velocity 30 km/h,
+while a hard kick may have 120 km/h. Estimate the dimensionless parameter
+in the scaled problem for a soft and a hard kick with
+:math:`\theta` corresponding to 45 degrees. Solve the scaled
+differential equation for these values and plot the trajectory (:math:`y` versus
+:math:`x`) for the two cases.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``projectile``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:exer:predprey:
+
+Problem 2.10: A predator-prey model
+-----------------------------------
+
+.. index::
+   single: Lotka-Volterra, predator-prey model
+
+The evolution of animal populations with a predator and a prey (e.g.,
+lynx and hares, or foxes and rabbits) can be described by the
+Lotka-Volterra ODE system
+
+.. _Eq:scale:exer:predprey:eqH:
+
+.. math::
+
+    \tag{94}
+    H^{\prime} = H(a - bL),
+        
+        
+
+.. _Eq:scale:exer:predprey:eqL:
+
+.. math::
+
+    \tag{95}
+    L^{\prime} = L(dH - c),
+        
+        
+
+.. _Eq:_auto27:
+
+.. math::
+
+    \tag{96}
+    H(0)=H_0,
+        
+        
+
+.. _Eq:_auto28:
+
+.. math::
+
+    \tag{97}
+    L(0)=L_0{\thinspace .}
+        
+        
+
+Here, :math:`H` is the number of animals of the prey (say hares)
+and :math:`L` is the corresponding measure of the predator population (say lynx).
+There are six parameters: :math:`a`, :math:`b`, :math:`c`, :math:`d`, :math:`H_0`, and :math:`L_0`.
+
+The terms have the following meanings:
+
+ * :math:`aH` is the exponential
+   population growth of :math:`H` due to births and deaths and is governed by
+   the access to nutrition,
+
+ * :math:`-bHL` is the loss of preys because they are eaten by predators,
+
+ * :math:`dHL` is the increase of predators because they eat preys (but only
+   a fraction of the eaten preys, :math:`bHL`, contribute to population growth
+   of the predator and therefore :math:`d < b`),
+
+ * :math:`-cL` is the exponential decay in the predator population because of
+   deaths (the increase is modeled by :math:`dHL`).
+
+Dimensionless independent and dependent variables are introduced as usual
+by
+
+.. math::
+         \bar t = \frac{t}{t_c},\quad
+        \bar H = \frac{H}{H_c},\quad \bar L = \frac{L}{L_c},
+        
+
+where :math:`t_c`, :math:`H_c`, and :math:`L_c` are scales to be determined. Inserted
+in the ODE problem we arrive at
+
+.. _Eq:scale:exer:predprey:eqH:s:
+
+.. math::
+
+    \tag{98}
+    \frac{H_0}{t_c}\frac{d\bar H}{d\bar t} = H_0\bar H(a - bH_0\bar L),
+        
+        
+
+.. _Eq:scale:exer:predprey:eqL:s:
+
+.. math::
+
+    \tag{99}
+    \frac{H_0}{t_c}\frac{d\bar L}{d\bar t} = H_0\bar L(dH_0\bar H - c),
+        
+        
+
+.. _Eq:scale:exer:predprey:eqH0:s:
+
+.. math::
+
+    \tag{100}
+    H_c\bar H(0) = H_0,
+        
+        
+
+.. _Eq:scale:exer:predprey:eqL0:s:
+
+.. math::
+
+    \tag{101}
+    L_c\bar H(0) = L_0{\thinspace .}
+        
+        
+
+**a)**
+Consider first a simple, intuitive scaling of :math:`H` and :math:`L` based on
+initial conditions :math:`H_c=H_0`
+and :math:`L_c=H_c`. This means that :math:`\bar H` starts out at unity and :math:`\bar L`
+starts out as the fraction :math:`L_0/H_0`. Find a time scale and identify
+dimensionless parameters in the scaled ODE problem.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+Try a different scaling where the aim is to adjust the scales such that
+the ODEs become as simple as possible, i.e, have as few dimensionless
+parameters as possible. Compare with the scaling in a).
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**c)**
+A more mathematical approach to determining suitable scales for :math:`H` and :math:`L`
+consists in finding the stationary points :math:`(H,L)` of the ODE system,
+where :math:`H^{\prime}=L^{\prime}=0`, and use such points as characteristic
+sizes of the dependent variables. Show that :math:`H^{\prime}=L^{\prime}=0`
+implies :math:`H=L=0` or :math:`L=a/b` and :math:`H=c/d`. Use :math:`H_c=a/b`, :math:`L_c=c/d`,
+and find a time scale. Compare with the result in b).
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``predator_prey``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:exer:competing_species:
+
+Problem 2.11: A model for competing species
+-------------------------------------------
+
+.. index::
+   single: Lotka-Volterra, competing species model
+
+Let :math:`N_1(t)` and :math:`N_2(t)` be the number of animals in two
+competing species. A generalized Lotka-Volterra model
+is based on a logistic growth of each specie and a predator-prey like
+interaction (cf. :ref:`scale:exer:predprey`):
+
+.. _Eq:_auto33:
+
+.. math::
+
+    \tag{102}
+    \frac{dN_1}{dt} = r_1N_1\left( 1 - \frac{N_1}{M_1} - s_{12}\frac{N_2}{M_1}\right),
+        
+        
+
+.. _Eq:_auto34:
+
+.. math::
+
+    \tag{103}
+    \frac{dN_2}{dt} = r_2N_2\left( 1 - \frac{N_2}{M_2} - s_{21}\frac{N_1}{M_2}\right),
+        
+        
+
+where :math:`r_1`, :math:`r_2`, :math:`M_1`, :math:`M_2`, :math:`s_{12}`, and :math:`s_{21}` are given constants.
+The initial conditions specify :math:`N_1` and :math:`N_2` at :math:`t=0`.
+Find suitable scales and derive a dimensionless ODE problem.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``competing_species``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:exer:sine:
+
+Problem 2.12: Find the period of sinusoidal signals
+---------------------------------------------------
+
+This exercise aims at investigating various fundamental
+concepts like period, wave length,
+and frequency in non-damped and damped sinusoidal signals.
+
+**a)**
+Plot the function
+
+.. math::
+         u(t) = A\sin(\omega t), 
+
+for :math:`t\in [0, 8\pi/\omega]`. Choose :math:`\omega` and :math:`A`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+The *period* :math:`P` of :math:`u` is the shortest distance between two peaks (where
+:math:`u=A`). Show mathematically that
+
+.. math::
+         P = \frac{2\pi}{\omega}{\thinspace .}
+
+Frequently, :math:`P` is also referred to as the *wave length* of :math:`u`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**c)**
+Plot the damped signal :math:`u(t)=e^{-at}\sin (\omega t)` over four periods
+of :math:`sin(\omega t)`. Choose :math:`\omega`, :math:`A`, and :math:`a`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**d)**
+What is the period of :math:`u(t)=e^{-at}\sin (\omega t)`? We define the
+period :math:`P` as the shortest distance between two peaks of the signal.
+
+.. --- begin hint in exercise ---
+
+**Hint.**
+Use that :math:`v = p\cos(\omega t) + q\sin (\omega t)` can be rewritten
+as :math:`v = B\cos(\omega t - \phi)` with :math:`B=\sqrt{p^2 + q^2}` and
+:math:`\phi = \tan^{-1}(p/q)`. Use such a rewrite of :math:`u'` to find the peaks of
+:math:`u` and then the period.
+
+.. --- end hint in exercise ---
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``sine_period``.
+
+.. Closing remarks for this Problem
+
+Remarks          (1)
+~~~~~~~~~~~~~~~~~~~~
+
+The *frequency* is the number of up and down cycles in one unit time.
+Since there is one cycle in a period :math:`P`, the frequency is :math:`f =1/P`,
+measured in Hz.
+The *angular frequency* :math:`\omega` is then :math:`\omega = 2\pi/P = 2\pi f`.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:vib:exer:sliding:
+
+Problem 2.13: Oscillating mass with sliding friction
+----------------------------------------------------
+
+.. _scale:vib:exer:sliding:fig:
+
+.. figure:: oscillator_sliding.png
+   :width: 500
+
+   *Body sliding on a surface*
+
+A mass attached to a spring is sliding on a surface and subject to
+a friction force, see Figure :ref:`scale:vib:exer:sliding:fig`.
+The spring represents a force :math:`-ku\boldsymbol{i}`, where :math:`k` is the spring stiffness.
+The friction force is proportional to the normal force on the surface,
+:math:`-mg\boldsymbol{j}`, and given by :math:`-f(\dot u)\boldsymbol{i}`, where
+
+.. math::
+         f(\dot u) = \left\lbrace\begin{array}{ll}
+        -\mu mg,& \dot u < 0,\\ 
+        \mu mg, & \dot u > 0,\\ 
+        0,      & \dot u=0
+        \end{array}\right.
+
+Here, :math:`\mu \geq 0` is a friction coefficient. With the signum function
+
+.. math::
+         \mbox{sign(x)} = \left\lbrace\begin{array}{ll}
+        -1,& x < 0,\\ 
+        1, & x > 0,\\ 
+        0, & x=0
+        \end{array}\right.
+
+we can simply write :math:`f(\dot u) = \mu mg\,\hbox{sign}(\dot u)`
+(the sign function is implemented by ``numpy.sign``).
+
+The ODE problem for this one-dimensional oscillatory motion reads
+
+.. _Eq:_auto35:
+
+.. math::
+
+    \tag{104}
+    m\ddot u + \mu mg\,\hbox{sign}(\dot u) + ku = 0,\quad u(0)=I,\ \dot u(0)=V{\thinspace .}
+        
+        
+
+**a)**
+Scale the problem.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+Implement the scaled model. Simulate for :math:`\alpha = 0, 0.05, 0.1`
+and :math:`\beta =0`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``sliding_box``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:pendulum:
+
+Problem 2.14: Pendulum equations
+--------------------------------
+
+The equation for a so-called simple pendulum with a mass :math:`m` at the end is
+
+.. _Eq:_auto36:
+
+.. math::
+
+    \tag{105}
+    mL\ddot\theta + mg\sin\theta = 0,
+        
+        
+
+where :math:`\theta(t)` is the angle with the vertical, :math:`L` is the length of
+the pendulum, and :math:`g` is the acceleration of gravity.
+
+A physical pendulum with moment of inertia :math:`I` is governed by
+a similar equation,
+
+.. _Eq:_auto37:
+
+.. math::
+
+    \tag{106}
+    I\ddot\theta + mgL\sin\theta = 0{\thinspace .}
+        
+        
+
+Both equations have the initial conditions :math:`\theta(0)=\Theta` and
+:math:`\theta'(0)=0` (start at rest).
+
+**a)**
+Use :math:`\theta` as dimensionless unknown, find a proper time scale,
+and scale both differential equations.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+Some may argue that :math:`\theta` is not dimensionless since it is measured
+in radians. One may introduce a truly dimensionless angle :math:`\bar\theta
+\in [0,1]`. Set up the scaled ODE problem in this case.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**c)**
+Simulate the problem in b) for :math:`\Theta = 1,20,45,60` measured in degrees.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``pendulum``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _sec:scale:exer:binary_star:
+
+Exercise 2.15: ODEs for a binary star
+-------------------------------------
+
+The equations for a `binary star <https://en.wikipedia.org/wiki/Binary_star>`__,
+or a planet and a moon, are
+
+.. _Eq:_auto38:
+
+.. math::
+
+    \tag{107}
+    m_A\ddot\boldsymbol{x}_A = \boldsymbol{F},
+        
+        
+
+.. _Eq:_auto39:
+
+.. math::
+
+    \tag{108}
+    m_B\ddot\boldsymbol{x}_B = -\boldsymbol{F},
+        
+        
+
+where :math:`\boldsymbol{x}_A` is the position of object (star) A, and :math:`\boldsymbol{x}_B` is the position
+object B. The corresponding masses are :math:`m_A` and :math:`m_B`.
+The only force is the gravity force
+
+.. math::
+         \boldsymbol{F} = \frac{Gm_Am_B}{||\boldsymbol{r}||^3}\boldsymbol{r},
+
+where
+
+.. math::
+         \boldsymbol{r}(t) = \boldsymbol{x}_B(t) - \boldsymbol{x}_A(t),
+
+and :math:`G` is the gravitational constant: :math:`G=6.674\cdot 10^{-11}\hbox{ Nm}^2/\hbox{kg}^2`. A problem with these equations is that the parameters are very large
+(:math:`m_A`, :math:`m_B`, :math:`||\boldsymbol{r}||`) or very small (:math:`G`). The rotation time
+for binary stars can be very small and large as well.
+
+**a)**
+Scale the equations.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+Solve the scaled equations numerically for two cases:
+
+1. a planet around a star:
+   :math:`\alpha = 10^{-3}`, :math:`\boldsymbol{x}_A(0)=(1,0)`, :math:`\dot\boldsymbol{x}_A(0)=(0,1)`,
+   :math:`\boldsymbol{x}_B(0)=0`, :math:`\dot\boldsymbol{x}_B(0)=0`
+
+2. two stars:
+   :math:`\alpha = \frac{1}{2}`, :math:`\boldsymbol{x}_A(0)=(1,0)`, :math:`\dot\boldsymbol{x}_A(0)=(0,\frac{1}{2})`,
+   :math:`\boldsymbol{x}_B(0)=0`, :math:`\dot\boldsymbol{x}_B(0)=(0,-\frac{1}{2})`
+
+An assumption here is that the orbits are co-planar such that they can
+be taken to lie in the :math:`xy` plane.
+
+Here is a movie of two rotating stars (point 2 above):
+
+.. raw:: html
+        
+        <div>
+        <video  loop controls width='640' height='365' preload='none'>
+            <source src='mov-scaling/binary_star/movie.mp4'  type='video/mp4;  codecs="avc1.42E01E, mp4a.40.2"'>
+            <source src='mov-scaling/binary_star/movie.webm' type='video/webm; codecs="vp8, vorbis"'>
+            <source src='mov-scaling/binary_star/movie.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+        </video>
+        </div>
+        <p><em></em></p>
+        
+        <!-- Issue warning if in a Safari browser -->
+        <script language="javascript">
+        if (!!(window.safari)) {
+          document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+        </script>
+        
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``binary_star``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:vib:exer:Duffing:
+
+Problem 2.16: Duffing's equation
+--------------------------------
+
+Duffing's equation is a vibration equation with linear and cubic
+spring terms:
+
+.. math::
+         mu'' + k_0u + k_1u^3 = 0,\quad u(0)=U_0,\ u'(0)=0{\thinspace .}
+
+Scale this problem.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``Duffing_eq``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:vib:exer:rocket:
+
+Problem 2.17: Vertical motion in a varying gravity field
+--------------------------------------------------------
+
+A body (e.g., projectile or rocket) is launched vertically
+from the surface of the earth with
+velocity :math:`V`. The body's distance (height) from the earth's surface
+at time :math:`t` is represented by the function :math:`h(t)`.
+Unless :math:`h` is very much smaller than the earth's radius :math:`R`, the motion
+takes place in a varying gravity field. The governing ODE problem for
+:math:`h(t)` is then
+
+.. _Eq:_auto42:
+
+.. math::
+
+    \tag{109}
+    h''(t) = -\frac{R^2g}{(h+R)^2},\quad h(0)=0,\ h'(0)=V,\quad t\in (0,T],
+        
+        
+
+where :math:`g` is the acceleration of gravity at the earth's surface.
+
+The goal is to discuss three scalings of this problem. First we introduce
+
+.. math::
+         \bar h = \frac{h}{h_c},\quad \bar t = \frac{t}{t_c},
+
+which gives the dimensionless ODE
+
+.. math::
+        
+        \frac{d^2\bar h}{d\bar t^2} = -\frac{t_c^2}{h_c}\frac{R^2g}{(h_c\bar h+R)^2}
+        = -\frac{t_c^2}{h_c^3}\frac{R^2g}{\left(\bar h+ R/h_c\right)^2}
+        
+
+and the dimensionless initial condition
+
+.. math::
+         \frac{d\bar h}{d\bar t}(0) = \frac{t_cV}{h_c}{\thinspace .}
+
+The key dimensionless variable in this problem turns out to be
+
+.. math::
+         \epsilon = \frac{V}{\sqrt{Rg}}{\thinspace .}
+
+**a)**
+Assume we study the motion over long distances such that
+:math:`h` may be of the same size as :math:`R`. In this case, :math:`h_c=R` is a
+reasonable choice. Determine :math:`t_c` from requiring the initial velocity
+to be unity. Set up the dimensionless ODE problem.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**b)**
+As a), but determine :math:`t_c` by demanding both terms in the scaled ODE to
+have unit coefficients.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**c)**
+For small initial velocity :math:`V`, :math:`h` will be small compared to :math:`R`.
+In the limit :math:`h/R\rightarrow 0`,
+the governing equation simplifies to the well-known motion in a
+constant gravity field: :math:`h''=-g`. Use this model to suggest a time and
+length scale, and derive a dimensionless ODE problem.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**d)**
+Give an interpretation of the dimensionless parameter :math:`\epsilon`.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+**e)**
+Solve numerically for :math:`\bar h(\bar t)` in each of the three scalings in
+a), b), and c), with :math:`\epsilon^2 =0.01, 0.1, 0.5, 1, 2`.
+When are the various scalings appropriate? (That is, when are :math:`\bar t`
+and :math:`\bar h` of size unity or at least not very small or big?)
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``varying_gravity``.
+
+.. --- end exercise ---
+
+.. --- begin exercise ---
+
+.. _scale:vib:exer:quantum:
+
+Problem 2.18: A simplified Schroedinger equation
+------------------------------------------------
+
+A simplified stationary
+Schroedinger's equation for one electron, assuming radial symmetry, takes
+the form
+
+.. _Eq:scale:vib:exer:quantum:Req:
+
+.. math::
+
+    \tag{110}
+    -\frac{\hbar^2}{2m}
+        \frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{d}{dr}\right) R
+        + V(r)R = ER,
+        
+        
+
+where :math:`r` is the radial coordinate, :math:`R` is the wave function,
+:math:`\hbar` is Planck's constant, :math:`m` is the mass of the electron,
+:math:`V=` is the force potential, which is here taken as the
+Coulomb potential :math:`V(r) = {e^2}/(8\pi\epsilon_0 r)`
+(where :math:`e` is the charge of the electron and :math:`\epsilon_0` is the
+permittivity of free space), and :math:`E` is
+the eigenvalue, for the energy, to be determined along with :math:`R(r)`.
+
+Show that the scaled version of :ref:`(110) <Eq:scale:vib:exer:quantum:Req>` can be written
+
+.. _Eq:scale:vib:exer:quantum:barReq:
+
+.. math::
+
+    \tag{111}
+    - \left(\frac{1}{\bar r^2}\frac{d}{d\bar r}\bar r^2
+        \frac{d}{d\bar r}\right)
+        \bar R + \frac{1}{\bar r}\bar R = \lambda\bar R,
+        
+        
+
+where :math:`\lambda` is a dimensionless eigenvalue
+
+.. math::
+         \lambda = \frac{(4\pi)^2\epsilon_0^2\hbar^2E}{me^4}{\thinspace .}
+
+The symbol :math:`\bar r` is the scaled coordinate, and :math:`\bar R` is a scaled
+version of :math:`R` (the scaling factor drops out of the equation).
+The length scale, which arises naturally, is the
+`Bohr radius <https://en.wikipedia.org/wiki/Bohr_radius>`__.
+
+.. removed !bsol ... !esol environment (because of the command-line option --without_solutions)
+
+Filename: ``Schroedinger``.
+
+.. Closing remarks for this Problem
+
+Remarks          (2)
+~~~~~~~~~~~~~~~~~~~~
+
+Introducing :math:`u=\bar r\bar R` and renaming :math:`\bar r` to :math:`x`,
+:ref:`(111) <Eq:scale:vib:exer:quantum:barReq>` can be recast in the simpler form
+
+.. math::
+         -u''(x) + \frac{1}{x}u(x) = \lambda u(x),
+
+which is a simpler eigenvalue problem to solve numerically (the boundary
+conditions are :math:`u(0)=0` and :math:`\lim_{x\rightarrow\infty}u(x)=0`).
+
+.. --- end exercise ---
+
