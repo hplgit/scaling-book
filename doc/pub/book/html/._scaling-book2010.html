@@ -28,13 +28,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -45,7 +45,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -650,6 +654,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._scaling-book2002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -890,7 +895,7 @@ $$
 <a name="part0010"></a>
 <!-- !split -->
 
-<center><h1 id="___sec165">Advanced partial differential equation models </h1></center> <!-- chapter heading -->
+<center><h1 id="___sec165" class="anchor">Advanced partial differential equation models </h1></center> <!-- chapter heading -->
 
 <p>
 This final chapter addresses more complicated PDE models, including
@@ -898,7 +903,7 @@ linear elasticity, viscous flow, heat transfer, porous media flow,
 gas dynamics, and electrophysiology. A range of
 classical dimensionless numbers are discussed in terms of the scaling.
 
-<h1 id="scale:elasticity">The equations of linear elasticity</h1>
+<h1 id="scale:elasticity" class="anchor">The equations of linear elasticity</h1>
 
 <p>
 To the best of the authors' knowledge, it seems that mathematical
@@ -918,7 +923,7 @@ thermo-elasticity. All the models make the assumption of small
 displacement gradients and Hooke's generalized constitutive law
 such that linear elasticity theory applies.
 
-<h2 id="scale:elasticity:timedep">The general time-dependent elasticity problem</h2>
+<h2 id="scale:elasticity:timedep" class="anchor">The general time-dependent elasticity problem</h2>
 
 <p>
 The following vector PDE governs deformation and stress in purely elastic
@@ -1026,14 +1031,14 @@ If the source term is absent, we must use the initial condition or
 a known boundary displacement to
 determine \( u_c \).
 
-<h3 id="___sec168">Software </h3>
+<h3 id="___sec168" class="anchor">Software </h3>
 
 <p>
 Given software for <a href="#mjx-eqn-4.1">(4.1)</a>,
 we can simulate the dimensionless problem by setting \( \varrho =\bar\varrho \),
 \( \lambda =\beta\bar\lambda \), and \( \mu = \bar\mu \).
 
-<h2 id="scale:elasticity:PDE1:stress">Dimensionless stress tensor</h2>
+<h2 id="scale:elasticity:PDE1:stress" class="anchor">Dimensionless stress tensor</h2>
 
 <p>
 The stress tensor \( \stress \) is a key quantity in elasticity and is given by
@@ -1074,7 +1079,7 @@ $$
 \end{equation}
 $$
 
-<h2 id="scale:elasticity:waves">When can the acceleration term be neglected?</h2>
+<h2 id="scale:elasticity:waves" class="anchor">When can the acceleration term be neglected?</h2>
 
 <p>
 A lot of applications of the elasticity equation involve static or
@@ -1098,7 +1103,7 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec171">S waves </h3>
+<h3 id="___sec171" class="anchor">S waves </h3>
 
 <p>
 Let us take the curl of this PDE and notice
@@ -1133,7 +1138,7 @@ The time it takes for such a wave to travel one characteristic length
 \( L \) is \( L/c_S \), i.e., \( L\sqrt{\varrho/\mu} \), which is nothing but
 our characteristic time \( t_c \).
 
-<h3 id="___sec172">P waves </h3>
+<h3 id="___sec172" class="anchor">P waves </h3>
 
 <p>
 We may take the divergence of the PDE instead and notice that \( \nabla\cdot\nabla
@@ -1164,7 +1169,7 @@ which is nothing but a wave equation for the expansion component of the
 displacement field, just as <a href="#mjx-eqn-4.6">(4.6)</a> is for the
 shear component.
 
-<h3 id="___sec173">Time-varying load </h3>
+<h3 id="___sec173" class="anchor">Time-varying load </h3>
 
 <p>
 Suppose we have some time-varying boundary condition on \( \u \) or the
@@ -1203,9 +1208,9 @@ is very often the case in applications involving structural analysis.
 models and asks for comparisons of time scales for waves and
 mechanical vibrations in structures.
 
-<h2 id="scale:elasticity:stationary">The stationary elasticity problem</h2>
+<h2 id="scale:elasticity:stationary" class="anchor">The stationary elasticity problem</h2>
 
-<h3 id="___sec175">Scaling of the PDE </h3>
+<h3 id="___sec175" class="anchor">Scaling of the PDE </h3>
 
 <p>
 We now look at the stationary version of <a href="#mjx-eqn-4.1">(4.1)</a>
@@ -1263,7 +1268,7 @@ $$ \beta = \frac{\lambda}{\mu} = \left(\frac{c_p}{c_s}\right)^2 - 2\tp$$
 It shows that in standard, stationary elasticity, \( \lambda/\mu \) is the
 only significant physical parameter.
 
-<h3 id="___sec176">Remark on the characteristic displacement </h3>
+<h3 id="___sec176" class="anchor">Remark on the characteristic displacement </h3>
 
 <p>
 <!-- The choice of \( u_c \) may require a comment. If we end up with -->
@@ -1288,7 +1293,7 @@ acceleration of gravity). If we consider \( E \) to be of the same size as
 wise to prescribe a \( u_c \) in elasticity problems, perhaps from
 formulas as shown, and keep \( \gamma \) in the PDE.
 
-<h3 id="___sec177">Scaling of displacement boundary conditions </h3>
+<h3 id="___sec177" class="anchor">Scaling of displacement boundary conditions </h3>
 
 <p>
 A typical boundary condition on some part of the boundary is a prescribed
@@ -1310,7 +1315,7 @@ is present, to the dimensionless number
 
 $$ \delta = \frac{L^2\varrho f_c}{\mu |\U_0|}\tp$$
 
-<h3 id="___sec178">Scaling of traction boundary conditions </h3>
+<h3 id="___sec178" class="anchor">Scaling of traction boundary conditions </h3>
 
 <p>
 The other type of common boundary condition in elasticity is a
@@ -1329,7 +1334,7 @@ which is a unit vector in the direction of \( \boldsymbol{T}_0 \).
 Many applications involve large traction free areas on the boundary, on
 which we simply have \( \bar{\stress}\cdot\normalvec = 0 \).
 
-<h2 id="scale:elasticity:thermo">Quasi-static thermo-elasticity</h2>
+<h2 id="scale:elasticity:thermo" class="anchor">Quasi-static thermo-elasticity</h2>
 
 <p>
 Heating solids gives rise to expansion, i.e., strains, which may cause
@@ -1418,7 +1423,7 @@ for elasticity and the conditions
 for diffusion. Scaling of such conditions are discussed in
 the section <a href="._scaling-book2008.html#sec:scale:diffu">The diffusion equation</a> and <a href="#scale:elasticity:stationary">The stationary elasticity problem</a>.
 
-<h1 id="sec:scale:ns">The Navier-Stokes equations</h1>
+<h1 id="sec:scale:ns" class="anchor">The Navier-Stokes equations</h1>
 
 <p>
 This section shows how to scale various versions of the
@@ -1427,7 +1432,7 @@ with the plain Navier-Stokes equations without body forces and
 progress with adding the gravity force and a free surface. We
 also look at scaling low Reynolds number flow and oscillating flows.
 
-<h2 id="___sec181">The momentum equation without body forces </h2>
+<h2 id="___sec181" class="anchor">The momentum equation without body forces </h2>
 
 <p>
 The Navier-Stokes equations for incompressible viscous fluid flow,
@@ -1447,7 +1452,7 @@ The primary unknowns are the
 velocity \( \u \) and the pressure \( p \). Moreover,
 \( \varrho \) is the fluid density, and \( \mu \) is the dynamic viscosity.
 
-<h3 id="___sec182">Scaling </h3>
+<h3 id="___sec182" class="anchor">Scaling </h3>
 
 <p>
 We start, as usual, by introducing a notation for
@@ -1519,7 +1524,7 @@ $$ p + \frac{1}{2}\varrho \u\cdot\u =
 
 for stationary flow.
 
-<h3 id="___sec183">Dimensonless PDEs and the Reynolds number </h3>
+<h3 id="___sec183" class="anchor">Dimensonless PDEs and the Reynolds number </h3>
 
 <p>
 The discussions so far result in the following dimensionless form of
@@ -1556,7 +1561,7 @@ $$ \frac{\hbox{convection}}{\hbox{viscosity}} =
 (We have here used that \( \nabla\u \) goes like \( U/L \) and \( \nabla^2\u \)
 goes like \( U/L^2 \).)
 
-<h2 id="___sec184">Scaling of time for low Reynolds numbers </h2>
+<h2 id="___sec184" class="anchor">Scaling of time for low Reynolds numbers </h2>
 
 <p>
 As we discussed in the section <a href="._scaling-book2009.html#scale:convdiff">The convection-diffusion equation</a> for the convection-diffusion
@@ -1609,7 +1614,7 @@ $$
 
 This flow regime is also known as <em>Stokes' flow</em> or <em>creeping flow</em>.
 
-<h2 id="___sec185">Shear stress as pressure scale </h2>
+<h2 id="___sec185" class="anchor">Shear stress as pressure scale </h2>
 
 <p>
 Instead of using the kinetic energy \( \varrho U^2 \) as pressure scale,
@@ -1629,7 +1634,7 @@ $$
 
 Low Reynolds number flow now suggests neglecting both acceleration terms.
 
-<h2 id="___sec186">Gravity force and the Froude number </h2>
+<h2 id="___sec186" class="anchor">Gravity force and the Froude number </h2>
 
 <p>
 We now add a gravity force to the momentum equation
@@ -1659,7 +1664,7 @@ This quantity reflects the ratio of inertia and gravity forces:
 $$ \frac{|\u\cdot\nabla\u|}{|\varrho g|} \sim \frac{\varrho U^2/L}{\varrho g}
 = \hbox{Fr}^2\tp$$
 
-<h2 id="___sec187">Oscillating boundary conditions and the Strouhal number </h2>
+<h2 id="___sec187" class="anchor">Oscillating boundary conditions and the Strouhal number </h2>
 
 <p>
 Many flows have an oscillating nature, often arising from some
@@ -1712,7 +1717,7 @@ bridge</a>
 in 1940, when wind-induced vortex shedding caused resonance
 with the free torsional vibrations of the bridge.
 
-<h2 id="___sec188">Cavitation and the Euler number </h2>
+<h2 id="___sec188" class="anchor">Cavitation and the Euler number </h2>
 
 <p>
 The dimensionless pressure in <a href="#mjx-eqn-4.20">(4.20)</a>
@@ -1748,7 +1753,7 @@ is called the <em>Euler number</em>. The pressure gradient term now reads
 expresses the ratio of pressure differences and the kinetic
 energy of the flow.
 
-<h2 id="freesurface:Weber">Free surface conditions and the Weber number</h2>
+<h2 id="freesurface:Weber" class="anchor">Free surface conditions and the Weber number</h2>
 At a free surface, \( z=\eta(x,y,t) \), the boundary conditions are
 
 $$
@@ -1814,7 +1819,7 @@ is the ratio of the pressure scale \( \varrho U^2 \) and the surface
 tension force per area, typically \( \sigma/R_x \) in a 2D problem, which
 has size \( \sigma/L \).
 
-<h1 id="___sec190">Thermal convection </h1>
+<h1 id="___sec190" class="anchor">Thermal convection </h1>
 
 <p>
 Temperature differences in fluid flow cause density differences, and since
@@ -1826,7 +1831,7 @@ feedback from the temperature field to the motion, i.e., temperature
 differences do not create motion. This fact decouples the energy
 equation from the mass and momentum equations.
 
-<h2 id="scale:fluid:forced_convection">Forced convection</h2>
+<h2 id="scale:fluid:forced_convection" class="anchor">Forced convection</h2>
 
 <p>
 The model governing forced convection consists of the Navier-Stokes
@@ -1930,9 +1935,9 @@ heat conduction term \( \kappa U/L^2 \). The fraction
 and if this quantity is given a symbol \( \dfc \), we realize the
 relation to the Peclet number defined in the section <a href="._scaling-book2009.html#scale:convdiff">The convection-diffusion equation</a>.
 
-<h2 id="scale:fluid:free_convection">Free convection</h2>
+<h2 id="scale:fluid:free_convection" class="anchor">Free convection</h2>
 
-<h3 id="___sec193">Governing equations </h3>
+<h3 id="___sec193" class="anchor">Governing equations </h3>
 
 <p>
 The mathematical model for free thermal convection
@@ -1965,7 +1970,7 @@ For a slightly compressible gas flow a term \( -p\nabla\cdot\u \) may be
 needed in
 <a href="#mjx-eqn-4.44">(4.44)</a>.
 
-<h3 id="___sec194">Heating by viscous effects </h3>
+<h3 id="___sec194" class="anchor">Heating by viscous effects </h3>
 
 <p>
 We have also included heating of the fluid due to the work of viscous forces,
@@ -1989,7 +1994,7 @@ general mathematical model for mixed force and free convection, and
 arrive at dimensionless numbers that can tell if this extra term is
 important or not.
 
-<h3 id="___sec195">Relation between density and temperature </h3>
+<h3 id="___sec195" class="anchor">Relation between density and temperature </h3>
 
 <p>
 Equation <a href="#mjx-eqn-4.42">(4.42)</a> and has
@@ -2008,7 +2013,7 @@ $$ \beta = -\frac{1}{\varrho}\left(\frac{\partial\varrho}{\partial t}
 is known as the thermal expansion coefficient of the fluid,
 and \( \varrho_0 \) is a reference density when the temperature is at \( T_0 \).
 
-<h3 id="___sec196">The Boussinesq approximation </h3>
+<h3 id="___sec196" class="anchor">The Boussinesq approximation </h3>
 
 <p>
 A very common approximation, called the <em>Boussinesq approximation</em>, is
@@ -2034,7 +2039,7 @@ $$
 A good justification of the Boussinesq approximation is provided
 by Tritton <a href="._scaling-book2011.html#Tritton">[9]</a> (Ch. 13).
 
-<h3 id="___sec197">Scaling </h3>
+<h3 id="___sec197" class="anchor">Scaling </h3>
 
 <p>
 Dimensionless variables are introduced as
@@ -2121,7 +2126,7 @@ $$ \frac{|\mu\nabla^2\u|}{|\varrho_0c\u\cdot\nabla T|}\sim
 \frac{\mu U}{L\varrho_0 c \Delta T} = \delta\tp
 $$
 
-<h2 id="___sec198">The Grashof, Prandtl, and Eckert numbers </h2>
+<h2 id="___sec198" class="anchor">The Grashof, Prandtl, and Eckert numbers </h2>
 
 <p>
 The problem with the above dimensionless numbers is that they involve
@@ -2232,7 +2237,7 @@ the range \( 10^8 < \hbox{Gr} < 10^9 \) for free convection from vertical
 flat plates.  Gr is normally interpreted as a dimensionless number
 expressing the ratio of buoyancy forces and viscous forces.
 
-<h3 id="___sec199">Interpretations of the Grashof number </h3>
+<h3 id="___sec199" class="anchor">Interpretations of the Grashof number </h3>
 
 <p>
 Recall that the scaling leading to the Grashof number is based on an
@@ -2277,7 +2282,7 @@ The Rayleigh number is the preferred dimensionless number when studying
 free convection in horizontal layers <a href="._scaling-book2011.html#Drazin_Reid">[10]</a> <a href="._scaling-book2011.html#Tritton">[9]</a>. Otherwise,
 Gr and Pr are used.
 
-<h2 id="___sec200">Heat transfer at boundaries and the Nusselt and Biot numbers </h2>
+<h2 id="___sec200" class="anchor">Heat transfer at boundaries and the Nusselt and Biot numbers </h2>
 
 <p>
 A common boundary condition, modeling heat transfer to/from the
@@ -2343,9 +2348,9 @@ field with lots of experimental investigations
 that are summarized by curves relating various dimensionless numbers
 such as Gr, Pr, Nu, and Bi.
 
-<h1 id="scale:gasdyn">Compressible gas dynamics</h1>
+<h1 id="scale:gasdyn" class="anchor">Compressible gas dynamics</h1>
 
-<h2 id="scale:Euler_eqs">The Euler equations of gas dynamics</h2>
+<h2 id="scale:Euler_eqs" class="anchor">The Euler equations of gas dynamics</h2>
 
 <p>
 The fundamental equations for a compressible fluid are based on balance
@@ -2454,7 +2459,7 @@ $$ \alpha = \frac{Lf_c}{U^2}\tp$$
 We realize that the scaled Euler equations look like
 the ones with dimension, apart from the \( \alpha \) coefficient.
 
-<h2 id="___sec203">General isentropic flow </h2>
+<h2 id="___sec203" class="anchor">General isentropic flow </h2>
 
 <p>
 Heat transfer can be neglected in
@@ -2476,7 +2481,7 @@ $$
 \end{align}
 $$
 
-<h3 id="___sec204">Elimination of the pressure </h3>
+<h3 id="___sec204" class="anchor">Elimination of the pressure </h3>
 
 <p>
 A common equation of state is
@@ -2562,9 +2567,9 @@ The boundary conditions specify the characteristic velocity \( U \) and
 thereby the Mach number. Observe that <a href="#mjx-eqn-4.65">(4.65)</a>
 simplifies if \( \varrho_c=\varrho_0 \) is an appropriate choice.
 
-<h2 id="scale:gas:acoustic">The acoustic approximation for sound waves</h2>
+<h2 id="scale:gas:acoustic" class="anchor">The acoustic approximation for sound waves</h2>
 
-<h3 id="___sec206">Wave nature of isentropic flow with small perturbations </h3>
+<h3 id="___sec206" class="anchor">Wave nature of isentropic flow with small perturbations </h3>
 
 <p>
 A model for sound waves can be based on <a href="#mjx-eqn-4.61">(4.61)</a>
@@ -2609,7 +2614,7 @@ Similarly, \( \hat\varrho \) can be eliminated and one gets a wave equation for
 \( \hat{\u} \), also with wave velocity \( c_0 \).
 This means that the sound perturbations travel with velocity \( c_0 \).
 
-<h3 id="___sec207">Basic scaling for small wave perturbations </h3>
+<h3 id="___sec207" class="anchor">Basic scaling for small wave perturbations </h3>
 
 <p>
 Let \( \varrho_c \) and
@@ -2730,9 +2735,9 @@ $$
 We also observe that there are no physical parameters in the scaled
 wave equations.
 
-<h1 id="scale:surfacewaves">Water surface waves driven by gravity</h1>
+<h1 id="scale:surfacewaves" class="anchor">Water surface waves driven by gravity</h1>
 
-<h2 id="scale:surfacewaves:Eulereq">The mathematical model</h2>
+<h2 id="scale:surfacewaves:Eulereq" class="anchor">The mathematical model</h2>
 
 <p>
 Provided the Weber number (see the section <a href="#freesurface:Weber">Free surface conditions and the Weber number</a>) is
@@ -2778,7 +2783,7 @@ a typical wavelength \( \lambda_c \), and a typical surface elevation \( A \), w
 then by definition is a scale for \( \eta \), are
 the given parameters. From these we must derive scales for the coordinates, the velocity components, and the pressure.
 
-<h2 id="___sec210">Scaling </h2>
+<h2 id="___sec210" class="anchor">Scaling </h2>
 
 <p>
 First, it is instructive to define a typical wave celerity, \( c_c \), which
@@ -2829,7 +2834,7 @@ $$
 In the further development of the scaling
 we focus on two limiting cases, namely deep and shallow water.
 
-<h2 id="___sec211">Waves in deep  water </h2>
+<h2 id="___sec211" class="anchor">Waves in deep  water </h2>
 
 <p>
 Deep water means that \( h_c\gg\lambda_c \). Presumably the waves will not
@@ -2884,7 +2889,7 @@ $$
 
 as \( \bar z \rightarrow -\infty \).
 
-<h2 id="___sec212">Long waves in shallow water </h2>
+<h2 id="___sec212" class="anchor">Long waves in shallow water </h2>
 
 <p>
 Long waves imply that the wavelength is large
@@ -2951,7 +2956,7 @@ is hydrostatic. The above set of equations is a common  starting point for
 perturbation expansions in \( \epsilon \) and \( \mu^2 \) that lead to shallow water,
 KdV, and Boussinesq type equations.
 
-<h1 id="___sec213">Two-phase porous media flow </h1>
+<h1 id="___sec213" class="anchor">Two-phase porous media flow </h1>
 
 <p>
 We consider the flow of two incompressible, immiscible fluids in
@@ -3183,7 +3188,7 @@ parameters \( \alpha \), \( \beta \), \( \gamma \), \( \delta \), and \( \epsilo
 There are six remaining dimensionless numbers to be set: \( K_{wm} \),
 \( K_{nm} \), \( S_{wr} \), \( S_{nr} \), \( a \), and \( b \).
 
-<h1 id="scale:bidomain">The bidomain model in electrophysiology</h1>
+<h1 id="scale:bidomain" class="anchor">The bidomain model in electrophysiology</h1>
 
 <p>
 The mechanical functioning of the heart is crucially dependent on
@@ -3196,7 +3201,7 @@ consisting of two PDEs coupled to a system of ODEs at each spatial
 point in the domain, and show how this model can be brought to a
 dimensionless form.
 
-<h2 id="___sec215">The mathematical model </h2>
+<h2 id="___sec215" class="anchor">The mathematical model </h2>
 
 <p>
 A widely used mathematical model for the electric signal propagation
@@ -3281,7 +3286,7 @@ to scale these equations. The equations are of
 reaction-diffusion type, and the scaling will be based on the general
 non-linear reaction-diffusion equation in the section <a href="._scaling-book2008.html#sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</a>.
 
-<h2 id="___sec216">Scaling </h2>
+<h2 id="___sec216" class="anchor">Scaling </h2>
 
 <p>
 Dimensionless independent variables are introduced by
@@ -3476,7 +3481,7 @@ Enforcing \( L/t_c = 60 \hbox{cm s}^{-1} \) gives the constraint \( g_c \approx
 <!-- numerical solution. That is, this choice of scaling will give \( \Delta x -->
 <!-- \approx \Delta t \approx 1 \), instead of \( \bar t, \bar x \approx 1 \)? -->
 
-<h2 id="___sec217">An alternative \( I_{\rm{ion}} \) </h2>
+<h2 id="___sec217" class="anchor">An alternative \( I_{\rm{ion}} \) </h2>
 The simplest model that gives a qualitatively realistic description of
 the cardiac action potential is the FitzHugh-Nagumo (FHN) model. In
 contrast to the model <a href="#mjx-eqn-4.108">(4.108)</a> discussed above, the
@@ -3584,12 +3589,12 @@ $$
 \bar k = k {t_c}{\Delta v} , \quad \bar l = t_c l \tp
 $$
 
-<h1 id="___sec218">Exercises </h1>
+<h1 id="___sec218" class="anchor">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale::exer:elasticity:vibmodels">Exercise 4.1: Comparison of vibration models for elastic structures</h2>
+<h2 id="scale::exer:elasticity:vibmodels" class="anchor">Exercise 4.1: Comparison of vibration models for elastic structures</h2>
 
 <p>
 The time scale for displacement in elastic structures is, according to
@@ -3699,7 +3704,7 @@ for elastic waves in a three-dimensional body.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:poroelasticity">Exercise 4.2: A model for quasi-static poro-elasticity</h2>
+<h2 id="scale:exer:poroelasticity" class="anchor">Exercise 4.2: A model for quasi-static poro-elasticity</h2>
 
 <p>
 Flow through a porous elastic medium may induce stress and deformation.
@@ -3765,7 +3770,7 @@ Filename: <code>poroelasticity</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:starting_Couette">Problem 4.3: Starting Couette flow</h2>
+<h2 id="scale:vib:exer:starting_Couette" class="anchor">Problem 4.3: Starting Couette flow</h2>
 
 <p>
 A fluid is confined in a channel with two planar walls \( z=0 \) and \( z=H \).
@@ -3970,7 +3975,7 @@ Filename: <code>starting_Couette</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:channel">Problem 4.4: Channel flow</h2>
+<h2 id="scale:vib:exer:channel" class="anchor">Problem 4.4: Channel flow</h2>
 
 <p>
 We look at viscous fluid flow between two flat, infinite plates.
@@ -4075,7 +4080,7 @@ Filename: <code>channel</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec223">Remarks </h3>
+<h3 id="___sec223" class="anchor">Remarks </h3>
 
 <p>
 One may want to implement the Navier-Stokes equations in scaled form

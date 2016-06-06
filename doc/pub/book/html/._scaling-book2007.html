@@ -28,13 +28,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -45,7 +45,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -650,6 +654,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._scaling-book2002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -890,7 +895,7 @@ $$
 <a name="part0007"></a>
 <!-- !split -->
 
-<center><h1 id="___sec113">Basic partial differential equation models </h1></center> <!-- chapter heading -->
+<center><h1 id="___sec113" class="anchor">Basic partial differential equation models </h1></center> <!-- chapter heading -->
 
 <p>
 This chapter extends the scaling technique to well-known partial differential
@@ -899,7 +904,7 @@ We start out with the simplest 1D models of the PDEs and then progress
 with additional terms, different types of boundary and initial conditions,
 and generalizations to 2D and 3D.
 
-<h1 id="sec:scale:wave">The wave equation</h1>
+<h1 id="sec:scale:wave" class="anchor">The wave equation</h1>
 
 <p>
 A standard, linear, one-dimensional wave equation problem
@@ -935,7 +940,7 @@ where \( f \) represents a forcing.
 <!-- the domain, and the scale of \( u \) usually depends on \( f \) or the -->
 <!-- boundary or initial condition. -->
 
-<h2 id="sec:scale:wave:bc_u0">Homogeneous Dirichlet conditions in 1D</h2>
+<h2 id="sec:scale:wave:bc_u0" class="anchor">Homogeneous Dirichlet conditions in 1D</h2>
 
 <p>
 Let us first start with <a href="#mjx-eqn-3.1">(3.1)</a>,
@@ -1075,7 +1080,7 @@ u(x,t) = \max_{x\in(0,L)}I(x)\,\bar u(\bar x L, \bar t L/c)
 \end{equation}
 $$
 
-<h2 id="sec:scale:wave:impl">Implementation of the scaled wave equation</h2>
+<h2 id="sec:scale:wave:impl" class="anchor">Implementation of the scaled wave equation</h2>
 
 <p>
 How do we implement <a href="#mjx-eqn-3.8">(3.8)</a>-<a href="#mjx-eqn-3.12">(3.12)</a>?
@@ -1096,7 +1101,7 @@ in in
 the book <a href="http://tinyurl.com/Langtangen-Linge-FDM-book" target="_self">Finite difference computing with PDEs</a>
 <a href="._scaling-book2011.html#Langtangen_Linge_fdm">[3]</a>.
 
-<h3 id="___sec117">Waves on a string </h3>
+<h3 id="___sec117" class="anchor">Waves on a string </h3>
 
 <p>
 As an example, we may let the original initial-boundary value problem
@@ -1126,7 +1131,7 @@ dimensionless parameter in the problem. For fixed \( x_0 \),
 one single simulation will capture all possible solutions with such
 an initial triangular shape.
 
-<h3 id="___sec118">Detecting an already computed case </h3>
+<h3 id="___sec118" class="anchor">Detecting an already computed case </h3>
 
 <p>
 The file <a href="http://tinyurl.com/o8pb3yy/wave1D_u0_scaled.py" target="_self"><tt>wave1D_u0_scaled.py</tt></a>
@@ -1139,7 +1144,7 @@ and one must recognized if the function has been used as argument
 before or not. There is documentation in the <code>wave1D_u0_scaled.py</code>
 file explaining how this is done.
 
-<h2 id="scale:wave:pde2">Time-dependent Dirichlet condition</h2>
+<h2 id="scale:wave:pde2" class="anchor">Time-dependent Dirichlet condition</h2>
 
 <p>
 A generalization of <a href="#mjx-eqn-3.1">(3.1)</a>-<a href="#mjx-eqn-3.6">(3.6)</a>
@@ -1159,7 +1164,7 @@ $$ \bar u(0,\bar t) = \frac{U_L(\bar t t_c)}{u_c}$$
 
 in scaled form.
 
-<h3 id="___sec120">Scaling </h3>
+<h3 id="___sec120" class="anchor">Scaling </h3>
 
 <p>
 Regarding the characteristic time scale, it is natural to base this
@@ -1207,7 +1212,7 @@ $$
 Also this problem is free of physical parameters like \( c \) and \( L \).
 The input is completely specified by the shape of \( I(x) \) and \( U_L(t) \).
 
-<h3 id="___sec121">Software </h3>
+<h3 id="___sec121" class="anchor">Software </h3>
 
 <p>
 Software for the original problem with dimensions can be reused for
@@ -1215,7 +1220,7 @@ Software for the original problem with dimensions can be reused for
 setting \( L=1 \), \( c=1 \), and scaling \( U_L(t) \) and \( I(x) \) by
 \( \max_t |U_L(t)| \).
 
-<h3 id="___sec122">Specific case </h3>
+<h3 id="___sec122" class="anchor">Specific case </h3>
 
 <p>
 As an example, consider
@@ -1339,7 +1344,7 @@ if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
 
-<h2 id="scale:wave:pde2:Vcond">Velocity initial condition</h2>
+<h2 id="scale:wave:pde2:Vcond" class="anchor">Velocity initial condition</h2>
 
 <p>
 Now we change the initial condition from \( u=I \) and \( \partial u/\partial t = 0 \) to
@@ -1360,7 +1365,7 @@ $$ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
 \frac{t_c}{u_c}V(\bar x x_c)\tp
 $$
 
-<h3 id="___sec124">Analytical insight </h3>
+<h3 id="___sec124" class="anchor">Analytical insight </h3>
 
 <p>
 From <a href="#mjx-eqn-3.7">(3.7)</a> we now get \( f_L + f_R =0 \) and
@@ -1376,7 +1381,7 @@ u(x,t) = \frac{1}{2c}\int_{x-ct}^{x+ct} V(\xi) d\xi
  \end{equation}
 $$
 
-<h3 id="___sec125">Scaling </h3>
+<h3 id="___sec125" class="anchor">Scaling </h3>
 
 <p>
 Since \( V \) is the time-derivative of \( u \), the characteristic size of
@@ -1397,7 +1402,7 @@ $$ \frac{\partial}{\partial \bar t} \bar u(\bar x,0) =
 \frac{V(\bar x x_c)}{\half\hbox{mean}(V)}\tp
 $$
 
-<h3 id="___sec126">Nonzero initial shape </h3>
+<h3 id="___sec126" class="anchor">Nonzero initial shape </h3>
 
 <p>
 Suppose we change the initial condition \( u(x,0)=0 \) to \( u(x,0)=I(x) \).
@@ -1467,7 +1472,7 @@ teach us much about the interaction of the various physical effects.
 <!-- regardless of other parameters. -->
 <!-- See exer-scaling/wave1D_small_I_big_V.py for experiments. -->
 
-<h2 id="scale:wave:pde2:cvar">Variable wave velocity and forcing</h2>
+<h2 id="scale:wave:pde2:cvar" class="anchor">Variable wave velocity and forcing</h2>
 
 <p>
 The next generalization regards wave propagation in
@@ -1505,7 +1510,7 @@ u(x,0) &= I(x),
 \end{align}
 $$
 
-<h3 id="___sec128">Non-dimensionalization </h3>
+<h3 id="___sec128" class="anchor">Non-dimensionalization </h3>
 
 <p>
 We make the coefficient \( \lambda \) non-dimensional by
@@ -1553,7 +1558,7 @@ $$
 
 with \( \bar T = Tc/L \).
 
-<h3 id="___sec129">Choosing the time scale </h3>
+<h3 id="___sec129" class="anchor">Choosing the time scale </h3>
 
 <p>
 The time scale is, as before, chosen as \( t_c
@@ -1569,7 +1574,7 @@ signal speed in the medium, i.e., by \( \sqrt{\lambda_c} \) here and not
 by the time scale of the excitation \( f \), which dictates the
 length of the generated waves and not their propagation speed.
 
-<h3 id="___sec130">Choosing the spatial scale </h3>
+<h3 id="___sec130" class="anchor">Choosing the spatial scale </h3>
 
 <p>
 We may choose \( u_c \) as \( \max_x |I(x)| \), as before,
@@ -1621,7 +1626,7 @@ of alternating positive and negative parts (retrogressive slides constitute an
 example). These may interfere to
 reduce the wave generation by an order of magnitude.
 
-<h3 id="___sec131">Scaling the velocity initial condition </h3>
+<h3 id="___sec131" class="anchor">Scaling the velocity initial condition </h3>
 
 <p>
 The initial condition \( u_t(x,0)=V(x) \) has its dimensionless variant as
@@ -1656,7 +1661,7 @@ $$
 \end{array}\right.
 $$
 
-<h2 id="scale:wave:pde2:damped">Damped wave equation</h2>
+<h2 id="scale:wave:pde2:damped" class="anchor">Damped wave equation</h2>
 
 <p>
 A linear damping term \( b\,\partial u/\partial t \) is often added to
@@ -1729,7 +1734,7 @@ To summarize, the effects of \( V \), \( f \), and damping are reflected in
 the dimensionless numbers \( \alpha \), \( \beta \), and \( \gamma \),
 respectively.
 
-<h2 id="___sec133">A three-dimensional wave equation problem </h2>
+<h2 id="___sec133" class="anchor">A three-dimensional wave equation problem </h2>
 
 <p>
 To demonstrate how the scaling extends to in three spatial dimensions,

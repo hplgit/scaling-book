@@ -29,13 +29,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -46,7 +46,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -651,6 +655,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -891,9 +896,9 @@ $$
 <a name="part0009"></a>
 <!-- !split -->
 
-<h1 id="scale:convdiff">The convection-diffusion equation</h1>
+<h1 id="scale:convdiff" class="anchor">The convection-diffusion equation</h1>
 
-<h2 id="___sec153">Convection-diffusion without a force term </h2>
+<h2 id="___sec153" class="anchor">Convection-diffusion without a force term </h2>
 
 <p>
 We now add a convection term \( \boldsymbol{v}\cdot\nabla u \) to the diffusion
@@ -1049,7 +1054,7 @@ conditions.
 </div>
 
 
-<h2 id="___sec154">Stationary PDE </h2>
+<h2 id="___sec154" class="anchor">Stationary PDE </h2>
 
 <p>
 Suppose the problem is stationary and that there is no need for
@@ -1171,7 +1176,7 @@ scaled equation \( \bar u' = \bar u'' \)
 expresses that the terms \( \bar u' \) and \( \bar u'' \) are
 equal and of size around unity.
 
-<h2 id="scale:convdiff:f">Convection-diffusion with a source term</h2>
+<h2 id="scale:convdiff:f" class="anchor">Convection-diffusion with a source term</h2>
 
 <p>
 Let us add a force term \( f(\x,t) \) to the convection-diffusion equation:
@@ -1243,12 +1248,12 @@ to \( u_c= f_c L/V \).
 Alternatively, \( u_c \) can be based on the initial condition, with similar
 results as found in the sections on the wave and diffusion PDEs.
 
-<h1 id="___sec156">Exercises </h1>
+<h1 id="___sec156" class="anchor">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:stationary_Couette">Problem 3.1: Stationary Couette flow</h2>
+<h2 id="scale:vib:exer:stationary_Couette" class="anchor">Problem 3.1: Stationary Couette flow</h2>
 
 <p>
 A fluid flows between two flat plates, with one plate at rest while
@@ -1289,7 +1294,7 @@ Filename: <code>stationary_Couette</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec158">Remarks </h3>
+<h3 id="___sec158" class="anchor">Remarks </h3>
 
 <p>
 The problem for \( u \) is a classical two-point boundary-value problem
@@ -1310,7 +1315,7 @@ fluid or heat.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Couette_wpressure">Exercise 3.2: Couette-Poiseuille flow</h2>
+<h2 id="scale:vib:exer:Couette_wpressure" class="anchor">Exercise 3.2: Couette-Poiseuille flow</h2>
 
 <p>
 Viscous fluid flow between two infinite flat plates \( z=0 \) and \( z=H \)
@@ -1345,11 +1350,12 @@ influence the magnitude of \( u \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_20_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_20_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 SymPy can integrate the differential equation twice and fit the
@@ -1408,11 +1414,9 @@ for driving the flow, we can neglect the \( \beta \) terms. However, we must
 then resort to the \( u(z) \) expression for \( \beta=0 \), \( u(z)=zU_0/H \),
 and realize that the maximum then is obtained at the boundary for
 \( z=H \): \( \max_z h=U_0 \) (as intuitively obvious).
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -1425,11 +1429,12 @@ Scale the problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_20_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_20_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Introducing
@@ -1485,11 +1490,9 @@ $$
 \tag{3.79}
 \end{align}
 $$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -1503,7 +1506,7 @@ Filename: <code>Couette_wpressure</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:pipeflow:pulsatile">Exercise 3.3: Pulsatile pipeflow</h2>
+<h2 id="scale:exer:pipeflow:pulsatile" class="anchor">Exercise 3.3: Pulsatile pipeflow</h2>
 
 <p>
 The flow of a viscous fluid in a straight pipe with circular
@@ -1537,11 +1540,12 @@ Discuss how the scaling can be extended to this case.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_21_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_21_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce dimensionless quantities:
@@ -1606,11 +1610,9 @@ If \( P(t) \) is not sinusoidal but periodic with period \( p \), we have that
 Everything in the scaling remains the same, just the \( \sin \) term changes
 to \( P(\alpha\bar t) \) if the time scale is based on viscosity (diffusion),
 and \( P(\bar t) \) if the time scale is based on the pressure oscillations.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -1622,7 +1624,7 @@ Filename: <code>pipeflow</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:cable_eq">Exercise 3.4: The linear cable equation</h2>
+<h2 id="scale:exer:cable_eq" class="anchor">Exercise 3.4: The linear cable equation</h2>
 
 <p>
 A key PDE in neuroscience is the <a href="https://en.wikipedia.org/wiki/Cable_theory" target="_self">cable equation</a>, here given in its simplest linear form:
@@ -1650,11 +1652,12 @@ reaction, i.e., the \( -u \) term.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_22_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_22_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Straightforward scaling, with scales \( u_c \), \( t_c \), and \( x_c \),
@@ -1705,11 +1708,9 @@ Then there are not big differences in these scalings, and the first
 one is to be preferred. The two others are more suitable when
 \( \beta \) is small or large, e.g., such that the term with \( \beta \) can be
 left out of the PDE.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -1721,7 +1722,7 @@ Filename: <code>cable_eq</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:twometal">Exercise 3.5: Heat conduction with discontinuous initial condition</h2>
+<h2 id="scale:exer:twometal" class="anchor">Exercise 3.5: Heat conduction with discontinuous initial condition</h2>
 
 <p>
 Two pieces of metal at different temperature are brought in contact
@@ -1794,11 +1795,12 @@ area of the cross section. Scale this problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_23_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_23_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We expect the temperature to start from the discontinuous state with
@@ -1934,11 +1936,9 @@ $$
 
 Many will find the homogeneous PDE and boundary conditions of the latter
 scaling attractive, especially for analytical solution of the problem.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -1947,7 +1947,7 @@ Filename: <code>metal_pieces</code>.
 <p>
 <!-- Closing remarks for this Exercise -->
 
-<h3 id="___sec163">Remarks </h3>
+<h3 id="___sec163" class="anchor">Remarks </h3>
 
 <p>
 We can derive <a href="#mjx-eqn-3.88">(3.88)</a>-<a href="#mjx-eqn-3.91">(3.91)</a> from <a href="#mjx-eqn-3.86">(3.86)</a>-<a href="#mjx-eqn-3.87">(3.87)</a>.
@@ -2007,7 +2007,7 @@ The result is the 1D initial-boundary value problem
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="diffu:exer:welding">Problem 3.6: Scaling a welding problem</h2>
+<h2 id="diffu:exer:welding" class="anchor">Problem 3.6: Scaling a welding problem</h2>
 
 <p>
 Welding equipment makes a very localized heat source that moves in
@@ -2037,14 +2037,18 @@ the heat source from the welding equipment, and \( U_s \) is the
 initial constant (room) temperature in the material.
 
 <p>
-The boundary conditions at \( x=0,L \) are set for convenience &ndash; some sort
-of heat flux out of the boundary, modeled in terms of a cooling
+The boundary conditions at \( x=0,L \) are set for convenience &ndash; some
+sort of heat flux out of the boundary, modeled in terms of a cooling
 condition \( -ku_x = h(u-U_s) \), for a heat transfer coefficient \( h \),
-would yield a more physically relevant model. Also, using a 3D geometry
-with cooling conditions at all boundaries would result in a more
-relevant model. Since the focus is on scaling, we prefer to work with
-the simplest possible model, which is one-dimensional, has Dirichlet
-boundary conditions, and neglects melting.
+would yield a more physically relevant model. Also, only a full 3D
+geometry with such heat loss at the boundary is physically relevant,
+as neglecting a space dimension means insulated boundaries
+perpendicular to this direction. However, since the focus is on
+scaling, we prefer to work with the simplest possible model, which is
+one-dimensional, has Dirichlet boundary conditions, and neglects melting.
+The latter effect is very local and just stalls the temperature field
+locally &ndash; it does not affect the transport of heat away from the welding
+source in a significant way.
 
 <p>
 A possible model for the heat source is a moving Gaussian function:
@@ -2066,7 +2070,7 @@ the coefficients in the scaled PDE are all equal to unity.  Perform
 this scaling. Use scaled quantities in the arguments for the
 exponential function in \( f \) too and show that
 
-$$ \bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},$$
+$$ \bar f= \exp{(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2)},$$
 
 where \( \beta \) and \( \gamma \) are dimensionless numbers. Give an
 interpretation of \( \beta \) and \( \gamma \).
@@ -2075,11 +2079,12 @@ interpretation of \( \beta \) and \( \gamma \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_24_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce
@@ -2140,11 +2145,9 @@ time scale and the time it takes for the heat source to travel through
 the domain. Equivalently, we can multiply by \( t_c/t_c \) to get \( \gamma
 = v/(t_cL) \) as the ratio between the velocity of the heat source and
 the diffusion velocity.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2171,11 +2174,12 @@ Discuss when the scalings in a) and b) are appropriate.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_3" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_24_3">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We perform the scaling as in a), but this time we determine \( t_c \) such
@@ -2221,11 +2225,9 @@ so heat can efficiently spread out by diffusion. For large \( \gamma \),
 the scaling in b) is appropriate, and \( t=1 \) corresponds to having the
 heat source traveled through the domain (with the scaling in a), the
 heat source will leave the domain in short time).
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2242,11 +2244,12 @@ reflected by the \( \sigma \) parameter. Modify the scaling in b) when
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_4" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_24_4">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 With \( \sigma \) as length scale, the scaled PDE has the initial form
@@ -2284,11 +2287,9 @@ source time scale \( v/\sigma \) and the diffusion time scale
 The equations are as in), except that \( \beta =1 \) and \( \epsilon \)
 replaces \( \gamma \). Moreover, the length of the domain is now \( L/\sigma \),
 i.e., \( \beta \) enters the problem in the domain size.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2305,11 +2306,12 @@ based on the movement of the welding equipment.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_5" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_24_5">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We insert the dimensionless quantities in the PDE, but this time we
@@ -2331,11 +2333,9 @@ $$ \gamma \frac{\partial\bar u}{\partial\bar t} =
 \frac{\partial^2\bar u}{\partial\bar x^2} + \bar f\tp$$
 
 The scaling of \( f \) becomes identical to the one in b).
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2394,11 +2394,12 @@ it is attractive to plot \( \bar f/\delta \) together with \( \bar u \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_6" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_24_6">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Here is a possible general <code>solver</code> function for solving the 1D
@@ -2628,11 +2629,9 @@ And here is our <code>run</code> function tailored to the problem:
 <p>
 Note that we have dropped the bar notation in the plots. It is common
 to drop the bars as soon as the scaled problem is established.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2646,11 +2645,12 @@ four scalings. Discuss the results.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_24_7" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_24_7">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 For these investigations, we compare the three scalings for each of
@@ -2749,6 +2749,7 @@ Finally, we have the results for \( \gamma=40 \).
 <br /><br /><center><p><img src="fig-scaling/welding_gamma40.png" align="bottom" width=800></p></center><br /><br />
 
 <p>
+<b>Discussion.</b>
 From these plots we see that it does not matter which of the scalings
 in b)-d) we choose, as long as we compensate with the \( \delta \) parameter
 to bring \( u \) to the size of unity. The scaling a) is suitable for \( \gamma\leq
@@ -2787,9 +2788,91 @@ investigating the differences between different scalings, the choice
 of boundary conditions is not a key issue.
 
 <p>
-</div></p>
+<b>Simulations with a full 3D model.</b>
+How relevant is it to study scaling in 1D model when we know that the
+heat loss from the material is not well modeled? We have implemented a
+full 3D model in the FEniCS programming system and performed simulations
+using cooling law boundary conditions (i.e., conditions of Robin type).
+
+<p>
+Below is a plot of the heat source (upper left) and temperature distributions for \( \gamma=0.1 \) (upper right), \( \gamma=1 \) (lower left), and $\gamma=30# (lower right), after two rotations.
+
+<p>
+<br /><br /><center><p><img src="fig-scaling/welding3D_fenics.png" align="bottom" width=800,></p></center><br /><br />
+
+<p>
+Gearing \( \gamma \) up to 2000 gives the following comet-like temperature
+distribution:
+
+<p>
+<center>  <!-- FIGURE -->
+<hr class="figure">
+<center><p class="caption">Figure 18:  The temperature field for \( \gamma=2000 \) after two rotations. </p></center>
+<p><img src="fig-scaling/welding_gamma2000_fenics.png" align="bottom" width=800,></p>
+</center>
+
+<p>
+
+<div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src='https://raw.githubusercontent.com/hplgit/fenics-tutorial/brief/doc/pub/mov/welding/welding_gamma01_3D.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
 </div>
-</p>
+<p><em>\( \gamma=0.1 \).</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script>
+
+<p>
+
+<div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src='https://raw.githubusercontent.com/hplgit/fenics-tutorial/brief/doc/pub/mov/welding/welding_gamma1_3D.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
+</div>
+<p><em>\( \gamma=1 \).</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script>
+
+<p>
+
+<div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src='https://raw.githubusercontent.com/hplgit/fenics-tutorial/brief/doc/pub/mov/welding/welding_gamma30_3D.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
+</div>
+<p><em>\( \gamma=30 \).</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script>
+
+<p>
+
+<div>
+<video  loop controls width='640' height='365' preload='none'>
+    <source src='https://raw.githubusercontent.com/hplgit/fenics-tutorial/brief/doc/pub/mov/welding/welding_gamma2000_3D.ogg'  type='video/ogg;  codecs="theora, vorbis"'>
+</video>
+</div>
+<p><em>\( \gamma=2000 \).</em></p>
+
+<!-- Issue warning if in a Safari browser -->
+<script language="javascript">
+if (!!(window.safari)) {
+  document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
+</script>
+</div>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->

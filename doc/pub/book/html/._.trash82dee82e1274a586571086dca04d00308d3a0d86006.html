@@ -29,13 +29,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -46,7 +46,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -651,6 +655,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -891,7 +896,7 @@ $$
 <a name="part0006"></a>
 <!-- !split -->
 
-<h1 id="sec:scale:vib">Vibration problems</h1>
+<h1 id="sec:scale:vib" class="anchor">Vibration problems</h1>
 
 <p>
 We shall in this section
@@ -899,7 +904,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-<h2 id="sec:scale:vib:undamped">Undamped vibrations without forcing</h2>
+<h2 id="sec:scale:vib:undamped" class="anchor">Undamped vibrations without forcing</h2>
 
 <p>
 The simplest differential equation model for mechanical vibrations
@@ -926,7 +931,7 @@ and is connected to a spring that exerts a force \( -ku \) on the body.
 <p><img src="fig-scaling/oscillator_spring.png" align="bottom" width=500></p>
 </center>
 
-<h3 id="___sec66">The first technical steps of scaling </h3>
+<h3 id="___sec66" class="anchor">The first technical steps of scaling </h3>
 
 <p>
 The problem <a href="#mjx-eqn-2.64">(2.64)</a> has one independent
@@ -957,7 +962,7 @@ What is an appropriate displacement scale \( u_c \)? The initial condition
 Making the coefficient in front of the \( \bar u \) unity, such that
 both terms balance and are of size unity, is a candidate.
 
-<h3 id="___sec67">The exact solution </h3>
+<h3 id="___sec67" class="anchor">The exact solution </h3>
 
 <p>
 To better see what the proper scales of \( u \) and \( t \) are, we can look
@@ -1066,7 +1071,7 @@ like period, frequency, and amplitude of oscillating signals, so
 readers who need to refresh these concepts are recommended to
 do <a href="#scale:exer:sine">Problem 2.12: Find the period of sinusoidal signals</a> before continuing.
 
-<h3 id="___sec68">Discussion of the displacement scale </h3>
+<h3 id="___sec68" class="anchor">Discussion of the displacement scale </h3>
 
 <p>
 The amplitude of \( u \) is \( \sqrt{I^2 + V^2/\omega^2} \), and this
@@ -1076,7 +1081,7 @@ than the square root expression (but potentially a factor 1.4 wrong
 compared to the exact amplitude).  It is not very important to have
 \( |u|\leq 1 \), the point is to avoid \( |u| \) very small or large.
 
-<h3 id="___sec69">Discussion of the time scale </h3>
+<h3 id="___sec69" class="anchor">Discussion of the time scale </h3>
 
 <p>
 What is an appropriate time scale? Looking at
@@ -1088,7 +1093,7 @@ sine or cosine of \( \omega t \), so \( 1/\omega = \sqrt{m/k} \) can be a charac
 time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \), can
 be the characteristic time, leading to \( t_c=2\pi/\omega \).
 
-<h3 id="___sec70">The dimensionless solution </h3>
+<h3 id="___sec70" class="anchor">The dimensionless solution </h3>
 
 <p>
 With \( u_c=I \) and \( t_c=\sqrt{m/k} \) we get the scaled model
@@ -1122,7 +1127,7 @@ $$
 This expressions shows that the scaling is simply a matter of
 <em>stretching or shrinking the axes</em>.
 
-<h3 id="___sec71">Alternative displacement scale </h3>
+<h3 id="___sec71" class="anchor">Alternative displacement scale </h3>
 
 <p>
 Using \( u_c = V/\omega \), the equation
@@ -1152,7 +1157,7 @@ u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t)\tp
 \end{equation}
 $$
 
-<h3 id="___sec72">About frequency and dimensions </h3>
+<h3 id="___sec72" class="anchor">About frequency and dimensions </h3>
 
 <p>
 The solution goes like \( \cos\omega t \), where \( \omega =\sqrt{m/k} \)
@@ -1167,7 +1172,7 @@ precise, \( \omega \) should be named <em>angular frequency</em>. The relation b
 \( f \) and \( T \) is \( f=1/T \), so \( f=2\pi\omega \) and measured in Hz (1/s), which is
 the unit for counts per unit time.
 
-<h2 id="sec:scale:vib:undamped:mg">Undamped vibrations with constant forcing</h2>
+<h2 id="sec:scale:vib:undamped:mg" class="anchor">Undamped vibrations with constant forcing</h2>
 
 <p>
 For vertical vibrations in the gravity field, the model
@@ -1204,7 +1209,7 @@ We see that the oscillations around the equilibrium point in the
 gravity field are identical to the horizontal oscillations without
 gravity, except for an offset \( mg/(kI) \) in the displacement.
 
-<h2 id="sec:scale:vib:undamped:F">Undamped vibrations with time-dependent forcing</h2>
+<h2 id="sec:scale:vib:undamped:F" class="anchor">Undamped vibrations with time-dependent forcing</h2>
 
 <p>
 Now we add a transient forcing term \( F(t) \) to the model
@@ -1239,7 +1244,7 @@ three parameters (\( I \), \( V \), and \( A \)) that influence the magnitude of
 Moreover, there are two time scales, one for the free vibrations of
 the systems and one for the forced vibrations \( F(t) \).
 
-<h3 id="___sec75">Investigating scales via analytical solutions </h3>
+<h3 id="___sec75" class="anchor">Investigating scales via analytical solutions </h3>
 
 <p>
 As we have seen already several times, having access to
@@ -1350,7 +1355,7 @@ an example on such a signal.
 <p><img src="fig-scaling/envelope.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec76">The displacement and time scales </h3>
+<h3 id="___sec76" class="anchor">The displacement and time scales </h3>
 
 <p>
 A characteristic displacement can in the latter special case
@@ -1373,7 +1378,7 @@ of frequency \( \psi \) or \( \omega \) when these are close and the largest
 of them when they are distant. In any case, we set
 \( t_c=1/\max(\psi,\omega) \).
 
-<h3 id="___sec77">Finding the displacement scale from the differential equation </h3>
+<h3 id="___sec77" class="anchor">Finding the displacement scale from the differential equation </h3>
 
 <p>
 Going back to <a href="#mjx-eqn-2.71">(2.71)</a>, we
@@ -1391,7 +1396,7 @@ by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
 relevant for an excitation frequency \( \psi \) that is small compared to
 the free vibration frequency \( \omega \).
 
-<h3 id="___sec78">Scaling with free vibrations as time scale </h3>
+<h3 id="___sec78" class="anchor">Scaling with free vibrations as time scale </h3>
 
 <p>
 The next step is to work out the dimensionless ODE for the chosen scales.
@@ -1445,7 +1450,7 @@ physical effects:
    frequencies or the time scales of the forcing and the free vibrations.</li>
 </ul>
 
-<h3 id="___sec79">Software </h3>
+<h3 id="___sec79" class="anchor">Software </h3>
 
 <p>
 Any solver for <a href="#mjx-eqn-2.71">(2.71)</a>
@@ -1453,7 +1458,7 @@ can be used for <a href="#mjx-eqn-2.73">(2.73)</a>.
 More details are provided at the end of
 the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
-<h3 id="___sec80">Choice of \( u_c \) close to resonance </h3>
+<h3 id="___sec80" class="anchor">Choice of \( u_c \) close to resonance </h3>
 
 <p>
 Now we shall discuss various choices of \( u_c \).
@@ -1502,7 +1507,7 @@ Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 <p><img src="fig-scaling/vib_delta099_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec81">Unit size of all terms in the ODE </h3>
+<h3 id="___sec81" class="anchor">Unit size of all terms in the ODE </h3>
 
 <p>
 Using the displacement scale \( u_c=A/k \) leads to
@@ -1534,7 +1539,7 @@ are important (e.g., \( \omega\gg\psi \)).
 <p><img src="fig-scaling/vib_delta05_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec82">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
+<h3 id="___sec82" class="anchor">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
 
 <p>
 Finally, we may look at the case where \( \psi\gg\omega \) such that
@@ -1606,7 +1611,7 @@ numerical simulations with 160 time steps per period of the forcing.)
 <p><img src="fig-scaling/vib_delta10_b0_a5_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec83">Displacement scale based on \( I \) </h3>
+<h3 id="___sec83" class="anchor">Displacement scale based on \( I \) </h3>
 
 <p>
 Choosing \( u_c=I \) gives
@@ -1633,7 +1638,7 @@ $$
 
 This scaling is not relevant close to resonance since then \( u_c\gg I \).
 
-<h2 id="sec:scale:vib:damped:F">Damped vibrations with forcing</h2>
+<h2 id="sec:scale:vib:damped:F" class="anchor">Damped vibrations with forcing</h2>
 
 <p>
 We now introduce a linear damping force \( bu'(t) \) in the equation of motion:
@@ -1669,7 +1674,7 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec85">The exact solution </h3>
+<h3 id="___sec85" class="anchor">The exact solution </h3>
 
 <p>
 As always, it is
@@ -1904,7 +1909,7 @@ R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}\tp
 \end{equation}
 $$
 
-<h3 id="___sec86">Choosing scales </h3>
+<h3 id="___sec86" class="anchor">Choosing scales </h3>
 
 <p>
 Much of the discussion about scales in the previous sections are
@@ -1925,7 +1930,7 @@ $$ \frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}\tp$$
 The rest of the ODE is given in the previous section, and the particular
 formulas depend on the choices of \( t_c \) and \( u_c \).
 
-<h3 id="___sec87">Choice of \( u_c \) at resonance </h3>
+<h3 id="___sec87" class="anchor">Choice of \( u_c \) at resonance </h3>
 
 <p>
 The relevant scale for \( u_c \) at or nearby resonance (\( \psi = \omega \))
@@ -1982,7 +1987,7 @@ $$
 \end{align}
 $$
 
-<h3 id="___sec88">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
+<h3 id="___sec88" class="anchor">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
 
 <p>
 In the limit \( \omega\gg\psi \) and \( t\gg B^{-1} \),
@@ -1994,13 +1999,13 @@ showing that \( u_c=A/k \) is an appropriate displacement scale.
 The dimensionless numbers \( \alpha \), \( \beta \), and \( \delta \) are as
 for the forced vibrations without damping.
 
-<h3 id="___sec89">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
+<h3 id="___sec89" class="anchor">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
 
 <p>
 In the limit \( \omega\ll\psi \), we should base \( t_c \) on the rapid
 variations in the excitation: \( t_c=1/\psi \).
 
-<h3 id="___sec90">Software </h3>
+<h3 id="___sec90" class="anchor">Software </h3>
 
 <p>
 It is easy to reuse a solver for a general vibration problem also
@@ -2068,7 +2073,7 @@ options on the command-line for \( \alpha \), \( \beta \), \( \gamma \), \( \del
 the <code>main</code> function). It is an ideal application for exploring
 scaled vibration models.
 
-<h2 id="___sec91">Oscillating electric circuits </h2>
+<h2 id="___sec91" class="anchor">Oscillating electric circuits </h2>
 
 <p>
 The differential equation for an oscillating electric circuit is
@@ -2125,12 +2130,12 @@ which is basically the same as we derived for mechanical vibrations.
 (Two additional dimensionless variables will arise from the initial
 conditions for \( I \), just as in the mechanics cases.)
 
-<h1 id="___sec92">Exercises </h1>
+<h1 id="___sec92" class="anchor">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:US2SI1">Exercise 2.1: Perform unit conversion</h2>
+<h2 id="sec:scale:exer:US2SI1" class="anchor">Exercise 2.1: Perform unit conversion</h2>
 
 <p>
 Density (mass per volume: \( [\hbox{ML}^{-3}] \)) of water is
@@ -2141,11 +2146,12 @@ to convert to \( \hbox{kg}\,\hbox{m}^{-3} \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_1_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_1_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Use <code>pydoc PhysicalQuantities</code> to find that <code>floz</code> is the name of
@@ -2162,9 +2168,9 @@ Here is an interactive session for the conversion:
 <span style="color: #666666">1006.54198946</span> kg<span style="color: #666666">/</span>m<span style="color: #666666">**3</span>
 </pre></div>
 <p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2176,7 +2182,7 @@ Filename: <code>density_conversion</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:ball_y">Problem 2.2: Scale a simple formula</h2>
+<h2 id="sec:scale:exer:ball_y" class="anchor">Problem 2.2: Scale a simple formula</h2>
 
 <p>
 The height \( y \) of a body thrown up in the air is given by
@@ -2192,11 +2198,12 @@ maximum \( y \) value and the time it takes to return to \( y=0 \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_2_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_2_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce
@@ -2227,11 +2234,9 @@ $$ \frac{v_0^2}{g}\bar y = 2\frac{v_0^2}{g}\bar t -
 
 Observe that the physical parameters \( v_0 \) and \( g \) are absent in the
 scaled formula.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2243,7 +2248,7 @@ Filename: <code>vertical_motion</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:cooling:osc">Exercise 2.3: Perform alternative scalings</h2>
+<h2 id="sec:scale:exer:decay:cooling:osc" class="anchor">Exercise 2.3: Perform alternative scalings</h2>
 
 <p>
 The problem in the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:cooling:osc">Scaling a cooling problem with time-dependent surroundings</a> applies a
@@ -2269,11 +2274,12 @@ not of size unity.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_3_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_3_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 The typical temperature variations will now be oscillations of amplitude
@@ -2303,11 +2309,9 @@ $$ \bar T(0) = -\half\alpha,$$
 
 where \( \alpha = a/(T_m-T_0) \) is the dimensionless number that appeared
 in the scaled differential equation in the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#scale:cooling:osc">Scaling a cooling problem with time-dependent surroundings</a>.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2321,11 +2325,12 @@ What is an appropriate scaling of the temperature?
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_3_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_3_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 In this case, \( T \) will oscillate around \( T_m \) and at maximum reach the
@@ -2333,11 +2338,9 @@ amplitude \( a \) if \( \beta \) is small, see the figure in a).
 This is the same situation as in a),
 and we can consequently use the same scaling and obtain the same
 scaled problem.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2348,7 +2351,7 @@ scaled problem.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:ball_y_wdrag">Problem 2.4: A nonlinear ODE for vertical motion with air resistance</h2>
+<h2 id="sec:scale:exer:ball_y_wdrag" class="anchor">Problem 2.4: A nonlinear ODE for vertical motion with air resistance</h2>
 
 <p>
 The velocity \( v(t) \)
@@ -2368,11 +2371,12 @@ and \( V \) is the volume of the body. Scale this ODE.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_4_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_4_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce as usual
@@ -2451,11 +2455,9 @@ terminal velocities, while \( \gamma \) is the ratio of the real and
 added masses. For motion in air, buoyancy and added mass can often be
 neglected: \( \alpha\ll 1 \), \( \gamma\ll 1 \), but in a liquid, these
 effects may be significant.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2467,7 +2469,7 @@ Filename: <code>vertical_motion_with_drag</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:jump">Exercise 2.5: Solve a decay ODE with discontinuous coefficient</h2>
+<h2 id="sec:scale:exer:decay:jump" class="anchor">Exercise 2.5: Solve a decay ODE with discontinuous coefficient</h2>
 
 <p>
 Make software for the problem in the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#sec:scale:jump">Variable coefficients</a>
@@ -2501,11 +2503,12 @@ engine and modify the
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_5_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_5_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We use <code>joblib</code> to avoid unnecessary execution of the scaled problem,
@@ -2579,9 +2582,9 @@ solver_scaled <span style="color: #666666">=</span> disk_memory<span style="colo
     main(d<span style="color: #666666">=1/120.</span>, I<span style="color: #666666">=1</span>, t_1<span style="color: #666666">=100</span>)
 </pre></div>
 <p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2593,7 +2596,7 @@ Filename: <code>decay_jump</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:cooling">Exercise 2.6: Implement a scaled model for cooling</h2>
+<h2 id="sec:scale:exer:decay:cooling" class="anchor">Exercise 2.6: Implement a scaled model for cooling</h2>
 
 <p>
 Use software for the unscaled problem <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#mjx-eqn-2.16">(2.16)</a>
@@ -2628,11 +2631,12 @@ See the section <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.htm
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_6_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_6_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 The problem <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#mjx-eqn-2.16">(2.16)</a> is just a special case
@@ -2694,11 +2698,9 @@ Simulations for \( \alpha=1 \) and \( \beta=0.1,1,10 \) as well as for
 
 <p>
 <br /><br /><center><p><img src="fig-scaling/cooling1.png" align="bottom" width=800></p></center><br /><br />
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2710,7 +2712,7 @@ Filename: <code>cooling1</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:decay:step">Problem 2.7: Decay ODE with discontinuous coefficients</h2>
+<h2 id="scale:exer:decay:step" class="anchor">Problem 2.7: Decay ODE with discontinuous coefficients</h2>
 
 <p>
 The goal of this exercise is to scale the problem
@@ -2731,11 +2733,12 @@ Here, \( Q,A,\epsilon >0 \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_7_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_7_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We start by scaling the known functions \( a \) and \( b \). Since \( Q,A.\epsilon >0 \),
@@ -2786,11 +2789,9 @@ We realize that \( \alpha \) measures the ratio of the \( b \) term (\( \epsilon
 and the \( au \) term (\( QI \)), \( \beta \) reflects the relative jump in \( a \),
 while \( \gamma \) measures the ratio of the
 transition point \( t=s \) and the characteristic time scale.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2802,7 +2803,7 @@ Filename: <code>decay_varcoeff</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:nonlin:logistic2">Exercise 2.8: Alternative scalings of a cooling model</h2>
+<h2 id="scale:exer:nonlin:logistic2" class="anchor">Exercise 2.8: Alternative scalings of a cooling model</h2>
 
 <p>
 Implement the scaled model <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86005.html#mjx-eqn-2.29">(2.29)</a>
@@ -2842,7 +2843,7 @@ Filename: <code>growth</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:projectile">Exercise 2.9: Projectile motion</h2>
+<h2 id="scale:vib:exer:projectile" class="anchor">Exercise 2.9: Projectile motion</h2>
 
 <p>
 We have the following mathematical model for the motion of a projectile
@@ -2872,11 +2873,12 @@ analytically for \( \x(t) \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_9_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_9_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 The vector differential equation reduces to the two component equations
@@ -2892,11 +2894,9 @@ the derivative gives \( C_1=v_0\cos\theta \) and \( C_3=v_0\sin\theta \).
 The result is therefore
 
 $$ \x(t) = v_0\cos(\theta) t\ii + (v_0\sin(\theta) t - \frac{1}{2}gt^2)\jj\tp$$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -2910,11 +2910,12 @@ Use the maximum height from the simplification in a) as length scale.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_9_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_9_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce dimensionless quantities:
@@ -3001,11 +3002,9 @@ Basing \( t_c \) and \( L \) on the entire flight back to \( y=0 \) means
 \( t_c = 2g^{-1}v_0\sin\theta \) and \( L=2y_{\max} \) (the total vertical
 distance), removes the factor 2 on the right-hand side and reduces
 \( \alpha \) by a factor 2.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3019,11 +3018,12 @@ the scaled initial velocity is unity in \( x \) direction.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_9_3" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_9_3">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 The scaled initial velocity condition is
@@ -3063,11 +3063,9 @@ $$ \frac{d^2\bar\x}{d\bar t^2} + \alpha \left\vert\frac{d\bar\x}{d\bar t}
 \right\vert\frac{d\bar\x}{d\bar t} = -\jj,\quad
 \bar\x(0)=\boldsymbol{0},\quad \frac{d\bar\x}{d\bar t}(0) =
 \ii + \tan\theta\jj\tp$$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3086,11 +3084,12 @@ differential equation for these values and plot the trajectory (\( y \) versus
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_9_4" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_9_4">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We need to express \( R \), \( v_0 \), and \( \theta \) in standard SI units:
@@ -3186,11 +3185,9 @@ large enough.
 The total length is approximately 6.3 m for a soft kick and
 45 m for a hard kick (multiply the dimensionless lengths in the
 plot by the corresponding \( L \)).
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3204,7 +3201,7 @@ Filename: <code>projectile</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:predprey">Problem 2.10: A predator-prey model</h2>
+<h2 id="scale:exer:predprey" class="anchor">Problem 2.10: A predator-prey model</h2>
 
 <p>
 The evolution of animal populations with a predator and a prey (e.g.,
@@ -3278,11 +3275,12 @@ dimensionless parameters in the scaled ODE problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_10_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_10_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 With \( H_c=L_c=H_0 \) in
@@ -3326,11 +3324,9 @@ leads to population growth of the predator.
 The number \( \gamma \) reflects the ratio of
 predator deaths and the eaten preys per predator, and \( \delta \) is
 the initial fraction of preys and predators.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3345,11 +3341,12 @@ parameters as possible. Compare with the scaling in a).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_10_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_10_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Dividing by \( H_c \) and \( L_c \) in
@@ -3414,11 +3411,9 @@ Note that \( \nu \) and \( \omega \) must be
 different from unity to avoid \( \bar H\neq 0 \) and \( \bar L\neq 0 \) because
 of the factors \( 1-L \) and \( H-1 \) in the equations that can make
 \( \bar H^{\prime}=0 \) and \( \bar L^{\prime}=0 \).
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3436,11 +3431,12 @@ and find a time scale. Compare with the result in b).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_10_3" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_10_3">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Setting \( H^{\prime}=L^{\prime}=0 \) leads to
@@ -3450,11 +3446,9 @@ $$ H(a-bL)=0,\quad L(dH-c)=0,$$
 from which we see that the factors must vanish: \( H=L=0 \),
 \( L=a/b \), and \( H=c/d \). With Use \( H_c=a/b \), \( L_c=c/d \), and \( t_c=1/a \)
 we get the same scaling as in b), but with a different motivation.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3468,7 +3462,7 @@ Filename: <code>predator_prey</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:competing_species">Problem 2.11: A model for competing species</h2>
+<h2 id="scale:exer:competing_species" class="anchor">Problem 2.11: A model for competing species</h2>
 
 <p>
 Let \( N_1(t) \) and \( N_2(t) \) be the number of animals in two
@@ -3493,11 +3487,12 @@ Find suitable scales and derive a dimensionless ODE problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_11_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_11_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 As always, we can introduce dimensionless variables,
@@ -3528,11 +3523,9 @@ are related to different parameters, but only their product matters.
 Alternatively, we could introduce the numbers \( \mu = b_{12}\gamma \)
 and \( \nu = b_{21}\gamma^{-1} \) in the last term of the first and second
 ODE, respectively.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3544,7 +3537,7 @@ Filename: <code>competing_species</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:sine">Problem 2.12: Find the period of sinusoidal signals</h2>
+<h2 id="scale:exer:sine" class="anchor">Problem 2.12: Find the period of sinusoidal signals</h2>
 
 <p>
 This exercise aims at investigating various fundamental
@@ -3563,11 +3556,12 @@ for \( t\in [0, 8\pi/\omega] \). Choose \( \omega \) and \( A \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_12_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_12_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Appropriate code is
@@ -3596,11 +3590,9 @@ Appropriate code is
 </pre></div>
 <p>
 <br /><br /><center><p><img src="fig-scaling/sine_period_a.png" align="bottom" width=600></p></center><br /><br />
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3618,11 +3610,12 @@ Frequently, \( P \) is also referred to as the <em>wave length</em> of \( u \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_12_3" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_12_3">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Since the sine function has period \( 2\pi \), we have that
@@ -3651,11 +3644,9 @@ maximum. The period \( P \) is the distance in time between two maxima:
 $$ \omega(t + P) - \omega t = (n+2\pi - n\pi\quad\Rightarrow\quad
 P = \frac{2\pi}{\omega}\tp
 $$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3669,11 +3660,12 @@ of \( sin(\omega t) \). Choose \( \omega \), \( A \), and \( a \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_12_4" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_12_4">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Code:
@@ -3708,11 +3700,9 @@ Code:
 </pre></div>
 <p>
 <br /><br /><center><p><img src="fig-scaling/sine_period_c.png" align="bottom" width=600></p></center><br /><br />
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3750,11 +3740,12 @@ as \( v = B\cos(\omega t - \phi) \) with \( B=\sqrt{p^2 + q^2} \) and
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_12_5" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_12_5">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Finding the extrema from \( u^{\prime}=0 \) leads to
@@ -3779,11 +3770,9 @@ $$ \omega P = 2\pi\quad\Rightarrow\quad P = \frac{2\pi}{\omega}\tp$$
 
 The period of the damped signal is the same; only \( \omega \) can alter
 the period.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3794,7 +3783,7 @@ Filename: <code>sine_period</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec105">Remarks </h3>
+<h3 id="___sec105" class="anchor">Remarks </h3>
 
 <p>
 The <em>frequency</em> is the number of up and down cycles in one unit time.
@@ -3808,7 +3797,7 @@ The <em>angular frequency</em> \( \omega \) is then \( \omega = 2\pi/P = 2\pi f 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:sliding">Problem 2.13: Oscillating mass with sliding friction</h2>
+<h2 id="scale:vib:exer:sliding" class="anchor">Problem 2.13: Oscillating mass with sliding friction</h2>
 
 <p>
 <center> <!-- figure label: --> <div id="scale:vib:exer:sliding:fig"></div> <!-- FIGURE -->
@@ -3859,11 +3848,12 @@ Scale the problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_13_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_13_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Inserting the dimensionless dependent and independent variables,
@@ -3913,11 +3903,9 @@ Since \( I \) has the same dimension as \( u \), \( kI \) has the dimension of
 \( [\hbox{MLT}^{-2}] \), which is the dimension of \( mg \), and \( \alpha \) is
 dimensionless. The \( \beta \) parameter has dimensions
 \( [\hbox{LT}^{-1}\hbox{M}^{1/2}\hbox{M}^{-1/2}\hbox{TL}^{-1}=[1] \).
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -3931,11 +3919,12 @@ and \( \beta =0 \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_13_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_13_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We can use the package <a href="https://github.com/hplgit/odespy" target="_self">Odespy</a>
@@ -3997,11 +3986,9 @@ We find that simulating for 6 periods is relevant for \( \alpha=0, 0.05, 0.1 \).
 
 <p>
 <br /><br /><center><p><img src="fig-scaling/sliding_box.png" align="bottom" width=600></p></center><br /><br />
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4015,7 +4002,7 @@ Filename: <code>sliding_box</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:pendulum">Problem 2.14: Pendulum equations</h2>
+<h2 id="sec:scale:exer:pendulum" class="anchor">Problem 2.14: Pendulum equations</h2>
 
 <p>
 The equation for a so-called simple pendulum with a mass \( m \) at the end is
@@ -4053,11 +4040,12 @@ and scale both differential equations.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_14_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_14_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Introducing \( \bar t=t/t_c \) gives
@@ -4089,11 +4077,9 @@ of the type \( \sin(\omega t) \) with \( \omega = \sqrt{g/L} \), and then
 The dimensionless equations become equal in this case:
 
 $$ \frac{d^2\theta}{d\bar t^2} + \sin\theta = 0\tp$$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4108,11 +4094,12 @@ in radians. One may introduce a truly dimensionless angle \( \bar\theta
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_14_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_14_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 A \( \bar\theta
@@ -4144,11 +4131,9 @@ condition has no effect on the characteristic time, it only depends on
 \( L/g \). Therefore this second line of thought will lead to in an appropriate
 variation of \( \bar\theta \) with \( \bar t \). This conclusion can easily
 be tested through simulations with the two scalings.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4161,11 +4146,12 @@ Simulate the problem in b) for \( \Theta = 1,20,45,60 \) measured in degrees.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_14_3" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_14_3">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We use <a href="https://github.com/hplgit/odespy" target="_self">Odespy</a>
@@ -4228,11 +4214,9 @@ The scaling in b) is more suitable for comparing
 graphs than the scaling in a) since all the curves have the
 same amplitude, just different frequency/period. With the scaling in
 a), we would also get a major difference in amplitudes.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4246,7 +4230,7 @@ Filename: <code>pendulum</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:binary_star">Exercise 2.15: ODEs for a binary star</h2>
+<h2 id="sec:scale:exer:binary_star" class="anchor">Exercise 2.15: ODEs for a binary star</h2>
 
 <p>
 The equations for a <a href="https://en.wikipedia.org/wiki/Binary_star" target="_self">binary star</a>,
@@ -4283,11 +4267,12 @@ Scale the equations.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_15_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_15_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 A natural length scale could be the initial distance between the objects:
@@ -4372,11 +4357,9 @@ the latter equation then gives \( \dot\theta =\hbox{const} \) and
 the former then gives \( \dot\theta = 1 \), i.e., the motion is
 \( r(t)=1 \), \( \theta(t)=t \), with unit angular frequency as expected and
 period \( 2\pi \) as expected.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4421,11 +4404,12 @@ if (!!(window.safari)) {
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_15_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_15_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 Here is an appropriate program
@@ -4532,11 +4516,9 @@ velocity for each degree of freedom must appear before the position.
 
 <p>
 <br /><br /><center><p><img src="mov-scaling/binary_star/tmp_0100.png" align="bottom" width=500></p></center><br /><br />
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4550,7 +4532,7 @@ Filename: <code>binary_star</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Duffing">Problem 2.16: Duffing's equation</h2>
+<h2 id="scale:vib:exer:Duffing" class="anchor">Problem 2.16: Duffing's equation</h2>
 
 <p>
 Duffing's equation is a vibration equation with linear and cubic
@@ -4564,11 +4546,12 @@ Scale this problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_16_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_16_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce \( \bar t = t/t_c \) and \( \bar u = u/u_c \):
@@ -4588,11 +4571,9 @@ $$ \alpha = U_0^2\frac{k_1}{k_0},$$
 is a dimensionless parameter reflecting the ratio of the
 cubic spring term \( k_1U_0^3 \) and the linear spring term \( k_0U_0 \)
 at maximum displacement.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4604,7 +4585,7 @@ Filename: <code>Duffing_eq</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:rocket">Problem 2.17: Vertical motion in a varying gravity field</h2>
+<h2 id="scale:vib:exer:rocket" class="anchor">Problem 2.17: Vertical motion in a varying gravity field</h2>
 
 <p>
 A body (e.g., projectile or rocket) is launched vertically
@@ -4655,11 +4636,12 @@ to be unity. Set up the dimensionless ODE problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_17_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_17_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 The suggested requirement leads to
@@ -4673,11 +4655,9 @@ $$
 \frac{d^2\bar h}{d\bar t^2} =
 -\frac{1}{\epsilon^{2}\left(1 + \bar h\right)^2},
 \quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=1\tp$$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4691,11 +4671,12 @@ have unit coefficients.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_17_2" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_17_2">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We set
@@ -4711,11 +4692,9 @@ The scaled ODE problem is now
 
 $$ \frac{d^2\bar h}{d\bar t^2} = -\frac{1}{\left(1 + \bar h\right)^2},
 \quad \bar h(0)=0,\ \frac{d\bar h}{d\bar t}(0)=\epsilon\tp$$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4732,11 +4711,12 @@ length scale, and derive a dimensionless ODE problem.
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_17_3" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_17_3">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 The solution of \( h''=-g \) with \( h(0) \) and \( h'(0)=V \) is easily obtained
@@ -4757,11 +4737,9 @@ $$
 = -\frac{\epsilon^{-4}}{\left(\bar h+2\epsilon^{-2}\right)^2}
 = -\frac{1}{\left(1 + \epsilon^2\bar h\right)^2}\tp
 $$
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4774,11 +4752,12 @@ Give an interpretation of the dimensionless parameter \( \epsilon \).
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_17_4" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_17_4">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We know from c) that the characteristic height in the constant gravity
@@ -4790,11 +4769,9 @@ which shows that \( \epsilon^2 \)
 is the ratio of the height for small \( V \), i.e., motion in a constant gravity
 field, and the earth's radius. A small \( \epsilon \) means that we can
 neglect varying gravity.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4810,11 +4787,12 @@ and \( \bar h \) of size unity or at least not very small or big?)
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_17_5" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_17_5">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 For numerical solution we rewrite the ODE as a system of two first-order
@@ -4903,11 +4881,9 @@ it is the only scaling that is valid as \( \epsilon\rightarrow 0 \). However,
 that it is robust also for the larger relevant values of \( \epsilon \) is
 something that is only clear when we solve the three problems
 numerically.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -4921,7 +4897,7 @@ Filename: <code>varying_gravity</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:quantum">Problem 2.18: A simplified Schroedinger equation</h2>
+<h2 id="scale:vib:exer:quantum" class="anchor">Problem 2.18: A simplified Schroedinger equation</h2>
 
 <p>
 A simplified stationary
@@ -4970,11 +4946,12 @@ The length scale, which arises naturally, is the
 <!-- --- begin solution of exercise --- -->
 
 <p>
-<a class="glyphicon glyphicon-hand-right showdetails" data-toggle="collapse"
- data-target="#exer_18_1" style="font-size: 80%;"></a>
-<b>Solution.</b>
-<div class="collapse-group">
-<p><div class="collapse" id="exer_18_1">
+<div class="panel panel-primary">
+  <div class="panel-heading">
+  <h3 class="panel-title">Solution.</h3>
+  </div>
+<div class="panel-body">
+<p> <!-- subsequent paragraphs come in larger fonts, so start with a paragraph -->
 
 <p>
 We introduce
@@ -5011,11 +4988,9 @@ determines a very relevant length scale.
 A bit of arithmetics in the right-hand side term gives the
 given expression for \( \lambda \). We then end up with
 <a href="#mjx-eqn-2.116">(2.116)</a>.
-
-<p>
-</div></p>
 </div>
-</p>
+</div>
+
 
 <p>
 <!-- --- end solution of exercise --- -->
@@ -5024,7 +4999,7 @@ Filename: <code>Schroedinger</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec112">Remarks </h3>
+<h3 id="___sec112" class="anchor">Remarks </h3>
 
 <p>
 Introducing \( u=\bar r\bar R \) and renaming \( \bar r \) to \( x \),

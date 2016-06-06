@@ -28,13 +28,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -45,7 +45,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -650,6 +654,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._scaling-book2002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book2004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -890,7 +895,7 @@ $$
 <a name="part0005"></a>
 <!-- !split -->
 
-<center><h1 id="___sec19">Ordinary differential equation models </h1></center> <!-- chapter heading -->
+<center><h1 id="___sec19" class="anchor">Ordinary differential equation models </h1></center> <!-- chapter heading -->
 
 <p>
 This chapter introduces the basic techniques of scaling and the ways to
@@ -903,9 +908,9 @@ second-order ODEs for oscillatory systems, where the simplest
 ODE reads \( mu^{\prime\prime} + ku=0 \), with \( m \) and \( k \) as positive constants.
 Various extensions with damping and force terms are discussed in detail.
 
-<h1 id="sec:scale:decay">Exponential decay problems</h1>
+<h1 id="sec:scale:decay" class="anchor">Exponential decay problems</h1>
 
-<h2 id="___sec21">Fundamental ideas of scaling </h2>
+<h2 id="___sec21" class="anchor">Fundamental ideas of scaling </h2>
 
 <p>
 Scaling is an extremely useful technique in mathematical modeling and
@@ -952,7 +957,7 @@ the following pedagogical ingredients to meet the desired learning outcomes.
    for the problem with dimensions.</li>
 </ul>
 
-<h2 id="___sec22">The basic model problem </h2>
+<h2 id="___sec22" class="anchor">The basic model problem </h2>
 
 <p>
 Processes undergoing exponential reduction can be modeled by the ODE
@@ -970,7 +975,7 @@ For the particular model with a constant \( a \), we can easily derive the exact
 solution, \( u(t)=Ie^{-at} \),
 which is helpful to have in mind during the scaling process.
 
-<h3 id="___sec23">Example: Population dynamics </h3>
+<h3 id="___sec23" class="anchor">Example: Population dynamics </h3>
 
 <p>
 The evolution of a population of humans, animals, cells, etc.,
@@ -981,7 +986,7 @@ modeled by a real number in large populations.
 The parameter \( a \) is the increase in the number of individuals per
 time and per individual.
 
-<h3 id="___sec24">Example: Decay of pressure with altitude </h3>
+<h3 id="___sec24" class="anchor">Example: Decay of pressure with altitude </h3>
 
 <p>
 The simple model <a href="#mjx-eqn-2.1">(2.1)</a> also governs the pressure
@@ -995,15 +1000,15 @@ gas constant (\( 8.314\,\frac{\hbox{Nm}}{\hbox{mol K}} \)),
 and \( T \) is the temperature in Kelvin (K).
 The temperature depends on the height so we have \( a=a(t) \).
 
-<h2 id="sec:scale:steps">The technical steps of the scaling procedure</h2>
+<h2 id="sec:scale:steps" class="anchor">The technical steps of the scaling procedure</h2>
 
-<h3 id="___sec26">Step 1: Identify independent and dependent variables </h3>
+<h3 id="___sec26" class="anchor">Step 1: Identify independent and dependent variables </h3>
 
 <p>
 There is one independent variable, \( t \), and one dependent variable,
 \( u \).
 
-<h3 id="___sec27">Step 2: Make independent and dependent variables dimensionless </h3>
+<h3 id="___sec27" class="anchor">Step 2: Make independent and dependent variables dimensionless </h3>
 
 <p>
 We introduce a new dimensionless \( t \), called \( \bar t \), defined by
@@ -1029,7 +1034,7 @@ in an atmospheric layer, \( u_c \) would be referred to as characteristic pressu
 For a decaying population, \( u_c \) may be a characteristic number of
 members in the population, e.g., the initial population \( I \).
 
-<h3 id="___sec28">Step 3: Derive the model involving only dimensionless variables </h3>
+<h3 id="___sec28" class="anchor">Step 3: Derive the model involving only dimensionless variables </h3>
 
 <p>
 The next task is to insert the new dimensionless variables in the
@@ -1051,7 +1056,7 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec29">Step 4: Make each term dimensionless </h3>
+<h3 id="___sec29" class="anchor">Step 4: Make each term dimensionless </h3>
 
 <p>
 Equation <a href="#mjx-eqn-2.4">(2.4)</a> still has terms with
@@ -1067,7 +1072,7 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec30">Step 5: Estimate the scales </h3>
+<h3 id="___sec30" class="anchor">Step 5: Estimate the scales </h3>
 
 <p>
 A characteristic quantity like \( t_c \) reflects the time scale in the
@@ -1181,7 +1186,7 @@ $$
 Nevertheless, in this booklet we have decided to stick to bars for all
 dimensionless quantities.
 
-<h2 id="sec:scale:prog">Making software for utilizing the scaled model</h2>
+<h2 id="sec:scale:prog" class="anchor">Making software for utilizing the scaled model</h2>
 
 <p>
 Software for solving <a href="#mjx-eqn-2.1">(2.1)</a> could take advantage of
@@ -1204,7 +1209,7 @@ We will choose the latter approach since it has the advantage of giving us
 software that works both with a dimensionless model and a model
 with dimensions (and all the original physical parameters).
 
-<h3 id="___sec32">Software for the original unscaled problem </h3>
+<h3 id="___sec32" class="anchor">Software for the original unscaled problem </h3>
 
 <p>
 Assume that we have some module <code>decay.py</code> that offers the following functions:
@@ -1265,7 +1270,7 @@ that reminds the user that these options are not to be used.
 Also note that <code>T</code> and <code>dt_values[0]</code> set on the command line are
 the desired parameters for solving the <em>scaled</em> problem.
 
-<h3 id="___sec33">Software for the scaled problem </h3>
+<h3 id="___sec33" class="anchor">Software for the scaled problem </h3>
 
 <p>
 Turning now to the scaled problem, the solver function (originally
@@ -1296,7 +1301,7 @@ a text file, and the <code>np.loadtxt</code> function can load the data back
 into the program. A better solution to this problem is obtained
 by using the <code>joblib</code> package as described next.
 
-<h3 id="___sec34">Implementation with joblib </h3>
+<h3 id="___sec34" class="anchor">Implementation with joblib </h3>
 
 <p>
 The Python package <code>joblib</code> has functionality that is very convenient
@@ -1485,7 +1490,7 @@ immutable).
 </div>
 
 
-<h2 id="sec:scale:body">Scaling a generalized problem</h2>
+<h2 id="sec:scale:body" class="anchor">Scaling a generalized problem</h2>
 
 <p>
 Now we consider an extension of the exponential decay ODE to the
@@ -1514,7 +1519,7 @@ parameters. The function \( u(t) \) represents the vertical velocity,
 being positive upwards.
 We shall use this model in the following.
 
-<h3 id="___sec36">Exact solution </h3>
+<h3 id="___sec36" class="anchor">Exact solution </h3>
 
 <p>
 It can be handy to have the exact solution for reference, in case
@@ -1629,7 +1634,7 @@ SymPy perhaps can help with finding an exact solution only in a
 special case. We can use this special-case solution to control our
 reasoning about scales in the more general setting.
 
-<h3 id="___sec37">Theory </h3>
+<h3 id="___sec37" class="anchor">Theory </h3>
 
 <p>
 The challenges in our scaling is to find the right \( u_c \) and \( t_c \)
@@ -1748,7 +1753,7 @@ Given some implementation of a solver for <a href="#mjx-eqn-2.8">(2.8)</a>,
 say <code>solver(I, a, b, T, dt, theta)</code>,
 the scaled model is run by <code>solver(beta, 1, 1, T, dt, theta)</code>.
 
-<h3 id="___sec38">Software </h3>
+<h3 id="___sec38" class="anchor">Software </h3>
 
 <p>
 We may develop a solver for the scaled problem that uses <code>joblib</code>
@@ -1885,7 +1890,7 @@ Note that the scaled velocity is positive because of the sign of \( u_c \)
 <p><img src="fig-scaling/falling_body.png" align="bottom" width=800></p>
 </center>
 
-<h2 id="sec:scale:jump">Variable coefficients</h2>
+<h2 id="sec:scale:jump" class="anchor">Variable coefficients</h2>
 
 <p>
 When a prescribed coefficient like \( a(t) \) in \( u'(t) = -a(t)u(t) \)
@@ -1972,7 +1977,7 @@ Figure <a href="#sec:scale:jump:fig">4</a>.
 <p><img src="fig-scaling/decay_jump.png" align="bottom" width=800></p>
 </center>
 
-<h2 id="scale:cooling:const">Scaling a cooling problem with constant temperature in the surroundings</h2>
+<h2 id="scale:cooling:const" class="anchor">Scaling a cooling problem with constant temperature in the surroundings</h2>
 
 <p>
 The heat exchange between a body at temperature \( T(t) \) and the
@@ -1988,7 +1993,7 @@ $$
 
 where \( k \) is a prescribed heat transfer coefficient.
 
-<h3 id="___sec41">Exact solution </h3>
+<h3 id="___sec41" class="anchor">Exact solution </h3>
 
 <p>
 An analytical solution is always handy to have as a control of the
@@ -1996,7 +2001,7 @@ choice of scales. The solution of <a href="#mjx-eqn-2.16">(2.16)</a>
 is by standard methods for ODEs found to be
 \( T(t) = T_s + (T_0 - T_s)e^{-kt} \).
 
-<h3 id="___sec42">Scaling </h3>
+<h3 id="___sec42" class="anchor">Scaling </h3>
 
 <p>
 Physically, we expect the temperature to start at \( T_0 \) and then to
@@ -2047,13 +2052,13 @@ T(t) = T_0 + (T_s-T_0)\bar T (k\bar t)
 \end{equation}
 $$
 
-<h3 id="___sec43">Software </h3>
+<h3 id="___sec43" class="anchor">Software </h3>
 
 <p>
 An implementation for <a href="#mjx-eqn-2.16">(2.16)</a> works for
 <a href="#mjx-eqn-2.18">(2.18)</a> by setting \( k=1 \), \( T_s=1 \), and \( T_0=0 \).
 
-<h3 id="___sec44">Alternative scaling </h3>
+<h3 id="___sec44" class="anchor">Alternative scaling </h3>
 
 <p>
 An alternative temperature scaling is to choose
@@ -2078,7 +2083,7 @@ $$
 
 with solution \( \bar T = e^{-\bar t} \).
 
-<h2 id="scale:cooling:osc">Scaling a cooling problem with time-dependent surroundings</h2>
+<h2 id="scale:cooling:osc" class="anchor">Scaling a cooling problem with time-dependent surroundings</h2>
 
 <p>
 Let us apply the model <a href="#mjx-eqn-2.16">(2.16)</a> to the case when
@@ -2096,7 +2101,7 @@ where \( T_m \) is the mean temperature in the surroundings, \( a \) is
 the amplitude of the variations around \( T_m \), and \( 2\pi/\omega \) is
 the period of the temperature oscillations.
 
-<h3 id="___sec46">Exact solution </h3>
+<h3 id="___sec46" class="anchor">Exact solution </h3>
 
 <p>
 Also in this relatively simple problem
@@ -2132,7 +2137,7 @@ Reordering the result, we get
 $$ T(t) = T_0e^{-kt} + T_m(1- e^{-kt}) +  (k^2 + \omega^2)^{-1}(ak\omega e^{-kt}
 + ak\sin (\omega t) - akw\cos(\omega t))\tp$$
 
-<h3 id="___sec47">Scaling </h3>
+<h3 id="___sec47" class="anchor">Scaling </h3>
 
 <p>
 The scaling <a href="#mjx-eqn-2.17">(2.17)</a> brings in a time-dependent
@@ -2203,7 +2208,7 @@ shows us that the two parameters
 </div>
 
 
-<h3 id="___sec48">Software </h3>
+<h3 id="___sec48" class="anchor">Software </h3>
 
 <p>
 Implementations of the unscaled problem <a href="#mjx-eqn-2.16">(2.16)</a>
@@ -2224,7 +2229,7 @@ cooling process to follow the surrounding temperature, with a small
 time lag. For larger \( \beta \), the heating and cooling require more
 time, and the oscillations get smaller.
 
-<h3 id="___sec49">Discussion of the time scale </h3>
+<h3 id="___sec49" class="anchor">Discussion of the time scale </h3>
 
 <p>
 There are two time variations of importance in the present problem:
@@ -2342,7 +2347,7 @@ condition becomes \( \bar T(0)=T_0/T_m \), and the ratio \( T_0/T_m \) is
 a third dimensionless parameter, so this scaling is also inferior to the
 one above with only two parameters.
 
-<h2 id="sec:scale:nonlinear">Scaling a nonlinear ODE</h2>
+<h2 id="sec:scale:nonlinear" class="anchor">Scaling a nonlinear ODE</h2>
 
 <p>
 Exponential growth models, \( u'=au \), are not realistic in environments
@@ -2378,7 +2383,7 @@ A more complicated choice of \( a \) may be \( a(u)=\varrho(1-u/M)^p \) for
 some exponent \( p \) (this function also fulfills \( a(M)=0 \) and \( a\approx\varrho \)
 for \( t=0 \)).
 
-<h3 id="___sec51">Scaling </h3>
+<h3 id="___sec51" class="anchor">Scaling </h3>
 
 <p>
 Let us scale <a href="#mjx-eqn-2.27">(2.27)</a> with
@@ -2423,7 +2428,7 @@ $$
 Here, we have two dimensionless parameters: \( \alpha \) and \( p \). A classical
 logistic model with \( p=1 \) has only one dimensionless variable.
 
-<h3 id="___sec52">Alternative scaling </h3>
+<h3 id="___sec52" class="anchor">Alternative scaling </h3>
 
 <p>
 We could try another scaling of \( u \) where we also translate \( \bar u \):
@@ -2448,7 +2453,7 @@ An advantage of <a href="#mjx-eqn-2.29">(2.29)</a>
 is that software for the unscaled model can easily be used for the
 scaled model by choosing \( I=\alpha \), \( M=1 \), and \( \varrho=1 \).
 
-<h2 id="___sec53">SIR ODE system for spreading of diseases </h2>
+<h2 id="___sec53" class="anchor">SIR ODE system for spreading of diseases </h2>
 
 <p>
 The field of epidemiology frequently applies ODE systems to describe
@@ -2482,7 +2487,7 @@ from the disease can be shown to be \( \nu^{-1} \), but \( \beta \) is much hard
 to estimate, so working with a scaled model where \( \beta \) is &quot;scaled away&quot;
 is advantageous.
 
-<h3 id="___sec54">Scaling </h3>
+<h3 id="___sec54" class="anchor">Scaling </h3>
 
 <p>
 It is natural to scale \( S \), \( I \), and \( R \) by, e.g., \( S(0) \):
@@ -2545,7 +2550,7 @@ Looking at <a href="#mjx-eqn-2.32">(2.32)</a>, we see that to increase \( I \) i
 we must have \( dI/dt >0 \) at \( t=0 \), which implies
 \( \beta I(0)S(0) - \nu I(0) >0 \), i.e., \( R_0 > 1 \).
 
-<h3 id="___sec55">Software </h3>
+<h3 id="___sec55" class="anchor">Software </h3>
 
 <p>
 Any implementation of the SIR model with dimensions can be reused for
@@ -2556,7 +2561,7 @@ both with \( \alpha=0.02 \).
 <p>
 <br /><br /><center><p><img src="fig-scaling/SIR1.png" align="bottom" width=800></p></center><br /><br />
 
-<h3 id="___sec56">Alternative scaling </h3>
+<h3 id="___sec56" class="anchor">Alternative scaling </h3>
 
 <p>
 Adding <a href="#mjx-eqn-2.31">(2.31)</a>-<a href="#mjx-eqn-2.33">(2.33)</a> shows that
@@ -2606,7 +2611,7 @@ $$
 \end{align*}
 $$
 
-<h2 id="___sec57">SIRV model with finite immunity </h2>
+<h2 id="___sec57" class="anchor">SIRV model with finite immunity </h2>
 
 <p>
 A common extension of the SIR model involves finite immunity: after
@@ -2674,7 +2679,7 @@ vaccinate a susceptible, but the effect of vaccination is still dramatic.
 <p><img src="fig-scaling/SIRV2.png" align="bottom" width=800></p>
 </center>
 
-<h2 id="scale:MMK">Michaelis-Menten kinetics for biochemical reactions</h2>
+<h2 id="scale:MMK" class="anchor">Michaelis-Menten kinetics for biochemical reactions</h2>
 
 <p>
 A classical reaction model in biochemistry describes how a
@@ -2709,7 +2714,7 @@ the mole unit for the amount of a substance. When working with
 dimensionless quantities, only ratios of the rate constants and not their
 specific values are needed.
 
-<h3 id="___sec59">Classical analysis </h3>
+<h3 id="___sec59" class="anchor">Classical analysis </h3>
 
 <p>
 A common assumption is that the formation of \( [ES] \) is very fast and that
@@ -2792,7 +2797,7 @@ $$
 as is used for scaling \( [E] \) and \( Q_c \), subsequently.
 Provided we exclude the case \( [S]\gg K \), we may infer that \( [E] \) will be of magnitude \( E_0 \), while \( [ES] \) will be of magnitude \( E_0 S_0/K \).
 
-<h3 id="___sec60">Dimensionless ODE system </h3>
+<h3 id="___sec60" class="anchor">Dimensionless ODE system </h3>
 
 <p>
 Let us reason how to make the original ODE system
@@ -2835,7 +2840,7 @@ $$
 <!-- Murray has much complicated analysis before selecting scales... -->
 <!-- Can find Q_c from Q'=0 which gives Q_c=E_0S_0/K -->
 
-<h3 id="___sec61">Determining scales </h3>
+<h3 id="___sec61" class="anchor">Determining scales </h3>
 
 <p>
 Choosing the scales is actually a quite complicated matter that requires
@@ -2954,7 +2959,7 @@ solving <a href="#mjx-eqn-2.47">(2.47)</a>-<a href="#mjx-eqn-2.50">(2.50)</a> ca
 for solving <a href="#mjx-eqn-2.57">(2.57)</a>-<a href="#mjx-eqn-2.60">(2.60)</a> since the latter
 system has a slightly different structure.
 
-<h3 id="___sec62">Conservation equations </h3>
+<h3 id="___sec62" class="anchor">Conservation equations </h3>
 
 <p>
 The counterpart to the conservation equations
@@ -2978,7 +2983,7 @@ positive variables, and \( \bar E\in [0,1] \), \( \bar S\in [0,1] \). Such check
 along with the conserved quantities above should be performed at every
 time step in a simulation.
 
-<h3 id="___sec63">Analysis of the scaled system </h3>
+<h3 id="___sec63" class="anchor">Analysis of the scaled system </h3>
 
 <p>
 In the scaled system, we may assume \( \epsilon \) small, which from

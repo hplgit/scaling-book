@@ -1875,14 +1875,18 @@ u(0,t) = u(L,t) &amp;= U_s, &amp; t\in (0,T].
 <span class="math">\(c\)</span> a heat capacity, <span class="math">\(k\)</span> the heat conduction coefficient, <span class="math">\(f\)</span> is
 the heat source from the welding equipment, and <span class="math">\(U_s\)</span> is the
 initial constant (room) temperature in the material.</p>
-<p>The boundary conditions at <span class="math">\(x=0,L\)</span> are set for convenience - some sort
-of heat flux out of the boundary, modeled in terms of a cooling
+<p>The boundary conditions at <span class="math">\(x=0,L\)</span> are set for convenience - some
+sort of heat flux out of the boundary, modeled in terms of a cooling
 condition <span class="math">\(-ku_x = h(u-U_s)\)</span>, for a heat transfer coefficient <span class="math">\(h\)</span>,
-would yield a more physically relevant model. Also, using a 3D geometry
-with cooling conditions at all boundaries would result in a more
-relevant model. Since the focus is on scaling, we prefer to work with
-the simplest possible model, which is one-dimensional, has Dirichlet
-boundary conditions, and neglects melting.</p>
+would yield a more physically relevant model. Also, only a full 3D
+geometry with such heat loss at the boundary is physically relevant,
+as neglecting a space dimension means insulated boundaries
+perpendicular to this direction. However, since the focus is on
+scaling, we prefer to work with the simplest possible model, which is
+one-dimensional, has Dirichlet boundary conditions, and neglects melting.
+The latter effect is very local and just stalls the temperature field
+locally - it does not affect the transport of heat away from the welding
+source in a significant way.</p>
 <p>A possible model for the heat source is a moving Gaussian function:</p>
 <div class="math">
 \[f = A\exp{\left(-\frac{1}{2}\left(\frac{x-vt}{\sigma}\right)^2\right)},\]</div>
@@ -1899,7 +1903,7 @@ the coefficients in the scaled PDE are all equal to unity.  Perform
 this scaling. Use scaled quantities in the arguments for the
 exponential function in <span class="math">\(f\)</span> too and show that</p>
 <div class="math">
-\[\bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},\]</div>
+\[\bar f= \exp{(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2)},\]</div>
 <p>where <span class="math">\(\beta\)</span> and <span class="math">\(\gamma\)</span> are dimensionless numbers. Give an
 interpretation of <span class="math">\(\beta\)</span> and <span class="math">\(\gamma\)</span>.</p>
 <p><strong>b)</strong>

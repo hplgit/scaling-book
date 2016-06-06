@@ -29,13 +29,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -46,7 +46,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -651,6 +655,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -891,7 +896,7 @@ $$
 <a name="part0008"></a>
 <!-- !split -->
 
-<h1 id="sec:scale:diffu">The diffusion equation</h1>
+<h1 id="sec:scale:diffu" class="anchor">The diffusion equation</h1>
 
 <p>
 The diffusion equation in a one-dimensional homogeneous medium reads
@@ -920,9 +925,9 @@ We first look at scaling of the PDE itself, and thereafter we discuss
 some types of boundary conditions and how to scale the complete
 initial-boundary value problem.
 
-<h2 id="sec:scale:diffu:homo1D">Homogeneous 1D diffusion equation</h2>
+<h2 id="sec:scale:diffu:homo1D" class="anchor">Homogeneous 1D diffusion equation</h2>
 
-<h3 id="___sec136">Choosing the time scale </h3>
+<h3 id="___sec136" class="anchor">Choosing the time scale </h3>
 
 <p>
 To make <a href="#mjx-eqn-3.36">(3.36)</a> dimensionless,
@@ -949,7 +954,7 @@ $$ \frac{\partial \bar u}{\partial \bar t}\hbox{ and }
 of the same size (about unity),
 implies \( t_c\dfc/L^2=1 \) and therefore \( t_c = L^2/\dfc \).
 
-<h3 id="___sec137">Analytical insight </h3>
+<h3 id="___sec137" class="anchor">Analytical insight </h3>
 
 <p>
 The best way to obtain the scales inherent in a problem is to obtain
@@ -997,7 +1002,7 @@ value of \( e^{-1}\approx 0.37 \), which implies \( t=L^2/(4\dfc) \), but the
 factor 4 is not of importance, so again, a relevant time scale is
 \( t_c=L^2/\dfc \).
 
-<h3 id="___sec138">Choosing other scales </h3>
+<h3 id="___sec138" class="anchor">Choosing other scales </h3>
 
 <p>
 The scale \( u_c \) is chosen according to the initial condition:
@@ -1026,7 +1031,7 @@ $$ \bar u(\bar x, 0) = \bar I(\bar x) = \frac{I(x_c\bar x)}{\max_x |I(x)|}\tp$$
 Notice that <a href="#mjx-eqn-3.39">(3.39)</a> is without physical parameters,
 but there may be parameters in \( I(x) \).
 
-<h2 id="___sec139">Generalized diffusion PDE </h2>
+<h2 id="___sec139" class="anchor">Generalized diffusion PDE </h2>
 
 <p>
 Turning the attention to <a href="#mjx-eqn-3.37">(3.37)</a>, we introduce
@@ -1114,7 +1119,7 @@ In the expression for \( \beta \) we get
 \( [\hbox{L}^2\Theta\hbox{T}^{-1}(\hbox{L}^2\hbox{T}^{-1}\Theta)^{-1}] \),
 which equals 1 as it should.
 
-<h2 id="___sec140">Jump boundary condition </h2>
+<h2 id="___sec140" class="anchor">Jump boundary condition </h2>
 
 <p>
 A classical one-dimensional heat conduction problem goes as
@@ -1208,7 +1213,7 @@ $$ u(x,t) = U_0 + (U_1-U_0)\bar u(x/L, t\dfc/L^2)\tp$$
 <p><img src="fig-scaling/diffusion_jump_BC.png" align="bottom" width=500></p>
 </center>
 
-<h2 id="___sec141">Oscillating Dirichlet condition </h2>
+<h2 id="___sec141" class="anchor">Oscillating Dirichlet condition </h2>
 
 <p>
 Now we address a heat equation problem where the temperature is
@@ -1241,7 +1246,7 @@ which means that the boundary \( x=L \) is placed sufficiently far from \( x=0 \
 such that the solution is much damped and basically constant so
 \( u_x=0 \) is a reasonable condition.
 
-<h3 id="___sec142">Scaling issues </h3>
+<h3 id="___sec142" class="anchor">Scaling issues </h3>
 
 <p>
 Since the boundary temperature is oscillating around the initial
@@ -1265,7 +1270,7 @@ simulations or through a closed-form formula. We are so lucky in this
 relatively simple pedagogical problem that one can find an exact solution
 of a related problem.
 
-<h3 id="___sec143">Exact solution </h3>
+<h3 id="___sec143" class="anchor">Exact solution </h3>
 
 <p>
 As usual, investigating the exact solution of the model problem can
@@ -1290,7 +1295,7 @@ This is perhaps more easily seen if we make a rewrite
 $$ u(x,t) = U_0 - Ae^{-bx}\sin\left(b(x - ct)\right),\quad
 c=\omega/b = \sqrt{2\dfc\omega},\  b =\sqrt{\frac{\omega}{2\dfc}}\tp$$
 
-<h3 id="___sec144">Time and length scales </h3>
+<h3 id="___sec144" class="anchor">Time and length scales </h3>
 
 <p>
 The boundary oscillations lead to the time scale \( t_c=1/\omega \).
@@ -1382,7 +1387,7 @@ This means that \( x\in [0,4/b] \) and then \( \bar x\in [0,4] \).
 Increasing the spatial domain to \( [0,6] \) implies a damping \( e^{-6}\approx
 0.0025 \), if more accuracy is desired in the boundary condition.
 
-<h3 id="___sec145">The scaled problem </h3>
+<h3 id="___sec145" class="anchor">The scaled problem </h3>
 
 <p>
 Based on the discussion of scales above, we arrive at the following
@@ -1422,7 +1427,7 @@ relies on sufficient damping of \( \bar u \) to consider it constant
 space. We could, therefore, assign the condition \( \bar u = 0 \) instead
 at \( \bar x=\bar L \).
 
-<h3 id="___sec146">Simulations </h3>
+<h3 id="___sec146" class="anchor">Simulations </h3>
 
 <p>
 The file <a href="http://tinyurl.com/o8pb3yy/session.py" target="_self"><tt>session.py</tt></a> contains a function
@@ -1448,9 +1453,9 @@ if (!!(window.safari)) {
   document.write("<div style=\"width: 95%%; padding: 10px; border: 1px solid #100; border-radius: 4px;\"><p><font color=\"red\">The above movie will not play in Safari - use Chrome, Firefox, or Opera.</font></p></div>")}
 </script>
 
-<h1 id="sec:scale:diffu:Fisher">Reaction-diffusion equations</h1>
+<h1 id="sec:scale:diffu:Fisher" class="anchor">Reaction-diffusion equations</h1>
 
-<h2 id="___sec148">Fisher's equation </h2>
+<h2 id="___sec148" class="anchor">Fisher's equation </h2>
 
 <p>
 Fisher's equation is essentially the logistic equation at each point
@@ -1484,7 +1489,7 @@ $$
 \frac{\partial^2\bar u}{\partial\bar x^2} + t_c \varrho \bar u (1 - u_c\bar u/M)\tp
 $$
 
-<h3 id="___sec149">Balance of all terms </h3>
+<h3 id="___sec149" class="anchor">Balance of all terms </h3>
 
 <p>
 If all terms are equally important, the scales can be determined from
@@ -1522,7 +1527,7 @@ forces \( x_c^2\varrho /\dfc = 1 \), which implies \( x_c=\sqrt{\dfc/\varrho} \)
 and \( t_c=1/\varrho \). That is, equal balance of the three
 terms gives a unique choice of the time and length scale.
 
-<h3 id="___sec150">Fixed length scale </h3>
+<h3 id="___sec150" class="anchor">Fixed length scale </h3>
 
 <p>
 Assume now that we fix the length scale to be \( L \), either the
@@ -1570,7 +1575,7 @@ not of importance, so we implicitly assume that another scale \( u_c \)
 has been used, but that scale cancels anyway in the simplified PDE
 \( \bar u_{\bar t} = \bar u_{\bar x\bar x} \).
 
-<h2 id="___sec151">Nonlinear reaction-diffusion PDE </h2>
+<h2 id="___sec151" class="anchor">Nonlinear reaction-diffusion PDE </h2>
 
 <p>
 A general, nonlinear reaction-diffusion equation in 1D looks like

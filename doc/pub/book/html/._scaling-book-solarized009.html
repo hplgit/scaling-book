@@ -61,7 +61,11 @@ div { text-align: justify; text-justify: inter-word; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -1369,14 +1373,18 @@ the heat source from the welding equipment, and \( U_s \) is the
 initial constant (room) temperature in the material.
 
 <p>
-The boundary conditions at \( x=0,L \) are set for convenience &ndash; some sort
-of heat flux out of the boundary, modeled in terms of a cooling
+The boundary conditions at \( x=0,L \) are set for convenience &ndash; some
+sort of heat flux out of the boundary, modeled in terms of a cooling
 condition \( -ku_x = h(u-U_s) \), for a heat transfer coefficient \( h \),
-would yield a more physically relevant model. Also, using a 3D geometry
-with cooling conditions at all boundaries would result in a more
-relevant model. Since the focus is on scaling, we prefer to work with
-the simplest possible model, which is one-dimensional, has Dirichlet
-boundary conditions, and neglects melting.
+would yield a more physically relevant model. Also, only a full 3D
+geometry with such heat loss at the boundary is physically relevant,
+as neglecting a space dimension means insulated boundaries
+perpendicular to this direction. However, since the focus is on
+scaling, we prefer to work with the simplest possible model, which is
+one-dimensional, has Dirichlet boundary conditions, and neglects melting.
+The latter effect is very local and just stalls the temperature field
+locally &ndash; it does not affect the transport of heat away from the welding
+source in a significant way.
 
 <p>
 A possible model for the heat source is a moving Gaussian function:
@@ -1398,7 +1406,7 @@ the coefficients in the scaled PDE are all equal to unity.  Perform
 this scaling. Use scaled quantities in the arguments for the
 exponential function in \( f \) too and show that
 
-$$ \bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},$$
+$$ \bar f= \exp{(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2)},$$
 
 where \( \beta \) and \( \gamma \) are dimensionless numbers. Give an
 interpretation of \( \beta \) and \( \gamma \).

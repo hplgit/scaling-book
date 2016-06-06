@@ -29,13 +29,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -46,7 +46,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -651,6 +655,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._scaling-book3002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book3001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book3004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book3004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -891,7 +896,7 @@ $$
 <a name="part0006"></a>
 <!-- !split -->
 
-<h1 id="sec:scale:vib">Vibration problems</h1>
+<h1 id="sec:scale:vib" class="anchor">Vibration problems</h1>
 
 <p>
 We shall in this section
@@ -899,7 +904,7 @@ address a range of different second-order ODEs for mechanical
 vibrations and demonstrate how to reason about the scaling in
 different physical scenarios.
 
-<h2 id="sec:scale:vib:undamped">Undamped vibrations without forcing</h2>
+<h2 id="sec:scale:vib:undamped" class="anchor">Undamped vibrations without forcing</h2>
 
 <p>
 The simplest differential equation model for mechanical vibrations
@@ -926,7 +931,7 @@ and is connected to a spring that exerts a force \( -ku \) on the body.
 <p><img src="fig-scaling/oscillator_spring.png" align="bottom" width=500></p>
 </center>
 
-<h3 id="___sec66">The first technical steps of scaling </h3>
+<h3 id="___sec66" class="anchor">The first technical steps of scaling </h3>
 
 <p>
 The problem <a href="#mjx-eqn-2.64">(2.64)</a> has one independent
@@ -957,7 +962,7 @@ What is an appropriate displacement scale \( u_c \)? The initial condition
 Making the coefficient in front of the \( \bar u \) unity, such that
 both terms balance and are of size unity, is a candidate.
 
-<h3 id="___sec67">The exact solution </h3>
+<h3 id="___sec67" class="anchor">The exact solution </h3>
 
 <p>
 To better see what the proper scales of \( u \) and \( t \) are, we can look
@@ -1066,7 +1071,7 @@ like period, frequency, and amplitude of oscillating signals, so
 readers who need to refresh these concepts are recommended to
 do <a href="#scale:exer:sine">Problem 2.12: Find the period of sinusoidal signals</a> before continuing.
 
-<h3 id="___sec68">Discussion of the displacement scale </h3>
+<h3 id="___sec68" class="anchor">Discussion of the displacement scale </h3>
 
 <p>
 The amplitude of \( u \) is \( \sqrt{I^2 + V^2/\omega^2} \), and this
@@ -1076,7 +1081,7 @@ than the square root expression (but potentially a factor 1.4 wrong
 compared to the exact amplitude).  It is not very important to have
 \( |u|\leq 1 \), the point is to avoid \( |u| \) very small or large.
 
-<h3 id="___sec69">Discussion of the time scale </h3>
+<h3 id="___sec69" class="anchor">Discussion of the time scale </h3>
 
 <p>
 What is an appropriate time scale? Looking at
@@ -1088,7 +1093,7 @@ sine or cosine of \( \omega t \), so \( 1/\omega = \sqrt{m/k} \) can be a charac
 time scale. Likewise, one period of the oscillations, \( P=2\pi/\omega \), can
 be the characteristic time, leading to \( t_c=2\pi/\omega \).
 
-<h3 id="___sec70">The dimensionless solution </h3>
+<h3 id="___sec70" class="anchor">The dimensionless solution </h3>
 
 <p>
 With \( u_c=I \) and \( t_c=\sqrt{m/k} \) we get the scaled model
@@ -1122,7 +1127,7 @@ $$
 This expressions shows that the scaling is simply a matter of
 <em>stretching or shrinking the axes</em>.
 
-<h3 id="___sec71">Alternative displacement scale </h3>
+<h3 id="___sec71" class="anchor">Alternative displacement scale </h3>
 
 <p>
 Using \( u_c = V/\omega \), the equation
@@ -1152,7 +1157,7 @@ u(t) = V\sqrt{\frac{m}{k}}\bar u(2\pi\sqrt{k/m}\bar t)\tp
 \end{equation}
 $$
 
-<h3 id="___sec72">About frequency and dimensions </h3>
+<h3 id="___sec72" class="anchor">About frequency and dimensions </h3>
 
 <p>
 The solution goes like \( \cos\omega t \), where \( \omega =\sqrt{m/k} \)
@@ -1167,7 +1172,7 @@ precise, \( \omega \) should be named <em>angular frequency</em>. The relation b
 \( f \) and \( T \) is \( f=1/T \), so \( f=2\pi\omega \) and measured in Hz (1/s), which is
 the unit for counts per unit time.
 
-<h2 id="sec:scale:vib:undamped:mg">Undamped vibrations with constant forcing</h2>
+<h2 id="sec:scale:vib:undamped:mg" class="anchor">Undamped vibrations with constant forcing</h2>
 
 <p>
 For vertical vibrations in the gravity field, the model
@@ -1204,7 +1209,7 @@ We see that the oscillations around the equilibrium point in the
 gravity field are identical to the horizontal oscillations without
 gravity, except for an offset \( mg/(kI) \) in the displacement.
 
-<h2 id="sec:scale:vib:undamped:F">Undamped vibrations with time-dependent forcing</h2>
+<h2 id="sec:scale:vib:undamped:F" class="anchor">Undamped vibrations with time-dependent forcing</h2>
 
 <p>
 Now we add a transient forcing term \( F(t) \) to the model
@@ -1239,7 +1244,7 @@ three parameters (\( I \), \( V \), and \( A \)) that influence the magnitude of
 Moreover, there are two time scales, one for the free vibrations of
 the systems and one for the forced vibrations \( F(t) \).
 
-<h3 id="___sec75">Investigating scales via analytical solutions </h3>
+<h3 id="___sec75" class="anchor">Investigating scales via analytical solutions </h3>
 
 <p>
 As we have seen already several times, having access to
@@ -1350,7 +1355,7 @@ an example on such a signal.
 <p><img src="fig-scaling/envelope.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec76">The displacement and time scales </h3>
+<h3 id="___sec76" class="anchor">The displacement and time scales </h3>
 
 <p>
 A characteristic displacement can in the latter special case
@@ -1373,7 +1378,7 @@ of frequency \( \psi \) or \( \omega \) when these are close and the largest
 of them when they are distant. In any case, we set
 \( t_c=1/\max(\psi,\omega) \).
 
-<h3 id="___sec77">Finding the displacement scale from the differential equation </h3>
+<h3 id="___sec77" class="anchor">Finding the displacement scale from the differential equation </h3>
 
 <p>
 Going back to <a href="#mjx-eqn-2.71">(2.71)</a>, we
@@ -1391,7 +1396,7 @@ by \( A/(m\omega^2)=A/k \), showing that the scale \( u_c=A/k \) is
 relevant for an excitation frequency \( \psi \) that is small compared to
 the free vibration frequency \( \omega \).
 
-<h3 id="___sec78">Scaling with free vibrations as time scale </h3>
+<h3 id="___sec78" class="anchor">Scaling with free vibrations as time scale </h3>
 
 <p>
 The next step is to work out the dimensionless ODE for the chosen scales.
@@ -1445,7 +1450,7 @@ physical effects:
    frequencies or the time scales of the forcing and the free vibrations.</li>
 </ul>
 
-<h3 id="___sec79">Software </h3>
+<h3 id="___sec79" class="anchor">Software </h3>
 
 <p>
 Any solver for <a href="#mjx-eqn-2.71">(2.71)</a>
@@ -1453,7 +1458,7 @@ can be used for <a href="#mjx-eqn-2.73">(2.73)</a>.
 More details are provided at the end of
 the section <a href="#sec:scale:vib:damped:F">Damped vibrations with forcing</a>.
 
-<h3 id="___sec80">Choice of \( u_c \) close to resonance </h3>
+<h3 id="___sec80" class="anchor">Choice of \( u_c \) close to resonance </h3>
 
 <p>
 Now we shall discuss various choices of \( u_c \).
@@ -1502,7 +1507,7 @@ Figure <a href="#sec:scale:vib:fig:Fcos_b0:1">9</a>.
 <p><img src="fig-scaling/vib_delta099_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec81">Unit size of all terms in the ODE </h3>
+<h3 id="___sec81" class="anchor">Unit size of all terms in the ODE </h3>
 
 <p>
 Using the displacement scale \( u_c=A/k \) leads to
@@ -1534,7 +1539,7 @@ are important (e.g., \( \omega\gg\psi \)).
 <p><img src="fig-scaling/vib_delta05_b0_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec82">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
+<h3 id="___sec82" class="anchor">Choice of \( u_c \) when \( \psi\gg\omega \) </h3>
 
 <p>
 Finally, we may look at the case where \( \psi\gg\omega \) such that
@@ -1606,7 +1611,7 @@ numerical simulations with 160 time steps per period of the forcing.)
 <p><img src="fig-scaling/vib_delta10_b0_a5_Fcos.png" align="bottom" width=600></p>
 </center>
 
-<h3 id="___sec83">Displacement scale based on \( I \) </h3>
+<h3 id="___sec83" class="anchor">Displacement scale based on \( I \) </h3>
 
 <p>
 Choosing \( u_c=I \) gives
@@ -1633,7 +1638,7 @@ $$
 
 This scaling is not relevant close to resonance since then \( u_c\gg I \).
 
-<h2 id="sec:scale:vib:damped:F">Damped vibrations with forcing</h2>
+<h2 id="sec:scale:vib:damped:F" class="anchor">Damped vibrations with forcing</h2>
 
 <p>
 We now introduce a linear damping force \( bu'(t) \) in the equation of motion:
@@ -1669,7 +1674,7 @@ $$
 \end{equation}
 $$
 
-<h3 id="___sec85">The exact solution </h3>
+<h3 id="___sec85" class="anchor">The exact solution </h3>
 
 <p>
 As always, it is
@@ -1904,7 +1909,7 @@ R(Q,\delta) = \left(1 + Q^2(\delta - \delta^{-1})\right)^{-1}\tp
 \end{equation}
 $$
 
-<h3 id="___sec86">Choosing scales </h3>
+<h3 id="___sec86" class="anchor">Choosing scales </h3>
 
 <p>
 Much of the discussion about scales in the previous sections are
@@ -1925,7 +1930,7 @@ $$ \frac{b}{m\omega} = \frac{2B}{\omega} = Q^{-1}\tp$$
 The rest of the ODE is given in the previous section, and the particular
 formulas depend on the choices of \( t_c \) and \( u_c \).
 
-<h3 id="___sec87">Choice of \( u_c \) at resonance </h3>
+<h3 id="___sec87" class="anchor">Choice of \( u_c \) at resonance </h3>
 
 <p>
 The relevant scale for \( u_c \) at or nearby resonance (\( \psi = \omega \))
@@ -1982,7 +1987,7 @@ $$
 \end{align}
 $$
 
-<h3 id="___sec88">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
+<h3 id="___sec88" class="anchor">Choice of \( u_c \) when \( \omega\gg\psi \) </h3>
 
 <p>
 In the limit \( \omega\gg\psi \) and \( t\gg B^{-1} \),
@@ -1994,13 +1999,13 @@ showing that \( u_c=A/k \) is an appropriate displacement scale.
 The dimensionless numbers \( \alpha \), \( \beta \), and \( \delta \) are as
 for the forced vibrations without damping.
 
-<h3 id="___sec89">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
+<h3 id="___sec89" class="anchor">Choice of \( u_c \) when \( \omega\ll\psi \) </h3>
 
 <p>
 In the limit \( \omega\ll\psi \), we should base \( t_c \) on the rapid
 variations in the excitation: \( t_c=1/\psi \).
 
-<h3 id="___sec90">Software </h3>
+<h3 id="___sec90" class="anchor">Software </h3>
 
 <p>
 It is easy to reuse a solver for a general vibration problem also
@@ -2068,7 +2073,7 @@ options on the command-line for \( \alpha \), \( \beta \), \( \gamma \), \( \del
 the <code>main</code> function). It is an ideal application for exploring
 scaled vibration models.
 
-<h2 id="___sec91">Oscillating electric circuits </h2>
+<h2 id="___sec91" class="anchor">Oscillating electric circuits </h2>
 
 <p>
 The differential equation for an oscillating electric circuit is
@@ -2125,12 +2130,12 @@ which is basically the same as we derived for mechanical vibrations.
 (Two additional dimensionless variables will arise from the initial
 conditions for \( I \), just as in the mechanics cases.)
 
-<h1 id="___sec92">Exercises </h1>
+<h1 id="___sec92" class="anchor">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:US2SI1">Exercise 2.1: Perform unit conversion</h2>
+<h2 id="sec:scale:exer:US2SI1" class="anchor">Exercise 2.1: Perform unit conversion</h2>
 
 <p>
 Density (mass per volume: \( [\hbox{ML}^{-3}] \)) of water is
@@ -2176,7 +2181,7 @@ Filename: <code>density_conversion</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:ball_y">Problem 2.2: Scale a simple formula</h2>
+<h2 id="sec:scale:exer:ball_y" class="anchor">Problem 2.2: Scale a simple formula</h2>
 
 <p>
 The height \( y \) of a body thrown up in the air is given by
@@ -2243,7 +2248,7 @@ Filename: <code>vertical_motion</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:cooling:osc">Exercise 2.3: Perform alternative scalings</h2>
+<h2 id="sec:scale:exer:decay:cooling:osc" class="anchor">Exercise 2.3: Perform alternative scalings</h2>
 
 <p>
 The problem in the section <a href="._scaling-book3005.html#scale:cooling:osc">Scaling a cooling problem with time-dependent surroundings</a> applies a
@@ -2348,7 +2353,7 @@ scaled problem.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:ball_y_wdrag">Problem 2.4: A nonlinear ODE for vertical motion with air resistance</h2>
+<h2 id="sec:scale:exer:ball_y_wdrag" class="anchor">Problem 2.4: A nonlinear ODE for vertical motion with air resistance</h2>
 
 <p>
 The velocity \( v(t) \)
@@ -2467,7 +2472,7 @@ Filename: <code>vertical_motion_with_drag</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:jump">Exercise 2.5: Solve a decay ODE with discontinuous coefficient</h2>
+<h2 id="sec:scale:exer:decay:jump" class="anchor">Exercise 2.5: Solve a decay ODE with discontinuous coefficient</h2>
 
 <p>
 Make software for the problem in the section <a href="._scaling-book3005.html#sec:scale:jump">Variable coefficients</a>
@@ -2593,7 +2598,7 @@ Filename: <code>decay_jump</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:decay:cooling">Exercise 2.6: Implement a scaled model for cooling</h2>
+<h2 id="sec:scale:exer:decay:cooling" class="anchor">Exercise 2.6: Implement a scaled model for cooling</h2>
 
 <p>
 Use software for the unscaled problem <a href="._scaling-book3005.html#mjx-eqn-2.16">(2.16)</a>
@@ -2710,7 +2715,7 @@ Filename: <code>cooling1</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:decay:step">Problem 2.7: Decay ODE with discontinuous coefficients</h2>
+<h2 id="scale:exer:decay:step" class="anchor">Problem 2.7: Decay ODE with discontinuous coefficients</h2>
 
 <p>
 The goal of this exercise is to scale the problem
@@ -2802,7 +2807,7 @@ Filename: <code>decay_varcoeff</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:nonlin:logistic2">Exercise 2.8: Alternative scalings of a cooling model</h2>
+<h2 id="scale:exer:nonlin:logistic2" class="anchor">Exercise 2.8: Alternative scalings of a cooling model</h2>
 
 <p>
 Implement the scaled model <a href="._scaling-book3005.html#mjx-eqn-2.29">(2.29)</a>
@@ -2842,7 +2847,7 @@ Filename: <code>growth</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:projectile">Exercise 2.9: Projectile motion</h2>
+<h2 id="scale:vib:exer:projectile" class="anchor">Exercise 2.9: Projectile motion</h2>
 
 <p>
 We have the following mathematical model for the motion of a projectile
@@ -3204,7 +3209,7 @@ Filename: <code>projectile</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:predprey">Problem 2.10: A predator-prey model</h2>
+<h2 id="scale:exer:predprey" class="anchor">Problem 2.10: A predator-prey model</h2>
 
 <p>
 The evolution of animal populations with a predator and a prey (e.g.,
@@ -3468,7 +3473,7 @@ Filename: <code>predator_prey</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:competing_species">Problem 2.11: A model for competing species</h2>
+<h2 id="scale:exer:competing_species" class="anchor">Problem 2.11: A model for competing species</h2>
 
 <p>
 Let \( N_1(t) \) and \( N_2(t) \) be the number of animals in two
@@ -3544,7 +3549,7 @@ Filename: <code>competing_species</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:sine">Problem 2.12: Find the period of sinusoidal signals</h2>
+<h2 id="scale:exer:sine" class="anchor">Problem 2.12: Find the period of sinusoidal signals</h2>
 
 <p>
 This exercise aims at investigating various fundamental
@@ -3794,7 +3799,7 @@ Filename: <code>sine_period</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec105">Remarks </h3>
+<h3 id="___sec105" class="anchor">Remarks </h3>
 
 <p>
 The <em>frequency</em> is the number of up and down cycles in one unit time.
@@ -3808,7 +3813,7 @@ The <em>angular frequency</em> \( \omega \) is then \( \omega = 2\pi/P = 2\pi f 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:sliding">Problem 2.13: Oscillating mass with sliding friction</h2>
+<h2 id="scale:vib:exer:sliding" class="anchor">Problem 2.13: Oscillating mass with sliding friction</h2>
 
 <p>
 <center> <!-- figure label: --> <div id="scale:vib:exer:sliding:fig"></div> <!-- FIGURE -->
@@ -4015,7 +4020,7 @@ Filename: <code>sliding_box</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:pendulum">Problem 2.14: Pendulum equations</h2>
+<h2 id="sec:scale:exer:pendulum" class="anchor">Problem 2.14: Pendulum equations</h2>
 
 <p>
 The equation for a so-called simple pendulum with a mass \( m \) at the end is
@@ -4246,7 +4251,7 @@ Filename: <code>pendulum</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="sec:scale:exer:binary_star">Exercise 2.15: ODEs for a binary star</h2>
+<h2 id="sec:scale:exer:binary_star" class="anchor">Exercise 2.15: ODEs for a binary star</h2>
 
 <p>
 The equations for a <a href="https://en.wikipedia.org/wiki/Binary_star" target="_self">binary star</a>,
@@ -4550,7 +4555,7 @@ Filename: <code>binary_star</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Duffing">Problem 2.16: Duffing's equation</h2>
+<h2 id="scale:vib:exer:Duffing" class="anchor">Problem 2.16: Duffing's equation</h2>
 
 <p>
 Duffing's equation is a vibration equation with linear and cubic
@@ -4604,7 +4609,7 @@ Filename: <code>Duffing_eq</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:rocket">Problem 2.17: Vertical motion in a varying gravity field</h2>
+<h2 id="scale:vib:exer:rocket" class="anchor">Problem 2.17: Vertical motion in a varying gravity field</h2>
 
 <p>
 A body (e.g., projectile or rocket) is launched vertically
@@ -4921,7 +4926,7 @@ Filename: <code>varying_gravity</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:quantum">Problem 2.18: A simplified Schroedinger equation</h2>
+<h2 id="scale:vib:exer:quantum" class="anchor">Problem 2.18: A simplified Schroedinger equation</h2>
 
 <p>
 A simplified stationary
@@ -5024,7 +5029,7 @@ Filename: <code>Schroedinger</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec112">Remarks </h3>
+<h3 id="___sec112" class="anchor">Remarks </h3>
 
 <p>
 Introducing \( u=\bar r\bar R \) and renaming \( \bar r \) to \( x \),

@@ -29,13 +29,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -46,7 +46,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -651,6 +655,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -891,7 +896,7 @@ $$
 <a name="part0004"></a>
 <!-- !split -->
 
-<center><h1 id="scale:dimunit">Dimensions and units</h1></center> <!-- chapter heading -->
+<center><h1 id="scale:dimunit" class="anchor">Dimensions and units</h1></center> <!-- chapter heading -->
 
 <p>
 A mechanical system undergoing one-dimensional damped vibrations can be
@@ -913,9 +918,9 @@ effects: \( mu'' \) (mass times acceleration), \( bu' \) (damping force), and
 different <em>units</em>, but \( mu'' \), \( bu' \), and \( ku \) must all have the same
 dimension, otherwise it would not make sense to add them.
 
-<h1 id="___sec2">Fundamental concepts </h1>
+<h1 id="___sec2" class="anchor">Fundamental concepts </h1>
 
-<h2 id="___sec3">Base units and dimensions </h2>
+<h2 id="___sec3" class="anchor">Base units and dimensions </h2>
 
 <p>
 <em>Base units</em> have the important property that all other units derive
@@ -992,7 +997,7 @@ of \( u \) divided by the dimension of \( t \).
 </div>
 
 
-<h2 id="scale:dimunit:tables">Dimensions of common physical quantities</h2>
+<h2 id="scale:dimunit:tables" class="anchor">Dimensions of common physical quantities</h2>
 
 <p>
 Many derived quantities are measured in derived units that have their
@@ -1062,14 +1067,14 @@ Some common physical quantities and their dimensions are listed next.
   </div> <!-- col-xs-12 -->
 </div> <!-- cell row -->
 
-<h3 id="___sec5">Prefixes for units </h3>
+<h3 id="___sec5" class="anchor">Prefixes for units </h3>
 
 <p>
 Units often have <a href="https://en.wikipedia.org/wiki/Metric_prefix" target="_self">prefixes</a>.
 For example, kilo (k) is a prefix for 1000,
 so kg is 1000 g. Similarly, GPa means giga pascal or \( 10^9 \) Pa.
 
-<h2 id="scale:dimunit:Pi">The Buckingham Pi theorem</h2>
+<h2 id="scale:dimunit:Pi" class="anchor">The Buckingham Pi theorem</h2>
 
 <p>
 Almost all texts on scaling has a treatment of the famous Buckingham
@@ -1136,7 +1141,7 @@ differential equations.  Provided one has a model based on
 differential equations, there is actually no need for classical
 dimensional analysis.
 
-<h2 id="___sec7">Absolute errors, relative errors, and units </h2>
+<h2 id="___sec7" class="anchor">Absolute errors, relative errors, and units </h2>
 
 <p>
 Mathematically, it does not matter what units we use for a physical
@@ -1159,7 +1164,7 @@ computations are of unit size (or at least moderate) instead of being very
 large or very small. The techniques of these notes show how this
 can be done.
 
-<h2 id="___sec8">Units and computers </h2>
+<h2 id="___sec8" class="anchor">Units and computers </h2>
 
 <p>
 Traditional numerical computing involves numbers only and therefore
@@ -1175,7 +1180,7 @@ Symbolic computing packages, such as Mathematica and Maple, allow
 computations with quantities that have dimension. This is also possible
 in popular computer languages used for numerical computing (the section <a href="#scale:PQ">PhysicalQuantity: a tool for computing with units</a> provides a specific example in Python).
 
-<h2 id="___sec9">Unit systems </h2>
+<h2 id="___sec9" class="anchor">Unit systems </h2>
 
 <p>
 Confusion arises quickly when some physical quantities are expressed
@@ -1197,7 +1202,7 @@ safely skip this material and jump right to the section <a href="._.trash82dee82
 <!-- Example on metric conversion error: -->
 <!-- <a href="https://en.wikipedia.org/wiki/Mars_Climate_Orbiter" target="_self"><tt>https://en.wikipedia.org/wiki/Mars_Climate_Orbiter</tt></a> -->
 
-<h2 id="___sec10">Example on challenges arising from unit systems </h2>
+<h2 id="___sec10" class="anchor">Example on challenges arising from unit systems </h2>
 
 <p>
 A slightly elaborated example on scaling in an actual
@@ -1281,7 +1286,7 @@ must be wrapped in Python with tools like
 or similar, see <a href="._.trash82dee82e1274a586571086dca04d00308d3a0d86011.html#Langtangen_Linge_fdm">[3]</a> (Appendix C) for basic
 examples on f2py and Cython wrapping of C and Fortran code).
 
-<h2 id="scale:PQ">PhysicalQuantity: a tool for computing with units</h2>
+<h2 id="scale:PQ" class="anchor">PhysicalQuantity: a tool for computing with units</h2>
 
 <p>
 These notes contain quite some computer code to illustrate how the theory
@@ -1424,7 +1429,7 @@ where joule replaces calorie?
 <span style="color: #666666">4.184</span> J<span style="color: #666666">/</span>K<span style="color: #666666">/</span>g
 </pre></div>
 
-<h1 id="scale:parampool">Parampool: user interfaces with automatic unit conversion</h1>
+<h1 id="scale:parampool" class="anchor">Parampool: user interfaces with automatic unit conversion</h1>
 
 <p>
 The <a href="https://github.com/hplgit/parampool" target="_self">Parampool</a> package allows
@@ -1444,7 +1449,7 @@ formula \( s=v_0t + \frac{1}{2}at^2 \). We want \( v_0 \) to be a velocity
 with unit m/s, \( a \) to be acceleration with unit \( \hbox{m/s}^2 \), \( t \) to be
 time measured in s, and consequently \( s \) will be a distance measured in m.
 
-<h2 id="___sec13">Pool of parameters </h2>
+<h2 id="___sec13" class="anchor">Pool of parameters </h2>
 
 <p>
 First, Parampool requires us to define a <em>pool</em> of all input
@@ -1497,7 +1502,7 @@ the <code>str2type</code> property, e.g., <code>str2type=float</code>.)
 </div>
 
 
-<h2 id="___sec14">Fetching pool data for computing </h2>
+<h2 id="___sec14" class="anchor">Fetching pool data for computing </h2>
 
 <p>
 We can make a little function for fetching values from the pool
@@ -1521,7 +1526,7 @@ For example, if the user provides the command-line argument
 <code>--time '2 h'</code>, Parampool will convert this quantity to seconds and
 <code>pool.get_value('time')</code> will return 7200.
 
-<h2 id="___sec15">Reading command-line options </h2>
+<h2 id="___sec15" class="anchor">Reading command-line options </h2>
 
 <p>
 To run the computations, we define the pool, load values from the
@@ -1589,7 +1594,7 @@ We can then do
 <p>
 and get output with the right unit as well.
 
-<h2 id="___sec16">Setting default values in a file </h2>
+<h2 id="___sec16" class="anchor">Setting default values in a file </h2>
 
 <p>
 In large applications with lots of input parameters one will often like
@@ -1650,7 +1655,7 @@ s=10972.8 m
 The resulting calculations are \( s=1.524\cdot 7200 + 0 =10972.8 \).
 You are encouraged to play around with the <a href="http://tinyurl.com/o8pb3yy/distance.py" target="_self"><tt>distance.py</tt></a> program.
 
-<h2 id="___sec17">Specifying multiple values of input parameters </h2>
+<h2 id="___sec17" class="anchor">Specifying multiple values of input parameters </h2>
 
 <p>
 Parampool has an interesting feature: multiple values can be assigned
@@ -1734,7 +1739,7 @@ Notice that some of the multiple values have dimensions different
 from the registered dimension for that parameter, and the table
 shows that conversion to the right dimension has taken place.
 
-<h2 id="___sec18">Generating a graphical user interface </h2>
+<h2 id="___sec18" class="anchor">Generating a graphical user interface </h2>
 
 <p>
 For the fun of it, we can easily generate a graphical user interface

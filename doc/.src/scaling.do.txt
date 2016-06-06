@@ -8296,14 +8296,18 @@ $c$ a heat capacity, $k$ the heat conduction coefficient, $f$ is
 the heat source from the welding equipment, and $U_s$ is the
 initial constant (room) temperature in the material.
 
-The boundary conditions at $x=0,L$ are set for convenience -- some sort
-of heat flux out of the boundary, modeled in terms of a cooling
+The boundary conditions at $x=0,L$ are set for convenience -- some
+sort of heat flux out of the boundary, modeled in terms of a cooling
 condition $-ku_x = h(u-U_s)$, for a heat transfer coefficient $h$,
-would yield a more physically relevant model. Also, using a 3D geometry
-with cooling conditions at all boundaries would result in a more
-relevant model. Since the focus is on scaling, we prefer to work with
-the simplest possible model, which is one-dimensional, has Dirichlet
-boundary conditions, and neglects melting.
+would yield a more physically relevant model. Also, only a full 3D
+geometry with such heat loss at the boundary is physically relevant,
+as neglecting a space dimension means insulated boundaries
+perpendicular to this direction. However, since the focus is on
+scaling, we prefer to work with the simplest possible model, which is
+one-dimensional, has Dirichlet boundary conditions, and neglects melting.
+The latter effect is very local and just stalls the temperature field
+locally -- it does not affect the transport of heat away from the welding
+source in a significant way.
 
 A possible model for the heat source is a moving Gaussian function:
 
@@ -8325,7 +8329,7 @@ this scaling. Use scaled quantities in the arguments for the
 exponential function in $f$ too and show that
 
 !bt
-\[ \bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},\]
+\[ \bar f= \exp{(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2)},\]
 !et
 where $\beta$ and $\gamma$ are dimensionless numbers. Give an
 interpretation of $\beta$ and $\gamma$.
@@ -8652,6 +8656,7 @@ Finally, we have the results for $\gamma=40$.
 
 FIGURE: [fig-scaling/welding_gamma40, width=800 frac=1]
 
+__Discussion.__
 From these plots we see that it does not matter which of the scalings
 in b)-d) we choose, as long as we compensate with the $\delta$ parameter
 to bring $u$ to the size of unity. The scaling a) is suitable for $\gamma\leq
@@ -8685,6 +8690,45 @@ would also demonstrate that the heat from the welding equipment is more
 efficiently conducted away toward the boundaries. However, for
 investigating the differences between different scalings, the choice
 of boundary conditions is not a key issue.
+
+__Simulations with a full 3D model.__
+How relevant is it to study scaling in 1D model when we know that the
+heat loss from the material is not well modeled? We have implemented a
+full 3D model in the FEniCS programming system and performed simulations
+using cooling law boundary conditions (i.e., conditions of Robin type).
+In the dimensionless cooling law, we set the Nusselt number to 1.
+The other dimensionless parameters are as in the 1D problem, but the
+welding equipment moves in a circle rather along a line as it had to
+in the 1D problem.
+
+<%
+# NOTE: When fenics tutorial moves back to master, we need to update
+# brief to master!
+_branch = 'brief'  # 'master'
+fenics_welding_url = 'https://raw.githubusercontent.com/hplgit/fenics-tutorial/%s/doc/pub' % _branch
+%>
+
+Below is a plot of the heat source (upper left) and temperature distributions for $\gamma=0.1$ (upper right), $\gamma=1$ (lower left), and $\gamma=30$ (lower right), after two rotations.
+
+FIGURE: [fig-scaling/welding3D_fenics, width=800, frac=1]
+
+Gearing $\gamma$ up to 2000 gives the following comet-like temperature
+distribution:
+
+FIGURE: [fig-scaling/welding_gamma2000_fenics, width=500, frac=0.7]
+
+From the movies below we can clearly see how the temperature is effectively
+spreading in 3D for small $\gamma$ values, while for large values the
+temperature hardly reaches the boundary.
+
+MOVIE: [${fenics_welding_url}/mov/welding/welding_gamma01_3D.ogg] $\gamma=0.1$.
+
+MOVIE: [${fenics_welding_url}/mov/welding/welding_gamma1_3D.ogg] $\gamma=1$.
+
+MOVIE: [${fenics_welding_url}/mov/welding/welding_gamma30_3D.ogg] $\gamma=30$.
+
+MOVIE: [${fenics_welding_url}/mov/welding/welding_gamma2000_3D.ogg] $\gamma=2000$.
+
 !esol
 !esubex
 

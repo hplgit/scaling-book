@@ -29,13 +29,13 @@ code { color: inherit; background-color: transparent; }
    overflow-x: hidden;
 }
 
-/* Position anchors of headings a bit higher so jumping to headlines
-behaves correctly */
-a.anchor {
-    display: block;
-    position: relative;
-    top: -100px;
-    visibility: hidden;
+/* Adds an invisible element before each target to offset for the navigation
+   bar */
+.anchor::before {
+  content:"";
+  display:block;
+  height:50px; /* fixed header height*/
+  margin:-50px 0 0; /* negative fixed header height */
 }
 
 body { font-size:20px;line-height:1.5; }
@@ -46,7 +46,11 @@ body { font-size:20px;line-height:1.5; }
 
 <!-- tocinfo
 {'highest level': 0,
- 'sections': [(u'Preface', 0, u'ch:preface', u'ch:preface'),
+ 'sections': [('Table of contents',
+               0,
+               'table_of_contents',
+               'table_of_contents'),
+              (u'Preface', 0, u'ch:preface', u'ch:preface'),
               (u'Dimensions and units',
                0,
                u'scale:dimunit',
@@ -651,6 +655,7 @@ $$
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown">Contents <b class="caret"></b></a>
         <ul class="dropdown-menu">
+     <!-- navigation toc: --> <li><a href="._scaling-book002.html#table_of_contents" style="font-size: 80%;"><b>Table of contents</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book001.html#ch:preface" style="font-size: 80%;"><b>Preface</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#scale:dimunit" style="font-size: 80%;"><b>Dimensions and units</b></a></li>
      <!-- navigation toc: --> <li><a href="._scaling-book004.html#___sec2" style="font-size: 80%;">&nbsp;&nbsp;&nbsp;Fundamental concepts</a></li>
@@ -891,9 +896,9 @@ $$
 <a name="part0009"></a>
 <!-- !split -->
 
-<h1 id="scale:convdiff">The convection-diffusion equation</h1>
+<h1 id="scale:convdiff" class="anchor">The convection-diffusion equation</h1>
 
-<h2 id="___sec153">Convection-diffusion without a force term </h2>
+<h2 id="___sec153" class="anchor">Convection-diffusion without a force term </h2>
 
 <p>
 We now add a convection term \( \boldsymbol{v}\cdot\nabla u \) to the diffusion
@@ -1049,7 +1054,7 @@ conditions.
 </div>
 
 
-<h2 id="___sec154">Stationary PDE </h2>
+<h2 id="___sec154" class="anchor">Stationary PDE </h2>
 
 <p>
 Suppose the problem is stationary and that there is no need for
@@ -1171,7 +1176,7 @@ scaled equation \( \bar u' = \bar u'' \)
 expresses that the terms \( \bar u' \) and \( \bar u'' \) are
 equal and of size around unity.
 
-<h2 id="scale:convdiff:f">Convection-diffusion with a source term</h2>
+<h2 id="scale:convdiff:f" class="anchor">Convection-diffusion with a source term</h2>
 
 <p>
 Let us add a force term \( f(\x,t) \) to the convection-diffusion equation:
@@ -1243,12 +1248,12 @@ to \( u_c= f_c L/V \).
 Alternatively, \( u_c \) can be based on the initial condition, with similar
 results as found in the sections on the wave and diffusion PDEs.
 
-<h1 id="___sec156">Exercises </h1>
+<h1 id="___sec156" class="anchor">Exercises </h1>
 
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:stationary_Couette">Problem 3.1: Stationary Couette flow</h2>
+<h2 id="scale:vib:exer:stationary_Couette" class="anchor">Problem 3.1: Stationary Couette flow</h2>
 
 <p>
 A fluid flows between two flat plates, with one plate at rest while
@@ -1289,7 +1294,7 @@ Filename: <code>stationary_Couette</code>.
 <p>
 <!-- Closing remarks for this Problem -->
 
-<h3 id="___sec158">Remarks </h3>
+<h3 id="___sec158" class="anchor">Remarks </h3>
 
 <p>
 The problem for \( u \) is a classical two-point boundary-value problem
@@ -1310,7 +1315,7 @@ fluid or heat.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:vib:exer:Couette_wpressure">Exercise 3.2: Couette-Poiseuille flow</h2>
+<h2 id="scale:vib:exer:Couette_wpressure" class="anchor">Exercise 3.2: Couette-Poiseuille flow</h2>
 
 <p>
 Viscous fluid flow between two infinite flat plates \( z=0 \) and \( z=H \)
@@ -1360,7 +1365,7 @@ Filename: <code>Couette_wpressure</code>.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:pipeflow:pulsatile">Exercise 3.3: Pulsatile pipeflow</h2>
+<h2 id="scale:exer:pipeflow:pulsatile" class="anchor">Exercise 3.3: Pulsatile pipeflow</h2>
 
 <p>
 The flow of a viscous fluid in a straight pipe with circular
@@ -1400,7 +1405,7 @@ Discuss how the scaling can be extended to this case.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:cable_eq">Exercise 3.4: The linear cable equation</h2>
+<h2 id="scale:exer:cable_eq" class="anchor">Exercise 3.4: The linear cable equation</h2>
 
 <p>
 A key PDE in neuroscience is the <a href="https://en.wikipedia.org/wiki/Cable_theory" target="_self">cable equation</a>, here given in its simplest linear form:
@@ -1434,7 +1439,7 @@ reaction, i.e., the \( -u \) term.
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="scale:exer:twometal">Exercise 3.5: Heat conduction with discontinuous initial condition</h2>
+<h2 id="scale:exer:twometal" class="anchor">Exercise 3.5: Heat conduction with discontinuous initial condition</h2>
 
 <p>
 Two pieces of metal at different temperature are brought in contact
@@ -1510,7 +1515,7 @@ area of the cross section. Scale this problem.
 <p>
 <!-- Closing remarks for this Exercise -->
 
-<h3 id="___sec163">Remarks </h3>
+<h3 id="___sec163" class="anchor">Remarks </h3>
 
 <p>
 We can derive <a href="#mjx-eqn-3.85">(3.85)</a>-<a href="#mjx-eqn-3.88">(3.88)</a> from <a href="#mjx-eqn-3.83">(3.83)</a>-<a href="#mjx-eqn-3.84">(3.84)</a>.
@@ -1570,7 +1575,7 @@ The result is the 1D initial-boundary value problem
 <p>
 <!-- --- begin exercise --- -->
 
-<h2 id="diffu:exer:welding">Problem 3.6: Scaling a welding problem</h2>
+<h2 id="diffu:exer:welding" class="anchor">Problem 3.6: Scaling a welding problem</h2>
 
 <p>
 Welding equipment makes a very localized heat source that moves in
@@ -1600,14 +1605,18 @@ the heat source from the welding equipment, and \( U_s \) is the
 initial constant (room) temperature in the material.
 
 <p>
-The boundary conditions at \( x=0,L \) are set for convenience &ndash; some sort
-of heat flux out of the boundary, modeled in terms of a cooling
+The boundary conditions at \( x=0,L \) are set for convenience &ndash; some
+sort of heat flux out of the boundary, modeled in terms of a cooling
 condition \( -ku_x = h(u-U_s) \), for a heat transfer coefficient \( h \),
-would yield a more physically relevant model. Also, using a 3D geometry
-with cooling conditions at all boundaries would result in a more
-relevant model. Since the focus is on scaling, we prefer to work with
-the simplest possible model, which is one-dimensional, has Dirichlet
-boundary conditions, and neglects melting.
+would yield a more physically relevant model. Also, only a full 3D
+geometry with such heat loss at the boundary is physically relevant,
+as neglecting a space dimension means insulated boundaries
+perpendicular to this direction. However, since the focus is on
+scaling, we prefer to work with the simplest possible model, which is
+one-dimensional, has Dirichlet boundary conditions, and neglects melting.
+The latter effect is very local and just stalls the temperature field
+locally &ndash; it does not affect the transport of heat away from the welding
+source in a significant way.
 
 <p>
 A possible model for the heat source is a moving Gaussian function:
@@ -1629,7 +1638,7 @@ the coefficients in the scaled PDE are all equal to unity.  Perform
 this scaling. Use scaled quantities in the arguments for the
 exponential function in \( f \) too and show that
 
-$$ \bar f= \exp{\left(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2\right)},$$
+$$ \bar f= \exp{(-\frac{1}{2}\beta^2(\bar x -\gamma \bar t)^2)},$$
 
 where \( \beta \) and \( \gamma \) are dimensionless numbers. Give an
 interpretation of \( \beta \) and \( \gamma \).
