@@ -15,6 +15,7 @@ Donatien
 Duffing's
 Ec
 Eckert
+FEniCS
 FOLFIRINOX
 Falch
 FitzHugh

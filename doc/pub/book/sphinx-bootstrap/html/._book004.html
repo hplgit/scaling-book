@@ -1019,20 +1019,16 @@ can be then expressed as</p>
     \quad  x\in (0,L),\ t\in (0,T],\]</div>
 <div class="math" id="eq-scale-wave-pde3-ic-u">
 \[\tag{137}
-u(x,0) = I(x),
-    \quad x\in [0,L],\]</div>
+u(x,0) = I(x),                          \quad x\in [0,L],\]</div>
 <div class="math" id="eq-scale-wave-pde3-ic-ut">
 \[\tag{138}
-{\partial\over\partial t}u(x,0) = 0,
-    \quad  x\in [0,L],\]</div>
+{\partial\over\partial t}u(x,0) = 0,    \quad x\in [0,L],\]</div>
 <div class="math" id="eq-scale-wave-pde3-bc-0">
 \[\tag{139}
-\frac{\partial}{\partial x}u(0,t)  = 0,
-    \quad  t\in (0,T],\]</div>
+\frac{\partial}{\partial x}u(0,t)  = 0, \quad t\in (0,T],\]</div>
 <div class="math" id="eq-scale-wave-pde3-bc-l">
 \[\tag{140}
-\frac{\partial}{\partial x}u(L,t)  = 0,
-    \quad  t\in (0,T].\]</div>
+\frac{\partial}{\partial x}u(L,t)  = 0, \quad t\in (0,T].\]</div>
 <div class="section" id="non-dimensionalization">
 <h4>Non-dimensionalization<a class="headerlink" href="#non-dimensionalization" title="Permalink to this headline">¶</a></h4>
 <p>We make the coefficient <span class="math">\(\lambda\)</span> non-dimensional by</p>
@@ -1052,7 +1048,7 @@ to be the maximum value such that <span class="math">\(|\lambda|\leq 1\)</span>:
 <p>Inserting dependent and independent variables expressed by their
 non-dimensional counterparts yields</p>
 <div class="math">
-\[\begin{split}\begin{align*}
+\[\begin{split}\begin{alignat*}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &amp;=
 \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
@@ -1066,7 +1062,7 @@ non-dimensional counterparts yields</p>
 \quad  &amp;\bar t\in (0,\bar T],\\
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) &amp; = 0,
 \quad  &amp;\bar t\in (0,\bar T],
-\end{align*}\end{split}\]</div>
+\end{alignat*}\end{split}\]</div>
 <p>with <span class="math">\(\bar T = Tc/L\)</span>.</p>
 </div>
 <div class="section" id="choosing-the-time-scale-1">
@@ -2304,12 +2300,12 @@ heat equation. Our goal is to investigate alternative scalings
 through numerical experimentation.</p>
 <p>The governing PDE problem reads</p>
 <div class="math">
-\[\begin{split}\begin{align*}
+\[\begin{split}\begin{alignat*}{2}
 \varrho c\frac{\partial u}{\partial t} &amp;= k\frac{\partial^2 u}{\partial x^2}
 + f, &amp; x\in (0,L),\ t\in (0,T),\\
 u(x,0) &amp;= U_s, &amp; x\in [0,L],\\
 u(0,t) = u(L,t) &amp;= U_s, &amp; t\in (0,T].
-\end{align*}\end{split}\]</div>
+\end{alignat*}\end{split}\]</div>
 <p>Here, <span class="math">\(u\)</span> is the temperature, <span class="math">\(\varrho\)</span> the density of the material,
 <span class="math">\(c\)</span> a heat capacity, <span class="math">\(k\)</span> the heat conduction coefficient, <span class="math">\(f\)</span> is
 the heat source from the welding equipment, and <span class="math">\(U_s\)</span> is the

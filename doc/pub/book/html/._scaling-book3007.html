@@ -34,7 +34,7 @@ code { color: inherit; background-color: transparent; }
 .anchor::before {
   content:"";
   display:block;
-  height:50px; /* fixed header height*/
+  height:50px;      /* fixed header height for style bootstrap_bluegray */
   margin:-50px 0 0; /* negative fixed header height */
 }
 
@@ -1042,7 +1042,7 @@ With the described choices of scales,
 we end up with the dimensionless initial-boundary value problem
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial x^2}, \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
 \tag{3.8}\\ 
@@ -1058,7 +1058,7 @@ $$
 \bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T].
 \tag{3.12}
-\end{align}
+\end{alignat}
 $$
 
 Here, \( \bar T = Tc/L \).
@@ -1190,7 +1190,7 @@ impact than \( U_L \) on \( u \).
 With \( u_c=\max_t |U_L(t)| \), we get the scaled problem
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial \bar x^2},
 \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
@@ -1207,7 +1207,7 @@ $$
 \bar u(1,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
 \tag{3.18}
-\end{align}
+\end{alignat}
 $$
 
 Also this problem is free of physical parameters like \( c \) and \( L \).
@@ -1490,25 +1490,21 @@ The initial-boundary value problem
 can be then expressed as
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial^2 u}{\partial t^2} &=
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
 \quad & x\in (0,L),\ t\in (0,T],
 \tag{3.25}\\ 
-u(x,0) &= I(x),
-\quad &x\in [0,L],
+u(x,0) &= I(x),                          \quad &x\in [0,L],
 \tag{3.26}\\ 
-{\partial\over\partial t}u(x,0) &= 0,
-\quad & x\in [0,L],
+{\partial\over\partial t}u(x,0) &= 0,    \quad &x\in [0,L],
 \tag{3.27}\\ 
-\frac{\partial}{\partial x}u(0,t) & = 0,
-\quad  &t\in (0,T],
+\frac{\partial}{\partial x}u(0,t) & = 0, \quad &t\in (0,T],
 \tag{3.28}\\ 
-\frac{\partial}{\partial x}u(L,t) & = 0,
-\quad  &t\in (0,T].
+\frac{\partial}{\partial x}u(L,t) & = 0, \quad &t\in (0,T].
 \tag{3.29}
-\end{align}
+\end{alignat}
 $$
 
 <h3 id="___sec128" class="anchor">Non-dimensionalization </h3>
@@ -1540,7 +1536,7 @@ Inserting dependent and independent variables expressed by their
 non-dimensional counterparts yields
 
 $$
-\begin{align*}
+\begin{alignat*}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
@@ -1554,7 +1550,7 @@ $$
 \quad  &\bar t\in (0,\bar T],\\ 
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\end{align*}
+\end{alignat*}
 $$
 
 with \( \bar T = Tc/L \).

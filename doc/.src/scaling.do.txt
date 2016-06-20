@@ -5741,7 +5741,7 @@ With the described choices of scales,
 we end up with the dimensionless initial-boundary value problem
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial x^2}, \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
 label{scale:wave:pde1:d}\\
@@ -5757,7 +5757,7 @@ label{scale:wave:pde1:bc:0:d}\\
 \bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T].
 label{scale:wave:pde1:bc:L:d}
-\end{align}
+\end{alignat}
 !et
 Here, $\bar T = Tc/L$.
 
@@ -5884,7 +5884,7 @@ impact than $U_L$ on $u$.
 With $u_c=\max_t |U_L(t)|$, we get the scaled problem
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 {\partial^2 \bar u\over\partial \bar x^2},
 \quad & \bar x\in (0,1),\ \bar t\in (0,\bar T],
@@ -5901,7 +5901,7 @@ label{scale:wave:pde2:bc:0:d}\\
 \bar u(1,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
 label{scale:wave:pde2:bc:L:d}
-\end{align}
+\end{alignat}
 !et
 Also this problem is free of physical parameters like $c$ and $L$.
 The input is completely specified by the shape of $I(x)$ and $U_L(t)$.
@@ -6153,25 +6153,21 @@ The initial-boundary value problem
 can be then expressed as
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial^2 u}{\partial t^2} &=
 \frac{\partial}{\partial x}\left(
 \lambda(x) {\partial u\over\partial x}\right) + f(x,t),
 \quad & x\in (0,L),\ t\in (0,T],
 label{scale:wave:pde3}\\
-u(x,0) &= I(x),
-\quad &x\in [0,L],
+u(x,0) &= I(x),                          \quad &x\in [0,L],
 label{scale:wave:pde3:ic:u}\\
-{\partial\over\partial t}u(x,0) &= 0,
-\quad & x\in [0,L],
+{\partial\over\partial t}u(x,0) &= 0,    \quad &x\in [0,L],
 label{scale:wave:pde3:ic:ut}\\
-\frac{\partial}{\partial x}u(0,t) & = 0,
-\quad  &t\in (0,T],
+\frac{\partial}{\partial x}u(0,t) & = 0, \quad &t\in (0,T],
 label{scale:wave:pde3:bc:0}\\
-\frac{\partial}{\partial x}u(L,t) & = 0,
-\quad  &t\in (0,T].
+\frac{\partial}{\partial x}u(L,t) & = 0, \quad &t\in (0,T].
 label{scale:wave:pde3:bc:L}
-\end{align}
+\end{alignat}
 !et
 
 === Non-dimensionalization ===
@@ -6203,7 +6199,7 @@ Inserting dependent and independent variables expressed by their
 non-dimensional counterparts yields
 
 !bt
-\begin{align*}
+\begin{alignat*}{2}
 \frac{\partial^2 \bar u}{\partial \bar t^2} &=
 \frac{t_c^2\lambda_c}{L^2}\frac{\partial}{\partial \bar x}\left(
 \bar\lambda(\bar x) {\partial\bar u\over\partial\bar x}\right)
@@ -6217,7 +6213,7 @@ non-dimensional counterparts yields
 \quad  &\bar t\in (0,\bar T],\\
 \frac{\partial}{\partial \bar x}\bar u(1,\bar t) & = 0,
 \quad  &\bar t\in (0,\bar T],
-\end{align*}
+\end{alignat*}
 !et
 with $\bar T = Tc/L$.
 
@@ -6710,7 +6706,7 @@ as $t\rightarrow\infty$.
 The initial-boundary value problem reads
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \varrho c \frac{\partial u}{\partial t} &=
 k \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
@@ -6724,7 +6720,7 @@ label{scale:heat:pde3:bc:0}\\
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
 label{scale:heat:pde3:bc:L}
-\end{align}
+\end{alignat}
 !et
 The PDE (ref{scale:heat:pde3}) arises from the energy equation in
 solids and involves three physical parameters: the density $\varrho$,
@@ -6750,7 +6746,7 @@ The choice of $t_c$ is as in the previous cases. We arrive at
 the dimensionless initial-boundary value problem
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{\partial^2 \bar u}{\partial \bar x^2},
 \quad &  \bar x\in (0,1),\ \bar t\in (0, \bar T],
@@ -6764,7 +6760,7 @@ label{scale:heat:pde3:bc:0:d}\\
 \frac{\partial}{\partial \bar x} \bar u(1, \bar t) & = 0,
 \quad & \bar t\in (0, \bar T].
 label{scale:heat:pde3:bc:L:d}
-\end{align}
+\end{alignat}
 !et
 The striking feature is that there are no physical parameters left in
 this problem. One simulation can be carried out for $\bar u(\bar x,\bar t)$,
@@ -6785,7 +6781,7 @@ Now we address a heat equation problem where the temperature is
 oscillating on the boundary $x=0$:
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial u}{\partial t} &=
 \dfc \frac{\partial^2 u}{\partial x^2},
 \quad &  x\in (0,L),\ t\in (0, T],
@@ -6799,7 +6795,7 @@ label{scale:heat:pde2:bc:0}\\
 \frac{\partial}{\partial x} u(L, t) & = 0,
 \quad & t\in (0, T].
 label{scale:heat:pde2:bc:L}
-\end{align}
+\end{alignat}
 !et
 One important physical application is temperature oscillations in the
 ground, either day and night variations
@@ -6950,7 +6946,7 @@ Based on the discussion of scales above, we arrive at the following
 scaled initial-boundary value problem:
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial \bar u}{\partial \bar t} &=
 \frac{1}{2}\frac{\partial^2\bar u}{\partial x^2},
 \quad & \bar x\in (0,4),\ \bar t\in (0,\bar T],
@@ -6964,7 +6960,7 @@ label{scale:heat:pde2:bc:0:d}\\
 \frac{\partial}{\partial\bar x}\bar u(\bar L,\bar t) & = 0,
 \quad &\bar t\in (0,\bar T].
 label{scale:heat:pde2:bc:L:d}
-\end{align}
+\end{alignat}
 !et
 The coefficient in front of the second-derivative is $\half$ because
 
@@ -7817,11 +7813,11 @@ dominating force. If $U_0$ is more important than $\beta$, or $\beta =0$,
 we choose $u_c=U_0$ and get instead
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),\\
 \bar u(0) &= 0,\\
 \bar u(1) &= 1\tp
-\end{align}
+\end{alignat}
 !et
 !esol
 !esubex
@@ -7837,13 +7833,13 @@ The flow of a viscous fluid in a straight pipe with circular
 cross section with radius $R$ is governed by
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
 \left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],\\
 \frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],\\
 u(R,t) &= 0, & t\in (0,T],\\
 u(r,0) &= 0, & r\in [0,R].
-\end{align}
+\end{alignat}
 !et
 The quantity $u(r,t)$ is the fluid velocity, $P(t)$ is a given
 pressure gradient, $\varrho$ is the fluid density, and $\mu$ is the
@@ -8015,14 +8011,14 @@ at $t=0$. The following initial-boundary value problem governs the
 temperature evolution in the two pieces:
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\
 u(\x,0)&=I(x), & \x\in \Omega,
 label{scale:exer:twometal:eq1:3D}\\
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
 label{scale:exer:twometal:eq2:3D}
-\end{align}
+\end{alignat}
 !et
 Here, $u(\x,t)$ is the temperature, $\dfc$ the effective heat diffusion
 coefficient (assuming both pieces are homogeneous and of the same type of
@@ -8048,7 +8044,7 @@ A simplified PDE problem, neglecting variations in the $y$ and $z$
 directions, takes the form
 
 !bt
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial v}{\partial t} &=
 \dfc \frac{\partial^2 v}{\partial x^2}
 -\frac{hP}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
@@ -8058,7 +8054,7 @@ v(x,0)&=I(x), & x\in (0,L),\\
  label{scale:exer:twometal:eq2:1D}\\
 -\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
 label{scale:exer:twometal:eq3:1D}
-\end{align}
+\end{alignat}
 !et
 with
 
@@ -8284,12 +8280,12 @@ through numerical experimentation.
 The governing PDE problem reads
 
 !bt
-\begin{align*}
+\begin{alignat*}{2}
 \varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
 + f, & x\in (0,L),\ t\in (0,T),\\
 u(x,0) &= U_s, & x\in [0,L],\\
 u(0,t) = u(L,t) &= U_s, & t\in (0,T].
-\end{align*}
+\end{alignat*}
 !et
 Here, $u$ is the temperature, $\varrho$ the density of the material,
 $c$ a heat capacity, $k$ the heat conduction coefficient, $f$ is
@@ -8710,12 +8706,12 @@ fenics_welding_url = 'https://raw.githubusercontent.com/hplgit/fenics-tutorial/%
 
 Below is a plot of the heat source (upper left) and temperature distributions for $\gamma=0.1$ (upper right), $\gamma=1$ (lower left), and $\gamma=30$ (lower right), after two rotations.
 
-FIGURE: [fig-scaling/welding3D_fenics, width=800, frac=1]
+FIGURE: [fig-scaling/welding3D_fenics, width=800 frac=1]
 
 Gearing $\gamma$ up to 2000 gives the following comet-like temperature
 distribution:
 
-FIGURE: [fig-scaling/welding_gamma2000_fenics, width=500, frac=0.7]
+FIGURE: [fig-scaling/welding_gamma2000_fenics, width=500 frac=0.7]
 
 From the movies below we can clearly see how the temperature is effectively
 spreading in 3D for small $\gamma$ values, while for large values the

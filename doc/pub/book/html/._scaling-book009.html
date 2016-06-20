@@ -34,7 +34,7 @@ code { color: inherit; background-color: transparent; }
 .anchor::before {
   content:"";
   display:block;
-  height:50px; /* fixed header height*/
+  height:50px;      /* fixed header height for style bootstrap_simula */
   margin:-50px 0 0; /* negative fixed header height */
 }
 
@@ -1372,17 +1372,13 @@ The flow of a viscous fluid in a straight pipe with circular
 cross section with radius \( R \) is governed by
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
-\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{3.77}\\ 
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
-\tag{3.78}\\ 
-u(R,t) &= 0, & t\in (0,T],
-\tag{3.79}\\ 
+\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],\\ 
+\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],\\ 
+u(R,t) &= 0, & t\in (0,T],\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{3.80}
-\end{align}
+\end{alignat}
 $$
 
 The quantity \( u(r,t) \) is the fluid velocity, \( P(t) \) is a given
@@ -1414,7 +1410,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
 -u\tp
-\tag{3.81}
+\tag{3.77}
 \end{equation}
 $$
 
@@ -1423,7 +1419,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale <a href="#mjx-eqn-3.81">(3.81)</a> in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-3.77">(3.77)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
@@ -1447,15 +1443,14 @@ at \( t=0 \). The following initial-boundary value problem governs the
 temperature evolution in the two pieces:
 
 $$
-\begin{align}
-\frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],
-\tag{3.82}\\ 
+\begin{alignat}{2}
+\frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\ 
 u(\x,0)&=I(x), & \x\in \Omega,
-\tag{3.83}\\ 
+\tag{3.78}\\ 
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
-\tag{3.84}
-\end{align}
+\tag{3.79}
+\end{alignat}
 $$
 
 Here, \( u(\x,t) \) is the temperature, \( \dfc \) the effective heat diffusion
@@ -1482,18 +1477,17 @@ A simplified PDE problem, neglecting variations in the \( y \) and \( z \)
 directions, takes the form
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial v}{\partial t} &=
 \dfc \frac{\partial^2 v}{\partial x^2}
 -\frac{hP}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
-\tag{3.85}\\ 
-v(x,0)&=I(x), & x\in (0,L),
-\tag{3.86}\\ 
+\tag{3.80}\\ 
+v(x,0)&=I(x), & x\in (0,L),\\ 
  \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
-\tag{3.87}\\ 
+\tag{3.81}\\ 
 -\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
-\tag{3.88}
-\end{align}
+\tag{3.82}
+\end{alignat}
 $$
 
 with
@@ -1518,9 +1512,9 @@ area of the cross section. Scale this problem.
 <h3 id="___sec163" class="anchor">Remarks </h3>
 
 <p>
-We can derive <a href="#mjx-eqn-3.85">(3.85)</a>-<a href="#mjx-eqn-3.88">(3.88)</a> from <a href="#mjx-eqn-3.83">(3.83)</a>-<a href="#mjx-eqn-3.84">(3.84)</a>.
+We can derive <a href="#mjx-eqn-3.80">(3.80)</a>-<a href="#mjx-eqn-3.82">(3.82)</a> from <a href="#mjx-eqn-3.78">(3.78)</a>-<a href="#mjx-eqn-3.79">(3.79)</a>.
 The idea is to integrate the governing PDE
-<a href="#mjx-eqn-3.85">(3.85)</a> in the two directions where we
+<a href="#mjx-eqn-3.80">(3.80)</a> in the two directions where we
 expect negligible variations,
 use the Gauss divergence theorem in these directions, and
 apply the cooling boundary condition. Let \( A \) be the cross section of
@@ -1567,7 +1561,7 @@ $$
 
 where \( A \) now is the cross-section <em>area</em>.
 The result is the 1D initial-boundary value problem
-<a href="#mjx-eqn-3.85">(3.85)</a>-<a href="#mjx-eqn-3.88">(3.88)</a>.
+<a href="#mjx-eqn-3.80">(3.80)</a>-<a href="#mjx-eqn-3.82">(3.82)</a>.
 
 <p>
 <!-- --- end exercise --- -->
@@ -1591,12 +1585,12 @@ through numerical experimentation.
 The governing PDE problem reads
 
 $$
-\begin{align*}
+\begin{alignat*}{2}
 \varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
 + f, & x\in (0,L),\ t\in (0,T),\\ 
 u(x,0) &= U_s, & x\in [0,L],\\ 
 u(0,t) = u(L,t) &= U_s, & t\in (0,T].
-\end{align*}
+\end{alignat*}
 $$
 
 Here, \( u \) is the temperature, \( \varrho \) the density of the material,

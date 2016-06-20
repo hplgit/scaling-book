@@ -34,7 +34,7 @@ code { color: inherit; background-color: transparent; }
 .anchor::before {
   content:"";
   display:block;
-  height:50px; /* fixed header height*/
+  height:50px;      /* fixed header height for style bootstrap_bluegray */
   margin:-50px 0 0; /* negative fixed header height */
 }
 
@@ -1481,14 +1481,11 @@ dominating force. If \( U_0 \) is more important than \( \beta \), or \( \beta =
 we choose \( u_c=U_0 \) and get instead
 
 $$
-\begin{align}
-\frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),
-\tag{3.77}\\ 
-\bar u(0) &= 0,
-\tag{3.78}\\ 
+\begin{alignat}{2}
+\frac{d^2\bar u}{d\bar z^2} &= -\alpha^{-1},\quad &\bar z\in (0,1),\\ 
+\bar u(0) &= 0,\\ 
 \bar u(1) &= 1\tp
-\tag{3.79}
-\end{align}
+\end{alignat}
 $$
 
 <p>
@@ -1515,17 +1512,13 @@ The flow of a viscous fluid in a straight pipe with circular
 cross section with radius \( R \) is governed by
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \varrho\frac{\partial u}{\partial t} &= \frac{\mu}{r}\frac{\partial}{\partial r}
-\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],
-\tag{3.80}\\ 
-\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],
-\tag{3.81}\\ 
-u(R,t) &= 0, & t\in (0,T],
-\tag{3.82}\\ 
+\left(r\frac{\partial u}{\partial r}\right) - P(t), & r\in (0,R),\ t\in (0,T],\\ 
+\frac{\partial u}{\partial r}(0,t) &= 0, & t\in (0,T],\\ 
+u(R,t) &= 0, & t\in (0,T],\\ 
 u(r,0) &= 0, & r\in [0,R].
-\tag{3.83}
-\end{align}
+\end{alignat}
 $$
 
 The quantity \( u(r,t) \) is the fluid velocity, \( P(t) \) is a given
@@ -1636,7 +1629,7 @@ $$
 \begin{equation}
 \tau\frac{\partial u}{\partial t} = \lambda^2\frac{\partial^2 u}{\partial x^2}
 -u\tp
-\tag{3.84}
+\tag{3.77}
 \end{equation}
 $$
 
@@ -1645,7 +1638,7 @@ an electric current along one-dimensional dendrites (&quot;cables&quot;)
 in neural networks, while \( \tau \) and \( \lambda \) are given parameters.
 
 <p>
-Scale <a href="#mjx-eqn-3.84">(3.84)</a> in three ways: 1) let all terms in
+Scale <a href="#mjx-eqn-3.77">(3.77)</a> in three ways: 1) let all terms in
 the scaled equation have unit coefficients, 2) use the domain size
 \( L \) as spatial scale and base the time scale on diffusion, 3) use the
 domain size \( L \) as spatial scale and base the time scale on
@@ -1734,15 +1727,14 @@ at \( t=0 \). The following initial-boundary value problem governs the
 temperature evolution in the two pieces:
 
 $$
-\begin{align}
-\frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],
-\tag{3.85}\\ 
+\begin{alignat}{2}
+\frac{\partial u}{\partial t} &= \dfc\nabla^2 u,\ & \x\in\Omega,\ t\in (0,T],\\ 
 u(\x,0)&=I(x), & \x\in \Omega,
-\tag{3.86}\\ 
+\tag{3.78}\\ 
 -\dfc\frac{\partial u}{\partial n} &= h(u-u_S),
 & x\in\partial\Omega,\ t\in (0,T].
-\tag{3.87}
-\end{align}
+\tag{3.79}
+\end{alignat}
 $$
 
 Here, \( u(\x,t) \) is the temperature, \( \dfc \) the effective heat diffusion
@@ -1769,18 +1761,17 @@ A simplified PDE problem, neglecting variations in the \( y \) and \( z \)
 directions, takes the form
 
 $$
-\begin{align}
+\begin{alignat}{2}
 \frac{\partial v}{\partial t} &=
 \dfc \frac{\partial^2 v}{\partial x^2}
 -\frac{hP}{A}(v(x,t) -u_S),\ & x\in (0,L),\ t\in (0,T],
-\tag{3.88}\\ 
-v(x,0)&=I(x), & x\in (0,L),
-\tag{3.89}\\ 
+\tag{3.80}\\ 
+v(x,0)&=I(x), & x\in (0,L),\\ 
  \dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=0,\ t\in (0,T],
-\tag{3.90}\\ 
+\tag{3.81}\\ 
 -\dfc\frac{\partial v}{\partial x} &= h(v(x,t)-u_S), & x=L,\ t\in (0,T],
-\tag{3.91}
-\end{align}
+\tag{3.82}
+\end{alignat}
 $$
 
 with
@@ -1955,9 +1946,9 @@ Filename: <code>metal_pieces</code>.
 <h3 id="___sec163" class="anchor">Remarks </h3>
 
 <p>
-We can derive <a href="#mjx-eqn-3.88">(3.88)</a>-<a href="#mjx-eqn-3.91">(3.91)</a> from <a href="#mjx-eqn-3.86">(3.86)</a>-<a href="#mjx-eqn-3.87">(3.87)</a>.
+We can derive <a href="#mjx-eqn-3.80">(3.80)</a>-<a href="#mjx-eqn-3.82">(3.82)</a> from <a href="#mjx-eqn-3.78">(3.78)</a>-<a href="#mjx-eqn-3.79">(3.79)</a>.
 The idea is to integrate the governing PDE
-<a href="#mjx-eqn-3.88">(3.88)</a> in the two directions where we
+<a href="#mjx-eqn-3.80">(3.80)</a> in the two directions where we
 expect negligible variations,
 use the Gauss divergence theorem in these directions, and
 apply the cooling boundary condition. Let \( A \) be the cross section of
@@ -2004,7 +1995,7 @@ $$
 
 where \( A \) now is the cross-section <em>area</em>.
 The result is the 1D initial-boundary value problem
-<a href="#mjx-eqn-3.88">(3.88)</a>-<a href="#mjx-eqn-3.91">(3.91)</a>.
+<a href="#mjx-eqn-3.80">(3.80)</a>-<a href="#mjx-eqn-3.82">(3.82)</a>.
 
 <p>
 <!-- --- end exercise --- -->
@@ -2028,12 +2019,12 @@ through numerical experimentation.
 The governing PDE problem reads
 
 $$
-\begin{align*}
+\begin{alignat*}{2}
 \varrho c\frac{\partial u}{\partial t} &= k\frac{\partial^2 u}{\partial x^2}
 + f, & x\in (0,L),\ t\in (0,T),\\ 
 u(x,0) &= U_s, & x\in [0,L],\\ 
 u(0,t) = u(L,t) &= U_s, & t\in (0,T].
-\end{align*}
+\end{alignat*}
 $$
 
 Here, \( u \) is the temperature, \( \varrho \) the density of the material,
@@ -2802,23 +2793,28 @@ How relevant is it to study scaling in 1D model when we know that the
 heat loss from the material is not well modeled? We have implemented a
 full 3D model in the FEniCS programming system and performed simulations
 using cooling law boundary conditions (i.e., conditions of Robin type).
+In the dimensionless cooling law, we set the Nusselt number to 1.
+The other dimensionless parameters are as in the 1D problem, but the
+welding equipment moves in a circle rather along a line as it had to
+in the 1D problem.
 
 <p>
 Below is a plot of the heat source (upper left) and temperature distributions for \( \gamma=0.1 \) (upper right), \( \gamma=1 \) (lower left), and \( \gamma=30 \) (lower right), after two rotations.
 
 <p>
-<br /><br /><center><p><img src="fig-scaling/welding3D_fenics.png" align="bottom" width=800,></p></center><br /><br />
+<br /><br /><center><p><img src="fig-scaling/welding3D_fenics.png" align="bottom" width=800></p></center><br /><br />
 
 <p>
 Gearing \( \gamma \) up to 2000 gives the following comet-like temperature
 distribution:
 
 <p>
-<center>  <!-- FIGURE -->
-<hr class="figure">
-<center><p class="caption">Figure 18:  The temperature field for \( \gamma=2000 \) after two rotations. </p></center>
-<p><img src="fig-scaling/welding_gamma2000_fenics.png" align="bottom" width=800,></p>
-</center>
+<br /><br /><center><p><img src="fig-scaling/welding_gamma2000_fenics.png" align="bottom" width=500></p></center><br /><br />
+
+<p>
+From the movies below we can clearly see how the temperature is effectively
+spreading in 3D for small \( \gamma \) values, while for large values the
+temperature hardly reaches the boundary.
 
 <p>
 
