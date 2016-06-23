@@ -420,7 +420,11 @@ writing, work with NumPy version 1.9 or later, so we have isolated the
 "https://github.com/hplgit/physical-quantities" and made it publicly
 available on GitHub. There is also an alternative package "Unum":
 "https://bitbucket.org/kiv/unum/" for computing with numbers with
-units, but we shall stick to the former module here.
+units. Recently, SymPy was extended with a package for
+"unit conversion": "http://docs.sympy.org/dev/modules/physics/unitsystems/".
+Nevertheless, we shall stick to the simple `PhysicalQuantities` module in the
+present text, and highly recommend SymPy for more demanding work with
+unit systems.
 
 Let us demonstrate the usage of the `PhysicalQuantity` object by
 computing $s=vt$, where $v$ is a velocity given in the unit *yards per
